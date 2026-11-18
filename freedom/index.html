@@ -73,15 +73,26 @@
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
 </style>
 <style>
-  .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-  .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
-  .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
-  .vcard{font-size:14.5px;transition:opacity .35s ease}
-  .vcard b{font-size:16px}
-  .vcard ul{margin:8px 0 0;padding-left:1.25em}
-  .vcard li{margin:5px 0}
-  .dim{opacity:.35}
+  .pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .pickbtns button{padding:10px 18px;min-height:44px;font-size:15px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .pickbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+  .sysline{text-align:center;font-size:14px;color:var(--sub);margin:12px 0 0;min-height:1.7em}
+  .sysline b{color:var(--ink)}
+  .evcard{border:1px solid var(--line);border-left:6px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:12px}
+  .evcard.good{border-left-color:var(--green)}
+  .evcard.bad{border-left-color:var(--red)}
+  .evcard .et{font-weight:700;font-size:15.5px;margin:0}
+  .evcard .eo{font-size:14.5px;margin:4px 0 0}
+  .evcard .tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px}
+  .tag.good{background:#e9f4e9;color:var(--green)}
+  .tag.bad{background:#fbeaea;color:var(--red)}
+  .tally{font-size:14px;text-align:center;margin:14px 0 0}
+  .tally b{font-size:17px}
+  .gmsg{font-size:15px;margin:14px 0 0;min-height:1.7em}
+  .gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+  .gbtns button{min-height:44px;padding:10px 20px}
+  .gbtns button[hidden]{display:none}
+  .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
 
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
@@ -105,35 +116,22 @@
   </section>
 
   <section>
-    <h2>見方は：自由と自己責任は裏表</h2>
-    <p class="lede">同じ仕組みを、自由と見るか、こわいと見るか。ボタンで見方を切り替えると、同じ特徴の裏と表が入れ替わる。</p>
+    <h2>見方は：1週間、その身になって試す</h2>
+    <p class="lede">管理者のいる銀行と、管理者のいないビットコイン。どちらで暮らすと何が起きるか、1週間の出来事で試してみよう。出来事は、試すたびに違う顔ぶれでやってくる。</p>
     <div class="card">
-      <div class="tlbtns" role="group" aria-label="見方の切り替え">
-        <button type="button" data-view="both" class="on">並べてみる</button>
-        <button type="button" data-view="free">自由と見る</button>
-        <button type="button" data-view="scary">こわいと見る</button>
+      <div class="pickbtns" role="group" aria-label="暮らすお金の選択" id="sysPick">
+        <button type="button" data-sys="bank">銀行で暮らす</button>
+        <button type="button" data-sys="btc">ビットコインで暮らす</button>
       </div>
-      <div class="cols" style="margin-top:14px">
-        <div class="vcard" id="cardFree" style="border:1px solid var(--line);border-radius:12px;padding:14px">
-          <b style="color:#c77400">自由と見る</b>
-          <ul>
-            <li>送金を誰にも止められない</li>
-            <li>口座を凍結されることがない</li>
-            <li>国境を越えても同じように使える</li>
-            <li>使うのに誰かの許可が要らない</li>
-          </ul>
-        </div>
-        <div class="vcard" id="cardScary" style="border:1px solid var(--line);border-radius:12px;padding:14px">
-          <b style="color:var(--red)">こわいと見る</b>
-          <ul>
-            <li>送り先を間違えても取り消せない</li>
-            <li>鍵をなくすと誰にも戻してもらえない</li>
-            <li>困ったときに相談できる窓口がない</li>
-            <li>価格の上下も自分の責任になる</li>
-          </ul>
-        </div>
+      <p class="sysline" id="sysLine">まず、どちらのお金で暮らすか選んでみよう。</p>
+      <div id="evList"></div>
+      <p class="tally" id="gTally" hidden>助かった <b id="tGood">0</b> 回 ・ 困った <b id="tBad">0</b> 回</p>
+      <p class="gmsg" id="gMsg" aria-live="polite"></p>
+      <div class="gbtns">
+        <button type="button" id="btnDay" hidden>次の日へ進む</button>
+        <button type="button" id="btnOther" class="sub-btn" hidden>もう一方でも試す</button>
+        <button type="button" id="btnAgain" class="sub-btn" hidden>もう一度ためす</button>
       </div>
-      <p class="tlcap" id="viewCap">並べてみると、自由の項目とこわさの項目は、ほとんどが同じ特徴の裏返しだと分かる。</p>
       <p class="hint">銀行には窓口や補償の仕組みがあり、それ自体にも良さがある。どちらか一方だけが正しいという話ではない。</p>
     </div>
   </section>
@@ -151,23 +149,91 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var CAPS = {
-    both: '並べてみると、自由の項目とこわさの項目は、ほとんどが同じ特徴の裏返しだと分かる。',
-    free: '管理者がいないからこそ、誰の顔色もうかがわずに使える。止められる心配がない安心感を重く見る見方だ。',
-    scary: '管理者がいないからこそ、失敗の受け止め先がない。便利さより「守ってくれる存在」を重く見る見方だ。'
-  };
-  var cardFree = document.getElementById('cardFree');
-  var cardScary = document.getElementById('cardScary');
-  var viewCap = document.getElementById('viewCap');
-  var viewBtns = document.querySelectorAll('[data-view]');
-  function showView(mode){
-    cardFree.classList.toggle('dim', mode === 'scary');
-    cardScary.classList.toggle('dim', mode === 'free');
-    viewCap.textContent = CAPS[mode];
-    viewBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-view') === mode); });
+(function(){
+  var EVENTS = [
+    {t: '送金先を1桁まちがえた',
+     bank: {o: '窓口に相談したら、送金を取り消すことができた。', good: true},
+     btc: {o: '送った記録は書き換えられない。お金は戻らなかった。', good: false}},
+    {t: '土曜の夜、海外の家族に送金したい',
+     bank: {o: '銀行が休みで、月曜まで待つことになった。', good: false},
+     btc: {o: 'その場で送れて、すぐに着いた。', good: true}},
+    {t: '口座が突然、凍結された',
+     bank: {o: '理由を聞いて、解けるのを待つしかなかった。', good: false},
+     btc: {o: '凍結する管理者がいないので、そのまま使えた。', good: true}},
+    {t: '鍵のメモをなくした',
+     bank: {o: '窓口で本人確認をして、再発行してもらえた。', good: true},
+     btc: {o: '誰にも再発行してもらえない。中身に触れなくなった。', good: false}},
+    {t: 'あやしいサイトに送金してしまった',
+     bank: {o: '不審な送金として止められ、助かった。', good: true},
+     btc: {o: '送った時点で確定していて、取り返せなかった。', good: false}},
+    {t: '引っ越し先の国でお金を使いたい',
+     bank: {o: 'その国の口座を作り直す手続きが要った。', good: false},
+     btc: {o: '国が変わっても、同じものをそのまま使えた。', good: true}}
+  ];
+  var DAYS = 4;
+  var sys = null, deck = [], step = 0, good = 0, bad = 0;
+  var evList = document.getElementById('evList');
+  var sysLine = document.getElementById('sysLine');
+  var gTally = document.getElementById('gTally');
+  var tGood = document.getElementById('tGood');
+  var tBad = document.getElementById('tBad');
+  var gMsg = document.getElementById('gMsg');
+  var btnDay = document.getElementById('btnDay');
+  var btnOther = document.getElementById('btnOther');
+  var btnAgain = document.getElementById('btnAgain');
+  var sysBtns = document.querySelectorAll('#sysPick button');
+  function shuffle(a){
+    a = a.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
   }
-  viewBtns.forEach(function(b){ b.addEventListener('click', function(){ showView(b.getAttribute('data-view')); }); });
-  showView('both');
+  function setTally(){ tGood.textContent = good; tBad.textContent = bad; }
+  function start(s){
+    sys = s;
+    deck = shuffle(EVENTS).slice(0, DAYS);
+    step = 0; good = 0; bad = 0;
+    evList.innerHTML = '';
+    gMsg.textContent = '';
+    gTally.hidden = false;
+    setTally();
+    sysBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-sys') === s); });
+    sysLine.innerHTML = (s === 'bank' ? '<b>銀行</b>' : '<b>ビットコイン</b>') + 'で暮らす1週間が始まる。';
+    btnDay.hidden = false;
+    btnOther.hidden = true;
+    btnAgain.hidden = true;
+    nextDay();
+  }
+  function nextDay(){
+    if (step >= DAYS) { finish(); return; }
+    var ev = deck[step];
+    var r = ev[sys];
+    step++;
+    if (r.good) good++; else bad++;
+    var div = document.createElement('div');
+    div.className = 'evcard rise ' + (r.good ? 'good' : 'bad');
+    div.innerHTML = '<p class="et">' + step + '日目：' + ev.t +
+      '<span class="tag ' + (r.good ? 'good' : 'bad') + '">' + (r.good ? '助かった' : '困った') + '</span></p>' +
+      '<p class="eo">' + r.o + '</p>';
+    evList.appendChild(div);
+    setTally();
+    if (step >= DAYS) finish();
+  }
+  function finish(){
+    btnDay.hidden = true;
+    btnOther.hidden = false;
+    btnAgain.hidden = false;
+    gMsg.textContent = 'どちらの暮らしにも、助かる日と困る日があった。違うのは、困ったときに頼れる相手がいるかどうかだ。';
+  }
+  sysBtns.forEach(function(b){
+    b.addEventListener('click', function(){ start(b.getAttribute('data-sys')); });
+  });
+  btnDay.addEventListener('click', nextDay);
+  btnOther.addEventListener('click', function(){ start(sys === 'bank' ? 'btc' : 'bank'); });
+  btnAgain.addEventListener('click', function(){ start(sys); });
+})();
 </script>
 <script>
 (function(){

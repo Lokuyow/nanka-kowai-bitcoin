@@ -73,20 +73,21 @@
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
 </style>
 <style>
-  .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-  .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
-  .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
   .vcard{font-size:14.5px;transition:opacity .35s ease}
   .vcard b{font-size:16px}
   .vcard ul{margin:8px 0 0;padding-left:1.25em}
   .vcard li{margin:5px 0}
-  .dim{opacity:.35}
-  .fstep{background:#fff;border:1px solid var(--line);border-radius:12px;
-    padding:10px 14px;text-align:center;font-weight:700;font-size:15px}
-  .fstep.endA{background:#fbeaea;border-color:#eec9c9}
-  .fstep.endB{background:#e9f4e9;border-color:#c4dec4}
-  .farr{text-align:center;color:var(--orange);font-weight:900;line-height:1.3}
+  .pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .pickbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .pickbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+  .stepcard{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;font-size:15px}
+  .stepcard.end-bad{border-color:#eec9c9;background:#fdf3f3}
+  .stepcard.end-good{border-color:#c4dec4;background:#f2f8f2}
+  .reflect{font-size:15px;font-weight:700;margin:16px 0 0;min-height:1.7em}
+  .gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+  .gbtns button{min-height:44px;padding:10px 20px}
+  .gbtns button[hidden]{display:none}
+  .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -110,31 +111,20 @@
 
   <section>
     <h2>見方は：鍵の残し方で結末が分かれる</h2>
-    <p class="lede">行き先を決めるのは値段でも制度でもない。鍵をどう残したかだ。ボタンで2つの場合を切り替えてみよう。</p>
+    <p class="lede">行き先を決めるのは値段でも制度でもない。鍵をどう残したかだ。残し方を選んで、時間を進めてみよう。結末は、試すたびに同じとは限らない。</p>
     <div class="card">
-      <div class="tlbtns" role="group" aria-label="鍵の残し方の場合の切り替え">
-        <button type="button" data-flow="none" class="on">鍵を渡していない</button>
-        <button type="button" data-flow="ready">渡し方を用意した</button>
+      <div class="pickbtns" role="group" aria-label="鍵の残し方の選択" id="wayPick">
+        <button type="button" data-way="none">誰にも残さない</button>
+        <button type="button" data-way="env">封筒に入れて金庫へ</button>
+        <button type="button" data-way="split">家族2人に分けて渡す</button>
+        <button type="button" data-way="share">パスワードを家族と共有</button>
       </div>
-      <div id="flowNone" style="margin-top:16px">
-        <div class="fstep">鍵を知っているのは本人だけ</div>
-        <div class="farr">↓</div>
-        <div class="fstep">本人が亡くなる</div>
-        <div class="farr">↓</div>
-        <div class="fstep">誰も鍵にたどり着けない</div>
-        <div class="farr">↓</div>
-        <div class="fstep endA">台帳に残ったまま、二度と動かせない</div>
+      <div id="storyList"></div>
+      <p class="reflect" id="reflect" aria-live="polite"></p>
+      <div class="gbtns">
+        <button type="button" id="btnTime" hidden>時を進める</button>
+        <button type="button" id="btnRetryWay" class="sub-btn" hidden>別の残し方で試す</button>
       </div>
-      <div id="flowReady" style="margin-top:16px;display:none">
-        <div class="fstep">家族に鍵の在りかを伝えてある</div>
-        <div class="farr">↓</div>
-        <div class="fstep">本人が亡くなる</div>
-        <div class="farr">↓</div>
-        <div class="fstep">家族が鍵にたどり着く</div>
-        <div class="farr">↓</div>
-        <div class="fstep endB">引き継いで使うことができる</div>
-      </div>
-      <p class="tlcap" id="flowCap">盗まれる心配がない代わりに、残したはずの資産が誰の手にも渡らない。</p>
       <p class="hint">鍵の紛失で二度と動かせなくなったビットコインは、かなりの量にのぼると見られている。</p>
     </div>
   </section>
@@ -161,22 +151,88 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var CAPS = {
-    none: '盗まれる心配がない代わりに、残したはずの資産が誰の手にも渡らない。',
-    ready: '渡し方を用意しておけば引き継げる。ただし生きている間の管理は、その分だけ慎重さが要る。'
-  };
-  var flowNone = document.getElementById('flowNone');
-  var flowReady = document.getElementById('flowReady');
-  var flowCap = document.getElementById('flowCap');
-  var flowBtns = document.querySelectorAll('[data-flow]');
-  function showFlow(mode){
-    flowNone.style.display = (mode === 'none') ? '' : 'none';
-    flowReady.style.display = (mode === 'ready') ? '' : 'none';
-    flowCap.textContent = CAPS[mode];
-    flowBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-flow') === mode); });
+(function(){
+  function buildStory(way){
+    if (way === 'none') return {reflect: 'いちばん安全な残し方は、いちばん引き継げない残し方でもあった。', steps: [
+      {text: '5年後：詐欺や盗難の被害に遭うことは、一度もなかった。'},
+      {text: 'ある日、本人が亡くなった。'},
+      {text: '誰も鍵にたどり着けない。コインは台帳に残ったまま、二度と動かせない。', end: 'bad'}
+    ]};
+    if (way === 'env') {
+      var found = Math.random() < 0.6;
+      return {reflect: '見つかれば引き継げる。見つからなければ、残さなかったのと同じになる。', steps: [
+        {text: '5年後：金庫は無事で、封筒もそのまま残っていた。'},
+        {text: 'ある日、本人が亡くなった。'},
+        found ? {text: '家族が封筒を見つけた。鍵を使って、コインを引き継ぐことができた。', end: 'good'}
+              : {text: '家族は金庫を整理したとき、封筒の意味に気づかず処分してしまった。鍵は失われた。', end: 'bad'}
+      ]};
+    }
+    if (way === 'split') {
+      var kept = Math.random() < 0.5;
+      return {reflect: '分けると盗まれにくい。でも、欠けると開けられない。', steps: [
+        kept ? {text: '5年後：2人とも、メモを大切に保管していた。'}
+             : {text: '5年後：片方の家族が、引っ越しでメモを失くしてしまった。'},
+        {text: 'ある日、本人が亡くなった。'},
+        kept ? {text: '2人のメモを合わせると鍵がそろった。家族が引き継ぐことができた。', end: 'good'}
+             : {text: '片方のメモがないと鍵はそろわない。誰も開けられなかった。', end: 'bad'}
+      ]};
+    }
+    var leaked = Math.random() < 0.5;
+    if (leaked) return {reflect: '引き継ぎはいちばん確実だ。でも、生きている間の危険も一緒に渡すことになる。', steps: [
+      {text: '3年後：家族のスマホがウイルスに感染し、共有していたパスワードが漏れた。一部が、知らないうちに送金されていた。'},
+      {text: 'ある日、本人が亡くなった。'},
+      {text: '残りは引き継げた。でも、生きている間の管理に代償があった。', end: 'bad'}
+    ]};
+    return {reflect: '引き継ぎはいちばん確実だ。でも、生きている間の危険も一緒に渡すことになる。', steps: [
+      {text: '5年後：何事もなく過ぎた。'},
+      {text: 'ある日、本人が亡くなった。'},
+      {text: '家族はパスワードを知っているので、そのまま引き継ぐことができた。', end: 'good'}
+    ]};
   }
-  flowBtns.forEach(function(b){ b.addEventListener('click', function(){ showFlow(b.getAttribute('data-flow')); }); });
-  showFlow('none');
+  var story = null, idx = 0;
+  var storyList = document.getElementById('storyList');
+  var reflect = document.getElementById('reflect');
+  var btnTime = document.getElementById('btnTime');
+  var btnRetryWay = document.getElementById('btnRetryWay');
+  var wayBtns = document.querySelectorAll('#wayPick button');
+  function reveal(){
+    var s = story.steps[idx];
+    var div = document.createElement('div');
+    div.className = 'stepcard rise' + (s.end ? ' end-' + s.end : '');
+    div.textContent = s.text;
+    storyList.appendChild(div);
+    idx++;
+    if (idx >= story.steps.length) {
+      reflect.textContent = story.reflect;
+      btnTime.hidden = true;
+      btnRetryWay.hidden = false;
+    }
+  }
+  function start(way){
+    story = buildStory(way);
+    idx = 0;
+    storyList.innerHTML = '';
+    reflect.textContent = '';
+    wayBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-way') === way); });
+    btnTime.hidden = false;
+    btnRetryWay.hidden = true;
+    reveal();
+  }
+  wayBtns.forEach(function(b){
+    b.addEventListener('click', function(){ start(b.getAttribute('data-way')); });
+  });
+  btnTime.addEventListener('click', function(){
+    if (story && idx < story.steps.length) reveal();
+  });
+  btnRetryWay.addEventListener('click', function(){
+    story = null;
+    storyList.innerHTML = '';
+    reflect.textContent = '';
+    wayBtns.forEach(function(b){ b.classList.remove('on'); });
+    btnTime.hidden = true;
+    btnRetryWay.hidden = true;
+  });
+})();
 </script>
 <script>
 (function(){

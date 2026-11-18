@@ -73,18 +73,30 @@
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
 </style>
 <style>
-  .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-  .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
-  .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
   .vcard{font-size:14.5px;transition:opacity .35s ease}
   .vcard b{font-size:16px}
   .vcard ul{margin:8px 0 0;padding-left:1.25em}
   .vcard li{margin:5px 0}
-  .dim{opacity:.35}
-  .dots{display:flex;gap:8px;justify-content:center;margin-top:14px}
-  .dots .dot{width:10px;height:10px;border-radius:50%;background:var(--line)}
-  .dots .dot.on{background:var(--orange)}
+  .pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .pickbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .pickbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+  .evcard{border:1px solid var(--line);border-left:6px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:12px}
+  .evcard.good{border-left-color:var(--green)}
+  .evcard.bad{border-left-color:var(--red)}
+  .evcard.mix{border-left-color:var(--orange)}
+  .evcard .et{font-weight:700;font-size:15.5px;margin:0}
+  .evcard .eo{font-size:14.5px;margin:4px 0 0}
+  .evcard .tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px}
+  .tag.good{background:#e9f4e9;color:var(--green)}
+  .tag.bad{background:#fbeaea;color:var(--red)}
+  .tag.mix{background:#fdeeda;color:#c77400}
+  .tally{font-size:14px;text-align:center;margin:14px 0 0}
+  .tally b{font-size:17px}
+  .reflect{font-size:15px;font-weight:700;margin:16px 0 0;min-height:1.7em}
+  .gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+  .gbtns button{min-height:44px;padding:10px 20px}
+  .gbtns button[hidden]{display:none}
+  .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -107,20 +119,21 @@
   </section>
 
   <section>
-    <h2>見方は：作り手は移り変わってきた</h2>
-    <p class="lede">お金の作り手は、時代ごとに姿を変えてきた。ボタンを押して4つの時代をたどってみよう。</p>
+    <h2>見方は：小さな村で作り手を選ぶ</h2>
+    <p class="lede">小さな村のお金の作り手を、あなたが選ぶとしたら。作り手を選んで、村の3年間を見てみよう。起きることは、試すたびに少しずつ違う。</p>
     <div class="card">
-      <div class="tlbtns" role="group" aria-label="お金の作り手の時代の切り替え">
-        <button type="button" data-step="0" class="on">地域や藩</button>
-        <button type="button" data-step="1">民間の銀行</button>
-        <button type="button" data-step="2">国と中央銀行</button>
-        <button type="button" data-step="3">ビットコイン</button>
+      <div class="pickbtns" role="group" aria-label="お金の作り手の選択" id="issuerPick">
+        <button type="button" data-issuer="chief">村長が作る</button>
+        <button type="button" data-issuer="merchant">民間の両替商が作る</button>
+        <button type="button" data-issuer="none">作り手のいないお金</button>
       </div>
-      <div class="dots" aria-hidden="true">
-        <span class="dot on"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      <div id="yearList"></div>
+      <p class="tally" id="vTally" hidden>よかった <b id="vGood">0</b> 件 ・ 困った <b id="vBad">0</b> 件</p>
+      <p class="reflect" id="vReflect" aria-live="polite"></p>
+      <div class="gbtns">
+        <button type="button" id="btnYear" hidden>1年進める</button>
+        <button type="button" id="btnRetryIssuer" class="sub-btn" hidden>別の作り手で試す</button>
       </div>
-      <p class="center" style="margin:10px 0 0"><b id="stepName" style="font-size:17px">地域や藩の時代</b></p>
-      <p class="tlcap" id="stepCap">江戸時代には藩が「藩札」という紙幣を出していた。地域の中で回るお金だった。</p>
     </div>
   </section>
 
@@ -159,24 +172,91 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var STEPS = [
-    {name: '地域や藩の時代', cap: '江戸時代には藩が「藩札」という紙幣を出していた。地域の中で回るお金だった。'},
-    {name: '民間の銀行の時代', cap: '明治の初めには、民間の銀行が発行する紙幣もあった。作り手がばらばらで、信用の差も大きかった。'},
-    {name: '国と中央銀行の時代', cap: 'やがて発行は国と中央銀行に一本化された。税金もこの通貨で納める決まりになった。'},
-    {name: 'ビットコイン', cap: '作り手は人や組織ではなく、決まり（プログラム）そのもの。国境を越えて同じものが回る。'}
-  ];
-  var stepName = document.getElementById('stepName');
-  var stepCap = document.getElementById('stepCap');
-  var stepBtns = document.querySelectorAll('[data-step]');
-  var dots = document.querySelectorAll('.dots .dot');
-  function showStep(i){
-    stepName.textContent = STEPS[i].name;
-    stepCap.textContent = STEPS[i].cap;
-    stepBtns.forEach(function(b, k){ b.classList.toggle('on', k === i); });
-    dots.forEach(function(d, k){ d.classList.toggle('on', k === i); });
+(function(){
+  var ISSUERS = {
+    chief: {reflect: '助けたいときに動ける作り手は心強い。でも、その力は値段の安定と引き換えだった。', years: [
+      {text: '豊作の年。村長は橋を直すため、お金を多めに作って配った。橋は直ったが、物の値段が少しずつ上がり始めた。', tag: 'mix'},
+      [{text: '村長が代替わりした。新村長は「古いお金は使えない」と言い出し、村は大騒ぎになった。', tag: 'bad'},
+       {text: '村長が代替わりしたが、お金の決まりはそのまま引き継がれた。村は落ち着いていた。', tag: 'good'}],
+      {text: '困った家庭が出たとき、村長はお金を配って助けることができた。', tag: 'good'}
+    ]},
+    merchant: {reflect: '民間の作り手は便利で、競争も生まれる。でも、信用が崩れたときの受け止め先がない。', years: [
+      {text: '両替商のお金は使いやすく、村の店はどこでも受け取るようになった。', tag: 'good'},
+      [{text: '両替商が夜逃げした。持っていたお金は、ただの紙になった。', tag: 'bad'},
+       {text: '両替商が店をたたむことになったが、次の両替商が引き継いで、お金はそのまま使えた。', tag: 'good'}],
+      {text: '別の両替商も店を出し、競い合って手数料が下がった。', tag: 'good'}
+    ]},
+    none: {reflect: '誰の気分でも変わらない安心感はある。でも、困ったときに調整できる人もいない。', years: [
+      {text: '最初は不便だったが、量の決まったお金を皆が使うようになった。値段は、作り手の気分では変わらない。', tag: 'mix'},
+      [{text: '隣の村でも同じお金が使えた。村と村の境を越えて、回り始めた。', tag: 'good'},
+       {text: '隣の村では受け取ってもらえず、交換のたびに両替が要った。', tag: 'bad'}],
+      {text: '不作の年が来た。助けたくても、お金の量を増やせる人がいなかった。', tag: 'bad'}
+    ]}
+  };
+  var TAGLABEL = {good: 'よかった', bad: '困った', mix: '両方'};
+  var plan = null, idx = 0, good = 0, bad = 0;
+  var yearList = document.getElementById('yearList');
+  var vTally = document.getElementById('vTally');
+  var vGood = document.getElementById('vGood');
+  var vBad = document.getElementById('vBad');
+  var vReflect = document.getElementById('vReflect');
+  var btnYear = document.getElementById('btnYear');
+  var btnRetryIssuer = document.getElementById('btnRetryIssuer');
+  var issuerBtns = document.querySelectorAll('#issuerPick button');
+  function resolve(years){
+    return years.map(function(y){
+      return Array.isArray(y) ? y[Math.floor(Math.random() * y.length)] : y;
+    });
   }
-  stepBtns.forEach(function(b, k){ b.addEventListener('click', function(){ showStep(k); }); });
-  showStep(0);
+  function reveal(){
+    var y = plan.years[idx];
+    if (y.tag === 'good' || y.tag === 'mix') good++;
+    if (y.tag === 'bad' || y.tag === 'mix') bad++;
+    var div = document.createElement('div');
+    div.className = 'evcard rise ' + y.tag;
+    div.innerHTML = '<p class="et">' + (idx + 1) + '年目' +
+      '<span class="tag ' + y.tag + '">' + TAGLABEL[y.tag] + '</span></p>' +
+      '<p class="eo">' + y.text + '</p>';
+    yearList.appendChild(div);
+    vGood.textContent = good;
+    vBad.textContent = bad;
+    idx++;
+    if (idx >= plan.years.length) {
+      vReflect.textContent = plan.reflect;
+      btnYear.hidden = true;
+      btnRetryIssuer.hidden = false;
+    }
+  }
+  function start(key){
+    var src = ISSUERS[key];
+    plan = {reflect: src.reflect, years: resolve(src.years)};
+    idx = 0; good = 0; bad = 0;
+    yearList.innerHTML = '';
+    vReflect.textContent = '';
+    vTally.hidden = false;
+    vGood.textContent = 0;
+    vBad.textContent = 0;
+    issuerBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-issuer') === key); });
+    btnYear.hidden = false;
+    btnRetryIssuer.hidden = true;
+    reveal();
+  }
+  issuerBtns.forEach(function(b){
+    b.addEventListener('click', function(){ start(b.getAttribute('data-issuer')); });
+  });
+  btnYear.addEventListener('click', function(){
+    if (plan && idx < plan.years.length) reveal();
+  });
+  btnRetryIssuer.addEventListener('click', function(){
+    plan = null;
+    yearList.innerHTML = '';
+    vReflect.textContent = '';
+    vTally.hidden = true;
+    issuerBtns.forEach(function(b){ b.classList.remove('on'); });
+    btnYear.hidden = true;
+    btnRetryIssuer.hidden = true;
+  });
+})();
 </script>
 <script>
 (function(){

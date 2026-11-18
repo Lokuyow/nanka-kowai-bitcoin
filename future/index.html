@@ -73,21 +73,21 @@
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
 </style>
 <style>
-  .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-  .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
-  .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
   .vcard{font-size:14.5px;transition:opacity .35s ease}
   .vcard b{font-size:16px}
   .vcard ul{margin:8px 0 0;padding-left:1.25em}
   .vcard li{margin:5px 0}
-  .dim{opacity:.35}
-  .frow{display:flex;gap:10px;align-items:flex-start;background:#fff;
-    border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
-  .frow .chip{flex:0 0 auto;background:#fdeeda;color:#c77400;font-weight:700;
-    font-size:12.5px;border-radius:999px;padding:2px 10px;margin-top:2px}
-  .frow p{margin:0;font-size:15px}
-  .frow .txt{transition:opacity .2s ease}
+  .scenetitle{font-weight:700;font-size:16.5px;margin:0 0 12px}
+  .pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .pickbtns button{padding:10px 18px;min-height:44px;font-size:15px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .pickbtns button.primary-btn{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .sceneout{font-size:15px;min-height:3.2em;margin:14px 0 0}
+  .recaprow{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
+  .recaprow .chip{flex:0 0 auto;background:#fdeeda;color:#c77400;font-weight:700;font-size:12.5px;border-radius:999px;padding:2px 10px;margin-top:2px}
+  .recaprow p{margin:0;font-size:14.5px}
+  .gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+  .gbtns button{min-height:44px;padding:10px 20px}
+  .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -110,17 +110,20 @@
   </section>
 
   <section>
-    <h2>見方は：変わりそうな場面を並べる</h2>
-    <p class="lede">3つの場面で「いま」と「当たり前になったら」を切り替えて比べてみよう。</p>
+    <h2>見方は：当たり前になった社会で1日を過ごす</h2>
+    <p class="lede">ビットコインがふつうの選択肢になった社会で、1日を過ごしてみよう。場面ごとに、払い方や持ち方を選んでみよう。</p>
     <div class="card">
-      <div class="tlbtns" role="group" aria-label="いまと将来像の切り替え">
-        <button type="button" data-when="now" class="on">いま</button>
-        <button type="button" data-when="future">当たり前になったら</button>
+      <div id="sceneArea">
+        <p class="scenetitle" id="sceneTitle"></p>
+        <div class="pickbtns" id="sceneBtns"></div>
+        <p class="sceneout" id="sceneOut" aria-live="polite"></p>
       </div>
-      <div class="frow"><span class="chip">海外への送金</span><p class="txt" data-row="0">銀行を経由して、日数と手数料がかかる</p></div>
-      <div class="frow"><span class="chip">貯金の置き場所</span><p class="txt" data-row="1">銀行預金と現金が中心</p></div>
-      <div class="frow"><span class="chip">お金の種類</span><p class="txt" data-row="2">お金といえば国が作るもの</p></div>
-      <p class="tlcap" id="whenCap">どれも今の当たり前だ。銀行と国の通貨を中心に回っている。</p>
+      <div id="recapArea" hidden>
+        <p class="scenetitle">あなたの1日は、こんな組み合わせだった</p>
+        <div id="recapList"></div>
+        <p class="sceneout">どの組み合わせが正解ということはない。選べるものが増えるのは、便利さと面倒さがセットで増えることでもある。</p>
+        <div class="gbtns"><button type="button" id="btnDayAgain" class="sub-btn">もう一度、別の選び方で</button></div>
+      </div>
     </div>
   </section>
 
@@ -147,29 +150,71 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var ROWS = {
-    now: ['銀行を経由して、日数と手数料がかかる', '銀行預金と現金が中心', 'お金といえば国が作るもの'],
-    future: ['スマホから相手に直接送れる', '国の通貨と並んで、ビットコインで持つ人もいる', '国のお金と、国の外のお金が並んで選ばれる']
-  };
-  var CAPS = {
-    now: 'どれも今の当たり前だ。銀行と国の通貨を中心に回っている。',
-    future: 'どれも決まった未来ではない。こうなるかもしれない、という想像の絵だ。'
-  };
-  var txts = document.querySelectorAll('.frow .txt');
-  var whenCap = document.getElementById('whenCap');
-  var whenBtns = document.querySelectorAll('[data-when]');
-  function showWhen(mode){
-    txts.forEach(function(t){
-      t.style.opacity = 0;
-      setTimeout(function(){
-        t.textContent = ROWS[mode][Number(t.getAttribute('data-row'))];
-        t.style.opacity = 1;
-      }, 200);
+(function(){
+  var SCENES = [
+    {title: '朝：カフェでコーヒーを買う', choices: [
+      {label: '円で払う', out: 'いつも通り、何も考えずに払えた。'},
+      {label: 'ビットコインで払う', out: 'その場で払えた。ただ、今朝の値段でいくら分かを、少しだけ考えた。'}
+    ]},
+    {title: '昼：海外の友だちに送金する', choices: [
+      {label: '銀行経由で送る', out: '手数料がかかり、着くのは数日後になった。'},
+      {label: 'ビットコインで送る', out: 'すぐに着いた。でも送り先を間違えないよう、3回見直した。'}
+    ]},
+    {title: '夜：余ったお金をしまっておく', choices: [
+      {label: '銀行に預ける', out: '額面は減らない。その安心感で眠れる。'},
+      {label: 'ビットコインで持つ', out: '寝る前に、つい値段を確認してしまった。'}
+    ]}
+  ];
+  var idx = 0, picks = [];
+  var sceneArea = document.getElementById('sceneArea');
+  var recapArea = document.getElementById('recapArea');
+  var sceneTitle = document.getElementById('sceneTitle');
+  var sceneBtns = document.getElementById('sceneBtns');
+  var sceneOut = document.getElementById('sceneOut');
+  var recapList = document.getElementById('recapList');
+  function showScene(){
+    sceneTitle.textContent = SCENES[idx].title;
+    sceneOut.textContent = '';
+    sceneBtns.innerHTML = '';
+    SCENES[idx].choices.forEach(function(c){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = c.label;
+      b.addEventListener('click', function(){ choose(c); });
+      sceneBtns.appendChild(b);
     });
-    whenCap.textContent = CAPS[mode];
-    whenBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-when') === mode); });
   }
-  whenBtns.forEach(function(b){ b.addEventListener('click', function(){ showWhen(b.getAttribute('data-when')); }); });
+  function choose(c){
+    picks.push({scene: SCENES[idx].title, label: c.label, out: c.out});
+    sceneOut.textContent = c.out;
+    sceneBtns.innerHTML = '';
+    var last = idx >= SCENES.length - 1;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'primary-btn';
+    b.textContent = last ? '1日を終える' : '次の場面へ';
+    b.addEventListener('click', function(){
+      if (last) finish();
+      else { idx++; showScene(); }
+    });
+    sceneBtns.appendChild(b);
+  }
+  function finish(){
+    sceneArea.hidden = true;
+    recapArea.hidden = false;
+    recapList.innerHTML = picks.map(function(p){
+      return '<div class="recaprow"><span class="chip">' + p.scene.split('：')[0] + '</span><p><b>' + p.label + '</b>：' + p.out + '</p></div>';
+    }).join('');
+  }
+  document.getElementById('btnDayAgain').addEventListener('click', function(){
+    idx = 0;
+    picks = [];
+    recapArea.hidden = true;
+    sceneArea.hidden = false;
+    showScene();
+  });
+  showScene();
+})();
 </script>
 <script>
 (function(){

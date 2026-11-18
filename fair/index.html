@@ -74,14 +74,21 @@
 </style>
 <style>
   .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-  .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .tlbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
   .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
-  .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
-  .vcard{font-size:14.5px;transition:opacity .35s ease}
-  .vcard b{font-size:16px}
-  .vcard ul{margin:8px 0 0;padding-left:1.25em}
-  .vcard li{margin:5px 0}
-  .dim{opacity:.35}
+  .simval{font-size:15px;text-align:center;margin-top:16px}
+  .simval b{font-size:24px}
+  #simChart{margin-top:6px}
+  .chartline{stroke:var(--orange);stroke-width:2.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+  .basedash{stroke:var(--line);stroke-width:1}
+  .dot{fill:#fff;stroke:var(--orange);stroke-width:2}
+  .dotnow{fill:var(--orange);stroke:var(--orange);stroke-width:2}
+  .simhead{font-weight:700;font-size:16px;min-height:1.7em;margin:10px 0 0}
+  .simmsg{font-size:14.5px;min-height:3.2em;margin:4px 0 0}
+  .gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+  .gbtns button{min-height:44px;padding:10px 20px}
+  .gbtns button[hidden]{display:none}
+  .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .tl3{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
   .tl3::before{content:"";position:absolute;top:7px;left:4%;right:4%;height:2px;background:var(--line)}
   .tl3 .pt{position:relative;padding-top:24px;font-size:12.5px;color:var(--sub);line-height:1.55}
@@ -121,33 +128,31 @@
   </section>
 
   <section>
-    <h2>見方は：結果とリスク</h2>
-    <p class="lede">同じ年月を、結果の差から見るか、引き受けたリスクから見るか。ボタンで見方を切り替えてみよう。</p>
+    <h2>見方は：「あの年に買っていたら」を体験する</h2>
+    <p class="lede">早く買った人の結果だけを見ると、簡単に勝てたように見える。では、自分がその年に買って、その後の暴落を全部やり過ごせるだろうか。買う年を選んで、売るか持ち続けるかを決めながら進んでみよう。</p>
     <div class="card">
-      <div class="tlbtns" role="group" aria-label="見方の切り替え">
-        <button type="button" data-view="both" class="on">並べてみる</button>
-        <button type="button" data-view="unfair">ずるいと見る</button>
-        <button type="button" data-view="fair">そうとも言えない</button>
+      <div class="tlbtns" role="group" aria-label="買う年の選択" id="yearPick">
+        <button type="button" data-year="y2011">2011年に買う</button>
+        <button type="button" data-year="y2015">2015年に買う</button>
+        <button type="button" data-year="y2019">2019年に買う</button>
+        <button type="button" data-year="y2023">2023年に買う</button>
       </div>
-      <div class="cols" style="margin-top:14px">
-        <div class="vcard" id="cardUnfair" style="border:1px solid var(--line);border-radius:12px;padding:14px">
-          <b style="color:var(--red)">ずるいと感じる見方</b>
-          <ul>
-            <li>情報の早い人だけが得をした</li>
-            <li>あとから参加するほど条件は悪く見える</li>
-            <li>持っている量の差がそのまま残る</li>
-          </ul>
-        </div>
-        <div class="vcard" id="cardFair" style="border:1px solid var(--line);border-radius:12px;padding:14px">
-          <b style="color:#c77400">そうとも言えない見方</b>
-          <ul>
-            <li>始まりは公開されていて誰でも参加できた</li>
-            <li>安かった時代は「終わる」と言われるリスクもいちばん大きかった</li>
-            <li>新しい技術はどれも早い参加者がリスクと引き換えに得をしてきた</li>
-          </ul>
+      <div id="simArea" hidden>
+        <div class="simval">評価額 <b id="simVal">10万円</b></div>
+        <svg id="simChart" viewBox="0 0 320 140" width="100%" role="img" aria-label="評価額の動きのグラフ">
+          <line id="baseLine" class="basedash" x1="8" x2="312" y1="60" y2="60" stroke-dasharray="4 4"/>
+          <polyline id="simLine" class="chartline" points=""/>
+          <g id="simDots"></g>
+        </svg>
+        <p class="simhead" id="simHead" aria-live="polite"></p>
+        <p class="simmsg" id="simMsg" aria-live="polite"></p>
+        <div class="gbtns">
+          <button type="button" id="btnSell" class="sub-btn" hidden>売る</button>
+          <button type="button" id="btnHold" hidden>持ち続ける</button>
+          <button type="button" id="btnReset" class="sub-btn" hidden>別の年で試す</button>
         </div>
       </div>
-      <p class="tlcap" id="viewCap">2つの見方は、見ているものが違う。片方は「結果の差」を、もう片方は「引き受けたリスク」を見ている。</p>
+      <p class="hint">値段の動きはおおまかなイメージです。実際の値動きとは異なります。</p>
     </div>
   </section>
 
@@ -164,23 +169,108 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var CAPS = {
-    both: '2つの見方は、見ているものが違う。片方は「結果の差」を、もう片方は「引き受けたリスク」を見ている。',
-    unfair: '結果だけを並べれば、早く持った人が得をしすぎに見える。不公平感の出発点はここだ。',
-    fair: '同じ年月を引き受けたものの側から見ると、得はリスクの対価にも見える。'
+(function(){
+  var PLANS = {
+    y2011: {start: 10, final: 5200, events: [
+      {h: '2011年：大きく値下がり、「やっぱり怪しい」と騒がれた', v: 1.2, peak: null},
+      {h: '2014年：取引所が破たんし、最高値から8割下がった', v: 90, peak: 450},
+      {h: '2018年：熱狂が冷めて、また8割下がった', v: 500, peak: 2400},
+      {h: '2022年：大手の破たんで、また大きく下がった', v: 1500, peak: 4600}
+    ]},
+    y2015: {start: 10, final: 870, events: [
+      {h: '2018年：熱狂が冷めて、8割下がった', v: 55, peak: 280},
+      {h: '2022年：大手の破たんで、また大きく下がった', v: 240, peak: 800}
+    ]},
+    y2019: {start: 10, final: 350, events: [
+      {h: '2020年：世界的な混乱で、一時半分になった', v: 6, peak: null},
+      {h: '2022年：大手の破たんで、また大きく下がった', v: 90, peak: 320}
+    ]},
+    y2023: {start: 10, final: 62, events: [
+      {h: '2025年：最高値から3割ほど下がった', v: 38, peak: 55}
+    ]}
   };
-  var cardUnfair = document.getElementById('cardUnfair');
-  var cardFair = document.getElementById('cardFair');
-  var viewCap = document.getElementById('viewCap');
-  var viewBtns = document.querySelectorAll('[data-view]');
-  function showView(mode){
-    cardUnfair.classList.toggle('dim', mode === 'fair');
-    cardFair.classList.toggle('dim', mode === 'unfair');
-    viewCap.textContent = CAPS[mode];
-    viewBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-view') === mode); });
+  var plan = null, idx = 0, pts = [];
+  var simArea = document.getElementById('simArea');
+  var simVal = document.getElementById('simVal');
+  var simHead = document.getElementById('simHead');
+  var simMsg = document.getElementById('simMsg');
+  var simLine = document.getElementById('simLine');
+  var simDots = document.getElementById('simDots');
+  var baseLine = document.getElementById('baseLine');
+  var btnSell = document.getElementById('btnSell');
+  var btnHold = document.getElementById('btnHold');
+  var btnReset = document.getElementById('btnReset');
+  var yearBtns = document.querySelectorAll('#yearPick button');
+  function fmt(v){
+    var s = (v % 1 === 0) ? String(Math.round(v)) : v.toFixed(1);
+    return Number(s).toLocaleString('ja-JP') + '万円';
   }
-  viewBtns.forEach(function(b){ b.addEventListener('click', function(){ showView(b.getAttribute('data-view')); }); });
-  showView('both');
+  function yPix(v){
+    var lo = Math.log10(0.8), hi = Math.log10(6000);
+    var t = (Math.log10(v) - lo) / (hi - lo);
+    return 118 - t * (118 - 12);
+  }
+  function draw(){
+    var total = plan.events.length + 1;
+    var line = '', dots = '';
+    pts.forEach(function(v, i){
+      var x = 14 + (292 * i / total), y = yPix(v);
+      line += x.toFixed(1) + ',' + y.toFixed(1) + ' ';
+      dots += '<circle class="' + (i === pts.length - 1 ? 'dotnow' : 'dot') + '" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="4"/>';
+    });
+    simLine.setAttribute('points', line);
+    simDots.innerHTML = dots;
+    var by = yPix(10).toFixed(1);
+    baseLine.setAttribute('y1', by);
+    baseLine.setAttribute('y2', by);
+  }
+  function crisis(){
+    var ev = plan.events[idx];
+    pts.push(ev.v);
+    simVal.textContent = fmt(ev.v);
+    simHead.textContent = ev.h;
+    simMsg.textContent = ev.peak ? ('最高値では' + fmt(ev.peak) + 'まで育っていた。売るか、持ち続けるか。') : '売るか、持ち続けるか。';
+    btnSell.hidden = false;
+    btnHold.hidden = false;
+    btnReset.hidden = true;
+    draw();
+  }
+  function start(key){
+    plan = PLANS[key];
+    idx = 0;
+    pts = [plan.start];
+    simArea.hidden = false;
+    yearBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-year') === key); });
+    crisis();
+  }
+  function finish(){
+    pts.push(plan.final);
+    simVal.textContent = fmt(plan.final);
+    simHead.textContent = '現在';
+    simMsg.textContent = '最後まで持ち続けた。結果は大きい。でも途中の暴落で手放していたら、この結果はなかった。';
+    btnSell.hidden = true;
+    btnHold.hidden = true;
+    btnReset.hidden = false;
+    draw();
+  }
+  yearBtns.forEach(function(b){
+    b.addEventListener('click', function(){ start(b.getAttribute('data-year')); });
+  });
+  btnHold.addEventListener('click', function(){
+    idx++;
+    if (idx >= plan.events.length) finish(); else crisis();
+  });
+  btnSell.addEventListener('click', function(){
+    simMsg.textContent = 'ここで手放した。早く買うことは、暴落のたびに「売るかどうか」を迫られ続けることでもあった。';
+    btnSell.hidden = true;
+    btnHold.hidden = true;
+    btnReset.hidden = false;
+  });
+  btnReset.addEventListener('click', function(){
+    simArea.hidden = true;
+    yearBtns.forEach(function(b){ b.classList.remove('on'); });
+  });
+})();
 </script>
 <script>
 (function(){

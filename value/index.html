@@ -73,12 +73,18 @@
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
 </style>
 <style>
-  .val td.cell{text-align:center;font-weight:700;font-size:16px;transition:all .4s ease;min-width:5.2em}
-  .val td.cell.shown{background:#fdeeda}
-  .val tr.reason td{background:#fdf3e3;font-size:13.5px;text-align:center;
-    opacity:0;transform:translateY(8px);transition:all .6s ease}
-  .val tr.reason.on td{opacity:1;transform:none}
-  .val .q{color:#999}
+  .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tlbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+  .sliders{margin-top:18px;display:grid;gap:8px}
+  .sliders label{font-size:14px;font-weight:700}
+  .meterwrap{margin-top:18px}
+  .meterlabel{font-size:13px;color:var(--sub)}
+  .meter{height:22px;background:#f3ead9;border-radius:999px;overflow:hidden;margin-top:4px}
+  .meterfill{height:100%;width:0;background:var(--orange);border-radius:999px;transition:width .45s ease}
+  .meternum{font-size:26px;font-weight:900;text-align:right;margin-top:2px;line-height:1.2}
+  .evtmsg{font-size:14px;color:#c77400;font-weight:700;min-height:1.7em;margin:10px 0 0}
+  .labmsg{font-size:15px;min-height:3.4em;margin:4px 0 14px}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -102,22 +108,28 @@
   </section>
 
   <section>
-    <h2>実際は：裏付けを確かめてみる</h2>
-    <p class="lede">金・円・ビットコイン、それぞれの「裏付け」を並べてみよう。</p>
+    <h2>実際は：価値は条件で立ち上がる</h2>
+    <p class="lede">ものの値段は、裏付けがあるかどうかだけで決まるとは限らない。条件を自分で動かして、価値が立ち上がったり消えたりする様子を見てみよう。</p>
     <div class="card">
-      <table class="tbl val" id="valTbl">
-        <tr><th></th><th>金（ゴールド）</th><th>円</th><th>ビットコイン</th></tr>
-        <tr><th>裏付けは？</th>
-          <td class="cell"><span class="q">？</span></td>
-          <td class="cell"><span class="q">？</span></td>
-          <td class="cell"><span class="q">？</span></td></tr>
-        <tr class="reason" id="valReason"><th>では、なぜ価値がある？</th>
-          <td>欲しい人が<br>いるから</td>
-          <td>みんなが<br>使えるから</td>
-          <td>欲しい人が<br>いるから</td></tr>
-      </table>
-      <div class="center" style="margin-top:14px"><button id="valBtn" type="button">裏付けを確かめる</button></div>
-      <p class="hint">円と金（ゴールド）の交換は1971年に終わっている。いまの円を支えているのは「裏付け」ではなく「みんなが使える」という合意。</p>
+      <div class="tlbtns" role="group" aria-label="ものの切り替え">
+        <button type="button" data-item="stone" class="on">ただの石ころ</button>
+        <button type="button" data-item="gold">金（ゴールド）</button>
+        <button type="button" data-item="btc">ビットコイン</button>
+      </div>
+      <div class="sliders">
+        <label>欲しいと思う人の多さ<input type="range" id="slWant" min="0" max="100" value="10"></label>
+        <label>手に入る量の少なさ<input type="range" id="slScarce" min="0" max="100" value="20"></label>
+        <label>「価値がある」と信じる人の割合<input type="range" id="slBelief" min="0" max="100" value="5"></label>
+      </div>
+      <div class="meterwrap">
+        <div class="meterlabel">値段のつき具合</div>
+        <div class="meter"><div class="meterfill" id="meterFill"></div></div>
+        <div class="meternum"><span id="meterNum">0</span><span style="font-size:14px;color:var(--sub)"> / 100</span></div>
+      </div>
+      <p class="evtmsg" id="evtMsg" aria-live="polite"></p>
+      <p class="labmsg" id="labMsg" aria-live="polite"></p>
+      <div class="center"><button type="button" id="btnEvent">事件を起こす</button></div>
+      <p class="hint">値段は、裏付けよりも「欲しい人」「量」「信じる人」の重なりで動く。条件がそろえば石にもつくし、崩れれば消えていく。</p>
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>裏付けがないのは円も金も同じ。価値は「欲しい人がいる」ことから生まれる</div>
@@ -133,23 +145,80 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var vt = document.getElementById('valTbl');
-  var vb = document.getElementById('valBtn');
-  var vr = document.getElementById('valReason');
-  var shown = false;
-  vb.addEventListener('click', function(){
-    shown = !shown;
-    var cells = vt.querySelectorAll('td.cell');
-    cells.forEach(function(td, i){
-      if (shown) {
-        setTimeout(function(){ td.innerHTML = 'なし'; td.classList.add('shown'); }, i * 350);
-      } else {
-        td.innerHTML = '<span class="q">？</span>'; td.classList.remove('shown');
-      }
-    });
-    setTimeout(function(){ vr.classList.toggle('on', shown); }, shown ? 1150 : 0);
-    vb.textContent = shown ? '元に戻す' : '裏付けを確かめる';
+(function(){
+  var PRESETS = {
+    stone: {want: 10, scarce: 20, belief: 5},
+    gold: {want: 70, scarce: 65, belief: 80},
+    btc: {want: 55, scarce: 85, belief: 60}
+  };
+  var EVENTS = [
+    {text: '有名人が「これが好きだ」と紹介した。', d: {want: 20, belief: 30}},
+    {text: '大量に見つかって、誰でも拾えるようになった。', d: {scarce: -40}},
+    {text: '使える場所が増えた。', d: {want: 25}},
+    {text: '「あれはもう終わった」という空気が広がった。', d: {belief: -35}},
+    {text: '量に限りがあることが知られた。', d: {scarce: 25}}
+  ];
+  var item = 'stone';
+  var slWant = document.getElementById('slWant');
+  var slScarce = document.getElementById('slScarce');
+  var slBelief = document.getElementById('slBelief');
+  var meterFill = document.getElementById('meterFill');
+  var meterNum = document.getElementById('meterNum');
+  var labMsg = document.getElementById('labMsg');
+  var evtMsg = document.getElementById('evtMsg');
+  var itemBtns = document.querySelectorAll('[data-item]');
+  var lastEvent = -1;
+  function clamp(v){ return Math.max(0, Math.min(100, v)); }
+  function rawScore(){
+    return Math.round(Number(slWant.value) * 0.35 + Number(slScarce.value) * 0.30 + Number(slBelief.value) * 0.35);
+  }
+  function score(){
+    var raw = rawScore();
+    if (item === 'gold') return Math.max(raw, 16);
+    if (item === 'btc' && Number(slBelief.value) === 0) return Math.min(raw, 8);
+    return raw;
+  }
+  function message(s){
+    if (item === 'gold' && rawScore() < 25) return '信じる人が少なくても、材料や装飾としての使い道が下支えをして、価値はゼロにはならない。';
+    if (item === 'btc' && Number(slBelief.value) === 0) return '信じる人がいなくなると、ビットコインの価値は支えを失う。実物の使い道が裏側にないからだ。';
+    if (item === 'stone' && s >= 70) return '石ころにまで値段がついた。昔の貝や石のお金で起こっていたことと、同じことが起きている。';
+    if (s < 25) return 'ほとんど値段がつかない。ただのものとして扱われている。';
+    if (s < 60) return '一部の人の間では、値段がつくようになってきた。';
+    return '欲しがる人と信じる人がそろって、立派な値段がついている。';
+  }
+  function render(){
+    var s = score();
+    meterFill.style.width = s + '%';
+    meterNum.textContent = s;
+    labMsg.textContent = message(s);
+  }
+  function setItem(name){
+    item = name;
+    var p = PRESETS[name];
+    slWant.value = p.want; slScarce.value = p.scarce; slBelief.value = p.belief;
+    evtMsg.textContent = '';
+    itemBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-item') === name); });
+    render();
+  }
+  [slWant, slScarce, slBelief].forEach(function(sl){
+    sl.addEventListener('input', function(){ evtMsg.textContent = ''; render(); });
   });
+  itemBtns.forEach(function(b){
+    b.addEventListener('click', function(){ setItem(b.getAttribute('data-item')); });
+  });
+  document.getElementById('btnEvent').addEventListener('click', function(){
+    var i;
+    do { i = Math.floor(Math.random() * EVENTS.length); } while (i === lastEvent);
+    lastEvent = i;
+    var d = EVENTS[i].d;
+    if (d.want) slWant.value = clamp(Number(slWant.value) + d.want);
+    if (d.scarce) slScarce.value = clamp(Number(slScarce.value) + d.scarce);
+    if (d.belief) slBelief.value = clamp(Number(slBelief.value) + d.belief);
+    evtMsg.textContent = '事件：' + EVENTS[i].text;
+    render();
+  });
+  setItem('stone');
+})();
 </script>
 <script>
 (function(){
