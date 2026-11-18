@@ -396,9 +396,9 @@
     'ビットコインの鍵は、2の256乗通りの中の1つ。総当たりで探したら、どれくらいかかるか。ボタンを押しっぱなし（連打でも進む）で試してみよう。': 'A Bitcoin key is one out of 2^256 possibilities. How long would a brute-force search take? Hold the button down (rapid tapping works too) and try.',
     '試した回数': 'Attempts',
     'いまの速さ': 'Current speed',
-    '全体（2の256乗通り）に対して': 'Share of all possibilities (2^256)',
+
     'このペースで全部試すと': 'To try them all at this pace',
-    '量子コンピューターを使う（速さが10の19乗倍）': 'Use a quantum computer (speed × 10^19)',
+    '量子コンピューターを使う（総当たりは2の128乗回で済む）': 'Use a quantum computer (brute force takes 2^128 tries)',
     '押しっぱなしで総当たり': 'Hold to brute-force',
     '実際は：そもそも狙えないアドレスが多い': "The truth: many addresses can't be targeted at all",
     '量子攻撃が狙えるのは公開鍵が表に出ている場合だけ。送金に使っていないアドレスは、公開鍵がハッシュの後ろに隠れている。': 'A quantum attack can only target an address whose public key is exposed. For an address never used for sending, the public key stays hidden behind its hash.',

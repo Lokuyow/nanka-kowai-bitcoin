@@ -223,9 +223,9 @@
     <div class="card" id="bfCard">
       <div class="bfbig"><span data-i18n>試した回数</span> <b id="bfCount">0</b><span data-i18n> 回</span></div>
       <div class="bfrow"><span data-i18n>いまの速さ</span><b id="bfRate">毎秒 1億回</b></div>
-      <div class="bfrow"><span data-i18n>全体（2の256乗通り）に対して</span><b id="bfPct">0%</b></div>
+      <div class="bfrow"><span id="bfTotalLbl">全体（2の256乗通り）に対して</span><b id="bfPct">0%</b></div>
       <div class="bfrow"><span data-i18n>このペースで全部試すと</span><b id="bfYears"></b></div>
-      <label class="bfq"><input type="checkbox" id="bfQuantum"><span data-i18n> 量子コンピューターを使う（速さが10の19乗倍）</span></label>
+      <label class="bfq"><input type="checkbox" id="bfQuantum"><span data-i18n> 量子コンピューターを使う（総当たりは2の128乗回で済む）</span></label>
       <div class="center" style="margin-top:12px"><button id="bfBtn" type="button" data-i18n>押しっぱなしで総当たり</button></div>
       <p class="bfmsg" id="bfMsg" aria-live="polite">宇宙の年齢は約138億年。当たる気がしない理由が、桁の大きさでわかる。</p>
     </div>
@@ -258,12 +258,14 @@
 
 (function(){
   var TOTAL = Math.pow(2, 256);
+  var TOTAL_Q = Math.pow(2, 128);
   var SEC_YEAR = 31557600;
   var attempts = 0, rate = 1e8, held = 0, timer = null;
   var countEl = document.getElementById('bfCount');
   var rateEl = document.getElementById('bfRate');
   var pctEl = document.getElementById('bfPct');
   var yearsEl = document.getElementById('bfYears');
+  var totalLblEl = document.getElementById('bfTotalLbl');
   var msgEl = document.getElementById('bfMsg');
   var btn = document.getElementById('bfBtn');
   var qbox = document.getElementById('bfQuantum');
@@ -285,11 +287,15 @@
   }
   function upd(){
     countEl.innerHTML = attempts < 1e15 ? Math.floor(attempts).toLocaleString('ja-JP') : fmtSci(attempts);
-    var eff = rate * (qbox.checked ? 1e19 : 1);
+    var eff = rate;
+    var total = qbox.checked ? TOTAL_Q : TOTAL;
+    totalLblEl.textContent = qbox.checked
+      ? L('全体（2の128乗通り）に対して', 'Share of all possibilities (2^128)')
+      : L('全体（2の256乗通り）に対して', 'Share of all possibilities (2^256)');
     rateEl.innerHTML = fmtRate(eff);
-    var pct = attempts / TOTAL * 100;
+    var pct = attempts / total * 100;
     pctEl.innerHTML = pct <= 0 ? '0%' : fmtSci(pct) + ' %';
-    var years = TOTAL / eff / SEC_YEAR;
+    var years = total / eff / SEC_YEAR;
     yearsEl.innerHTML = L('約 ' + fmtSci(years) + ' 年', 'About ' + fmtSci(years) + ' years');
     if (attempts > 1e18) setMsg('100京回を超えた。でも全体は10の77乗通り。残り時間は、ほぼ減っていない。', 'Over 100 quintillion tries. But the total is 10^77 possibilities — the remaining time has barely shrunk.');
     else if (attempts > 1e12) setMsg('1兆回を試した。それでも全体の、ほんの入口にも届いていない。', "A trillion tries — and you still haven't reached even the entrance of the whole space.");
@@ -298,7 +304,7 @@
   function tick(){
     held += 0.05;
     if (held >= 1) { held = 0; if (rate < 1e18) rate *= 10; }
-    var eff = rate * (qbox.checked ? 1e19 : 1);
+    var eff = rate;
     attempts += eff * 0.05;
     upd();
   }
@@ -306,7 +312,7 @@
     if (e) e.preventDefault();
     if (timer) return;
     btn.classList.add('holding');
-    attempts += rate * (qbox.checked ? 1e19 : 1) * 0.2;
+    attempts += rate * 0.2;
     timer = setInterval(tick, 50);
     upd();
   }
@@ -321,7 +327,7 @@
   btn.addEventListener('keyup', stop);
   document.addEventListener('langchange', function(){ msgEl.textContent = L(msgPair[0], msgPair[1]); upd(); });
   qbox.addEventListener('change', function(){
-    if (qbox.checked) setMsg('量子コンピューターで速さは跳ね上がった。それでも全部試すには、宇宙の年齢では全然足りない。しかも鍵が隠れたアドレスは、そもそも狙えない。', "The quantum computer sent the speed soaring. Even so, the age of the universe isn't nearly enough to try them all. And addresses whose keys stay hidden can't be targeted in the first place.");
+    if (qbox.checked) setMsg('量子コンピューターでは、総当たりは2の128乗回で済む。それでも全部試すには、宇宙の年齢では全然足りない。しかも鍵が隠れたアドレスは、そもそも狙えない。', "With a quantum computer, brute force takes \"only\" 2^128 tries. Even so, the age of the universe isn't nearly enough to try them all. And addresses whose keys stay hidden can't be targeted in the first place.");
     else setMsg('ふつうのコンピューターに戻した。桁の壁は変わらない。', 'Back to a normal computer. The wall of digits is unchanged.');
     upd();
   });

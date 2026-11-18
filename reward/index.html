@@ -248,8 +248,9 @@
   function issuedPct(y){
     var e = eraOf(y), issued = 0;
     for (var i = 0; i < e; i++) issued += 210000 * rewardOf(i);
-    var eraStart = 2009 + e * 4;
-    issued += Math.min(4, Math.max(0, y - eraStart)) / 4 * 210000 * rewardOf(e);
+    var eraStart = e === 0 ? 2009 : 2008 + e * 4;
+    var eraSpan = e === 0 ? 3 : 4;
+    issued += Math.min(eraSpan, Math.max(0, y - eraStart)) / eraSpan * 210000 * rewardOf(e);
     return Math.min(100, issued / 21000000 * 100);
   }
   function fmtBtc(r){
