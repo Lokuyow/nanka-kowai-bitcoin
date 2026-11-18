@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>チューリップバブルと同じで、弾けるんでしょ？：なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="チューリップバブルと同じで、弾けるんでしょ？">
+<meta property="og:description" content="チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/tulip/">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/tulip/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="チューリップバブルと同じで、弾けるんでしょ？">
+<meta name="twitter:description" content="チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:#fff3e0;color:var(--ink);border:1px solid #f0d7ae;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#c77400;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+  .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
+  .tlvs{font-size:15px}
+  .tlvs b{font-size:16px}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>16 / 17</span></header>
+<p class="eyebrow"><span>第3層</span>ちょっと詳しいよ</p>
+<h1>チューリップバブルと同じで、<br>弾けるんでしょ？</h1>
+<div class="answer">チューリップは一度弾けて終わった。<br>ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">急な右肩上がりの値動きを見ると、歴史の教科書で見たチューリップバブルの図を思い出す。「現代のチューリップバブル」はメディアも好んで使う例えだ。急騰のあとに崩壊が来るという流れで語られると、そのまま終わるように思える。</p>
+  </section>
+
+  <section>
+    <h2>実際は：弾けたあとの形が違う</h2>
+    <p class="lede">チューリップは一度きりの急騰で終わった。ビットコインの17年は急騰と暴落の繰り返しだった。ボタンで2つの形を切り替えて比べてみよう。</p>
+    <div class="card">
+      <div class="tlbtns" role="group" aria-label="表示するグラフの切り替え">
+        <button type="button" id="tlBtnBoth" class="on">2つを重ねる</button>
+        <button type="button" id="tlBtnTulip">チューリップだけ</button>
+        <button type="button" id="tlBtnBtc">ビットコインだけ</button>
+      </div>
+      <div class="center" style="margin-top:12px">
+        <svg id="tlSvg" viewBox="0 0 320 210" width="100%" style="max-width:480px" role="img" aria-label="チューリップバブルとビットコインの価格の動きを比べた折れ線グラフ">
+          <text x="30" y="12" font-size="9" fill="#999">価格のイメージ</text>
+          <line x1="30" y1="20" x2="30" y2="180" stroke="#e8e0d4"/>
+          <line x1="30" y1="180" x2="310" y2="180" stroke="#e8e0d4"/>
+          <g id="gTulip">
+            <path d="M30,172 L70,170 L100,120 L118,55 L128,32 L140,150 L155,172 L310,174"
+              fill="none" stroke="#d33" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+            <text x="310" y="162" font-size="10" fill="#d33" text-anchor="end" font-weight="700">二度と戻らない</text>
+          </g>
+          <g id="gTulipYears">
+            <text x="30" y="197" font-size="9.5" fill="#999">1634年</text>
+            <text x="128" y="197" font-size="9.5" fill="#999" text-anchor="middle">1637年 崩壊</text>
+            <text x="310" y="197" font-size="9.5" fill="#999" text-anchor="end">その後</text>
+          </g>
+          <g id="gBtc">
+            <path d="M34,176 L64,156 L82,172 L104,126 L118,168 L158,72 L180,148 L230,38 L252,128 L308,26"
+              fill="none" stroke="#f7931a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+            <g fill="#d33" stroke="#fff" stroke-width="1.5">
+              <circle cx="82" cy="172" r="4.5"/>
+              <circle cx="118" cy="168" r="4.5"/>
+              <circle cx="180" cy="148" r="4.5"/>
+              <circle cx="252" cy="128" r="4.5"/>
+            </g>
+            <g font-size="9.5" fill="#666" text-anchor="middle">
+              <text x="82" y="197">2011年</text>
+              <text x="118" y="197">2014年</text>
+              <text x="180" y="197">2018年</text>
+              <text x="252" y="197">2022年</text>
+            </g>
+            <text x="30" y="197" font-size="9.5" fill="#999">2009年</text>
+            <text x="310" y="197" font-size="9.5" fill="#999" text-anchor="end">2026年</text>
+          </g>
+        </svg>
+      </div>
+      <p class="tlcap" id="tlCap">重ねると形は似て見える。でもチューリップは弾けて終わり、ビットコインは暴落のたびに戻ってきた。赤い点が「終わった」と言われた地点。</p>
+      <p class="hint">球根は植えれば増やせるし、花が咲けば終わる実物だった。ビットコインは発行上限が固定され、ネットワークは17年止まらず動き続けている。</p>
+      <p class="hint">形を模式的に描いた図で、実際の価格そのものではない。横軸の年数もそれぞれ別のもの。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は：続いている年数が違う</h2>
+    <p class="lede">バブルと呼ばれるものは弾ければ終わる。続いている年数そのものが2つの違いをいちばんよく表している。</p>
+    <div class="cols">
+      <div class="card tlvs"><b style="color:var(--red)">チューリップバブル</b><br>1630年代のオランダ。熱狂は数年で終わり、価格は戻らなかった。</div>
+      <div class="card tlvs"><b style="color:#c77400">ビットコイン</b><br>2009年から17年。約70〜90%の下げを何度も受けながら、ネットワークは止まらず動き続けている。</div>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>1回弾けて終わったものと、何度も戻ってきた17年では、形が似ていても中身が違う</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%83%E3%83%97%E3%83%90%E3%83%96%E3%83%AB%E3%81%A8%E5%90%8C%E3%81%98%E3%81%A7%E3%80%81%E5%BC%BE%E3%81%91%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Ftulip%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
+<nav><a href="../infinite/">← 前の誤解：分割と上限</a><a class="idx" href="../">一覧へ</a><a href="../value/">次の誤解：裏付けと価値 →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+<script>
+  var CAPS = {
+    both: '重ねると形は似て見える。でもチューリップは弾けて終わり、ビットコインは暴落のたびに戻ってきた。赤い点が「終わった」と言われた地点。',
+    tulip: '1630年代のオランダ。一部の球根には高級住宅並みの値段がついたと言われる。1637年に崩れて、そのまま戻らなかった。',
+    btc: '2009年に始まって17年。大きく下げた年には「ビットコインは終わった」と報じられた。それでも価格は戻り、波は今も続いている。'
+  };
+  var gTulip = document.getElementById('gTulip');
+  var gTulipYears = document.getElementById('gTulipYears');
+  var gBtc = document.getElementById('gBtc');
+  var tlCap = document.getElementById('tlCap');
+  var btns = {
+    both: document.getElementById('tlBtnBoth'),
+    tulip: document.getElementById('tlBtnTulip'),
+    btc: document.getElementById('tlBtnBtc')
+  };
+  function show(mode){
+    gTulip.style.display = (mode === 'btc') ? 'none' : '';
+    gBtc.style.display = (mode === 'tulip') ? 'none' : '';
+    gTulipYears.style.display = (mode === 'tulip') ? '' : 'none';
+    tlCap.textContent = CAPS[mode];
+    for (var k in btns) btns[k].classList.toggle('on', k === mode);
+  }
+  btns.both.addEventListener('click', function(){ show('both'); });
+  btns.tulip.addEventListener('click', function(){ show('tulip'); });
+  btns.btc.addEventListener('click', function(){ show('btc'); });
+  show('both');
+</script>
+<script>
+(function(){
+  var data = {title: 'チューリップバブルと同じで、弾けるんでしょ？', text: 'チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/tulip/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
+</body>
+</html>
