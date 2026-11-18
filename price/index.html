@@ -18,6 +18,8 @@
 <meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/price/ogp.png">
 <link rel="canonical" href="https://lokuyow.github.io/nanka-kowai-bitcoin/price/">
 <link rel="icon" type="image/svg+xml" href="/nanka-kowai-bitcoin/favicon.svg">
+<link rel="manifest" href="/nanka-kowai-bitcoin/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/nanka-kowai-bitcoin/icons/apple-touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ビットコインの値段って誰かが決めてるんでしょ？">
 <meta name="twitter:description" content="決める人はいない。買いたい人と売りたい人の希望がぶつかった場所が価格">
@@ -359,5 +361,6 @@
   sync();
 })();
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
 </body>
 </html>

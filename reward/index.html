@@ -18,6 +18,8 @@
 <meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/reward/ogp.png">
 <link rel="canonical" href="https://lokuyow.github.io/nanka-kowai-bitcoin/reward/">
 <link rel="icon" type="image/svg+xml" href="/nanka-kowai-bitcoin/favicon.svg">
+<link rel="manifest" href="/nanka-kowai-bitcoin/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/nanka-kowai-bitcoin/icons/apple-touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="報酬がなくなったら、ビットコインは終わるんでしょ？">
 <meta name="twitter:description" content="マイナーの収入は「新しいコインの報酬」と「送金の手数料」の2本立て。報酬が細っても、手数料の柱が残る">
@@ -379,5 +381,6 @@
   sync();
 })();
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
 </body>
 </html>

@@ -11,6 +11,8 @@
 <title>ページが見つかりません：なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="お探しのページは見つかりませんでした。">
 <link rel="icon" type="image/svg+xml" href="/nanka-kowai-bitcoin/favicon.svg">
+<link rel="manifest" href="/nanka-kowai-bitcoin/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/nanka-kowai-bitcoin/icons/apple-touch-icon.png">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -90,5 +92,6 @@
   sync();
 })();
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
 </body>
 </html>

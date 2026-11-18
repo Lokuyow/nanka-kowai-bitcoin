@@ -18,6 +18,8 @@
 <meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/infinite/ogp.png">
 <link rel="canonical" href="https://lokuyow.github.io/nanka-kowai-bitcoin/infinite/">
 <link rel="icon" type="image/svg+xml" href="/nanka-kowai-bitcoin/favicon.svg">
+<link rel="manifest" href="/nanka-kowai-bitcoin/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/nanka-kowai-bitcoin/icons/apple-touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="小さく割れるなら、上限なんてないじゃん？">
 <meta name="twitter:description" content="割るのは「発行」ではなく「切り分け」。総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ">
@@ -367,5 +369,6 @@
   sync();
 })();
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
 </body>
 </html>

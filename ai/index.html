@@ -18,6 +18,8 @@
 <meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/ai/ogp.png">
 <link rel="canonical" href="https://lokuyow.github.io/nanka-kowai-bitcoin/ai/">
 <link rel="icon" type="image/svg+xml" href="/nanka-kowai-bitcoin/favicon.svg">
+<link rel="manifest" href="/nanka-kowai-bitcoin/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/nanka-kowai-bitcoin/icons/apple-touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？">
 <meta name="twitter:description" content="マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある">
@@ -348,5 +350,6 @@
   sync();
 })();
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
 </body>
 </html>

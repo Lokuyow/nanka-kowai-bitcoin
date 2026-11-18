@@ -18,6 +18,8 @@
 <meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/freedom/ogp.png">
 <link rel="canonical" href="https://lokuyow.github.io/nanka-kowai-bitcoin/freedom/">
 <link rel="icon" type="image/svg+xml" href="/nanka-kowai-bitcoin/favicon.svg">
+<link rel="manifest" href="/nanka-kowai-bitcoin/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/nanka-kowai-bitcoin/icons/apple-touch-icon.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="管理する人がいないお金は自由？ それともこわい？">
 <meta name="twitter:description" content="誰にも邪魔されないことは、誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？">
@@ -434,5 +436,6 @@
   sync();
 })();
 </script>
+<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
 </body>
 </html>
