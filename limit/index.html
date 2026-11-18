@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>発行上限ってその気になれば変えられるんでしょ？：なんか よくわからんけど こわい ビットコイン</title>
@@ -172,79 +174,87 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">14 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
-<p class="eyebrow"><span>第3層</span>ちょっと詳しいよ</p>
-<h1>発行上限って<br>その気になれば変えられるんでしょ？</h1>
-<div class="answer">書き換えるのは誰でもできる。<br>でも全員が受け入れなければ、それは「別のコイン」になるだけ</div>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">14 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第3層</span>ちょっと詳しいよ</p>
+<h1 data-i18n-html>発行上限って<br>その気になれば変えられるんでしょ？</h1>
+<div class="answer" data-i18n-html>書き換えるのは誰でもできる。<br>でも全員が受け入れなければ、それは「別のコイン」になるだけ</div>
 
   <section>
-    <h2>なぜそう見えるか</h2>
-    <p class="lede">ソフトウェアはアップデートでルールが変わるのがふつう。だから発行上限も運営がその気になれば変えられそうに見える。でも、ビットコインには「運営」がいない。</p>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>ソフトウェアはアップデートでルールが変わるのがふつう。だから発行上限も運営がその気になれば変えられそうに見える。でも、ビットコインには「運営」がいない。</p>
   </section>
 
   <section>
-    <h2>実際は：書き換えた先は「別のコイン」</h2>
-    <p class="lede">コードを書き換えること自体は、誰でも自由にできる。問題はその先。みんなが受け入れなければ、ただ枝分かれして終わる。</p>
+    <h2 data-i18n>実際は：書き換えた先は「別のコイン」</h2>
+    <p class="lede" data-i18n>コードを書き換えること自体は、誰でも自由にできる。問題はその先。みんなが受け入れなければ、ただ枝分かれして終わる。</p>
     <div class="card fork-wrap">
       <div class="frow">
-        <div class="fblk">記録</div><div class="flink"></div>
-        <div class="fblk">記録</div><div class="flink"></div>
-        <div class="fblk">記録</div><div class="flink"></div>
-        <div class="fblk live">続く</div>
-        <div class="flabel"><b>上限2,100万枚のまま</b><small>みんなが使い続ける本流</small></div>
+        <div class="fblk" data-i18n>記録</div><div class="flink"></div>
+        <div class="fblk" data-i18n>記録</div><div class="flink"></div>
+        <div class="fblk" data-i18n>記録</div><div class="flink"></div>
+        <div class="fblk live" data-i18n>続く</div>
+        <div class="flabel"><b data-i18n>上限2,100万枚のまま</b><small data-i18n>みんなが使い続ける本流</small></div>
       </div>
       <div class="frow">
-        <div class="fblk" style="visibility:hidden">記録</div><div class="flink" style="visibility:hidden"></div>
-        <div class="fblk" style="visibility:hidden">記録</div><div class="flink" style="visibility:hidden"></div>
-        <div class="fblk dead">変更版</div>
-        <div class="flabel"><b>上限を書き換えた版</b><small>使う人がいない＝ただの別物</small></div>
+        <div class="fblk" style="visibility:hidden" data-i18n>記録</div><div class="flink" style="visibility:hidden"></div>
+        <div class="fblk" style="visibility:hidden" data-i18n>記録</div><div class="flink" style="visibility:hidden"></div>
+        <div class="fblk dead" data-i18n>変更版</div>
+        <div class="flabel"><b data-i18n>上限を書き換えた版</b><small data-i18n>使う人がいない＝ただの別物</small></div>
       </div>
-      <p class="hint">サッカーで1チームだけ「ゴールは2点」と言い出しても、相手は試合をしてくれない。それと同じ。</p>
+      <p class="hint" data-i18n>サッカーで1チームだけ「ゴールは2点」と言い出しても、相手は試合をしてくれない。それと同じ。</p>
     </div>
     <div class="card" id="capCard">
-      <p style="margin:0 0 4px;font-size:15px"><b>じゃあ実際に、あなたが書き換えてみる</b></p>
-      <p class="hint" style="text-align:left;margin:0 0 12px">上限をいくつに書き換えますか？ 選んで「配る」を押すと、世界中の参加者（ノード）にあなたの変更版が届きます。</p>
+      <p style="margin:0 0 4px;font-size:15px"><b data-i18n>じゃあ実際に、あなたが書き換えてみる</b></p>
+      <p class="hint" style="text-align:left;margin:0 0 12px" data-i18n>上限をいくつに書き換えますか？ 選んで「配る」を押すと、世界中の参加者（ノード）にあなたの変更版が届きます。</p>
       <div class="capbtns" id="capBtns">
-        <button type="button" data-cap="2,200万枚" class="on">2,200万枚にする</button>
-        <button type="button" data-cap="4,200万枚">2倍の4,200万枚</button>
-        <button type="button" data-cap="無制限">上限をなくす</button>
+        <button type="button" data-cap="2,200万枚" data-cap-en="22 million" class="on" data-i18n>2,200万枚にする</button>
+        <button type="button" data-cap="4,200万枚" data-cap-en="42 million" data-i18n>2倍の4,200万枚</button>
+        <button type="button" data-cap="無制限" data-cap-en="no cap" data-i18n>上限をなくす</button>
       </div>
       <div class="nodes" id="capNodes">
-        <div class="node"><span class="st">待機中</span>ノードA</div>
-        <div class="node"><span class="st">待機中</span>ノードB</div>
-        <div class="node"><span class="st">待機中</span>ノードC</div>
-        <div class="node"><span class="st">待機中</span>ノードD</div>
-        <div class="node"><span class="st">待機中</span>ノードE</div>
+        <div class="node"><span class="st">待機中</span><span data-i18n>ノードA</span></div>
+        <div class="node"><span class="st">待機中</span><span data-i18n>ノードB</span></div>
+        <div class="node"><span class="st">待機中</span><span data-i18n>ノードC</span></div>
+        <div class="node"><span class="st">待機中</span><span data-i18n>ノードD</span></div>
+        <div class="node"><span class="st">待機中</span><span data-i18n>ノードE</span></div>
       </div>
       <div class="captally" id="capTally">賛成 <b>0</b> ・ 拒否 <b>0</b> ・ あなたの版の利用者 <b>0人</b></div>
-      <div class="stamp-zone"><span class="stamp">誰もついてこない</span></div>
+      <div class="stamp-zone"><span class="stamp" data-i18n>誰もついてこない</span></div>
       <div class="center"><button id="capGo" type="button">書き換えた版を配る</button></div>
       <p class="capmsg" id="capMsg" aria-live="polite"></p>
     </div>
   </section>
 
   <section>
-    <h2>実際は：上限は「全員の約束」</h2>
-    <p class="lede">2,100万枚という数字を守っているのは特定の管理者ではない。</p>
+    <h2 data-i18n>実際は：上限は「全員の約束」</h2>
+    <p class="lede" data-i18n>2,100万枚という数字を守っているのは特定の管理者ではない。</p>
     <div class="card center" style="font-size:17px;font-weight:700">
-      守っているのは、<span style="color:var(--orange)">使っている全員</span>の合意
-      <p class="hint">変えたければ変えられる。でも、ついてくる人がいなければ意味がない。だから上限は守られ続ける。</p>
+      <span data-i18n-html>守っているのは、<span style="color:var(--orange)">使っている全員</span>の合意</span>
+      <p class="hint" data-i18n>変えたければ変えられる。でも、ついてくる人がいなければ意味がない。だから上限は守られ続ける。</p>
     </div>
   </section>
-<div class="summary"><small>一言まとめ</small>上限は「変えられない」のではなく「変えても誰もついてこない」から守られている</div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>上限は「変えられない」のではなく「変えても誰もついてこない」から守られている</span></div>
 <div class="share">
-  <button class="share-main" type="button">この答えをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この答えをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E7%99%BA%E8%A1%8C%E4%B8%8A%E9%99%90%E3%81%A3%E3%81%A6%E3%81%9D%E3%81%AE%E6%B0%97%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%B0%E5%A4%89%E3%81%88%E3%82%89%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Flimit%2F" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E7%99%BA%E8%A1%8C%E4%B8%8A%E9%99%90%E3%81%A3%E3%81%A6%E3%81%9D%E3%81%AE%E6%B0%97%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%B0%E5%A4%89%E3%81%88%E3%82%89%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Flimit%2F" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../reward/">← 前の誤解：報酬がなくなったら</a><a class="idx" href="../">一覧へ</a><a href="../infinite/">次の誤解：分割と上限 →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../reward/" data-i18n>← 前の誤解：報酬がなくなったら</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../infinite/" data-i18n>次の誤解：分割と上限 →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 
@@ -254,73 +264,104 @@
   var msg = document.getElementById('capMsg');
   var go = document.getElementById('capGo');
   var card = document.getElementById('capCard');
-  var capName = '2,200万枚';
+  var capPair = ['2,200万枚', '22 million'];
   var running = false;
-  var lines = [
-    'ノードA「上限が約束と違う。受け取れません」',
-    'ノードB「その版とは取引しません」',
-    'ノードC「ルールが違うので、別の通貨として扱います」',
-    'ノードD「今までの版を使い続けます」',
-    'ノードE「賛成はゼロ。却下します」'
+  var played = false;
+  var lastTally = [0, 0, 0];
+  var msgPair = ['', ''];
+  var LINES = [
+    ['ノードA「上限が約束と違う。受け取れません」', 'Node A: "The cap differs from the promise. I can\'t accept it."'],
+    ['ノードB「その版とは取引しません」', 'Node B: "I won\'t trade with that version."'],
+    ['ノードC「ルールが違うので、別の通貨として扱います」', 'Node C: "Different rules — I\'ll treat it as a different currency."'],
+    ['ノードD「今までの版を使い続けます」', 'Node D: "I\'ll keep using the current version."'],
+    ['ノードE「賛成はゼロ。却下します」', 'Node E: "Zero in favor. Rejected."']
   ];
+  function setMsg(ja, en){ msgPair = [ja, en]; msg.textContent = L(ja, en); }
+  function stText(st){
+    return st === 'sent' ? L('届いた', 'Received') : st === 'ng' ? L('× 拒否', '× Rejected') : L('待機中', 'Waiting');
+  }
+  function setSt(n, st){ n.dataset.st = st; n.querySelector('.st').textContent = stText(st); }
+  function renderGo(){ go.textContent = played ? L('もう一度試す', 'Try again') : L('書き換えた版を配る', 'Send out the rewritten version'); }
   document.querySelectorAll('#capBtns button').forEach(function(b){
     b.addEventListener('click', function(){
       if (running) return;
       document.querySelectorAll('#capBtns button').forEach(function(x){ x.classList.remove('on'); });
       b.classList.add('on');
-      capName = b.dataset.cap;
+      capPair = [b.dataset.cap, b.dataset.capEn];
     });
   });
   function setTally(ok, ng, users){
-    tally.innerHTML = '賛成 <b>' + ok + '</b> ・ 拒否 <b>' + ng + '</b> ・ あなたの版の利用者 <b>' + users + '人</b>';
+    lastTally = [ok, ng, users];
+    tally.innerHTML = L('賛成 <b>' + ok + '</b> ・ 拒否 <b>' + ng + '</b> ・ あなたの版の利用者 <b>' + users + '人</b>',
+                        'For <b>' + ok + '</b> · Against <b>' + ng + '</b> · Users of your version <b>' + users + '</b>');
   }
+  document.addEventListener('langchange', function(){
+    nodes.forEach(function(n){ setSt(n, n.dataset.st || 'wait'); });
+    setTally(lastTally[0], lastTally[1], lastTally[2]);
+    msg.textContent = L(msgPair[0], msgPair[1]);
+    renderGo();
+  });
   go.addEventListener('click', function(){
     if (running) return;
     running = true;
+    played = true;
     go.disabled = true;
     card.classList.remove('stamped');
     nodes.forEach(function(n){
       n.className = 'node';
-      n.querySelector('.st').textContent = '待機中';
+      setSt(n, 'wait');
     });
     setTally(0, 0, 0);
-    msg.textContent = '上限を' + capName + 'に書き換えた版を、世界に配り始めた…';
+    setMsg('上限を' + capPair[0] + 'に書き換えた版を、世界に配り始めた…', 'Your rewritten version (cap: ' + capPair[1] + ') starts going out to the world…');
     var i = 0;
     function step(){
       if (i > 0) {
         var prev = nodes[i - 1];
         prev.classList.add('ng');
-        prev.querySelector('.st').textContent = '× 拒否';
+        setSt(prev, 'ng');
         setTally(0, i, 0);
-        msg.textContent = lines[i - 1];
+        setMsg(LINES[i - 1][0], LINES[i - 1][1]);
       }
       if (i >= nodes.length) {
         card.classList.add('stamped');
-        msg.textContent = '全員が拒否。あなたの版は、あなた1人だけの通貨になった。書き換えるのは自由。でも、ついてくる人がいなければ意味がない。';
-        go.textContent = 'もう一度試す';
+        setMsg('全員が拒否。あなたの版は、あなた1人だけの通貨になった。書き換えるのは自由。でも、ついてくる人がいなければ意味がない。', 'Everyone refused. Your version is now a currency of one — you. Rewriting is free. But with nobody following, it means nothing.');
+        renderGo();
         go.disabled = false;
         running = false;
         return;
       }
       nodes[i].classList.add('sent');
-      nodes[i].querySelector('.st').textContent = '届いた';
+      setSt(nodes[i], 'sent');
       i++;
       setTimeout(step, 620);
     }
     setTimeout(step, 350);
   });
+  renderGo();
 })();
 
 </script>
 <script>
 (function(){
-  var data = {title: '発行上限ってその気になれば変えられるんでしょ？', text: '書き換えるのは誰でもできる。でも全員が受け入れなければ、それは「別のコイン」になるだけ', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/limit/'};
+  var JA = {title: '発行上限ってその気になれば変えられるんでしょ？', text: '書き換えるのは誰でもできる。でも全員が受け入れなければ、それは「別のコイン」になるだけ'};
+  var EN = {title: 'The supply cap can be changed whenever someone wants, right?', text: 'Anyone can rewrite it. But unless everyone accepts it, it just becomes "a different coin"'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/limit/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -330,7 +371,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -338,7 +379,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -348,12 +389,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -372,6 +414,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>

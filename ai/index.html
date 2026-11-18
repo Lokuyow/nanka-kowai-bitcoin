@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？：なんか よくわからんけど こわい ビットコイン</title>
@@ -169,61 +171,69 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">12 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
-<p class="eyebrow"><span>第3層</span>ちょっと詳しいよ</p>
-<h1>AIに全部持っていかれたら、<br>ビットコインは掘れなくなるんじゃないの？</h1>
-<div class="answer">マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。<br>掘る人が減れば、難易度が下がる自己調整もある</div>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">12 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第3層</span>ちょっと詳しいよ</p>
+<h1 data-i18n-html>AIに全部持っていかれたら、<br>ビットコインは掘れなくなるんじゃないの？</h1>
+<div class="answer" data-i18n-html>マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。<br>掘る人が減れば、難易度が下がる自己調整もある</div>
 
   <section>
-    <h2>なぜそう見えるか</h2>
-    <p class="lede">「マイニング＝高性能なコンピューターの計算」というイメージがある。AIブームでGPUが足りない、というニュースと重なって見える。</p>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>「マイニング＝高性能なコンピューターの計算」というイメージがある。AIブームでGPUが足りない、というニュースと重なって見える。</p>
   </section>
 
   <section>
-    <h2>実際は：使っている道具が違う</h2>
-    <p class="lede">いまのビットコインマイニングは、専用機（ASIC）の仕事。AIが使うGPUとは、そもそも別の道具。</p>
+    <h2 data-i18n>実際は：使っている道具が違う</h2>
+    <p class="lede" data-i18n>いまのビットコインマイニングは、専用機（ASIC）の仕事。AIが使うGPUとは、そもそも別の道具。</p>
     <div class="card">
       <div class="toolrow">
         <div class="tool">
           <svg width="64" height="48" viewBox="0 0 64 48"><rect x="6" y="8" width="52" height="32" rx="5" fill="#1a1a1a"/><rect x="16" y="17" width="14" height="14" fill="#f7931a"/><circle cx="44" cy="24" r="6" fill="#fff" opacity=".85"/></svg>
-          <b>ASIC（専用機）</b>ビットコインを掘るためだけの機械。<br>他の用途には使えない
+          <b data-i18n>ASIC（専用機）</b><span data-i18n-html>ビットコインを掘るためだけの機械。<br>他の用途には使えない</span>
         </div>
         <div class="toolx">≠</div>
         <div class="tool">
           <svg width="64" height="48" viewBox="0 0 64 48"><rect x="6" y="12" width="52" height="26" rx="5" fill="#666"/><rect x="14" y="19" width="22" height="12" fill="#4a7a5c"/><circle cx="47" cy="25" r="5" fill="#fff" opacity=".85"/></svg>
-          <b>GPU</b>AIの学習やゲームに使う。<br>マイニングの主役はとうに引退
+          <b>GPU</b><span data-i18n-html>AIの学習やゲームに使う。<br>マイニングの主役はとうに引退</span>
         </div>
       </div>
-      <p class="hint">道具が違うから、AI需要とマイニングは取り合いにならない。</p>
+      <p class="hint" data-i18n>道具が違うから、AI需要とマイニングは取り合いにならない。</p>
     </div>
   </section>
 
   <section>
-    <h2>実際は：電気の取り合いと引っ越し</h2>
-    <p class="lede">AIが電気をたくさん使うようになったら、マイニングはどうなる？ ある地域の電気をAIデータセンターに回して、様子を見てみよう。</p>
+    <h2 data-i18n>実際は：電気の取り合いと引っ越し</h2>
+    <p class="lede" data-i18n>AIが電気をたくさん使うようになったら、マイニングはどうなる？ ある地域の電気をAIデータセンターに回して、様子を見てみよう。</p>
     <div class="card" id="powCard">
-      <label>その地域の電気をAIへ回す: <b id="powPct">20%</b><input type="range" id="powRange" min="0" max="90" value="20" aria-label="AIへ回す電気の割合"></label>
-      <div class="powrow"><span class="pow-lbl">その地域のマイニング</span><div class="powbar"><div class="powfill mine" id="powMine" style="width:64%"></div></div><b id="powMineV">64</b></div>
-      <div class="powrow"><span class="pow-lbl">安い電気の地域へ移転</span><div class="powbar"><div class="powfill move" id="powMove" style="width:14%"></div></div><b id="powMoveV">14</b></div>
-      <div class="powrow"><span class="pow-lbl">世界のマイニング全体</span><div class="powbar"><div class="powfill all" id="powAll" style="width:98%"></div></div><b id="powAllV">98</b></div>
+      <label><span data-i18n>その地域の電気をAIへ回す:</span> <b id="powPct">20%</b><input type="range" id="powRange" min="0" max="90" value="20" aria-label="AIへ回す電気の割合" data-i18n-label></label>
+      <div class="powrow"><span class="pow-lbl" data-i18n>その地域のマイニング</span><div class="powbar"><div class="powfill mine" id="powMine" style="width:64%"></div></div><b id="powMineV">64</b></div>
+      <div class="powrow"><span class="pow-lbl" data-i18n>安い電気の地域へ移転</span><div class="powbar"><div class="powfill move" id="powMove" style="width:14%"></div></div><b id="powMoveV">14</b></div>
+      <div class="powrow"><span class="pow-lbl" data-i18n>世界のマイニング全体</span><div class="powbar"><div class="powfill all" id="powAll" style="width:98%"></div></div><b id="powAllV">98</b></div>
       <p class="powcap" id="powCap">AIが電気を使っても、マイニングは別の場所で続く。</p>
-      <p class="hint">数字はイメージ。マイニングには「電気が安い場所へ移る」性質がある。さらに残った参加者に合わせて難易度も自動で調整されるので、ブロックは約10分に1個のペースを保つ。</p>
+      <p class="hint" data-i18n>数字はイメージ。マイニングには「電気が安い場所へ移る」性質がある。さらに残った参加者に合わせて難易度も自動で調整されるので、ブロックは約10分に1個のペースを保つ。</p>
     </div>
   </section>
-<div class="summary"><small>一言まとめ</small>マイニングは専用機の仕事。人が減れば難易度が下がる、自己調整つきの仕組み</div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>マイニングは専用機の仕事。人が減れば難易度が下がる、自己調整つきの仕組み</span></div>
 <div class="share">
-  <button class="share-main" type="button">この答えをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この答えをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=AI%E3%81%AB%E5%85%A8%E9%83%A8%E6%8C%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%8B%E3%82%8C%E3%81%9F%E3%82%89%E3%80%81%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E6%8E%98%E3%82%8C%E3%81%AA%E3%81%8F%E3%81%AA%E3%82%8B%E3%82%93%E3%81%98%E3%82%83%E3%81%AA%E3%81%84%E3%81%AE%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fai%2F" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=AI%E3%81%AB%E5%85%A8%E9%83%A8%E6%8C%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%8B%E3%82%8C%E3%81%9F%E3%82%89%E3%80%81%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E6%8E%98%E3%82%8C%E3%81%AA%E3%81%8F%E3%81%AA%E3%82%8B%E3%82%93%E3%81%98%E3%82%83%E3%81%AA%E3%81%84%E3%81%AE%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fai%2F" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../51/">← 前の誤解：51%攻撃</a><a class="idx" href="../">一覧へ</a><a href="../reward/">次の誤解：報酬がなくなったら →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../51/" data-i18n>← 前の誤解：51%攻撃</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../reward/" data-i18n>次の誤解：報酬がなくなったら →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 
@@ -251,24 +261,37 @@
     setBar('mine', region / 80 * 80);
     setBar('move', moved);
     setBar('all', world);
-    if (x < 35) cap.textContent = 'この地域では、AIとマイニングがまだ両立している。';
-    else if (x < 65) cap.textContent = '電気の取り合いで値段が上がり、マイナーは安い地域へ引っ越し始めた。';
-    else cap.textContent = 'その地域のマイニングは、ほぼ撤退。でも世界全体はほとんど減っていない。行き先は、水力などの安い電気がある場所。';
+    if (x < 35) cap.textContent = L('この地域では、AIとマイニングがまだ両立している。', 'In this region, AI and mining still coexist.');
+    else if (x < 65) cap.textContent = L('電気の取り合いで値段が上がり、マイナーは安い地域へ引っ越し始めた。', 'Competition for electricity pushed prices up, and miners started moving to cheaper regions.');
+    else cap.textContent = L('その地域のマイニングは、ほぼ撤退。でも世界全体はほとんど減っていない。行き先は、水力などの安い電気がある場所。', 'Mining has mostly left this region. But the world total has barely dropped. The destination: places with cheap power, like hydro.');
   }
   range.addEventListener('input', upd);
+  document.addEventListener('langchange', upd);
   upd();
 })();
 
 </script>
 <script>
 (function(){
-  var data = {title: 'AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？', text: 'マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/ai/'};
+  var JA = {title: 'AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？', text: 'マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある'};
+  var EN = {title: 'If AI takes everything, Bitcoin can\'t be mined anymore, right?', text: 'Mining is a job for dedicated machines (ASICs) — different tools from AI GPUs. And if miners leave, difficulty adjusts itself downward'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/ai/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -278,7 +301,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -286,7 +309,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -296,12 +319,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -320,6 +344,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>

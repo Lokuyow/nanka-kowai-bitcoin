@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>裏付けがないビットコインは価値ゼロでしょ？：なんか よくわからんけど こわい ビットコイン</title>
@@ -159,55 +161,63 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">17 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
-<p class="eyebrow"><span>第4層</span>そもそもお金って何？</p>
-<h1>裏付けがないビットコインは<br>価値ゼロでしょ？</h1>
-<div class="answer">円にも金にも「裏付け」と呼べるものは実はない。<br>価値は「欲しい・使えると思う人がいる」ことから生まれる</div>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">17 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第4層</span>そもそもお金って何？</p>
+<h1 data-i18n-html>裏付けがないビットコインは<br>価値ゼロでしょ？</h1>
+<div class="answer" data-i18n-html>円にも金にも「裏付け」と呼べるものは実はない。<br>価値は「欲しい・使えると思う人がいる」ことから生まれる</div>
 
   <section>
-    <h2>なぜそう見えるか</h2>
-    <p class="lede">「お金には裏付けがあるもの」と思っている。円には国の信用、金には実物。ビットコインには何もなさそうに見えるから、価値ゼロに思える。</p>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>「お金には裏付けがあるもの」と思っている。円には国の信用、金には実物。ビットコインには何もなさそうに見えるから、価値ゼロに思える。</p>
   </section>
 
   <section>
-    <h2>実際は：価値は条件で立ち上がる</h2>
-    <p class="lede">ものの値段は、裏付けがあるかどうかだけで決まるとは限らない。条件を自分で動かして、価値が立ち上がったり消えたりする様子を見てみよう。</p>
+    <h2 data-i18n>実際は：価値は条件で立ち上がる</h2>
+    <p class="lede" data-i18n>ものの値段は、裏付けがあるかどうかだけで決まるとは限らない。条件を自分で動かして、価値が立ち上がったり消えたりする様子を見てみよう。</p>
     <div class="card">
-      <div class="tlbtns" role="group" aria-label="ものの切り替え">
-        <button type="button" data-item="stone" class="on">ただの石ころ</button>
-        <button type="button" data-item="gold">金（ゴールド）</button>
-        <button type="button" data-item="btc">ビットコイン</button>
+      <div class="tlbtns" role="group" aria-label="ものの切り替え" data-i18n-label>
+        <button type="button" data-item="stone" class="on" data-i18n>ただの石ころ</button>
+        <button type="button" data-item="gold" data-i18n>金（ゴールド）</button>
+        <button type="button" data-item="btc" data-i18n>ビットコイン</button>
       </div>
       <div class="sliders">
-        <label>欲しいと思う人の多さ<input type="range" id="slWant" min="0" max="100" value="10"></label>
-        <label>手に入る量の少なさ<input type="range" id="slScarce" min="0" max="100" value="20"></label>
-        <label>「価値がある」と信じる人の割合<input type="range" id="slBelief" min="0" max="100" value="5"></label>
+        <label><span data-i18n>欲しいと思う人の多さ</span><input type="range" id="slWant" min="0" max="100" value="10"></label>
+        <label><span data-i18n>手に入る量の少なさ</span><input type="range" id="slScarce" min="0" max="100" value="20"></label>
+        <label><span data-i18n>「価値がある」と信じる人の割合</span><input type="range" id="slBelief" min="0" max="100" value="5"></label>
       </div>
       <div class="meterwrap">
-        <div class="meterlabel">値段のつき具合</div>
+        <div class="meterlabel" data-i18n>値段のつき具合</div>
         <div class="meter"><div class="meterfill" id="meterFill"></div></div>
         <div class="meternum"><span id="meterNum">0</span><span style="font-size:14px;color:var(--sub)"> / 100</span></div>
       </div>
       <p class="evtmsg" id="evtMsg" aria-live="polite"></p>
       <p class="labmsg" id="labMsg" aria-live="polite"></p>
-      <div class="center"><button type="button" id="btnEvent">事件を起こす</button></div>
-      <p class="hint">値段は、裏付けよりも「欲しい人」「量」「信じる人」の重なりで動く。条件がそろえば石にもつくし、崩れれば消えていく。</p>
+      <div class="center"><button type="button" id="btnEvent" data-i18n>事件を起こす</button></div>
+      <p class="hint" data-i18n>値段は、裏付けよりも「欲しい人」「量」「信じる人」の重なりで動く。条件がそろえば石にもつくし、崩れれば消えていく。</p>
     </div>
   </section>
-<div class="summary"><small>一言まとめ</small>裏付けがないのは円も金も同じ。価値は「欲しい人がいる」ことから生まれる</div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>裏付けがないのは円も金も同じ。価値は「欲しい人がいる」ことから生まれる</span></div>
 <div class="share">
-  <button class="share-main" type="button">この答えをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この答えをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E8%A3%8F%E4%BB%98%E3%81%91%E3%81%8C%E3%81%AA%E3%81%84%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E4%BE%A1%E5%80%A4%E3%82%BC%E3%83%AD%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fvalue%2F" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E8%A3%8F%E4%BB%98%E3%81%91%E3%81%8C%E3%81%AA%E3%81%84%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E4%BE%A1%E5%80%A4%E3%82%BC%E3%83%AD%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fvalue%2F" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../tulip/">← 前の誤解：チューリップバブル</a><a class="idx" href="../">一覧へ</a><a href="../money/">次の問い：お金とは何か →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../tulip/" data-i18n>← 前の誤解：チューリップバブル</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../money/" data-i18n>次の問い：お金とは何か →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 (function(){
@@ -217,11 +227,11 @@
     btc: {want: 55, scarce: 85, belief: 60}
   };
   var EVENTS = [
-    {text: '有名人が「これが好きだ」と紹介した。', d: {want: 20, belief: 30}},
-    {text: '大量に見つかって、誰でも拾えるようになった。', d: {scarce: -40}},
-    {text: '使える場所が増えた。', d: {want: 25}},
-    {text: '「あれはもう終わった」という空気が広がった。', d: {belief: -35}},
-    {text: '量に限りがあることが知られた。', d: {scarce: 25}}
+    {text: '有名人が「これが好きだ」と紹介した。', textEn: 'A celebrity introduced it, saying "I love this".', d: {want: 20, belief: 30}},
+    {text: '大量に見つかって、誰でも拾えるようになった。', textEn: 'A huge amount was found — now anyone can pick one up.', d: {scarce: -40}},
+    {text: '使える場所が増えた。', textEn: 'More places accept it now.', d: {want: 25}},
+    {text: '「あれはもう終わった」という空気が広がった。', textEn: 'A mood spread that "that thing is finished".', d: {belief: -35}},
+    {text: '量に限りがあることが知られた。', textEn: 'People learned that the amount is limited.', d: {scarce: 25}}
   ];
   var item = 'stone';
   var slWant = document.getElementById('slWant');
@@ -233,6 +243,7 @@
   var evtMsg = document.getElementById('evtMsg');
   var itemBtns = document.querySelectorAll('[data-item]');
   var lastEvent = -1;
+  var evtPair = ['', ''];
   function clamp(v){ return Math.max(0, Math.min(100, v)); }
   function rawScore(){
     return Math.round(Number(slWant.value) * 0.35 + Number(slScarce.value) * 0.30 + Number(slBelief.value) * 0.35);
@@ -244,12 +255,12 @@
     return raw;
   }
   function message(s){
-    if (item === 'gold' && rawScore() < 25) return '信じる人が少なくても、材料や装飾としての使い道が下支えをして、価値はゼロにはならない。';
-    if (item === 'btc' && Number(slBelief.value) === 0) return '信じる人がいなくなると、ビットコインの価値は支えを失う。実物の使い道が裏側にないからだ。';
-    if (item === 'stone' && s >= 70) return '石ころにまで値段がついた。昔の貝や石のお金で起こっていたことと、同じことが起きている。';
-    if (s < 25) return 'ほとんど値段がつかない。ただのものとして扱われている。';
-    if (s < 60) return '一部の人の間では、値段がつくようになってきた。';
-    return '欲しがる人と信じる人がそろって、立派な値段がついている。';
+    if (item === 'gold' && rawScore() < 25) return L('信じる人が少なくても、材料や装飾としての使い道が下支えをして、価値はゼロにはならない。', 'Even with few believers, its uses as a material and for decoration support it — the value never hits zero.');
+    if (item === 'btc' && Number(slBelief.value) === 0) return L('信じる人がいなくなると、ビットコインの価値は支えを失う。実物の使い道が裏側にないからだ。', 'When no one believes, Bitcoin loses the support for its value — there is no physical use behind it.');
+    if (item === 'stone' && s >= 70) return L('石ころにまで値段がついた。昔の貝や石のお金で起こっていたことと、同じことが起きている。', 'Even a stone got a price. The same thing that happened with old shell and stone money is happening.');
+    if (s < 25) return L('ほとんど値段がつかない。ただのものとして扱われている。', 'Almost no price. It is treated as just a thing.');
+    if (s < 60) return L('一部の人の間では、値段がつくようになってきた。', 'Among some people, it has started to carry a price.');
+    return L('欲しがる人と信じる人がそろって、立派な値段がついている。', 'With people who want it and people who believe in it, it carries a solid price.');
   }
   function render(){
     var s = score();
@@ -261,12 +272,12 @@
     item = name;
     var p = PRESETS[name];
     slWant.value = p.want; slScarce.value = p.scarce; slBelief.value = p.belief;
-    evtMsg.textContent = '';
+    evtMsg.textContent = ''; evtPair = ['', ''];
     itemBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-item') === name); });
     render();
   }
   [slWant, slScarce, slBelief].forEach(function(sl){
-    sl.addEventListener('input', function(){ evtMsg.textContent = ''; render(); });
+    sl.addEventListener('input', function(){ evtMsg.textContent = ''; evtPair = ['', '']; render(); });
   });
   itemBtns.forEach(function(b){
     b.addEventListener('click', function(){ setItem(b.getAttribute('data-item')); });
@@ -279,7 +290,12 @@
     if (d.want) slWant.value = clamp(Number(slWant.value) + d.want);
     if (d.scarce) slScarce.value = clamp(Number(slScarce.value) + d.scarce);
     if (d.belief) slBelief.value = clamp(Number(slBelief.value) + d.belief);
-    evtMsg.textContent = '事件：' + EVENTS[i].text;
+    evtPair = ['事件：' + EVENTS[i].text, 'Event: ' + EVENTS[i].textEn];
+    evtMsg.textContent = L(evtPair[0], evtPair[1]);
+    render();
+  });
+  document.addEventListener('langchange', function(){
+    if (evtPair[0]) evtMsg.textContent = L(evtPair[0], evtPair[1]);
     render();
   });
   setItem('stone');
@@ -287,13 +303,25 @@
 </script>
 <script>
 (function(){
-  var data = {title: '裏付けがないビットコインは価値ゼロでしょ？', text: '円にも金にも「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/value/'};
+  var JA = {title: '裏付けがないビットコインは価値ゼロでしょ？', text: '円にも金にも「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる'};
+  var EN = {title: 'With no backing, Bitcoin is worth zero, right?', text: 'Neither the yen nor gold really has anything you could call "backing". Value is born from there being people who want it and think it is usable'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/value/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -303,7 +331,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -311,7 +339,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -321,12 +349,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -345,6 +374,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>
