@@ -7,3 +7,7 @@ https://lokuyow.github.io/nanka-kowai-bitcoin/
 
 ビットコインを外側から説明するサイトで、「さわってわかるビットコイン」（内側から触って学ぶ）の姉妹編です。
 https://lokuyow.github.io/sawatte-wakaru-bitcoin/
+
+## ライセンス
+
+CC0 1.0 Universal（パブリックドメイン）。全文は LICENSE ファイルを参照してください。
