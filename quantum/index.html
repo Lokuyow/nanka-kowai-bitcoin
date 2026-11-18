@@ -59,7 +59,7 @@
   .summary small{display:block;font-size:12px;color:var(--amber);font-weight:400;margin-bottom:6px}
   nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
     gap:8px;font-size:14px}
-  nav a{color:var(--ink)}
+  nav a{color:var(--ink);padding:8px 0}
   nav .idx{color:var(--sub);white-space:nowrap}
   .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
   .bridge a{color:var(--orange);font-weight:700}
@@ -103,7 +103,7 @@
   .bfrow{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dotted var(--line);font-size:14px}
   .bfrow b{font-variant-numeric:tabular-nums;text-align:right}
   .bfq{display:block;margin-top:12px;font-size:14px}
-  .bfq input{width:20px;height:20px;accent-color:var(--orange);vertical-align:-4px}
+  .bfq input{width:24px;height:24px;accent-color:var(--orange);vertical-align:-4px}
   #bfBtn{touch-action:none;user-select:none;-webkit-user-select:none;min-height:52px;font-size:16px}
   #bfBtn.holding{background:var(--orange)}
   .bfmsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
@@ -131,6 +131,7 @@
   :root[data-theme="dark"] .theme-toggle .ic-sun{display:block}
   :root[data-theme="dark"] .theme-toggle .ic-moon{display:none}
   :root[data-theme="dark"] .summary{background:#3d2c11;border-color:#6e5326}
+  :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
   :root[data-theme="dark"] .tbl th{background:#3a2c1c}
   :root[data-theme="dark"] .share-copy{background:#392c20}
   :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
