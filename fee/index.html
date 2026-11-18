@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ビットコインの送金手数料って、高いよね？ — なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="高いのは取引所の料金設定。本物の送金手数料は別物で、混雑しだいで変わる">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="ビットコインの送金手数料って、高いよね？">
+<meta property="og:description" content="高いのは取引所の料金設定。本物の送金手数料は別物で、混雑しだいで変わる">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/fee/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  .answer small{display:block;font-size:12px;color:var(--sub);font-weight:400;margin-bottom:4px}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:var(--ink);color:#fff;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#ffb35c;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .receipt{background:#fff;border:1.5px dashed #cbbfa9;border-radius:6px;
+    padding:16px 14px;font-size:14px}
+  .receipt h3{margin:0 0 10px;font-size:15px;text-align:center}
+  .receipt .line{display:flex;justify-content:space-between;gap:8px;
+    padding:5px 0;border-bottom:1px dotted var(--line)}
+  .receipt .line.hl{background:#fdeeda;border-radius:6px;padding:5px 6px;font-weight:700}
+  .receipt .who{font-size:12px;color:var(--sub);text-align:center;margin-top:10px}
+  .feebar-wrap{background:#f4ede1;border-radius:999px;height:26px;overflow:hidden;margin:12px 0 6px}
+  .feebar{height:100%;background:var(--orange);border-radius:999px;width:8%;
+    transition:width .35s ease}
+  .feenum{font-size:26px;font-weight:900;text-align:center;font-variant-numeric:tabular-nums}
+  .feestate{text-align:center;font-size:14px;min-height:1.7em}
+  .merge{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 0}
+  .outs{display:flex;flex-direction:column;gap:6px}
+  .outdot{width:22px;height:22px;border-radius:50%;background:#fff;
+    border:2px solid var(--ink);font-size:10px;display:flex;align-items:center;justify-content:center}
+  .mergearrow{flex:0 0 64px}
+  .mergearrow path{stroke-dasharray:5 5;animation:dash 1.2s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-20}}
+  .onetx{background:var(--orange);color:#fff;border-radius:10px;padding:10px 14px;
+    font-weight:700;font-size:14px;text-align:center}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>4 / 14</span></header>
+<p class="eyebrow"><span>第1層</span>名前だけは知ってる</p>
+<h1>ビットコインの送金手数料って、<br>高いよね？</h1>
+<div class="answer"><small>一言の答え</small>高いのは取引所の料金設定。<br>本物の送金手数料は別物で、混雑しだいで変わる</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">取引所で出金すると、明細に「手数料 ○○円」と出る。払う場面がそこしかないから、その全部がビットコインの手数料だと思ってしまう。</p>
+  </section>
+
+  <section>
+    <h2>実際は — レシートを比べてみる</h2>
+    <p class="lede">あなたが払っているのは左。本物の送金手数料は右。別々のもの。</p>
+    <div class="cols" style="margin-top:12px">
+      <div class="receipt">
+        <h3>取引所のレシート</h3>
+        <div class="line"><span>出金する額</span><span>0.1 BTC</span></div>
+        <div class="line hl"><span>出金手数料</span><span>0.0005 BTC</span></div>
+        <div class="line"><span>手数料の決め方</span><span>固定（いつも同じ）</span></div>
+        <p class="who">← これは<b>取引所の料金設定</b><br>お店が決めた値段</p>
+      </div>
+      <div class="receipt">
+        <h3>本物の送金レシート</h3>
+        <div class="line"><span>送る額</span><span>0.1 BTC</span></div>
+        <div class="line hl"><span>送金手数料</span><span>混雑しだい</span></div>
+        <div class="line"><span>手数料の決め方</span><span>変動（空いていれば安い）</span></div>
+        <p class="who">← これは<b>ネットワークの手数料</b><br>たいてい、左よりずっと安い</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は — 混雑スライダー</h2>
+    <p class="lede">本物の手数料は「道路の混み具合」で変わる。スライダーを動かしてみて。</p>
+    <div class="card">
+      <div class="feenum"><span id="feeNum">安い</span></div>
+      <div class="feebar-wrap"><div class="feebar" id="feeBar"></div></div>
+      <div class="feestate" id="feeState">道路はガラガラ。手数料は最低限でOK</div>
+      <input type="range" id="feeRange" min="0" max="100" value="8" aria-label="混雑具合">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--sub)">
+        <span>空いている</span><span>ふつう</span><span>大混雑</span></div>
+      <p class="hint">急ぐ人だけ高い手数料を払って優先される。待てるなら安く送れる。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は — 取引所は「まとめ送り」している</h2>
+    <p class="lede">取引所は、たくさんの人の出金を1回の送金にまとめている。だから本物の手数料は、利用者みんなで割り勘になる。</p>
+    <div class="card">
+      <div class="merge">
+        <div class="outs">
+          <div class="outdot">A</div><div class="outdot">B</div><div class="outdot">C</div><div class="outdot">D</div>
+        </div>
+        <svg class="mergearrow" width="64" height="90" viewBox="0 0 64 90">
+          <path d="M4 10 C 30 10, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
+          <path d="M4 35 C 30 35, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
+          <path d="M4 60 C 30 60, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
+          <path d="M4 84 C 30 84, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
+        </svg>
+        <div class="onetx">1回の送金<br><span style="font-weight:400;font-size:12px">手数料は1回分だけ</span></div>
+      </div>
+      <p class="hint">それでも出金手数料が高いのは、ネットワークのせいではなく、取引所の料金設定。</p>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>高いのは取引所の料金設定。ビットコイン自体の手数料は別物で、混雑しだいで変わる</div>
+<nav><a href="../price/">← 前の誤解：価格は誰かが決めている</a><a class="idx" href="../">一覧へ</a><a href="../satoshi/">次の誤解：丸ごと買わないと買えない →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+<script>
+  var range = document.getElementById('feeRange');
+  var bar = document.getElementById('feeBar');
+  var num = document.getElementById('feeNum');
+  var st = document.getElementById('feeState');
+  function upd(){
+    var v = +range.value;
+    bar.style.width = Math.max(4, v) + '%';
+    if (v < 34) { num.textContent = '安い'; st.textContent = '道路はガラガラ。手数料は最低限でOK'; }
+    else if (v < 70) { num.textContent = 'ふつう'; st.textContent = '少し混んできた。手数料も中くらい'; }
+    else { num.textContent = '高い'; st.textContent = '大混雑。急ぐ人が手数料を競り上げている'; }
+  }
+  range.addEventListener('input', upd); upd();
+</script>
+</body>
+</html>

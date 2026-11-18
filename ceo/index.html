@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ビットコインって、どこの会社がやってるの？ — なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="会社も社長もいない。運営している「誰か」が存在しない">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="ビットコインって、どこの会社がやってるの？">
+<meta property="og:description" content="会社も社長もいない。運営している「誰か」が存在しない">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/ceo/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  .answer small{display:block;font-size:12px;color:var(--sub);font-weight:400;margin-bottom:4px}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:var(--ink);color:#fff;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#ffb35c;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .profile td.v{color:#999;transition:all .4s ease;min-width:9em}
+  .profile.found td.v{color:var(--red);font-weight:700}
+  .profile.found td.v s{color:#bbb;font-weight:400}
+  .stamp-zone{position:relative;text-align:center;padding:20px 0 2px;min-height:84px}
+  .net{display:block;margin:0 auto}
+  .net .node{animation:pulse 2.2s ease-in-out infinite}
+  .net .node:nth-child(odd){animation-delay:.7s}
+  @keyframes pulse{0%,100%{opacity:.45}50%{opacity:1}}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.vs{grid-template-columns:1fr}}
+  .vs .mini{background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:12px;text-align:center;font-size:13px}
+  .vs .mini b{display:block;font-size:14px;margin-bottom:6px}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>2 / 14</span></header>
+<p class="eyebrow"><span>第1層</span>名前だけは知ってる</p>
+<h1>ビットコインって、<br>どこの会社がやってるの？</h1>
+<div class="answer"><small>一言の答え</small>会社も社長もいない。<br>運営している「誰か」が存在しない</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">ふつうのサービスには、必ず運営会社がある。アプリを作った会社、困ったときの窓口、責任者。だからビットコインにも「やってる会社」と「社長」がいるはず、と思ってしまう。</p>
+  </section>
+
+  <section>
+    <h2>実際は — 会社情報をさがしてみる</h2>
+    <p class="lede">「ビットコイン株式会社」の会社概要を調べてみよう。</p>
+    <div class="card" id="profCard">
+      <table class="tbl profile" id="profTbl">
+        <tr><th>社名</th><td class="v"><s class="old">ビットコイン株式会社？</s></td></tr>
+        <tr><th>代表者（CEO）</th><td class="v"><s class="old">？？？</s></td></tr>
+        <tr><th>本社</th><td class="v"><s class="old">？？？</s></td></tr>
+        <tr><th>お問い合わせ窓口</th><td class="v"><s class="old">サポートセンター？</s></td></tr>
+        <tr><th>ルールを変えられる人</th><td class="v"><s class="old">運営チーム？</s></td></tr>
+      </table>
+      <div class="stamp-zone"><span class="stamp">実在しません</span></div>
+      <div class="center"><button id="profBtn" type="button">会社情報をさがす</button></div>
+      <p class="hint">どこをどう探しても、出てこない。運営する会社そのものがないから。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は — 中心のないネットワーク</h2>
+    <p class="lede">動かしているのは、世界中の参加者みんな。真ん中に立つ「誰か」はいない。</p>
+    <div class="card">
+      <div class="vs">
+        <div class="mini"><b>ふつうのサービス</b>
+          <svg width="150" height="120" viewBox="0 0 150 120">
+            <rect x="50" y="4" width="50" height="24" rx="6" fill="#1a1a1a"/>
+            <text x="75" y="20" fill="#fff" font-size="11" text-anchor="middle">社長</text>
+            <line x1="75" y1="28" x2="35" y2="52" stroke="#bbb" stroke-width="2"/>
+            <line x1="75" y1="28" x2="115" y2="52" stroke="#bbb" stroke-width="2"/>
+            <rect x="10" y="52" width="50" height="24" rx="6" fill="#eee"/>
+            <text x="35" y="68" font-size="11" text-anchor="middle">会社</text>
+            <rect x="90" y="52" width="50" height="24" rx="6" fill="#eee"/>
+            <text x="115" y="68" font-size="11" text-anchor="middle">会社</text>
+            <line x1="35" y1="76" x2="35" y2="96" stroke="#bbb" stroke-width="2"/>
+            <line x1="115" y1="76" x2="115" y2="96" stroke="#bbb" stroke-width="2"/>
+            <text x="35" y="110" font-size="11" text-anchor="middle">利用者</text>
+            <text x="115" y="110" font-size="11" text-anchor="middle">利用者</text>
+          </svg>
+          トップの判断で止まる・変わる
+        </div>
+        <div class="mini"><b>ビットコイン</b>
+          <svg class="net" width="150" height="120" viewBox="0 0 150 120">
+            <g stroke="#f0c48a" stroke-width="2">
+              <line x1="75" y1="18" x2="24" y2="52"/><line x1="75" y1="18" x2="126" y2="52"/>
+              <line x1="24" y1="52" x2="48" y2="100"/><line x1="126" y1="52" x2="102" y2="100"/>
+              <line x1="48" y1="100" x2="102" y2="100"/><line x1="24" y1="52" x2="126" y2="52"/>
+              <line x1="75" y1="18" x2="75" y2="100" stroke-dasharray="4 4"/>
+            </g>
+            <circle class="node" cx="75" cy="18" r="9" fill="#f7931a"/>
+            <circle class="node" cx="24" cy="52" r="9" fill="#f7931a"/>
+            <circle class="node" cx="126" cy="52" r="9" fill="#f7931a"/>
+            <circle class="node" cx="48" cy="100" r="9" fill="#f7931a"/>
+            <circle class="node" cx="102" cy="100" r="9" fill="#f7931a"/>
+            <circle class="node" cx="75" cy="62" r="9" fill="#f7931a"/>
+          </svg>
+          全員が対等。止める人もいない
+        </div>
+      </div>
+      <p class="hint">※ 取引所やウォレットのアプリには会社がある。でもそれは「ビットコインを使う道具」の会社で、ビットコイン自体の運営ではない。</p>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>ビットコインに、会社も社長も、電話窓口もない</div>
+<nav><a href="../scam/">← 前の誤解：詐欺？</a><a class="idx" href="../">一覧へ</a><a href="../price/">次の誤解：価格は誰かが決めている →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+<script>
+  var pc = document.getElementById('profCard');
+  var pt = document.getElementById('profTbl');
+  var pb = document.getElementById('profBtn');
+  var answers = ['ありません','いません','ありません','ありません','いません'];
+  pb.addEventListener('click', function(){
+    var on = pc.classList.toggle('stamped');
+    pt.classList.toggle('found', on);
+    var cells = pt.querySelectorAll('td.v');
+    cells.forEach(function(td, i){
+      td.innerHTML = on ? '<s>' + td.querySelector('.old').textContent + '</s> → ' + answers[i]
+                        : '<s class="old">' + td.querySelector('s').textContent + '</s>';
+    });
+    pb.textContent = on ? '元に戻す' : '会社情報をさがす';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>裏付けがないビットコインは、価値ゼロでしょ？ — なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="円にも金にも、「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="裏付けがないビットコインは、価値ゼロでしょ？">
+<meta property="og:description" content="円にも金にも、「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/value/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  .answer small{display:block;font-size:12px;color:var(--sub);font-weight:400;margin-bottom:4px}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:var(--ink);color:#fff;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#ffb35c;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .val td.cell{text-align:center;font-weight:700;font-size:16px;transition:all .4s ease;min-width:5.2em}
+  .val td.cell.shown{background:#fdeeda}
+  .val tr.reason td{background:#fdf3e3;font-size:13.5px;text-align:center;
+    opacity:0;transform:translateY(8px);transition:all .6s ease}
+  .val tr.reason.on td{opacity:1;transform:none}
+  .val .q{color:#999}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>14 / 14</span></header>
+<p class="eyebrow"><span>第3層</span>詳しいつもり</p>
+<h1>裏付けがないビットコインは、<br>価値ゼロでしょ？</h1>
+<div class="answer"><small>一言の答え</small>円にも金にも、「裏付け」と呼べるものは実はない。<br>価値は「欲しい・使えると思う人がいる」ことから生まれる</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">「お金には裏付けがあるもの」と思っている。円には国の信用、金には実物。ビットコインには何もなさそうに見えるから、価値ゼロに思える。</p>
+  </section>
+
+  <section>
+    <h2>実際は — 裏付けを確かめてみる</h2>
+    <p class="lede">金・円・ビットコイン、それぞれの「裏付け」を並べてみよう。</p>
+    <div class="card">
+      <table class="tbl val" id="valTbl">
+        <tr><th></th><th>金（ゴールド）</th><th>円</th><th>ビットコイン</th></tr>
+        <tr><th>裏付けは？</th>
+          <td class="cell"><span class="q">？</span></td>
+          <td class="cell"><span class="q">？</span></td>
+          <td class="cell"><span class="q">？</span></td></tr>
+        <tr class="reason" id="valReason"><th>では、なぜ価値がある？</th>
+          <td>欲しい人が<br>いるから</td>
+          <td>みんなが<br>使えるから</td>
+          <td>欲しい人が<br>いるから</td></tr>
+      </table>
+      <div class="center" style="margin-top:14px"><button id="valBtn" type="button">裏付けを確かめる</button></div>
+      <p class="hint">円と金（ゴールド）の交換は1971年に終わっている。いまの円を支えているのは「裏付け」ではなく、「みんなが使える」という合意。</p>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>裏付けがないのは円も金も同じ。価値は「欲しい人がいる」ことから生まれる</div>
+<nav><a href="../limit/">← 前の誤解：発行上限</a><a class="idx" href="../">一覧へ</a><span></span></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+<script>
+  var vt = document.getElementById('valTbl');
+  var vb = document.getElementById('valBtn');
+  var vr = document.getElementById('valReason');
+  var shown = false;
+  vb.addEventListener('click', function(){
+    shown = !shown;
+    var cells = vt.querySelectorAll('td.cell');
+    cells.forEach(function(td, i){
+      if (shown) {
+        setTimeout(function(){ td.innerHTML = 'なし'; td.classList.add('shown'); }, i * 350);
+      } else {
+        td.innerHTML = '<span class="q">？</span>'; td.classList.remove('shown');
+      }
+    });
+    setTimeout(function(){ vr.classList.toggle('on', shown); }, shown ? 1150 : 0);
+    vb.textContent = shown ? '元に戻す' : '裏付けを確かめる';
+  });
+</script>
+</body>
+</html>

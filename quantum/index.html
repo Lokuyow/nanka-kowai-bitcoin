@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>量子コンピューターができたら、ビットコインは終わりでしょ？ — なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="脅威になるのはずっと先。今の量子コンピューターでは歯が立たず、対策に移行する時間もある">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="量子コンピューターができたら、ビットコインは終わりでしょ？">
+<meta property="og:description" content="脅威になるのはずっと先。今の量子コンピューターでは歯が立たず、対策に移行する時間もある">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/quantum/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  .answer small{display:block;font-size:12px;color:var(--sub);font-weight:400;margin-bottom:4px}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:var(--ink);color:#fff;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#ffb35c;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .lane{margin:16px 0}
+  .lane .lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
+  .lane .lbl b{font-size:14px}
+  .trackbar{background:#f4ede1;border-radius:999px;height:20px;overflow:hidden}
+  .fill{height:100%;border-radius:999px}
+  .fill.q{background:#999;animation:qcreep 5s ease-in-out infinite}
+  @keyframes qcreep{0%{width:6%}55%{width:26%}100%{width:6%}}
+  .fill.d{background:var(--orange);animation:dahead 5s ease-in-out infinite}
+  @keyframes dahead{0%{width:48%}55%{width:64%}100%{width:48%}}
+  .nowmark{font-size:12px;color:var(--sub);border-left:2px dashed var(--red);
+    padding-left:8px;margin:2px 0 10px}
+  .lockrow{display:flex;gap:10px}
+  @media(max-width:520px){.lockrow{flex-direction:column}}
+  .lockbox{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:12px;font-size:13px;text-align:center}
+  .lockbox b{display:block;font-size:14px;margin-bottom:4px}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>10 / 14</span></header>
+<p class="eyebrow"><span>第3層</span>詳しいつもり</p>
+<h1>量子コンピューターができたら、<br>ビットコインは終わりでしょ？</h1>
+<div class="answer"><small>一言の答え</small>脅威になるのはずっと先。<br>今の量子コンピューターでは歯が立たず、対策に移行する時間もある</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">「量子コンピューターは今の暗号を破る」という話だけが先行する。だから、完成した瞬間にビットコインも終わる、という絵に見える。</p>
+  </section>
+
+  <section>
+    <h2>実際は — タイムラインで見る</h2>
+    <p class="lede">脅威が現実になるまでの道のりと、対策が進む道のり。並べてみると、順番が見える。</p>
+    <div class="card">
+      <p class="nowmark">いまここ（量子コンピューターはまだ実験段階）</p>
+      <div class="lane">
+        <div class="lbl"><b>量子コンピューターの進歩</b><span>実用レベルはまだ遠い</span></div>
+        <div class="trackbar"><div class="fill q"></div></div>
+      </div>
+      <div class="lane">
+        <div class="lbl"><b>ビットコイン側の対策</b><span>耐量子の署名へ移行する道がある</span></div>
+        <div class="trackbar"><div class="fill d"></div></div>
+      </div>
+      <p class="hint">「できたら即終わり」ではなく、「ずっと先の脅威に、備える時間がある」が実情。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は — そもそも狙えないアドレスが多い</h2>
+    <p class="lede">量子攻撃が狙えるのは、公開鍵が表に出ている場合だけ。送金に使っていないアドレスは、公開鍵がハッシュの後ろに隠れている。</p>
+    <div class="card">
+      <div class="lockrow">
+        <div class="lockbox"><b>🔓 狙われうる</b>送金に使って<br>公開鍵が出たアドレス</div>
+        <div class="lockbox"><b>🔒 狙えない</b>まだ使っていない<br>アドレス（鍵は隠れたまま）</div>
+      </div>
+      <p class="hint">リスクがある部分も、移行の対象として議論が進んでいる。「全部が一気に無防備になる」わけではない。</p>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>「即終わり」は嘘。脅威はずっと先で、備える時間も道もある</div>
+<nav><a href="../ban/">← 前の誤解：政府が禁止</a><a class="idx" href="../">一覧へ</a><a href="../51/">次の誤解：51%攻撃 →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+</body>
+</html>

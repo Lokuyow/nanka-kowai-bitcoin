@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1ビットコインって何百万円もするんでしょ？ 買えないよ — なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="1ビットコインって何百万円もするんでしょ？ 買えないよ">
+<meta property="og:description" content="丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/satoshi/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  .answer small{display:block;font-size:12px;color:var(--sub);font-weight:400;margin-bottom:4px}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:var(--ink);color:#fff;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#ffb35c;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .pizza-wrap{text-align:center}
+  .pizzanum{font-size:15px;color:var(--sub);margin-top:4px}
+  .pizzanum b{color:var(--ink);font-size:20px}
+  .cutbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+  .cutbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px}
+  .cutbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff}
+  #wedge{transition:all .5s ease}
+  .yenbar-wrap{background:#f4ede1;border-radius:999px;height:22px;overflow:hidden;margin:10px 0 4px}
+  .yenbar{height:100%;background:var(--orange);width:0;border-radius:999px;
+    animation:yenfill 1.6s ease .3s both}
+  @keyframes yenfill{from{width:0}to{width:22%}}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>5 / 14</span></header>
+<p class="eyebrow"><span>第1層</span>名前だけは知ってる</p>
+<h1>1ビットコインって何百万円も<br>するんでしょ？ 買えないよ</h1>
+<div class="answer"><small>一言の答え</small>丸ごと買わなくていい。<br>0.00000001（1 satoshi）から、100円分でも買える</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">ニュースはいつも「1ビットコイン＝○○万円」と単価だけを言う。だから「買うなら最低でもその金額が必要」に聞こえる。</p>
+  </section>
+
+  <section>
+    <h2>実際は — ピザと同じで、一切れから買える</h2>
+    <p class="lede">1ホール買わなくても、ピザは一切れで買える。ビットコインも同じで、細かく割って買える。</p>
+    <div class="card pizza-wrap">
+      <svg width="220" height="220" viewBox="0 0 220 220">
+        <circle cx="110" cy="110" r="96" fill="#f7c873" stroke="#d99a2b" stroke-width="8"/>
+        <g id="sliceLines" stroke="#d99a2b" stroke-width="2"></g>
+        <path id="wedge" fill="#f7931a" opacity="0.9" d="M110 110 L110 14 A96 96 0 0 1 206 110 Z"/>
+        <circle cx="80" cy="80" r="9" fill="#d33" opacity=".65"/>
+        <circle cx="140" cy="130" r="9" fill="#d33" opacity=".65"/>
+        <circle cx="90" cy="150" r="9" fill="#4a7a5c" opacity=".6"/>
+        <circle cx="150" cy="70" r="9" fill="#4a7a5c" opacity=".6"/>
+      </svg>
+      <div class="pizzanum" id="pizzaText">あなたの分: <b>1/4 ホール</b></div>
+      <div class="cutbtns" id="cutBtns">
+        <button type="button" data-step="0">ホール</button>
+        <button type="button" data-step="1">半分</button>
+        <button type="button" data-step="2" class="on">4切れ</button>
+        <button type="button" data-step="3">100万分の1</button>
+        <button type="button" data-step="4">1 satoshi</button>
+      </div>
+      <p class="hint">いちばん小さい単位は 1 satoshi（0.00000001 BTC）。1 BTC は 1億 satoshi に割れる。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は — 100円分でも買える</h2>
+    <p class="lede">多くの取引所では、数百円分から購入できる（最低額は取引所による）。</p>
+    <div class="card">
+      <div style="font-size:14px">100円で買える量（価格のイメージ）</div>
+      <div class="yenbar-wrap"><div class="yenbar"></div></div>
+      <p class="hint" style="text-align:left;margin:0">量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。</p>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>ビットコインはピザと同じ。1ホール買わなくても、一切れから買える</div>
+<nav><a href="../fee/">← 前の誤解：手数料</a><a class="idx" href="../">一覧へ</a><a href="../hack/">次の誤解：ハッキング →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+<script>
+  var wedge = document.getElementById('wedge');
+  var lines = document.getElementById('sliceLines');
+  var ptext = document.getElementById('pizzaText');
+  var cx = 110, cy = 110, r = 96;
+  function pt(deg){ var a = (deg - 90) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }
+  function wedgePath(sweep){
+    if (sweep >= 360) return 'M110 14 A96 96 0 1 1 109.9 14 Z';
+    var e = pt(sweep), large = sweep > 180 ? 1 : 0;
+    return 'M110 110 L110 14 A96 96 0 ' + large + ' 1 ' + e[0].toFixed(1) + ' ' + e[1].toFixed(1) + ' Z';
+  }
+  var steps = [
+    {sweep: 360, label: '1ホール全部（1 BTC）', ln: 0},
+    {sweep: 180, label: '半分（0.5 BTC）', ln: 2},
+    {sweep: 90,  label: '1/4 ホール（0.25 BTC）', ln: 4},
+    {sweep: 6,   label: '100万分の1（0.000001 BTC）', ln: 12},
+    {sweep: 1.2, label: '1 satoshi（0.00000001 BTC）— これでも買える', ln: 12}
+  ];
+  function draw(step){
+    var s = steps[step];
+    wedge.setAttribute('d', wedgePath(s.sweep));
+    var html = '';
+    for (var i = 0; i < s.ln; i++){
+      var p = pt(360 * i / s.ln);
+      html += '<line x1="110" y1="110" x2="' + p[0].toFixed(1) + '" y2="' + p[1].toFixed(1) + '"/>';
+    }
+    lines.innerHTML = html;
+    ptext.innerHTML = 'あなたの分: <b>' + s.label + '</b>';
+    document.querySelectorAll('#cutBtns button').forEach(function(b, i){
+      b.classList.toggle('on', i === step);
+    });
+  }
+  document.querySelectorAll('#cutBtns button').forEach(function(b){
+    b.addEventListener('click', function(){ draw(+b.dataset.step); });
+  });
+  draw(2);
+</script>
+</body>
+</html>

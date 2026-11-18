@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ビットコインって、匿名で犯罪に使われるんでしょ？ — なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="ビットコインって、匿名で犯罪に使われるんでしょ？">
+<meta property="og:description" content="匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/crime/">
+<meta name="twitter:card" content="summary">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  .answer small{display:block;font-size:12px;color:var(--sub);font-weight:400;margin-bottom:4px}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:var(--ink);color:#fff;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#ffb35c;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .ledger{font-size:13px}
+  .lrow{display:flex;justify-content:space-between;gap:8px;padding:8px 6px;
+    border-bottom:1px dotted var(--line);opacity:0;animation:lrow 6s ease-in-out infinite}
+  .lrow:nth-child(2){animation-delay:1.2s}.lrow:nth-child(3){animation-delay:2.4s}
+  .lrow:nth-child(4){animation-delay:3.6s}.lrow:nth-child(5){animation-delay:4.8s}
+  @keyframes lrow{0%{opacity:0;transform:translateY(6px)}12%,80%{opacity:1;transform:none}95%,100%{opacity:.25}}
+  .addr{font-family:ui-monospace,monospace;font-size:12px;background:#f4ede1;
+    border-radius:6px;padding:1px 6px}
+  .trail{display:flex;align-items:center;gap:5px;padding:8px 0}
+  .dot{width:13px;height:13px;border-radius:50%;background:var(--ink)}
+  .trail.cash .dot{animation:fadeout 3s ease-in-out infinite}
+  .trail.cash .dot:nth-child(2){animation-delay:.25s}.trail.cash .dot:nth-child(3){animation-delay:.5s}
+  .trail.cash .dot:nth-child(4){animation-delay:.75s}.trail.cash .dot:nth-child(5){animation-delay:1s}
+  .trail.cash .dot:nth-child(6){animation-delay:1.25s}
+  @keyframes fadeout{0%,30%{opacity:1}80%,100%{opacity:.08}}
+  .trail.btc .dot{background:var(--orange);animation:stayglow 3s ease-in-out infinite}
+  @keyframes stayglow{0%,100%{box-shadow:0 0 0 0 rgba(247,147,26,0)}50%{box-shadow:0 0 0 5px rgba(247,147,26,.25)}}
+  .trail-lbl{flex:0 0 86px;font-size:13px;font-weight:700}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>7 / 14</span></header>
+<p class="eyebrow"><span>第2層</span>ニュースで見たよ</p>
+<h1>ビットコインって、匿名で<br>犯罪に使われるんでしょ？</h1>
+<div class="answer"><small>一言の答え</small>匿名ではなく「仮名」。<br>取引は全部、公開の台帳に残るから、現金より足がつきやすい</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">「匿名通貨」という言葉や、事件で使われた話だけが広まる。本名が出てこない＝誰にも追えない、と思ってしまう。</p>
+  </section>
+
+  <section>
+    <h2>実際は — 台帳は全部、公開されている</h2>
+    <p class="lede">ビットコインの取引は、世界中の誰でも見られる台帳に、消せない形で残り続ける。</p>
+    <div class="card ledger">
+      <div class="lrow"><span><span class="addr">1A2b…x9</span> → <span class="addr">3Cd4…m2</span></span><b>0.5 BTC</b></div>
+      <div class="lrow"><span><span class="addr">3Cd4…m2</span> → <span class="addr">7Ef8…q7</span></span><b>0.2 BTC</b></div>
+      <div class="lrow"><span><span class="addr">7Ef8…q7</span> → <span class="addr">9Gh1…z3</span></span><b>0.2 BTC</b></div>
+      <div class="lrow"><span><span class="addr">9Gh1…z3</span> → <span class="addr">2Jk5…w8</span></span><b>0.19 BTC</b></div>
+      <div class="lrow"><span>…最初から全部、誰でもたどれる</span><b>永久保存</b></div>
+      <p class="hint">名前は出ない「仮名」制。でも、お金の流れは全部つながって見えている。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は — 足跡が消えるのは、現金の方</h2>
+    <p class="lede">手渡しの現金は、誰から誰へ渡ったか記録が残らない。比べると、ビットコインの方がよっぽど足がつく。</p>
+    <div class="card">
+      <div class="trail cash"><span class="trail-lbl">現金</span>
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span style="font-size:12px;color:var(--sub)">記録なし・消えていく</span></div>
+      <div class="trail btc"><span class="trail-lbl">ビットコイン</span>
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span style="font-size:12px;color:var(--sub)">全部残る・消せない</span></div>
+      <p class="hint">だから実際、犯罪に使われたビットコインは、追跡されて犯人が捕まるケースも多い。犯罪利用の割合自体も、全体から見れば小さい。</p>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>ビットコインは匿名どころか、全部の取引が公開で残る。現金の方がよっぽど足がつかない</div>
+<nav><a href="../hack/">← 前の誤解：ハッキング</a><a class="idx" href="../">一覧へ</a><a href="../energy/">次の誤解：電気・環境 →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+</body>
+</html>
