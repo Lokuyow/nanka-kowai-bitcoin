@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
 <script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
-<script src="i18n.js"></script>
+<script src="/nanka-kowai-bitcoin/i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>ページが見つかりません：なんか よくわからんけど こわい ビットコイン</title>
@@ -43,6 +43,7 @@
   .theme-toggle .ic-sun{display:none}
   :root[data-theme="dark"] .theme-toggle .ic-sun{display:block}
   :root[data-theme="dark"] .theme-toggle .ic-moon{display:none}
+  :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
 </style>
 <style>
   .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
