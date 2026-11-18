@@ -729,7 +729,13 @@
     '<b style="color:var(--amber)">国でなくても成り立つ見方</b> <ul> <li>国の都合で価値が薄まる心配が少ない</li> <li>国境を越えて使える</li> <li>歴史の長さで見れば、国以外のお金の方が長く使われてきた</li> </ul>': '<b style="color:var(--amber)">Ways it can stand without a country</b> <ul> <li>Less worry that its value is thinned by a country\'s convenience</li> <li>Usable across borders</li> <li>Seen over the length of history, non-state money has been used longer</li> </ul>',
     'お金の作り手が誰かは、時代ごとに変わってきた。これからも変わらないとは限らない。': 'Who makes money has changed with each era. It may not stay the same from here on, either.',
     'お金は国だけのもの、という感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は、代わり同士なのか、並べて使うものなのか。あなたはどう思う？': 'The feeling that money belongs only to countries may itself be a modern invention. Are a national currency and money outside countries substitutes, or things to use side by side? What do you think?',
-    '← 前の問い：当たり前になった社会': '← Previous question: A world where it is normal'
+    '← 前の問い：当たり前になった社会': '← Previous question: A world where it is normal',
+    /* ===== 404 ===== */
+    'ページが見つかりません：なんか よくわからんけど こわい ビットコイン': "Page not found | I don't really get it, but it's scary: Bitcoin",
+    'お探しのページは見つかりませんでした。': 'The page you are looking for could not be found.',
+    'ページが見つかりません': 'Page not found',
+    'アドレスが変わったか、入力が間違っているかもしれません。全23話はトップページから読めます。': 'The address may have changed, or it may have been typed wrong. All 23 episodes can be read from the top page.',
+    'トップへもどる': 'Back to the top page'
   };
   window.I18N_EN = EN;
 
