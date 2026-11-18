@@ -93,6 +93,14 @@
   .can ul,.cannot ul{margin:0;padding-left:0;list-style:none;font-size:14px}
   .can li,.cannot li{padding:5px 0;border-bottom:1px dotted var(--line)}
   .can li:last-child,.cannot li:last-child{border-bottom:0}
+
+  .hlbtns{display:flex;flex-direction:column;gap:8px}
+  .hlbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);min-height:48px;font-size:15px;border-radius:12px;padding:10px 14px;text-align:left}
+  .hlbtns button.right{border-color:var(--green);background:#f2f9f2;color:var(--green);font-weight:700}
+  .hlbtns button.wrong{border-color:var(--red);background:#fff6f6;color:var(--red)}
+  .hlbtns button[disabled]{cursor:default;opacity:.85}
+  .hlfeed{font-size:14px;min-height:3.2em;margin:10px 0 0}
+  #hlRetry{min-height:44px}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -124,21 +132,30 @@
       <figcaption>会社も社長もいない。運営している「誰か」が存在しない</figcaption>
       <p class="note">実際に2015年に放送されたテロップ。このとき逮捕されたのは取引所マウントゴックスの社長マルク・カルプレスで、ビットコインの「社長」ではない。</p>
     </figure>
+    <div class="card" id="hlCard">
+      <p style="margin:0 0 4px;font-size:15px"><b>見出しクイズ</b></p>
+      <p class="hint" style="text-align:left;margin:0 0 12px">2015年の逮捕を伝える見出し。正確なのはどれ？ タップして選んでみよう。</p>
+      <div class="hlbtns" id="hlBtns">
+        <button type="button" data-ok="0">「ビットコインの元CEOを逮捕」</button>
+        <button type="button" data-ok="1">「取引所マウントゴックスの社長を逮捕」</button>
+        <button type="button" data-ok="0">「ビットコインの社長、ついに逮捕」</button>
+      </div>
+      <p class="hlfeed" id="hlFeed" aria-live="polite"></p>
+      <div class="center"><button type="button" id="hlRetry" hidden>もう一度（順番が変わる）</button></div>
+    </div>
   </section>
 
   <section>
     <h2>実際は：会社情報をさがしてみる</h2>
-    <p class="lede">「ビットコイン株式会社」の会社概要を調べてみよう。</p>
+    <p class="lede">「ビットコイン株式会社」の会社概要を、いくら調べても出てこない。</p>
     <div class="card" id="profCard">
-      <table class="tbl profile" id="profTbl">
-        <tr><th>社名</th><td class="v"><s class="old">ビットコイン株式会社？</s></td></tr>
-        <tr><th>代表者（CEO）</th><td class="v"><s class="old">？？？</s></td></tr>
-        <tr><th>本社</th><td class="v"><s class="old">？？？</s></td></tr>
-        <tr><th>お問い合わせ窓口</th><td class="v"><s class="old">サポートセンター？</s></td></tr>
-        <tr><th>ルールを変えられる人</th><td class="v"><s class="old">運営チーム？</s></td></tr>
+      <table class="tbl profile found" id="profTbl">
+        <tr><th>社名</th><td class="v"><s>ビットコイン株式会社？</s> → ありません</td></tr>
+        <tr><th>代表者（CEO）</th><td class="v"><s>？？？</s> → いません</td></tr>
+        <tr><th>本社</th><td class="v"><s>？？？</s> → ありません</td></tr>
+        <tr><th>お問い合わせ窓口</th><td class="v"><s>サポートセンター？</s> → ありません</td></tr>
+        <tr><th>ルールを変えられる人</th><td class="v"><s>運営チーム？</s> → いません</td></tr>
       </table>
-      <div class="stamp-zone"><span class="stamp">実在しません</span></div>
-      <div class="center"><button id="profBtn" type="button">会社情報をさがす</button></div>
       <p class="hint">どこをどう探しても、出てこない。運営する会社そのものがないから。</p>
     </div>
   </section>
@@ -222,20 +239,45 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var pc = document.getElementById('profCard');
-  var pt = document.getElementById('profTbl');
-  var pb = document.getElementById('profBtn');
-  var answers = ['ありません','いません','ありません','ありません','いません'];
-  pb.addEventListener('click', function(){
-    var on = pc.classList.toggle('stamped');
-    pt.classList.toggle('found', on);
-    var cells = pt.querySelectorAll('td.v');
-    cells.forEach(function(td, i){
-      td.innerHTML = on ? '<s>' + td.querySelector('.old').textContent + '</s> → ' + answers[i]
-                        : '<s class="old">' + td.querySelector('s').textContent + '</s>';
+
+(function(){
+  var btnsWrap = document.getElementById('hlBtns');
+  var feed = document.getElementById('hlFeed');
+  var retry = document.getElementById('hlRetry');
+  function shuffleBtns(){
+    var btns = Array.prototype.slice.call(btnsWrap.children);
+    for (var i = btns.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      btnsWrap.appendChild(btns[j]);
+    }
+  }
+  function reset(){
+    shuffleBtns();
+    feed.textContent = '';
+    retry.hidden = true;
+    Array.prototype.forEach.call(btnsWrap.children, function(b){
+      b.disabled = false;
+      b.classList.remove('right', 'wrong');
     });
-    pb.textContent = on ? '元に戻す' : '会社情報をさがす';
+  }
+  btnsWrap.addEventListener('click', function(e){
+    var b = e.target.closest('button');
+    if (!b || b.disabled) return;
+    var ok = b.dataset.ok === '1';
+    Array.prototype.forEach.call(btnsWrap.children, function(x){
+      x.disabled = true;
+      if (x.dataset.ok === '1') x.classList.add('right');
+    });
+    if (!ok) b.classList.add('wrong');
+    feed.innerHTML = ok
+      ? '<b>正解。</b>これだけが正確な見出し。でも実際にテレビや新聞で大きく出たのは、まちがっている方。本文はどれも「取引所の社長」と書いていたのに、見出しだけが独り歩きした。'
+      : '<b>それは実際に大きく報じられた見出し。でも正確じゃない。</b>逮捕されたのは取引所の社長。「ビットコインの社長」という見出しが、誤解を広げた。';
+    retry.hidden = false;
   });
+  retry.addEventListener('click', reset);
+  shuffleBtns();
+})();
+
 </script>
 <script>
 (function(){

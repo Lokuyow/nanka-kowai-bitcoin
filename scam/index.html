@@ -112,6 +112,17 @@
     font-weight:700;font-size:17px;background:#fff}
   .stamp-zone{position:relative;text-align:center;padding:26px 0 6px;min-height:96px;overflow:hidden}
   .stamped .word{opacity:.45}
+
+  .qmsg{font-size:19px;font-weight:700;text-align:center;padding:18px 10px;background:#fdf3e3;border-radius:12px;line-height:1.6;min-height:4.6em;display:flex;align-items:center;justify-content:center}
+  .qbtns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+  .qbtns button{min-height:48px;font-size:16px}
+  #qScam{background:var(--red)}
+  #qOk{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+  .qfeed{font-size:14px;min-height:3.4em;margin:10px 0 0;text-align:center}
+  .qscore{text-align:center;font-size:14px;margin:4px 0 0}
+  .qscore b{font-size:17px}
+  #qNext{min-height:44px}
+  .stamp.ok{border-color:var(--green);color:var(--green)}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -177,14 +188,18 @@
 
   <section>
     <h2>実際は：この言葉が出たら要注意</h2>
-    <p class="lede">タップすると、判定が出る。</p>
-    <div class="card" id="stampCard">
-      <div class="words">
-        <span class="word">元本保証</span><span class="word">必ず儲かる</span>
+    <p class="lede">勧誘の文句がランダムに出てくる。「詐欺の手口」か「大丈夫そう」か、見分けてみよう。全5問。</p>
+    <div class="card" id="quizCard">
+      <div class="qmsg" id="qMsg"></div>
+      <div class="qbtns">
+        <button type="button" id="qScam">詐欺の手口</button>
+        <button type="button" id="qOk">大丈夫そう</button>
       </div>
-      <div class="stamp-zone"><span class="stamp">詐欺の手口</span></div>
-      <div class="center"><button id="stampBtn" type="button">判定する</button></div>
-      <p class="hint">ビットコイン以前に、詐欺の手口そのもの。</p>
+      <div class="stamp-zone"><span class="stamp" id="qStamp">詐欺の手口</span></div>
+      <p class="qfeed" id="qFeed" aria-live="polite"></p>
+      <p class="qscore" id="qScore"></p>
+      <div class="center"><button type="button" id="qNext" hidden>次の文句へ</button></div>
+      <p class="hint">ビットコイン以前に、詐欺の手口そのものを見分ける目が効く。</p>
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>悪いのはビットコインを使った手口で、ビットコインそのものじゃない</div>
@@ -200,6 +215,7 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
+
   var card = document.getElementById('swapCard');
   var btn = document.getElementById('swapBtn');
   var cap = document.getElementById('swapCaption');
@@ -210,12 +226,80 @@
       ? '詐欺をしているのは <b>ビットコインを騙った人</b>。主語は人だった。'
       : '主語は <b>ビットコイン</b>？ それとも…？';
   });
-  var stampCard = document.getElementById('stampCard');
-  var stampBtn = document.getElementById('stampBtn');
-  stampBtn.addEventListener('click', function(){
-    var on = stampCard.classList.toggle('stamped');
-    stampBtn.textContent = on ? 'もう一度' : '判定する';
+  // ---- 見分けるクイズ ----
+  var POOL_SCAM = [
+    {t: '「元本保証で、月利10%の投資です」', why: '元本保証と高い利回りの組み合わせは、詐欺の定番。本物の投資に「保証」はない。'},
+    {t: '「今だけ限定。送ったビットコインが2倍になって戻ります」', why: '送ると2倍になって戻る仕組みは、存在しない。送ったお金は戻ってこない。'},
+    {t: '「有名な実業家も勧めている投資です。今すぐ登録してください」', why: '有名人の名前や写真を勝手に使うのは、詐欺広告の典型。'},
+    {t: '「絶対に損はしません。参加者はみんな儲かっています」', why: '「絶対」「みんな儲かっている」は、冷静さを奪うための言葉。'},
+    {t: '「税金の還付があります。手続きのために送金してください」', why: '還付の手続きで送金を求めることはない。公的機関をかたる詐欺。'}
+  ];
+  var POOL_OK = [
+    {t: '「価格は大きく変動します。元本保証はありません」', why: 'リスクを正直に書いている。保証しないのが、本物の投資の案内。'},
+    {t: '「まずは仕組みを自分で調べて、無理のない少額から始めてください」', why: '急がせず、自分で調べることを勧めている。'},
+    {t: '「セミナーで仕組みを解説します。投資の勧誘はしません」', why: '勧誘しないことを先に言っている。'},
+    {t: '「手数料とリスクの説明を、必ず書面で確認してください」', why: '書面での確認を促すのは、正規の案内の作法。'}
+  ];
+  var quiz = [], qi = 0, score = 0, answered = false;
+  var qMsg = document.getElementById('qMsg');
+  var qFeed = document.getElementById('qFeed');
+  var qScore = document.getElementById('qScore');
+  var qStamp = document.getElementById('qStamp');
+  var qCard = document.getElementById('quizCard');
+  var qNext = document.getElementById('qNext');
+  function shuffle(a){ for (var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function newGame(){
+    quiz = shuffle(POOL_SCAM.slice()).slice(0, 3).concat(shuffle(POOL_OK.slice()).slice(0, 2));
+    shuffle(quiz);
+    qi = 0; score = 0;
+    showQ();
+  }
+  function showQ(){
+    answered = false;
+    qCard.classList.remove('stamped');
+    qNext.hidden = true;
+    qMsg.textContent = quiz[qi].t;
+    qFeed.textContent = '第' + (qi + 1) + '問 / 5問。この文句、どう思う？';
+    qScore.innerHTML = '正解 <b>' + score + '</b> ・ 不正解 <b>' + (qi - score) + '</b>';
+  }
+  function answer(saidScam){
+    if (answered) return;
+    answered = true;
+    var q = quiz[qi];
+    var right = saidScam === q.scam;
+    if (right) score++;
+    qStamp.textContent = q.scam ? '詐欺の手口' : '大丈夫そう';
+    qStamp.classList.toggle('ok', !q.scam);
+    qCard.classList.add('stamped');
+    qFeed.innerHTML = (right ? '<b>正解。</b>' : '<b>残念。</b>') + q.why;
+    qScore.innerHTML = '正解 <b>' + score + '</b> ・ 不正解 <b>' + (qi + 1 - score) + '</b>';
+    qNext.textContent = qi + 1 >= quiz.length ? '結果を見る' : '次の文句へ';
+    qNext.hidden = false;
+  }
+  document.getElementById('qScam').addEventListener('click', function(){ answer(true); });
+  document.getElementById('qOk').addEventListener('click', function(){ answer(false); });
+  var finished = false;
+  qNext.addEventListener('click', function(){
+    if (finished) { finished = false; newGame(); return; }
+    qi++;
+    if (qi >= quiz.length) {
+      qCard.classList.remove('stamped');
+      qMsg.textContent = score === 5 ? '全問正解！' : (score >= 3 ? '5問中 ' + score + '問 正解' : '5問中 ' + score + '問 正解');
+      qFeed.textContent = score === 5 ? '見分ける目、ばっちり。その目があれば「ビットコイン詐欺」の見出しにも惑わされない。'
+        : score >= 3 ? '怪しい文句の見分けは、だいたい付いている。「保証」「絶対」「今だけ」が出たら一歩引くのが合言葉。'
+        : '「保証します」「絶対儲かる」「今だけ」は危険信号。引っかかる前に、一歩引いて確かめよう。';
+      qScore.innerHTML = '';
+      qNext.textContent = 'もう一度あそぶ';
+      qNext.hidden = false;
+      finished = true;
+      return;
+    }
+    showQ();
   });
+  POOL_SCAM.forEach(function(q){ q.scam = true; });
+  POOL_OK.forEach(function(q){ q.scam = false; });
+  newGame();
+
 </script>
 <script>
 (function(){

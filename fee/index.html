@@ -94,6 +94,15 @@
   @keyframes dash{to{stroke-dashoffset:-20}}
   .onetx{background:var(--orange);color:#fff;border-radius:10px;padding:10px 14px;
     font-weight:700;font-size:14px;text-align:center}
+
+  .routebtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+  .routebtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}
+  .routebtns button.on{background:var(--orange);border-color:var(--orange);color:#fff}
+  #sendBtn{min-height:48px;font-size:16px}
+  .sendresult{margin-top:14px;font-size:14px}
+  .sendresult .line{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px dotted var(--line)}
+  .sendresult .line.hl{font-weight:700;font-size:16px}
+  .sendmsg{font-size:14px;min-height:3.2em;margin:10px 0 0}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -138,16 +147,29 @@
   </section>
 
   <section>
-    <h2>実際は：混雑スライダー</h2>
-    <p class="lede">本物の手数料は「道路の混み具合」で変わる。スライダーを動かしてみて。</p>
-    <div class="card">
-      <div class="feenum"><span id="feeNum">安い</span></div>
-      <div class="feebar-wrap"><div class="feebar" id="feeBar"></div></div>
-      <div class="feestate" id="feeState">道路はガラガラ。手数料は最低限でOK</div>
-      <input type="range" id="feeRange" min="0" max="100" value="8" aria-label="混雑具合">
-      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--sub)">
-        <span>空いている</span><span>ふつう</span><span>大混雑</span></div>
-      <p class="hint">急ぐ人だけ高い手数料を払って優先される。待てるなら安く送れる。</p>
+    <h2>実際は：送ってみると違いが見える</h2>
+    <p class="lede">取引所の出金手数料は、金額にかかわらず固定。本物の送金手数料は混雑しだいで変わる。送る額を変えて、両方のやり方で送ってみよう。</p>
+    <div class="card" id="sendCard">
+      <label>送る額: <b id="amtLbl">11,200円</b><input type="range" id="amtRange" min="0" max="100" value="45" aria-label="送る額"></label>
+      <div class="routebtns">
+        <button type="button" id="routeEx" class="on">取引所から出金する</button>
+        <button type="button" id="routeSelf">自分で送金する</button>
+      </div>
+      <div id="selfOpts" hidden>
+        <div class="routebtns">
+          <button type="button" id="spdWait" class="on">待てる（安く送る）</button>
+          <button type="button" id="spdFast">急ぐ（高くても速く）</button>
+        </div>
+      </div>
+      <div class="center" style="margin:6px 0"><button id="sendBtn" type="button">送ってみる</button></div>
+      <div class="sendresult" id="sendResult" hidden>
+        <div class="line"><span>送った額</span><b id="rAmt"></b></div>
+        <div class="line"><span>手数料</span><b id="rFee"></b></div>
+        <div class="line hl"><span>相手に届く額</span><b id="rGot"></b></div>
+        <div class="feebar-wrap"><div class="feebar" id="rBar"></div></div>
+        <p class="sendmsg" id="rMsg"></p>
+      </div>
+      <p class="hint">金額と手数料はイメージです。取引所の出金手数料は 0.0005 BTC（1BTC=1,500万円なら7,500円）として計算しています。</p>
     </div>
   </section>
 
@@ -183,18 +205,64 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var range = document.getElementById('feeRange');
-  var bar = document.getElementById('feeBar');
-  var num = document.getElementById('feeNum');
-  var st = document.getElementById('feeState');
-  function upd(){
-    var v = +range.value;
-    bar.style.width = Math.max(4, v) + '%';
-    if (v < 34) { num.textContent = '安い'; st.textContent = '道路はガラガラ。手数料は最低限でOK'; }
-    else if (v < 70) { num.textContent = 'ふつう'; st.textContent = '少し混んできた。手数料も中くらい'; }
-    else { num.textContent = '高い'; st.textContent = '大混雑。急ぐ人が手数料を競り上げている'; }
+
+(function(){
+  var range = document.getElementById('amtRange');
+  var amtLbl = document.getElementById('amtLbl');
+  var routeEx = document.getElementById('routeEx');
+  var routeSelf = document.getElementById('routeSelf');
+  var selfOpts = document.getElementById('selfOpts');
+  var spdWait = document.getElementById('spdWait');
+  var spdFast = document.getElementById('spdFast');
+  var result = document.getElementById('sendResult');
+  var route = 'ex', speed = 'wait';
+  function amt(){
+    var raw = 500 * Math.pow(1000, +range.value / 100);
+    return raw >= 100000 ? Math.round(raw / 1000) * 1000 : Math.round(raw / 100) * 100;
   }
-  range.addEventListener('input', upd); upd();
+  function yen(n){ return n.toLocaleString('ja-JP') + '円'; }
+  function updLbl(){ amtLbl.textContent = yen(amt()); }
+  range.addEventListener('input', updLbl);
+  updLbl();
+  function setRoute(r){
+    route = r;
+    routeEx.classList.toggle('on', r === 'ex');
+    routeSelf.classList.toggle('on', r === 'self');
+    selfOpts.hidden = r !== 'self';
+  }
+  routeEx.addEventListener('click', function(){ setRoute('ex'); });
+  routeSelf.addEventListener('click', function(){ setRoute('self'); });
+  spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); });
+  spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); });
+  document.getElementById('sendBtn').addEventListener('click', function(){
+    var a = amt(), fee, msg;
+    if (route === 'ex') {
+      fee = 7500;
+      if (fee >= a) msg = '送る額より手数料の方が大きい。固定料金は、小さい額をそのまま食べてしまう。これが「送金手数料が高い」と感じる正体。';
+      else {
+        var pct = Math.round(fee / a * 100);
+        msg = '手数料は全体の約' + pct + '%。金額が小さいほど、固定料金の重さが目立ってくる。';
+        if (pct <= 2) msg += '大きな額なら割合は小さくなる。でも、それはネットワークの手数料が下がったからではない。';
+      }
+    } else {
+      var cong = Math.random();
+      var congName = cong < 0.4 ? '空いている' : (cong < 0.75 ? 'ふつう' : '混雑している');
+      var base = cong < 0.4 ? 150 : (cong < 0.75 ? 400 : 900);
+      fee = speed === 'wait' ? Math.round(base * (0.8 + Math.random() * 0.5))
+                             : Math.round(base * (2.5 + Math.random() * 1.5));
+      var pct2 = fee / a * 100;
+      msg = 'いまのネットワークは「' + congName + '」。手数料は全体の約' + (pct2 < 0.1 ? '0.1%未満' : pct2.toFixed(1) + '%') + '。送る額が変わっても、手数料は混雑しだいで決まる。';
+    }
+    var got = Math.max(0, a - fee);
+    document.getElementById('rAmt').textContent = yen(a);
+    document.getElementById('rFee').textContent = yen(fee);
+    document.getElementById('rGot').textContent = yen(got);
+    document.getElementById('rBar').style.width = Math.max(2, got / a * 100) + '%';
+    document.getElementById('rMsg').textContent = msg;
+    result.hidden = false;
+  });
+})();
+
 </script>
 <script>
 (function(){

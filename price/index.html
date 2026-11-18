@@ -88,6 +88,11 @@
   .nowprice.up{color:var(--green)} .nowprice.down{color:var(--red)}
   .flash{animation:flash .6s ease}
   @keyframes flash{0%{background:#fdeeda}100%{background:transparent}}
+
+  .tradebtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
+  .tradebtns button{min-height:44px;padding:10px 18px}
+  .tradebtns .buy{background:var(--orange)}
+  .tradebtns .sell{background:#fff;color:var(--ink);border:2px solid var(--ink)}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -112,7 +117,7 @@
 
   <section>
     <h2>実際は：希望価格のぶつかり合い</h2>
-    <p class="lede">左は「この値段なら買いたい」、右は「この値段なら売りたい」。ぶつかった真ん中がその瞬間の価格になる。</p>
+    <p class="lede">左は「この値段なら買いたい」、右は「この値段なら売りたい」。ぶつかった真ん中がその瞬間の価格になる。あなたもボタンを押して、売り買いに参加してみよう。</p>
     <div class="card" id="boardCard">
       <div class="board">
         <div class="side buy">
@@ -127,6 +132,11 @@
           <div class="nowprice" id="nowPrice">15,015,000</div>
           <div class="lbl">円 / BTC（イメージ）</div>
           <div id="dealMsg" style="font-size:13px;min-height:1.6em;margin-top:6px"></div>
+          <div class="tradebtns">
+            <button type="button" id="buyBtn" class="buy">買ってみる</button>
+            <button type="button" id="sellBtn" class="sell">売ってみる</button>
+          </div>
+          <div class="lbl" id="myTrades" style="margin-top:8px">あなたの取引: 0回</div>
         </div>
         <div class="side sell">
           <h3>売りたい人</h3>
@@ -152,20 +162,42 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
+
   var price = 15015000;
   var el = document.getElementById('nowPrice');
   var msg = document.getElementById('dealMsg');
   var card = document.getElementById('boardCard');
+  var myTrades = 0;
+  var tradesEl = document.getElementById('myTrades');
   function fmt(n){ return n.toLocaleString('ja-JP'); }
-  setInterval(function(){
-    var d = Math.round((Math.random() - 0.48) * 6000 / 500) * 500;
-    if (d === 0) d = 500;
-    price += d;
+  function flash(){ card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash'); }
+  function show(d, text){
     el.textContent = fmt(price);
     el.className = 'nowprice ' + (d > 0 ? 'up' : 'down');
-    msg.textContent = d > 0 ? '買いたい人が少し高い値段で買った' : '売りたい人が少し安い値段で売った';
-    card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
-  }, 1800);
+    msg.textContent = text;
+    flash();
+  }
+  setInterval(function(){
+    var d = Math.round((Math.random() - 0.5) * 3000 / 500) * 500;
+    if (d === 0) d = 500;
+    price += d;
+    show(d, d > 0 ? '世界の誰かが、少し高い値段で買った' : '世界の誰かが、少し安い値段で売った');
+  }, 2600);
+  document.getElementById('buyBtn').addEventListener('click', function(){
+    var d = 1500 + Math.round(Math.random() * 5) * 500;
+    price += d;
+    myTrades++;
+    tradesEl.textContent = 'あなたの取引: ' + myTrades + '回';
+    show(d, 'あなたが買った。買いたい注文が増えて、価格が押し上がった');
+  });
+  document.getElementById('sellBtn').addEventListener('click', function(){
+    var d = -(1500 + Math.round(Math.random() * 5) * 500);
+    price += d;
+    myTrades++;
+    tradesEl.textContent = 'あなたの取引: ' + myTrades + '回';
+    show(d, 'あなたが売った。売りたい注文が増えて、価格が押し下がった');
+  });
+
 </script>
 <script>
 (function(){

@@ -84,6 +84,12 @@
   .yenbar{height:100%;background:var(--orange);width:0;border-radius:999px;
     animation:yenfill 1.6s ease .3s both}
   @keyframes yenfill{from{width:0}to{width:22%}}
+
+  .satnum{font-size:16px;margin-top:12px}
+  .satnum b{font-size:26px;font-variant-numeric:tabular-nums}
+  .satbtc{font-size:14px;color:var(--sub);font-variant-numeric:tabular-nums}
+  .satmsg{font-size:14px;min-height:1.7em;margin:8px 0 0}
+  #satBar{animation:none;transition:width .25s ease}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -135,9 +141,12 @@
     <h2>実際は：100円分でも買える</h2>
     <p class="lede">多くの取引所では数百円分から購入できる（最低額は取引所による）。</p>
     <div class="card">
-      <div style="font-size:14px">100円で買える量（価格のイメージ）</div>
-      <div class="yenbar-wrap"><div class="yenbar"></div></div>
-      <p class="hint" style="text-align:left;margin:0">量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。</p>
+      <label>買う金額: <b id="yenLbl">1,000円</b><input type="range" id="yenRange" min="0" max="100" value="25" aria-label="買う金額"></label>
+      <div class="satnum">買える量: <b id="satNum">6,667</b> satoshi</div>
+      <div class="satbtc" id="satBtc">＝ 0.00006667 BTC</div>
+      <div class="yenbar-wrap"><div class="yenbar" id="satBar" style="width:25%"></div></div>
+      <p class="satmsg" id="satMsg">お小遣いでも、ちゃんと買える。</p>
+      <p class="hint" style="text-align:left;margin:8px 0 0">1BTC = 1,500万円として計算（イメージ）。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。</p>
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>ビットコインはピザと同じ。1ホール買わなくても、一切れから買える</div>
@@ -188,6 +197,46 @@
     b.addEventListener('click', function(){ draw(+b.dataset.step); });
   });
   draw(2);
+</script>
+<script>
+
+(function(){
+  var range = document.getElementById('yenRange');
+  var lbl = document.getElementById('yenLbl');
+  var numEl = document.getElementById('satNum');
+  var btcEl = document.getElementById('satBtc');
+  var bar = document.getElementById('satBar');
+  var msg = document.getElementById('satMsg');
+  var shown = 6667, raf = null;
+  function yen(){ return Math.round(100 * Math.pow(10000, +range.value / 100) / 10) * 10; }
+  function msgFor(y){
+    if (y < 1000) return 'お小遣いでも、ちゃんと買える。';
+    if (y < 10000) return 'ランチ代で、これだけの量になる。';
+    if (y < 100000) return '怯むのは「1BTCの値段」。買うのは、そのうちの割合でいい。';
+    return 'それでも1BTCには届かない。でも値動きの割合は、丸ごと買った場合と同じ。';
+  }
+  function upd(){
+    var y = yen();
+    var sats = Math.round(y / 15000000 * 100000000);
+    lbl.textContent = y.toLocaleString('ja-JP') + '円';
+    btcEl.textContent = '＝ ' + (sats / 100000000).toFixed(8) + ' BTC';
+    bar.style.width = Math.max(2, +range.value) + '%';
+    msg.textContent = msgFor(y);
+    if (raf) cancelAnimationFrame(raf);
+    var from = shown, to = sats, t0 = null;
+    function step(t){
+      if (!t0) t0 = t;
+      var p = Math.min(1, (t - t0) / 300);
+      shown = Math.round(from + (to - from) * p);
+      numEl.textContent = shown.toLocaleString('ja-JP');
+      if (p < 1) raf = requestAnimationFrame(step);
+    }
+    raf = requestAnimationFrame(step);
+  }
+  range.addEventListener('input', upd);
+  upd();
+})();
+
 </script>
 <script>
 (function(){
