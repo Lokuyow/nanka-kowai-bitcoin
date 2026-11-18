@@ -3,11 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<meta name="theme-color" content="#fffaf3">
+<script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#1d1611':'#fffaf3');}})();</script>
 <script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
 <script src="../i18n.js"></script>
-<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>チューリップバブルと同じで、弾けるんでしょ？：なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた">
 <meta property="og:type" content="article">
@@ -120,9 +119,10 @@
     display:flex;align-items:center;justify-content:center}
   .theme-toggle svg{width:20px;height:20px;fill:none;stroke:currentColor;
     stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .theme-toggle .ic-sun{display:none}
-  :root[data-theme="dark"] .theme-toggle .ic-sun{display:block}
-  :root[data-theme="dark"] .theme-toggle .ic-moon{display:none}
+  .theme-toggle .ic-sun,.theme-toggle .ic-moon,.theme-toggle .ic-sys{display:none}
+  :root[data-theme-pref="light"] .theme-toggle .ic-sun{display:block}
+  :root[data-theme-pref="dark"] .theme-toggle .ic-moon{display:block}
+  :root[data-theme-pref="system"] .theme-toggle .ic-sys{display:block}
   :root[data-theme="dark"] .summary{background:#3d2c11;border-color:#6e5326}
   :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
   :root[data-theme="dark"] .tbl th{background:#3a2c1c}
@@ -184,7 +184,7 @@
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">16 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">16 / 23<button class="theme-toggle" type="button" aria-label="テーマ：端末に合わせる（次はライト）" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg><svg class="ic-sys" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
 <p class="eyebrow" data-i18n-html><span>第3層</span>ちょっと詳しいよ</p>
 <h1 data-i18n-html>チューリップバブルと同じで、<br>弾けるんでしょ？</h1>
 <div class="answer" data-i18n-html>チューリップは一度弾けて終わった。<br>ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた</div>
@@ -496,29 +496,35 @@
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
-  function sync(){
-    var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
-    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  var ORDER = ['system', 'light', 'dark'];
+  var LABELS = {
+    system: ['テーマ：端末に合わせる（次はライト）', 'Theme: match device (tap for light)'],
+    light: ['テーマ：ライト（次はダーク）', 'Theme: light (tap for dark)'],
+    dark: ['テーマ：ダーク（次は端末に合わせる）', 'Theme: dark (tap for system)']
+  };
+  function pref(){
+    try { var s = localStorage.getItem('theme'); if (s === 'light' || s === 'dark' || s === 'system') return s; } catch (e) {}
+    return 'system';
+  }
+  function apply(){
+    var p = pref();
+    var t = p === 'system' ? (mq.matches ? 'dark' : 'light') : p;
+    root.setAttribute('data-theme', t);
+    root.setAttribute('data-theme-pref', p);
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', t === 'dark' ? '#1d1611' : '#fffaf3');
+    btn.setAttribute('aria-label', L(LABELS[p][0], LABELS[p][1]));
+    btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
-    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
+    var next = ORDER[(ORDER.indexOf(pref()) + 1) % ORDER.length];
     try { localStorage.setItem('theme', next); } catch (e) {}
-    sync();
+    apply();
   });
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  function onChange(e){
-    var saved = null;
-    try { saved = localStorage.getItem('theme'); } catch (err) {}
-    if (saved !== 'dark' && saved !== 'light') {
-      root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-      sync();
-    }
-  }
-  if (mq.addEventListener) mq.addEventListener('change', onChange);
-  document.addEventListener('langchange', sync);
-  sync();
+  if (mq.addEventListener) mq.addEventListener('change', function(){ if (pref() === 'system') apply(); });
+  document.addEventListener('langchange', apply);
+  apply();
 })();
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
