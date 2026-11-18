@@ -183,55 +183,55 @@
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">7 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
-<p class="eyebrow"><span>第2層</span>ニュースで見たよ</p>
-<h1>ビットコインって匿名で<br>犯罪に使われるんでしょ？</h1>
-<div class="answer">匿名ではなく「仮名」。<br>取引は全部、公開の台帳に残るから、現金より足がつきやすい</div>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">7 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第2層</span>ニュースで見たよ</p>
+<h1 data-i18n-html>ビットコインって匿名で<br>犯罪に使われるんでしょ？</h1>
+<div class="answer" data-i18n-html>匿名ではなく「仮名」。<br>取引は全部、公開の台帳に残るから、現金より足がつきやすい</div>
 
   <section>
-    <h2>なぜそう見えるか</h2>
-    <p class="lede">「匿名通貨」という言葉や、事件で使われた話だけが広まる。本名が出てこない＝誰にも追えない、と思ってしまう。</p>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>「匿名通貨」という言葉や、事件で使われた話だけが広まる。本名が出てこない＝誰にも追えない、と思ってしまう。</p>
   </section>
 
   <section>
-    <h2>実際は：台帳は全部公開されている</h2>
-    <p class="lede">ビットコインの取引は世界中の誰でも見られる台帳に、消せない形で残り続ける。</p>
+    <h2 data-i18n>実際は：台帳は全部公開されている</h2>
+    <p class="lede" data-i18n>ビットコインの取引は世界中の誰でも見られる台帳に、消せない形で残り続ける。</p>
     <div class="card ledger game" id="traceCard">
       <div class="lrow show"><span><span class="addr">1A2b…x9</span> → <span class="addr">3Cd4…m2</span></span><b>0.5 BTC</b></div>
       <div class="lrow"><span><span class="addr">3Cd4…m2</span> → <span class="addr">7Ef8…q7</span></span><b>0.2 BTC</b></div>
       <div class="lrow"><span><span class="addr">7Ef8…q7</span> → <span class="addr">9Gh1…z3</span></span><b>0.2 BTC</b></div>
       <div class="lrow"><span><span class="addr">9Gh1…z3</span> → <span class="addr">2Jk5…w8</span></span><b>0.19 BTC</b></div>
-      <div class="lrow"><span><span class="addr">2Jk5…w8</span> → <span class="addr">取引所</span></span><b>0.19 BTC</b></div>
+      <div class="lrow"><span><span class="addr">2Jk5…w8</span> → <span class="addr" data-i18n>取引所</span></span><b>0.19 BTC</b></div>
       <p class="tracemsg" id="traceMsg" aria-live="polite">誰かが送った 0.5 BTC。送り先を1件ずつ、たどってみよう。</p>
       <div class="center" style="margin-top:10px"><button id="traceBtn" type="button">次の送金をたどる</button></div>
-      <p class="hint">名前は出ない「仮名」制。でも、お金の流れは全部つながって見えている。</p>
+      <p class="hint" data-i18n>名前は出ない「仮名」制。でも、お金の流れは全部つながって見えている。</p>
     </div>
   </section>
 
   <section>
-    <h2>実際は：足跡が消えるのは、現金の方</h2>
-    <p class="lede">手渡しの現金は誰から誰へ渡ったか記録が残らない。比べると、ビットコインの方がよっぽど足がつく。</p>
+    <h2 data-i18n>実際は：足跡が消えるのは、現金の方</h2>
+    <p class="lede" data-i18n>手渡しの現金は誰から誰へ渡ったか記録が残らない。比べると、ビットコインの方がよっぽど足がつく。</p>
     <div class="card">
-      <div class="trail cash"><span class="trail-lbl">現金</span>
+      <div class="trail cash"><span class="trail-lbl" data-i18n>現金</span>
         <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span style="font-size:12px;color:var(--sub)">記録なし・消えていく</span></div>
-      <div class="trail btc"><span class="trail-lbl">ビットコイン</span>
+        <span style="font-size:12px;color:var(--sub)" data-i18n>記録なし・消えていく</span></div>
+      <div class="trail btc"><span class="trail-lbl" data-i18n>ビットコイン</span>
         <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-        <span style="font-size:12px;color:var(--sub)">全部残る・消せない</span></div>
-      <p class="hint">だから実際、犯罪に使われたビットコインは、追跡されて犯人が捕まるケースも多い。犯罪利用の割合自体も全体から見れば小さい。</p>
+        <span style="font-size:12px;color:var(--sub)" data-i18n>全部残る・消せない</span></div>
+      <p class="hint" data-i18n>だから実際、犯罪に使われたビットコインは、追跡されて犯人が捕まるケースも多い。犯罪利用の割合自体も全体から見れば小さい。</p>
     </div>
   </section>
-<div class="summary"><small>一言まとめ</small>ビットコインは匿名どころか、全部の取引が公開で残る。現金の方がよっぽど足がつかない</div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>ビットコインは匿名どころか、全部の取引が公開で残る。現金の方がよっぽど足がつかない</span></div>
 <div class="share">
-  <button class="share-main" type="button">この答えをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この答えをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%A3%E3%81%A6%E5%8C%BF%E5%90%8D%E3%81%A7%E7%8A%AF%E7%BD%AA%E3%81%AB%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fcrime%2F" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%A3%E3%81%A6%E5%8C%BF%E5%90%8D%E3%81%A7%E7%8A%AF%E7%BD%AA%E3%81%AB%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fcrime%2F" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../hack/">← 前の誤解：ハッキング</a><a class="idx" href="../">一覧へ</a><a href="../energy/">次の誤解：電気・環境 →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../hack/" data-i18n>← 前の誤解：ハッキング</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../energy/" data-i18n>次の誤解：電気・環境 →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 
@@ -240,38 +240,57 @@
   var btn = document.getElementById('traceBtn');
   var msg = document.getElementById('traceMsg');
   var idx = 1;
+  var msgIdx = 0;
   var MSGS = [
-    '',
-    'また別のアドレスへ。金額が少し減ったのは、手数料やおつりの分。',
-    'まだ、たどれる。記録は消えずに残り続ける。',
-    '何件でもさかのぼれるし、この先も追い続けられる。',
-    '行き着いた先は、取引所のアドレス。ここには本人確認の記録がある。現金の手渡しだったら、最初の1件で足跡は消えていた。'
+    ['誰かが送った 0.5 BTC。送り先を1件ずつ、たどってみよう。', 'Someone sent 0.5 BTC. Trace where it went, one hop at a time.'],
+    ['また別のアドレスへ。金額が少し減ったのは、手数料やおつりの分。', 'On to another address. The amount shrank a little — fees and change.'],
+    ['まだ、たどれる。記録は消えずに残り続ける。', 'Still traceable. The records stay, unerasable.'],
+    ['何件でもさかのぼれるし、この先も追い続けられる。', 'You can trace back as far as you like — and keep following it forward, too.'],
+    ['行き着いた先は、取引所のアドレス。ここには本人確認の記録がある。現金の手渡しだったら、最初の1件で足跡は消えていた。', 'It ends at an exchange address — where identity verification records exist. With hand-to-hand cash, the trail would have vanished at the very first hop.']
   ];
+  function renderTrace(){
+    msg.textContent = L(MSGS[msgIdx][0], MSGS[msgIdx][1]);
+    btn.textContent = idx >= rows.length ? L('最初からたどり直す', 'Trace again from the start') : L('次の送金をたどる', 'Trace the next transfer');
+  }
+  document.addEventListener('langchange', renderTrace);
   btn.addEventListener('click', function(){
     if (idx >= rows.length) {
       rows.forEach(function(r, i){ r.classList.toggle('show', i === 0); });
       idx = 1;
-      msg.textContent = '誰かが送った 0.5 BTC。送り先を1件ずつ、たどってみよう。';
-      btn.textContent = '次の送金をたどる';
+      msgIdx = 0;
+      renderTrace();
       return;
     }
     rows[idx].classList.add('show');
-    msg.textContent = MSGS[idx];
+    msgIdx = idx;
     idx++;
-    if (idx >= rows.length) btn.textContent = '最初からたどり直す';
+    renderTrace();
   });
+  renderTrace();
 })();
 
 </script>
 <script>
 (function(){
-  var data = {title: 'ビットコインって匿名で犯罪に使われるんでしょ？', text: '匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/crime/'};
+  var JA = {title: 'ビットコインって匿名で犯罪に使われるんでしょ？', text: '匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい'};
+  var EN = {title: 'Bitcoin is anonymous and used for crime, right?', text: 'Not anonymous — "pseudonymous". Every transaction stays on a public ledger, so it is easier to trace than cash'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/crime/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -281,7 +300,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -289,7 +308,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
