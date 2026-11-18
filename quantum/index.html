@@ -73,6 +73,7 @@
 </style>
 </head>
 <style>
+  .ic{display:inline-block;width:1.18em;height:1.18em;vertical-align:-.26em;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
   .lane{margin:16px 0}
   .lane .lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
   .lane .lbl b{font-size:14px}
@@ -132,8 +133,8 @@
     <p class="lede">量子攻撃が狙えるのは公開鍵が表に出ている場合だけ。送金に使っていないアドレスは、公開鍵がハッシュの後ろに隠れている。</p>
     <div class="card">
       <div class="lockrow">
-        <div class="lockbox"><b>🔓 狙われうる</b>送金に使って<br>公開鍵が出たアドレス</div>
-        <div class="lockbox"><b>🔒 狙えない</b>まだ使っていない<br>アドレス（鍵は隠れたまま）</div>
+        <div class="lockbox"><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.6-1.7"/></svg> 狙われうる</b>送金に使って<br>公開鍵が出たアドレス</div>
+        <div class="lockbox"><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> 狙えない</b>まだ使っていない<br>アドレス（鍵は隠れたまま）</div>
       </div>
       <p class="hint">リスクがある部分も、移行の対象として議論が進んでいる。「全部が一気に無防備になる」わけではない。</p>
     </div>
