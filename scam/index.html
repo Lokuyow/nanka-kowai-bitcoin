@@ -95,6 +95,11 @@
   .swapped .swap-arrow{transform:rotate(180deg)}
   .swap-caption{font-size:14px;color:var(--sub);margin:10px 0 0;min-height:1.7em}
   .swap-caption b{color:var(--ink)}
+  /* スマホ幅ではチップを小さくして必ず1行に収める（折り返すと階段状に崩れるため） */
+  @media(max-width:520px){
+    .sentence{flex-wrap:nowrap;font-size:16px;gap:6px;min-height:44px}
+    .sentence .chip{padding:3px 8px}
+  }
   .scene{display:flex;align-items:center;gap:6px;padding:12px 4px}
   .scene + .scene{border-top:1px dashed var(--line)}
   .who{flex:0 0 74px;text-align:center;font-size:12px;line-height:1.4}
