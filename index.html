@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>トップ：なんか よくわからんけど こわい ビットコイン</title>
@@ -167,73 +169,93 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><b>なんか よくわからんけど<br>こわい ビットコイン</b></span><span class="head-right">全23話<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
+<header><span><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></span><span class="head-right"><span data-i18n>全23話</span><button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
 
   <div class="hero">
-    <div class="t"><span>なんか</span><span>よくわからんけど</span><span>こわい</span><span>ビットコイン</span></div>
-    <p class="subtitle">ニュースで見たイメージと、ほんとの姿。</p>
+    <div class="t"><span data-i18n>なんか</span><span data-i18n>よくわからんけど</span><span data-i18n>こわい</span><span data-i18n>ビットコイン</span></div>
+    <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
   </div>
 
   <section>
-    <h2>なぜこわく見えるのか</h2>
-    <p class="lede">見出しだけで接していると、目に入るのは事件と暴落の話ばかり。「わからない」ものは「こわい」ものに見える。ここではその誤解をひとつずつ図でほどいていく。</p>
+    <h2 data-i18n>なぜこわく見えるのか</h2>
+    <p class="lede" data-i18n>見出しだけで接していると、目に入るのは事件と暴落の話ばかり。「わからない」ものは「こわい」ものに見える。ここではその誤解をひとつずつ図でほどいていく。</p>
   </section>
-<p class="layerhead"><span>第1層</span>名前だけは知ってる</p>
-<p class="layerdesc">価格とニュースの見出ししか見ていない段階の思い込み</p>
-<a class="unit" href="scam/"><span class="n">1</span><span><span class="q">結局ビットコインって詐欺なんじゃないの？</span><br><span class="a">悪いのはビットコインを使った手口</span></span><span class="arr">→</span></a>
-<a class="unit" href="ceo/"><span class="n">2</span><span><span class="q">ビットコインってどこの会社がやってるの？</span><br><span class="a">会社も社長も存在しない</span></span><span class="arr">→</span></a>
-<a class="unit" href="price/"><span class="n">3</span><span><span class="q">ビットコインの値段って誰かが決めてるんでしょ？</span><br><span class="a">買いたい人と売りたい人のぶつかり合い</span></span><span class="arr">→</span></a>
-<a class="unit" href="fee/"><span class="n">4</span><span><span class="q">ビットコインの送金手数料って高いよね？</span><br><span class="a">高いのは取引所の料金設定</span></span><span class="arr">→</span></a>
-<a class="unit" href="satoshi/"><span class="n">5</span><span><span class="q">1ビットコインって何百万円もするんでしょ？ 買えないよ</span><br><span class="a">ピザと同じで、一切れから買える</span></span><span class="arr">→</span></a>
-<p class="layerhead"><span>第2層</span>ニュースで見たよ</p>
-<p class="layerdesc">事件報道でイメージが固まった思い込み</p>
-<a class="unit" href="hack/"><span class="n">6</span><span><span class="q">ビットコインってハッキングされて盗まれたんでしょ？</span><br><span class="a">壊れたのは取引所の金庫の方</span></span><span class="arr">→</span></a>
-<a class="unit" href="crime/"><span class="n">7</span><span><span class="q">ビットコインって匿名で犯罪に使われるんでしょ？</span><br><span class="a">匿名ではなく仮名。全部公開で残る</span></span><span class="arr">→</span></a>
-<a class="unit" href="energy/"><span class="n">8</span><span><span class="q">ビットコインって電気の無駄遣いでしょ？</span><br><span class="a">電力は不正を防ぐ「壁」のコスト</span></span><span class="arr">→</span></a>
-<a class="unit" href="ban/"><span class="n">9</span><span><span class="q">国が禁止したら、ビットコインは終わりでしょ？</span><br><span class="a">一国では止められない</span></span><span class="arr">→</span></a>
-<p class="layerhead"><span>第3層</span>ちょっと詳しいよ</p>
-<p class="layerdesc">仕組みを半分知っている人の思い込み</p>
-<a class="unit" href="quantum/"><span class="n">10</span><span><span class="q">量子コンピューターができたら、ビットコインは終わりでしょ？</span><br><span class="a">脅威はずっと先。備える時間がある</span></span><span class="arr">→</span></a>
-<a class="unit" href="51/"><span class="n">11</span><span><span class="q">51%攻撃されたら、ビットコインは終わりなんでしょ？</span><br><span class="a">できることは限られ、やる意味もない</span></span><span class="arr">→</span></a>
-<a class="unit" href="ai/"><span class="n">12</span><span><span class="q">AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？</span><br><span class="a">道具が違う。難易度の自己調整もある</span></span><span class="arr">→</span></a>
-<a class="unit" href="reward/"><span class="n">13</span><span><span class="q">報酬がなくなったら、ビットコインは終わるんでしょ？</span><br><span class="a">収入は報酬と手数料の2本立て</span></span><span class="arr">→</span></a>
-<a class="unit" href="limit/"><span class="n">14</span><span><span class="q">発行上限ってその気になれば変えられるんでしょ？</span><br><span class="a">変えても誰もついてこない</span></span><span class="arr">→</span></a>
-<a class="unit" href="infinite/"><span class="n">15</span><span><span class="q">小さく割れるなら、上限なんてないじゃん？</span><br><span class="a">割っても総量は同じ</span></span><span class="arr">→</span></a>
-<a class="unit" href="tulip/"><span class="n">16</span><span><span class="q">チューリップバブルと同じで、弾けるんでしょ？</span><br><span class="a">何度も戻ってきた17年</span></span><span class="arr">→</span></a>
-<p class="layerhead"><span>第4層</span>そもそもお金って何？</p>
-<p class="layerdesc">答えのない問い。考え始めると、お金そのものの話になる</p>
-<a class="unit" href="value/"><span class="n">17</span><span><span class="q">裏付けがないビットコインは価値ゼロでしょ？</span><br><span class="a">円も金も裏付けはない</span></span><span class="arr">→</span></a>
-<a class="unit" href="money/"><span class="n">18</span><span><span class="q">お金ってそもそも何？</span><br><span class="a">なぜ紙や数字で物が買えるのか</span></span><span class="arr">→</span></a>
-<a class="unit" href="freedom/"><span class="n">19</span><span><span class="q">管理する人がいないお金は自由？ それともこわい？</span><br><span class="a">止められない自由と、助けのない自己責任</span></span><span class="arr">→</span></a>
-<a class="unit" href="fair/"><span class="n">20</span><span><span class="q">早く持った人が得をするのは、ずるくない？</span><br><span class="a">先に持った人の得は、不公平か</span></span><span class="arr">→</span></a>
-<a class="unit" href="death/"><span class="n">21</span><span><span class="q">自分が死んだら、ビットコインはどうなる？</span><br><span class="a">鍵を残せるかどうかで変わる</span></span><span class="arr">→</span></a>
-<a class="unit" href="future/"><span class="n">22</span><span><span class="q">ビットコインが当たり前になったら、社会はどう変わる？</span><br><span class="a">送金も貯金も、意味が変わる</span></span><span class="arr">→</span></a>
-<a class="unit" href="nation/"><span class="n">23</span><span><span class="q">国が作らないお金ってありなの？</span><br><span class="a">昔は国以外もお金を作っていた</span></span><span class="arr">→</span></a>
+<p class="layerhead" data-i18n-html><span>第1層</span>名前だけは知ってる</p>
+<p class="layerdesc" data-i18n>価格とニュースの見出ししか見ていない段階の思い込み</p>
+<a class="unit" href="scam/"><span class="n">1</span><span><span class="q" data-i18n>結局ビットコインって詐欺なんじゃないの？</span><br><span class="a" data-i18n>悪いのはビットコインを使った手口</span></span><span class="arr">→</span></a>
+<a class="unit" href="ceo/"><span class="n">2</span><span><span class="q" data-i18n>ビットコインってどこの会社がやってるの？</span><br><span class="a" data-i18n>会社も社長も存在しない</span></span><span class="arr">→</span></a>
+<a class="unit" href="price/"><span class="n">3</span><span><span class="q" data-i18n>ビットコインの値段って誰かが決めてるんでしょ？</span><br><span class="a" data-i18n>買いたい人と売りたい人のぶつかり合い</span></span><span class="arr">→</span></a>
+<a class="unit" href="fee/"><span class="n">4</span><span><span class="q" data-i18n>ビットコインの送金手数料って高いよね？</span><br><span class="a" data-i18n>高いのは取引所の料金設定</span></span><span class="arr">→</span></a>
+<a class="unit" href="satoshi/"><span class="n">5</span><span><span class="q" data-i18n>1ビットコインって何百万円もするんでしょ？ 買えないよ</span><br><span class="a" data-i18n>ピザと同じで、一切れから買える</span></span><span class="arr">→</span></a>
+<p class="layerhead" data-i18n-html><span>第2層</span>ニュースで見たよ</p>
+<p class="layerdesc" data-i18n>事件報道でイメージが固まった思い込み</p>
+<a class="unit" href="hack/"><span class="n">6</span><span><span class="q" data-i18n>ビットコインってハッキングされて盗まれたんでしょ？</span><br><span class="a" data-i18n>壊れたのは取引所の金庫の方</span></span><span class="arr">→</span></a>
+<a class="unit" href="crime/"><span class="n">7</span><span><span class="q" data-i18n>ビットコインって匿名で犯罪に使われるんでしょ？</span><br><span class="a" data-i18n>匿名ではなく仮名。全部公開で残る</span></span><span class="arr">→</span></a>
+<a class="unit" href="energy/"><span class="n">8</span><span><span class="q" data-i18n>ビットコインって電気の無駄遣いでしょ？</span><br><span class="a" data-i18n>電力は不正を防ぐ「壁」のコスト</span></span><span class="arr">→</span></a>
+<a class="unit" href="ban/"><span class="n">9</span><span><span class="q" data-i18n>国が禁止したら、ビットコインは終わりでしょ？</span><br><span class="a" data-i18n>一国では止められない</span></span><span class="arr">→</span></a>
+<p class="layerhead" data-i18n-html><span>第3層</span>ちょっと詳しいよ</p>
+<p class="layerdesc" data-i18n>仕組みを半分知っている人の思い込み</p>
+<a class="unit" href="quantum/"><span class="n">10</span><span><span class="q" data-i18n>量子コンピューターができたら、ビットコインは終わりでしょ？</span><br><span class="a" data-i18n>脅威はずっと先。備える時間がある</span></span><span class="arr">→</span></a>
+<a class="unit" href="51/"><span class="n">11</span><span><span class="q" data-i18n>51%攻撃されたら、ビットコインは終わりなんでしょ？</span><br><span class="a" data-i18n>できることは限られ、やる意味もない</span></span><span class="arr">→</span></a>
+<a class="unit" href="ai/"><span class="n">12</span><span><span class="q" data-i18n>AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？</span><br><span class="a" data-i18n>道具が違う。難易度の自己調整もある</span></span><span class="arr">→</span></a>
+<a class="unit" href="reward/"><span class="n">13</span><span><span class="q" data-i18n>報酬がなくなったら、ビットコインは終わるんでしょ？</span><br><span class="a" data-i18n>収入は報酬と手数料の2本立て</span></span><span class="arr">→</span></a>
+<a class="unit" href="limit/"><span class="n">14</span><span><span class="q" data-i18n>発行上限ってその気になれば変えられるんでしょ？</span><br><span class="a" data-i18n>変えても誰もついてこない</span></span><span class="arr">→</span></a>
+<a class="unit" href="infinite/"><span class="n">15</span><span><span class="q" data-i18n>小さく割れるなら、上限なんてないじゃん？</span><br><span class="a" data-i18n>割っても総量は同じ</span></span><span class="arr">→</span></a>
+<a class="unit" href="tulip/"><span class="n">16</span><span><span class="q" data-i18n>チューリップバブルと同じで、弾けるんでしょ？</span><br><span class="a" data-i18n>何度も戻ってきた17年</span></span><span class="arr">→</span></a>
+<p class="layerhead" data-i18n-html><span>第4層</span>そもそもお金って何？</p>
+<p class="layerdesc" data-i18n>答えのない問い。考え始めると、お金そのものの話になる</p>
+<a class="unit" href="value/"><span class="n">17</span><span><span class="q" data-i18n>裏付けがないビットコインは価値ゼロでしょ？</span><br><span class="a" data-i18n>円も金も裏付けはない</span></span><span class="arr">→</span></a>
+<a class="unit" href="money/"><span class="n">18</span><span><span class="q" data-i18n>お金ってそもそも何？</span><br><span class="a" data-i18n>なぜ紙や数字で物が買えるのか</span></span><span class="arr">→</span></a>
+<a class="unit" href="freedom/"><span class="n">19</span><span><span class="q" data-i18n>管理する人がいないお金は自由？ それともこわい？</span><br><span class="a" data-i18n>止められない自由と、助けのない自己責任</span></span><span class="arr">→</span></a>
+<a class="unit" href="fair/"><span class="n">20</span><span><span class="q" data-i18n>早く持った人が得をするのは、ずるくない？</span><br><span class="a" data-i18n>先に持った人の得は、不公平か</span></span><span class="arr">→</span></a>
+<a class="unit" href="death/"><span class="n">21</span><span><span class="q" data-i18n>自分が死んだら、ビットコインはどうなる？</span><br><span class="a" data-i18n>鍵を残せるかどうかで変わる</span></span><span class="arr">→</span></a>
+<a class="unit" href="future/"><span class="n">22</span><span><span class="q" data-i18n>ビットコインが当たり前になったら、社会はどう変わる？</span><br><span class="a" data-i18n>送金も貯金も、意味が変わる</span></span><span class="arr">→</span></a>
+<a class="unit" href="nation/"><span class="n">23</span><span><span class="q" data-i18n>国が作らないお金ってありなの？</span><br><span class="a" data-i18n>昔は国以外もお金を作っていた</span></span><span class="arr">→</span></a>
 
-  <div class="summary"><small>読み終わったら</small>
-    「こわい」の正体はたいてい「わからなさ」だった</div>
+  <div class="summary"><small data-i18n>読み終わったら</small>
+    <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span></div>
   <div class="share">
-  <button class="share-main" type="button">このサイトをシェアする</button>
+  <button class="share-main" type="button" data-i18n>このサイトをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%81%AA%E3%82%93%E3%81%8B%20%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%89%E3%82%93%E3%81%91%E3%81%A9%20%E3%81%93%E3%82%8F%E3%81%84%20%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2F" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%81%AA%E3%82%93%E3%81%8B%20%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%89%E3%82%93%E3%81%91%E3%81%A9%20%E3%81%93%E3%82%8F%E3%81%84%20%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2F" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 (function(){
-  var data = {title: 'なんか よくわからんけど こわい ビットコイン', text: 'ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/'};
+  var JA = {title: 'なんか よくわからんけど こわい ビットコイン', text: 'ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。'};
+  var EN = {title: 'I don\'t really get it, but it\'s scary: Bitcoin', text: 'The image from the news, and what it really looks like. Untangling the vague \'scary\' around Bitcoin, one misunderstanding at a time.'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -243,7 +265,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -251,7 +273,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -261,12 +283,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -285,6 +308,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>

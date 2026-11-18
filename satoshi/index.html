@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>1ビットコインって何百万円もするんでしょ？ 買えないよ：なんか よくわからんけど こわい ビットコイン</title>
@@ -164,10 +166,18 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">5 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">5 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
 <p class="eyebrow"><span>第1層</span>名前だけは知ってる</p>
 <h1>1ビットコインって何百万円も<br>するんでしょ？ 買えないよ</h1>
 <div class="answer">丸ごと買わなくていい。<br>0.00000001（1 satoshi）から、100円分でも買える</div>
@@ -339,12 +349,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -363,6 +374,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>
