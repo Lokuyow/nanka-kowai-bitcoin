@@ -73,7 +73,7 @@
   .rise{animation:rise .8s ease both}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
-    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    border-radius:12px;padding:6px 18px;font-size:22px;font-weight:900;
     transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
   .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
@@ -123,7 +123,21 @@
 
   .qmsg{font-size:19px;font-weight:700;text-align:center;padding:18px 10px;background:#fdf3e3;border-radius:12px;line-height:1.6;min-height:4.6em;display:flex;align-items:center;justify-content:center}
   .qbtns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
-  .qbtns button{min-height:48px;font-size:16px}
+  .qbtns button{min-height:48px;font-size:16px;position:relative}
+  .qbtns.done button{cursor:default}
+  .qbtns.done button:not(.picked):not(.correct){opacity:.5}
+  /* 自分が選んだボタン: オレンジの輪と「あなたの答え」タグ */
+  .qbtns button.picked{outline:3px solid var(--orange);outline-offset:2px}
+  .qbtns button.picked::after{content:'あなたの答え';position:absolute;top:-12px;right:-8px;
+    background:var(--orange);color:#fff;font-size:11px;font-weight:700;line-height:1;
+    padding:4px 8px;border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.3);white-space:nowrap}
+  :root[data-lang="en"] .qbtns button.picked::after{content:'Your answer'}
+  /* 正解のボタン: 緑の輪と「○ 正解」タグ（自分の答えと同時に表示できる） */
+  .qbtns button.correct{box-shadow:0 0 0 3px var(--card),0 0 0 7px var(--green)}
+  .qbtns button.correct::before{content:'○ 正解';position:absolute;top:-12px;left:-8px;
+    background:var(--green);color:#fff;font-size:11px;font-weight:700;line-height:1;
+    padding:4px 8px;border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.3);white-space:nowrap}
+  :root[data-lang="en"] .qbtns button.correct::before{content:'○ Correct'}
   #qScam{background:var(--red)}
   #qOk{background:#fff;color:var(--ink);border:2px solid var(--ink)}
   .qfeed{font-size:14px;min-height:3.4em;margin:10px 0 0;text-align:center}
@@ -277,7 +291,7 @@
         <button type="button" id="qScam" data-i18n>詐欺の手口</button>
         <button type="button" id="qOk" data-i18n>大丈夫そう</button>
       </div>
-      <div class="stamp-zone"><span class="stamp" id="qStamp" data-i18n>詐欺の手口</span></div>
+      <div class="stamp-zone"><span class="stamp" id="qStamp">正解は「詐欺の手口」</span></div>
       <p class="qfeed" id="qFeed" aria-live="polite"></p>
       <p class="qscore" id="qScore"></p>
       <div class="center"><button type="button" id="qNext" hidden data-i18n>次の文句へ</button></div>
@@ -333,6 +347,14 @@
   var qStamp = document.getElementById('qStamp');
   var qCard = document.getElementById('quizCard');
   var qNext = document.getElementById('qNext');
+  var qBtns = document.querySelector('.qbtns');
+  var qScamBtn = document.getElementById('qScam');
+  var qOkBtn = document.getElementById('qOk');
+  function clearMarks(){
+    qScamBtn.classList.remove('picked', 'correct');
+    qOkBtn.classList.remove('picked', 'correct');
+    qBtns.classList.remove('done');
+  }
   function qt(q){ return window.LANG === 'en' ? q.e : q.t; }
   function qw(q){ return window.LANG === 'en' ? q.ew : q.why; }
   function scoreLine(wrong){ return L('正解 <b>' + score + '</b> ・ 不正解 <b>' + wrong + '</b>', 'Right <b>' + score + '</b> · Wrong <b>' + wrong + '</b>'); }
@@ -345,6 +367,7 @@
   }
   function renderQ(){
     answered = false; lastSaid = null;
+    clearMarks();
     qCard.classList.remove('stamped');
     qNext.hidden = true;
     qMsg.textContent = qt(quiz[qi]);
@@ -354,15 +377,23 @@
   function renderFeedback(){
     var q = quiz[qi];
     var right = lastSaid === q.scam;
-    qStamp.textContent = q.scam ? L('詐欺の手口', 'Scam pitch') : L('大丈夫そう', 'Sounds safe');
+    var ansName = q.scam ? L('詐欺の手口', 'Scam pitch') : L('大丈夫そう', 'Sounds safe');
+    qStamp.textContent = q.scam ? L('正解は「詐欺の手口」', 'Answer: "Scam pitch"') : L('正解は「大丈夫そう」', 'Answer: "Sounds safe"');
     qStamp.classList.toggle('ok', !q.scam);
     qCard.classList.add('stamped');
-    qFeed.innerHTML = (right ? L('<b>正解。</b>', '<b>Correct.</b> ') : L('<b>残念。</b>', '<b>Not quite.</b> ')) + qw(q);
+    clearMarks();
+    (lastSaid ? qScamBtn : qOkBtn).classList.add('picked');
+    (q.scam ? qScamBtn : qOkBtn).classList.add('correct');
+    qBtns.classList.add('done');
+    qFeed.innerHTML = (right
+      ? L('<b>正解。</b>これは「', '<b>Correct.</b> This one is "') + ansName + L('」。', '". ')
+      : L('<b>残念。</b>正解は「', '<b>Not quite.</b> The answer is "') + ansName + L('」。', '". ')) + qw(q);
     qScore.innerHTML = scoreLine(qi + 1 - score);
     qNext.textContent = qi + 1 >= quiz.length ? L('結果を見る', 'See the result') : L('次の文句へ', 'Next pitch');
     qNext.hidden = false;
   }
   function renderResult(){
+    clearMarks();
     qCard.classList.remove('stamped');
     qMsg.textContent = score === 5 ? L('全問正解！', 'Perfect score!') : L('5問中 ' + score + '問 正解', score + ' out of 5 correct');
     qFeed.textContent = score === 5 ? L('見分ける目、ばっちり。その目があれば「ビットコイン詐欺」の見出しにも惑わされない。', 'Sharp eyes. With eyes like that, a "Bitcoin scam" headline won\'t fool you.')
