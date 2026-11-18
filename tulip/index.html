@@ -349,7 +349,7 @@
     draw();
     if (endState) renderEnd();
     else msgEl.textContent = L(msgPair[0], msgPair[1]);
-    if (!mainBtn.hidden) mainBtn.textContent = round === 0 ? L('第2戦へ（ビットコイン）', 'To round 2 (Bitcoin)') : L('もう一度あそぶ', 'Play again');
+    mainBtn.textContent = round === 0 ? L('第2戦へ（ビットコイン）', 'To round 2 (Bitcoin)') : L('もう一度あそぶ', 'Play again');
   });
 
   var pathEl = document.getElementById('gmPath');

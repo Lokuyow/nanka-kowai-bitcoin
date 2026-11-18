@@ -372,7 +372,8 @@
     simArea.hidden = true;
     yearBtns.forEach(function(b){ b.classList.remove('on'); });
   });
-  document.addEventListener('langchange', function(){ if (plan) renderSim(); });
+  document.addEventListener('langchange', function(){ if (plan) renderSim(); else simVal.textContent = fmt(10); });
+  if (!plan) simVal.textContent = fmt(10);
 })();
 </script>
 <script>
