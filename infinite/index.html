@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小さく割れるなら、上限なんてないじゃん？ — なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="割るのは「発行」ではなく「切り分け」。総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="小さく割れるなら、上限なんてないじゃん？">
+<meta property="og:description" content="割るのは「発行」ではなく「切り分け」。総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/infinite/">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/infinite/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="小さく割れるなら、上限なんてないじゃん？">
+<meta name="twitter:description" content="割るのは「発行」ではなく「切り分け」。総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:var(--ink);color:#fff;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#ffb35c;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .dvscale{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);padding:0 2px}
+  .dvcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
+  .dvpiece{font-size:15px;margin:14px 0 0}
+  .dvtotal{margin-top:10px;border:2px solid var(--orange);border-radius:12px;padding:10px;
+    font-size:17px;font-weight:700;text-align:center;background:#fdf3e3}
+  .dvtotal b{color:#c77400}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>15 / 16</span></header>
+<p class="eyebrow"><span>第3層</span>詳しいつもり</p>
+<h1>小さく割れるなら、<br>上限なんてないじゃん？</h1>
+<div class="answer">割るのは「発行」ではなく「切り分け」。<br>総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ</div>
+
+  <section>
+    <h2>なぜそう見えるか</h2>
+    <p class="lede">1BTCは最小単位のsatoshiに1億個まで細かく分けられる。全部合わせると2,100兆satoshi。「兆」という桁を聞くと、上限があるようには思えない。細かく割れるものは、どんどん増やせる気がするのも自然なこと。</p>
+  </section>
+
+  <section>
+    <h2>実際は — 割っても全体は同じ</h2>
+    <p class="lede">ピザを何切れに分けても、ピザ全体の量は変わらない。ビットコインも同じで、切り分ける数を増やしても合計は1BTCのまま。スライダーを動かして確かめてみよう。</p>
+    <div class="card">
+      <label>切り分ける数: <b id="dvN">1</b><input type="range" id="dvS" min="0" max="3" step="1" value="0"></label>
+      <div class="dvscale"><span>1</span><span>4</span><span>100</span><span>1億</span></div>
+      <div class="center" style="margin-top:12px">
+        <svg id="dvSvg" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="1BTCを切り分ける円グラフ">
+          <circle cx="130" cy="130" r="112" fill="#f7931a"/>
+          <path id="dvWedge" fill="#c77400" d="" style="display:none"/>
+          <g id="dvLines" stroke="#fff" stroke-width="2"></g>
+          <circle cx="130" cy="130" r="112" fill="none" stroke="#c77400" stroke-width="2"/>
+        </svg>
+      </div>
+      <p class="dvpiece">一切れ: <b id="dvPiece">1 BTC</b></p>
+      <div class="dvtotal">合計: <b>1 BTC</b>（変わらない）</div>
+      <p class="dvcap" id="dvCap">まだ割っていない状態。1BTCがまるごと1つ。</p>
+      <p class="hint">1円を100銭に分けても、財布の中身は増えない。ドルとセントも同じ。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>実際は — 上限はsatoshiで数えても同じ</h2>
+    <p class="lede">発行上限をsatoshi単位で言い直すと2,100兆satoshi。数字が大きく見えるだけで、量は2,100万BTCとまったく同じ。</p>
+    <div class="card center" style="font-size:17px;font-weight:700">
+      2,100万BTC ＝ <span style="color:var(--orange)">2,100兆satoshi</span>
+      <p class="hint">単位を細かく言い直しただけ。中身の量は変わらない。</p>
+    </div>
+  </section>
+<div class="summary"><small>一言まとめ</small>分割は「増やす」ではなく「切り分ける」。上限は2,100万BTC＝2,100兆satoshiで固定されている</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E5%B0%8F%E3%81%95%E3%81%8F%E5%89%B2%E3%82%8C%E3%82%8B%E3%81%AA%E3%82%89%E3%80%81%E4%B8%8A%E9%99%90%E3%81%AA%E3%82%93%E3%81%A6%E3%81%AA%E3%81%84%E3%81%98%E3%82%83%E3%82%93%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Finfinite%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
+<nav><a href="../limit/">← 前の誤解：発行上限</a><a class="idx" href="../">一覧へ</a><a href="../value/">次の誤解：裏付けと価値 →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+<script>
+  var STEPS = [
+    {label:'1', piece:'1 BTC', div:1, lines:0, lw:2, op:1,
+     cap:'まだ割っていない状態。1BTCがまるごと1つ。'},
+    {label:'4', piece:'0.25 BTC', div:4, lines:4, lw:2, op:1,
+     cap:'4つに割っても、全部合わせれば1BTCのまま。濃い色が一切れ。'},
+    {label:'100', piece:'0.01 BTC', div:100, lines:100, lw:1.2, op:1,
+     cap:'100に割ると一切れは0.01 BTC。切れ目は増えたが、合計は1BTC。'},
+    {label:'1億', piece:'0.00000001 BTC（1 satoshi）', div:0, lines:360, lw:0.5, op:0.55,
+     cap:'satoshi単位まで割った状態。線が細かすぎて数えきれず、一切れには色もつけられない。それでも合計は1BTC。'}
+  ];
+  var dvS = document.getElementById('dvS');
+  var dvN = document.getElementById('dvN');
+  var dvPiece = document.getElementById('dvPiece');
+  var dvCap = document.getElementById('dvCap');
+  var dvWedge = document.getElementById('dvWedge');
+  var dvLines = document.getElementById('dvLines');
+  function polar(deg){
+    var rad = (deg - 90) * Math.PI / 180;
+    return [130 + 112 * Math.cos(rad), 130 + 112 * Math.sin(rad)];
+  }
+  function upd(){
+    var s = STEPS[+dvS.value];
+    dvN.textContent = s.label;
+    dvPiece.textContent = s.piece;
+    dvCap.textContent = s.cap;
+    if (s.div > 1) {
+      var a2 = 360 / s.div;
+      var p1 = polar(0), p2 = polar(a2);
+      dvWedge.setAttribute('d', 'M130 130 L' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) +
+        ' A112 112 0 ' + (a2 > 180 ? 1 : 0) + ' 1 ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1) + ' Z');
+      dvWedge.style.display = '';
+    } else {
+      dvWedge.style.display = 'none';
+    }
+    var html = '';
+    for (var i = 0; i < s.lines; i++) {
+      var p = polar(i * 360 / s.lines);
+      html += '<line x1="130" y1="130" x2="' + p[0].toFixed(1) + '" y2="' + p[1].toFixed(1) + '"/>';
+    }
+    dvLines.innerHTML = html;
+    dvLines.setAttribute('stroke-width', s.lw);
+    dvLines.setAttribute('opacity', s.op);
+  }
+  dvS.addEventListener('input', upd);
+  upd();
+</script>
+<script>
+(function(){
+  var data = {title: '小さく割れるなら、上限なんてないじゃん？', text: '割るのは「発行」ではなく「切り分け」。総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/infinite/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
+</body>
+</html>
