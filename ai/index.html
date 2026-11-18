@@ -10,7 +10,10 @@
 <meta property="og:title" content="AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？">
 <meta property="og:description" content="マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/ai/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/ai/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？">
+<meta name="twitter:description" content="マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -82,10 +85,18 @@
   .minerfig{transition:opacity .6s ease}
   .ss-stage1 .gone{opacity:.12}
   .sscap{font-size:14px;min-height:3.2em;margin:8px 0 0}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>12 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>12 / 15</span></header>
 <p class="eyebrow"><span>第3層</span>詳しいつもり</p>
 <h1>AIに全部持っていかれたら、<br>ビットコインは掘れなくなるんじゃないの？</h1>
 <div class="answer"><small>一言の答え</small>マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。<br>掘る人が減れば、難易度が下がる自己調整もある</div>
@@ -141,11 +152,19 @@
       </svg>
       <p class="sscap" id="ssCap">掘る人と難易度は、つり合っている。</p>
       <div class="center"><button id="ssBtn" type="button">掘る人が減ったら？</button></div>
-      <p class="hint">難易度は約2週間ごとに自動で調整される。人が減れば下がり、増えれば上がる。</p>
+      <p class="hint">難易度は約2週間ごとに自動で調整される。人が減れば下がり、増えれば上がる。だから、ブロックが生まれる間隔はおよそ10分に1個に保たれる。</p>
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>マイニングは専用機の仕事。人が減れば難易度が下がる、自己調整つきの仕組み</div>
-<nav><a href="../51/">← 前の誤解：51%攻撃</a><a class="idx" href="../">一覧へ</a><a href="../limit/">次の誤解：発行上限 →</a></nav>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=AI%E3%81%AB%E5%85%A8%E9%83%A8%E6%8C%81%E3%81%A3%E3%81%A6%E3%81%84%E3%81%8B%E3%82%8C%E3%81%9F%E3%82%89%E3%80%81%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E6%8E%98%E3%82%8C%E3%81%AA%E3%81%8F%E3%81%AA%E3%82%8B%E3%82%93%E3%81%98%E3%82%83%E3%81%AA%E3%81%84%E3%81%AE%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fai%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
+<nav><a href="../51/">← 前の誤解：51%攻撃</a><a class="idx" href="../">一覧へ</a><a href="../reward/">次の誤解：報酬がなくなったら →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
@@ -178,6 +197,39 @@
       btn.textContent = '掘る人が減ったら？';
     }
   });
+</script>
+<script>
+(function(){
+  var data = {title: 'AIに全部持っていかれたら、ビットコインは掘れなくなるんじゃないの？', text: 'マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/ai/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
 </script>
 </body>
 </html>

@@ -10,7 +10,10 @@
 <meta property="og:title" content="発行上限って、その気になれば変えられるんでしょ？">
 <meta property="og:description" content="書き換えるのは誰でもできる。でも全員が受け入れなければ、それは「別のコイン」になるだけ">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/limit/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/limit/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="発行上限って、その気になれば変えられるんでしょ？">
+<meta name="twitter:description" content="書き換えるのは誰でもできる。でも全員が受け入れなければ、それは「別のコイン」になるだけ">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -82,10 +85,18 @@
   .flink{flex:0 0 12px;height:3px;background:#bbb;border-radius:2px}
   .flabel{font-size:13px;margin-left:6px}
   .flabel small{display:block;color:var(--sub);font-size:12px}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>13 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>14 / 15</span></header>
 <p class="eyebrow"><span>第3層</span>詳しいつもり</p>
 <h1>発行上限って、<br>その気になれば変えられるんでしょ？</h1>
 <div class="answer"><small>一言の答え</small>書き換えるのは誰でもできる。<br>でも全員が受け入れなければ、それは「別のコイン」になるだけ</div>
@@ -125,8 +136,49 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>上限は「変えられない」のではなく、「変えても誰もついてこない」から守られている</div>
-<nav><a href="../ai/">← 前の誤解：AIで掘れなくなる</a><a class="idx" href="../">一覧へ</a><a href="../value/">次の誤解：裏付けと価値 →</a></nav>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E7%99%BA%E8%A1%8C%E4%B8%8A%E9%99%90%E3%81%A3%E3%81%A6%E3%80%81%E3%81%9D%E3%81%AE%E6%B0%97%E3%81%AB%E3%81%AA%E3%82%8C%E3%81%B0%E5%A4%89%E3%81%88%E3%82%89%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Flimit%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
+<nav><a href="../reward/">← 前の誤解：報酬がなくなったら</a><a class="idx" href="../">一覧へ</a><a href="../value/">次の誤解：裏付けと価値 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+(function(){
+  var data = {title: '発行上限って、その気になれば変えられるんでしょ？', text: '書き換えるのは誰でもできる。でも全員が受け入れなければ、それは「別のコイン」になるだけ', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/limit/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
 </body>
 </html>

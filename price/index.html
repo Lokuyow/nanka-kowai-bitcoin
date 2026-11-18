@@ -10,7 +10,10 @@
 <meta property="og:title" content="ビットコインの値段って、誰かが決めてるんでしょ？">
 <meta property="og:description" content="決める人はいない。買いたい人と売りたい人の希望がぶつかった場所が価格">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/price/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/price/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ビットコインの値段って、誰かが決めてるんでしょ？">
+<meta name="twitter:description" content="決める人はいない。買いたい人と売りたい人の希望がぶつかった場所が価格">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -85,10 +88,18 @@
   .nowprice.up{color:var(--green)} .nowprice.down{color:var(--red)}
   .flash{animation:flash .6s ease}
   @keyframes flash{0%{background:#fdeeda}100%{background:transparent}}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>3 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>3 / 15</span></header>
 <p class="eyebrow"><span>第1層</span>名前だけは知ってる</p>
 <h1>ビットコインの値段って、<br>誰かが決めてるんでしょ？</h1>
 <div class="answer"><small>一言の答え</small>決める人はいない。<br>買いたい人と売りたい人の希望がぶつかった場所が価格</div>
@@ -128,6 +139,14 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>価格は誰かが決めるものじゃなく、買いたい人と売りたい人のぶつかり合いで生まれる</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E5%80%A4%E6%AE%B5%E3%81%A3%E3%81%A6%E3%80%81%E8%AA%B0%E3%81%8B%E3%81%8C%E6%B1%BA%E3%82%81%E3%81%A6%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fprice%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
 <nav><a href="../ceo/">← 前の誤解：会社とCEOがいる</a><a class="idx" href="../">一覧へ</a><a href="../fee/">次の誤解：手数料 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
@@ -146,6 +165,39 @@
     msg.textContent = d > 0 ? '買いたい人が少し高い値段で買った' : '売りたい人が少し安い値段で売った';
     card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash');
   }, 1800);
+</script>
+<script>
+(function(){
+  var data = {title: 'ビットコインの値段って、誰かが決めてるんでしょ？', text: '決める人はいない。買いたい人と売りたい人の希望がぶつかった場所が価格', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/price/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
 </script>
 </body>
 </html>

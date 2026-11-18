@@ -10,7 +10,10 @@
 <meta property="og:title" content="国が禁止したら、ビットコインは終わりでしょ？">
 <meta property="og:description" content="世界中で動く仕組みだから、一国では止められない。実際に禁止した国でも消えていない">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/ban/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/ban/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="国が禁止したら、ビットコインは終わりでしょ？">
+<meta name="twitter:description" content="世界中で動く仕組みだから、一国では止められない。実際に禁止した国でも消えていない">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -82,10 +85,18 @@
   @keyframes migrate2{0%,18%{transform:translate(0,0);opacity:1}
     55%{transform:translate(-60px,52px);opacity:1}
     75%,100%{transform:translate(-60px,52px);opacity:.25}}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>9 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>9 / 15</span></header>
 <p class="eyebrow"><span>第2層</span>ニュースで見たよ</p>
 <h1>国が禁止したら、<br>ビットコインは終わりでしょ？</h1>
 <div class="answer"><small>一言の答え</small>世界中で動く仕組みだから、一国では止められない。<br>実際に禁止した国でも消えていない</div>
@@ -132,8 +143,49 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>一国が禁止しても、世界で動く仕組みは止まらない。活動が外へ移るだけ</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E5%9B%BD%E3%81%8C%E7%A6%81%E6%AD%A2%E3%81%97%E3%81%9F%E3%82%89%E3%80%81%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fban%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
 <nav><a href="../energy/">← 前の誤解：電気・環境</a><a class="idx" href="../">一覧へ</a><a href="../quantum/">次の誤解：量子コンピューター →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+(function(){
+  var data = {title: '国が禁止したら、ビットコインは終わりでしょ？', text: '世界中で動く仕組みだから、一国では止められない。実際に禁止した国でも消えていない', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/ban/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
 </body>
 </html>

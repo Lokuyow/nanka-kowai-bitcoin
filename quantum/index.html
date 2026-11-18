@@ -10,7 +10,10 @@
 <meta property="og:title" content="量子コンピューターができたら、ビットコインは終わりでしょ？">
 <meta property="og:description" content="脅威になるのはずっと先。今の量子コンピューターでは歯が立たず、対策に移行する時間もある">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/quantum/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/quantum/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="量子コンピューターができたら、ビットコインは終わりでしょ？">
+<meta name="twitter:description" content="脅威になるのはずっと先。今の量子コンピューターでは歯が立たず、対策に移行する時間もある">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -86,10 +89,18 @@
   .lockbox{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;
     padding:12px;font-size:13px;text-align:center}
   .lockbox b{display:block;font-size:14px;margin-bottom:4px}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>10 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>10 / 15</span></header>
 <p class="eyebrow"><span>第3層</span>詳しいつもり</p>
 <h1>量子コンピューターができたら、<br>ビットコインは終わりでしょ？</h1>
 <div class="answer"><small>一言の答え</small>脅威になるのはずっと先。<br>今の量子コンピューターでは歯が立たず、対策に移行する時間もある</div>
@@ -128,8 +139,49 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>「即終わり」は嘘。脅威はずっと先で、備える時間も道もある</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E9%87%8F%E5%AD%90%E3%82%B3%E3%83%B3%E3%83%94%E3%83%A5%E3%83%BC%E3%82%BF%E3%83%BC%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%9F%E3%82%89%E3%80%81%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E7%B5%82%E3%82%8F%E3%82%8A%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fquantum%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
 <nav><a href="../ban/">← 前の誤解：政府が禁止</a><a class="idx" href="../">一覧へ</a><a href="../51/">次の誤解：51%攻撃 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+(function(){
+  var data = {title: '量子コンピューターができたら、ビットコインは終わりでしょ？', text: '脅威になるのはずっと先。今の量子コンピューターでは歯が立たず、対策に移行する時間もある', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/quantum/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
 </body>
 </html>

@@ -10,7 +10,10 @@
 <meta property="og:title" content="1ビットコインって何百万円もするんでしょ？ 買えないよ">
 <meta property="og:description" content="丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/satoshi/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/satoshi/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="1ビットコインって何百万円もするんでしょ？ 買えないよ">
+<meta name="twitter:description" content="丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -81,10 +84,18 @@
   .yenbar{height:100%;background:var(--orange);width:0;border-radius:999px;
     animation:yenfill 1.6s ease .3s both}
   @keyframes yenfill{from{width:0}to{width:22%}}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>5 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>5 / 15</span></header>
 <p class="eyebrow"><span>第1層</span>名前だけは知ってる</p>
 <h1>1ビットコインって何百万円も<br>するんでしょ？ 買えないよ</h1>
 <div class="answer"><small>一言の答え</small>丸ごと買わなくていい。<br>0.00000001（1 satoshi）から、100円分でも買える</div>
@@ -129,6 +140,14 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>ビットコインはピザと同じ。1ホール買わなくても、一切れから買える</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=1%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%A3%E3%81%A6%E4%BD%95%E7%99%BE%E4%B8%87%E5%86%86%E3%82%82%E3%81%99%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F%20%E8%B2%B7%E3%81%88%E3%81%AA%E3%81%84%E3%82%88&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fsatoshi%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
 <nav><a href="../fee/">← 前の誤解：手数料</a><a class="idx" href="../">一覧へ</a><a href="../hack/">次の誤解：ハッキング →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
@@ -168,6 +187,39 @@
     b.addEventListener('click', function(){ draw(+b.dataset.step); });
   });
   draw(2);
+</script>
+<script>
+(function(){
+  var data = {title: '1ビットコインって何百万円もするんでしょ？ 買えないよ', text: '丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/satoshi/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
 </script>
 </body>
 </html>

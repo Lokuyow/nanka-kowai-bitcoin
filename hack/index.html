@@ -10,7 +10,10 @@
 <meta property="og:title" content="ビットコインって、ハッキングされて盗まれたんでしょ？">
 <meta property="og:description" content="盗まれたのは取引所の金庫の中身。ビットコインの台帳そのものは、2009年から壊れていない">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/hack/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/hack/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ビットコインって、ハッキングされて盗まれたんでしょ？">
+<meta name="twitter:description" content="盗まれたのは取引所の金庫の中身。ビットコインの台帳そのものは、2009年から壊れていない">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -87,10 +90,18 @@
   .strike{position:relative;display:inline-block}
   .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:3px;
     background:var(--red);transform:rotate(-4deg)}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>6 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>6 / 15</span></header>
 <p class="eyebrow"><span>第2層</span>ニュースで見たよ</p>
 <h1>ビットコインって、<br>ハッキングされて盗まれたんでしょ？</h1>
 <div class="answer"><small>一言の答え</small>盗まれたのは取引所の金庫の中身。<br>ビットコインの台帳そのものは、2009年から壊れていない</div>
@@ -135,8 +146,49 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>壊れたのはいつも取引所の金庫。ビットコインの台帳は一度も壊れていない</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%A3%E3%81%A6%E3%80%81%E3%83%8F%E3%83%83%E3%82%AD%E3%83%B3%E3%82%B0%E3%81%95%E3%82%8C%E3%81%A6%E7%9B%97%E3%81%BE%E3%82%8C%E3%81%9F%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fhack%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
 <nav><a href="../satoshi/">← 前の誤解：丸ごと買わないと買えない</a><a class="idx" href="../">一覧へ</a><a href="../crime/">次の誤解：犯罪・匿名 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+(function(){
+  var data = {title: 'ビットコインって、ハッキングされて盗まれたんでしょ？', text: '盗まれたのは取引所の金庫の中身。ビットコインの台帳そのものは、2009年から壊れていない', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/hack/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
 </body>
 </html>

@@ -10,7 +10,10 @@
 <meta property="og:title" content="ビットコインって、匿名で犯罪に使われるんでしょ？">
 <meta property="og:description" content="匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/crime/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/crime/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ビットコインって、匿名で犯罪に使われるんでしょ？">
+<meta name="twitter:description" content="匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -88,10 +91,18 @@
   .trail.btc .dot{background:var(--orange);animation:stayglow 3s ease-in-out infinite}
   @keyframes stayglow{0%,100%{box-shadow:0 0 0 0 rgba(247,147,26,0)}50%{box-shadow:0 0 0 5px rgba(247,147,26,.25)}}
   .trail-lbl{flex:0 0 86px;font-size:13px;font-weight:700}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>7 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>7 / 15</span></header>
 <p class="eyebrow"><span>第2層</span>ニュースで見たよ</p>
 <h1>ビットコインって、匿名で<br>犯罪に使われるんでしょ？</h1>
 <div class="answer"><small>一言の答え</small>匿名ではなく「仮名」。<br>取引は全部、公開の台帳に残るから、現金より足がつきやすい</div>
@@ -128,8 +139,49 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>ビットコインは匿名どころか、全部の取引が公開で残る。現金の方がよっぽど足がつかない</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%A3%E3%81%A6%E3%80%81%E5%8C%BF%E5%90%8D%E3%81%A7%E7%8A%AF%E7%BD%AA%E3%81%AB%E4%BD%BF%E3%82%8F%E3%82%8C%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fcrime%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
 <nav><a href="../hack/">← 前の誤解：ハッキング</a><a class="idx" href="../">一覧へ</a><a href="../energy/">次の誤解：電気・環境 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+(function(){
+  var data = {title: 'ビットコインって、匿名で犯罪に使われるんでしょ？', text: '匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/crime/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
 </body>
 </html>

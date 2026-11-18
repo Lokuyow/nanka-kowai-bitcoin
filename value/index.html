@@ -10,7 +10,10 @@
 <meta property="og:title" content="裏付けがないビットコインは、価値ゼロでしょ？">
 <meta property="og:description" content="円にも金にも、「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる">
 <meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/value/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/value/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="裏付けがないビットコインは、価値ゼロでしょ？">
+<meta name="twitter:description" content="円にも金にも、「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる">
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -76,10 +79,18 @@
     opacity:0;transform:translateY(8px);transition:all .6s ease}
   .val tr.reason.on td{opacity:1;transform:none}
   .val .q{color:#999}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>14 / 14</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>15 / 15</span></header>
 <p class="eyebrow"><span>第3層</span>詳しいつもり</p>
 <h1>裏付けがないビットコインは、<br>価値ゼロでしょ？</h1>
 <div class="answer"><small>一言の答え</small>円にも金にも、「裏付け」と呼べるものは実はない。<br>価値は「欲しい・使えると思う人がいる」ことから生まれる</div>
@@ -109,6 +120,14 @@
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>裏付けがないのは円も金も同じ。価値は「欲しい人がいる」ことから生まれる</div>
+<div class="share">
+  <button class="share-main" type="button">この答えをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E8%A3%8F%E4%BB%98%E3%81%91%E3%81%8C%E3%81%AA%E3%81%84%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E3%80%81%E4%BE%A1%E5%80%A4%E3%82%BC%E3%83%AD%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fvalue%2F" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
 <nav><a href="../limit/">← 前の誤解：発行上限</a><a class="idx" href="../">一覧へ</a><span></span></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
@@ -130,6 +149,39 @@
     setTimeout(function(){ vr.classList.toggle('on', shown); }, shown ? 1150 : 0);
     vb.textContent = shown ? '元に戻す' : '裏付けを確かめる';
   });
+</script>
+<script>
+(function(){
+  var data = {title: '裏付けがないビットコインは、価値ゼロでしょ？', text: '円にも金にも、「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/value/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
 </script>
 </body>
 </html>
