@@ -85,6 +85,16 @@
   .minerfig{transition:opacity .6s ease}
   .ss-stage1 .gone{opacity:.12}
   .sscap{font-size:14px;min-height:3.2em;margin:8px 0 0}
+
+  .powrow{display:flex;align-items:center;gap:8px;margin:10px 0;font-size:13px}
+  .pow-lbl{flex:0 0 118px}
+  .powbar{flex:1;background:#f4ede1;border-radius:999px;height:20px;overflow:hidden}
+  .powfill{height:100%;border-radius:999px;transition:width .35s ease}
+  .powfill.mine{background:#999}
+  .powfill.move{background:var(--orange)}
+  .powfill.all{background:var(--ink)}
+  .powrow b{flex:0 0 32px;text-align:right;font-variant-numeric:tabular-nums}
+  .powcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -127,33 +137,15 @@
   </section>
 
   <section>
-    <h2>実際は：難易度調整のシーソー</h2>
-    <p class="lede">仮に掘る人が減ったら？ シーソーの動きで見てみよう。</p>
-    <div class="card ss-wrap" id="ssCard">
-      <svg width="300" height="182" viewBox="0 0 300 182">
-        <path d="M150 40 L134 150 L166 150 Z" fill="#1a1a1a"/>
-        <g id="ssBeam">
-          <rect x="28" y="36" width="244" height="7" rx="3.5" fill="#1a1a1a"/>
-          <line x1="66" y1="43" x2="66" y2="76" stroke="#999" stroke-width="2"/>
-          <path d="M40 76 A26 12 0 0 0 92 76 Z" fill="#f7931a"/>
-          <line x1="234" y1="43" x2="234" y2="76" stroke="#999" stroke-width="2"/>
-          <path d="M208 76 A26 12 0 0 0 260 76 Z" fill="#888"/>
-          <g id="diffW">
-            <rect x="212" y="90" width="44" height="28" rx="5" fill="#1a1a1a"/>
-            <text x="234" y="109" fill="#fff" font-size="12" text-anchor="middle" font-weight="700">難易度</text>
-          </g>
-        </g>
-        <g font-size="17">
-          <g class="minerfig" transform="translate(43,53) scale(.85)" aria-hidden="true"><path d="M4 20l9-9M6 6.5a13 13 0 0 1 11.5 11.5M11.5 9.5l3 3" fill="none" stroke="#f7931a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-          <g class="minerfig" transform="translate(60,53) scale(.85)" aria-hidden="true"><path d="M4 20l9-9M6 6.5a13 13 0 0 1 11.5 11.5M11.5 9.5l3 3" fill="none" stroke="#f7931a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-          <g class="minerfig gone-target" transform="translate(77,53) scale(.85)" aria-hidden="true"><path d="M4 20l9-9M6 6.5a13 13 0 0 1 11.5 11.5M11.5 9.5l3 3" fill="none" stroke="#f7931a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g>
-        </g>
-        <text x="66" y="152" font-size="12" text-anchor="middle" fill="#666">掘る人</text>
-        <text x="234" y="152" font-size="12" text-anchor="middle" fill="#666">難易度</text>
-      </svg>
-      <p class="sscap" id="ssCap">掘る人と難易度はつり合っている。</p>
-      <div class="center"><button id="ssBtn" type="button">掘る人が減ったら？</button></div>
-      <p class="hint">難易度は約2週間ごとに自動で調整される。人が減れば下がり、増えれば上がる。だから、ブロックが生まれる間隔はおよそ10分に1個に保たれる。</p>
+    <h2>実際は：電気の取り合いと引っ越し</h2>
+    <p class="lede">AIが電気をたくさん使うようになったら、マイニングはどうなる？ ある地域の電気をAIデータセンターに回して、様子を見てみよう。</p>
+    <div class="card" id="powCard">
+      <label>その地域の電気をAIへ回す: <b id="powPct">20%</b><input type="range" id="powRange" min="0" max="90" value="20" aria-label="AIへ回す電気の割合"></label>
+      <div class="powrow"><span class="pow-lbl">その地域のマイニング</span><div class="powbar"><div class="powfill mine" id="powMine" style="width:64%"></div></div><b id="powMineV">64</b></div>
+      <div class="powrow"><span class="pow-lbl">安い電気の地域へ移転</span><div class="powbar"><div class="powfill move" id="powMove" style="width:14%"></div></div><b id="powMoveV">14</b></div>
+      <div class="powrow"><span class="pow-lbl">世界のマイニング全体</span><div class="powbar"><div class="powfill all" id="powAll" style="width:98%"></div></div><b id="powAllV">98</b></div>
+      <p class="powcap" id="powCap">AIが電気を使っても、マイニングは別の場所で続く。</p>
+      <p class="hint">数字はイメージ。マイニングには「電気が安い場所へ移る」性質がある。さらに残った参加者に合わせて難易度も自動で調整されるので、ブロックは約10分に1個のペースを保つ。</p>
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>マイニングは専用機の仕事。人が減れば難易度が下がる、自己調整つきの仕組み</div>
@@ -169,35 +161,39 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var ss = document.getElementById('ssCard');
-  var beam = document.getElementById('ssBeam');
-  var cap = document.getElementById('ssCap');
-  var btn = document.getElementById('ssBtn');
-  var goneFig = document.querySelector('.gone-target');
-  var stage = 0;
-  btn.addEventListener('click', function(){
-    if (stage === 0) {
-      stage = 1;
-      ss.classList.add('ss-stage1');
-      goneFig.style.opacity = '.12';
-      beam.style.transform = 'rotate(10deg)';
-      cap.textContent = '掘る人が減ると、残った人には難しすぎる状態に。でも、このままにはならない。';
-      btn.textContent = 'その先は？';
-    } else if (stage === 1) {
-      stage = 2;
-      ss.classList.add('ss-stage2');
-      beam.style.transform = 'rotate(0deg)';
-      cap.textContent = '難易度が自動で下がって、また掘れるようになる。残った人の取り分はむしろ増える。';
-      btn.textContent = '元に戻す';
-    } else {
-      stage = 0;
-      ss.classList.remove('ss-stage1', 'ss-stage2');
-      goneFig.style.opacity = '1';
-      beam.style.transform = 'rotate(0deg)';
-      cap.textContent = '掘る人と難易度はつり合っている。';
-      btn.textContent = '掘る人が減ったら？';
-    }
-  });
+
+(function(){
+  var range = document.getElementById('powRange');
+  var pctEl = document.getElementById('powPct');
+  var cap = document.getElementById('powCap');
+  var bars = {
+    mine: [document.getElementById('powMine'), document.getElementById('powMineV')],
+    move: [document.getElementById('powMove'), document.getElementById('powMoveV')],
+    all: [document.getElementById('powAll'), document.getElementById('powAllV')]
+  };
+  function setBar(k, v){
+    v = Math.max(0, Math.min(100, Math.round(v)));
+    bars[k][0].style.width = v + '%';
+    bars[k][1].textContent = v;
+  }
+  function upd(){
+    var x = +range.value;
+    pctEl.textContent = x + '%';
+    var region = Math.max(4, 80 * (1 - x / 100 * 1.15));
+    var left = 80 - region;
+    var moved = left * 0.9;
+    var world = 100 - left * 0.1 + (Math.random() * 2 - 1);
+    setBar('mine', region / 80 * 80);
+    setBar('move', moved);
+    setBar('all', world);
+    if (x < 35) cap.textContent = 'この地域では、AIとマイニングがまだ両立している。';
+    else if (x < 65) cap.textContent = '電気の取り合いで値段が上がり、マイナーは安い地域へ引っ越し始めた。';
+    else cap.textContent = 'その地域のマイニングは、ほぼ撤退。でも世界全体はほとんど減っていない。行き先は、水力などの安い電気がある場所。';
+  }
+  range.addEventListener('input', upd);
+  upd();
+})();
+
 </script>
 <script>
 (function(){

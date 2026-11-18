@@ -79,6 +79,20 @@
   .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
   .tlvs{font-size:15px}
   .tlvs b{font-size:16px}
+
+  .gm-head{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:14px}
+  .gm-round{font-weight:700}
+  .gm-assets b{font-size:17px;font-variant-numeric:tabular-nums}
+  .gmmsg{font-size:14px;min-height:3.2em;margin:10px 0 0}
+  .gmbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+  .gmbtns button{min-height:48px;font-size:15px}
+  #gmBuy{background:var(--orange)}
+  #gmSell{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+  .gmbtns button[disabled]{opacity:.4;cursor:default}
+  .gmhold{font-size:13px;color:var(--sub);text-align:center;margin:8px 0 0}
+  #gmRestart{min-height:44px}
+  #gmDot{transition:cx .5s ease,cy .5s ease}
+  #gmPath{transition:stroke .3s}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -103,51 +117,33 @@
 
   <section>
     <h2>実際は：弾けたあとの形が違う</h2>
-    <p class="lede">チューリップは一度きりの急騰で終わった。ビットコインの17年は急騰と暴落の繰り返しだった。ボタンで2つの形を切り替えて比べてみよう。</p>
-    <div class="card">
-      <div class="tlbtns" role="group" aria-label="表示するグラフの切り替え">
-        <button type="button" id="tlBtnBoth" class="on">2つを重ねる</button>
-        <button type="button" id="tlBtnTulip">チューリップだけ</button>
-        <button type="button" id="tlBtnBtc">ビットコインだけ</button>
+    <p class="lede">チューリップは一度きりの急騰で終わった。ビットコインの17年は急騰と暴落の繰り返しだった。今度は眺めるだけじゃなく、それぞれの時代で売り買いしてみよう。資産を守れるか？</p>
+    <div class="card" id="gameCard">
+      <div class="gm-head">
+        <span class="gm-round" id="gmRound">第1戦: チューリップ（1630年代）</span>
+        <span class="gm-assets">資産 <b id="gmAssets">1,000</b></span>
       </div>
-      <div class="center" style="margin-top:12px">
-        <svg id="tlSvg" viewBox="0 0 320 210" width="100%" style="max-width:480px" role="img" aria-label="チューリップバブルとビットコインの価格の動きを比べた折れ線グラフ">
+      <div class="center" style="margin-top:8px">
+        <svg id="gmSvg" viewBox="0 0 320 190" width="100%" style="max-width:480px" role="img" aria-label="価格チャートで売り買いするゲーム">
           <text x="30" y="12" font-size="9" fill="#999">価格のイメージ</text>
-          <line x1="30" y1="20" x2="30" y2="180" stroke="#e8e0d4"/>
-          <line x1="30" y1="180" x2="310" y2="180" stroke="#e8e0d4"/>
-          <g id="gTulip">
-            <path d="M30,172 L70,170 L100,120 L118,55 L128,32 L140,150 L155,172 L310,174"
-              fill="none" stroke="#d33" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
-            <text x="310" y="162" font-size="10" fill="#d33" text-anchor="end" font-weight="700">二度と戻らない</text>
-          </g>
-          <g id="gTulipYears">
-            <text x="30" y="197" font-size="9.5" fill="#999">1634年</text>
-            <text x="128" y="197" font-size="9.5" fill="#999" text-anchor="middle">1637年 崩壊</text>
-            <text x="310" y="197" font-size="9.5" fill="#999" text-anchor="end">その後</text>
-          </g>
-          <g id="gBtc">
-            <path d="M34,176 L64,156 L82,172 L104,126 L118,168 L158,72 L180,148 L230,38 L252,128 L308,26"
-              fill="none" stroke="#f7931a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-            <g fill="#d33" stroke="#fff" stroke-width="1.5">
-              <circle cx="82" cy="172" r="4.5"/>
-              <circle cx="118" cy="168" r="4.5"/>
-              <circle cx="180" cy="148" r="4.5"/>
-              <circle cx="252" cy="128" r="4.5"/>
-            </g>
-            <g font-size="9.5" fill="#666" text-anchor="middle">
-              <text x="82" y="197">2011年</text>
-              <text x="118" y="197">2014年</text>
-              <text x="180" y="197">2018年</text>
-              <text x="252" y="197">2022年</text>
-            </g>
-            <text x="30" y="197" font-size="9.5" fill="#999">2009年</text>
-            <text x="310" y="197" font-size="9.5" fill="#999" text-anchor="end">2026年</text>
-          </g>
+          <line x1="30" y1="16" x2="30" y2="160" stroke="#e8e0d4"/>
+          <line x1="30" y1="160" x2="310" y2="160" stroke="#e8e0d4"/>
+          <path id="gmPath" fill="none" stroke="#d33" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <circle id="gmDot" r="6" fill="#fff" stroke="#d33" stroke-width="3"/>
+          <text id="gmYear" x="310" y="180" font-size="10" fill="#999" text-anchor="end"></text>
+          <text id="gmPrice" x="310" y="14" font-size="11" font-weight="700" text-anchor="end"></text>
         </svg>
       </div>
-      <p class="tlcap" id="tlCap">重ねると形は似て見える。でもチューリップは弾けて終わり、ビットコインは暴落のたびに戻ってきた。赤い点が「終わった」と言われた地点。</p>
+      <p class="gmmsg" id="gmMsg" aria-live="polite"></p>
+      <div class="gmbtns">
+        <button type="button" id="gmBuy">買う（全額）</button>
+        <button type="button" id="gmSell">売る（全部）</button>
+        <button type="button" id="gmNext">時を進める</button>
+      </div>
+      <p class="gmhold" id="gmHold">持ち分: 現金のみ</p>
+      <div class="center" style="margin-top:10px"><button type="button" id="gmMain" hidden>第2戦へ</button></div>
       <p class="hint">球根は植えれば増やせるし、花が咲けば終わる実物だった。ビットコインは発行上限が固定され、ネットワークは17年止まらず動き続けている。</p>
-      <p class="hint">形を模式的に描いた図で、実際の価格そのものではない。横軸の年数もそれぞれ別のもの。</p>
+      <p class="hint">価格は模式的なイメージで、実際の値動きそのものではない。横軸の年数もそれぞれ別のもの。</p>
     </div>
   </section>
 
@@ -172,31 +168,143 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var CAPS = {
-    both: '重ねると形は似て見える。でもチューリップは弾けて終わり、ビットコインは暴落のたびに戻ってきた。赤い点が「終わった」と言われた地点。',
-    tulip: '1630年代のオランダ。一部の球根には高級住宅並みの値段がついたと言われる。1637年に崩れて、そのまま戻らなかった。',
-    btc: '2009年に始まって17年。大きく下げた年には「ビットコインは終わった」と報じられた。それでも価格は戻り、波は今も続いている。'
-  };
-  var gTulip = document.getElementById('gTulip');
-  var gTulipYears = document.getElementById('gTulipYears');
-  var gBtc = document.getElementById('gBtc');
-  var tlCap = document.getElementById('tlCap');
-  var btns = {
-    both: document.getElementById('tlBtnBoth'),
-    tulip: document.getElementById('tlBtnTulip'),
-    btc: document.getElementById('tlBtnBtc')
-  };
-  function show(mode){
-    gTulip.style.display = (mode === 'btc') ? 'none' : '';
-    gBtc.style.display = (mode === 'tulip') ? 'none' : '';
-    gTulipYears.style.display = (mode === 'tulip') ? '' : 'none';
-    tlCap.textContent = CAPS[mode];
-    for (var k in btns) btns[k].classList.toggle('on', k === mode);
+
+(function(){
+  var ROUNDS = [
+    {
+      name: '第1戦: チューリップ（1630年代）', color: '#d33', unit: 'ギルダー',
+      prices: [2, 3, 8, 30, 80, 100, 60, 8, 2, 2],
+      years: ['1634年', '1634年 秋', '1635年', '1635年 冬', '1636年', '1636年 冬', '1637年 1月', '1637年 2月', '1637年 春', 'その後'],
+      msgs: [
+        '球根が少し話題になり始めた。',
+        '値段がじわじわ上がっている。',
+        '珍しい球根に、高い値がつき始めた。',
+        '街の居酒屋でも球根の取引が始まった。',
+        '一部の球根は、高級住宅並みの値段だと言われる。',
+        '熱狂の頂点。まだ上がる気がする。',
+        'なんとなく、雲行きが怪しい。',
+        '突然、買い手が消えた。',
+        '値段は元より下がり、戻る気配がない。',
+        '熱狂は終わった。球根は、ただの球根に戻った。'
+      ],
+      endMsg: function(profit, held){
+        if (held) return '持ち続けた球根は、ほぼ紙くずに。チューリップの熱狂は一度きりで、二度と戻らなかった。';
+        return profit >= 0 ? 'うまく逃げ切った。でも、それは運とタイミングの話。熱狂そのものは一度きりで終わった。'
+                           : '熱狂に巻かれて損をした。チューリップは一度弾けたら、二度と戻らなかった。';
+      }
+    },
+    {
+      name: '第2戦: ビットコイン（2009年〜）', color: '#f7931a', unit: '円（イメージ）',
+      prices: [1, 4, 2, 10, 3, 8, 20, 7, 16, 40, 22, 55],
+      years: ['2011年', '2013年', '2015年', '2017年', '2018年', '2020年', '2021年', '2022年', '2023年', '2024年', '2025年', '2026年'],
+      msgs: [
+        'まだ実験のような存在。知っている人は少ない。',
+        '初めての大きな波が来た。',
+        '大きく下げた。「終わった」と言われ始めた。',
+        'また大きな波。今度は世界中が注目した。',
+        '約8割の下げ。「ビットコインは終わった」と大きく報じられた。',
+        '静かに戻してきている。',
+        '過去最高を更新。熱狂が戻ってきた。',
+        'また約7割の下げ。「今度こそ終わり」と言われた。',
+        'それでもネットワークは止まらず、価格は戻してきた。',
+        'また過去最高のあたりへ。',
+        '波は今も続いている。',
+        '17年続いた波は、まだ終わっていない。'
+      ],
+      endMsg: function(profit, held){
+        if (profit >= 0) return '暴落のたびに「終わった」と言われても、戻ってきた。チューリップとの違いは、この「戻ってくる」が何度も起きたこと。';
+        return '途中の暴落で手放すと、戻ってくる波に乗れない。チューリップとの違いは、暴落のあとに「次」があったこと。';
+      }
+    }
+  ];
+  var round = 0, idx = 0, cash = 1000, units = 0, totalProfit = 0, over = false;
+  var pathEl = document.getElementById('gmPath');
+  var dotEl = document.getElementById('gmDot');
+  var yearEl = document.getElementById('gmYear');
+  var priceEl = document.getElementById('gmPrice');
+  var msgEl = document.getElementById('gmMsg');
+  var assetsEl = document.getElementById('gmAssets');
+  var holdEl = document.getElementById('gmHold');
+  var roundEl = document.getElementById('gmRound');
+  var buyBtn = document.getElementById('gmBuy');
+  var sellBtn = document.getElementById('gmSell');
+  var nextBtn = document.getElementById('gmNext');
+  var mainBtn = document.getElementById('gmMain');
+  function pts(r){
+    var ps = r.prices, min = Math.min.apply(null, ps), max = Math.max.apply(null, ps);
+    var lmin = Math.log(min), lmax = Math.log(max);
+    return ps.map(function(p, i){
+      var x = 34 + i * (272 / (ps.length - 1));
+      var y = 158 - (Math.log(p) - lmin) / (lmax - lmin) * 132;
+      return [x, y];
+    });
   }
-  btns.both.addEventListener('click', function(){ show('both'); });
-  btns.tulip.addEventListener('click', function(){ show('tulip'); });
-  btns.btc.addEventListener('click', function(){ show('btc'); });
-  show('both');
+  function assets(){ var r = ROUNDS[round]; return cash + units * r.prices[idx]; }
+  function draw(){
+    var r = ROUNDS[round];
+    var P = pts(r);
+    var d = '';
+    for (var i = 0; i <= idx; i++) d += (i === 0 ? 'M' : 'L') + P[i][0].toFixed(1) + ',' + P[i][1].toFixed(1) + ' ';
+    pathEl.setAttribute('d', d);
+    pathEl.setAttribute('stroke', r.color);
+    dotEl.setAttribute('cx', P[idx][0]); dotEl.setAttribute('cy', P[idx][1]);
+    dotEl.setAttribute('stroke', r.color);
+    yearEl.textContent = r.years[idx];
+    priceEl.textContent = '価格 ' + r.prices[idx];
+    assetsEl.textContent = Math.round(assets()).toLocaleString('ja-JP');
+    holdEl.textContent = units > 0 ? '持ち分: 保有中（資産は価格で上下する）' : '持ち分: 現金のみ';
+    buyBtn.disabled = over || units > 0;
+    sellBtn.disabled = over || units <= 0;
+    nextBtn.disabled = over;
+  }
+  function startRound(n){
+    round = n; idx = 0; cash = 1000; units = 0; over = false;
+    roundEl.textContent = ROUNDS[n].name;
+    mainBtn.hidden = true;
+    msgEl.textContent = ROUNDS[n].msgs[0] + ' まずは様子見か、買ってみるか。';
+    draw();
+  }
+  buyBtn.addEventListener('click', function(){
+    if (over || units > 0) return;
+    var r = ROUNDS[round];
+    units = cash / r.prices[idx];
+    cash = 0;
+    msgEl.textContent = '全額で買った。ここから先は、価格しだい。';
+    draw();
+  });
+  sellBtn.addEventListener('click', function(){
+    if (over || units <= 0) return;
+    var r = ROUNDS[round];
+    cash = units * r.prices[idx];
+    units = 0;
+    msgEl.textContent = '全部売った。資産は ' + Math.round(cash).toLocaleString('ja-JP') + ' で確定。';
+    draw();
+  });
+  nextBtn.addEventListener('click', function(){
+    var r = ROUNDS[round];
+    if (idx >= r.prices.length - 1) {
+      over = true;
+      var a = assets();
+      var profit = a - 1000;
+      totalProfit += profit;
+      msgEl.innerHTML = r.endMsg(profit, units > 0) + '<br>この戦いの結果: 資産 <b>' + Math.round(a).toLocaleString('ja-JP') + '</b>（' + (profit >= 0 ? '+' : '') + Math.round(profit).toLocaleString('ja-JP') + '）';
+      mainBtn.textContent = round === 0 ? '第2戦へ（ビットコイン）' : 'もう一度あそぶ';
+      mainBtn.hidden = false;
+      draw();
+      buyBtn.disabled = true; sellBtn.disabled = true; nextBtn.disabled = true;
+      return;
+    }
+    idx++;
+    msgEl.textContent = r.msgs[idx];
+    draw();
+  });
+  mainBtn.addEventListener('click', function(){
+    if (round === 0) startRound(1);
+    else { totalProfit = 0; startRound(0); }
+  });
+  startRound(0);
+})();
+
 </script>
 <script>
 (function(){

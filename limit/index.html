@@ -85,6 +85,19 @@
   .flink{flex:0 0 12px;height:3px;background:#bbb;border-radius:2px}
   .flabel{font-size:13px;margin-left:6px}
   .flabel small{display:block;color:var(--sub);font-size:12px}
+
+  .capbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+  .capbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}
+  .capbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff}
+  .nodes{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0 4px}
+  .node{border:2px solid var(--line);border-radius:12px;padding:8px 4px;width:64px;text-align:center;font-size:11px;color:var(--sub);transition:all .3s;background:#fff}
+  .node .st{display:block;font-size:13px;font-weight:700;color:var(--ink)}
+  .node.sent{border-color:var(--orange)}
+  .node.ng{border-color:var(--red);color:var(--red);background:#fff6f6}
+  .node.ng .st{color:var(--red)}
+  .captally{text-align:center;font-size:14px;margin-top:10px}
+  .capmsg{font-size:14px;min-height:3.2em;margin:10px 0 0;text-align:center}
+  .stamp-zone{position:relative;text-align:center;padding:26px 0 6px;min-height:96px;overflow:hidden}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -126,6 +139,26 @@
       </div>
       <p class="hint">サッカーで1チームだけ「ゴールは2点」と言い出しても、相手は試合をしてくれない。それと同じ。</p>
     </div>
+    <div class="card" id="capCard">
+      <p style="margin:0 0 4px;font-size:15px"><b>じゃあ実際に、あなたが書き換えてみる</b></p>
+      <p class="hint" style="text-align:left;margin:0 0 12px">上限をいくつに書き換えますか？ 選んで「配る」を押すと、世界中の参加者（ノード）にあなたの変更版が届きます。</p>
+      <div class="capbtns" id="capBtns">
+        <button type="button" data-cap="2,200万枚" class="on">2,200万枚にする</button>
+        <button type="button" data-cap="4,200万枚">2倍の4,200万枚</button>
+        <button type="button" data-cap="無制限">上限をなくす</button>
+      </div>
+      <div class="nodes" id="capNodes">
+        <div class="node"><span class="st">待機中</span>ノードA</div>
+        <div class="node"><span class="st">待機中</span>ノードB</div>
+        <div class="node"><span class="st">待機中</span>ノードC</div>
+        <div class="node"><span class="st">待機中</span>ノードD</div>
+        <div class="node"><span class="st">待機中</span>ノードE</div>
+      </div>
+      <div class="captally" id="capTally">賛成 <b>0</b> ・ 拒否 <b>0</b> ・ あなたの版の利用者 <b>0人</b></div>
+      <div class="stamp-zone"><span class="stamp">誰もついてこない</span></div>
+      <div class="center"><button id="capGo" type="button">書き換えた版を配る</button></div>
+      <p class="capmsg" id="capMsg" aria-live="polite"></p>
+    </div>
   </section>
 
   <section>
@@ -148,6 +181,72 @@
 <nav><a href="../reward/">← 前の誤解：報酬がなくなったら</a><a class="idx" href="../">一覧へ</a><a href="../infinite/">次の誤解：分割と上限 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+
+(function(){
+  var nodes = Array.prototype.slice.call(document.querySelectorAll('#capNodes .node'));
+  var tally = document.getElementById('capTally');
+  var msg = document.getElementById('capMsg');
+  var go = document.getElementById('capGo');
+  var card = document.getElementById('capCard');
+  var capName = '2,200万枚';
+  var running = false;
+  var lines = [
+    'ノードA「上限が約束と違う。受け取れません」',
+    'ノードB「その版とは取引しません」',
+    'ノードC「ルールが違うので、別の通貨として扱います」',
+    'ノードD「今までの版を使い続けます」',
+    'ノードE「賛成はゼロ。却下します」'
+  ];
+  document.querySelectorAll('#capBtns button').forEach(function(b){
+    b.addEventListener('click', function(){
+      if (running) return;
+      document.querySelectorAll('#capBtns button').forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      capName = b.dataset.cap;
+    });
+  });
+  function setTally(ok, ng, users){
+    tally.innerHTML = '賛成 <b>' + ok + '</b> ・ 拒否 <b>' + ng + '</b> ・ あなたの版の利用者 <b>' + users + '人</b>';
+  }
+  go.addEventListener('click', function(){
+    if (running) return;
+    running = true;
+    go.disabled = true;
+    card.classList.remove('stamped');
+    nodes.forEach(function(n){
+      n.className = 'node';
+      n.querySelector('.st').textContent = '待機中';
+    });
+    setTally(0, 0, 0);
+    msg.textContent = '上限を' + capName + 'に書き換えた版を、世界に配り始めた…';
+    var i = 0;
+    function step(){
+      if (i > 0) {
+        var prev = nodes[i - 1];
+        prev.classList.add('ng');
+        prev.querySelector('.st').textContent = '× 拒否';
+        setTally(0, i, 0);
+        msg.textContent = lines[i - 1];
+      }
+      if (i >= nodes.length) {
+        card.classList.add('stamped');
+        msg.textContent = '全員が拒否。あなたの版は、あなた1人だけの通貨になった。書き換えるのは自由。でも、ついてくる人がいなければ意味がない。';
+        go.textContent = 'もう一度試す';
+        go.disabled = false;
+        running = false;
+        return;
+      }
+      nodes[i].classList.add('sent');
+      nodes[i].querySelector('.st').textContent = '届いた';
+      i++;
+      setTimeout(step, 620);
+    }
+    setTimeout(step, 350);
+  });
+})();
+
+</script>
 <script>
 (function(){
   var data = {title: '発行上限ってその気になれば変えられるんでしょ？', text: '書き換えるのは誰でもできる。でも全員が受け入れなければ、それは「別のコイン」になるだけ', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/limit/'};

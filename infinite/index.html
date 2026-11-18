@@ -79,6 +79,10 @@
   .dvtotal{margin-top:10px;border:2px solid var(--orange);border-radius:12px;padding:10px;
     font-size:17px;font-weight:700;text-align:center;background:#fdf3e3}
   .dvtotal b{color:#c77400}
+
+  .dvbtns{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+  .dvbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}
+  #dvSvg{touch-action:pan-y}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -105,8 +109,8 @@
     <h2>実際は：割っても全体は同じ</h2>
     <p class="lede">ピザを何切れに分けても、ピザ全体の量は変わらない。ビットコインも同じで、切り分ける数を増やしても合計は1BTCのまま。スライダーを動かして確かめてみよう。</p>
     <div class="card">
-      <label>切り分ける数: <b id="dvN">1</b><input type="range" id="dvS" min="0" max="3" step="1" value="0"></label>
-      <div class="dvscale"><span>1</span><span>4</span><span>100</span><span>1億</span></div>
+      <label>切り分ける数: <b id="dvN">1個</b><input type="range" id="dvS" min="0" max="1000" value="0" step="1" aria-label="切り分ける数"></label>
+      <div class="dvscale"><span>1</span><span>100</span><span>1万</span><span>1億</span></div>
       <div class="center" style="margin-top:12px">
         <svg id="dvSvg" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="1BTCを切り分ける円グラフ">
           <circle cx="130" cy="130" r="112" fill="#f7931a"/>
@@ -117,7 +121,11 @@
       </div>
       <p class="dvpiece">一切れ: <b id="dvPiece">1 BTC</b></p>
       <div class="dvtotal">合計: <b>1 BTC</b>（変わらない）</div>
-      <p class="dvcap" id="dvCap">まだ割っていない状態。1BTCがまるごと1つ。</p>
+      <p class="dvcap" id="dvCap">まだ割っていない状態。1BTCがまるごと1つ。スライダーを右へ引っぱると、好きなだけ細かく割れる。</p>
+      <div class="dvbtns">
+        <button type="button" id="dvX10">もっと細かく（×10）</button>
+        <button type="button" id="dvReset">1つに戻す</button>
+      </div>
       <p class="hint">1円を100銭に分けても、財布の中身は増えない。ドルとセントも同じ。</p>
     </div>
   </section>
@@ -143,51 +151,68 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var STEPS = [
-    {label:'1', piece:'1 BTC', div:1, lines:0, lw:2, op:1,
-     cap:'まだ割っていない状態。1BTCがまるごと1つ。'},
-    {label:'4', piece:'0.25 BTC', div:4, lines:4, lw:2, op:1,
-     cap:'4つに割っても、全部合わせれば1BTCのまま。濃い色が一切れ。'},
-    {label:'100', piece:'0.01 BTC', div:100, lines:100, lw:1.2, op:1,
-     cap:'100に割ると一切れは0.01 BTC。切れ目は増えたが、合計は1BTC。'},
-    {label:'1億', piece:'0.00000001 BTC（1 satoshi）', div:0, lines:360, lw:0.5, op:0.55,
-     cap:'satoshi単位まで割った状態。線が細かすぎて数えきれず、一切れには色もつけられない。それでも合計は1BTC。'}
-  ];
-  var dvS = document.getElementById('dvS');
-  var dvN = document.getElementById('dvN');
-  var dvPiece = document.getElementById('dvPiece');
-  var dvCap = document.getElementById('dvCap');
-  var dvWedge = document.getElementById('dvWedge');
-  var dvLines = document.getElementById('dvLines');
+
+(function(){
+  var S = document.getElementById('dvS');
+  var N = document.getElementById('dvN');
+  var pieceEl = document.getElementById('dvPiece');
+  var capEl = document.getElementById('dvCap');
+  var wedge = document.getElementById('dvWedge');
+  var lines = document.getElementById('dvLines');
+  function divOf(){ return Math.max(1, Math.round(Math.pow(10, +S.value / 1000 * 8))); }
+  function setDiv(d){
+    d = Math.max(1, Math.min(100000000, Math.round(d)));
+    S.value = Math.round(Math.log10(d) / 8 * 1000);
+    upd();
+  }
   function polar(deg){
     var rad = (deg - 90) * Math.PI / 180;
     return [130 + 112 * Math.cos(rad), 130 + 112 * Math.sin(rad)];
   }
+  function pieceText(d){
+    if (d === 1) return '1 BTC';
+    if (d === 100000000) return '0.00000001 BTC（1 satoshi）';
+    if (d <= 1000) return (1 / d) + ' BTC';
+    return '約 ' + (1 / d).toExponential(1).replace('e', '×10の') + ' BTC';
+  }
+  function capFor(d){
+    if (d === 1) return 'まだ割っていない状態。1BTCがまるごと1つ。スライダーを右へ引っぱると、好きなだけ細かく割れる。';
+    if (d === 100000000) return 'これ以上は割れない。1 satoshiが最小単位。線も細かすぎて描ききれない。それでも合計は1BTC。';
+    if (d < 10) return d + 'つに割っても、全部合わせれば1BTCのまま。濃い色が一切れ。';
+    if (d < 1000) return '切れ目は増えた。でも全部集めれば1BTC。増えたのは「枚数の数字」だけ。';
+    if (d < 1000000) return '一切れはどんどん小さくなる。合計は1BTCから、1 satoshiも増えていない。';
+    return 'satoshi単位の世界。桁が大きく見えるだけで、量は同じ。';
+  }
   function upd(){
-    var s = STEPS[+dvS.value];
-    dvN.textContent = s.label;
-    dvPiece.textContent = s.piece;
-    dvCap.textContent = s.cap;
-    if (s.div > 1) {
-      var a2 = 360 / s.div;
+    var d = divOf();
+    N.textContent = d.toLocaleString('ja-JP') + '個';
+    pieceEl.textContent = pieceText(d);
+    capEl.textContent = capFor(d);
+    if (d > 1 && d <= 360) {
+      var a2 = 360 / d;
       var p1 = polar(0), p2 = polar(a2);
-      dvWedge.setAttribute('d', 'M130 130 L' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) +
+      wedge.setAttribute('d', 'M130 130 L' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) +
         ' A112 112 0 ' + (a2 > 180 ? 1 : 0) + ' 1 ' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1) + ' Z');
-      dvWedge.style.display = '';
+      wedge.style.display = '';
     } else {
-      dvWedge.style.display = 'none';
+      wedge.style.display = 'none';
     }
+    var n = Math.min(d, 720);
     var html = '';
-    for (var i = 0; i < s.lines; i++) {
-      var p = polar(i * 360 / s.lines);
+    for (var i = 0; i < n; i++) {
+      var p = polar(i * 360 / n);
       html += '<line x1="130" y1="130" x2="' + p[0].toFixed(1) + '" y2="' + p[1].toFixed(1) + '"/>';
     }
-    dvLines.innerHTML = html;
-    dvLines.setAttribute('stroke-width', s.lw);
-    dvLines.setAttribute('opacity', s.op);
+    lines.innerHTML = html;
+    lines.setAttribute('stroke-width', d > 100 ? 0.6 : 2);
+    lines.setAttribute('opacity', d > 720 ? 0.5 : 1);
   }
-  dvS.addEventListener('input', upd);
+  S.addEventListener('input', upd);
+  document.getElementById('dvX10').addEventListener('click', function(){ setDiv(divOf() * 10); });
+  document.getElementById('dvReset').addEventListener('click', function(){ setDiv(1); });
   upd();
+})();
+
 </script>
 <script>
 (function(){

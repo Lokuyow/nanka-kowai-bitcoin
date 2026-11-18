@@ -84,6 +84,20 @@
   #beamG{transition:transform 1.1s cubic-bezier(.34,1.3,.5,1);transform-origin:150px 42px}
   #retW{transition:all .8s ease .5s;transform-origin:248px 115px}
   .tipped #retW{transform:scale(.55)}
+
+  .hpbar-wrap{display:flex;position:relative;height:28px;border-radius:8px;overflow:hidden;margin:12px 0 4px;background:#e9e2d4}
+  .hpbar-you{background:var(--orange);height:100%;transition:width .25s ease}
+  .hpmark{position:absolute;left:50%;top:0;bottom:0;width:3px;background:var(--ink)}
+  .hpbar-lbl{display:flex;justify-content:space-between;font-size:12px;color:var(--sub)}
+  .hpstate{font-size:14px;min-height:3.2em;margin:10px 0 0}
+  .hpbtns{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  .hpbtns button{min-height:48px;font-size:14px;flex:1 1 140px}
+  .hpbtns button.done{opacity:.45}
+  #actSteal.shake,#actMint.shake{animation:shk .4s ease}
+  @keyframes shk{0%,100%{transform:none}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+  .hpfeed{font-size:14px;min-height:3.4em;margin:10px 0 0}
+  .hpcost{font-size:14px;margin:8px 0 0}
+  .hpcost b{font-variant-numeric:tabular-nums}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -132,32 +146,24 @@
   </section>
 
   <section>
-    <h2>実際は：天秤にかけてみる</h2>
-    <p class="lede">過半数を集めるコストと、攻撃して得られるもの。比べてみると、最初から釣り合っていない。</p>
-    <div class="card bal-wrap" id="balCard">
-      <svg width="300" height="192" viewBox="0 0 300 192">
-        <path d="M150 42 L132 168 L168 168 Z" fill="#1a1a1a"/>
-        <circle cx="150" cy="42" r="6" fill="#1a1a1a"/>
-        <g id="beamG">
-          <rect x="30" y="38" width="240" height="7" rx="3.5" fill="#1a1a1a"/>
-          <line x1="52" y1="45" x2="52" y2="86" stroke="#999" stroke-width="2"/>
-          <path d="M26 86 A26 13 0 0 0 78 86 Z" fill="#888"/>
-          <line x1="248" y1="45" x2="248" y2="86" stroke="#999" stroke-width="2"/>
-          <path d="M222 86 A26 13 0 0 0 274 86 Z" fill="#f7931a"/>
-          <g id="costW">
-            <rect x="30" y="102" width="44" height="30" rx="5" fill="#1a1a1a"/>
-            <text x="52" y="122" fill="#fff" font-size="12" text-anchor="middle" font-weight="700">兆円級</text>
-          </g>
-          <g id="retW">
-            <rect x="228" y="102" width="40" height="26" rx="5" fill="#f7931a"/>
-            <text x="248" y="119" fill="#fff" font-size="11" text-anchor="middle" font-weight="700">わずか</text>
-          </g>
-        </g>
-        <text x="66" y="176" font-size="12" text-anchor="middle" fill="#666">コスト（機材＋電気）</text>
-        <text x="240" y="176" font-size="12" text-anchor="middle" fill="#666">得られるもの</text>
-      </svg>
-      <p class="hint" id="balCap">しかも攻撃が成功すればビットコインの価値が下がり、攻撃者自身の手持ちも損をする。</p>
-      <div class="center" style="margin-top:10px"><button id="balBtn" type="button">天秤にかける</button></div>
+    <h2>実際は：過半数を握ってみる</h2>
+    <p class="lede">まず「握る」ところから。スライダーであなたの計算力を上げて、過半数を超えてみよう。超えたら、何ができるか試せる。</p>
+    <div class="card" id="hpCard">
+      <label>あなたの計算力: <b id="hpPct">10%</b><input type="range" id="hpRange" min="1" max="70" value="10" aria-label="あなたの計算力の割合"></label>
+      <div class="hpbar-wrap"><div class="hpbar-you" id="hpYou" style="width:10%"></div><div class="hpmark"></div></div>
+      <div class="hpbar-lbl"><span>あなた（オレンジ）</span><span>50%のライン</span><span>世界の残り</span></div>
+      <p class="hpstate" id="hpState">まだ過半数には遠い。この割合では、記録を書き換える力はない。</p>
+      <div id="hpActions" hidden>
+        <p style="font-size:14px;margin:12px 0 4px"><b>過半数を超えた。何ができる？ 試してみよう。</b></p>
+        <div class="hpbtns">
+          <button type="button" id="actDouble">自分の送金を取り消す</button>
+          <button type="button" id="actSteal">他人のコインを盗む</button>
+          <button type="button" id="actMint">コインを勝手に作る</button>
+        </div>
+        <p class="hpfeed" id="hpFeed" aria-live="polite"></p>
+        <p class="hpcost">過半数を保つコスト: <b id="hpCost">0億円</b>（電気代と機材が燃えていく）</p>
+      </div>
+      <p class="hint">割合とコストはイメージ。実際に過半数を集めるには、兆円級の機材と電力が要ると言われる。得られるものと比べると、最初から釣り合っていない。</p>
     </div>
   </section>
 <div class="summary"><small>一言まとめ</small>過半数を握ってもできることは限られていて、やる意味もほとんどない</div>
@@ -173,16 +179,65 @@
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
 <script>
-  var bc = document.getElementById('balCard');
-  var beam = document.getElementById('beamG');
-  var bb = document.getElementById('balBtn');
-  var tipped = false;
-  bb.addEventListener('click', function(){
-    tipped = !tipped;
-    bc.classList.toggle('tipped', tipped);
-    beam.style.transform = tipped ? 'rotate(-13deg)' : 'rotate(0deg)';
-    bb.textContent = tipped ? '元に戻す' : '天秤にかける';
+
+(function(){
+  var range = document.getElementById('hpRange');
+  var pctEl = document.getElementById('hpPct');
+  var youEl = document.getElementById('hpYou');
+  var state = document.getElementById('hpState');
+  var actions = document.getElementById('hpActions');
+  var feed = document.getElementById('hpFeed');
+  var costEl = document.getElementById('hpCost');
+  var cost = 0, costTimer = null;
+  var tried = {};
+  function fmtCost(){
+    if (cost >= 10000) return (cost / 10000).toFixed(2) + '兆円';
+    return Math.round(cost).toLocaleString('ja-JP') + '億円';
+  }
+  function upd(){
+    var v = +range.value;
+    pctEl.textContent = v + '%';
+    youEl.style.width = v + '%';
+    if (v < 30) {
+      state.textContent = 'まだ過半数には遠い。この割合では、記録を書き換える力はない。';
+      actions.hidden = true;
+    } else if (v < 51) {
+      state.textContent = 'かなり集めた。でも過半数に届かなければ、ルールを曲げる力はない。あと少し。';
+      actions.hidden = true;
+    } else {
+      state.textContent = '過半数を超えた！ 世界の半分より強い。でも、できることには限界がある。下のボタンで試してみよう。';
+      actions.hidden = false;
+    }
+    if (v >= 51 && !costTimer) {
+      costTimer = setInterval(function(){
+        cost += 800 + Math.random() * 1200;
+        costEl.textContent = fmtCost();
+      }, 1000);
+    } else if (v < 51 && costTimer) {
+      clearInterval(costTimer); costTimer = null;
+    }
+  }
+  range.addEventListener('input', upd);
+  upd();
+  function finish(id, b, text, ok){
+    tried[id] = true;
+    b.classList.add('done');
+    b.disabled = true;
+    if (!ok) { b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake'); }
+    var done = tried.actDouble && tried.actSteal && tried.actMint;
+    feed.innerHTML = text + (done ? '<br><b>結論: できるのは自分の送金の取り消しだけ。それも割に合わないから、誰もやらない。</b>' : '');
+  }
+  document.getElementById('actDouble').addEventListener('click', function(){
+    finish('actDouble', this, 'できた。ただし取り消せるのは、自分の最近の送金だけ。相手が承認を待てば防げるし、この一瞬のためにコストは燃え続ける。', true);
   });
+  document.getElementById('actSteal').addEventListener('click', function(){
+    finish('actSteal', this, 'できない。他人のコインを動かすには、その人の鍵（署名）が要る。計算力では代わりにならない。', false);
+  });
+  document.getElementById('actMint').addEventListener('click', function(){
+    finish('actMint', this, 'できない。ルールを外れたコインは、世界中のノードが受け取りを拒否する。作っても、ただの数字。', false);
+  });
+})();
+
 </script>
 <script>
 (function(){

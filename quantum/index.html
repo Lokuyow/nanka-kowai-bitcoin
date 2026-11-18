@@ -90,6 +90,16 @@
   .lockbox{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;
     padding:12px;font-size:13px;text-align:center}
   .lockbox b{display:block;font-size:14px;margin-bottom:4px}
+
+  .bfbig{font-size:17px;text-align:center}
+  .bfbig b{font-size:24px;font-variant-numeric:tabular-nums}
+  .bfrow{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px dotted var(--line);font-size:14px}
+  .bfrow b{font-variant-numeric:tabular-nums;text-align:right}
+  .bfq{display:block;margin-top:12px;font-size:14px}
+  .bfq input{width:20px;height:20px;accent-color:var(--orange);vertical-align:-4px}
+  #bfBtn{touch-action:none;user-select:none;-webkit-user-select:none;min-height:52px;font-size:16px}
+  #bfBtn.holding{background:var(--orange)}
+  .bfmsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -129,6 +139,21 @@
     </div>
   </section>
 
+
+  <section>
+    <h2>実際は：鍵を総当たりで当ててみる</h2>
+    <p class="lede">ビットコインの鍵は、2の256乗通りの中の1つ。総当たりで探したら、どれくらいかかるか。ボタンを押しっぱなし（連打でも進む）で試してみよう。</p>
+    <div class="card" id="bfCard">
+      <div class="bfbig">試した回数 <b id="bfCount">0</b> 回</div>
+      <div class="bfrow"><span>いまの速さ</span><b id="bfRate">毎秒 1億回</b></div>
+      <div class="bfrow"><span>全体（2の256乗通り）に対して</span><b id="bfPct">0%</b></div>
+      <div class="bfrow"><span>このペースで全部試すと</span><b id="bfYears"></b></div>
+      <label class="bfq"><input type="checkbox" id="bfQuantum"> 量子コンピューターを使う（速さが10の19乗倍）</label>
+      <div class="center" style="margin-top:12px"><button id="bfBtn" type="button">押しっぱなしで総当たり</button></div>
+      <p class="bfmsg" id="bfMsg" aria-live="polite">宇宙の年齢は約138億年。当たる気がしない理由が、桁の大きさでわかる。</p>
+    </div>
+  </section>
+
   <section>
     <h2>実際は：そもそも狙えないアドレスが多い</h2>
     <p class="lede">量子攻撃が狙えるのは公開鍵が表に出ている場合だけ。送金に使っていないアドレスは、公開鍵がハッシュの後ろに隠れている。</p>
@@ -152,6 +177,75 @@
 <nav><a href="../ban/">← 前の誤解：政府が禁止</a><a class="idx" href="../">一覧へ</a><a href="../51/">次の誤解：51%攻撃 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+
+(function(){
+  var TOTAL = Math.pow(2, 256);
+  var SEC_YEAR = 31557600;
+  var attempts = 0, rate = 1e8, held = 0, timer = null;
+  var countEl = document.getElementById('bfCount');
+  var rateEl = document.getElementById('bfRate');
+  var pctEl = document.getElementById('bfPct');
+  var yearsEl = document.getElementById('bfYears');
+  var msgEl = document.getElementById('bfMsg');
+  var btn = document.getElementById('bfBtn');
+  var qbox = document.getElementById('bfQuantum');
+  function fmtSci(x){
+    if (x <= 0) return '0';
+    var e = Math.floor(Math.log10(x));
+    var m = x / Math.pow(10, e);
+    return m.toFixed(1) + '×10<sup>' + e + '</sup>';
+  }
+  function fmtRate(r){
+    if (r < 1e12) return '毎秒 ' + Math.round(r / 1e8) + '億回';
+    return '毎秒 ' + fmtSci(r) + ' 回';
+  }
+  function upd(){
+    countEl.innerHTML = attempts < 1e15 ? Math.floor(attempts).toLocaleString('ja-JP') : fmtSci(attempts);
+    var eff = rate * (qbox.checked ? 1e19 : 1);
+    rateEl.innerHTML = fmtRate(eff);
+    var pct = attempts / TOTAL * 100;
+    pctEl.innerHTML = pct <= 0 ? '0%' : fmtSci(pct) + ' %';
+    var years = TOTAL / eff / SEC_YEAR;
+    yearsEl.innerHTML = '約 ' + fmtSci(years) + ' 年';
+    if (attempts > 1e18) msgEl.textContent = '100京回を超えた。でも全体は10の77乗通り。残り時間は、ほぼ減っていない。';
+    else if (attempts > 1e12) msgEl.textContent = '1兆回を試した。それでも全体の、ほんの入口にも届いていない。';
+    else if (attempts > 1e9) msgEl.textContent = '10億回。速さは上がっていくのに、ゴールは遠いまま。';
+  }
+  function tick(){
+    held += 0.05;
+    if (held >= 1) { held = 0; if (rate < 1e18) rate *= 10; }
+    var eff = rate * (qbox.checked ? 1e19 : 1);
+    attempts += eff * 0.05;
+    upd();
+  }
+  function start(e){
+    if (e) e.preventDefault();
+    if (timer) return;
+    btn.classList.add('holding');
+    attempts += rate * (qbox.checked ? 1e19 : 1) * 0.2;
+    timer = setInterval(tick, 50);
+    upd();
+  }
+  function stop(){
+    btn.classList.remove('holding');
+    if (timer) { clearInterval(timer); timer = null; }
+  }
+  btn.addEventListener('pointerdown', start);
+  window.addEventListener('pointerup', stop);
+  btn.addEventListener('pointerleave', stop);
+  btn.addEventListener('keydown', function(e){ if (e.key === ' ' || e.key === 'Enter') start(); });
+  btn.addEventListener('keyup', stop);
+  qbox.addEventListener('change', function(){
+    msgEl.textContent = qbox.checked
+      ? '量子コンピューターで速さは跳ね上がった。それでも全部試すには、宇宙の年齢では全然足りない。しかも鍵が隠れたアドレスは、そもそも狙えない。'
+      : 'ふつうのコンピューターに戻した。桁の壁は変わらない。';
+    upd();
+  });
+  upd();
+})();
+
+</script>
 <script>
 (function(){
   var data = {title: '量子コンピューターができたら、ビットコインは終わりでしょ？', text: '脅威になるのはずっと先。今の量子コンピューターでは歯が立たず、対策に移行する時間もある', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/quantum/'};
