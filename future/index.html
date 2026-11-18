@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>ビットコインが当たり前になったら、社会はどう変わる？：なんか よくわからんけど こわい ビットコイン</title>
@@ -162,21 +164,29 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">22 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
-<p class="eyebrow"><span>第4層</span>そもそもお金って何？</p>
-<h1>ビットコインが当たり前になったら、<br>社会はどう変わる？</h1>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">22 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第4層</span>そもそもお金って何？</p>
+<h1 data-i18n-html>ビットコインが当たり前になったら、<br>社会はどう変わる？</h1>
 
   <section>
-    <h2>なぜこの問いが浮かぶか</h2>
-    <p class="lede">もしビットコインが特別なものではなく、支払いや貯金のふつうの選択肢になったら。便利になる面と、今の仕組みとぶつかる面の両方がありそうだ。正解はまだ誰にもわからない。</p>
+    <h2 data-i18n>なぜこの問いが浮かぶか</h2>
+    <p class="lede" data-i18n>もしビットコインが特別なものではなく、支払いや貯金のふつうの選択肢になったら。便利になる面と、今の仕組みとぶつかる面の両方がありそうだ。正解はまだ誰にもわからない。</p>
   </section>
 
   <section>
-    <h2>見方は：当たり前になった社会で1日を過ごす</h2>
-    <p class="lede">ビットコインがふつうの選択肢になった社会で、1日を過ごしてみよう。場面ごとに、払い方や持ち方を選んでみよう。</p>
+    <h2 data-i18n>見方は：当たり前になった社会で1日を過ごす</h2>
+    <p class="lede" data-i18n>ビットコインがふつうの選択肢になった社会で、1日を過ごしてみよう。場面ごとに、払い方や持ち方を選んでみよう。</p>
     <div class="card">
       <div id="sceneArea">
         <p class="scenetitle" id="sceneTitle"></p>
@@ -184,35 +194,35 @@
         <p class="sceneout" id="sceneOut" aria-live="polite"></p>
       </div>
       <div id="recapArea" hidden>
-        <p class="scenetitle">あなたの1日は、こんな組み合わせだった</p>
+        <p class="scenetitle" data-i18n>あなたの1日は、こんな組み合わせだった</p>
         <div id="recapList"></div>
-        <p class="sceneout">どの組み合わせが正解ということはない。選べるものが増えるのは、便利さと面倒さがセットで増えることでもある。</p>
-        <div class="gbtns"><button type="button" id="btnDayAgain" class="sub-btn">もう一度、別の選び方で</button></div>
+        <p class="sceneout" data-i18n>どの組み合わせが正解ということはない。選べるものが増えるのは、便利さと面倒さがセットで増えることでもある。</p>
+        <div class="gbtns"><button type="button" id="btnDayAgain" class="sub-btn" data-i18n>もう一度、別の選び方で</button></div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>見方は：変わらないものもある</h2>
-    <p class="lede">ビットコインが広がっても、今の仕組みにしか担えない役割は残ると考えられている。</p>
+    <h2 data-i18n>見方は：変わらないものもある</h2>
+    <p class="lede" data-i18n>ビットコインが広がっても、今の仕組みにしか担えない役割は残ると考えられている。</p>
     <div class="cols">
-      <div class="card vcard"><b style="color:var(--amber)">税金と公共サービス</b><br>税金は国の通貨で納める決まりで、道路や社会保障はその仕組みで回っている。</div>
-      <div class="card vcard"><b style="color:var(--amber)">価格の上下</b><br>ビットコインの価格は動きが大きく、給料や家賃のような毎月の支払いには扱いづらさが残る。</div>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">税金と公共サービス</b><br>税金は国の通貨で納める決まりで、道路や社会保障はその仕組みで回っている。</div>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">価格の上下</b><br>ビットコインの価格は動きが大きく、給料や家賃のような毎月の支払いには扱いづらさが残る。</div>
     </div>
-    <p class="hint">全部が入れ替わるのではなく、並んで使われる形もありうる。</p>
+    <p class="hint" data-i18n>全部が入れ替わるのではなく、並んで使われる形もありうる。</p>
   </section>
 
-<div class="summary"><small>答えはひとつじゃない</small>お金の選択肢が増える社会は、便利な社会だろうか、それとも面倒な社会だろうか。あなたはどう思う？</div>
+<div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>お金の選択肢が増える社会は、便利な社会だろうか、それとも面倒な社会だろうか。あなたはどう思う？</span></div>
 <div class="share">
-  <button class="share-main" type="button">この問いをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この問いをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%8C%E5%BD%93%E3%81%9F%E3%82%8A%E5%89%8D%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%81%E7%A4%BE%E4%BC%9A%E3%81%AF%E3%81%A9%E3%81%86%E5%A4%89%E3%82%8F%E3%82%8B%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/future/" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%8C%E5%BD%93%E3%81%9F%E3%82%8A%E5%89%8D%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F%E3%82%89%E3%80%81%E7%A4%BE%E4%BC%9A%E3%81%AF%E3%81%A9%E3%81%86%E5%A4%89%E3%82%8F%E3%82%8B%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/future/" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../death/">← 前の問い：死んだらどうなる</a><a class="idx" href="../">一覧へ</a><a href="../nation/">次の問い：国が作らないお金 →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../death/" data-i18n>← 前の問い：死んだらどうなる</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../nation/" data-i18n>次の問い：国が作らないお金 →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 (function(){
@@ -230,66 +240,115 @@
       {label: 'ビットコインで持つ', out: '寝る前に、つい値段を確認してしまった。'}
     ]}
   ];
-  var idx = 0, picks = [];
+  var SCENES_EN = [
+    {title: 'Morning: buying coffee at a café', choices: [
+      {label: 'Pay in yen', out: 'As always, you paid without thinking.'},
+      {label: 'Pay in Bitcoin', out: "You paid on the spot. But you did think for a moment about how much that was at this morning's price."}
+    ]},
+    {title: 'Midday: sending money to a friend overseas', choices: [
+      {label: 'Send via a bank', out: 'A fee applied, and it arrived a few days later.'},
+      {label: 'Send in Bitcoin', out: 'It arrived right away. But you triple-checked the destination so as not to get it wrong.'}
+    ]},
+    {title: 'Night: putting away the money left over', choices: [
+      {label: 'Deposit it in a bank', out: 'The amount will not shrink. You can sleep with that peace of mind.'},
+      {label: 'Hold it in Bitcoin', out: 'Before bed, you caught yourself checking the price.'}
+    ]}
+  ];
+  SCENES.forEach(function(s, i){
+    s.titleEn = SCENES_EN[i].title;
+    s.choices.forEach(function(c, j){
+      c.labelEn = SCENES_EN[i].choices[j].label;
+      c.outEn = SCENES_EN[i].choices[j].out;
+    });
+  });
+
+  var idx = 0, picks = [], currentOut = null, done = false;
   var sceneArea = document.getElementById('sceneArea');
   var recapArea = document.getElementById('recapArea');
   var sceneTitle = document.getElementById('sceneTitle');
   var sceneBtns = document.getElementById('sceneBtns');
   var sceneOut = document.getElementById('sceneOut');
   var recapList = document.getElementById('recapList');
-  function showScene(){
-    sceneTitle.textContent = SCENES[idx].title;
-    sceneOut.textContent = '';
+  function renderScene(){
+    var s = SCENES[idx];
+    sceneTitle.textContent = L(s.title, s.titleEn);
+    sceneOut.textContent = currentOut ? L(currentOut.out, currentOut.outEn) : '';
     sceneBtns.innerHTML = '';
-    SCENES[idx].choices.forEach(function(c){
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.textContent = c.label;
-      b.addEventListener('click', function(){ choose(c); });
-      sceneBtns.appendChild(b);
-    });
+    if (currentOut) {
+      var last = idx >= SCENES.length - 1;
+      var nb = document.createElement('button');
+      nb.type = 'button';
+      nb.className = 'primary-btn';
+      nb.textContent = last ? L('1日を終える', 'End the day') : L('次の場面へ', 'Next scene');
+      nb.addEventListener('click', function(){
+        if (last) finish();
+        else { idx++; currentOut = null; renderScene(); }
+      });
+      sceneBtns.appendChild(nb);
+    } else {
+      s.choices.forEach(function(c){
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = L(c.label, c.labelEn);
+        b.addEventListener('click', function(){
+          picks.push({scene: idx, choice: c});
+          currentOut = c;
+          renderScene();
+        });
+        sceneBtns.appendChild(b);
+      });
+    }
   }
-  function choose(c){
-    picks.push({scene: SCENES[idx].title, label: c.label, out: c.out});
-    sceneOut.textContent = c.out;
-    sceneBtns.innerHTML = '';
-    var last = idx >= SCENES.length - 1;
-    var b = document.createElement('button');
-    b.type = 'button';
-    b.className = 'primary-btn';
-    b.textContent = last ? '1日を終える' : '次の場面へ';
-    b.addEventListener('click', function(){
-      if (last) finish();
-      else { idx++; showScene(); }
-    });
-    sceneBtns.appendChild(b);
+  function renderRecap(){
+    recapList.innerHTML = picks.map(function(p){
+      var s = SCENES[p.scene];
+      var chip = window.LANG === 'en' ? s.titleEn.split(':')[0] : s.title.split('：')[0];
+      return '<div class="recaprow"><span class="chip">' + chip + '</span><p><b>' + L(p.choice.label, p.choice.labelEn) + '</b>' + L('：', ': ') + L(p.choice.out, p.choice.outEn) + '</p></div>';
+    }).join('');
   }
   function finish(){
+    done = true;
     sceneArea.hidden = true;
     recapArea.hidden = false;
-    recapList.innerHTML = picks.map(function(p){
-      return '<div class="recaprow"><span class="chip">' + p.scene.split('：')[0] + '</span><p><b>' + p.label + '</b>：' + p.out + '</p></div>';
-    }).join('');
+    renderRecap();
   }
   document.getElementById('btnDayAgain').addEventListener('click', function(){
     idx = 0;
     picks = [];
+    currentOut = null;
+    done = false;
     recapArea.hidden = true;
     sceneArea.hidden = false;
-    showScene();
+    renderScene();
   });
-  showScene();
+  document.addEventListener('langchange', function(){
+    if (done) renderRecap();
+    else renderScene();
+  });
+  renderScene();
 })();
 </script>
 <script>
 (function(){
-  var data = {title: 'ビットコインが当たり前になったら、社会はどう変わる？', text: 'お金の選択肢が増える社会は、便利な社会だろうか、それとも面倒な社会だろうか。あなたはどう思う？', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/future/'};
+  var JA = {title: 'ビットコインが当たり前になったら、社会はどう変わる？', text: 'お金の選択肢が増える社会は、便利な社会だろうか、それとも面倒な社会だろうか。あなたはどう思う？'};
+  var EN = {title: 'If Bitcoin became ordinary, how would society change?', text: 'Would a society with more choices of money be a convenient society, or a troublesome one? What do you think?'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/future/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -299,7 +358,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -307,7 +366,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -317,12 +376,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -341,6 +401,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>

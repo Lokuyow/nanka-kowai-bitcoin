@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>国が作らないお金ってありなの？：なんか よくわからんけど こわい ビットコイン</title>
@@ -171,49 +173,57 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">23 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
-<p class="eyebrow"><span>第4層</span>そもそもお金って何？</p>
-<h1>国が作らないお金って<br>ありなの？</h1>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">23 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第4層</span>そもそもお金って何？</p>
+<h1 data-i18n-html>国が作らないお金って<br>ありなの？</h1>
 
   <section>
-    <h2>なぜこの問いが浮かぶか</h2>
-    <p class="lede">お金は国が作るもの、という感覚は強い。でも歴史をたどると、お金はいつも国の専売ではなかった。国の通貨にしかできないことも確かにある。両方から考えてみたい問いだ。</p>
+    <h2 data-i18n>なぜこの問いが浮かぶか</h2>
+    <p class="lede" data-i18n>お金は国が作るもの、という感覚は強い。でも歴史をたどると、お金はいつも国の専売ではなかった。国の通貨にしかできないことも確かにある。両方から考えてみたい問いだ。</p>
   </section>
 
   <section>
-    <h2>見方は：小さな村で作り手を選ぶ</h2>
-    <p class="lede">小さな村のお金の作り手を、あなたが選ぶとしたら。作り手を選んで、村の3年間を見てみよう。起きることは、試すたびに少しずつ違う。</p>
+    <h2 data-i18n>見方は：小さな村で作り手を選ぶ</h2>
+    <p class="lede" data-i18n>小さな村のお金の作り手を、あなたが選ぶとしたら。作り手を選んで、村の3年間を見てみよう。起きることは、試すたびに少しずつ違う。</p>
     <div class="card">
-      <div class="pickbtns" role="group" aria-label="お金の作り手の選択" id="issuerPick">
-        <button type="button" data-issuer="chief">村長が作る</button>
-        <button type="button" data-issuer="merchant">民間の両替商が作る</button>
-        <button type="button" data-issuer="none">作り手のいないお金</button>
+      <div class="pickbtns" role="group" aria-label="お金の作り手の選択" id="issuerPick" data-i18n-label>
+        <button type="button" data-issuer="chief" data-i18n>村長が作る</button>
+        <button type="button" data-issuer="merchant" data-i18n>民間の両替商が作る</button>
+        <button type="button" data-issuer="none" data-i18n>作り手のいないお金</button>
       </div>
       <div id="yearList"></div>
-      <p class="tally" id="vTally" hidden>よかった <b id="vGood">0</b> 件 ・ 困った <b id="vBad">0</b> 件</p>
+      <p class="tally" id="vTally" hidden><span data-i18n>よかった</span> <b id="vGood">0</b> <span data-i18n>件 ・ 困った</span> <b id="vBad">0</b> <span data-i18n>件</span></p>
       <p class="reflect" id="vReflect" aria-live="polite"></p>
       <div class="gbtns">
-        <button type="button" id="btnYear" hidden>1年進める</button>
-        <button type="button" id="btnRetryIssuer" class="sub-btn" hidden>別の作り手で試す</button>
+        <button type="button" id="btnYear" hidden data-i18n>1年進める</button>
+        <button type="button" id="btnRetryIssuer" class="sub-btn" hidden data-i18n>別の作り手で試す</button>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>見方は：役割の分担という考え方</h2>
-    <p class="lede">国の通貨にしかできないことがある一方で、国でなくても成り立ってきたお金もある。2つを並べると、役割の分担という見方もできる。</p>
+    <h2 data-i18n>見方は：役割の分担という考え方</h2>
+    <p class="lede" data-i18n>国の通貨にしかできないことがある一方で、国でなくても成り立ってきたお金もある。2つを並べると、役割の分担という見方もできる。</p>
     <div class="cols">
-      <div class="card vcard"><b style="color:var(--amber)">国の通貨だからできること</b>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">国の通貨だからできること</b>
         <ul>
           <li>税金を集めて公共サービスを回す</li>
           <li>景気の悪いときに量を調整する</li>
           <li>困ったときに国が支える仕組みとつながっている</li>
         </ul>
       </div>
-      <div class="card vcard"><b style="color:var(--amber)">国でなくても成り立つ見方</b>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">国でなくても成り立つ見方</b>
         <ul>
           <li>国の都合で価値が薄まる心配が少ない</li>
           <li>国境を越えて使える</li>
@@ -221,41 +231,41 @@
         </ul>
       </div>
     </div>
-    <p class="hint">お金の作り手が誰かは、時代ごとに変わってきた。これからも変わらないとは限らない。</p>
+    <p class="hint" data-i18n>お金の作り手が誰かは、時代ごとに変わってきた。これからも変わらないとは限らない。</p>
   </section>
 
-<div class="summary"><small>答えはひとつじゃない</small>お金は国だけのもの、という感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は、代わり同士なのか、並べて使うものなのか。あなたはどう思う？</div>
+<div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>お金は国だけのもの、という感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は、代わり同士なのか、並べて使うものなのか。あなたはどう思う？</span></div>
 <div class="share">
-  <button class="share-main" type="button">この問いをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この問いをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E5%9B%BD%E3%81%8C%E4%BD%9C%E3%82%89%E3%81%AA%E3%81%84%E3%81%8A%E9%87%91%E3%81%A3%E3%81%A6%E3%81%82%E3%82%8A%E3%81%AA%E3%81%AE%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/nation/" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E5%9B%BD%E3%81%8C%E4%BD%9C%E3%82%89%E3%81%AA%E3%81%84%E3%81%8A%E9%87%91%E3%81%A3%E3%81%A6%E3%81%82%E3%82%8A%E3%81%AA%E3%81%AE%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/nation/" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../future/">← 前の問い：当たり前になった社会</a><a class="idx" href="../">一覧へ</a><span></span></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../future/" data-i18n>← 前の問い：当たり前になった社会</a><a class="idx" href="../" data-i18n>一覧へ</a><span></span></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 (function(){
   var ISSUERS = {
-    chief: {reflect: '助けたいときに動ける作り手は心強い。でも、その力は値段の安定と引き換えだった。', years: [
-      {text: '豊作の年。村長は橋を直すため、お金を多めに作って配った。橋は直ったが、物の値段が少しずつ上がり始めた。', tag: 'mix'},
-      [{text: '村長が代替わりした。新村長は「古いお金は使えない」と言い出し、村は大騒ぎになった。', tag: 'bad'},
-       {text: '村長が代替わりしたが、お金の決まりはそのまま引き継がれた。村は落ち着いていた。', tag: 'good'}],
-      {text: '困った家庭が出たとき、村長はお金を配って助けることができた。', tag: 'good'}
+    chief: {reflect: '助けたいときに動ける作り手は心強い。でも、その力は値段の安定と引き換えだった。', reflectEn: 'An issuer who can act when help is needed is reassuring. But that power came in exchange for price stability.', years: [
+      {text: '豊作の年。村長は橋を直すため、お金を多めに作って配った。橋は直ったが、物の値段が少しずつ上がり始めた。', textEn: 'A year of good harvest. The chief made extra money and handed it out to fix the bridge. The bridge got fixed, but prices began to creep up.', tag: 'mix'},
+      [{text: '村長が代替わりした。新村長は「古いお金は使えない」と言い出し、村は大騒ぎになった。', textEn: 'The chief was replaced. The new chief declared the old money unusable, and the village fell into an uproar.', tag: 'bad'},
+       {text: '村長が代替わりしたが、お金の決まりはそのまま引き継がれた。村は落ち着いていた。', textEn: 'The chief was replaced, but the rules of the money carried over as they were. The village stayed calm.', tag: 'good'}],
+      {text: '困った家庭が出たとき、村長はお金を配って助けることができた。', textEn: 'When a family fell on hard times, the chief could hand out money and help them.', tag: 'good'}
     ]},
-    merchant: {reflect: '民間の作り手は便利で、競争も生まれる。でも、信用が崩れたときの受け止め先がない。', years: [
-      {text: '両替商のお金は使いやすく、村の店はどこでも受け取るようになった。', tag: 'good'},
-      [{text: '両替商が夜逃げした。持っていたお金は、ただの紙になった。', tag: 'bad'},
-       {text: '両替商が店をたたむことになったが、次の両替商が引き継いで、お金はそのまま使えた。', tag: 'good'}],
-      {text: '別の両替商も店を出し、競い合って手数料が下がった。', tag: 'good'}
+    merchant: {reflect: '民間の作り手は便利で、競争も生まれる。でも、信用が崩れたときの受け止め先がない。', reflectEn: 'A private issuer is convenient, and competition arises. But when trust collapses, there is no one to catch it.', years: [
+      {text: '両替商のお金は使いやすく、村の店はどこでも受け取るようになった。', textEn: 'The moneychanger\'s money was easy to use, and every shop in the village came to accept it.', tag: 'good'},
+      [{text: '両替商が夜逃げした。持っていたお金は、ただの紙になった。', textEn: 'The moneychanger fled in the night. The money people held became mere paper.', tag: 'bad'},
+       {text: '両替商が店をたたむことになったが、次の両替商が引き継いで、お金はそのまま使えた。', textEn: 'The moneychanger closed shop, but the next moneychanger took over, and the money could be used as-is.', tag: 'good'}],
+      {text: '別の両替商も店を出し、競い合って手数料が下がった。', textEn: 'Another moneychanger opened shop too, and competing fees came down.', tag: 'good'}
     ]},
-    none: {reflect: '誰の気分でも変わらない安心感はある。でも、困ったときに調整できる人もいない。', years: [
-      {text: '最初は不便だったが、量の決まったお金を皆が使うようになった。値段は、作り手の気分では変わらない。', tag: 'mix'},
-      [{text: '隣の村でも同じお金が使えた。村と村の境を越えて、回り始めた。', tag: 'good'},
-       {text: '隣の村では受け取ってもらえず、交換のたびに両替が要った。', tag: 'bad'}],
-      {text: '不作の年が来た。助けたくても、お金の量を増やせる人がいなかった。', tag: 'bad'}
+    none: {reflect: '誰の気分でも変わらない安心感はある。でも、困ったときに調整できる人もいない。', reflectEn: 'There is comfort in money that no one\'s mood can change. But there is also no one who can adjust it in hard times.', years: [
+      {text: '最初は不便だったが、量の決まったお金を皆が使うようになった。値段は、作り手の気分では変わらない。', textEn: 'It was inconvenient at first, but everyone came to use the money with a fixed amount. Its value does not change with an issuer\'s mood.', tag: 'mix'},
+      [{text: '隣の村でも同じお金が使えた。村と村の境を越えて、回り始めた。', textEn: 'The same money could be used in the next village. It began to circulate across village borders.', tag: 'good'},
+       {text: '隣の村では受け取ってもらえず、交換のたびに両替が要った。', textEn: 'The next village would not accept it, so every trade needed an exchange.', tag: 'bad'}],
+      {text: '不作の年が来た。助けたくても、お金の量を増やせる人がいなかった。', textEn: 'A year of poor harvest came. People wanted to help, but there was no one who could increase the amount of money.', tag: 'bad'}
     ]}
   };
   var TAGLABEL = {good: 'よかった', bad: '困った', mix: '両方'};
@@ -273,28 +283,39 @@
       return Array.isArray(y) ? y[Math.floor(Math.random() * y.length)] : y;
     });
   }
+  var TAGLABEL_EN = {good: 'Good', bad: 'Trouble', mix: 'Both'};
+  function makeCard(y, i, animate){
+    var div = document.createElement('div');
+    div.className = 'evcard' + (animate ? ' rise' : '') + ' ' + y.tag;
+    div.innerHTML = '<p class="et">' + L((i + 1) + '年目', 'Year ' + (i + 1)) +
+      '<span class="tag ' + y.tag + '">' + L(TAGLABEL[y.tag], TAGLABEL_EN[y.tag]) + '</span></p>' +
+      '<p class="eo">' + L(y.text, y.textEn) + '</p>';
+    return div;
+  }
   function reveal(){
     var y = plan.years[idx];
     if (y.tag === 'good' || y.tag === 'mix') good++;
     if (y.tag === 'bad' || y.tag === 'mix') bad++;
-    var div = document.createElement('div');
-    div.className = 'evcard rise ' + y.tag;
-    div.innerHTML = '<p class="et">' + (idx + 1) + '年目' +
-      '<span class="tag ' + y.tag + '">' + TAGLABEL[y.tag] + '</span></p>' +
-      '<p class="eo">' + y.text + '</p>';
-    yearList.appendChild(div);
+    yearList.appendChild(makeCard(y, idx, true));
     vGood.textContent = good;
     vBad.textContent = bad;
     idx++;
     if (idx >= plan.years.length) {
-      vReflect.textContent = plan.reflect;
+      vReflect.textContent = L(plan.reflect, plan.reflectEn);
       btnYear.hidden = true;
       btnRetryIssuer.hidden = false;
     }
   }
+  function renderYears(){
+    if (!plan) return;
+    yearList.innerHTML = '';
+    for (var i = 0; i < idx; i++) yearList.appendChild(makeCard(plan.years[i], i, false));
+    if (idx >= plan.years.length) vReflect.textContent = L(plan.reflect, plan.reflectEn);
+  }
+  document.addEventListener('langchange', renderYears);
   function start(key){
     var src = ISSUERS[key];
-    plan = {reflect: src.reflect, years: resolve(src.years)};
+    plan = {reflect: src.reflect, reflectEn: src.reflectEn, years: resolve(src.years)};
     idx = 0; good = 0; bad = 0;
     yearList.innerHTML = '';
     vReflect.textContent = '';
@@ -325,13 +346,25 @@
 </script>
 <script>
 (function(){
-  var data = {title: '国が作らないお金ってありなの？', text: 'お金は国だけのもの、という感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は、代わり同士なのか、並べて使うものなのか。あなたはどう思う？', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/nation/'};
+  var JA = {title: '国が作らないお金ってありなの？', text: 'お金は国だけのもの、という感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は、代わり同士なのか、並べて使うものなのか。あなたはどう思う？'};
+  var EN = {title: 'Can money exist that no country makes?', text: 'The feeling that money belongs only to countries may itself be a modern invention. Are a national currency and money outside countries substitutes, or things to use side by side? What do you think?'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/nation/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -341,7 +374,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -349,7 +382,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -359,12 +392,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -383,6 +417,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>

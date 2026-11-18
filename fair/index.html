@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>早く持った人が得をするのは、ずるくない？：なんか よくわからんけど こわい ビットコイン</title>
@@ -168,43 +170,51 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">20 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
-<p class="eyebrow"><span>第4層</span>そもそもお金って何？</p>
-<h1>早く持った人が得をするのは、<br>ずるくない？</h1>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">20 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第4層</span>そもそもお金って何？</p>
+<h1 data-i18n-html>早く持った人が得をするのは、<br>ずるくない？</h1>
 
   <section>
-    <h2>なぜこの問いが浮かぶか</h2>
-    <p class="lede">昔はほとんど無価値だったものに今は大きな値段がついていて、早く持っていた人が利益を得た。あとから来た人には「先にいただけ」に見える。一方で当時は誰でも手に入れられたし、暴落で価値が消えるかもしれない時期を引き受けてもいた。</p>
+    <h2 data-i18n>なぜこの問いが浮かぶか</h2>
+    <p class="lede" data-i18n>昔はほとんど無価値だったものに今は大きな値段がついていて、早く持っていた人が利益を得た。あとから来た人には「先にいただけ」に見える。一方で当時は誰でも手に入れられたし、暴落で価値が消えるかもしれない時期を引き受けてもいた。</p>
   </section>
 
   <section>
-    <h2>見方は：入口はずっと開いていた</h2>
-    <p class="lede">ビットコインは会員制でも招待制でもなく、始まりから公開されていた。時間の流れで見ると、参加の入口は閉まったことがない。</p>
+    <h2 data-i18n>見方は：入口はずっと開いていた</h2>
+    <p class="lede" data-i18n>ビットコインは会員制でも招待制でもなく、始まりから公開されていた。時間の流れで見ると、参加の入口は閉まったことがない。</p>
     <div class="card">
       <div class="tl3">
-        <div class="pt"><span class="yr">2009年</span>誰でも掘れたし買えた。ただし世間の評価は「怪しいおもちゃ」だった</div>
-        <div class="pt"><span class="yr">2010年代</span>大きく下げるたびに多くの人が離れた。残ること自体がリスクだった</div>
-        <div class="pt"><span class="yr">今</span>取引所の口座があれば誰でも少額から買える。入口は今も開いている</div>
+        <div class="pt" data-i18n-html><span class="yr">2009年</span>誰でも掘れたし買えた。ただし世間の評価は「怪しいおもちゃ」だった</div>
+        <div class="pt" data-i18n-html><span class="yr">2010年代</span>大きく下げるたびに多くの人が離れた。残ること自体がリスクだった</div>
+        <div class="pt" data-i18n-html><span class="yr">今</span>取引所の口座があれば誰でも少額から買える。入口は今も開いている</div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2>見方は：「あの年に買っていたら」を体験する</h2>
-    <p class="lede">早く買った人の結果だけを見ると、簡単に勝てたように見える。では、自分がその年に買って、その後の暴落を全部やり過ごせるだろうか。買う年を選んで、売るか持ち続けるかを決めながら進んでみよう。</p>
+    <h2 data-i18n>見方は：「あの年に買っていたら」を体験する</h2>
+    <p class="lede" data-i18n>早く買った人の結果だけを見ると、簡単に勝てたように見える。では、自分がその年に買って、その後の暴落を全部やり過ごせるだろうか。買う年を選んで、売るか持ち続けるかを決めながら進んでみよう。</p>
     <div class="card">
-      <div class="tlbtns" role="group" aria-label="買う年の選択" id="yearPick">
-        <button type="button" data-year="y2011">2011年に買う</button>
-        <button type="button" data-year="y2015">2015年に買う</button>
-        <button type="button" data-year="y2019">2019年に買う</button>
-        <button type="button" data-year="y2023">2023年に買う</button>
+      <div class="tlbtns" role="group" aria-label="買う年の選択" id="yearPick" data-i18n-label>
+        <button type="button" data-year="y2011" data-i18n>2011年に買う</button>
+        <button type="button" data-year="y2015" data-i18n>2015年に買う</button>
+        <button type="button" data-year="y2019" data-i18n>2019年に買う</button>
+        <button type="button" data-year="y2023" data-i18n>2023年に買う</button>
       </div>
       <div id="simArea" hidden>
-        <div class="simval">評価額 <b id="simVal">10万円</b></div>
-        <svg id="simChart" viewBox="0 0 320 140" width="100%" role="img" aria-label="評価額の動きのグラフ">
+        <div class="simval"><span data-i18n>評価額</span> <b id="simVal">10万円</b></div>
+        <svg id="simChart" viewBox="0 0 320 140" width="100%" role="img" aria-label="評価額の動きのグラフ" data-i18n-label>
           <line id="baseLine" class="basedash" x1="8" x2="312" y1="60" y2="60" stroke-dasharray="4 4"/>
           <polyline id="simLine" class="chartline" points=""/>
           <g id="simDots"></g>
@@ -212,26 +222,26 @@
         <p class="simhead" id="simHead" aria-live="polite"></p>
         <p class="simmsg" id="simMsg" aria-live="polite"></p>
         <div class="gbtns">
-          <button type="button" id="btnSell" class="sub-btn" hidden>売る</button>
-          <button type="button" id="btnHold" hidden>持ち続ける</button>
-          <button type="button" id="btnReset" class="sub-btn" hidden>別の年で試す</button>
+          <button type="button" id="btnSell" class="sub-btn" hidden data-i18n>売る</button>
+          <button type="button" id="btnHold" hidden data-i18n>持ち続ける</button>
+          <button type="button" id="btnReset" class="sub-btn" hidden data-i18n>別の年で試す</button>
         </div>
       </div>
-      <p class="hint">値段の動きはおおまかなイメージです。実際の値動きとは異なります。</p>
+      <p class="hint" data-i18n>値段の動きはおおまかなイメージです。実際の値動きとは異なります。</p>
     </div>
   </section>
 
-<div class="summary"><small>答えはひとつじゃない</small>不公平に見えるのは結果だけを見たときで、同じ年月をリスクの側から見ると景色が変わる。あなたはどちらで見る？</div>
+<div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>不公平に見えるのは結果だけを見たときで、同じ年月をリスクの側から見ると景色が変わる。あなたはどちらで見る？</span></div>
 <div class="share">
-  <button class="share-main" type="button">この問いをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この問いをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E6%97%A9%E3%81%8F%E6%8C%81%E3%81%A3%E3%81%9F%E4%BA%BA%E3%81%8C%E5%BE%97%E3%82%92%E3%81%99%E3%82%8B%E3%81%AE%E3%81%AF%E3%80%81%E3%81%9A%E3%82%8B%E3%81%8F%E3%81%AA%E3%81%84%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/fair/" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E6%97%A9%E3%81%8F%E6%8C%81%E3%81%A3%E3%81%9F%E4%BA%BA%E3%81%8C%E5%BE%97%E3%82%92%E3%81%99%E3%82%8B%E3%81%AE%E3%81%AF%E3%80%81%E3%81%9A%E3%82%8B%E3%81%8F%E3%81%AA%E3%81%84%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/fair/" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../freedom/">← 前の問い：自由か、こわいか</a><a class="idx" href="../">一覧へ</a><a href="../death/">次の問い：死んだらどうなる →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../freedom/" data-i18n>← 前の問い：自由か、こわいか</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../death/" data-i18n>次の問い：死んだらどうなる →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 (function(){
@@ -254,7 +264,18 @@
       {h: '2025年：最高値から3割ほど下がった', v: 38, peak: 55}
     ]}
   };
-  var plan = null, idx = 0, pts = [];
+  var HEADS_EN = {
+    y2011: ['2011: a big drop — "just as shady as we thought", people said',
+            '2014: an exchange collapsed, down 80% from the peak',
+            '2018: the mania cooled, down 80% again',
+            '2022: a major firm collapsed, another big drop'],
+    y2015: ['2018: the mania cooled, down 80%',
+            '2022: a major firm collapsed, another big drop'],
+    y2019: ['2020: in the global turmoil, it briefly halved',
+            '2022: a major firm collapsed, another big drop'],
+    y2023: ['2025: down about 30% from the peak']
+  };
+  var plan = null, planKey = null, idx = 0, pts = [], phase = 'crisis';
   var simArea = document.getElementById('simArea');
   var simVal = document.getElementById('simVal');
   var simHead = document.getElementById('simHead');
@@ -268,6 +289,7 @@
   var yearBtns = document.querySelectorAll('#yearPick button');
   function fmt(v){
     var s = (v % 1 === 0) ? String(Math.round(v)) : v.toFixed(1);
+    if (window.LANG === 'en') return '¥' + Math.round(v * 10000).toLocaleString('en-US');
     return Number(s).toLocaleString('ja-JP') + '万円';
   }
   function yPix(v){
@@ -289,19 +311,35 @@
     baseLine.setAttribute('y1', by);
     baseLine.setAttribute('y2', by);
   }
+  function renderSim(){
+    if (!plan) return;
+    draw();
+    var ev = plan.events[Math.min(idx, plan.events.length - 1)];
+    if (phase === 'done') {
+      simVal.textContent = fmt(plan.final);
+      simHead.textContent = L('現在', 'Now');
+      simMsg.textContent = L('最後まで持ち続けた。結果は大きい。でも途中の暴落で手放していたら、この結果はなかった。', 'You held to the very end. The result is big. But if you had let go in a crash along the way, this result would not exist.');
+    } else if (phase === 'sold') {
+      simVal.textContent = fmt(ev.v);
+      simHead.textContent = L(ev.h, HEADS_EN[planKey][idx]);
+      simMsg.textContent = L('ここで手放した。早く買うことは、暴落のたびに「売るかどうか」を迫られ続けることでもあった。', 'You let go here. Buying early also meant being pressed, at every crash, with the question of whether to sell.');
+    } else {
+      simVal.textContent = fmt(ev.v);
+      simHead.textContent = L(ev.h, HEADS_EN[planKey][idx]);
+      simMsg.textContent = ev.peak ? L('最高値では' + fmt(ev.peak) + 'まで育っていた。売るか、持ち続けるか。', 'At the peak it had grown to ' + fmt(ev.peak) + '. Sell, or keep holding?') : L('売るか、持ち続けるか。', 'Sell, or keep holding?');
+    }
+  }
   function crisis(){
     var ev = plan.events[idx];
     pts.push(ev.v);
-    simVal.textContent = fmt(ev.v);
-    simHead.textContent = ev.h;
-    simMsg.textContent = ev.peak ? ('最高値では' + fmt(ev.peak) + 'まで育っていた。売るか、持ち続けるか。') : '売るか、持ち続けるか。';
+    phase = 'crisis';
     btnSell.hidden = false;
     btnHold.hidden = false;
     btnReset.hidden = true;
-    draw();
+    renderSim();
   }
   function start(key){
-    plan = PLANS[key];
+    plan = PLANS[key]; planKey = key;
     idx = 0;
     pts = [plan.start];
     simArea.hidden = false;
@@ -310,13 +348,11 @@
   }
   function finish(){
     pts.push(plan.final);
-    simVal.textContent = fmt(plan.final);
-    simHead.textContent = '現在';
-    simMsg.textContent = '最後まで持ち続けた。結果は大きい。でも途中の暴落で手放していたら、この結果はなかった。';
+    phase = 'done';
     btnSell.hidden = true;
     btnHold.hidden = true;
     btnReset.hidden = false;
-    draw();
+    renderSim();
   }
   yearBtns.forEach(function(b){
     b.addEventListener('click', function(){ start(b.getAttribute('data-year')); });
@@ -326,7 +362,8 @@
     if (idx >= plan.events.length) finish(); else crisis();
   });
   btnSell.addEventListener('click', function(){
-    simMsg.textContent = 'ここで手放した。早く買うことは、暴落のたびに「売るかどうか」を迫られ続けることでもあった。';
+    phase = 'sold';
+    renderSim();
     btnSell.hidden = true;
     btnHold.hidden = true;
     btnReset.hidden = false;
@@ -335,17 +372,30 @@
     simArea.hidden = true;
     yearBtns.forEach(function(b){ b.classList.remove('on'); });
   });
+  document.addEventListener('langchange', function(){ if (plan) renderSim(); });
 })();
 </script>
 <script>
 (function(){
-  var data = {title: '早く持った人が得をするのは、ずるくない？', text: '不公平に見えるのは結果だけを見たときで、同じ年月をリスクの側から見ると景色が変わる。あなたはどちらで見る？', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/fair/'};
+  var JA = {title: '早く持った人が得をするのは、ずるくない？', text: '不公平に見えるのは結果だけを見たときで、同じ年月をリスクの側から見ると景色が変わる。あなたはどちらで見る？'};
+  var EN = {title: 'Isn\'t it cheating when early holders profit?', text: 'It looks unfair when you see only the result; the same years look different from the side of risk. Which way do you see it?'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/fair/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -355,7 +405,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -363,7 +413,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -373,12 +423,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -397,6 +448,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>

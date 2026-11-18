@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
+<script src="../i18n.js"></script>
 <meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>管理する人がいないお金は自由？ それともこわい？：なんか よくわからんけど こわい ビットコイン</title>
@@ -168,50 +170,58 @@
   :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
   :root[data-theme="dark"] .dot{fill:#2b211a}
 </style>
+<style>
+  .lang-toggle{flex:0 0 auto;height:38px;padding:0 12px;border-radius:999px;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
+  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+  :root[data-lang="ja"] .lang-toggle .lg-ja,
+  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">19 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
-<p class="eyebrow"><span>第4層</span>そもそもお金って何？</p>
-<h1>管理する人がいないお金は<br>自由？ それともこわい？</h1>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">19 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第4層</span>そもそもお金って何？</p>
+<h1 data-i18n-html>管理する人がいないお金は<br>自由？ それともこわい？</h1>
 
   <section>
-    <h2>なぜこの問いが浮かぶか</h2>
-    <p class="lede">銀行の口座は凍結されることがあるし、送金が途中で止まることもある。管理者のいないビットコインにはその心配がない。代わりに、困ったときに頼れる相手もいない。どちらを重く見るかで答えが変わる問いだ。</p>
+    <h2 data-i18n>なぜこの問いが浮かぶか</h2>
+    <p class="lede" data-i18n>銀行の口座は凍結されることがあるし、送金が途中で止まることもある。管理者のいないビットコインにはその心配がない。代わりに、困ったときに頼れる相手もいない。どちらを重く見るかで答えが変わる問いだ。</p>
   </section>
 
   <section>
-    <h2>見方は：1週間、その身になって試す</h2>
-    <p class="lede">管理者のいる銀行と、管理者のいないビットコイン。どちらで暮らすと何が起きるか、1週間の出来事で試してみよう。出来事は、試すたびに違う顔ぶれでやってくる。</p>
+    <h2 data-i18n>見方は：1週間、その身になって試す</h2>
+    <p class="lede" data-i18n>管理者のいる銀行と、管理者のいないビットコイン。どちらで暮らすと何が起きるか、1週間の出来事で試してみよう。出来事は、試すたびに違う顔ぶれでやってくる。</p>
     <div class="card">
-      <div class="pickbtns" role="group" aria-label="暮らすお金の選択" id="sysPick">
-        <button type="button" data-sys="bank">銀行で暮らす</button>
-        <button type="button" data-sys="btc">ビットコインで暮らす</button>
+      <div class="pickbtns" role="group" aria-label="暮らすお金の選択" id="sysPick" data-i18n-label>
+        <button type="button" data-sys="bank" data-i18n>銀行で暮らす</button>
+        <button type="button" data-sys="btc" data-i18n>ビットコインで暮らす</button>
       </div>
       <p class="sysline" id="sysLine">まず、どちらのお金で暮らすか選んでみよう。</p>
       <div id="evList"></div>
-      <p class="tally" id="gTally" hidden>助かった <b id="tGood">0</b> 回 ・ 困った <b id="tBad">0</b> 回</p>
+      <p class="tally" id="gTally" hidden><span data-i18n>助かった</span> <b id="tGood">0</b> <span data-i18n>回 ・ 困った</span> <b id="tBad">0</b> <span data-i18n>回</span></p>
       <p class="gmsg" id="gMsg" aria-live="polite"></p>
       <div class="gbtns">
-        <button type="button" id="btnDay" hidden>次の日へ進む</button>
-        <button type="button" id="btnOther" class="sub-btn" hidden>もう一方でも試す</button>
-        <button type="button" id="btnAgain" class="sub-btn" hidden>もう一度ためす</button>
+        <button type="button" id="btnDay" hidden data-i18n>次の日へ進む</button>
+        <button type="button" id="btnOther" class="sub-btn" hidden data-i18n>もう一方でも試す</button>
+        <button type="button" id="btnAgain" class="sub-btn" hidden data-i18n>もう一度ためす</button>
       </div>
-      <p class="hint">銀行には窓口や補償の仕組みがあり、それ自体にも良さがある。どちらか一方だけが正しいという話ではない。</p>
+      <p class="hint" data-i18n>銀行には窓口や補償の仕組みがあり、それ自体にも良さがある。どちらか一方だけが正しいという話ではない。</p>
     </div>
   </section>
 
-<div class="summary"><small>答えはひとつじゃない</small>誰にも邪魔されないことは、誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？</div>
+<div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>誰にも邪魔されないことは、誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？</span></div>
 <div class="share">
-  <button class="share-main" type="button">この問いをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この問いをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B%E4%BA%BA%E3%81%8C%E3%81%84%E3%81%AA%E3%81%84%E3%81%8A%E9%87%91%E3%81%AF%E8%87%AA%E7%94%B1%EF%BC%9F%20%E3%81%9D%E3%82%8C%E3%81%A8%E3%82%82%E3%81%93%E3%82%8F%E3%81%84%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/freedom/" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E7%AE%A1%E7%90%86%E3%81%99%E3%82%8B%E4%BA%BA%E3%81%8C%E3%81%84%E3%81%AA%E3%81%84%E3%81%8A%E9%87%91%E3%81%AF%E8%87%AA%E7%94%B1%EF%BC%9F%20%E3%81%9D%E3%82%8C%E3%81%A8%E3%82%82%E3%81%93%E3%82%8F%E3%81%84%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/freedom/" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../money/">← 前の問い：お金とは何か</a><a class="idx" href="../">一覧へ</a><a href="../fair/">次の問い：先行者はずるいか →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../money/" data-i18n>← 前の問い：お金とは何か</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../fair/" data-i18n>次の問い：先行者はずるいか →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 (function(){
@@ -235,6 +245,32 @@
      bank: {o: 'その国の口座を作り直す手続きが要った。', good: false},
      btc: {o: '国が変わっても、同じものをそのまま使えた。', good: true}}
   ];
+  var EVENTS_EN = [
+    {t: 'You mistyped one digit of the destination',
+     bank: 'You consulted the counter, and the transfer could be cancelled.',
+     btc: 'The record of sending cannot be rewritten. The money did not come back.'},
+    {t: 'Saturday night — you want to send money to family overseas',
+     bank: 'The bank was closed, so you had to wait until Monday.',
+     btc: 'You sent it on the spot, and it arrived right away.'},
+    {t: 'Your account was suddenly frozen',
+     bank: 'You had no choice but to ask why and wait for it to be lifted.',
+     btc: 'There is no manager to freeze it, so you could keep using it as-is.'},
+    {t: 'You lost the note with your key',
+     bank: 'At the counter you verified your identity and got it reissued.',
+     btc: 'No one can reissue it for you. You could no longer touch what was inside.'},
+    {t: 'You sent money to a suspicious site',
+     bank: 'It was stopped as a suspicious transfer — you were saved.',
+     btc: 'It was final the moment you sent it, and could not be recovered.'},
+    {t: 'You want to use money in the country you moved to',
+     bank: 'You had to go through the procedure of opening an account in that country.',
+     btc: 'Even in a different country, you could use the same thing as-is.'}
+  ];
+  EVENTS.forEach(function(ev, i){
+    ev.tEn = EVENTS_EN[i].t;
+    ev.bank.oEn = EVENTS_EN[i].bank;
+    ev.btc.oEn = EVENTS_EN[i].btc;
+  });
+
   var DAYS = 4;
   var sys = null, deck = [], step = 0, good = 0, bad = 0;
   var evList = document.getElementById('evList');
@@ -256,16 +292,35 @@
     return a;
   }
   function setTally(){ tGood.textContent = good; tBad.textContent = bad; }
+  var msgPair = ['', ''];
+  function renderSysLine(){
+    if (!sys) { sysLine.textContent = L('まず、どちらのお金で暮らすか選んでみよう。', 'First, choose which money to live with.'); return; }
+    sysLine.innerHTML = (sys === 'bank' ? '<b>' + L('銀行', 'The bank') + '</b>' : '<b>' + L('ビットコイン', 'Bitcoin') + '</b>') + L('で暮らす1週間が始まる。', ' — your week of living with it begins.');
+  }
+  function buildCard(ev, idx, animate){
+    var r = ev[sys];
+    var div = document.createElement('div');
+    div.className = 'evcard' + (animate ? ' rise' : '') + ' ' + (r.good ? 'good' : 'bad');
+    div.innerHTML = '<p class="et">' + L((idx + 1) + '日目：', 'Day ' + (idx + 1) + ': ') + L(ev.t, ev.tEn) +
+      '<span class="tag ' + (r.good ? 'good' : 'bad') + '">' + (r.good ? L('助かった', 'Saved') : L('困った', 'In trouble')) + '</span></p>' +
+      '<p class="eo">' + L(r.o, r.oEn) + '</p>';
+    return div;
+  }
+  function renderList(){
+    evList.innerHTML = '';
+    for (var i = 0; i < step; i++) evList.appendChild(buildCard(deck[i], i, false));
+  }
+
   function start(s){
     sys = s;
     deck = shuffle(EVENTS).slice(0, DAYS);
     step = 0; good = 0; bad = 0;
     evList.innerHTML = '';
-    gMsg.textContent = '';
+    gMsg.textContent = ''; msgPair = ['', ''];
     gTally.hidden = false;
     setTally();
     sysBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-sys') === s); });
-    sysLine.innerHTML = (s === 'bank' ? '<b>銀行</b>' : '<b>ビットコイン</b>') + 'で暮らす1週間が始まる。';
+    renderSysLine();
     btnDay.hidden = false;
     btnOther.hidden = true;
     btnAgain.hidden = true;
@@ -277,12 +332,7 @@
     var r = ev[sys];
     step++;
     if (r.good) good++; else bad++;
-    var div = document.createElement('div');
-    div.className = 'evcard rise ' + (r.good ? 'good' : 'bad');
-    div.innerHTML = '<p class="et">' + step + '日目：' + ev.t +
-      '<span class="tag ' + (r.good ? 'good' : 'bad') + '">' + (r.good ? '助かった' : '困った') + '</span></p>' +
-      '<p class="eo">' + r.o + '</p>';
-    evList.appendChild(div);
+    evList.appendChild(buildCard(ev, step - 1, true));
     setTally();
     if (step >= DAYS) finish();
   }
@@ -290,7 +340,8 @@
     btnDay.hidden = true;
     btnOther.hidden = false;
     btnAgain.hidden = false;
-    gMsg.textContent = 'どちらの暮らしにも、助かる日と困る日があった。違うのは、困ったときに頼れる相手がいるかどうかだ。';
+    msgPair = ['どちらの暮らしにも、助かる日と困る日があった。違うのは、困ったときに頼れる相手がいるかどうかだ。', 'Both lives had days that saved you and days that troubled you. The difference is whether there is someone to rely on when trouble comes.'];
+    gMsg.textContent = L(msgPair[0], msgPair[1]);
   }
   sysBtns.forEach(function(b){
     b.addEventListener('click', function(){ start(b.getAttribute('data-sys')); });
@@ -298,17 +349,35 @@
   btnDay.addEventListener('click', nextDay);
   btnOther.addEventListener('click', function(){ start(sys === 'bank' ? 'btc' : 'bank'); });
   btnAgain.addEventListener('click', function(){ start(sys); });
+  document.addEventListener('langchange', function(){
+    renderSysLine();
+    if (sys) renderList();
+    gMsg.textContent = L(msgPair[0], msgPair[1]);
+  });
+  renderSysLine();
 })();
 </script>
 <script>
 (function(){
-  var data = {title: '管理する人がいないお金は自由？ それともこわい？', text: '誰にも邪魔されないことは、誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/freedom/'};
+  var JA = {title: '管理する人がいないお金は自由？ それともこわい？', text: '誰にも邪魔されないことは、誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？'};
+  var EN = {title: 'Money with no one in charge — is it freedom? Or is it scary?', text: 'Being disturbed by no one is the flip side of being helped by no one. Which weighs more for you?'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/freedom/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -318,7 +387,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -326,7 +395,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
@@ -336,12 +405,13 @@
 
 <script>
 (function(){
+  var L = window.L || function (ja) { return ja; };
   var btn = document.querySelector('.theme-toggle');
   if (!btn) return;
   var root = document.documentElement;
   function sync(){
     var dark = root.getAttribute('data-theme') === 'dark';
-    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-label', dark ? L('ライトモードに切り替える', 'Switch to light mode') : L('ダークモードに切り替える', 'Switch to dark mode'));
     btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
   }
   btn.addEventListener('click', function(){
@@ -360,6 +430,7 @@
     }
   }
   if (mq.addEventListener) mq.addEventListener('change', onChange);
+  document.addEventListener('langchange', sync);
   sync();
 })();
 </script>
