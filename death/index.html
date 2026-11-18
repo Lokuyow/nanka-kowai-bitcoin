@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>自分が死んだら、ビットコインはどうなる？：なんか よくわからんけど こわい ビットコイン</title>
+<meta name="description" content="自分のものにできる強さは、引き継げなさと表裏一体だ。あなたなら、鍵を誰にどう残す？">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="なんか よくわからんけど こわい ビットコイン">
+<meta property="og:title" content="自分が死んだら、ビットコインはどうなる？">
+<meta property="og:description" content="自分のものにできる強さは、引き継げなさと表裏一体だ。あなたなら、鍵を誰にどう残す？">
+<meta property="og:url" content="https://lokuyow.github.io/nanka-kowai-bitcoin/death/">
+<meta property="og:image" content="https://lokuyow.github.io/nanka-kowai-bitcoin/death/ogp.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="自分が死んだら、ビットコインはどうなる？">
+<meta name="twitter:description" content="自分のものにできる強さは、引き継げなさと表裏一体だ。あなたなら、鍵を誰にどう残す？">
+<style>
+  :root{
+    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
+    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header b{color:var(--ink)}
+  header a{text-decoration:none}
+  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
+  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
+    padding:2px 10px;font-size:12px;margin-right:6px}
+  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
+  .answer{border-left:5px solid var(--orange);background:var(--card);
+    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
+    font-size:19px;font-weight:700;line-height:1.5}
+  section{margin-top:44px}
+  h2{font-size:15px;margin:0 0 4px}
+  h2::before{content:"";display:inline-block;width:10px;height:10px;
+    background:var(--orange);border-radius:2px;margin-right:8px}
+  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:20px 16px;margin-top:12px}
+  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
+  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
+    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+  button:active{transform:scale(.97)}
+  .center{text-align:center}
+  .summary{margin-top:44px;background:#fff3e0;color:var(--ink);border:1px solid #f0d7ae;border-radius:16px;
+    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
+  .summary small{display:block;font-size:12px;color:#c77400;font-weight:400;margin-bottom:6px}
+  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
+    gap:8px;font-size:14px}
+  nav a{color:var(--ink)}
+  nav .idx{color:var(--sub);white-space:nowrap}
+  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
+  .bridge a{color:var(--orange);font-weight:700}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:520px){.cols{grid-template-columns:1fr}}
+  .tbl{width:100%;border-collapse:collapse;font-size:14px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:#fdf3e3;font-weight:700}
+  .ok{color:var(--green);font-weight:700}
+  .no{color:var(--red);font-weight:700}
+  .mid{color:#c77400;font-weight:700}
+  .rise{animation:rise .8s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
+    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
+    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
+  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
+</style>
+</head>
+<style>
+  .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+  .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
+  .vcard{font-size:14.5px;transition:opacity .35s ease}
+  .vcard b{font-size:16px}
+  .vcard ul{margin:8px 0 0;padding-left:1.25em}
+  .vcard li{margin:5px 0}
+  .dim{opacity:.35}
+  .fstep{background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:10px 14px;text-align:center;font-weight:700;font-size:15px}
+  .fstep.endA{background:#fbeaea;border-color:#eec9c9}
+  .fstep.endB{background:#e9f4e9;border-color:#c4dec4}
+  .farr{text-align:center;color:var(--orange);font-weight:900;line-height:1.3}
+  .share{margin-top:20px;text-align:center}
+  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-alt[hidden]{display:none}
+  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
+  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
+  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
+</style>
+<body>
+<div class="wrap">
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>21 / 23</span></header>
+<p class="eyebrow"><span>第4層</span>そもそも、お金って何？</p>
+<h1>自分が死んだら、<br>ビットコインはどうなる？</h1>
+
+  <section>
+    <h2>なぜこの問いが浮かぶか</h2>
+    <p class="lede">銀行の預金なら、亡くなったあとに家族が手続きをして引き継げる。ビットコインには窓口がなく、鍵を知っているのは本人だけということが多い。本人に何かあったとき、そのコインはどうなってしまうのか。</p>
+  </section>
+
+  <section>
+    <h2>見方は：鍵の残し方で結末が分かれる</h2>
+    <p class="lede">行き先を決めるのは値段でも制度でもない。鍵をどう残したかだ。ボタンで2つの場合を切り替えてみよう。</p>
+    <div class="card">
+      <div class="tlbtns" role="group" aria-label="鍵の残し方の場合の切り替え">
+        <button type="button" data-flow="none" class="on">鍵を渡していない</button>
+        <button type="button" data-flow="ready">渡し方を用意した</button>
+      </div>
+      <div id="flowNone" style="margin-top:16px">
+        <div class="fstep">鍵を知っているのは本人だけ</div>
+        <div class="farr">↓</div>
+        <div class="fstep">本人が亡くなる</div>
+        <div class="farr">↓</div>
+        <div class="fstep">誰も鍵にたどり着けない</div>
+        <div class="farr">↓</div>
+        <div class="fstep endA">台帳に残ったまま、二度と動かせない</div>
+      </div>
+      <div id="flowReady" style="margin-top:16px;display:none">
+        <div class="fstep">家族に鍵の在りかを伝えてある</div>
+        <div class="farr">↓</div>
+        <div class="fstep">本人が亡くなる</div>
+        <div class="farr">↓</div>
+        <div class="fstep">家族が鍵にたどり着く</div>
+        <div class="farr">↓</div>
+        <div class="fstep endB">引き継いで使うことができる</div>
+      </div>
+      <p class="tlcap" id="flowCap">盗まれる心配がない代わりに、残したはずの資産が誰の手にも渡らない。</p>
+      <p class="hint">鍵の紛失で二度と動かせなくなったビットコインは、かなりの量にのぼると見られている。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>見方は：欠点か強さの裏側か</h2>
+    <p class="lede">引き継げなさは、欠点と見ることも、強さの裏側と見ることもできる。</p>
+    <div class="cols">
+      <div class="card vcard"><b style="color:var(--red)">欠点と見る</b><br>窓口も再発行もないのは不便で、家族に何も残せないのは困る。</div>
+      <div class="card vcard"><b style="color:#c77400">強さと見る</b><br>本人以外に開けられないからこそ、誰にも奪われない。引き継げなさは、その裏側だ。</div>
+    </div>
+  </section>
+
+<div class="summary"><small>答えはひとつじゃない</small>自分のものにできる強さは、引き継げなさと表裏一体だ。あなたなら、鍵を誰にどう残す？</div>
+<div class="share">
+  <button class="share-main" type="button">この問いをシェアする</button>
+  <div class="share-alt" hidden>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E8%87%AA%E5%88%86%E3%81%8C%E6%AD%BB%E3%82%93%E3%81%A0%E3%82%89%E3%80%81%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8B%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/death/" target="_blank" rel="noopener">Xでポストする</a>
+    <button class="share-copy" type="button">リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden>リンクをコピーしました</p>
+</div>
+<nav><a href="../fair/">← 前の問い：先行者はずるいか</a><a class="idx" href="../">一覧へ</a><a href="../future/">次の問い：当たり前になった社会 →</a></nav>
+<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+</div>
+<script>
+  var CAPS = {
+    none: '盗まれる心配がない代わりに、残したはずの資産が誰の手にも渡らない。',
+    ready: '渡し方を用意しておけば引き継げる。ただし生きている間の管理は、その分だけ慎重さが要る。'
+  };
+  var flowNone = document.getElementById('flowNone');
+  var flowReady = document.getElementById('flowReady');
+  var flowCap = document.getElementById('flowCap');
+  var flowBtns = document.querySelectorAll('[data-flow]');
+  function showFlow(mode){
+    flowNone.style.display = (mode === 'none') ? '' : 'none';
+    flowReady.style.display = (mode === 'ready') ? '' : 'none';
+    flowCap.textContent = CAPS[mode];
+    flowBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-flow') === mode); });
+  }
+  flowBtns.forEach(function(b){ b.addEventListener('click', function(){ showFlow(b.getAttribute('data-flow')); }); });
+  showFlow('none');
+</script>
+<script>
+(function(){
+  var data = {title: '自分が死んだら、ビットコインはどうなる？', text: '自分のものにできる強さは、引き継げなさと表裏一体だ。あなたなら、鍵を誰にどう残す？', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/death/'};
+  var main = document.querySelector('.share-main');
+  var alt = document.querySelector('.share-alt');
+  var note = document.querySelector('.share-note');
+  if (navigator.share) {
+    main.addEventListener('click', function(){
+      navigator.share(data).catch(function(){});
+    });
+  } else {
+    alt.hidden = false;
+    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
+  }
+  document.querySelector('.share-copy').addEventListener('click', function(){
+    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = data.url;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(data.url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})();
+</script>
+</body>
+</html>
