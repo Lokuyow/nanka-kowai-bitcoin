@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){var t='light';try{var s=localStorage.getItem('theme');if(s==='dark'||s==='light'){t=s;}else if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}document.documentElement.setAttribute('data-theme',t);})();</script>
+<meta name="theme-color" content="#fffaf3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1d1611" media="(prefers-color-scheme: dark)">
 <title>小さく割れるなら、上限なんてないじゃん？：なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="割るのは「発行」ではなく「切り分け」。総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ">
 <meta property="og:type" content="article">
@@ -19,7 +22,7 @@
 <style>
   :root{
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
-    --card:#fff; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+    --card:#fff;--btnbg:#1a1a1a;--btnfg:#fff;--amber:#c77400; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);
@@ -44,12 +47,12 @@
     padding:20px 16px;margin-top:12px}
   .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
   button{font:inherit;cursor:pointer;border:0;border-radius:999px;
-    background:var(--ink);color:#fff;padding:10px 20px;font-size:15px}
+    background:var(--btnbg);color:var(--btnfg);padding:10px 20px;font-size:15px}
   button:active{transform:scale(.97)}
   .center{text-align:center}
   .summary{margin-top:44px;background:#fff3e0;color:var(--ink);border:1px solid #f0d7ae;border-radius:16px;
     padding:20px;font-size:19px;font-weight:700;line-height:1.6}
-  .summary small{display:block;font-size:12px;color:#c77400;font-weight:400;margin-bottom:6px}
+  .summary small{display:block;font-size:12px;color:var(--amber);font-weight:400;margin-bottom:6px}
   nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
     gap:8px;font-size:14px}
   nav a{color:var(--ink)}
@@ -63,7 +66,7 @@
   .tbl th{background:#fdf3e3;font-weight:700}
   .ok{color:var(--green);font-weight:700}
   .no{color:var(--red);font-weight:700}
-  .mid{color:#c77400;font-weight:700}
+  .mid{color:var(--amber);font-weight:700}
   .rise{animation:rise .8s ease both}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
@@ -78,7 +81,7 @@
   .dvpiece{font-size:15px;margin:14px 0 0}
   .dvtotal{margin-top:10px;border:2px solid var(--orange);border-radius:12px;padding:10px;
     font-size:17px;font-weight:700;text-align:center;background:#fdf3e3}
-  .dvtotal b{color:#c77400}
+  .dvtotal b{color:var(--amber)}
 
   .dvbtns{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
   .dvbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}
@@ -87,15 +90,77 @@
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .share-alt[hidden]{display:none}
-  .share-x{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;
+  .share-x{display:inline-block;background:var(--btnbg);color:var(--btnfg);text-decoration:none;
     border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
   .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
+<style>
+  :root[data-theme="dark"]{color-scheme:dark;
+    --ink:#f3ecdf; --sub:#b3a48d; --bg:#1d1611;
+    --card:#2b211a; --line:#4d3e2f; --red:#ff7a66; --green:#7fc784;
+    --btnbg:#f3ecdf; --btnfg:#241a10; --amber:#f0a63f}
+  .head-right{display:flex;align-items:center;gap:10px}
+  .theme-toggle{flex:0 0 auto;width:38px;height:38px;padding:0;border-radius:50%;
+    background:transparent;color:var(--sub);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center}
+  .theme-toggle svg{width:20px;height:20px;fill:none;stroke:currentColor;
+    stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .theme-toggle .ic-sun{display:none}
+  :root[data-theme="dark"] .theme-toggle .ic-sun{display:block}
+  :root[data-theme="dark"] .theme-toggle .ic-moon{display:none}
+  :root[data-theme="dark"] .summary{background:#3d2c11;border-color:#6e5326}
+  :root[data-theme="dark"] .tbl th{background:#3a2c1c}
+  :root[data-theme="dark"] .share-copy{background:#392c20}
+  :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
+  :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
+  :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
+  :root[data-theme="dark"] .lockbox,:root[data-theme="dark"] .receipt,
+  :root[data-theme="dark"] .vs .mini,:root[data-theme="dark"] .minestats div,
+  :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span,
+  :root[data-theme="dark"] .outdot{background:#392c20}
+  :root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
+  :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
+  :root[data-theme="dark"] .tradebtns .sell,
+  :root[data-theme="dark"] .banbtns button:not(.banned),:root[data-theme="dark"] .capbtns button:not(.on),
+  :root[data-theme="dark"] .cutbtns button:not(.on),:root[data-theme="dark"] .dvbtns button,
+  :root[data-theme="dark"] .hlbtns button:not(.right):not(.wrong),
+  :root[data-theme="dark"] .pickbtns button:not(.on):not(.primary-btn),
+  :root[data-theme="dark"] .routebtns button:not(.on),
+  :root[data-theme="dark"] .tlbtns button:not(.on){background:#392c20}
+  :root[data-theme="dark"] .chip:not(.ghost):not(.insert),:root[data-theme="dark"] .same b,
+  :root[data-theme="dark"] .unit .n,:root[data-theme="dark"] .receipt .line.hl,
+  :root[data-theme="dark"] .tag.mix,:root[data-theme="dark"] .recaprow .chip,
+  :root[data-theme="dark"] .pstat .box,:root[data-theme="dark"] .qmsg,
+  :root[data-theme="dark"] .dvtotal{background:#473311}
+  :root[data-theme="dark"] .addr,:root[data-theme="dark"] .feebar-wrap,
+  :root[data-theme="dark"] .yenbar-wrap,:root[data-theme="dark"] .powbar,
+  :root[data-theme="dark"] .trackbar,:root[data-theme="dark"] .hpbar-wrap,
+  :root[data-theme="dark"] .meter{background:#201913}
+  :root[data-theme="dark"] .can{background:#24331e;border-color:#47603f}
+  :root[data-theme="dark"] .cannot{background:#452423;border-color:#74443d}
+  :root[data-theme="dark"] .hlbtns button.right,:root[data-theme="dark"] .tag.good,
+  :root[data-theme="dark"] .stepcard.end-good{background:#24331e}
+  :root[data-theme="dark"] .stepcard.end-good{border-color:#47603f}
+  :root[data-theme="dark"] .hlbtns button.wrong,:root[data-theme="dark"] .tag.bad,
+  :root[data-theme="dark"] .node.ng,:root[data-theme="dark"] .copy.edited,
+  :root[data-theme="dark"] .stepcard.end-bad{background:#452423}
+  :root[data-theme="dark"] .stepcard.end-bad{border-color:#74443d}
+  :root[data-theme="dark"] .receipt{border-color:#77644a}
+  :root[data-theme="dark"] .chip.ghost,:root[data-theme="dark"] .fblk.dead,
+  :root[data-theme="dark"] .banbtns button.banned{background:#221a13}
+  :root[data-theme="dark"] [stroke="#e8e0d4"]{stroke:#55452f}
+  :root[data-theme="dark"] [fill="#fdf3e3"]{fill:#332619}
+  :root[data-theme="dark"] [fill="#d33"]{fill:#ff7a66}
+  :root[data-theme="dark"] [stroke="#d33"]{stroke:#ff7a66}
+  :root[data-theme="dark"] text[fill="#666"]{fill:#b3a48d}
+  :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
+  :root[data-theme="dark"] .dot{fill:#2b211a}
+</style>
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span>15 / 23</span></header>
+<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">15 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button></span></header>
 <p class="eyebrow"><span>第3層</span>ちょっと詳しいよ</p>
 <h1>小さく割れるなら、<br>上限なんてないじゃん？</h1>
 <div class="answer">割るのは「発行」ではなく「切り分け」。<br>総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ</div>
@@ -245,6 +310,36 @@
       fallback();
     }
   });
+})();
+</script>
+
+<script>
+(function(){
+  var btn = document.querySelector('.theme-toggle');
+  if (!btn) return;
+  var root = document.documentElement;
+  function sync(){
+    var dark = root.getAttribute('data-theme') === 'dark';
+    btn.setAttribute('aria-label', dark ? 'ライトモードに切り替える' : 'ダークモードに切り替える');
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    sync();
+  });
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function onChange(e){
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (err) {}
+    if (saved !== 'dark' && saved !== 'light') {
+      root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      sync();
+    }
+  }
+  if (mq.addEventListener) mq.addEventListener('change', onChange);
+  sync();
 })();
 </script>
 </body>
