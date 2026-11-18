@@ -33,7 +33,7 @@
     'さわってわかるビットコイン': 'Sawatte Wakaru Bitcoin — Touch & Learn',
 
     /* ===== トップページ ===== */
-    'トップ：なんか よくわからんけど こわい ビットコイン': "Home | I don't really get it, but it's scary: Bitcoin",
+    'なんか よくわからんけど こわい ビットコイン': "I don't really get it, but it's scary: Bitcoin",
     'ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。': "The image from the news, and what it really looks like. Untangling the vague 'scary' around Bitcoin, one misunderstanding at a time.",
     'なんか': "I don't really get it,",
     'よくわからんけど': 'but somehow',
