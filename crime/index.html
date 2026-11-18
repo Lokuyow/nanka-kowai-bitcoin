@@ -91,6 +91,11 @@
   .trail.btc .dot{background:var(--orange);animation:stayglow 3s ease-in-out infinite}
   @keyframes stayglow{0%,100%{box-shadow:0 0 0 0 rgba(247,147,26,0)}50%{box-shadow:0 0 0 5px rgba(247,147,26,.25)}}
   .trail-lbl{flex:0 0 86px;font-size:13px;font-weight:700}
+
+  .ledger.game .lrow{animation:none;opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease}
+  .ledger.game .lrow.show{opacity:1;transform:none}
+  .tracemsg{font-size:14px;min-height:3.2em;margin:12px 0 0}
+  #traceBtn{min-height:44px}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -116,12 +121,14 @@
   <section>
     <h2>実際は：台帳は全部公開されている</h2>
     <p class="lede">ビットコインの取引は世界中の誰でも見られる台帳に、消せない形で残り続ける。</p>
-    <div class="card ledger">
-      <div class="lrow"><span><span class="addr">1A2b…x9</span> → <span class="addr">3Cd4…m2</span></span><b>0.5 BTC</b></div>
+    <div class="card ledger game" id="traceCard">
+      <div class="lrow show"><span><span class="addr">1A2b…x9</span> → <span class="addr">3Cd4…m2</span></span><b>0.5 BTC</b></div>
       <div class="lrow"><span><span class="addr">3Cd4…m2</span> → <span class="addr">7Ef8…q7</span></span><b>0.2 BTC</b></div>
       <div class="lrow"><span><span class="addr">7Ef8…q7</span> → <span class="addr">9Gh1…z3</span></span><b>0.2 BTC</b></div>
       <div class="lrow"><span><span class="addr">9Gh1…z3</span> → <span class="addr">2Jk5…w8</span></span><b>0.19 BTC</b></div>
-      <div class="lrow"><span>…最初から全部、誰でもたどれる</span><b>永久保存</b></div>
+      <div class="lrow"><span><span class="addr">2Jk5…w8</span> → <span class="addr">取引所</span></span><b>0.19 BTC</b></div>
+      <p class="tracemsg" id="traceMsg" aria-live="polite">誰かが送った 0.5 BTC。送り先を1件ずつ、たどってみよう。</p>
+      <div class="center" style="margin-top:10px"><button id="traceBtn" type="button">次の送金をたどる</button></div>
       <p class="hint">名前は出ない「仮名」制。でも、お金の流れは全部つながって見えている。</p>
     </div>
   </section>
@@ -151,6 +158,36 @@
 <nav><a href="../hack/">← 前の誤解：ハッキング</a><a class="idx" href="../">一覧へ</a><a href="../energy/">次の誤解：電気・環境 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+
+(function(){
+  var rows = document.querySelectorAll('#traceCard .lrow');
+  var btn = document.getElementById('traceBtn');
+  var msg = document.getElementById('traceMsg');
+  var idx = 1;
+  var MSGS = [
+    '',
+    'また別のアドレスへ。金額が少し減ったのは、手数料やおつりの分。',
+    'まだ、たどれる。記録は消えずに残り続ける。',
+    '何件でもさかのぼれるし、この先も追い続けられる。',
+    '行き着いた先は、取引所のアドレス。ここには本人確認の記録がある。現金の手渡しだったら、最初の1件で足跡は消えていた。'
+  ];
+  btn.addEventListener('click', function(){
+    if (idx >= rows.length) {
+      rows.forEach(function(r, i){ r.classList.toggle('show', i === 0); });
+      idx = 1;
+      msg.textContent = '誰かが送った 0.5 BTC。送り先を1件ずつ、たどってみよう。';
+      btn.textContent = '次の送金をたどる';
+      return;
+    }
+    rows[idx].classList.add('show');
+    msg.textContent = MSGS[idx];
+    idx++;
+    if (idx >= rows.length) btn.textContent = '最初からたどり直す';
+  });
+})();
+
+</script>
 <script>
 (function(){
   var data = {title: 'ビットコインって匿名で犯罪に使われるんでしょ？', text: '匿名ではなく「仮名」。取引は全部、公開の台帳に残るから、現金より足がつきやすい', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/crime/'};

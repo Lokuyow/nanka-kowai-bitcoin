@@ -91,6 +91,22 @@
   .strike{position:relative;display:inline-block}
   .strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:3px;
     background:var(--red);transform:rotate(-4deg)}
+
+  .copies{display:grid;gap:8px}
+  @media(min-width:560px){.copies{grid-template-columns:1fr 1fr 1fr}}
+  .copy{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;background:#fff;transition:all .3s}
+  .copy-h{font-weight:700;font-size:12px;color:var(--sub);margin-bottom:6px}
+  .copy.mine{border-color:var(--orange)}
+  .copy.edited{border-color:var(--red);background:#fff6f6}
+  .copy.checking{border-color:var(--ink)}
+  .copy-row{display:flex;justify-content:space-between;gap:6px;padding:3px 0;font-variant-numeric:tabular-nums}
+  .copy-row b.bad{color:var(--red)}
+  .hkbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+  .hkbtns button{min-height:44px}
+  .hkbtns button[disabled]{opacity:.4;cursor:default}
+  #hkEdit{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+  .hkmsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
+  .stamp-zone{position:relative;text-align:center;padding:26px 0 6px;min-height:96px;overflow:hidden}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -147,6 +163,38 @@
       </div>
     </div>
   </section>
+
+  <section>
+    <h2>実際は：台帳を書き換えてみる</h2>
+    <p class="lede">じゃあ、あなたが台帳の数字を書き換えたらどうなるか。自分の残高をこっそり増やして、ネットワークに送ってみよう。</p>
+    <div class="card" id="hackCard">
+      <div class="copies">
+        <div class="copy mine" id="hkCopyMine">
+          <div class="copy-h">あなたの写し</div>
+          <div class="copy-row"><span>あなたの残高</span><b id="hkMineVal">1.0 BTC</b></div>
+          <div class="copy-row"><span>ほかの人の残高</span><b>2.0 BTC</b></div>
+        </div>
+        <div class="copy hk-other">
+          <div class="copy-h">世界の写し A</div>
+          <div class="copy-row"><span>あなたの残高</span><b>1.0 BTC</b></div>
+          <div class="copy-row"><span>ほかの人の残高</span><b>2.0 BTC</b></div>
+        </div>
+        <div class="copy hk-other">
+          <div class="copy-h">世界の写し B</div>
+          <div class="copy-row"><span>あなたの残高</span><b>1.0 BTC</b></div>
+          <div class="copy-row"><span>ほかの人の残高</span><b>2.0 BTC</b></div>
+        </div>
+      </div>
+      <div class="hkbtns">
+        <button id="hkEdit" type="button">自分の残高を +10 BTC 書き換える</button>
+        <button id="hkSend" type="button" disabled>この台帳をネットワークに送る</button>
+      </div>
+      <p class="hkmsg" id="hkMsg" aria-live="polite">台帳は世界中の参加者が同じ写しを持っている。1つだけ書き換えても…？</p>
+      <div class="stamp-zone"><span class="stamp">不一致で却下</span></div>
+      <p class="hint">却下された回数: <span id="hkTries">0</span> 回。何度送っても、結果は同じ。</p>
+    </div>
+  </section>
+
 <div class="summary"><small>一言まとめ</small>壊れたのはいつも取引所の金庫。ビットコインの台帳は一度も壊れていない</div>
 <div class="share">
   <button class="share-main" type="button">この答えをシェアする</button>
@@ -159,6 +207,54 @@
 <nav><a href="../satoshi/">← 前の誤解：丸ごと買わないと買えない</a><a class="idx" href="../">一覧へ</a><a href="../crime/">次の誤解：犯罪・匿名 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+
+(function(){
+  var mine = 1.0, tries = 0, sending = false;
+  var valEl = document.getElementById('hkMineVal');
+  var copyEl = document.getElementById('hkCopyMine');
+  var others = document.querySelectorAll('.hk-other');
+  var editBtn = document.getElementById('hkEdit');
+  var sendBtn = document.getElementById('hkSend');
+  var msg = document.getElementById('hkMsg');
+  var triesEl = document.getElementById('hkTries');
+  var card = document.getElementById('hackCard');
+  editBtn.addEventListener('click', function(){
+    if (sending) return;
+    mine += 10;
+    valEl.textContent = mine.toFixed(1) + ' BTC';
+    valEl.classList.add('bad');
+    copyEl.classList.add('edited');
+    card.classList.remove('stamped');
+    sendBtn.disabled = false;
+    msg.textContent = 'あなたの写しだけ ' + mine.toFixed(1) + ' BTC に書き換えた。世界の写しは 1.0 BTC のまま。この台帳、通ると思う？';
+  });
+  sendBtn.addEventListener('click', function(){
+    if (sending || mine === 1.0) return;
+    sending = true;
+    sendBtn.disabled = true;
+    editBtn.disabled = true;
+    msg.textContent = 'ネットワークが照合中…';
+    others.forEach(function(o){ o.classList.add('checking'); });
+    setTimeout(function(){
+      tries++;
+      triesEl.textContent = tries;
+      card.classList.add('stamped');
+      others.forEach(function(o){ o.classList.remove('checking'); });
+      if (tries === 1) msg.textContent = '世界の写しと食い違ったため却下。あなたの書き換えは消えて、数字は元に戻った。';
+      else if (tries === 2) msg.textContent = 'また却下。正しいとされるのは、多数派の写しの方。';
+      else msg.textContent = '何度送っても同じ。通すには世界中の写しを全部、同時に書き換えるしかない。それは無理な話。';
+      mine = 1.0;
+      valEl.textContent = '1.0 BTC';
+      valEl.classList.remove('bad');
+      copyEl.classList.remove('edited');
+      editBtn.disabled = false;
+      sending = false;
+    }, 900);
+  });
+})();
+
+</script>
 <script>
 (function(){
   var data = {title: 'ビットコインってハッキングされて盗まれたんでしょ？', text: '盗まれたのは取引所の金庫の中身。ビットコインの台帳そのものは2009年から壊れていない', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/hack/'};

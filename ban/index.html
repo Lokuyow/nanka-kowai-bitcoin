@@ -85,6 +85,14 @@
   @keyframes migrate2{0%,18%{transform:translate(0,0);opacity:1}
     55%{transform:translate(-60px,52px);opacity:1}
     75%,100%{transform:translate(-60px,52px);opacity:.25}}
+
+  .banbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .banbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}
+  .banbtns button.banned{background:#eee;border-color:#bbb;color:#999;text-decoration:line-through}
+  .banstatus{font-size:14px;margin:12px 0 0}
+  .banlog{font-size:14px;min-height:3.2em;margin:6px 0 0}
+  #banMiners circle{transition:cx 1s ease,cy 1s ease,opacity .6s}
+  #banNodes text{font-size:10px;fill:#666}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -110,27 +118,18 @@
   <section>
     <h2>実際は：世界中で動く仕組みは一国では止まらない</h2>
     <p class="lede">ビットコインは特定の国のサーバーで動いているわけではない。世界中に散らばった参加者全員で動いている。</p>
-    <div class="card globe-wrap">
-      <svg width="300" height="210" viewBox="0 0 300 210">
+    <div class="card globe-wrap" id="banCard">
+      <svg id="banSvg" viewBox="0 0 300 210" width="300" height="210" role="img" aria-label="世界中に広がる参加者の図">
         <circle cx="150" cy="105" r="88" fill="#fdf3e3" stroke="#e8e0d4" stroke-width="2"/>
         <ellipse cx="150" cy="105" rx="40" ry="88" fill="none" stroke="#e8e0d4" stroke-width="1.5"/>
         <ellipse cx="150" cy="105" rx="76" ry="88" fill="none" stroke="#e8e0d4" stroke-width="1.5"/>
         <line x1="62" y1="105" x2="238" y2="105" stroke="#e8e0d4" stroke-width="1.5"/>
-        <circle class="gnode" cx="95" cy="62" r="6" fill="#f7931a"/>
-        <circle class="gnode" cx="80" cy="130" r="6" fill="#f7931a"/>
-        <circle class="gnode" cx="140" cy="160" r="6" fill="#f7931a"/>
-        <circle class="gnode" cx="120" cy="45" r="6" fill="#f7931a"/>
-        <circle class="gnode" cx="205" cy="150" r="6" fill="#f7931a"/>
-        <circle class="gnode" cx="228" cy="95" r="6" fill="#f7931a"/>
-        <g>
-          <circle cx="196" cy="66" r="13" fill="#999" opacity=".35"/>
-          <path d="M188 58 L204 74 M204 58 L188 74" stroke="#d33" stroke-width="3" stroke-linecap="round"/>
-          <text x="196" y="38" font-size="11" text-anchor="middle" fill="#d33">禁止した国</text>
-        </g>
-        <circle class="miner" cx="196" cy="66" r="5" fill="#1a1a1a"/>
-        <circle class="miner2" cx="188" cy="76" r="5" fill="#1a1a1a"/>
-        <text x="96" y="112" font-size="11" text-anchor="middle" fill="#666">採掘が国外へ</text>
+        <g id="banMiners"></g>
+        <g id="banNodes"></g>
       </svg>
+      <div class="banbtns" id="banBtns"></div>
+      <p class="banstatus">ネットワーク: <b class="ok">稼働中（止まらない）</b> ・ 禁止した国 <b id="banCount">0</b> / 6</p>
+      <p class="banlog" id="banLog" aria-live="polite">国のボタンを押して「禁止」にしてみよう。何が起きる？</p>
       <p class="hint">一国が止めても、残りの世界で動き続ける。止められた場所の活動は、外へ移るだけ。</p>
     </div>
   </section>
@@ -155,6 +154,103 @@
 <nav><a href="../energy/">← 前の誤解：電気・環境</a><a class="idx" href="../">一覧へ</a><a href="../quantum/">次の誤解：量子コンピューター →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+
+(function(){
+  var COUNTRIES = [
+    {n: 'アメリカ', x: 80, y: 66},
+    {n: 'ドイツ', x: 148, y: 52},
+    {n: '中国', x: 212, y: 70},
+    {n: '日本', x: 238, y: 92},
+    {n: 'ブラジル', x: 104, y: 150},
+    {n: 'オーストラリア', x: 224, y: 152}
+  ];
+  var NS = 'http://www.w3.org/2000/svg';
+  var nodesG = document.getElementById('banNodes');
+  var minersG = document.getElementById('banMiners');
+  var btnsWrap = document.getElementById('banBtns');
+  var log = document.getElementById('banLog');
+  var countEl = document.getElementById('banCount');
+  var banned = {};
+  COUNTRIES.forEach(function(c, i){
+    var dot = document.createElementNS(NS, 'circle');
+    dot.setAttribute('cx', c.x); dot.setAttribute('cy', c.y); dot.setAttribute('r', 7);
+    dot.setAttribute('fill', '#f7931a'); dot.id = 'bnode' + i;
+    nodesG.appendChild(dot);
+    var x1 = document.createElementNS(NS, 'path');
+    x1.setAttribute('d', 'M' + (c.x - 5) + ' ' + (c.y - 5) + ' L' + (c.x + 5) + ' ' + (c.y + 5) + ' M' + (c.x + 5) + ' ' + (c.y - 5) + ' L' + (c.x - 5) + ' ' + (c.y + 5));
+    x1.setAttribute('stroke', '#d33'); x1.setAttribute('stroke-width', '2.5'); x1.setAttribute('stroke-linecap', 'round');
+    x1.id = 'bx' + i; x1.style.display = 'none';
+    nodesG.appendChild(x1);
+    var tx = document.createElementNS(NS, 'text');
+    tx.setAttribute('x', c.x); tx.setAttribute('y', c.y - 13);
+    tx.setAttribute('text-anchor', 'middle');
+    tx.textContent = c.n;
+    nodesG.appendChild(tx);
+    c.miners = [];
+    for (var k = 0; k < 2; k++) {
+      var m = document.createElementNS(NS, 'circle');
+      var mx = c.x + (k === 0 ? -11 : 11), my = c.y + 11;
+      m.setAttribute('cx', mx); m.setAttribute('cy', my); m.setAttribute('r', 4);
+      m.setAttribute('fill', '#1a1a1a');
+      minersG.appendChild(m);
+      c.miners.push({el: m, hx: mx, hy: my});
+    }
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = c.n + 'を禁止';
+    b.dataset.i = i;
+    btnsWrap.appendChild(b);
+  });
+  function unbannedList(except){
+    return COUNTRIES.filter(function(c, i){ return !banned[i] && i !== except; });
+  }
+  btnsWrap.addEventListener('click', function(e){
+    var b = e.target.closest('button');
+    if (!b) return;
+    var i = +b.dataset.i, c = COUNTRIES[i];
+    var dot = document.getElementById('bnode' + i);
+    var x = document.getElementById('bx' + i);
+    if (!banned[i]) {
+      banned[i] = true;
+      b.classList.add('banned');
+      b.textContent = c.n + '（禁止中）';
+      dot.setAttribute('fill', '#bbb');
+      x.style.display = '';
+      var targets = unbannedList(i);
+      c.miners.forEach(function(mn, k){
+        if (targets.length) {
+          var t = targets[Math.floor(Math.random() * targets.length)];
+          mn.el.setAttribute('cx', t.x + (k === 0 ? -11 : 11));
+          mn.el.setAttribute('cy', t.y + 11);
+          mn.el.style.opacity = '1';
+        } else {
+          mn.el.style.opacity = '.15';
+        }
+      });
+      var n = Object.keys(banned).length;
+      countEl.textContent = n;
+      if (c.n === '中国') log.textContent = '中国が禁止。2021年に実際にあったことで、採掘は国外へ移り、ネットワークは止まらなかった。';
+      else if (n >= 6) log.textContent = '全部の国が禁止した。表立った拠点はなくなっても、参加者同士のネットワーク自体は消えていない。そもそも全部の国が足並みをそろえること自体、起きにくい。';
+      else log.textContent = c.n + 'が禁止。採掘と参加者は国外へ移った。ネットワークは止まらない。';
+    } else {
+      delete banned[i];
+      b.classList.remove('banned');
+      b.textContent = c.n + 'を禁止';
+      dot.setAttribute('fill', '#f7931a');
+      x.style.display = 'none';
+      c.miners.forEach(function(mn){
+        mn.el.setAttribute('cx', mn.hx);
+        mn.el.setAttribute('cy', mn.hy);
+        mn.el.style.opacity = '1';
+      });
+      countEl.textContent = Object.keys(banned).length;
+      log.textContent = c.n + 'の禁止が解けた。活動は戻ってきた。';
+    }
+  });
+})();
+
+</script>
 <script>
 (function(){
   var data = {title: '国が禁止したら、ビットコインは終わりでしょ？', text: '世界中で動く仕組みだから、一国では止められない。実際に禁止した国でも消えていない', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/ban/'};

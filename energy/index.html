@@ -85,6 +85,13 @@
   .seg3{background:#999;transform-origin:right}
   .legend{font-size:12px;color:var(--sub);display:flex;gap:14px;flex-wrap:wrap}
   .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}
+
+  #mineBtn{min-height:48px;font-size:16px}
+  .minestats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+  .minestats div{border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;background:#fff}
+  .minestats b{font-size:16px;font-variant-numeric:tabular-nums}
+  .minemsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
+  #mineCard.flashwin{animation:flash .6s ease}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -147,6 +154,23 @@
       <p class="hint">※ 割合はイメージ。マイニングは「電気が余っている場所・時間」に集まりやすい性質がある。一例として、ケンブリッジ大学の調査（2025年）では、再エネ・原子力など持続可能な電源が約52%という推定もある。</p>
     </div>
   </section>
+
+  <section>
+    <h2>実際は：マイニング競争に参加してみる</h2>
+    <p class="lede">マイニングは、世界中の参加者との競争。先に計算を当てた人だけが記録を書けて、報酬をもらえる。あなたの計算力を決めて、参加してみよう。</p>
+    <div class="card" id="mineCard">
+      <label>あなたの計算力（全体に占める割合）: <b id="minePct">5%</b><input type="range" id="mineRange" min="1" max="40" value="5" aria-label="あなたの計算力の割合"></label>
+      <div class="center" style="margin:12px 0"><button id="mineBtn" type="button">掘る（次のブロックに挑戦）</button></div>
+      <div class="minestats">
+        <div>挑戦 <b id="mineTry">0</b> 回</div>
+        <div>当てた <b id="mineWin">0</b> 回</div>
+        <div>使った電気 <b id="mineKwh">0</b> kWh</div>
+      </div>
+      <p class="minemsg" id="mineMsg" aria-live="polite">計算力が大きいほど当たりやすい。でも、外れても電気は使っている。</p>
+      <p class="hint">数字はイメージ。当たる確率は計算力の割合どおり。参加者が増えると難易度が上がって、同じ計算力では当たりにくくなる調整も入る。</p>
+    </div>
+  </section>
+
 <div class="summary"><small>一言まとめ</small>電気は無駄に燃やしているんじゃなく不正を割に合わなくするための「壁」に使われている</div>
 <div class="share">
   <button class="share-main" type="button">この答えをシェアする</button>
@@ -159,6 +183,47 @@
 <nav><a href="../crime/">← 前の誤解：犯罪・匿名</a><a class="idx" href="../">一覧へ</a><a href="../ban/">次の誤解：政府が禁止 →</a></nav>
 <p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
 </div>
+<script>
+
+(function(){
+  var range = document.getElementById('mineRange');
+  var pctEl = document.getElementById('minePct');
+  var msg = document.getElementById('mineMsg');
+  var card = document.getElementById('mineCard');
+  var tries = 0, wins = 0, kwh = 0, diff = 1;
+  var tryEl = document.getElementById('mineTry');
+  var winEl = document.getElementById('mineWin');
+  var kwhEl = document.getElementById('mineKwh');
+  var LOSE = [
+    '外れ。世界のだれかが先に当てた。電気だけが消えた。',
+    'また外れ。当たりは、世界中の参加者の取り合い。',
+    '外れ。計算は正しかったのに、速さで負けた。'
+  ];
+  range.addEventListener('input', function(){ pctEl.textContent = range.value + '%'; });
+  document.getElementById('mineBtn').addEventListener('click', function(){
+    var share = +range.value / 100;
+    tries++;
+    kwh += Math.round(share * 900 + 30 + Math.random() * 60);
+    tryEl.textContent = tries;
+    kwhEl.textContent = kwh.toLocaleString('ja-JP');
+    if (Math.random() < 0.13 && diff < 2.2) {
+      diff *= 1.25;
+      msg.textContent = '参加者が増えた！ 難易度が上がって、同じ計算力では当たりにくくなった。これが難易度調整。';
+      return;
+    }
+    var p = share / diff;
+    if (Math.random() < p) {
+      wins++;
+      winEl.textContent = wins;
+      card.classList.remove('flashwin'); void card.offsetWidth; card.classList.add('flashwin');
+      msg.textContent = '当たった！ 記録を書く権利と報酬をゲット。電気は、この瞬間のために使われていた。';
+    } else {
+      msg.textContent = LOSE[Math.floor(Math.random() * LOSE.length)] + '（あなたの実績: ' + tries + '回中 ' + wins + '回）';
+    }
+  });
+})();
+
+</script>
 <script>
 (function(){
   var data = {title: 'ビットコインって電気の無駄遣いでしょ？', text: '電力は「守るためのコスト」。たくさん必要だからこそ、攻撃が割に合わない', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/energy/'};
