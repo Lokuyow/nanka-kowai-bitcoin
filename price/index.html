@@ -83,11 +83,10 @@
   @media(max-width:520px){.board{grid-template-columns:1fr 1fr}.nowbox{grid-column:1/-1;order:-1}}
   .side h3{font-size:13px;margin:0 0 8px;text-align:center}
   .row{display:flex;align-items:center;gap:6px;margin:6px 0;font-size:12px}
-  .row .bar{height:16px;border-radius:4px;animation:barpulse 2.4s ease-in-out infinite}
+  .row .bar{height:16px;border-radius:4px}
   .side.buy .bar{background:#f7931a}
   .side.sell .bar{background:#999}
   .row .p{flex:0 0 64px;text-align:right;font-variant-numeric:tabular-nums}
-  @keyframes barpulse{0%,100%{filter:brightness(1)}50%{filter:brightness(1.18)}}
   .nowbox{text-align:center;padding:6px 4px}
   .nowbox .lbl{font-size:12px;color:var(--sub)}
   .nowprice{font-size:30px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2;transition:color .3s}
