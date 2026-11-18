@@ -181,61 +181,61 @@
 </head>
 <body>
 <div class="wrap">
-<header><span><a href="../"><b>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">3 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
-<p class="eyebrow"><span>第1層</span>名前だけは知ってる</p>
-<h1>ビットコインの値段って<br>誰かが決めてるんでしょ？</h1>
-<div class="answer">決める人はいない。<br>買いたい人と売りたい人の希望がぶつかった場所が価格</div>
+<header><span><a href="../"><b data-i18n-html>なんか よくわからんけど<br>こわい ビットコイン</b></a></span><span class="head-right">3 / 23<button class="theme-toggle" type="button" aria-label="ダークモードに切り替える" aria-pressed="false"><svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M19.8 4.2l-1.6 1.6M5.8 18.2l-1.6 1.6"/></svg></button><button class="lang-toggle" type="button" aria-label="英語に切り替える" aria-pressed="false"><span class="lg-ja">日本語</span><span class="lg-en">EN</span></button></span></header>
+<p class="eyebrow" data-i18n-html><span>第1層</span>名前だけは知ってる</p>
+<h1 data-i18n-html>ビットコインの値段って<br>誰かが決めてるんでしょ？</h1>
+<div class="answer" data-i18n-html>決める人はいない。<br>買いたい人と売りたい人の希望がぶつかった場所が価格</div>
 
   <section>
-    <h2>なぜそう見えるか</h2>
-    <p class="lede">お店の商品には値札があって、決めた人がいる。チャートに「いまの価格」が表示されると、ビットコインにも値段を決めている誰かがいそうに見える。</p>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>お店の商品には値札があって、決めた人がいる。チャートに「いまの価格」が表示されると、ビットコインにも値段を決めている誰かがいそうに見える。</p>
   </section>
 
   <section>
-    <h2>実際は：希望価格のぶつかり合い</h2>
-    <p class="lede">左は「この値段なら買いたい」、右は「この値段なら売りたい」。ぶつかった真ん中がその瞬間の価格になる。あなたもボタンを押して、売り買いに参加してみよう。</p>
+    <h2 data-i18n>実際は：希望価格のぶつかり合い</h2>
+    <p class="lede" data-i18n>左は「この値段なら買いたい」、右は「この値段なら売りたい」。ぶつかった真ん中がその瞬間の価格になる。あなたもボタンを押して、売り買いに参加してみよう。</p>
     <div class="card" id="boardCard">
       <div class="board">
         <div class="side buy">
-          <h3>買いたい人</h3>
-          <div class="row"><span class="p">1,498万円</span><div class="bar" style="width:38%"></div></div>
-          <div class="row"><span class="p">1,499万円</span><div class="bar" style="width:55%"></div></div>
-          <div class="row"><span class="p">1,500万円</span><div class="bar" style="width:72%"></div></div>
-          <div class="row"><span class="p">1,501万円</span><div class="bar" style="width:90%"></div></div>
+          <h3 data-i18n>買いたい人</h3>
+          <div class="row"><span class="p" data-i18n>1,498万円</span><div class="bar" style="width:38%"></div></div>
+          <div class="row"><span class="p" data-i18n>1,499万円</span><div class="bar" style="width:55%"></div></div>
+          <div class="row"><span class="p" data-i18n>1,500万円</span><div class="bar" style="width:72%"></div></div>
+          <div class="row"><span class="p" data-i18n>1,501万円</span><div class="bar" style="width:90%"></div></div>
         </div>
         <div class="nowbox">
-          <div class="lbl">いまの価格</div>
+          <div class="lbl" data-i18n>いまの価格</div>
           <div class="nowprice" id="nowPrice">15,015,000</div>
-          <div class="lbl">円 / BTC（イメージ）</div>
+          <div class="lbl" data-i18n>円 / BTC（イメージ）</div>
           <div id="dealMsg" style="font-size:13px;min-height:1.6em;margin-top:6px"></div>
           <div class="tradebtns">
-            <button type="button" id="buyBtn" class="buy">買ってみる</button>
-            <button type="button" id="sellBtn" class="sell">売ってみる</button>
+            <button type="button" id="buyBtn" class="buy" data-i18n>買ってみる</button>
+            <button type="button" id="sellBtn" class="sell" data-i18n>売ってみる</button>
           </div>
           <div class="lbl" id="myTrades" style="margin-top:8px">あなたの取引: 0回</div>
         </div>
         <div class="side sell">
-          <h3>売りたい人</h3>
-          <div class="row"><div class="bar" style="width:88%"></div><span class="p">1,502万円</span></div>
-          <div class="row"><div class="bar" style="width:66%"></div><span class="p">1,503万円</span></div>
-          <div class="row"><div class="bar" style="width:50%"></div><span class="p">1,504万円</span></div>
-          <div class="row"><div class="bar" style="width:34%"></div><span class="p">1,505万円</span></div>
+          <h3 data-i18n>売りたい人</h3>
+          <div class="row"><div class="bar" style="width:88%"></div><span class="p" data-i18n>1,502万円</span></div>
+          <div class="row"><div class="bar" style="width:66%"></div><span class="p" data-i18n>1,503万円</span></div>
+          <div class="row"><div class="bar" style="width:50%"></div><span class="p" data-i18n>1,504万円</span></div>
+          <div class="row"><div class="bar" style="width:34%"></div><span class="p" data-i18n>1,505万円</span></div>
         </div>
       </div>
-      <p class="hint">価格を決めている人は、どこにもいない。だからこそ、世界中の取引で24時間動き続ける。</p>
+      <p class="hint" data-i18n>価格を決めている人は、どこにもいない。だからこそ、世界中の取引で24時間動き続ける。</p>
     </div>
   </section>
-<div class="summary"><small>一言まとめ</small>価格は誰かが決めるものじゃなく、買いたい人と売りたい人のぶつかり合いで生まれる</div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>価格は誰かが決めるものじゃなく、買いたい人と売りたい人のぶつかり合いで生まれる</span></div>
 <div class="share">
-  <button class="share-main" type="button">この答えをシェアする</button>
+  <button class="share-main" type="button" data-i18n>この答えをシェアする</button>
   <div class="share-alt" hidden>
-    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E5%80%A4%E6%AE%B5%E3%81%A3%E3%81%A6%E8%AA%B0%E3%81%8B%E3%81%8C%E6%B1%BA%E3%82%81%E3%81%A6%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fprice%2F" target="_blank" rel="noopener">Xでポストする</a>
-    <button class="share-copy" type="button">リンクをコピー</button>
+    <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AE%E5%80%A4%E6%AE%B5%E3%81%A3%E3%81%A6%E8%AA%B0%E3%81%8B%E3%81%8C%E6%B1%BA%E3%82%81%E3%81%A6%E3%82%8B%E3%82%93%E3%81%A7%E3%81%97%E3%82%87%EF%BC%9F&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2Fprice%2F" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
-  <p class="share-note" hidden>リンクをコピーしました</p>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../ceo/">← 前の誤解：会社とCEOがいる</a><a class="idx" href="../">一覧へ</a><a href="../fee/">次の誤解：手数料 →</a></nav>
-<p class="bridge">内側の仕組みを知りたくなったら → <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/">さわってわかるビットコイン</a></p>
+<nav><a href="../ceo/" data-i18n>← 前の誤解：会社とCEOがいる</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../fee/" data-i18n>次の誤解：手数料 →</a></nav>
+<p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
 
@@ -245,45 +245,64 @@
   var card = document.getElementById('boardCard');
   var myTrades = 0;
   var tradesEl = document.getElementById('myTrades');
+  var lastPair = null;
+  function renderTrades(){ tradesEl.textContent = L('あなたの取引: ' + myTrades + '回', 'Your trades: ' + myTrades); }
   function fmt(n){ return n.toLocaleString('ja-JP'); }
   function flash(){ card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash'); }
-  function show(d, text){
+  function show(d, pair){
     el.textContent = fmt(price);
     el.className = 'nowprice ' + (d > 0 ? 'up' : 'down');
-    msg.textContent = text;
+    lastPair = pair;
+    msg.textContent = L(pair[0], pair[1]);
     flash();
   }
   setInterval(function(){
     var d = Math.round((Math.random() - 0.5) * 3000 / 500) * 500;
     if (d === 0) d = 500;
     price += d;
-    show(d, d > 0 ? '世界の誰かが、少し高い値段で買った' : '世界の誰かが、少し安い値段で売った');
+    show(d, d > 0 ? ['世界の誰かが、少し高い値段で買った', 'Someone in the world just bought at a slightly higher price'] : ['世界の誰かが、少し安い値段で売った', 'Someone in the world just sold at a slightly lower price']);
   }, 2600);
   document.getElementById('buyBtn').addEventListener('click', function(){
     var d = 1500 + Math.round(Math.random() * 5) * 500;
     price += d;
     myTrades++;
-    tradesEl.textContent = 'あなたの取引: ' + myTrades + '回';
-    show(d, 'あなたが買った。買いたい注文が増えて、価格が押し上がった');
+    renderTrades();
+    show(d, ['あなたが買った。買いたい注文が増えて、価格が押し上がった', 'You bought. Buy orders piled up and pushed the price up']);
   });
   document.getElementById('sellBtn').addEventListener('click', function(){
     var d = -(1500 + Math.round(Math.random() * 5) * 500);
     price += d;
     myTrades++;
-    tradesEl.textContent = 'あなたの取引: ' + myTrades + '回';
-    show(d, 'あなたが売った。売りたい注文が増えて、価格が押し下がった');
+    renderTrades();
+    show(d, ['あなたが売った。売りたい注文が増えて、価格が押し下がった', 'You sold. Sell orders piled up and pushed the price down']);
+  });
+  document.addEventListener('langchange', function(){
+    renderTrades();
+    if (lastPair) msg.textContent = L(lastPair[0], lastPair[1]);
   });
 
 </script>
 <script>
 (function(){
-  var data = {title: 'ビットコインの値段って誰かが決めてるんでしょ？', text: '決める人はいない。買いたい人と売りたい人の希望がぶつかった場所が価格', url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/price/'};
+  var JA = {title: 'ビットコインの値段って誰かが決めてるんでしょ？', text: '決める人はいない。買いたい人と売りたい人の希望がぶつかった場所が価格'};
+  var EN = {title: 'Someone sets Bitcoin\'s price, right?', text: 'Nobody sets it. The price forms where the wishes of buyers and sellers collide'};
+  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/price/';
+  function data(){
+    var d = window.LANG === 'en' ? EN : JA;
+    return {title: d.title, text: d.text, url: url};
+  }
   var main = document.querySelector('.share-main');
   var alt = document.querySelector('.share-alt');
   var note = document.querySelector('.share-note');
+  var x = document.querySelector('.share-x');
+  function syncX(){
+    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
+  }
+  syncX();
+  document.addEventListener('langchange', syncX);
   if (navigator.share) {
     main.addEventListener('click', function(){
-      navigator.share(data).catch(function(){});
+      navigator.share(data()).catch(function(){});
     });
   } else {
     alt.hidden = false;
@@ -293,7 +312,7 @@
     function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
     function fallback(){
       var ta = document.createElement('textarea');
-      ta.value = data.url;
+      ta.value = url;
       document.body.appendChild(ta);
       ta.select();
       try { document.execCommand('copy'); } catch (e) {}
@@ -301,7 +320,7 @@
       done();
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(data.url).then(done, fallback);
+      navigator.clipboard.writeText(url).then(done, fallback);
     } else {
       fallback();
     }
