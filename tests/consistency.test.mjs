@@ -48,8 +48,8 @@ test('ヘッダーの話数が n / 23 で正しい', async () => {
 test('前後ナビの鎖が 1→23 でつながっている', async () => {
   for (const [i, { slug }] of UNITS.entries()) {
     const html = await read(`${slug}/index.html`);
-    const nav = html.match(/<nav>([\s\S]*?)<\/nav>/);
-    assert.ok(nav, `${slug}: <nav> があること`);
+    const nav = html.match(/<footer class="tabbar">([\s\S]*?)<\/footer>/);
+    assert.ok(nav, `${slug}: 固定フッター（.tabbar）があること`);
     const hrefs = [...nav[1].matchAll(/<a[^>]* href="([^"]+)"/g)].map((m) => m[1]);
     const expected = [];
     if (i > 0) expected.push(`../${UNITS[i - 1].slug}/`);

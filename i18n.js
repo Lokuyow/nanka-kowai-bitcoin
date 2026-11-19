@@ -28,6 +28,8 @@
     'リンクをコピー': 'Copy link',
     'リンクをコピーしました': 'Link copied',
     '一覧へ': 'All stories',
+    '← 前の話': '← Previous',
+    '次の話 →': 'Next →',
     '全23話': '23 stories',
     '内側の仕組みを知りたくなったら →': 'Want to see how it works on the inside? →',
     'さわってわかるビットコイン': 'Sawatte Wakaru Bitcoin — Touch & Learn',

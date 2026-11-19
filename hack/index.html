@@ -30,8 +30,9 @@
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);
     font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
-  .wrap{max-width:640px;margin:0 auto;padding:20px 18px 64px}
+  .wrap{max-width:640px;margin:0 auto;padding:20px 18px calc(108px + env(safe-area-inset-bottom))}
   header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
+  header{position:sticky;top:0;z-index:60;margin:0 -18px;padding:10px 18px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   header b{color:var(--ink)}
   header a{text-decoration:none}
   .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
@@ -56,10 +57,10 @@
   .summary{margin-top:44px;background:#fff3e0;color:var(--ink);border:1px solid #f0d7ae;border-radius:16px;
     padding:20px;font-size:19px;font-weight:700;line-height:1.6}
   .summary small{display:block;font-size:12px;color:var(--amber);font-weight:400;margin-bottom:6px}
-  nav{margin-top:28px;display:flex;justify-content:space-between;align-items:center;
-    gap:8px;font-size:14px}
-  nav a{color:var(--ink);padding:8px 0}
-  nav .idx{color:var(--sub);white-space:nowrap}
+  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:8px max(18px,calc(50% - 302px)) calc(8px + env(safe-area-inset-bottom))}
+  .tabbar .tb{color:var(--ink);text-decoration:none;padding:10px 4px;white-space:nowrap}
+  .tabbar .idx{color:var(--sub)}
+  .tabbar .off{color:var(--sub);opacity:.45}
   .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
   .bridge a{color:var(--orange);font-weight:700;white-space:nowrap}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -281,7 +282,7 @@
   </div>
   <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
 </div>
-<nav><a href="../satoshi/" data-i18n>← 前の誤解：丸ごと買わないと買えない</a><a class="idx" href="../" data-i18n>一覧へ</a><a href="../crime/" data-i18n>次の誤解：犯罪・匿名 →</a></nav>
+
 <p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
@@ -430,5 +431,6 @@
 })();
 </script>
 <script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
+<footer class="tabbar"><a class="tb" href="../satoshi/" data-i18n>← 前の話</a><a class="tb idx" href="../" data-i18n>一覧へ</a><a class="tb" href="../crime/" data-i18n>次の話 →</a></footer>
 </body>
 </html>
