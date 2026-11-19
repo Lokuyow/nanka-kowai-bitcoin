@@ -101,9 +101,12 @@
   .unit .a{font-size:12.5px;color:var(--sub);line-height:1.5}
   .unit .arr{margin-left:auto;color:var(--orange);font-weight:900}
   .share{margin-top:20px;text-align:center}
-  .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-title{font-size:16px;font-weight:700;margin:0 0 10px}
+  .share-iconbtn{width:44px;height:44px;padding:0;border-radius:12px;background:var(--card);
+    border:1px solid var(--line);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
+  .share-iconbtn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;
+    stroke-linecap:round;stroke-linejoin:round}
   .share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .share-copytext{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .share-alt[hidden]{display:none}
   .share-x{display:inline-block;background:var(--btnbg);color:var(--btnfg);text-decoration:none;
@@ -130,7 +133,7 @@
   :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
   :root[data-theme="dark"] .tbl th{background:#2f2b23}
   :root[data-theme="dark"] .share-copy{background:#2e2c29}
-  :root[data-theme="dark"] .share-copytext{background:#2e2c29}
+  :root[data-theme="dark"] .share-iconbtn{background:#2e2c29}
   :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
   :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
   :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
@@ -251,7 +254,8 @@
   <div class="summary"><small data-i18n>読み終わったら</small>
     <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span></div>
   <div class="share">
-  <div class="share-btns"><button class="share-main" type="button" data-i18n>このサイトをシェアする</button><button class="share-copytext" type="button" data-i18n>テキストをコピー</button></div>
+  <p class="share-title" data-i18n>このサイトをシェアする</p>
+  <div class="share-btns"><button class="share-main share-iconbtn" type="button" aria-label="シェア" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg></button><button class="share-copytext share-iconbtn" type="button" aria-label="テキストをコピー" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
   <div class="share-alt" hidden>
     <a class="share-x" href="https://twitter.com/intent/tweet?text=%E3%81%AA%E3%82%93%E3%81%8B%20%E3%82%88%E3%81%8F%E3%82%8F%E3%81%8B%E3%82%89%E3%82%93%E3%81%91%E3%81%A9%20%E3%81%93%E3%82%8F%E3%81%84%20%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3&url=https%3A%2F%2Flokuyow.github.io%2Fnanka-kowai-bitcoin%2F" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
     <button class="share-copy" type="button" data-i18n>リンクをコピー</button>

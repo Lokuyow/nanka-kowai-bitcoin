@@ -24,6 +24,7 @@
     '一言まとめ': 'In short',
     'この答えをシェアする': 'Share this answer',
     'このサイトをシェアする': 'Share this site',
+    'シェア': 'Share',
     'Xでポストする': 'Post on X',
     'リンクをコピー': 'Copy link',
     'リンクをコピーしました': 'Link copied',
