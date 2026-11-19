@@ -91,15 +91,6 @@
     transition:width .35s ease}
   .feenum{font-size:26px;font-weight:900;text-align:center;font-variant-numeric:tabular-nums}
   .feestate{text-align:center;font-size:14px;min-height:1.7em}
-  .merge{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 0}
-  .outs{display:flex;flex-direction:column;gap:6px}
-  .outdot{width:22px;height:22px;border-radius:50%;background:#fff;
-    border:2px solid var(--ink);font-size:10px;display:flex;align-items:center;justify-content:center}
-  .mergearrow{flex:0 0 64px}
-  .mergearrow path{stroke-dasharray:5 5}
-  .onetx{background:var(--orange);color:#fff;border-radius:10px;padding:10px 14px;
-    font-weight:700;font-size:14px;text-align:center}
-
   .routebtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
   .routebtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}
   .routebtns button.on{background:var(--orange);border-color:var(--orange);color:#fff}
@@ -150,8 +141,7 @@
   :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
   :root[data-theme="dark"] .lockbox,:root[data-theme="dark"] .receipt,
   :root[data-theme="dark"] .vs .mini,:root[data-theme="dark"] .minestats div,
-  :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span,
-  :root[data-theme="dark"] .outdot{background:#2e2c29}
+  :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span{background:#2e2c29}
   :root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
   :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
   :root[data-theme="dark"] .tradebtns .sell,
@@ -262,26 +252,6 @@
         <p class="sendmsg" id="rMsg"></p>
       </div>
       <p class="hint" id="feeNote" data-i18n>手数料は目安です。取引所の出金手数料は一例として 0.0005 BTC で計算しています。</p>
-    </div>
-  </section>
-
-  <section>
-    <h2 data-i18n>取引所は「まとめ送り」している</h2>
-    <p class="lede" data-i18n>取引所はたくさんの人の出金を1回の送金にまとめている。だから本物の手数料は利用者みんなで割り勘になる。</p>
-    <div class="card">
-      <div class="merge">
-        <div class="outs">
-          <div class="outdot">A</div><div class="outdot">B</div><div class="outdot">C</div><div class="outdot">D</div>
-        </div>
-        <svg class="mergearrow" width="64" height="90" viewBox="0 0 64 90">
-          <path d="M4 10 C 30 10, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
-          <path d="M4 35 C 30 35, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
-          <path d="M4 60 C 30 60, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
-          <path d="M4 84 C 30 84, 30 45, 58 45" stroke="#f7931a" stroke-width="2.5" fill="none"/>
-        </svg>
-        <div class="onetx" data-i18n-html>1回の送金<br><span style="font-weight:400;font-size:12px">手数料は1回分だけ</span></div>
-      </div>
-      <p class="hint" data-i18n>それでも出金手数料が高いのはネットワークのせいではなく取引所の料金設定。</p>
     </div>
   </section>
 <div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>高いのは取引所の料金設定。ビットコイン自体の手数料は別のもので、混雑しだいで変わる</span></div>
