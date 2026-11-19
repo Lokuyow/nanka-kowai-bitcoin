@@ -289,12 +289,18 @@
   var spdFast = document.getElementById('spdFast');
   var result = document.getElementById('sendResult');
   var route = 'ex', speed = 'wait';
-  function amt(){
-    var raw = 500 * Math.pow(1000, +range.value / 100);
+  function isEn(){ return window.LANG === 'en'; }
+  function amt(v){
+    v = v === undefined ? +range.value : v;
+    if (isEn()) {
+      var rawU = 5 * Math.pow(1000, v / 100);   /* 英語モードの金額: $5〜$5,000 */
+      return rawU >= 1000 ? Math.round(rawU / 10) * 10 : Math.round(rawU);
+    }
+    var raw = 500 * Math.pow(1000, v / 100);
     return raw >= 100000 ? Math.round(raw / 1000) * 1000 : Math.round(raw / 100) * 100;
   }
-  function yen(n){ return window.LANG === 'en' ? '¥' + n.toLocaleString('en-US') : n.toLocaleString('ja-JP') + '円'; }
-  function updLbl(){ amtLbl.textContent = yen(amt()); }
+  function money(n){ return isEn() ? '$' + n.toLocaleString('en-US') : n.toLocaleString('ja-JP') + '円'; }
+  function updLbl(){ amtLbl.textContent = money(amt()); }
   range.addEventListener('input', updLbl);
   updLbl();
   function setRoute(r){
@@ -307,8 +313,8 @@
   routeSelf.addEventListener('click', function(){ setRoute('self'); });
   spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); });
   spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); });
-  var lastRun = null; /* { route, speed, a, mode:'live'|'legacy', fee, congIdx, rate } */
-  var live = null;      /* LiveData の取得結果（レートと価格が揃った場合のみ。取れていなければ null） */
+  var lastRun = null; /* { route, speed, v, mode:'live'|'legacy', congIdx, mult } */
+  var liveData = null;  /* LiveData の取得結果（使えなければ null） */
   var settled = false;  /* 取得が終わったかどうか（免責文の出し分け用） */
   var noteEl = document.getElementById('feeNote');
   function fmtRate(rate){
@@ -317,33 +323,36 @@
   function congIdxFor(rate){
     return rate < 10 ? 0 : (rate < 60 ? 1 : 2);
   }
+  function curPrice(){ return liveData ? (isEn() ? liveData.usd : liveData.jpy) : null; }
+  function liveReady(){ return !!(liveData && liveData.tiers && curPrice()); }
   function liveFee(route, speed){
-    if (route === 'ex') return { fee: Math.round(0.0005 * live.jpy), rate: null };
-    var rate = speed === 'fast' ? live.tiers.fastest : live.tiers.hour;
-    return { fee: Math.round(rate * window.LiveData.VB * live.jpy / 1e8), rate: rate };
+    var price = curPrice();
+    if (route === 'ex') return { fee: Math.round(0.0005 * price), rate: null };
+    var rate = speed === 'fast' ? liveData.tiers.fastest : liveData.tiers.hour;
+    return { fee: Math.round(rate * window.LiveData.VB * price / 1e8), rate: rate };
   }
-  function toLive(){
-    if (!lastRun || !live) return;
-    var r = liveFee(lastRun.route, lastRun.speed);
-    lastRun.mode = 'live';
-    lastRun.fee = r.fee;
-    lastRun.rate = r.rate;
-    lastRun.congIdx = congIdxFor(live.tiers.halfHour);
-  }
+  var EX_FEE = { jpy: 7500, usd: 50 };                      /* 従来計算の取引所手数料（0.0005 BTC の目安換算） */
+  var SELF_BASE = { jpy: [150, 400, 900], usd: [1, 3, 6] };  /* 従来計算の混雑度ごとの手数料のもと */
   function updateNote(){
     if (!noteEl || !settled) return;
-    if (live) {
-      var srcs = live.rateSource === live.priceSource ? live.rateSource : live.rateSource + ' / ' + live.priceSource;
+    if (liveReady()) {
+      var srcs = liveData.rateSource === liveData.priceSource ? liveData.rateSource : liveData.rateSource + ' / ' + liveData.priceSource;
       noteEl.textContent = L('「自分で送金する」の手数料は、いまの実データ（' + srcs + '）から計算しています。取引所の出金手数料は一例として 0.0005 BTC を、同じ価格で円に換算しています。',
-        'The "send it yourself" fee is calculated from live data (' + srcs + '). The exchange withdrawal fee is an example 0.0005 BTC, converted to yen at the same price.');
+        'The "send it yourself" fee is calculated from live data (' + srcs + '). The exchange withdrawal fee is an example 0.0005 BTC, converted to dollars at the same price.');
     } else {
       noteEl.textContent = L('実データを取得できなかったため、手数料は目安の数値で計算しています。取引所の出金手数料は一例として 0.0005 BTC（1BTC=1,500万円なら7,500円）で計算しています。',
-        'Live data could not be loaded, so the fees are calculated with illustrative values. The exchange withdrawal fee is an example 0.0005 BTC (¥7,500 if 1 BTC = ¥15,000,000).');
+        'Live data could not be loaded, so the fees are calculated with illustrative values. The exchange withdrawal fee is an example 0.0005 BTC ($50 if 1 BTC = $100,000).');
     }
   }
   function renderResult(){
     if (!lastRun) return;
-    var a = lastRun.a, fee = lastRun.fee, msg;
+    var a = amt(lastRun.v);
+    var isLive = lastRun.mode === 'live' && liveReady();
+    var run = isLive ? liveFee(lastRun.route, lastRun.speed)
+      : lastRun.route === 'ex' ? { fee: isEn() ? EX_FEE.usd : EX_FEE.jpy, rate: null }
+      : { fee: Math.round((isEn() ? SELF_BASE.usd : SELF_BASE.jpy)[lastRun.congIdx] * lastRun.mult), rate: null };
+    var fee = run.fee, msg;
+    var congIdx = isLive ? congIdxFor(liveData.tiers.halfHour) : lastRun.congIdx;
     if (lastRun.route === 'ex') {
       if (fee >= a) msg = L('送る額より手数料の方が大きい。固定料金は、小さい額をそのまま食べてしまう。これが「送金手数料が高い」と感じる正体。', "The fee is bigger than the amount you're sending. A fixed charge eats small amounts whole. This is what's really behind the feeling that Bitcoin fees are high.");
       else {
@@ -358,47 +367,45 @@
       var pct2 = fee / a * 100;
       var pctTxt = pct2 < 0.1 ? '0.1%未満' : pct2.toFixed(1) + '%';
       var pctTxtEn = pct2 < 0.1 ? 'less than 0.1%' : pct2.toFixed(1) + '%';
-      if (lastRun.mode === 'live') {
-        msg = L('いまのネットワークは「' + congNames[lastRun.congIdx][0] + '」。手数料レートは約' + fmtRate(lastRun.rate) + ' sat/vBで、手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
-                'The network is "' + congNames[lastRun.congIdx][1] + '" right now, at a fee rate of about ' + fmtRate(lastRun.rate) + ' sat/vB. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
+      if (isLive) {
+        msg = L('いまのネットワークは「' + congNames[congIdx][0] + '」。手数料レートは約' + fmtRate(run.rate) + ' sat/vBで、手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
+                'The network is "' + congNames[congIdx][1] + '" right now, at a fee rate of about ' + fmtRate(run.rate) + ' sat/vB. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
       } else {
-        msg = L('いまのネットワークは「' + congNames[lastRun.congIdx][0] + '」。手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
-                'The network is "' + congNames[lastRun.congIdx][1] + '" right now. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
+        msg = L('いまのネットワークは「' + congNames[congIdx][0] + '」。手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
+                'The network is "' + congNames[congIdx][1] + '" right now. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
       }
     }
     var got = Math.max(0, a - fee);
-    document.getElementById('rAmt').textContent = yen(a);
-    document.getElementById('rFee').textContent = yen(fee);
-    document.getElementById('rGot').textContent = yen(got);
+    document.getElementById('rAmt').textContent = money(a);
+    document.getElementById('rFee').textContent = money(fee);
+    document.getElementById('rGot').textContent = money(got);
     document.getElementById('rBar').style.width = Math.max(2, got / a * 100) + '%';
     document.getElementById('rMsg').textContent = msg;
     result.hidden = false;
   }
   document.getElementById('sendBtn').addEventListener('click', function(){
-    var a = amt();
-    lastRun = { route: route, speed: speed, a: a, mode: 'legacy', fee: 0, congIdx: 1, rate: null };
-    if (live) {
-      toLive();
-    } else if (route === 'ex') {
-      lastRun.fee = 7500;
-    } else {
+    lastRun = { route: route, speed: speed, v: +range.value, mode: 'legacy', congIdx: 1, mult: 1 };
+    if (liveReady()) {
+      lastRun.mode = 'live';
+    } else if (route === 'self') {
       var cong = Math.random();
-      var congIdx = cong < 0.4 ? 0 : (cong < 0.75 ? 1 : 2);
-      var base = congIdx === 0 ? 150 : (congIdx === 1 ? 400 : 900);
-      lastRun.fee = speed === 'wait' ? Math.round(base * (0.8 + Math.random() * 0.5))
-                                     : Math.round(base * (2.5 + Math.random() * 1.5));
-      lastRun.congIdx = congIdx;
+      lastRun.congIdx = cong < 0.4 ? 0 : (cong < 0.75 ? 1 : 2);
+      lastRun.mult = speed === 'wait' ? (0.8 + Math.random() * 0.5) : (2.5 + Math.random() * 1.5);
     }
     renderResult();
   });
   window.LiveData.load().then(function(d){
     settled = true;
-    /* シミュレータの実データ計算にはレートと価格の両方が要る。片方だけなら従来計算のまま */
-    live = (d && d.tiers && d.jpy) ? d : null;
+    /* シミュレータの実データ計算にはレートと表示通貨の価格の両方が要る。欠けたら従来計算のまま */
+    liveData = (d && d.tiers && (d.jpy || d.usd)) ? d : null;
     updateNote();
-    if (live && lastRun) { toLive(); renderResult(); }
+    if (lastRun && liveReady()) { lastRun.mode = 'live'; renderResult(); }
   });
-  document.addEventListener('langchange', function(){ updLbl(); updateNote(); renderResult(); });
+  document.addEventListener('langchange', function(){
+    updLbl(); updateNote();
+    if (lastRun && liveReady()) lastRun.mode = 'live';
+    renderResult();
+  });
 })();
 
 </script>
