@@ -7,6 +7,7 @@
 <script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#171614':'#fffaf3');}})();</script>
 <script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
 <script src="../i18n.js"></script>
+<script src="../livedata.js"></script>
 <title>ビットコインの送金手数料って高いよね？：なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="高いのは取引所の料金設定。本物の送金手数料は別のもので、混雑しだいで変わる">
 <meta property="og:type" content="article">
@@ -268,70 +269,6 @@
 <p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
-/* 実データ取得（レシートの「いまの目安」とシミュレータで共用。取得はページ内で1回だけ）
-   主系 mempool.space（レート＋BTC/JPY価格）→ 副系 Blockstream（レート）＋CoinGecko（価格）。
-   全部失敗したら null を返し、各表示は従来の目安計算にフォールバックする。 */
-window.FeeLive = (function(){
-  var VB = 140; /* 普通の送金1回の大きさの目安（vB） */
-  var cache = null;
-  function fetchJson(url){
-    var ctl = new AbortController();
-    var timer = setTimeout(function(){ ctl.abort(); }, 5000);
-    return fetch(url, { signal: ctl.signal }).then(function(res){
-      clearTimeout(timer);
-      if (!res.ok) throw new Error('http ' + res.status);
-      return res.json();
-    }).catch(function(err){ clearTimeout(timer); throw err; });
-  }
-  function num(v){ return (typeof v === 'number' && isFinite(v) && v > 0) ? v : null; }
-  function pick(f, keys){
-    for (var i = 0; i < keys.length; i++) { var v = num(f[keys[i]]); if (v) return v; }
-    return null;
-  }
-  function tiers3(fastest, half, hour){
-    if (!fastest && !half && !hour) return null;
-    fastest = fastest || half || hour;
-    half = half || hour || fastest;
-    hour = hour || half || fastest;
-    return { fastest: fastest, halfHour: half, hour: hour };
-  }
-  function fromMempool(){
-    return Promise.all([
-      fetchJson('https://mempool.space/api/v1/fees/recommended'),
-      fetchJson('https://mempool.space/api/v1/prices')
-    ]).then(function(r){
-      var f = r[0] || {}, p = r[1] || {};
-      var tiers = tiers3(num(f.fastestFee), num(f.halfHourFee), num(f.hourFee));
-      var jpy = num(p.JPY);
-      if (!tiers || !jpy) throw new Error('bad data');
-      return { tiers: tiers, jpy: jpy, rateSource: 'mempool.space', priceSource: 'mempool.space' };
-    });
-  }
-  function fromBackup(){
-    return Promise.all([
-      fetchJson('https://blockstream.info/api/fee-estimates'),
-      fetchJson('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=jpy')
-    ]).then(function(r){
-      var f = r[0] || {}, p = (r[1] && r[1].bitcoin) || {};
-      /* Blockstream は確認目標（ブロック数）→ sat/vB。1≒次ブロック、3≒30分、6≒1時間 */
-      var tiers = tiers3(pick(f, ['1', '2', '3']), pick(f, ['3', '2', '4', '6', '5', '1']), pick(f, ['6', '5', '4', '3', '2', '1']));
-      var jpy = num(p.jpy);
-      if (!tiers || !jpy) throw new Error('bad data');
-      return { tiers: tiers, jpy: jpy, rateSource: 'blockstream.info', priceSource: 'CoinGecko' };
-    });
-  }
-  function load(){
-    if (!cache) {
-      if (!window.fetch || !window.AbortController) cache = Promise.resolve(null);
-      else cache = Promise.resolve().then(fromMempool).catch(function(){ return fromBackup(); }).catch(function(){ return null; });
-    }
-    return cache;
-  }
-  return { load: load, VB: VB };
-})();
-
-</script>
-<script>
 
 (function(){
   var range = document.getElementById('amtRange');
@@ -362,7 +299,7 @@ window.FeeLive = (function(){
   spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); });
   spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); });
   var lastRun = null; /* { route, speed, a, mode:'live'|'legacy', fee, congIdx, rate } */
-  var live = null;      /* FeeLive の取得結果（取れていなければ null） */
+  var live = null;      /* LiveData の取得結果（レートと価格が揃った場合のみ。取れていなければ null） */
   var settled = false;  /* 取得が終わったかどうか（免責文の出し分け用） */
   var noteEl = document.getElementById('feeNote');
   function fmtRate(rate){
@@ -374,7 +311,7 @@ window.FeeLive = (function(){
   function liveFee(route, speed){
     if (route === 'ex') return { fee: Math.round(0.0005 * live.jpy), rate: null };
     var rate = speed === 'fast' ? live.tiers.fastest : live.tiers.hour;
-    return { fee: Math.round(rate * window.FeeLive.VB * live.jpy / 1e8), rate: rate };
+    return { fee: Math.round(rate * window.LiveData.VB * live.jpy / 1e8), rate: rate };
   }
   function toLive(){
     if (!lastRun || !live) return;
@@ -445,11 +382,12 @@ window.FeeLive = (function(){
     }
     renderResult();
   });
-  window.FeeLive.load().then(function(d){
+  window.LiveData.load().then(function(d){
     settled = true;
-    live = d;
+    /* シミュレータの実データ計算にはレートと価格の両方が要る。片方だけなら従来計算のまま */
+    live = (d && d.tiers && d.jpy) ? d : null;
     updateNote();
-    if (d && lastRun) { toLive(); renderResult(); }
+    if (live && lastRun) { toLive(); renderResult(); }
   });
   document.addEventListener('langchange', function(){ updLbl(); updateNote(); renderResult(); });
 })();
@@ -457,15 +395,15 @@ window.FeeLive = (function(){
 </script>
 <script>
 /* いまの送金手数料の目安（実データ表示）
-   取得は FeeLive（シミュレータと共用・ページ内で1回だけ）。目安には halfHour 相当の
-   レートを使い、取れなければ何も表示しない（ページは従来どおり動く）。 */
+   取得は共通モジュール LiveData（シミュレータと共用・ページ内で1回だけ）。目安には
+   halfHour 相当のレートを使い、取れなければ何も表示しない（ページは従来どおり動く）。 */
 (function(){
   var line = document.getElementById('liveFeeLine');
   var labelEl = document.getElementById('liveFeeLabel');
   var mainEl = document.getElementById('liveFeeMain');
   var srcEl = document.getElementById('liveFeeSrc');
-  if (!line || !window.FeeLive) return;
-  var VB = window.FeeLive.VB;
+  if (!line || !window.LiveData) return;
+  var VB = window.LiveData.VB;
   var state = null; /* { rate: sat/vB, source: 表示名 } */
   function roundSats(sats){
     /* 目安として誠実な桁に丸める */
@@ -497,8 +435,8 @@ window.FeeLive = (function(){
     srcEl.hidden = false;
   }
   document.addEventListener('langchange', render);
-  window.FeeLive.load().then(function(d){
-    if (!d) return; /* 全滅時は何も表示しない */
+  window.LiveData.load().then(function(d){
+    if (!d || !d.tiers) return; /* レートが取れなければ何も表示しない */
     state = { rate: d.tiers.halfHour, source: d.rateSource };
     render();
   });
