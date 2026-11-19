@@ -116,6 +116,11 @@
     border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
   .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
+  .livefee{margin:12px 0 0;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:10px 14px}
+  .livefee[hidden]{display:none}
+  .livefee-main{margin:0;font-size:15px;font-weight:700}
+  .livefee-src{margin:2px 0 0;font-size:12px;color:var(--sub)}
 </style>
 <style>
   :root[data-theme="dark"]{color-scheme:dark;
@@ -225,6 +230,10 @@
       </div>
     </div>
     <p class="lede" style="margin-top:12px" data-i18n>本物の送金手数料は、たいてい取引所の出金手数料よりずっと安い。</p>
+    <div class="livefee" id="liveFee" hidden>
+      <p class="livefee-main" id="liveFeeMain"></p>
+      <p class="livefee-src" id="liveFeeSrc"></p>
+    </div>
   </section>
 
   <section>
@@ -356,6 +365,83 @@
     renderResult();
   });
   document.addEventListener('langchange', function(){ updLbl(); renderResult(); });
+})();
+
+</script>
+<script>
+/* いまの送金手数料の目安（実データ表示）
+   主系 mempool.space → 副系 blockstream.info + CoinGecko の順に試し、
+   全部失敗したら何も表示しない（ページは従来どおり動く）。 */
+(function(){
+  var box = document.getElementById('liveFee');
+  var mainEl = document.getElementById('liveFeeMain');
+  var srcEl = document.getElementById('liveFeeSrc');
+  if (!box || !window.fetch || !window.AbortController) return;
+  var VB = 140; /* 普通の送金1回の大きさの目安（vB） */
+  var state = null; /* { rate: sat/vB, jpy: 1BTCの円価格, source: 表示名 } */
+  function fetchJson(url){
+    var ctl = new AbortController();
+    var timer = setTimeout(function(){ ctl.abort(); }, 5000);
+    return fetch(url, { signal: ctl.signal }).then(function(res){
+      clearTimeout(timer);
+      if (!res.ok) throw new Error('http ' + res.status);
+      return res.json();
+    }).catch(function(err){ clearTimeout(timer); throw err; });
+  }
+  function num(v){ return (typeof v === 'number' && isFinite(v) && v > 0) ? v : null; }
+  function fromMempool(){
+    return Promise.all([
+      fetchJson('https://mempool.space/api/v1/fees/recommended'),
+      fetchJson('https://mempool.space/api/v1/prices')
+    ]).then(function(r){
+      var f = r[0] || {}, p = r[1] || {};
+      var rate = num(f.halfHourFee) || num(f.hourFee) || num(f.fastestFee);
+      var jpy = num(p.JPY);
+      if (!rate || !jpy) throw new Error('bad data');
+      return { rate: rate, jpy: jpy, source: 'mempool.space' };
+    });
+  }
+  function fromBackup(){
+    return Promise.all([
+      fetchJson('https://blockstream.info/api/fee-estimates'),
+      fetchJson('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=jpy')
+    ]).then(function(r){
+      var f = r[0] || {}, p = r[1] || {};
+      /* 30分程度の目標は3ブロック相当。近い目標キーから順に探す */
+      var rate = null, keys = ['3', '2', '4', '6', '5', '1'];
+      for (var i = 0; i < keys.length; i++) { rate = num(f[keys[i]]); if (rate) break; }
+      var jpy = p.bitcoin ? num(p.bitcoin.jpy) : null;
+      if (!rate || !jpy) throw new Error('bad data');
+      return { rate: rate, jpy: jpy, source: 'blockstream.info / CoinGecko' };
+    });
+  }
+  function roundYen(yen){
+    /* 目安として誠実な桁に丸める */
+    if (yen < 100) return Math.max(10, Math.round(yen / 10) * 10);
+    if (yen < 1000) return Math.round(yen / 50) * 50;
+    return Math.round(yen / 100) * 100;
+  }
+  function fmtRate(rate){
+    return rate < 10 ? String(Math.round(rate * 10) / 10) : String(Math.round(rate));
+  }
+  function render(){
+    if (!state) return;
+    var yen = roundYen(state.rate * VB * state.jpy / 1e8);
+    var rateTxt = fmtRate(state.rate);
+    mainEl.textContent = L(
+      'いまの目安：約' + yen.toLocaleString('ja-JP') + '円（' + rateTxt + ' sat/vB）',
+      'Live estimate: about ¥' + yen.toLocaleString('en-US') + ' (' + rateTxt + ' sat/vB)');
+    srcEl.textContent = L(
+      'いまの実データ（' + state.source + '）から計算。普通の送金1回を約140 vBとして計算しています',
+      'Calculated from live data (' + state.source + '), for a typical transfer of about 140 vB');
+    box.hidden = false;
+  }
+  document.addEventListener('langchange', render);
+  Promise.resolve()
+    .then(fromMempool)
+    .catch(function(){ return fromBackup(); })
+    .then(function(s){ state = s; render(); })
+    .catch(function(){ /* 全滅時は何も表示しない */ });
 })();
 
 </script>
