@@ -6,7 +6,7 @@
  * - 更新時は SW_VERSION を上げること。キャッシュ名が変わり、activate で旧キャッシュを
  *   削除して総入れ替えになる（README 参照）。
  */
-const SW_VERSION = '1';
+const SW_VERSION = '2';
 const CACHE_NAME = 'kowai-bitcoin-v' + SW_VERSION;
 const BASE = '/nanka-kowai-bitcoin/';
 
@@ -28,7 +28,8 @@ const PRECACHE = [
   BASE + 'icons/icon-512.png',
   BASE + 'icons/icon-maskable-512.png',
   BASE + 'icons/apple-touch-icon.png',
-  BASE + 'ceo/news-telop.jpg',
+  // ceo/news-telop.jpg は /ceo/ 専用の大きな写真なのでプリキャッシュしない。
+  // /ceo/ を開いたときに cache-first の実行時キャッシュへ入る。
 ];
 
 self.addEventListener('install', (event) => {
