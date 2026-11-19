@@ -33,6 +33,10 @@
     '全23話': '23 stories',
     '内側の仕組みを知りたくなったら →': 'Want to see how it works on the inside? →',
     'さわってわかるビットコイン': 'Sawatte Wakaru Bitcoin — Touch & Learn',
+    'いいなと思ったら応援しよう！': 'Enjoyed it? Support with Bitcoin',
+    'ビットコインで応援する': 'Support with Bitcoin',
+    'つくった人': 'Made by',
+    'ソースコード': 'Source code',
 
     /* ===== トップページ ===== */
     'なんか よくわからんけど こわい ビットコイン': "I don't really get it, but it's scary: Bitcoin",
