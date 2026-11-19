@@ -6,7 +6,7 @@
  * - 更新時は SW_VERSION を上げること。キャッシュ名が変わり、activate で旧キャッシュを
  *   削除して総入れ替えになる（README 参照）。
  */
-const SW_VERSION = '10';
+const SW_VERSION = '11';
 const CACHE_NAME = 'kowai-bitcoin-v' + SW_VERSION;
 const BASE = '/nanka-kowai-bitcoin/';
 
@@ -22,6 +22,7 @@ const PRECACHE = [
   BASE + '404.html',
   ...UNITS.map((u) => BASE + u + '/'),
   BASE + 'i18n.js',
+  BASE + 'livedata.js',
   BASE + 'favicon.svg',
   BASE + 'manifest.webmanifest',
   BASE + 'icons/icon-192.png',
