@@ -7,6 +7,7 @@
 <script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#171614':'#fffaf3');}})();</script>
 <script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
 <script src="../i18n.js"></script>
+<script src="../livedata.js"></script>
 <title>1ビットコインって何百万円もするんでしょ？ 買えないよ：なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える">
 <meta property="og:type" content="article">
@@ -233,7 +234,7 @@
       <div class="satbtc" id="satBtc">＝ 0.00006667 BTC</div>
       <div class="yenbar-wrap"><div class="yenbar" id="satBar" style="width:25%"></div></div>
       <p class="satmsg" id="satMsg">お小遣いでも、ちゃんと買える。</p>
-      <p class="hint" style="text-align:left;margin:8px 0 0" data-i18n>1BTC = 1,500万円として計算（イメージ）。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。</p>
+      <p class="hint" style="text-align:left;margin:8px 0 0" id="satHint">1BTC = 1,500万円として計算（イメージ）。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。</p>
     </div>
   </section>
 <div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>ビットコインはピザと同じ。1ホール買わなくても、一切れから買える</span></div>
@@ -299,7 +300,23 @@
   var btcEl = document.getElementById('satBtc');
   var bar = document.getElementById('satBar');
   var msg = document.getElementById('satMsg');
+  var hintEl = document.getElementById('satHint');
   var shown = 6667, raf = null;
+  var btcJpy = 15000000;   /* 換算に使う1BTCの価格（円）。実データが取れたら差し替える */
+  var livePrice = null;    /* { jpy, source } 実価格（取れた場合のみ） */
+  function renderHint(){
+    if (!hintEl) return;
+    if (livePrice) {
+      var man = Math.round(livePrice.jpy / 10000).toLocaleString('ja-JP');
+      hintEl.textContent = L(
+        '1BTC = 約' + man + '万円（いまの実価格・' + livePrice.source + '）として計算。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。',
+        'Calculated at 1 BTC = ¥' + Math.round(livePrice.jpy).toLocaleString('en-US') + ' (the current price, live from ' + livePrice.source + '). A small amount is still real bitcoin, and its percentage moves match buying a whole coin.');
+    } else {
+      hintEl.textContent = L(
+        '1BTC = 1,500万円として計算（イメージ）。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。',
+        'Calculated at 1 BTC = ¥15,000,000 (illustrative). A small amount is still real bitcoin, and its percentage moves match buying a whole coin.');
+    }
+  }
   function yen(){ return Math.round(100 * Math.pow(10000, +range.value / 100) / 10) * 10; }
   function msgFor(y){
     if (y < 1000) return L('お小遣いでも、ちゃんと買える。', 'Even pocket money buys some, properly.');
@@ -309,7 +326,7 @@
   }
   function upd(){
     var y = yen();
-    var sats = Math.round(y / 15000000 * 100000000);
+    var sats = Math.round(y / btcJpy * 100000000);
     lbl.textContent = window.LANG === 'en' ? '¥' + y.toLocaleString('en-US') : y.toLocaleString('ja-JP') + '円';
     btcEl.textContent = L('＝ ', '= ') + (sats / 100000000).toFixed(8) + ' BTC';
     bar.style.width = Math.max(2, +range.value) + '%';
@@ -326,8 +343,19 @@
     raf = requestAnimationFrame(step);
   }
   range.addEventListener('input', upd);
-  document.addEventListener('langchange', upd);
+  document.addEventListener('langchange', function(){ renderHint(); upd(); });
+  renderHint();
   upd();
+  // 実データが取れたら、その現在価格（円）で換算し直す
+  if (window.LiveData) {
+    window.LiveData.load().then(function(d){
+      if (!d || !d.jpy) return;
+      btcJpy = d.jpy;
+      livePrice = { jpy: d.jpy, source: d.priceSource };
+      renderHint();
+      upd();
+    });
+  }
 })();
 
 </script>
