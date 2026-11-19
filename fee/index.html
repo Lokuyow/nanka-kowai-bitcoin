@@ -121,6 +121,9 @@
   .receipt .line.live-line[hidden]{display:none}
   .livefee-src{margin:8px 0 0;font-size:12px;color:var(--sub)}
   .livefee-src[hidden]{display:none}
+  .nw{white-space:nowrap}
+  .receipt .line>span:first-child{flex:0 0 auto;white-space:nowrap}
+  .receipt .line>span:last-child{text-align:right}
 </style>
 <style>
   :root[data-theme="dark"]{color-scheme:dark;
@@ -221,14 +224,14 @@
         <h3 data-i18n>取引所のレシート</h3>
         <div class="line"><span data-i18n>出金する額</span><span>0.1 BTC</span></div>
         <div class="line hl"><span data-i18n>出金手数料</span><span>0.0005 BTC</span></div>
-        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n>固定（いつも同じ）</span></div>
+        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n-html>固定<span class="nw">（いつも同じ）</span></span></div>
       </div>
       <div class="receipt">
         <h3 data-i18n>本物の送金レシート</h3>
         <div class="line"><span data-i18n>送る額</span><span>0.1 BTC</span></div>
         <div class="line hl"><span data-i18n>送金手数料</span><span data-i18n>混雑しだい</span></div>
         <div class="line live-line" id="liveFeeLine" hidden><span id="liveFeeLabel"></span><span id="liveFeeMain"></span></div>
-        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n>変動（空いていれば安い）</span></div>
+        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n-html>変動<span class="nw">（空いていれば安い）</span></span></div>
         <p class="livefee-src" id="liveFeeSrc" hidden></p>
       </div>
     </div>
@@ -430,9 +433,9 @@
     var sats = roundSats(state.rate * VB);
     var rateTxt = fmtRate(state.rate);
     labelEl.textContent = L('いまの目安', 'Live estimate');
-    mainEl.textContent = L(
-      '約' + sats.toLocaleString('ja-JP') + ' sats（' + fmtBtc(sats) + ' BTC・' + rateTxt + ' sat/vB）',
-      'about ' + sats.toLocaleString('en-US') + ' sats (' + fmtBtc(sats) + ' BTC, ' + rateTxt + ' sat/vB)');
+    mainEl.innerHTML = L(
+      '約' + sats.toLocaleString('ja-JP') + ' sats<span class="nw">（' + fmtBtc(sats) + ' BTC・' + rateTxt + ' sat/vB）</span>',
+      'about ' + sats.toLocaleString('en-US') + ' sats <span class="nw">(' + fmtBtc(sats) + ' BTC, ' + rateTxt + ' sat/vB)</span>');
     srcEl.textContent = L(
       'いまの実データ（' + state.source + '）から計算。普通の送金1回を約140 vBとして計算しています',
       'Calculated from live data (' + state.source + '), for a typical transfer of about 140 vB');
