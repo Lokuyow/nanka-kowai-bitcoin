@@ -249,18 +249,18 @@
   </section>
 
   <section>
-    <h2 data-i18n>主語を入れ替えてみる</h2>
-    <p class="lede" data-i18n>見出しの主語がちょっとズレている。</p>
+    <h2 data-i18n>たった数文字で意味が変わる</h2>
+    <p class="lede" data-i18n>見出しだけでは、何が詐欺なのか分からない。</p>
     <div class="card" id="swapCard">
       <div class="swap-stage">
         <div class="sentence" id="sentence">
           <span class="chip move" data-i18n>ビットコイン</span><span class="chip insert" data-i18n>を使った</span><span class="chip ghost" data-i18n>詐欺</span>
         </div>
         <div class="swap-arrow">↓</div>
-        <p class="swap-caption" id="swapCaption" data-i18n-html>主語は <b>ビットコイン</b>？ それとも…？</p>
+        <p class="swap-caption" id="swapCaption" data-i18n-html><b>ビットコイン</b>自体が詐欺？ それとも……？</p>
       </div>
       <div class="center" style="margin-top:14px">
-        <button id="swapBtn" type="button" data-i18n>主語を入れ替える</button>
+        <button id="swapBtn" type="button" data-i18n>言葉を足す</button>
       </div>
     </div>
   </section>
@@ -320,10 +320,10 @@
   var cap = document.getElementById('swapCaption');
   function renderSwap(){
     var on = card.classList.contains('swapped');
-    btn.textContent = on ? L('元に戻す', 'Put it back') : L('主語を入れ替える', 'Swap the subject');
+    btn.textContent = on ? L('元に戻す', 'Put it back') : L('言葉を足す', 'Add the words');
     cap.innerHTML = on
-      ? L('詐欺をしているのは <b>ビットコインを騙った人</b>。主語は人だった。', 'The one running the scam is <b>a person hiding behind Bitcoin\'s name</b>. The subject was a person all along.')
-      : L('主語は <b>ビットコイン</b>？ それとも…？', 'Is the subject <b>Bitcoin</b>? Or…?');
+      ? L('ビットコインそのものが詐欺なのではなく、<b>ビットコインを利用した</b>詐欺だった。', 'It wasn\'t Bitcoin itself that was a scam — it was <b>a scam that used Bitcoin</b>.')
+      : L('<b>ビットコイン</b>自体が詐欺？ それとも……？', 'Is <b>Bitcoin</b> itself the scam? Or…?');
   }
   btn.addEventListener('click', function(){
     card.classList.toggle('swapped');
