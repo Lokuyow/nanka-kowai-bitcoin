@@ -38,7 +38,7 @@ test('テーマ: 未保存は system 扱いで、ボタンが system → light �
     const { page } = await openPage(context, server.base);
     assert.equal(await prefOf(page), 'system', '未保存の初期値は system');
     assert.equal(await themeOf(page), 'light', 'OS がライトなら表示もライト');
-    assert.equal(await visibleIcon(page), 'ic-sys', 'system のアイコン（モニタ）が見える');
+    assert.equal(await visibleIcon(page), 'ic-sys', 'system のアイコン（半分塗りの円）が見える');
 
     await page.locator('.theme-toggle').click();
     assert.equal(await prefOf(page), 'light', '1回押しでライト固定');
