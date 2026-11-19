@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fffaf3">
-<script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#1d1611':'#fffaf3');}})();</script>
+<script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#171614':'#fffaf3');}})();</script>
 <script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
 <script src="/nanka-kowai-bitcoin/i18n.js"></script>
 <title>ページが見つかりません：なんか よくわからんけど こわい ビットコイン</title>
@@ -31,9 +31,9 @@
 </style>
 <style>
   :root[data-theme="dark"]{color-scheme:dark;
-    --ink:#f3ecdf; --sub:#b3a48d; --bg:#1d1611;
-    --card:#2b211a; --line:#4d3e2f; --red:#ff7a66; --green:#7fc784;
-    --btnbg:#f3ecdf; --btnfg:#241a10; --amber:#f0a63f}
+    --ink:#f3ecdf; --sub:#b3a48d; --bg:#171614;
+    --card:#242322; --line:#43413c; --red:#ff7a66; --green:#7fc784;
+    --btnbg:#f3ecdf; --btnfg:#1d1c1a; --amber:#f0a63f}
   .head-right{display:flex;align-items:center;gap:10px}
   .theme-toggle{flex:0 0 auto;width:38px;height:38px;padding:0;border-radius:50%;
     background:transparent;color:var(--sub);border:1px solid var(--line);
@@ -98,7 +98,7 @@
     root.setAttribute('data-theme', t);
     root.setAttribute('data-theme-pref', p);
     var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute('content', t === 'dark' ? '#1d1611' : '#fffaf3');
+    if (m) m.setAttribute('content', t === 'dark' ? '#171614' : '#fffaf3');
     btn.setAttribute('aria-label', L(LABELS[p][0], LABELS[p][1]));
     btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
   }
