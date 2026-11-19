@@ -116,11 +116,9 @@
     border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
   .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
-  .livefee{margin:12px 0 0;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;padding:10px 14px}
-  .livefee[hidden]{display:none}
-  .livefee-main{margin:0;font-size:15px;font-weight:700}
-  .livefee-src{margin:2px 0 0;font-size:12px;color:var(--sub)}
+  .receipt .line.live-line[hidden]{display:none}
+  .livefee-src{margin:8px 0 0;font-size:12px;color:var(--sub)}
+  .livefee-src[hidden]{display:none}
 </style>
 <style>
   :root[data-theme="dark"]{color-scheme:dark;
@@ -226,14 +224,12 @@
         <h3 data-i18n>本物の送金レシート</h3>
         <div class="line"><span data-i18n>送る額</span><span>0.1 BTC</span></div>
         <div class="line hl"><span data-i18n>送金手数料</span><span data-i18n>混雑しだい</span></div>
+        <div class="line live-line" id="liveFeeLine" hidden><span id="liveFeeLabel"></span><span id="liveFeeMain"></span></div>
         <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n>変動（空いていれば安い）</span></div>
+        <p class="livefee-src" id="liveFeeSrc" hidden></p>
       </div>
     </div>
     <p class="lede" style="margin-top:12px" data-i18n>本物の送金手数料は、たいてい取引所の出金手数料よりずっと安い。</p>
-    <div class="livefee" id="liveFee" hidden>
-      <p class="livefee-main" id="liveFeeMain"></p>
-      <p class="livefee-src" id="liveFeeSrc"></p>
-    </div>
   </section>
 
   <section>
@@ -370,15 +366,16 @@
 </script>
 <script>
 /* いまの送金手数料の目安（実データ表示）
-   主系 mempool.space → 副系 blockstream.info + CoinGecko の順に試し、
+   主系 mempool.space → 副系 blockstream.info の順にレート（sat/vB）を試し、
    全部失敗したら何も表示しない（ページは従来どおり動く）。 */
 (function(){
-  var box = document.getElementById('liveFee');
+  var line = document.getElementById('liveFeeLine');
+  var labelEl = document.getElementById('liveFeeLabel');
   var mainEl = document.getElementById('liveFeeMain');
   var srcEl = document.getElementById('liveFeeSrc');
-  if (!box || !window.fetch || !window.AbortController) return;
+  if (!line || !window.fetch || !window.AbortController) return;
   var VB = 140; /* 普通の送金1回の大きさの目安（vB） */
-  var state = null; /* { rate: sat/vB, jpy: 1BTCの円価格, source: 表示名 } */
+  var state = null; /* { rate: sat/vB, source: 表示名 } */
   function fetchJson(url){
     var ctl = new AbortController();
     var timer = setTimeout(function(){ ctl.abort(); }, 5000);
@@ -390,51 +387,53 @@
   }
   function num(v){ return (typeof v === 'number' && isFinite(v) && v > 0) ? v : null; }
   function fromMempool(){
-    return Promise.all([
-      fetchJson('https://mempool.space/api/v1/fees/recommended'),
-      fetchJson('https://mempool.space/api/v1/prices')
-    ]).then(function(r){
-      var f = r[0] || {}, p = r[1] || {};
+    return fetchJson('https://mempool.space/api/v1/fees/recommended')
+    .then(function(f){
+      f = f || {};
       var rate = num(f.halfHourFee) || num(f.hourFee) || num(f.fastestFee);
-      var jpy = num(p.JPY);
-      if (!rate || !jpy) throw new Error('bad data');
-      return { rate: rate, jpy: jpy, source: 'mempool.space' };
+      if (!rate) throw new Error('bad data');
+      return { rate: rate, source: 'mempool.space' };
     });
   }
   function fromBackup(){
-    return Promise.all([
-      fetchJson('https://blockstream.info/api/fee-estimates'),
-      fetchJson('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=jpy')
-    ]).then(function(r){
-      var f = r[0] || {}, p = r[1] || {};
+    return fetchJson('https://blockstream.info/api/fee-estimates')
+    .then(function(f){
+      f = f || {};
       /* 30分程度の目標は3ブロック相当。近い目標キーから順に探す */
       var rate = null, keys = ['3', '2', '4', '6', '5', '1'];
       for (var i = 0; i < keys.length; i++) { rate = num(f[keys[i]]); if (rate) break; }
-      var jpy = p.bitcoin ? num(p.bitcoin.jpy) : null;
-      if (!rate || !jpy) throw new Error('bad data');
-      return { rate: rate, jpy: jpy, source: 'blockstream.info / CoinGecko' };
+      if (!rate) throw new Error('bad data');
+      return { rate: rate, source: 'blockstream.info' };
     });
   }
-  function roundYen(yen){
+  function roundSats(sats){
     /* 目安として誠実な桁に丸める */
-    if (yen < 100) return Math.max(10, Math.round(yen / 10) * 10);
-    if (yen < 1000) return Math.round(yen / 50) * 50;
-    return Math.round(yen / 100) * 100;
+    if (sats < 100) return Math.round(sats);
+    if (sats < 1000) return Math.round(sats / 10) * 10;
+    return Math.round(sats / 100) * 100;
+  }
+  function fmtBtc(sats){
+    /* sats ÷ 1億。小数8桁まで出して末尾の不要な0を落とす */
+    var s = (sats / 1e8).toFixed(8).replace(/0+$/, '');
+    if (s.endsWith('.')) s = s.slice(0, -1);
+    return s;
   }
   function fmtRate(rate){
     return rate < 10 ? String(Math.round(rate * 10) / 10) : String(Math.round(rate));
   }
   function render(){
     if (!state) return;
-    var yen = roundYen(state.rate * VB * state.jpy / 1e8);
+    var sats = roundSats(state.rate * VB);
     var rateTxt = fmtRate(state.rate);
+    labelEl.textContent = L('いまの目安', 'Live estimate');
     mainEl.textContent = L(
-      'いまの目安：約' + yen.toLocaleString('ja-JP') + '円（' + rateTxt + ' sat/vB）',
-      'Live estimate: about ¥' + yen.toLocaleString('en-US') + ' (' + rateTxt + ' sat/vB)');
+      '約' + sats.toLocaleString('ja-JP') + ' sats（' + fmtBtc(sats) + ' BTC・' + rateTxt + ' sat/vB）',
+      'about ' + sats.toLocaleString('en-US') + ' sats (' + fmtBtc(sats) + ' BTC, ' + rateTxt + ' sat/vB)');
     srcEl.textContent = L(
       'いまの実データ（' + state.source + '）から計算。普通の送金1回を約140 vBとして計算しています',
       'Calculated from live data (' + state.source + '), for a typical transfer of about 140 vB');
-    box.hidden = false;
+    line.hidden = false;
+    srcEl.hidden = false;
   }
   document.addEventListener('langchange', render);
   Promise.resolve()
