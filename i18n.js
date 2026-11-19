@@ -27,6 +27,8 @@
     'Xでポストする': 'Post on X',
     'リンクをコピー': 'Copy link',
     'リンクをコピーしました': 'Link copied',
+    'テキストをコピー': 'Copy text',
+    'テキストをコピーしました': 'Text copied',
     '一覧': 'List',
     '← 前': '← Prev',
     '次 →': 'Next →',

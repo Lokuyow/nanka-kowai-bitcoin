@@ -97,6 +97,8 @@
   .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
+  .share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .share-copytext{background:#fff;color:var(--ink);border:1px solid var(--line)}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
   .share-alt[hidden]{display:none}
   .share-x{display:inline-block;background:var(--btnbg);color:var(--btnfg);text-decoration:none;
@@ -123,6 +125,7 @@
   :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
   :root[data-theme="dark"] .tbl th{background:#2f2b23}
   :root[data-theme="dark"] .share-copy{background:#2e2c29}
+  :root[data-theme="dark"] .share-copytext{background:#2e2c29}
   :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
   :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
   :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
@@ -224,12 +227,13 @@
 
 <div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>自分のものにできる強さは、引き継げなさと表裏一体だ。あなたなら、鍵を誰にどう残す？</span></div>
 <div class="share">
-  <button class="share-main" type="button" data-i18n>この問いをシェアする</button>
+  <div class="share-btns"><button class="share-main" type="button" data-i18n>この問いをシェアする</button><button class="share-copytext" type="button" data-i18n>テキストをコピー</button></div>
   <div class="share-alt" hidden>
     <a class="share-x" href="https://twitter.com/intent/tweet?text=%E8%87%AA%E5%88%86%E3%81%8C%E6%AD%BB%E3%82%93%E3%81%A0%E3%82%89%E3%80%81%E3%83%93%E3%83%83%E3%83%88%E3%82%B3%E3%82%A4%E3%83%B3%E3%81%AF%E3%81%A9%E3%81%86%E3%81%AA%E3%82%8B%EF%BC%9F&url=https%3A//lokuyow.github.io/nanka-kowai-bitcoin/death/" target="_blank" rel="noopener" data-i18n>Xでポストする</a>
     <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
   </div>
   <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
+  <p class="share-note text-note" hidden data-i18n>テキストをコピーしました</p>
 </div>
 
 <p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
@@ -367,6 +371,26 @@
     }
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(url).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+  document.querySelector('.share-copytext').addEventListener('click', function(){
+    var d = data();
+    var text = d.title + '\n' + d.text + '\n' + d.url;
+    var tnote = document.querySelector('.text-note');
+    function done(){ tnote.hidden = false; setTimeout(function(){ tnote.hidden = true; }, 2500); }
+    function fallback(){
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
     } else {
       fallback();
     }
