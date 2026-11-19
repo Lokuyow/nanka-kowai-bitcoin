@@ -237,7 +237,7 @@
     '送った額': 'Amount sent',
     '手数料': 'Fee',
     '相手に届く額': 'Amount received',
-    '金額と手数料はイメージです。取引所の出金手数料は 0.0005 BTC（1BTC=1,500万円なら7,500円）として計算しています。': 'Amounts and fees are illustrative. The exchange withdrawal fee is calculated as 0.0005 BTC (¥7,500 if 1 BTC = ¥15,000,000).',
+    '手数料は目安です。取引所の出金手数料は一例として 0.0005 BTC で計算しています。': 'Fees are estimates. The exchange withdrawal fee is calculated using an example fee of 0.0005 BTC.',
     '取引所は「まとめ送り」している': 'Exchanges batch their sends',
     '取引所はたくさんの人の出金を1回の送金にまとめている。だから本物の手数料は利用者みんなで割り勘になる。': "An exchange bundles many people's withdrawals into a single transfer. So the real fee gets split among all the users.",
     '1回の送金<br><span style="font-weight:400;font-size:12px">手数料は1回分だけ</span>': 'One transfer<br><span style="font-weight:400;font-size:12px">only one fee</span>',

@@ -261,7 +261,7 @@
         <div class="feebar-wrap"><div class="feebar" id="rBar"></div></div>
         <p class="sendmsg" id="rMsg"></p>
       </div>
-      <p class="hint" data-i18n>金額と手数料はイメージです。取引所の出金手数料は 0.0005 BTC（1BTC=1,500万円なら7,500円）として計算しています。</p>
+      <p class="hint" id="feeNote" data-i18n>手数料は目安です。取引所の出金手数料は一例として 0.0005 BTC で計算しています。</p>
     </div>
   </section>
 
@@ -298,6 +298,70 @@
 <p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href="https://lokuyow.github.io/sawatte-wakaru-bitcoin/" data-i18n>さわってわかるビットコイン</a></p>
 </div>
 <script>
+/* 実データ取得（レシートの「いまの目安」とシミュレータで共用。取得はページ内で1回だけ）
+   主系 mempool.space（レート＋BTC/JPY価格）→ 副系 Blockstream（レート）＋CoinGecko（価格）。
+   全部失敗したら null を返し、各表示は従来の目安計算にフォールバックする。 */
+window.FeeLive = (function(){
+  var VB = 140; /* 普通の送金1回の大きさの目安（vB） */
+  var cache = null;
+  function fetchJson(url){
+    var ctl = new AbortController();
+    var timer = setTimeout(function(){ ctl.abort(); }, 5000);
+    return fetch(url, { signal: ctl.signal }).then(function(res){
+      clearTimeout(timer);
+      if (!res.ok) throw new Error('http ' + res.status);
+      return res.json();
+    }).catch(function(err){ clearTimeout(timer); throw err; });
+  }
+  function num(v){ return (typeof v === 'number' && isFinite(v) && v > 0) ? v : null; }
+  function pick(f, keys){
+    for (var i = 0; i < keys.length; i++) { var v = num(f[keys[i]]); if (v) return v; }
+    return null;
+  }
+  function tiers3(fastest, half, hour){
+    if (!fastest && !half && !hour) return null;
+    fastest = fastest || half || hour;
+    half = half || hour || fastest;
+    hour = hour || half || fastest;
+    return { fastest: fastest, halfHour: half, hour: hour };
+  }
+  function fromMempool(){
+    return Promise.all([
+      fetchJson('https://mempool.space/api/v1/fees/recommended'),
+      fetchJson('https://mempool.space/api/v1/prices')
+    ]).then(function(r){
+      var f = r[0] || {}, p = r[1] || {};
+      var tiers = tiers3(num(f.fastestFee), num(f.halfHourFee), num(f.hourFee));
+      var jpy = num(p.JPY);
+      if (!tiers || !jpy) throw new Error('bad data');
+      return { tiers: tiers, jpy: jpy, rateSource: 'mempool.space', priceSource: 'mempool.space' };
+    });
+  }
+  function fromBackup(){
+    return Promise.all([
+      fetchJson('https://blockstream.info/api/fee-estimates'),
+      fetchJson('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=jpy')
+    ]).then(function(r){
+      var f = r[0] || {}, p = (r[1] && r[1].bitcoin) || {};
+      /* Blockstream は確認目標（ブロック数）→ sat/vB。1≒次ブロック、3≒30分、6≒1時間 */
+      var tiers = tiers3(pick(f, ['1', '2', '3']), pick(f, ['3', '2', '4', '6', '5', '1']), pick(f, ['6', '5', '4', '3', '2', '1']));
+      var jpy = num(p.jpy);
+      if (!tiers || !jpy) throw new Error('bad data');
+      return { tiers: tiers, jpy: jpy, rateSource: 'blockstream.info', priceSource: 'CoinGecko' };
+    });
+  }
+  function load(){
+    if (!cache) {
+      if (!window.fetch || !window.AbortController) cache = Promise.resolve(null);
+      else cache = Promise.resolve().then(fromMempool).catch(function(){ return fromBackup(); }).catch(function(){ return null; });
+    }
+    return cache;
+  }
+  return { load: load, VB: VB };
+})();
+
+</script>
+<script>
 
 (function(){
   var range = document.getElementById('amtRange');
@@ -327,22 +391,64 @@
   routeSelf.addEventListener('click', function(){ setRoute('self'); });
   spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); });
   spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); });
-  var lastResult = null;
+  var lastRun = null; /* { route, speed, a, mode:'live'|'legacy', fee, congIdx, rate } */
+  var live = null;      /* FeeLive の取得結果（取れていなければ null） */
+  var settled = false;  /* 取得が終わったかどうか（免責文の出し分け用） */
+  var noteEl = document.getElementById('feeNote');
+  function fmtRate(rate){
+    return rate < 10 ? String(Math.round(rate * 10) / 10) : String(Math.round(rate));
+  }
+  function congIdxFor(rate){
+    return rate < 10 ? 0 : (rate < 60 ? 1 : 2);
+  }
+  function liveFee(route, speed){
+    if (route === 'ex') return { fee: Math.round(0.0005 * live.jpy), rate: null };
+    var rate = speed === 'fast' ? live.tiers.fastest : live.tiers.hour;
+    return { fee: Math.round(rate * window.FeeLive.VB * live.jpy / 1e8), rate: rate };
+  }
+  function toLive(){
+    if (!lastRun || !live) return;
+    var r = liveFee(lastRun.route, lastRun.speed);
+    lastRun.mode = 'live';
+    lastRun.fee = r.fee;
+    lastRun.rate = r.rate;
+    lastRun.congIdx = congIdxFor(live.tiers.halfHour);
+  }
+  function updateNote(){
+    if (!noteEl || !settled) return;
+    if (live) {
+      var srcs = live.rateSource === live.priceSource ? live.rateSource : live.rateSource + ' / ' + live.priceSource;
+      noteEl.textContent = L('「自分で送金する」の手数料は、いまの実データ（' + srcs + '）から計算しています。取引所の出金手数料は一例として 0.0005 BTC を、同じ価格で円に換算しています。',
+        'The "send it yourself" fee is calculated from live data (' + srcs + '). The exchange withdrawal fee is an example 0.0005 BTC, converted to yen at the same price.');
+    } else {
+      noteEl.textContent = L('実データを取得できなかったため、手数料は目安の数値で計算しています。取引所の出金手数料は一例として 0.0005 BTC（1BTC=1,500万円なら7,500円）で計算しています。',
+        'Live data could not be loaded, so the fees are calculated with illustrative values. The exchange withdrawal fee is an example 0.0005 BTC (¥7,500 if 1 BTC = ¥15,000,000).');
+    }
+  }
   function renderResult(){
-    if (!lastResult) return;
-    var a = lastResult.a, fee = lastResult.fee, msg;
-    if (lastResult.route === 'ex') {
+    if (!lastRun) return;
+    var a = lastRun.a, fee = lastRun.fee, msg;
+    if (lastRun.route === 'ex') {
       if (fee >= a) msg = L('送る額より手数料の方が大きい。固定料金は、小さい額をそのまま食べてしまう。これが「送金手数料が高い」と感じる正体。', "The fee is bigger than the amount you're sending. A fixed charge eats small amounts whole. This is what's really behind the feeling that Bitcoin fees are high.");
       else {
         var pct = Math.round(fee / a * 100);
         msg = L('手数料は全体の約' + pct + '%。金額が小さいほど、固定料金の重さが目立ってくる。', 'The fee is about ' + pct + '% of the total. The smaller the amount, the heavier the fixed charge feels.');
         if (pct <= 2) msg += L('大きな額なら割合は小さくなる。でも、それはネットワークの手数料が下がったからではない。', ' With a large amount the share shrinks — but not because the network fee went down.');
       }
+    } else if (fee >= a) {
+      msg = L('送る額より手数料の方が大きい。いまの手数料では、金額の小さい送金は手数料で消えてしまう。', 'The fee is bigger than the amount itself. At the current fee, a transfer this small would be eaten up by the fee.');
     } else {
       var congNames = [['空いている', 'quiet'], ['ふつう', 'normal'], ['混雑している', 'busy']];
       var pct2 = fee / a * 100;
-      msg = L('いまのネットワークは「' + congNames[lastResult.congIdx][0] + '」。手数料は全体の約' + (pct2 < 0.1 ? '0.1%未満' : pct2.toFixed(1) + '%') + '。送る額が変わっても、手数料は混雑しだいで決まる。',
-              'The network is "' + congNames[lastResult.congIdx][1] + '" right now. The fee is about ' + (pct2 < 0.1 ? 'less than 0.1%' : pct2.toFixed(1) + '%') + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
+      var pctTxt = pct2 < 0.1 ? '0.1%未満' : pct2.toFixed(1) + '%';
+      var pctTxtEn = pct2 < 0.1 ? 'less than 0.1%' : pct2.toFixed(1) + '%';
+      if (lastRun.mode === 'live') {
+        msg = L('いまのネットワークは「' + congNames[lastRun.congIdx][0] + '」。手数料レートは約' + fmtRate(lastRun.rate) + ' sat/vBで、手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
+                'The network is "' + congNames[lastRun.congIdx][1] + '" right now, at a fee rate of about ' + fmtRate(lastRun.rate) + ' sat/vB. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
+      } else {
+        msg = L('いまのネットワークは「' + congNames[lastRun.congIdx][0] + '」。手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
+                'The network is "' + congNames[lastRun.congIdx][1] + '" right now. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
+      }
     }
     var got = Math.max(0, a - fee);
     document.getElementById('rAmt').textContent = yen(a);
@@ -353,66 +459,44 @@
     result.hidden = false;
   }
   document.getElementById('sendBtn').addEventListener('click', function(){
-    var a = amt(), fee;
-    if (route === 'ex') {
-      fee = 7500;
-      lastResult = { route: 'ex', a: a, fee: fee };
+    var a = amt();
+    lastRun = { route: route, speed: speed, a: a, mode: 'legacy', fee: 0, congIdx: 1, rate: null };
+    if (live) {
+      toLive();
+    } else if (route === 'ex') {
+      lastRun.fee = 7500;
     } else {
       var cong = Math.random();
       var congIdx = cong < 0.4 ? 0 : (cong < 0.75 ? 1 : 2);
       var base = congIdx === 0 ? 150 : (congIdx === 1 ? 400 : 900);
-      fee = speed === 'wait' ? Math.round(base * (0.8 + Math.random() * 0.5))
-                             : Math.round(base * (2.5 + Math.random() * 1.5));
-      lastResult = { route: 'self', a: a, fee: fee, congIdx: congIdx };
+      lastRun.fee = speed === 'wait' ? Math.round(base * (0.8 + Math.random() * 0.5))
+                                     : Math.round(base * (2.5 + Math.random() * 1.5));
+      lastRun.congIdx = congIdx;
     }
     renderResult();
   });
-  document.addEventListener('langchange', function(){ updLbl(); renderResult(); });
+  window.FeeLive.load().then(function(d){
+    settled = true;
+    live = d;
+    updateNote();
+    if (d && lastRun) { toLive(); renderResult(); }
+  });
+  document.addEventListener('langchange', function(){ updLbl(); updateNote(); renderResult(); });
 })();
 
 </script>
 <script>
 /* いまの送金手数料の目安（実データ表示）
-   主系 mempool.space → 副系 blockstream.info の順にレート（sat/vB）を試し、
-   全部失敗したら何も表示しない（ページは従来どおり動く）。 */
+   取得は FeeLive（シミュレータと共用・ページ内で1回だけ）。目安には halfHour 相当の
+   レートを使い、取れなければ何も表示しない（ページは従来どおり動く）。 */
 (function(){
   var line = document.getElementById('liveFeeLine');
   var labelEl = document.getElementById('liveFeeLabel');
   var mainEl = document.getElementById('liveFeeMain');
   var srcEl = document.getElementById('liveFeeSrc');
-  if (!line || !window.fetch || !window.AbortController) return;
-  var VB = 140; /* 普通の送金1回の大きさの目安（vB） */
+  if (!line || !window.FeeLive) return;
+  var VB = window.FeeLive.VB;
   var state = null; /* { rate: sat/vB, source: 表示名 } */
-  function fetchJson(url){
-    var ctl = new AbortController();
-    var timer = setTimeout(function(){ ctl.abort(); }, 5000);
-    return fetch(url, { signal: ctl.signal }).then(function(res){
-      clearTimeout(timer);
-      if (!res.ok) throw new Error('http ' + res.status);
-      return res.json();
-    }).catch(function(err){ clearTimeout(timer); throw err; });
-  }
-  function num(v){ return (typeof v === 'number' && isFinite(v) && v > 0) ? v : null; }
-  function fromMempool(){
-    return fetchJson('https://mempool.space/api/v1/fees/recommended')
-    .then(function(f){
-      f = f || {};
-      var rate = num(f.halfHourFee) || num(f.hourFee) || num(f.fastestFee);
-      if (!rate) throw new Error('bad data');
-      return { rate: rate, source: 'mempool.space' };
-    });
-  }
-  function fromBackup(){
-    return fetchJson('https://blockstream.info/api/fee-estimates')
-    .then(function(f){
-      f = f || {};
-      /* 30分程度の目標は3ブロック相当。近い目標キーから順に探す */
-      var rate = null, keys = ['3', '2', '4', '6', '5', '1'];
-      for (var i = 0; i < keys.length; i++) { rate = num(f[keys[i]]); if (rate) break; }
-      if (!rate) throw new Error('bad data');
-      return { rate: rate, source: 'blockstream.info' };
-    });
-  }
   function roundSats(sats){
     /* 目安として誠実な桁に丸める */
     if (sats < 100) return Math.round(sats);
@@ -443,11 +527,11 @@
     srcEl.hidden = false;
   }
   document.addEventListener('langchange', render);
-  Promise.resolve()
-    .then(fromMempool)
-    .catch(function(){ return fromBackup(); })
-    .then(function(s){ state = s; render(); })
-    .catch(function(){ /* 全滅時は何も表示しない */ });
+  window.FeeLive.load().then(function(d){
+    if (!d) return; /* 全滅時は何も表示しない */
+    state = { rate: d.tiers.halfHour, source: d.rateSource };
+    render();
+  });
 })();
 
 </script>
