@@ -281,6 +281,36 @@
       {h: '2025年：最高値から3割ほど下がった', v: 38, peak: 55}
     ]}
   };
+  // 英語版はドル建て価格テーブルから評価額を計算する（投資額 $1,000）。
+  // buy はその年の半ば（6月末終値。2011年は6月の Mt. Gox 事件直前の水準 $17）、
+  // イベント価格は各局面の実際の安値・高値、now は固定の参照価格 $100,000。
+  var PRICES_EN = {
+    y2011: {buy: 17, now: 100000, events: [
+      {p: 2, peak: null},
+      {p: 230, peak: 1150},
+      {p: 3122, peak: 19783},
+      {p: 15476, peak: 69000}
+    ]},
+    y2015: {buy: 263, now: 100000, events: [
+      {p: 3122, peak: 19783},
+      {p: 15476, peak: 69000}
+    ]},
+    y2019: {buy: 10849, now: 100000, events: [
+      {p: 4971, peak: null},
+      {p: 15476, peak: 69000}
+    ]},
+    y2023: {buy: 30476, now: 100000, events: [
+      {p: 88000, peak: 126198}
+    ]}
+  };
+  var PLANS_EN = {};
+  Object.keys(PRICES_EN).forEach(function(k){
+    var t = PRICES_EN[k];
+    PLANS_EN[k] = {start: 1000, final: Math.round(1000 * t.now / t.buy), events: t.events.map(function(e){
+      return {h: '', v: Math.round(1000 * e.p / t.buy), peak: e.peak ? Math.round(1000 * e.peak / t.buy) : null};
+    })};
+  });
+  function plans(){ return window.LANG === 'en' ? PLANS_EN : PLANS; }
   var HEADS_EN = {
     y2011: ['2011: a big drop — "just as shady as we thought", people said',
             '2014: an exchange collapsed, down 80% from the peak',
@@ -305,12 +335,13 @@
   var btnReset = document.getElementById('btnReset');
   var yearBtns = document.querySelectorAll('#yearPick button');
   function fmt(v){
+    if (window.LANG === 'en') return '$' + Math.round(v).toLocaleString('en-US');
     var s = (v % 1 === 0) ? String(Math.round(v)) : v.toFixed(1);
-    if (window.LANG === 'en') return '¥' + Math.round(v * 10000).toLocaleString('en-US');
     return Number(s).toLocaleString('ja-JP') + '万円';
   }
   function yPix(v){
-    var lo = Math.log10(0.8), hi = Math.log10(6000);
+    var lo = window.LANG === 'en' ? Math.log10(80) : Math.log10(0.8);
+    var hi = window.LANG === 'en' ? Math.log10(10000000) : Math.log10(6000);
     var t = (Math.log10(v) - lo) / (hi - lo);
     return 118 - t * (118 - 12);
   }
@@ -324,7 +355,7 @@
     });
     simLine.setAttribute('points', line);
     simDots.innerHTML = dots;
-    var by = yPix(10).toFixed(1);
+    var by = yPix(plan.start).toFixed(1);
     baseLine.setAttribute('y1', by);
     baseLine.setAttribute('y2', by);
   }
@@ -356,7 +387,7 @@
     renderSim();
   }
   function start(key){
-    plan = PLANS[key]; planKey = key;
+    plan = plans()[key]; planKey = key;
     idx = 0;
     pts = [plan.start];
     simArea.hidden = false;
@@ -389,8 +420,17 @@
     simArea.hidden = true;
     yearBtns.forEach(function(b){ b.classList.remove('on'); });
   });
-  document.addEventListener('langchange', function(){ if (plan) renderSim(); else simVal.textContent = fmt(10); });
-  if (!plan) simVal.textContent = fmt(10);
+  function rebuildPts(){
+    pts = [plan.start];
+    var n = phase === 'done' ? plan.events.length : idx + 1;
+    for (var i = 0; i < n; i++) pts.push(plan.events[i].v);
+    if (phase === 'done') pts.push(plan.final);
+  }
+  document.addEventListener('langchange', function(){
+    if (plan) { plan = plans()[planKey]; rebuildPts(); renderSim(); }
+    else simVal.textContent = fmt(plans().y2011.start);
+  });
+  if (!plan) simVal.textContent = fmt(plans().y2011.start);
 })();
 </script>
 <script>
