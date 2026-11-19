@@ -165,7 +165,7 @@
     '利用者': 'Users',
     'トップの判断で止まる・変わる': "Stops or changes at the top's say-so",
     '全員が対等。止める人もいない': 'Everyone is equal. No one can stop it',
-    '※ 取引所やウォレットのアプリには会社がある。でもそれは「ビットコインを使う道具」の会社で、ビットコイン自体の運営ではない。': 'Note: exchanges and wallet apps do have companies. But those companies make tools that use Bitcoin — they do not operate Bitcoin itself.',
+    '※ 取引所やウォレットのアプリには会社がある。でもそれは「ビットコインを使う道具」の会社で、<span class="nw">ビットコイン自体の運営ではない。</span>': 'Note: exchanges and wallet apps do have companies. But those companies make tools that use Bitcoin — <span class="nw">they do not operate Bitcoin itself.</span>',
     '「できること」にも限界がある': 'Even the people involved have limits',
     '関わる人それぞれに、できることはある。でも、ビットコイン自体を支配する力は、誰にもない。': 'Each person involved can do some things. But nobody has the power to control Bitcoin itself.',
     'できる': 'Can do',
