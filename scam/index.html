@@ -91,10 +91,7 @@
     opacity:0;transform:scale(.6) translateY(8px)}
   .swapped .chip.insert{opacity:1;transform:scale(1) translateY(0)}
   .swapped .chip.move{transform:translateX(6px)}
-  .swap-arrow{font-size:26px;color:var(--orange);margin:2px 0;
-    transition:transform .5s ease}
-  .swapped .swap-arrow{transform:rotate(180deg)}
-  .swap-caption{font-size:14px;color:var(--sub);margin:10px 0 0;min-height:1.7em}
+  .swap-caption{font-size:14px;color:var(--sub);margin:16px 0 0;min-height:1.7em}
   .swap-caption b{color:var(--ink)}
   /* スマホ幅ではチップを小さくして必ず1行に収める（折り返すと階段状に崩れるため） */
   @media(max-width:520px){
@@ -269,7 +266,6 @@
         <div class="sentence" id="sentence">
           <span class="chip move" data-i18n>ビットコイン</span><span class="chip insert" data-i18n>を使った</span><span class="chip ghost" data-i18n>詐欺</span>
         </div>
-        <div class="swap-arrow">↓</div>
         <p class="swap-caption" id="swapCaption" data-i18n-html><b>ビットコイン</b>自体が詐欺？ それとも……？</p>
       </div>
       <div class="center" style="margin-top:14px">
