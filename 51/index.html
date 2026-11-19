@@ -284,8 +284,9 @@
   var tried = {};
   function fmtCost(){
     if (window.LANG === 'en') {
-      if (cost >= 10000) return '¥' + (cost / 10000).toFixed(2) + ' trillion';
-      return '¥' + Math.round(cost / 10) + ' billion';
+      // cost は億円単位。¥150/$ でドル換算する（1兆円 ≒ $6.7 billion）
+      if (cost >= 10000) return '$' + (cost / 1500).toFixed(2) + ' billion';
+      return '$' + Math.round(cost / 1.5) + ' million';
     }
     if (cost >= 10000) return (cost / 10000).toFixed(2) + '兆円';
     return Math.round(cost).toLocaleString('ja-JP') + '億円';
