@@ -105,6 +105,8 @@
   .hlbtns button.wrong{border-color:var(--red);background:#fff6f6;color:var(--red)}
   .hlbtns button[disabled]{cursor:default;opacity:.85}
   .hlfeed{font-size:14px;min-height:3.2em;margin:10px 0 0}
+  .hlfeed .acc{background:#fdeeda;border-radius:6px;padding:1px 6px;font-weight:700}
+  .hlfeed + .center{margin-top:18px}
   #hlRetry{min-height:44px}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
@@ -140,6 +142,7 @@
   :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
   :root[data-theme="dark"] .tbl th{background:#3a2c1c}
   :root[data-theme="dark"] .share-copy{background:#392c20}
+  :root[data-theme="dark"] .hlfeed .acc{background:#473311}
   :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
   :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
   :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
@@ -336,8 +339,8 @@
   function renderFeed(){
     if (answeredOk === null) { feed.innerHTML = ''; return; }
     feed.innerHTML = answeredOk
-      ? L('<b>正解。</b>これだけが正確な見出し。でも実際にテレビや新聞で大きく出たのは、まちがっている方。本文はどれも「取引所の社長」と書いていたのに、見出しだけが独り歩きした。', '<b>Correct.</b> This is the only accurate headline. Yet the ones splashed across TV and newspapers were the wrong ones. Every article\'s text said "the exchange\'s president" — only the headlines ran off on their own.')
-      : L('<b>それは実際に大きく報じられた見出し。でも正確じゃない。</b>逮捕されたのは取引所の社長。「ビットコインの社長」という見出しが、誤解を広げた。', '<b>That headline really did run, widely. But it isn\'t accurate.</b> The man arrested was the exchange\'s president. Headlines about a "Bitcoin president" spread the misunderstanding.');
+      ? L('<b>正解。</b>これだけが<span class="acc">正確</span>な見出し。でも実際にテレビや新聞で大きく出たのは、まちがっている方。本文はどれも「取引所の社長」と書いていたのに、見出しだけが独り歩きした。', '<b>Correct.</b> This is the only <span class="acc">accurate</span> headline. Yet the ones splashed across TV and newspapers were the wrong ones. Every article\'s text said "the exchange\'s president" — only the headlines ran off on their own.')
+      : L('<b>それは実際に大きく報じられた見出し。でも<span class="acc">正確</span>じゃない。</b>逮捕されたのは取引所の社長。「ビットコインの社長」という見出しが、誤解を広げた。', '<b>That headline really did run, widely. But it isn\'t <span class="acc">accurate</span>.</b> The man arrested was the exchange\'s president. Headlines about a "Bitcoin president" spread the misunderstanding.');
   }
   function reset(){
     shuffleBtns();
