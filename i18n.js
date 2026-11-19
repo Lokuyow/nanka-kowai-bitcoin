@@ -47,7 +47,7 @@
     'ビットコイン': 'Bitcoin',
     'ニュースで見たイメージと、ほんとの姿。': 'The image from the news — and what it really looks like.',
     'なぜこわく見えるのか': 'Why does it look so scary?',
-    '見出しだけで接していると、目に入るのは事件と暴落の話ばかり。「わからない」ものは「こわい」ものに見える。ここではその誤解をひとつずつ図でほどいていく。': "When headlines are all you see, all you hear about are crimes and crashes. Things we don't understand tend to look scary. Here, we untangle those misunderstandings one by one, with pictures.",
+    '見出しだけを見ていると、目に入るのは事件と暴落の話ばかり。「わからない」ものは「こわい」ものに見える。ここではその誤解をひとつずつ図で解いていく。': "When all you look at are headlines, all you hear about are crimes and crashes. Things we don't understand tend to look scary. Here, we clear up those misunderstandings one by one, with pictures.",
     '価格とニュースの見出ししか見ていない段階の思い込み': 'Ideas formed from nothing but prices and news headlines',
     '事件報道でイメージが固まった思い込み': 'Ideas set in stone by crime reporting',
     '仕組みを半分知っている人の思い込み': 'Ideas from half-knowing how it works',
