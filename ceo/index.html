@@ -107,8 +107,6 @@
   .hlbtns button[disabled]{cursor:default;opacity:.85}
   .hlfeed{font-size:14px;min-height:3.2em;margin:10px 0 0}
   .hlfeed .acc{background:#fdeeda;border-radius:6px;padding:1px 6px;font-weight:700}
-  .hlfeed + .center{margin-top:18px}
-  #hlRetry{min-height:44px}
   .share{margin-top:20px;text-align:center}
   .share-main{background:var(--orange);color:#fff;font-weight:700;padding:12px 26px}
   .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
@@ -228,7 +226,6 @@
         <button type="button" data-ok="0" data-i18n>「ビットコインの社長、ついに逮捕」</button>
       </div>
       <p class="hlfeed" id="hlFeed" aria-live="polite"></p>
-      <div class="center"><button type="button" id="hlRetry" hidden data-i18n>もう一度（順番が変わる）</button></div>
     </div>
   </section>
 
@@ -330,7 +327,6 @@
 (function(){
   var btnsWrap = document.getElementById('hlBtns');
   var feed = document.getElementById('hlFeed');
-  var retry = document.getElementById('hlRetry');
   var answeredOk = null;
   function shuffleBtns(){
     var btns = Array.prototype.slice.call(btnsWrap.children);
@@ -345,16 +341,6 @@
       ? L('<b>正解。</b>これだけが<span class="acc">正確</span>な見出し。でも実際にテレビや新聞で大きく出たのは、まちがっている方。本文はどれも「取引所の社長」と書いていたのに、見出しだけが独り歩きした。', '<b>Correct.</b> This is the only <span class="acc">accurate</span> headline. Yet the ones splashed across TV and newspapers were the wrong ones. Every article\'s text said "the exchange\'s president" — only the headlines ran off on their own.')
       : L('<b>それは実際に大きく報じられた見出し。でも<span class="acc">正確</span>じゃない。</b>逮捕されたのは取引所の社長。「ビットコインの社長」という見出しが、誤解を広げた。', '<b>That headline really did run, widely. But it isn\'t <span class="acc">accurate</span>.</b> The man arrested was the exchange\'s president. Headlines about a "Bitcoin president" spread the misunderstanding.');
   }
-  function reset(){
-    shuffleBtns();
-    answeredOk = null;
-    feed.textContent = '';
-    retry.hidden = true;
-    Array.prototype.forEach.call(btnsWrap.children, function(b){
-      b.disabled = false;
-      b.classList.remove('right', 'wrong');
-    });
-  }
   btnsWrap.addEventListener('click', function(e){
     var b = e.target.closest('button');
     if (!b || b.disabled) return;
@@ -366,9 +352,7 @@
     if (!ok) b.classList.add('wrong');
     answeredOk = ok;
     renderFeed();
-    retry.hidden = false;
   });
-  retry.addEventListener('click', reset);
   document.addEventListener('langchange', renderFeed);
   shuffleBtns();
 })();

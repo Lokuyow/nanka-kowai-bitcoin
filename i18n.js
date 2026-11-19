@@ -147,7 +147,6 @@
     '「ビットコインの元CEOを逮捕」': '"Former CEO of Bitcoin arrested"',
     '「取引所マウントゴックスの社長を逮捕」': '"President of the Mt. Gox exchange arrested"',
     '「ビットコインの社長、ついに逮捕」': '"Bitcoin president finally arrested"',
-    'もう一度（順番が変わる）': 'Try again (order shuffled)',
     '会社情報をさがしてみる': 'Look up the company info',
     '「ビットコイン株式会社」の会社概要をいくら調べても出てこない。': 'Search all you want — a company profile for "Bitcoin Inc." never turns up.',
     '社名': 'Company name',
