@@ -80,15 +80,17 @@
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
 </style>
 <style>
-  .board{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:start}
-  @media(max-width:520px){.board{grid-template-columns:1fr 1fr}.nowbox{grid-column:1/-1;order:-1}}
-  .side h3{font-size:13px;margin:0 0 8px;text-align:center}
-  .row{display:flex;align-items:center;gap:6px;margin:6px 0;font-size:12px}
+  .boardv{display:block}
+  .side h3{font-size:13px;margin:0 0 6px;text-align:left}
+  .row{display:flex;align-items:center;gap:6px;margin:6px 0;font-size:12px;border-radius:6px}
   .row .bar{height:16px;border-radius:4px}
   .side.buy .bar{background:#f7931a}
   .side.sell .bar{background:#999}
   .row .p{flex:0 0 64px;text-align:right;font-variant-numeric:tabular-nums}
-  .nowbox{text-align:center;padding:6px 4px}
+  .row.hit{animation:flash .6s ease}
+  :root[data-theme="dark"] .row.hit{animation:flashd .6s ease}
+  @keyframes flashd{0%{background:#3d3524}100%{background:transparent}}
+  .nowbox{text-align:center;padding:12px 4px;margin:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .nowbox .lbl{font-size:12px;color:var(--sub)}
   .nowprice{font-size:30px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2;transition:color .3s}
   .nowprice.up{color:var(--green)} .nowprice.down{color:var(--red)}
@@ -201,15 +203,12 @@
 
   <section>
     <h2 data-i18n>希望価格のぶつかり合い</h2>
-    <p class="lede" data-i18n>左は「この値段なら買いたい」、右は「この値段なら売りたい」。ぶつかった真ん中がその時点の価格になる。あなたもボタンを押して、売り買いに参加してみよう。</p>
+    <p class="lede" data-i18n>上は「この値段なら売りたい」、下は「この値段なら買いたい」。ぶつかった真ん中がその時点の価格になる。あなたもボタンを押して、売り買いに参加してみよう。</p>
     <div class="card" id="boardCard">
-      <div class="board">
-        <div class="side buy">
-          <h3 data-i18n>買いたい人</h3>
-          <div class="row"><span class="p" data-i18n>1,498万円</span><div class="bar" style="width:38%"></div></div>
-          <div class="row"><span class="p" data-i18n>1,499万円</span><div class="bar" style="width:55%"></div></div>
-          <div class="row"><span class="p" data-i18n>1,500万円</span><div class="bar" style="width:72%"></div></div>
-          <div class="row"><span class="p" data-i18n>1,501万円</span><div class="bar" style="width:90%"></div></div>
+      <div class="boardv">
+        <div class="side sell">
+          <h3 data-i18n>売りたい人</h3>
+          <div id="askRows"></div>
         </div>
         <div class="nowbox">
           <div class="lbl" data-i18n>いまの価格</div>
@@ -222,12 +221,9 @@
           </div>
           <div class="lbl" id="myTrades" style="margin-top:8px">あなたの取引: 0回</div>
         </div>
-        <div class="side sell">
-          <h3 data-i18n>売りたい人</h3>
-          <div class="row"><div class="bar" style="width:88%"></div><span class="p" data-i18n>1,502万円</span></div>
-          <div class="row"><div class="bar" style="width:66%"></div><span class="p" data-i18n>1,503万円</span></div>
-          <div class="row"><div class="bar" style="width:50%"></div><span class="p" data-i18n>1,504万円</span></div>
-          <div class="row"><div class="bar" style="width:34%"></div><span class="p" data-i18n>1,505万円</span></div>
+        <div class="side buy">
+          <h3 data-i18n>買いたい人</h3>
+          <div id="bidRows"></div>
         </div>
       </div>
       <p class="hint" data-i18n>価格を決めている人はどこにもいない。だからこそ、世界中の取引で24時間動き続ける。</p>
@@ -254,38 +250,93 @@
   var myTrades = 0;
   var tradesEl = document.getElementById('myTrades');
   var lastPair = null;
+  // 板：段は {p: 価格（円）, a: 量}。バーの幅は a そのもの（最大100の固定スケール。正規化しない）
+  var TICK = 10000;
+  var asks = [ // 安い順（先頭が最良気配）
+    {p:15020000, a:88}, {p:15030000, a:66}, {p:15040000, a:50}, {p:15050000, a:34}
+  ];
+  var bids = [ // 高い順（先頭が最良気配）
+    {p:15010000, a:90}, {p:15000000, a:72}, {p:14990000, a:55}, {p:14980000, a:38}
+  ];
+  var askRows = document.getElementById('askRows');
+  var bidRows = document.getElementById('bidRows');
   function renderTrades(){ tradesEl.textContent = L('あなたの取引: ' + myTrades + '回', 'Your trades: ' + myTrades); }
   function fmt(n){ return n.toLocaleString('ja-JP'); }
+  function manLabel(p){ return L((p / 10000).toLocaleString('ja-JP') + '万円', '¥' + (p / 1000000).toFixed(2) + 'M'); }
+  function makeRow(lv){
+    var row = document.createElement('div');
+    row.className = 'row';
+    row.dataset.p = lv.p;
+    var p = document.createElement('span');
+    p.className = 'p';
+    p.textContent = manLabel(lv.p);
+    var bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.width = lv.a + '%';
+    row.appendChild(p);
+    row.appendChild(bar);
+    return row;
+  }
+  function render(hit){
+    askRows.innerHTML = '';
+    asks.slice().reverse().forEach(function(lv){ askRows.appendChild(makeRow(lv)); }); // 高い段が上、最良気配が中央のすぐ上
+    bidRows.innerHTML = '';
+    bids.forEach(function(lv){ bidRows.appendChild(makeRow(lv)); }); // 最良気配が中央のすぐ下、安い段ほど下
+    if (hit) {
+      var wrap = hit.side === 'ask' ? askRows : bidRows;
+      var row = wrap.querySelector('[data-p="' + hit.p + '"]');
+      if (row) {
+        row.classList.add('hit');
+        setTimeout(function(){ row.classList.remove('hit'); }, 700);
+      }
+    }
+  }
   function flash(){ card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash'); }
   function show(d, pair){
     el.textContent = fmt(price);
-    el.className = 'nowprice ' + (d > 0 ? 'up' : 'down');
+    el.className = 'nowprice ' + (d > 0 ? 'up' : d < 0 ? 'down' : '');
     lastPair = pair;
     msg.textContent = L(pair[0], pair[1]);
     flash();
   }
+  // side='ask' は買い（最良の売り注文を取る）、'bid' は売り（最良の買い注文を取る）。
+  // 約定した段だけが減り、空になったら消えて外側に新しい段が補充される。他の段は変わらない。
+  function deal(side, size, pair){
+    var book = side === 'ask' ? asks : bids;
+    var lv = book[0];
+    var hitP = lv.p;
+    lv.a -= size;
+    if (lv.a <= 0) {
+      book.shift();
+      var np = side === 'ask' ? book[book.length - 1].p + TICK : book[book.length - 1].p - TICK;
+      book.push({p: np, a: 25 + Math.round(Math.random() * 70)});
+    }
+    var d = hitP - price;
+    price = hitP;
+    show(d, pair);
+    render({side: side, p: hitP});
+  }
+  render();
   setInterval(function(){
-    var d = Math.round((Math.random() - 0.5) * 3000 / 500) * 500;
-    if (d === 0) d = 500;
-    price += d;
-    show(d, d > 0 ? ['世界の誰かが、少し高い値段で買った', 'Someone in the world just bought at a slightly higher price'] : ['世界の誰かが、少し安い値段で売った', 'Someone in the world just sold at a slightly lower price']);
+    if (Math.random() < 0.5) {
+      deal('ask', 10 + Math.round(Math.random() * 20), ['世界の誰かが、少し高い値段で買った', 'Someone in the world just bought at a slightly higher price']);
+    } else {
+      deal('bid', 10 + Math.round(Math.random() * 20), ['世界の誰かが、少し安い値段で売った', 'Someone in the world just sold at a slightly lower price']);
+    }
   }, 2600);
   document.getElementById('buyBtn').addEventListener('click', function(){
-    var d = 1500 + Math.round(Math.random() * 5) * 500;
-    price += d;
     myTrades++;
     renderTrades();
-    show(d, ['あなたが買った。買いたい注文が増えて、価格が押し上がった', 'You bought. Buy orders piled up and pushed the price up']);
+    deal('ask', 30 + Math.round(Math.random() * 25), ['あなたが買った。買いたい注文が増えて、価格が押し上がった', 'You bought. Buy orders piled up and pushed the price up']);
   });
   document.getElementById('sellBtn').addEventListener('click', function(){
-    var d = -(1500 + Math.round(Math.random() * 5) * 500);
-    price += d;
     myTrades++;
     renderTrades();
-    show(d, ['あなたが売った。売りたい注文が増えて、価格が押し下がった', 'You sold. Sell orders piled up and pushed the price down']);
+    deal('bid', 30 + Math.round(Math.random() * 25), ['あなたが売った。売りたい注文が増えて、価格が押し下がった', 'You sold. Sell orders piled up and pushed the price down']);
   });
   document.addEventListener('langchange', function(){
     renderTrades();
+    render();
     if (lastPair) msg.textContent = L(lastPair[0], lastPair[1]);
   });
 
