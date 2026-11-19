@@ -74,9 +74,13 @@
   .rise{animation:rise .8s ease both}
   @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
   .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
-    border-radius:12px;padding:6px 18px;font-size:22px;font-weight:900;
+    border-radius:12px;padding:10px;line-height:0;
     transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
   .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+  .stamp .ic{width:46px;height:46px;stroke-width:2.6}
+  .stamp .mark-x{display:none}
+  .stamp.ng .mark-x{display:block}
+  .stamp.ng .mark-o{display:none}
   input[type=range]{width:100%;accent-color:var(--orange);height:32px}
 </style>
 <style>
@@ -307,7 +311,7 @@
         <button type="button" id="qScam" data-i18n>詐欺の手口</button>
         <button type="button" id="qOk" data-i18n>大丈夫そう</button>
       </div>
-      <div class="stamp-zone"><span class="stamp" id="qStamp">正解は「詐欺の手口」</span></div>
+      <div class="stamp-zone"><span class="stamp" id="qStamp" aria-hidden="true"><svg class="ic mark-o" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7.5"/></svg><svg class="ic mark-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>
       <p class="qfeed" id="qFeed" aria-live="polite"></p>
       <p class="qscore" id="qScore"></p>
       <div class="center"><button type="button" id="qNext" hidden data-i18n>次の文句へ</button></div>
@@ -394,8 +398,8 @@
     var q = quiz[qi];
     var right = lastSaid === q.scam;
     var ansName = q.scam ? L('詐欺の手口', 'Scam pitch') : L('大丈夫そう', 'Sounds safe');
-    qStamp.textContent = q.scam ? L('正解は「詐欺の手口」', 'Answer: "Scam pitch"') : L('正解は「大丈夫そう」', 'Answer: "Sounds safe"');
-    qStamp.classList.toggle('ok', !q.scam);
+    qStamp.classList.toggle('ok', right);
+    qStamp.classList.toggle('ng', !right);
     qCard.classList.add('stamped');
     clearMarks();
     (lastSaid ? qScamBtn : qOkBtn).classList.add('picked');
