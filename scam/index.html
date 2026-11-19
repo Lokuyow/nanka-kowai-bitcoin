@@ -128,6 +128,7 @@
 
   .qmsg{font-size:19px;font-weight:700;text-align:center;padding:18px 10px;background:#fdf3e3;border-radius:12px;line-height:1.6;min-height:4.6em;display:flex;align-items:center;justify-content:center}
   .qbtns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
+  .qbtns[hidden]{display:none}
   .qbtns button{min-height:48px;font-size:16px;position:relative}
   .qbtns.done button{cursor:default}
   .qbtns.done button:not(.picked):not(.correct){opacity:.5}
@@ -377,6 +378,7 @@
     answered = false; lastSaid = null;
     clearMarks();
     qCard.classList.remove('stamped');
+    qBtns.hidden = false;
     qNext.hidden = true;
     qMsg.textContent = qt(quiz[qi]);
     qFeed.textContent = L('第' + (qi + 1) + '問 / 5問。この文句、どう思う？', 'Pitch ' + (qi + 1) + ' of 5. What do you think?');
@@ -403,6 +405,7 @@
   function renderResult(){
     clearMarks();
     qCard.classList.remove('stamped');
+    qBtns.hidden = true;
     qMsg.textContent = score === 5 ? L('全問正解！', 'Perfect score!') : L('5問中 ' + score + '問 正解', score + ' out of 5 correct');
     qFeed.textContent = score === 5 ? L('見分ける目、ばっちり。その目があれば「ビットコイン詐欺」の見出しにも惑わされない。', 'Sharp eyes. With eyes like that, a "Bitcoin scam" headline won\'t fool you.')
       : score >= 3 ? L('怪しい文句の見分けは、だいたい付いている。「保証」「絶対」「今だけ」が出たら一歩引くのが合言葉。', 'You mostly have the knack. When "guaranteed", "absolutely" or "now only" shows up, step back — that\'s the rule.')
