@@ -174,6 +174,8 @@
     'できる': 'Can do',
     'できない': "Can't do",
     '開発者: 新しいコードを「提案」する（使うかどうかは各自が選ぶ）': 'Developers: propose new code (whether to use it is up to each person)',
+    'マイナー: 取引を集めてブロックを作り、台帳に記録する': 'Miners: gather transactions, build blocks, and record them in the ledger',
+    'ノード: すべての取引とブロックを自分で確かめ、ルールに合わないものは受け付けない': 'Nodes: check every transaction and block themselves, and refuse anything that breaks the rules',
     '政府: 取引所などを規制する': 'Governments: regulate exchanges and the like',
     '大口の保有者: コインを持つ・売買する': 'Big holders: hold and trade coins',
     '発行上限などのルールを無理やり変える': 'Force changes to rules like the supply cap',
