@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fffaf3">
-<script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#171614':'#fffaf3');}})();</script>
-<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
-<script src="i18n.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/js/i18n.js"></script>
 <title>なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。">
 <meta property="og:type" content="website">
@@ -100,93 +99,10 @@
   .unit .q{font-weight:700;font-size:16px;line-height:1.45}
   .unit .a{font-size:12.5px;color:var(--sub);line-height:1.5}
   .unit .arr{margin-left:auto;color:var(--orange);font-weight:900}
-  .share{margin-top:20px;text-align:center}
-  .share-title{font-size:16px;font-weight:700;margin:0 0 10px}
-  .share-iconbtn{width:44px;height:44px;padding:0;border-radius:12px;background:var(--card);
-    border:1px solid var(--line);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
-  .share-iconbtn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;
-    stroke-linecap:round;stroke-linejoin:round}
-  .share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .share-alt[hidden]{display:none}
-  .share-x{display:inline-block;background:var(--btnbg);color:var(--btnfg);text-decoration:none;
-    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
-  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
-  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
+<link rel="stylesheet" href="assets/css/share.css">
+<link rel="stylesheet" href="assets/css/theme.css">
 <style>
-  :root[data-theme="dark"]{color-scheme:dark;
-    --ink:#f3ecdf; --sub:#b3a48d; --bg:#171614;
-    --card:#242322; --line:#43413c; --red:#ff7a66; --green:#7fc784;
-    --btnbg:#f3ecdf; --btnfg:#1d1c1a; --amber:#f0a63f}
-  .head-right{display:flex;align-items:center;gap:8px;white-space:nowrap}
-  .theme-toggle{flex:0 0 auto;width:32px;height:32px;padding:0;border-radius:50%;
-    background:transparent;color:var(--sub);border:1px solid var(--line);
-    display:flex;align-items:center;justify-content:center}
-  .theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;
-    stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .theme-toggle .ic-sun,.theme-toggle .ic-moon,.theme-toggle .ic-sys{display:none}
-  :root[data-theme-pref="light"] .theme-toggle .ic-sun{display:block}
-  :root[data-theme-pref="dark"] .theme-toggle .ic-moon{display:block}
-  :root[data-theme-pref="system"] .theme-toggle .ic-sys{display:block}
-  :root[data-theme="dark"] .summary{background:#332f1e;border-color:#5a5138}
-  :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
-  :root[data-theme="dark"] .tbl th{background:#2f2b23}
-  :root[data-theme="dark"] .share-copy{background:#2e2c29}
-  :root[data-theme="dark"] .share-iconbtn{background:#2e2c29}
-  :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
-  :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
-  :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
-  :root[data-theme="dark"] .lockbox,:root[data-theme="dark"] .receipt,
-  :root[data-theme="dark"] .vs .mini,:root[data-theme="dark"] .minestats div,
-  :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span,
-  :root[data-theme="dark"] .outdot{background:#2e2c29}
-  :root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
-  :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
-  :root[data-theme="dark"] .tradebtns .sell,
-  :root[data-theme="dark"] .banbtns button:not(.banned),:root[data-theme="dark"] .capbtns button:not(.on),
-  :root[data-theme="dark"] .cutbtns button:not(.on),:root[data-theme="dark"] .dvbtns button,
-  :root[data-theme="dark"] .hlbtns button:not(.right):not(.wrong),
-  :root[data-theme="dark"] .pickbtns button:not(.on):not(.primary-btn),
-  :root[data-theme="dark"] .routebtns button:not(.on),
-  :root[data-theme="dark"] .tlbtns button:not(.on){background:#2e2c29}
-  :root[data-theme="dark"] .chip:not(.ghost):not(.insert),:root[data-theme="dark"] .same b,
-  :root[data-theme="dark"] .unit .n,:root[data-theme="dark"] .receipt .line.hl,
-  :root[data-theme="dark"] .tag.mix,:root[data-theme="dark"] .recaprow .chip,
-  :root[data-theme="dark"] .pstat .box,:root[data-theme="dark"] .qmsg,
-  :root[data-theme="dark"] .dvtotal{background:#3d3524}
-  :root[data-theme="dark"] .addr,:root[data-theme="dark"] .feebar-wrap,
-  :root[data-theme="dark"] .yenbar-wrap,:root[data-theme="dark"] .powbar,
-  :root[data-theme="dark"] .trackbar,:root[data-theme="dark"] .hpbar-wrap,
-  :root[data-theme="dark"] .meter{background:#1e1d1b}
-  :root[data-theme="dark"] .can{background:#24331e;border-color:#47603f}
-  :root[data-theme="dark"] .cannot{background:#452423;border-color:#74443d}
-  :root[data-theme="dark"] .hlbtns button.right,:root[data-theme="dark"] .tag.good,
-  :root[data-theme="dark"] .stepcard.end-good{background:#24331e}
-  :root[data-theme="dark"] .stepcard.end-good{border-color:#47603f}
-  :root[data-theme="dark"] .hlbtns button.wrong,:root[data-theme="dark"] .tag.bad,
-  :root[data-theme="dark"] .node.ng,:root[data-theme="dark"] .copy.edited,
-  :root[data-theme="dark"] .stepcard.end-bad{background:#452423}
-  :root[data-theme="dark"] .stepcard.end-bad{border-color:#74443d}
-  :root[data-theme="dark"] .receipt{border-color:#6a6355}
-  :root[data-theme="dark"] .chip.ghost,:root[data-theme="dark"] .fblk.dead,
-  :root[data-theme="dark"] .banbtns button.banned{background:#1b1a18}
-  :root[data-theme="dark"] [stroke="#e8e0d4"]{stroke:#49463d}
-  :root[data-theme="dark"] [fill="#fdf3e3"]{fill:#2b2924}
-  :root[data-theme="dark"] [fill="#d33"]{fill:#ff7a66}
-  :root[data-theme="dark"] [stroke="#d33"]{stroke:#ff7a66}
-  :root[data-theme="dark"] text[fill="#666"]{fill:#b3a48d}
-  :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
-  :root[data-theme="dark"] .dot{fill:#242322}
-</style>
-<style>
-  .lang-toggle{flex:0 0 auto;height:32px;padding:0 10px;font-size:12px;border-radius:999px;
-    background:transparent;color:var(--sub);border:1px solid var(--line);
-    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
-  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
-  :root[data-lang="ja"] .lang-toggle .lg-ja,
-  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
-
   .tipw{text-align:center;margin:36px 0 0}
   .tip p{color:var(--sub);font-size:14px;margin:0 0 12px}
   .tipb{display:inline-block;background:var(--orange);color:#fff;font-weight:700;
@@ -199,8 +115,7 @@
   @media(hover:hover){.credit a:hover{color:var(--ink)}}
   .credit i{font-style:normal;opacity:.6}
   @media(max-width:520px){
-    header{font-size:12px}header b{font-size:14px;white-space:normal}
-    .head-right{gap:6px}
+    header b{white-space:normal}
     .hero .t{font-size:34px}
     :root[data-lang="en"] .hero .t{font-size:27px}
   }
@@ -253,7 +168,9 @@
 
   <div class="summary"><small data-i18n>読み終わったら</small>
     <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span></div>
-  <div class="share">
+  <div class="share"
+     data-share-title-en="I don&#x27;t really get it, but it&#x27;s scary: Bitcoin"
+     data-share-text-en="The image from the news, and what it really looks like. Untangling the vague &#x27;scary&#x27; around Bitcoin, one misunderstanding at a time.">
   <p class="share-title" data-i18n>このサイトをシェアする</p>
   <div class="share-btns"><button class="share-main share-iconbtn" type="button" aria-label="シェア" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg></button><button class="share-copytext share-iconbtn" type="button" aria-label="テキストをコピー" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
   <div class="share-alt" hidden>
@@ -267,109 +184,6 @@
 <div class="tipw"><div class="tip"><p data-i18n>いいなと思ったら応援しよう！</p><a class="tipb" href="https://satssupport.app/t/v5mSDzHPFkju" target="_blank" rel="noopener noreferrer" data-i18n>ビットコインで応援する</a></div></div>
 <p class="credit"><span data-i18n>つくった人</span> <a href="https://lokuyow.github.io/" target="_blank" rel="noopener">ロクヨウ</a><i aria-hidden="true">·</i><a href="https://github.com/Lokuyow/nanka-kowai-bitcoin" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span data-i18n>ソースコード</span></a></p>
 </div>
-<script>
-(function(){
-  var JA = {title: 'なんか よくわからんけど こわい ビットコイン', text: 'ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。'};
-  var EN = {title: 'I don\'t really get it, but it\'s scary: Bitcoin', text: 'The image from the news, and what it really looks like. Untangling the vague \'scary\' around Bitcoin, one misunderstanding at a time.'};
-  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/';
-  function data(){
-    var d = window.LANG === 'en' ? EN : JA;
-    return {title: d.title, text: d.text, url: url};
-  }
-  var main = document.querySelector('.share-main');
-  var alt = document.querySelector('.share-alt');
-  var note = document.querySelector('.share-note');
-  var x = document.querySelector('.share-x');
-  function syncX(){
-    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
-  }
-  syncX();
-  document.addEventListener('langchange', syncX);
-  if (navigator.share) {
-    main.addEventListener('click', function(){
-      navigator.share(data()).catch(function(){});
-    });
-  } else {
-    alt.hidden = false;
-    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
-  }
-  document.querySelector('.share-copy').addEventListener('click', function(){
-    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
-    function fallback(){
-      var ta = document.createElement('textarea');
-      ta.value = url;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-      done();
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(done, fallback);
-    } else {
-      fallback();
-    }
-  });
-  document.querySelector('.share-copytext').addEventListener('click', function(){
-    var d = data();
-    var text = d.title + '\n' + d.text + '\n' + d.url;
-    var tnote = document.querySelector('.text-note');
-    function done(){ tnote.hidden = false; setTimeout(function(){ tnote.hidden = true; }, 2500); }
-    function fallback(){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-      done();
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, fallback);
-    } else {
-      fallback();
-    }
-  });
-})();
-</script>
-
-<script>
-(function(){
-  var L = window.L || function (ja) { return ja; };
-  var btn = document.querySelector('.theme-toggle');
-  if (!btn) return;
-  var root = document.documentElement;
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  var ORDER = ['system', 'light', 'dark'];
-  var LABELS = {
-    system: ['テーマ：端末に合わせる（次はライト）', 'Theme: match device (tap for light)'],
-    light: ['テーマ：ライト（次はダーク）', 'Theme: light (tap for dark)'],
-    dark: ['テーマ：ダーク（次は端末に合わせる）', 'Theme: dark (tap for system)']
-  };
-  function pref(){
-    try { var s = localStorage.getItem('theme'); if (s === 'light' || s === 'dark' || s === 'system') return s; } catch (e) {}
-    return 'system';
-  }
-  function apply(){
-    var p = pref();
-    var t = p === 'system' ? (mq.matches ? 'dark' : 'light') : p;
-    root.setAttribute('data-theme', t);
-    root.setAttribute('data-theme-pref', p);
-    var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute('content', t === 'dark' ? '#171614' : '#fffaf3');
-    btn.setAttribute('aria-label', L(LABELS[p][0], LABELS[p][1]));
-    btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
-  }
-  btn.addEventListener('click', function(){
-    var next = ORDER[(ORDER.indexOf(pref()) + 1) % ORDER.length];
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    apply();
-  });
-  if (mq.addEventListener) mq.addEventListener('change', function(){ if (pref() === 'system') apply(); });
-  document.addEventListener('langchange', apply);
-  apply();
-})();
-</script>
-<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
+<script src="assets/js/site.js"></script>
 </body>
 </html>

@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fffaf3">
-<script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#171614':'#fffaf3');}})();</script>
-<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
-<script src="/nanka-kowai-bitcoin/i18n.js"></script>
+<script src="/nanka-kowai-bitcoin/assets/js/bootstrap.js"></script>
+<script src="/nanka-kowai-bitcoin/assets/js/i18n.js"></script>
 <title>ページが見つかりません：なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="お探しのページは見つかりませんでした。">
 <link rel="icon" type="image/svg+xml" href="/nanka-kowai-bitcoin/favicon.svg">
@@ -29,36 +28,7 @@
   .btn{display:inline-block;background:var(--btnbg);color:var(--btnfg);text-decoration:none;
     border-radius:999px;padding:12px 26px;font-size:15px;font-weight:700}
 </style>
-<style>
-  :root[data-theme="dark"]{color-scheme:dark;
-    --ink:#f3ecdf; --sub:#b3a48d; --bg:#171614;
-    --card:#242322; --line:#43413c; --red:#ff7a66; --green:#7fc784;
-    --btnbg:#f3ecdf; --btnfg:#1d1c1a; --amber:#f0a63f}
-  .head-right{display:flex;align-items:center;gap:8px;white-space:nowrap}
-  .theme-toggle{flex:0 0 auto;width:32px;height:32px;padding:0;border-radius:50%;
-    background:transparent;color:var(--sub);border:1px solid var(--line);
-    display:flex;align-items:center;justify-content:center}
-  .theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;
-    stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .theme-toggle .ic-sun,.theme-toggle .ic-moon,.theme-toggle .ic-sys{display:none}
-  :root[data-theme-pref="light"] .theme-toggle .ic-sun{display:block}
-  :root[data-theme-pref="dark"] .theme-toggle .ic-moon{display:block}
-  :root[data-theme-pref="system"] .theme-toggle .ic-sys{display:block}
-  :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
-</style>
-<style>
-  .lang-toggle{flex:0 0 auto;height:32px;padding:0 10px;font-size:12px;border-radius:999px;
-    background:transparent;color:var(--sub);border:1px solid var(--line);
-    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
-  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
-  :root[data-lang="ja"] .lang-toggle .lg-ja,
-  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
-
-  @media(max-width:520px){
-    header{font-size:12px}header b{font-size:14px}
-    .head-right{gap:6px}
-  }
-</style>
+<link rel="stylesheet" href="/nanka-kowai-bitcoin/assets/css/theme.css">
 </head>
 <body>
 <div class="wrap">
@@ -68,43 +38,6 @@
 <a class="btn" href="https://lokuyow.github.io/nanka-kowai-bitcoin/" data-i18n>トップへもどる</a>
 </div>
 
-<script>
-(function(){
-  var L = window.L || function (ja) { return ja; };
-  var btn = document.querySelector('.theme-toggle');
-  if (!btn) return;
-  var root = document.documentElement;
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  var ORDER = ['system', 'light', 'dark'];
-  var LABELS = {
-    system: ['テーマ：端末に合わせる（次はライト）', 'Theme: match device (tap for light)'],
-    light: ['テーマ：ライト（次はダーク）', 'Theme: light (tap for dark)'],
-    dark: ['テーマ：ダーク（次は端末に合わせる）', 'Theme: dark (tap for system)']
-  };
-  function pref(){
-    try { var s = localStorage.getItem('theme'); if (s === 'light' || s === 'dark' || s === 'system') return s; } catch (e) {}
-    return 'system';
-  }
-  function apply(){
-    var p = pref();
-    var t = p === 'system' ? (mq.matches ? 'dark' : 'light') : p;
-    root.setAttribute('data-theme', t);
-    root.setAttribute('data-theme-pref', p);
-    var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute('content', t === 'dark' ? '#171614' : '#fffaf3');
-    btn.setAttribute('aria-label', L(LABELS[p][0], LABELS[p][1]));
-    btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
-  }
-  btn.addEventListener('click', function(){
-    var next = ORDER[(ORDER.indexOf(pref()) + 1) % ORDER.length];
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    apply();
-  });
-  if (mq.addEventListener) mq.addEventListener('change', function(){ if (pref() === 'system') apply(); });
-  document.addEventListener('langchange', apply);
-  apply();
-})();
-</script>
-<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
+<script src="/nanka-kowai-bitcoin/assets/js/site.js"></script>
 </body>
 </html>

@@ -1,12 +1,12 @@
 /* なんか よくわからんけど こわい ビットコイン — Service Worker
  *
  * 方針: 古い内容が残り続けないことを優先する。
- * - HTML と JS(i18n.js) は network-first（取れたらキャッシュを更新、失敗したらキャッシュ）
+ * - HTML・JS・CSS は network-first（取れたらキャッシュを更新、失敗したらキャッシュ）
  * - 画像などの静的アセットは cache-first
  * - 更新時は SW_VERSION を上げること。キャッシュ名が変わり、activate で旧キャッシュを
  *   削除して総入れ替えになる（README 参照）。
  */
-const SW_VERSION = '18';
+const SW_VERSION = '19';
 const CACHE_PREFIX = 'kowai-bitcoin-v';
 const CACHE_NAME = CACHE_PREFIX + SW_VERSION;
 const BASE = '/nanka-kowai-bitcoin/';
@@ -22,8 +22,13 @@ const PRECACHE = [
   BASE,
   BASE + '404.html',
   ...UNITS.map((u) => BASE + u + '/'),
-  BASE + 'i18n.js',
-  BASE + 'livedata.js',
+  BASE + 'assets/css/article.css',
+  BASE + 'assets/css/share.css',
+  BASE + 'assets/css/theme.css',
+  BASE + 'assets/js/bootstrap.js',
+  BASE + 'assets/js/i18n.js',
+  BASE + 'assets/js/livedata.js',
+  BASE + 'assets/js/site.js',
   BASE + 'favicon.svg',
   BASE + 'manifest.webmanifest',
   BASE + 'icons/icon-192.png',
@@ -82,17 +87,6 @@ async function cacheFirst(request) {
   return response;
 }
 
-// 404 ページは未知の深い URL でも配信されるため、相対パスの i18n.js が
-// その階層で解決されてしまうことがある。取得もキャッシュもできない場合は、
-// ルート直下にプリキャッシュ済みの同名ファイルで代替する（オフライン時のみ効く）
-async function fallbackByFilename(request) {
-  const url = new URL(request.url);
-  const name = url.pathname.split('/').pop();
-  if (!name || !PRECACHE.includes(BASE + name)) return null;
-  const cache = await caches.open(CACHE_NAME);
-  return (await cache.match(BASE + name)) || null;
-}
-
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   if (request.method !== 'GET') return;
@@ -113,14 +107,9 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML / JS は network-first（古い内容を残さない）
-  if (url.pathname.endsWith('.html') || url.pathname.endsWith('.js')) {
-    event.respondWith(
-      networkFirst(request).catch(async () => {
-        const fallback = await fallbackByFilename(request);
-        return fallback || Response.error();
-      })
-    );
+  // HTML・JS・CSS は network-first（古い内容を残さない）
+  if (/\.(html|js|css)$/.test(url.pathname)) {
+    event.respondWith(networkFirst(request));
     return;
   }
 

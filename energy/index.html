@@ -4,9 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fffaf3">
-<script>(function(){var p='system';try{var s=localStorage.getItem('theme');if(s==='light'||s==='dark'||s==='system'){p=s;}}catch(e){}var t=p;if(p==='system'){t='light';try{if(window.matchMedia('(prefers-color-scheme: dark)').matches){t='dark';}}catch(e){}}var r=document.documentElement;r.setAttribute('data-theme',t);r.setAttribute('data-theme-pref',p);var m=document.querySelector('meta[name="theme-color"]');if(m){m.setAttribute('content',t==='dark'?'#171614':'#fffaf3');}})();</script>
-<script>(function(){var l='ja';try{var s=localStorage.getItem('lang');if(s==='en'||s==='ja'){l=s;}else if((navigator.language||'').toLowerCase().indexOf('en')===0){l='en';}}catch(e){}document.documentElement.setAttribute('data-lang',l);document.documentElement.setAttribute('lang',l);})();</script>
-<script src="../i18n.js"></script>
+<script src="../assets/js/bootstrap.js"></script>
+<script src="../assets/js/i18n.js"></script>
 <title>ビットコインって電気の無駄遣いでしょ？：なんか よくわからんけど こわい ビットコイン</title>
 <meta name="description" content="電力は「守るためのコスト」。たくさん必要だからこそ、攻撃が割に合わない">
 <meta property="og:type" content="article">
@@ -22,63 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ビットコインって電気の無駄遣いでしょ？">
 <meta name="twitter:description" content="電力は「守るためのコスト」。たくさん必要だからこそ、攻撃が割に合わない">
-<style>
-  :root{
-    --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
-    --card:#fff;--btnbg:#1a1a1a;--btnfg:#fff;--amber:#c77400; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);
-    font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
-  .wrap{max-width:640px;margin:0 auto;padding:0 18px calc(108px + env(safe-area-inset-bottom))}
-  header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
-  header{position:sticky;top:0;z-index:60;margin:0 -18px;padding:10px 18px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-  header b{color:var(--ink);white-space:nowrap;font-size:15px}
-  header a{text-decoration:none}
-  .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
-  .eyebrow span{background:var(--orange);color:#fff;border-radius:999px;
-    padding:2px 10px;font-size:12px;margin-right:6px}
-  h1{font-size:30px;line-height:1.35;margin:0 0 8px}
-  .answer{border-left:5px solid var(--orange);background:var(--card);
-    border-radius:0 12px 12px 0;padding:14px 16px;margin:22px 0 8px;
-    font-size:19px;font-weight:700;line-height:1.5}
-  section{margin-top:44px}
-  h2{font-size:15px;margin:0 0 4px}
-  h2::before{content:"";display:inline-block;width:10px;height:10px;
-    background:var(--orange);border-radius:2px;margin-right:8px}
-  .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
-    padding:20px 16px;margin-top:12px}
-  .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
-  button{font:inherit;cursor:pointer;border:0;border-radius:999px;
-    background:var(--btnbg);color:var(--btnfg);padding:10px 20px;font-size:15px}
-  button:active{transform:scale(.97)}
-  .center{text-align:center}
-  .summary{margin-top:44px;background:#fff3e0;color:var(--ink);border:1px solid #f0d7ae;border-radius:16px;
-    padding:20px;font-size:19px;font-weight:700;line-height:1.6}
-  .summary small{display:block;font-size:12px;color:var(--amber);font-weight:400;margin-bottom:6px}
-  .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:8px max(18px,calc(50% - 302px)) calc(8px + env(safe-area-inset-bottom))}
-  .tabbar .tb{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:44px;color:var(--ink);text-decoration:none;padding:10px 4px;white-space:nowrap;background:var(--card);border:1px solid var(--line);border-radius:12px}
-  .tabbar .idx{color:var(--sub)}
-  .tabbar .off{color:var(--sub);opacity:.45;background:transparent;border-color:transparent}
-  .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
-  .bridge a{color:var(--orange);font-weight:700;white-space:nowrap}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  @media(max-width:520px){.cols{grid-template-columns:1fr}}
-  .tbl{width:100%;border-collapse:collapse;font-size:14px}
-  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-  .tbl th{background:#fdf3e3;font-weight:700}
-  .ok{color:var(--green);font-weight:700}
-  .no{color:var(--red);font-weight:700}
-  .mid{color:var(--amber);font-weight:700}
-  .rise{animation:rise .8s ease both}
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
-    border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
-    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
-  .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
-  input[type=range]{width:100%;accent-color:var(--orange);height:32px}
-</style>
+<link rel="stylesheet" href="../assets/css/article.css">
 <style>
   .wall-wrap{text-align:center}
   .wall-wrap svg{max-width:100%;height:auto}
@@ -100,98 +43,11 @@
   .minestats b{font-size:16px;font-variant-numeric:tabular-nums}
   .minemsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
   #mineCard.flashwin{animation:flash .6s ease}
-  .share{margin-top:20px;text-align:center}
-  .share-title{font-size:16px;font-weight:700;margin:0 0 10px}
-  .share-iconbtn{width:44px;height:44px;padding:0;border-radius:12px;background:var(--card);
-    border:1px solid var(--line);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
-  .share-iconbtn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;
-    stroke-linecap:round;stroke-linejoin:round}
-  .share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .share-alt{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-  .share-alt[hidden]{display:none}
-  .share-x{display:inline-block;background:var(--btnbg);color:var(--btnfg);text-decoration:none;
-    border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
-  .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
-  .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
 </style>
+<link rel="stylesheet" href="../assets/css/share.css">
+<link rel="stylesheet" href="../assets/css/theme.css">
 <style>
-  :root[data-theme="dark"]{color-scheme:dark;
-    --ink:#f3ecdf; --sub:#b3a48d; --bg:#171614;
-    --card:#242322; --line:#43413c; --red:#ff7a66; --green:#7fc784;
-    --btnbg:#f3ecdf; --btnfg:#1d1c1a; --amber:#f0a63f}
-  .head-right{display:flex;align-items:center;gap:8px;white-space:nowrap}
-  .theme-toggle{flex:0 0 auto;width:32px;height:32px;padding:0;border-radius:50%;
-    background:transparent;color:var(--sub);border:1px solid var(--line);
-    display:flex;align-items:center;justify-content:center}
-  .theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;
-    stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-  .theme-toggle .ic-sun,.theme-toggle .ic-moon,.theme-toggle .ic-sys{display:none}
-  :root[data-theme-pref="light"] .theme-toggle .ic-sun{display:block}
-  :root[data-theme-pref="dark"] .theme-toggle .ic-moon{display:block}
-  :root[data-theme-pref="system"] .theme-toggle .ic-sys{display:block}
-  :root[data-theme="dark"] .summary{background:#332f1e;border-color:#5a5138}
-  :focus-visible{outline:3px solid var(--orange);outline-offset:2px}
-  :root[data-theme="dark"] .tbl th{background:#2f2b23}
-  :root[data-theme="dark"] .share-copy{background:#2e2c29}
-  :root[data-theme="dark"] .share-iconbtn{background:#2e2c29}
-  :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
-  :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
-  :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
-  :root[data-theme="dark"] .lockbox,:root[data-theme="dark"] .receipt,
-  :root[data-theme="dark"] .vs .mini,:root[data-theme="dark"] .minestats div,
-  :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span,
-  :root[data-theme="dark"] .outdot{background:#2e2c29}
-  :root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
-  :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
-  :root[data-theme="dark"] .tradebtns .sell,
-  :root[data-theme="dark"] .banbtns button:not(.banned),:root[data-theme="dark"] .capbtns button:not(.on),
-  :root[data-theme="dark"] .cutbtns button:not(.on),:root[data-theme="dark"] .dvbtns button,
-  :root[data-theme="dark"] .hlbtns button:not(.right):not(.wrong),
-  :root[data-theme="dark"] .pickbtns button:not(.on):not(.primary-btn),
-  :root[data-theme="dark"] .routebtns button:not(.on),
-  :root[data-theme="dark"] .tlbtns button:not(.on){background:#2e2c29}
-  :root[data-theme="dark"] .chip:not(.ghost):not(.insert),:root[data-theme="dark"] .same b,
-  :root[data-theme="dark"] .unit .n,:root[data-theme="dark"] .receipt .line.hl,
-  :root[data-theme="dark"] .tag.mix,:root[data-theme="dark"] .recaprow .chip,
-  :root[data-theme="dark"] .pstat .box,:root[data-theme="dark"] .qmsg,
-  :root[data-theme="dark"] .dvtotal{background:#3d3524}
-  :root[data-theme="dark"] .addr,:root[data-theme="dark"] .feebar-wrap,
-  :root[data-theme="dark"] .yenbar-wrap,:root[data-theme="dark"] .powbar,
-  :root[data-theme="dark"] .trackbar,:root[data-theme="dark"] .hpbar-wrap,
-  :root[data-theme="dark"] .meter{background:#1e1d1b}
-  :root[data-theme="dark"] .can{background:#24331e;border-color:#47603f}
-  :root[data-theme="dark"] .cannot{background:#452423;border-color:#74443d}
-  :root[data-theme="dark"] .hlbtns button.right,:root[data-theme="dark"] .tag.good,
-  :root[data-theme="dark"] .stepcard.end-good{background:#24331e}
-  :root[data-theme="dark"] .stepcard.end-good{border-color:#47603f}
-  :root[data-theme="dark"] .hlbtns button.wrong,:root[data-theme="dark"] .tag.bad,
-  :root[data-theme="dark"] .node.ng,:root[data-theme="dark"] .copy.edited,
-  :root[data-theme="dark"] .stepcard.end-bad{background:#452423}
-  :root[data-theme="dark"] .stepcard.end-bad{border-color:#74443d}
-  :root[data-theme="dark"] .receipt{border-color:#6a6355}
-  :root[data-theme="dark"] .chip.ghost,:root[data-theme="dark"] .fblk.dead,
-  :root[data-theme="dark"] .banbtns button.banned{background:#1b1a18}
-  :root[data-theme="dark"] [stroke="#e8e0d4"]{stroke:#49463d}
-  :root[data-theme="dark"] [fill="#fdf3e3"]{fill:#2b2924}
-  :root[data-theme="dark"] [fill="#d33"]{fill:#ff7a66}
-  :root[data-theme="dark"] [stroke="#d33"]{stroke:#ff7a66}
-  :root[data-theme="dark"] text[fill="#666"]{fill:#b3a48d}
-  :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
-  :root[data-theme="dark"] .dot{fill:#242322}
   :root[data-theme="dark"] .seg1{background:#55866a}
-</style>
-<style>
-  .lang-toggle{flex:0 0 auto;height:32px;padding:0 10px;font-size:12px;border-radius:999px;
-    background:transparent;color:var(--sub);border:1px solid var(--line);
-    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
-  .lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
-  :root[data-lang="ja"] .lang-toggle .lg-ja,
-  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
-
-  @media(max-width:520px){
-    header{font-size:12px}header b{font-size:14px;white-space:normal}
-    .head-right{gap:6px}
-  }
 </style>
 </head>
 <body>
@@ -264,7 +120,9 @@
   </section>
 
 <div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>電気は無駄に燃やしているんじゃなく不正を割に合わなくするための「壁」に使われている</span></div>
-<div class="share">
+<div class="share"
+     data-share-title-en="Bitcoin is a waste of electricity, right?"
+     data-share-text-en="Electricity is the &quot;cost of protection&quot;. Because so much is needed, attacks do not pay off">
   <p class="share-title" data-i18n>この答えをシェアする</p>
   <div class="share-btns"><button class="share-main share-iconbtn" type="button" aria-label="シェア" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg></button><button class="share-copytext share-iconbtn" type="button" aria-label="テキストをコピー" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
   <div class="share-alt" hidden>
@@ -336,110 +194,7 @@
 })();
 
 </script>
-<script>
-(function(){
-  var JA = {title: 'ビットコインって電気の無駄遣いでしょ？', text: '電力は「守るためのコスト」。たくさん必要だからこそ、攻撃が割に合わない'};
-  var EN = {title: 'Bitcoin is a waste of electricity, right?', text: 'Electricity is the "cost of protection". Because so much is needed, attacks do not pay off'};
-  var url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/energy/';
-  function data(){
-    var d = window.LANG === 'en' ? EN : JA;
-    return {title: d.title, text: d.text, url: url};
-  }
-  var main = document.querySelector('.share-main');
-  var alt = document.querySelector('.share-alt');
-  var note = document.querySelector('.share-note');
-  var x = document.querySelector('.share-x');
-  function syncX(){
-    if (x) x.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(data().title) + '&url=' + encodeURIComponent(url);
-  }
-  syncX();
-  document.addEventListener('langchange', syncX);
-  if (navigator.share) {
-    main.addEventListener('click', function(){
-      navigator.share(data()).catch(function(){});
-    });
-  } else {
-    alt.hidden = false;
-    main.addEventListener('click', function(){ alt.hidden = !alt.hidden; });
-  }
-  document.querySelector('.share-copy').addEventListener('click', function(){
-    function done(){ note.hidden = false; setTimeout(function(){ note.hidden = true; }, 2500); }
-    function fallback(){
-      var ta = document.createElement('textarea');
-      ta.value = url;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-      done();
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(url).then(done, fallback);
-    } else {
-      fallback();
-    }
-  });
-  document.querySelector('.share-copytext').addEventListener('click', function(){
-    var d = data();
-    var text = d.title + '\n' + d.text + '\n' + d.url;
-    var tnote = document.querySelector('.text-note');
-    function done(){ tnote.hidden = false; setTimeout(function(){ tnote.hidden = true; }, 2500); }
-    function fallback(){
-      var ta = document.createElement('textarea');
-      ta.value = text;
-      document.body.appendChild(ta);
-      ta.select();
-      try { document.execCommand('copy'); } catch (e) {}
-      document.body.removeChild(ta);
-      done();
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, fallback);
-    } else {
-      fallback();
-    }
-  });
-})();
-</script>
-
-<script>
-(function(){
-  var L = window.L || function (ja) { return ja; };
-  var btn = document.querySelector('.theme-toggle');
-  if (!btn) return;
-  var root = document.documentElement;
-  var mq = window.matchMedia('(prefers-color-scheme: dark)');
-  var ORDER = ['system', 'light', 'dark'];
-  var LABELS = {
-    system: ['テーマ：端末に合わせる（次はライト）', 'Theme: match device (tap for light)'],
-    light: ['テーマ：ライト（次はダーク）', 'Theme: light (tap for dark)'],
-    dark: ['テーマ：ダーク（次は端末に合わせる）', 'Theme: dark (tap for system)']
-  };
-  function pref(){
-    try { var s = localStorage.getItem('theme'); if (s === 'light' || s === 'dark' || s === 'system') return s; } catch (e) {}
-    return 'system';
-  }
-  function apply(){
-    var p = pref();
-    var t = p === 'system' ? (mq.matches ? 'dark' : 'light') : p;
-    root.setAttribute('data-theme', t);
-    root.setAttribute('data-theme-pref', p);
-    var m = document.querySelector('meta[name="theme-color"]');
-    if (m) m.setAttribute('content', t === 'dark' ? '#171614' : '#fffaf3');
-    btn.setAttribute('aria-label', L(LABELS[p][0], LABELS[p][1]));
-    btn.setAttribute('aria-pressed', t === 'dark' ? 'true' : 'false');
-  }
-  btn.addEventListener('click', function(){
-    var next = ORDER[(ORDER.indexOf(pref()) + 1) % ORDER.length];
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    apply();
-  });
-  if (mq.addEventListener) mq.addEventListener('change', function(){ if (pref() === 'system') apply(); });
-  document.addEventListener('langchange', apply);
-  apply();
-})();
-</script>
-<script>if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/nanka-kowai-bitcoin/sw.js').catch(function(){});});}</script>
+<script src="../assets/js/site.js"></script>
 <footer class="tabbar"><a class="tb" href="../crime/" data-i18n>← 前</a><a class="tb idx" href="../" data-i18n>一覧</a><a class="tb" href="../ban/" data-i18n>次 →</a></footer>
 </body>
 </html>
