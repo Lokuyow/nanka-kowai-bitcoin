@@ -6,7 +6,7 @@
 // - 内部リンク切れなし
 // - ogp.png が 1200×630
 
-import { test } from 'node:test';
+import { test } from 'vitest';
 import assert from 'node:assert/strict';
 import { readFile, access } from 'node:fs/promises';
 import path from 'node:path';

@@ -1,6 +1,6 @@
 // 全25ページで主見出し、JSエラー、日英の横スクロールを確認する。
 
-import { test, before, after } from 'node:test';
+import { test, beforeAll, afterAll } from 'vitest';
 import assert from 'node:assert/strict';
 import { PAGES } from './site-data.mjs';
 import { startServer, launchBrowser, newContext, openPage } from './helpers.mjs';
@@ -9,13 +9,13 @@ let server;
 let browser;
 let context;
 
-before(async () => {
+beforeAll(async () => {
   server = await startServer();
   browser = await launchBrowser();
   context = await newContext(browser);
 });
 
-after(async () => {
+afterAll(async () => {
   await browser.close();
   await server.close();
 });

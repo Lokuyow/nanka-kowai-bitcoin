@@ -2,7 +2,7 @@
 // 状態表示が変化することだけを確認する（完走はしない）。
 // 操作と観測要素の定義は site-data.mjs の smoke にある。
 
-import { test, before, after } from 'node:test';
+import { test, beforeAll, afterAll } from 'vitest';
 import assert from 'node:assert/strict';
 import { UNITS } from './site-data.mjs';
 import {
@@ -18,13 +18,13 @@ let server;
 let browser;
 let context;
 
-before(async () => {
+beforeAll(async () => {
   server = await startServer();
   browser = await launchBrowser();
   context = await newContext(browser);
 });
 
-after(async () => {
+afterAll(async () => {
   await browser.close();
   await server.close();
 });

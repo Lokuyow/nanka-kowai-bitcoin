@@ -1,7 +1,7 @@
 // PWA: manifest が読めて必須項目があること、Service Worker が activate されて
 // 他サイトのキャッシュを保持し、オフラインでも表示できることを確認する。
 
-import { test, before, after } from 'node:test';
+import { test, beforeAll, afterAll } from 'vitest';
 import assert from 'node:assert/strict';
 import { BASE_PATH } from './site-data.mjs';
 import { startServer, launchBrowser, newContext, openPage } from './helpers.mjs';
@@ -9,12 +9,12 @@ import { startServer, launchBrowser, newContext, openPage } from './helpers.mjs'
 let server;
 let browser;
 
-before(async () => {
+beforeAll(async () => {
   server = await startServer();
   browser = await launchBrowser();
 });
 
-after(async () => {
+afterAll(async () => {
   await browser.close();
   await server.close();
 });

@@ -3,19 +3,19 @@
 // 明示指定したときは OS に追随しないこと、保存済みの旧値（light/dark）が
 // そのまま尊重されることを確認する。
 
-import { test, before, after } from 'node:test';
+import { test, beforeAll, afterAll } from 'vitest';
 import assert from 'node:assert/strict';
 import { startServer, launchBrowser, newContext, openPage } from './helpers.mjs';
 
 let server;
 let browser;
 
-before(async () => {
+beforeAll(async () => {
   server = await startServer();
   browser = await launchBrowser();
 });
 
-after(async () => {
+afterAll(async () => {
   await browser.close();
   await server.close();
 });

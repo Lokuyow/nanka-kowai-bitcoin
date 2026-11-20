@@ -2,19 +2,19 @@
 // EN に切り替えると主要文字列が英語になること、辞書不足の警告が出ないこと、
 // 日本語に戻すと元どおりになることを確認する。
 
-import { test, before, after } from 'node:test';
+import { test, beforeAll, afterAll } from 'vitest';
 import assert from 'node:assert/strict';
 import { startServer, launchBrowser, newContext } from './helpers.mjs';
 
 let server;
 let browser;
 
-before(async () => {
+beforeAll(async () => {
   server = await startServer();
   browser = await launchBrowser();
 });
 
-after(async () => {
+afterAll(async () => {
   await browser.close();
   await server.close();
 });
