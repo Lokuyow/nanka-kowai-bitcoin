@@ -1,0 +1,37 @@
+<div class="answer" data-i18n-html>決める人はいない。<br>買いたい人と売りたい人の希望がぶつかった場所が価格</div>
+
+  <section>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>お店の商品には値札があって、決めた人がいる。チャートに「いまの価格」が表示されると、ビットコインにも値段を決めている誰かがいそうに見える。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>希望価格のぶつかり合い</h2>
+    <p class="lede" data-i18n>上は「この値段なら売りたい」、下は「この値段なら買いたい」。ぶつかった真ん中がその時点の価格になる。あなたもボタンを押して、売り買いに参加してみよう。</p>
+    <div class="card" id="boardCard">
+      <div class="boardv">
+        <div class="side sell">
+          <h3 data-i18n>売りたい人</h3>
+          <div id="askRows"></div>
+        </div>
+        <div class="nowbox">
+          <div class="lbl" data-i18n>いまの価格</div>
+          <div class="nowprice" id="nowPrice">15,015,000</div>
+          <div class="lbl" id="unitLbl">円 / BTC（イメージ）</div>
+          <div class="lbl" id="liveNote" hidden></div>
+          <div id="dealMsg" style="font-size:13px;min-height:1.6em;margin-top:6px"></div>
+          <div class="tradebtns">
+            <button type="button" id="buyBtn" class="buy" data-i18n>買ってみる</button>
+            <button type="button" id="sellBtn" class="sell" data-i18n>売ってみる</button>
+          </div>
+          <div class="lbl" id="myTrades" style="margin-top:8px">あなたの取引: 0回</div>
+        </div>
+        <div class="side buy">
+          <h3 data-i18n>買いたい人</h3>
+          <div id="bidRows"></div>
+        </div>
+      </div>
+      <p class="hint" data-i18n>価格を決めている人はどこにもいない。だからこそ、世界中の取引で24時間動き続ける。</p>
+    </div>
+  </section>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>価格は誰かが決めるものじゃなく、買いたい人と売りたい人のぶつかり合いで生まれる</span></div>

@@ -1,0 +1,45 @@
+<section>
+    <h2 data-i18n>なぜこの問いが浮かぶか</h2>
+    <p class="lede" data-i18n>ビットコインの話を聞くほど引っかかってくるのが、そもそも「お金」自体の正体だ。紙切れや画面の中の数字が、なぜ食べ物や家と交換できるのか。普段は考えもしないその仕組みが、ビットコインをきっかけに気になり始める。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>見方は：物々交換は「欲しい」が重なる運まかせ</h2>
+    <p class="lede" data-i18n>お金がなかった頃の買い物を、小さなゲームで試してみよう。あなたは魚を持っていて、パンがどうしても食べたい。村の人たちに、交換を持ちかけてみよう。</p>
+    <div class="card">
+      <div class="pstat">
+        <span class="box"><span data-i18n>あなたの持ち物：</span><span class="itemicon" id="holdIcon"></span><b id="holdName">魚</b></span>
+        <span class="box"><span data-i18n>ほしいもの：</span><span class="itemicon" id="goalIcon"></span><b data-i18n>パン</b></span>
+      </div>
+      <div class="person" id="personCard">
+        <p class="who" id="pWho"></p>
+        <div class="have">
+          <span><span data-i18n>持っているもの：</span><span class="itemicon" id="pHasIcon"></span><b id="pHas"></b></span>
+          <span><span data-i18n>欲しいもの：</span><span class="itemicon" id="pWantIcon"></span><b id="pWant"></b></span>
+        </div>
+      </div>
+      <p class="pmsg" id="pMsg" aria-live="polite">村の広場に来た。誰かに交換を持ちかけてみよう。</p>
+      <div class="pbtns">
+        <button type="button" id="btnAsk" data-i18n>交換を持ちかける</button>
+        <button type="button" id="btnNext" class="sub-btn" hidden data-i18n>次の人に会う</button>
+        <button type="button" id="btnMoney" class="sub-btn" hidden data-i18n>貝がら（お金）で買う</button>
+        <button type="button" id="btnRetry" hidden data-i18n>もう一度ためす</button>
+      </div>
+      <p class="tally" id="pTally">断られた回数 <b>0</b> ・ 交換した回数 <b>0</b></p>
+    </div>
+    <div class="eras" aria-hidden="true"><span data-i18n>貝や石</span>→<span data-i18n>金属</span>→<span data-i18n>紙</span>→<span data-i18n>データ</span></div>
+    <p class="hint" data-i18n>貝がらは、やがて金属のコイン、紙のお札、データの記録へと姿を変えていく。形が変わっても、役割は同じだ。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>見方は：価値と思える理由は1つじゃない</h2>
+    <p class="lede" data-i18n>お金がお金として働くには、いくつかの条件が重なっていると言われる。どれか1つではなく組み合わせで成り立っている。</p>
+    <div class="cols">
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">受け取ってくれる</b><br>自分が受け取ったあと、ほかの誰かも受け取ってくれる。その見込みがあるから手放せる。</div>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">勝手に増えない</b><br>量が決まっていて、誰かが勝手に増やせない。増えすぎると1つあたりの価値が薄まってしまう。</div>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">分けて数えられる</b><br>大きな買い物にも小さな買い物にも使えるよう、細かく分けて数えられる。</div>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">残り続ける</b><br>腐ったり消えたりせず、長く持ち続けられる。</div>
+    </div>
+  </section>
+
+<div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>お金は「みんなが価値があると思っているもの」だとしたら、ビットコインはその新しい形かもしれないし、そうでないかもしれない。あなたはどう思う？</span></div>

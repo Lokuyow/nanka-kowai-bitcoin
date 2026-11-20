@@ -1,0 +1,47 @@
+<section>
+    <h2 data-i18n>なぜこの問いが浮かぶか</h2>
+    <p class="lede" data-i18n>昔はほとんど無価値だったものに今は大きな値段がついていて、早く持っていた人が利益を得た。あとから来た人には「先にいただけ」に見える。一方で当時は誰でも手に入れられたし、暴落で価値が消えるかもしれない時期を引き受けてもいた。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>見方は：入口はずっと開いていた</h2>
+    <p class="lede" data-i18n>ビットコインは会員制でも招待制でもなく、始まりから公開されていた。時間の流れで見ると、参加の入口は閉まったことがない。</p>
+    <div class="card">
+      <div class="tl3">
+        <div class="pt" data-i18n-html><span class="yr">2009年</span>誰でも掘れたし買えた。ただし世間の評価は「怪しいおもちゃ」だった</div>
+        <div class="pt" data-i18n-html><span class="yr">2010年代</span>大きく下げるたびに多くの人が離れた。残ること自体がリスクだった</div>
+        <div class="pt" data-i18n-html><span class="yr">今</span>取引所の口座があれば誰でも少額から買える。入口は今も開いている</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n>見方は：「あの年に買っていたら」を体験する</h2>
+    <p class="lede" data-i18n>早く買った人の結果だけを見ると、簡単に勝てたように見える。では、自分がその年に買って、その後の暴落を全部やり過ごせるだろうか。買う年を選んで、売るか持ち続けるかを決めながら進んでみよう。</p>
+    <div class="card">
+      <div class="tlbtns" role="group" aria-label="買う年の選択" id="yearPick" data-i18n-label>
+        <button type="button" data-year="y2011" data-i18n>2011年に買う</button>
+        <button type="button" data-year="y2015" data-i18n>2015年に買う</button>
+        <button type="button" data-year="y2019" data-i18n>2019年に買う</button>
+        <button type="button" data-year="y2023" data-i18n>2023年に買う</button>
+      </div>
+      <div id="simArea" hidden>
+        <div class="simval"><span data-i18n>評価額</span> <b id="simVal">10万円</b></div>
+        <svg id="simChart" viewBox="0 0 320 140" width="100%" role="img" aria-label="評価額の動きのグラフ" data-i18n-label>
+          <line id="baseLine" class="basedash" x1="8" x2="312" y1="60" y2="60" stroke-dasharray="4 4"/>
+          <polyline id="simLine" class="chartline" points=""/>
+          <g id="simDots"></g>
+        </svg>
+        <p class="simhead" id="simHead" aria-live="polite"></p>
+        <p class="simmsg" id="simMsg" aria-live="polite"></p>
+        <div class="gbtns">
+          <button type="button" id="btnSell" class="sub-btn" hidden data-i18n>売る</button>
+          <button type="button" id="btnHold" hidden data-i18n>持ち続ける</button>
+          <button type="button" id="btnReset" class="sub-btn" hidden data-i18n>別の年で試す</button>
+        </div>
+      </div>
+      <p class="hint" data-i18n>値段の動きはおおまかなイメージです。実際の値動きとは異なります。</p>
+    </div>
+  </section>
+
+<div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>不公平に見えるのは結果だけを見たときで、同じ年月をリスクの側から見ると景色が変わる。あなたはどちらで見る？</span></div>

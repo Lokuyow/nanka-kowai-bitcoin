@@ -43,3 +43,20 @@ for (const { slug, smoke } of UNITS) {
     }
   });
 }
+
+test('図解: 手数料データを取得できない場合は日英の目安で計算する', async () => {
+  const offlineData = await newContext(browser, { serviceWorkers: 'block' });
+  try {
+    await offlineData.route(/^https:\/\//, (route) => route.abort());
+    const { page, errors } = await openPage(offlineData, server.base + 'fee/');
+    await page.waitForFunction(() => document.getElementById('feeNote').textContent.includes('実データを取得できなかった'));
+    await page.locator('#sendBtn').click();
+    assert.equal(await page.locator('#rFee').textContent(), '7,500円');
+    await page.locator('.lang-toggle').click();
+    assert.equal(await page.locator('#rFee').textContent(), '$50');
+    assert.match(await page.locator('#feeNote').textContent(), /Live data could not be loaded/);
+    assert.deepEqual(errors, []);
+  } finally {
+    await offlineData.close();
+  }
+});

@@ -1,0 +1,14 @@
+.incbar{display:flex;height:44px;border-radius:10px;overflow:hidden;margin-top:14px}
+.inc-r{background:var(--orange);color:#fff;display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;transition:width .6s ease;white-space:nowrap;overflow:hidden}
+.inc-f{background:var(--btnbg);color:var(--btnfg);display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:700;transition:width .6s ease;white-space:nowrap;overflow:hidden}
+.rwcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
+.pts{list-style:none;margin:0;padding:0}
+.pts li{padding:9px 0;border-bottom:1px dotted var(--line);font-size:14.5px}
+.pts li:last-child{border-bottom:0}
+.pts b{color:var(--amber)}
+.rwnums{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.rwnums div{flex:1 1 140px;border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;background:#fff;text-align:center}
+.rwnums b{display:block;font-size:17px;font-variant-numeric:tabular-nums}
+#rwNext{min-height:44px;margin-top:12px}

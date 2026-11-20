@@ -1,0 +1,45 @@
+<div class="answer" data-i18n-html>丸ごと買わなくていい。<br>0.00000001（1 satoshi）から、100円分でも買える</div>
+
+  <section>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>ニュースはいつも「1ビットコイン＝○○万円」と単価だけを言う。だから「買うなら最低でもその金額が必要」に聞こえる。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>ピザと同じで、一切れから買える</h2>
+    <p class="lede" data-i18n>1ホール買わなくても、ピザは一切れで買える。ビットコインも同じで、細かく割って買える。</p>
+    <div class="card pizza-wrap">
+      <svg width="220" height="220" viewBox="0 0 220 220">
+        <circle cx="110" cy="110" r="96" fill="#f7c873" stroke="#d99a2b" stroke-width="8"/>
+        <g id="sliceLines" stroke="#d99a2b" stroke-width="2"></g>
+        <path id="wedge" fill="#f7931a" opacity="0.9" d="M110 110 L110 14 A96 96 0 0 1 206 110 Z"/>
+        <circle cx="80" cy="80" r="9" fill="#d33" opacity=".65"/>
+        <circle cx="140" cy="130" r="9" fill="#d33" opacity=".65"/>
+        <circle cx="90" cy="150" r="9" fill="#4a7a5c" opacity=".6"/>
+        <circle cx="150" cy="70" r="9" fill="#4a7a5c" opacity=".6"/>
+      </svg>
+      <div class="pizzanum" id="pizzaText">あなたの分: <b>1/4 ホール</b></div>
+      <div class="cutbtns" id="cutBtns">
+        <button type="button" data-step="0" data-i18n>ホール</button>
+        <button type="button" data-step="1" data-i18n>半分</button>
+        <button type="button" data-step="2" class="on" data-i18n>4切れ</button>
+        <button type="button" data-step="3" data-i18n>100万分の1</button>
+        <button type="button" data-step="4" data-i18n>1 satoshi</button>
+      </div>
+      <p class="hint" data-i18n>いちばん小さい単位は 1 satoshi（0.00000001 BTC）。1 BTC は 1億 satoshi に割れる。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n>100円分でも買える</h2>
+    <p class="lede" data-i18n>多くの取引所では数百円分から購入できる（最低額は取引所による）。</p>
+    <div class="card">
+      <label><span data-i18n>買う金額:</span> <b id="yenLbl">1,000円</b><input type="range" id="yenRange" min="0" max="100" value="25" aria-label="買う金額" data-i18n-label></label>
+      <div class="satnum"><span data-i18n>買える量:</span> <b id="satNum">6,667</b> satoshi</div>
+      <div class="satbtc" id="satBtc">＝ 0.00006667 BTC</div>
+      <div class="yenbar-wrap"><div class="yenbar" id="satBar" style="width:25%"></div></div>
+      <p class="satmsg" id="satMsg">お小遣いでも、ちゃんと買える。</p>
+      <p class="hint" style="text-align:left;margin:8px 0 0" id="satHint">1BTC = 1,500万円として計算（イメージ）。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。</p>
+    </div>
+  </section>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>ビットコインはピザと同じ。1ホール買わなくても、一切れから買える</span></div>

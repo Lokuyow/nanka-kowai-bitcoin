@@ -1,5 +1,5 @@
 // テスト共通の道具立て。
-// - リポジトリを本番と同じパス（/nanka-kowai-bitcoin/）で配信するローカルサーバー
+// - ビルド結果を本番と同じパス（/nanka-kowai-bitcoin/）で配信するローカルサーバー
 // - Playwright のブラウザ／コンテキスト生成
 // - 図解スモークテストのステップ実行と「表示が変わるまで待つ」ヘルパー
 
@@ -10,12 +10,12 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { BASE_PATH } from './site-data.mjs';
 
-export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+export const BUILD_DIR = fileURLToPath(new URL('../build', import.meta.url));
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml',
@@ -23,7 +23,7 @@ const MIME = {
   '.json': 'application/json; charset=utf-8',
 };
 
-// リポジトリを BASE_PATH 配下で配信するサーバーを立てる。
+// ビルド結果を BASE_PATH 配下で配信するサーバーを立てる。
 // 存在しないパスには GitHub Pages と同じく 404.html を 404 で返す。
 export async function startServer() {
   const server = http.createServer(async (req, res) => {
@@ -36,8 +36,8 @@ export async function startServer() {
       }
       let rel = pathname.slice(BASE_PATH.length);
       if (rel === '' || rel.endsWith('/')) rel += 'index.html';
-      const file = path.join(ROOT, rel);
-      if (!file.startsWith(ROOT)) throw new Error('bad path');
+      const file = path.join(BUILD_DIR, rel);
+      if (!file.startsWith(BUILD_DIR + path.sep)) throw new Error('bad path');
       const body = await readFile(file);
       res.writeHead(200, {
         'content-type': MIME[path.extname(file)] || 'application/octet-stream',
@@ -45,7 +45,7 @@ export async function startServer() {
       res.end(body);
     } catch {
       try {
-        const body = await readFile(path.join(ROOT, '404.html'));
+        const body = await readFile(path.join(BUILD_DIR, '404.html'));
         res.writeHead(404, { 'content-type': 'text/html; charset=utf-8' });
         res.end(body);
       } catch {

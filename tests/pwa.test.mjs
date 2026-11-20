@@ -39,7 +39,7 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
     const setupPage = await context.newPage();
     await setupPage.goto(server.origin);
     await setupPage.evaluate(async () => {
-      await caches.open('kowai-bitcoin-v18');
+      await caches.open('kowai-bitcoin-v19');
       await caches.open('sibling-site-cache');
     });
     await setupPage.close();
@@ -59,13 +59,13 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
     }
     const swState = await page.evaluate(async () => {
       const reg = await navigator.serviceWorker.getRegistration();
-      return { hasReg: !!reg, active: !!reg?.active };
+      return { scope: reg?.scope, script: reg?.active?.scriptURL };
     });
-    assert.ok(swState.hasReg && swState.active, 'SW が登録され activate されている');
+    assert.deepEqual(swState, { scope: server.base, script: server.base + 'sw.js' });
 
     const cacheNames = await page.evaluate(() => caches.keys());
     assert.ok(cacheNames.includes('sibling-site-cache'), '別サイトのキャッシュが残る');
-    assert.ok(!cacheNames.includes('kowai-bitcoin-v18'), '旧バージョンのキャッシュが削除される');
+    assert.ok(!cacheNames.includes('kowai-bitcoin-v19'), '旧バージョンのキャッシュが削除される');
     assert.equal(cacheNames.filter((name) => name.startsWith('kowai-bitcoin-v')).length, 1,
       '本サイトの現行キャッシュが残る');
 
@@ -73,16 +73,21 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
     try {
       await page.reload({ waitUntil: 'load' });
       assert.equal(await page.locator('.hero .t').count(), 1, 'オフラインでもトップが表示される');
-      await page.goto(`${server.base}scam/`, { waitUntil: 'load' });
-      assert.equal(await page.locator('h1').count(), 1, 'オフラインでも各話が表示される');
+      const article = await page.goto(`${server.base}price/`, { waitUntil: 'load' });
+      assert.equal(article.status(), 200, '未訪問の記事をオフラインで開ける');
+      assert.equal(await page.locator('h1').count(), 1);
+      assert.equal(await page.locator('body').evaluate((body) => getComputedStyle(body).backgroundColor), 'rgb(255, 250, 243)');
       assert.equal(await page.locator('.tabbar').evaluate((el) => getComputedStyle(el).position),
         'fixed', 'オフラインでも各話共通の CSS が適用される');
       assert.equal(await page.locator('.share-btns').evaluate((el) => getComputedStyle(el).display),
         'flex', 'オフラインでも共有ボタンの CSS が適用される');
-      await page.goto(`${server.base}unknown/nested/`, { waitUntil: 'load' });
+      await page.locator('#buyBtn').click();
+      assert.match(await page.locator('#myTrades').textContent(), /1回/);
+
+      const missing = await page.goto(`${server.base}missing/deep/`, { waitUntil: 'load' });
+      assert.equal(missing.status(), 404);
       await page.locator('.lang-toggle').click();
-      assert.equal(await page.locator('h1').innerText(), 'Page not found',
-        '未知の深い URL でも、オフラインの 404 ページで言語を切り替えられる');
+      assert.equal(await page.locator('h1').textContent(), 'Page not found');
     } finally {
       await context.setOffline(false);
     }

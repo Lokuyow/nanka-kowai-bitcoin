@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffaf3">
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+      const themes = ['system', 'light', 'dark'];
+      const labels = {
+        system: ['テーマ：端末に合わせる（次はライト）', 'Theme: match device (tap for light)'],
+        light: ['テーマ：ライト（次はダーク）', 'Theme: light (tap for dark)'],
+        dark: ['テーマ：ダーク（次は端末に合わせる）', 'Theme: dark (tap for system)']
+      };
+
+      function savedPreference(key) {
+        try { return localStorage.getItem(key); } catch { return null; }
+      }
+
+      const savedLang = savedPreference('lang');
+      const browserLang = (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'ja';
+      root.lang = root.dataset.lang = ['ja', 'en'].includes(savedLang) ? savedLang : browserLang;
+
+      const savedTheme = savedPreference('theme');
+      let preference = themes.includes(savedTheme) ? savedTheme : 'system';
+      let button;
+
+      function applyTheme() {
+        const theme = preference === 'system' ? (systemTheme.matches ? 'dark' : 'light') : preference;
+        root.dataset.theme = theme;
+        root.dataset.themePref = preference;
+        themeColor.content = theme === 'dark' ? '#171614' : '#fffaf3';
+        if (button) {
+          const [ja, en] = labels[preference];
+          button.setAttribute('aria-label', root.lang === 'en' ? en : ja);
+          button.setAttribute('aria-pressed', String(theme === 'dark'));
+        }
+      }
+
+      // CSS が読み込まれる前に色を決め、DOM の準備後に操作を有効にする。
+      applyTheme();
+      document.addEventListener('DOMContentLoaded', () => {
+        button = document.querySelector('.theme-toggle');
+        if (!button) return;
+        button.addEventListener('click', () => {
+          preference = themes[(themes.indexOf(preference) + 1) % themes.length];
+          try { localStorage.setItem('theme', preference); } catch {}
+          applyTheme();
+        });
+        systemTheme.addEventListener?.('change', () => {
+          if (preference === 'system') applyTheme();
+        });
+        document.addEventListener('langchange', applyTheme);
+        applyTheme();
+      });
+    })();
+  </script>
+  <script src="%sveltekit.assets%/i18n.js"></script>
+  <link rel="icon" type="image/svg+xml" href="%sveltekit.assets%/favicon.svg">
+  <link rel="manifest" href="%sveltekit.assets%/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="%sveltekit.assets%/icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="%sveltekit.assets%/styles/base.css">
+  %sveltekit.head%
+</head>
+<body>
+  %sveltekit.body%
+</body>
+</html>

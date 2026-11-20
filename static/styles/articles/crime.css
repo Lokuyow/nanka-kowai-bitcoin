@@ -1,0 +1,26 @@
+.ledger{font-size:13px}
+.lrow{display:flex;justify-content:space-between;gap:8px;padding:8px 6px;
+    border-bottom:1px dotted var(--line);opacity:0;animation:lrow 6s ease-in-out infinite}
+.lrow:nth-child(2){animation-delay:1.2s}
+.lrow:nth-child(3){animation-delay:2.4s}
+.lrow:nth-child(4){animation-delay:3.6s}
+.lrow:nth-child(5){animation-delay:4.8s}
+@keyframes lrow{0%{opacity:0;transform:translateY(6px)}12%,80%{opacity:1;transform:none}95%,100%{opacity:.25}}
+.addr{font-family:ui-monospace,monospace;font-size:12px;background:#f4ede1;
+    border-radius:6px;padding:1px 6px}
+.trail{display:flex;align-items:center;gap:5px;padding:8px 0}
+.dot{width:13px;height:13px;border-radius:50%;background:var(--ink)}
+.trail.cash .dot{animation:fadeout 3s ease-in-out infinite}
+.trail.cash .dot:nth-child(2){animation-delay:.25s}
+.trail.cash .dot:nth-child(3){animation-delay:.5s}
+.trail.cash .dot:nth-child(4){animation-delay:.75s}
+.trail.cash .dot:nth-child(5){animation-delay:1s}
+.trail.cash .dot:nth-child(6){animation-delay:1.25s}
+@keyframes fadeout{0%,30%{opacity:1}80%,100%{opacity:.08}}
+.trail.btc .dot{background:var(--orange);animation:stayglow 3s ease-in-out infinite}
+@keyframes stayglow{0%,100%{box-shadow:0 0 0 0 rgba(247,147,26,0)}50%{box-shadow:0 0 0 5px rgba(247,147,26,.25)}}
+.trail-lbl{flex:0 0 86px;font-size:13px;font-weight:700}
+.ledger.game .lrow{animation:none;opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease}
+.ledger.game .lrow.show{opacity:1;transform:none}
+.tracemsg{font-size:14px;min-height:3.2em;margin:12px 0 0}
+#traceBtn{min-height:44px}

@@ -1,0 +1,5 @@
+.wrap{padding-bottom:calc(108px + env(safe-area-inset-bottom))}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:8px max(18px,calc(50% - 302px)) calc(8px + env(safe-area-inset-bottom))}
+.tabbar .tb{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:44px;color:var(--ink);text-decoration:none;padding:10px 4px;white-space:nowrap;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.tabbar .idx{color:var(--sub)}
+.tabbar .off{color:var(--sub);opacity:.45;background:transparent;border-color:transparent}

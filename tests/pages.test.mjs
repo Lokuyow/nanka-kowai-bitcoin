@@ -47,3 +47,19 @@ for (const { name, path } of PAGES) {
     }
   });
 }
+
+test('未知の深い URL に HTTP 404 を返し、設定とトップへのリンクが使える', async () => {
+  const page = await context.newPage();
+  try {
+    const response = await page.goto(server.base + 'missing/deep/', { waitUntil: 'load' });
+    assert.equal(response.status(), 404);
+    const theme = await page.locator('html').getAttribute('data-theme-pref');
+    await page.locator('.theme-toggle').click();
+    assert.notEqual(await page.locator('html').getAttribute('data-theme-pref'), theme);
+    await page.locator('a.btn').click();
+    assert.equal(page.url(), server.base);
+    assert.equal(await page.locator('.hero h1').count(), 1);
+  } finally {
+    await page.close();
+  }
+});

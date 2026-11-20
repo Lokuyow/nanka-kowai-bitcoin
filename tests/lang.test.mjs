@@ -72,3 +72,19 @@ for (const { name, path, heading } of TARGETS) {
     }
   });
 }
+
+test('言語: 英語環境で開始し、既存の設定が記事間で引き継がれる', async () => {
+  const context = await newContext(browser, { locale: 'en-US' });
+  try {
+    const page = await context.newPage();
+    await page.goto(server.base, { waitUntil: 'load' });
+    assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+    assert.equal(await page.locator('.head-right > span').textContent(), '23 stories');
+    await page.locator('.lang-toggle').click();
+    await page.locator('.unit').first().click();
+    assert.equal(page.url(), server.base + 'scam/');
+    assert.equal(await page.locator('html').getAttribute('lang'), 'ja');
+  } finally {
+    await context.close();
+  }
+});

@@ -1,0 +1,15 @@
+.vcard{font-size:14.5px;transition:opacity .35s ease}
+.vcard b{font-size:16px}
+.vcard ul{margin:8px 0 0;padding-left:1.25em}
+.vcard li{margin:5px 0}
+.scenetitle{font-weight:700;font-size:16.5px;margin:0 0 12px}
+.pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.pickbtns button{padding:10px 18px;min-height:44px;font-size:15px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+.pickbtns button.primary-btn{background:var(--btnbg);color:var(--btnfg);border-color:var(--btnbg)}
+.sceneout{font-size:15px;min-height:3.2em;margin:14px 0 0}
+.recaprow{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px}
+.recaprow .chip{flex:0 0 auto;background:#fdeeda;color:var(--amber);font-weight:700;font-size:12.5px;border-radius:999px;padding:2px 10px;margin-top:2px}
+.recaprow p{margin:0;font-size:14.5px}
+.gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.gbtns button{min-height:44px;padding:10px 20px}
+.gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}

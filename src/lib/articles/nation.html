@@ -1,0 +1,47 @@
+<section>
+    <h2 data-i18n>なぜこの問いが浮かぶか</h2>
+    <p class="lede" data-i18n>お金は国が作るもの、という感覚は強い。でも歴史をたどると、お金はいつも国の専売ではなかった。国の通貨にしかできないことも確かにある。両方から考えてみたい問いだ。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>見方は：小さな村で作り手を選ぶ</h2>
+    <p class="lede" data-i18n>小さな村のお金の作り手を、あなたが選ぶとしたら。作り手を選んで、村の3年間を見てみよう。起きることは、試すたびに少しずつ違う。</p>
+    <div class="card">
+      <div class="pickbtns" role="group" aria-label="お金の作り手の選択" id="issuerPick" data-i18n-label>
+        <button type="button" data-issuer="chief" data-i18n>村長が作る</button>
+        <button type="button" data-issuer="merchant" data-i18n>民間の両替商が作る</button>
+        <button type="button" data-issuer="none" data-i18n>作り手のいないお金</button>
+      </div>
+      <div id="yearList"></div>
+      <p class="tally" id="vTally" hidden><span data-i18n>よかった</span> <b id="vGood">0</b> <span data-i18n>件 ・ 困った</span> <b id="vBad">0</b> <span data-i18n>件</span></p>
+      <p class="reflect" id="vReflect" aria-live="polite"></p>
+      <div class="gbtns">
+        <button type="button" id="btnYear" hidden data-i18n>1年進める</button>
+        <button type="button" id="btnRetryIssuer" class="sub-btn" hidden data-i18n>別の作り手で試す</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n>見方は：役割の分担という考え方</h2>
+    <p class="lede" data-i18n>国の通貨にしかできないことがある一方で、国でなくても成り立ってきたお金もある。2つを並べると、役割の分担という見方もできる。</p>
+    <div class="cols">
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">国の通貨だからできること</b>
+        <ul>
+          <li>税金を集めて公共サービスを回す</li>
+          <li>景気の悪いときに量を調整する</li>
+          <li>困ったときに国が支える仕組みとつながっている</li>
+        </ul>
+      </div>
+      <div class="card vcard" data-i18n-html><b style="color:var(--amber)">国でなくても成り立つ見方</b>
+        <ul>
+          <li>国の都合で価値が薄まる心配が少ない</li>
+          <li>国境を越えて使える</li>
+          <li>歴史の長さで見れば、国以外のお金の方が長く使われてきた</li>
+        </ul>
+      </div>
+    </div>
+    <p class="hint" data-i18n>お金の作り手が誰かは、時代ごとに変わってきた。これからも変わらないとは限らない。</p>
+  </section>
+
+<div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>お金は国だけのものという感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は、代わり同士なのか、並べて使うものなのか。あなたはどう思う？</span></div>

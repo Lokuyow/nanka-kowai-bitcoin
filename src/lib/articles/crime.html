@@ -1,0 +1,36 @@
+<div class="answer" data-i18n-html>匿名ではなく「仮名」。<br>取引は全部公開の台帳に残るから、現金より足がつきやすい</div>
+
+  <section>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>「匿名通貨」という言葉や、事件で使われた話だけが広まる。本名が出てこない＝誰にも追えないと思ってしまう。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>台帳は全部公開されている</h2>
+    <p class="lede" data-i18n>ビットコインの取引は世界中の誰でも見られる台帳に、消せない形で残り続ける。</p>
+    <div class="card ledger game" id="traceCard">
+      <div class="lrow show"><span><span class="addr">1A2b…x9</span> → <span class="addr">3Cd4…m2</span></span><b>0.5 BTC</b></div>
+      <div class="lrow"><span><span class="addr">3Cd4…m2</span> → <span class="addr">7Ef8…q7</span></span><b>0.2 BTC</b></div>
+      <div class="lrow"><span><span class="addr">7Ef8…q7</span> → <span class="addr">9Gh1…z3</span></span><b>0.2 BTC</b></div>
+      <div class="lrow"><span><span class="addr">9Gh1…z3</span> → <span class="addr">2Jk5…w8</span></span><b>0.19 BTC</b></div>
+      <div class="lrow"><span><span class="addr">2Jk5…w8</span> → <span class="addr" data-i18n>取引所</span></span><b>0.19 BTC</b></div>
+      <p class="tracemsg" id="traceMsg" aria-live="polite">誰かが送った 0.5 BTC。送り先を1件ずつたどってみよう。</p>
+      <div class="center" style="margin-top:10px"><button id="traceBtn" type="button">次の送金をたどる</button></div>
+      <p class="hint" data-i18n>名前は出ない「仮名」制。でも、お金の流れは全部つながって見えている。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n>足跡が消えるのは現金の方</h2>
+    <p class="lede" data-i18n>手渡しの現金は誰から誰へ渡ったか記録が残らない。比べると、ビットコインの方がよっぽど足がつく。</p>
+    <div class="card">
+      <div class="trail cash"><span class="trail-lbl" data-i18n>現金</span>
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span style="font-size:12px;color:var(--sub)" data-i18n>記録なし・消えていく</span></div>
+      <div class="trail btc"><span class="trail-lbl" data-i18n>ビットコイン</span>
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+        <span style="font-size:12px;color:var(--sub)" data-i18n>全部残る・消せない</span></div>
+      <p class="hint" data-i18n>だから実際、犯罪に使われたビットコインは、追跡されて犯人が捕まるケースも多い。犯罪利用の割合自体も全体から見れば小さい。</p>
+    </div>
+  </section>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>ビットコインは匿名どころか、全部の取引が公開で残る。現金の方がよっぽど足がつかない</span></div>

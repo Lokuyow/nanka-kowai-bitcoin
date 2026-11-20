@@ -1,0 +1,20 @@
+.wall-wrap{text-align:center}
+.wall-wrap svg{max-width:100%;height:auto}
+.arrow{animation:attack 2.8s ease-in-out infinite}
+@keyframes attack{0%{transform:translateX(0)}38%{transform:translateX(52px)}
+    52%{transform:translateX(30px) rotate(24deg)}70%,100%{transform:translateX(0)}}
+.stackbar{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:12px 0 6px}
+.stackbar div{animation:grow 1.4s ease both}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.seg1{background:#4a7a5c;transform-origin:left}
+.seg2{background:#f7931a;transform-origin:center}
+.seg3{background:#999;transform-origin:right}
+.legend{font-size:12px;color:var(--sub);display:flex;gap:14px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}
+#mineBtn{min-height:48px;font-size:16px}
+.minestats{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
+.minestats div{border:1.5px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;background:#fff}
+.minestats b{font-size:16px;font-variant-numeric:tabular-nums}
+.minemsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
+#mineCard.flashwin{animation:flash .6s ease}
+:root[data-theme="dark"] .seg1{background:#55866a}

@@ -1,0 +1,33 @@
+<div class="answer" data-i18n-html>円にも金にも「裏付け」と呼べるものは実はない。<br>価値は「欲しい・使えると思う人がいる」ことから生まれる</div>
+
+  <section>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>「お金には裏付けがあるもの」と思っている。円には国の信用、金には実物。ビットコインには何もなさそうに見えるから、価値ゼロに思える。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>価値は条件で立ち上がる</h2>
+    <p class="lede" data-i18n>ものの値段は、裏付けがあるかどうかだけで決まるとは限らない。条件を自分で動かして、価値が立ち上がったり消えたりする様子を見てみよう。</p>
+    <div class="card">
+      <div class="tlbtns" role="group" aria-label="ものの切り替え" data-i18n-label>
+        <button type="button" data-item="stone" class="on" data-i18n>ただの石ころ</button>
+        <button type="button" data-item="gold" data-i18n>金（ゴールド）</button>
+        <button type="button" data-item="btc" data-i18n>ビットコイン</button>
+      </div>
+      <div class="sliders">
+        <label><span data-i18n>欲しいと思う人の多さ</span><input type="range" id="slWant" min="0" max="100" value="10" aria-label="欲しいと思う人の多さ" data-i18n-label></label>
+        <label><span data-i18n>手に入る量の少なさ</span><input type="range" id="slScarce" min="0" max="100" value="20" aria-label="手に入る量の少なさ" data-i18n-label></label>
+        <label><span data-i18n>「価値がある」と信じる人の割合</span><input type="range" id="slBelief" min="0" max="100" value="5" aria-label="「価値がある」と信じる人の割合" data-i18n-label></label>
+      </div>
+      <div class="meterwrap">
+        <div class="meterlabel" data-i18n>値段のつき具合</div>
+        <div class="meter"><div class="meterfill" id="meterFill"></div></div>
+        <div class="meternum"><span id="meterNum">0</span><span style="font-size:14px;color:var(--sub)"> / 100</span></div>
+      </div>
+      <p class="evtmsg" id="evtMsg" aria-live="polite"></p>
+      <p class="labmsg" id="labMsg" aria-live="polite"></p>
+      <div class="center"><button type="button" id="btnEvent" data-i18n>事件を起こす</button></div>
+      <p class="hint" data-i18n>値段は裏付けよりも「欲しい人」「量」「信じる人」の重なりで動く。条件がそろえば石にもつくし、条件が成り立たなくなれば消えていく。</p>
+    </div>
+  </section>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>裏付けがないのは円も金も同じ。価値は「欲しい人がいる」ことから生まれる</span></div>

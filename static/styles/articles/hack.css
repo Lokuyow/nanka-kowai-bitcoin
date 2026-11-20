@@ -1,0 +1,32 @@
+.ic{display:inline-block;width:1.18em;height:1.18em;vertical-align:-.26em;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.safe-wrap{text-align:center}
+.crack{stroke-dasharray:120;stroke-dashoffset:120;animation:crackin 1.8s ease .5s both}
+@keyframes crackin{to{stroke-dashoffset:0}}
+.safedoor{transform-origin:30px 60px}
+.chain{display:flex;gap:6px;align-items:center;justify-content:center;padding:14px 0 4px;flex-wrap:nowrap}
+.blk{flex:0 0 auto;width:44px;height:44px;border-radius:10px;background:#fff;
+    border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700}
+.blk.new{background:var(--orange);border-color:var(--orange);color:#fff;
+    animation:blkin 3s ease-in-out infinite}
+@keyframes blkin{0%{opacity:0;transform:translateX(-16px) scale(.7)}
+    25%,80%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+.link{flex:0 0 10px;height:3px;background:#bbb;border-radius:2px}
+.strike{position:relative;display:inline-block}
+.strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:3px;
+    background:var(--red);transform:rotate(-4deg)}
+.copies{display:grid;gap:8px}
+@media(min-width:560px){.copies{grid-template-columns:1fr 1fr 1fr}}
+.copy{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;background:#fff;transition:all .3s}
+.copy-h{font-weight:700;font-size:12px;color:var(--sub);margin-bottom:6px}
+.copy.mine{border-color:var(--orange)}
+.copy.edited{border-color:var(--red);background:#fff6f6}
+.copy.checking{border-color:var(--btnbg)}
+.copy-row{display:flex;justify-content:space-between;gap:6px;padding:3px 0;font-variant-numeric:tabular-nums}
+.copy-row b.bad{color:var(--red)}
+.hkbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.hkbtns button{min-height:44px}
+.hkbtns button[disabled]{opacity:.4;cursor:default}
+#hkEdit{background:#fff;color:var(--ink);border:2px solid var(--ink)}
+.hkmsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
+.stamp-zone{position:relative;text-align:center;padding:26px 0 6px;min-height:96px;overflow:hidden}

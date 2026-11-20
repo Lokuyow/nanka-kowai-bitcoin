@@ -8,28 +8,23 @@ https://lokuyow.github.io/nanka-kowai-bitcoin/
 ビットコインを外側から説明するサイトで、「さわってわかるビットコイン」（内側から触って学ぶ）の姉妹編です。
 https://lokuyow.github.io/sawatte-wakaru-bitcoin/
 
-## リポジトリ構成
+## 開発とテスト
 
-GitHub Pages がリポジトリ直下を公開します。サイトの公開にビルドは不要です。
+Node.js 22.17 以降が必要です。初回は `npm ci` と `npx playwright install chromium` を実行してください。
 
-| 場所 | 内容 |
-| --- | --- |
-| `index.html`、`404.html` | トップとエラーページ |
-| `scam/`、`ceo/` など | 各話の本文と図解を収めた `index.html`、記事ごとの `ogp.png` |
-| `assets/css/` | 各話の基本スタイル、テーマ・言語ボタン、共有欄の共通スタイル |
-| `assets/js/` | 初期表示とテーマ切り替え、言語切り替えと翻訳辞書、共有と Service Worker 登録、ライブデータ取得 |
-| `sw.js`、`manifest.webmanifest`、`icons/` | オフライン表示とインストールに使う PWA ファイル |
-| `tests/` | Playwright によるブラウザテストと静的な整合性チェック |
+- `npm run dev` で開発サーバーを起動します。サイトは `/nanka-kowai-bitcoin/` 配下にあります。
+- `npm run build` で SvelteKit が静的サイトを `build/` に出力します。
+- `npm test` で生成したサイトのリンク・図解・テーマ・言語・シェア・PWA を検証します。
 
-共有用の日本語文言と URL は各ページの OGP タイトル・説明文と canonical URL を使います。英語の共有文言は共有欄の `data-share-title-en` と `data-share-text-en` で編集できます。
+記事の並びとメタデータは `src/lib/site.js`、本文は `src/lib/articles/` にあります。図解の JS と記事固有の CSS は、それぞれ `static/scripts/articles/` と `static/styles/articles/` にあります。
 
-## テスト
+## 公開
 
-`npm test` で全ページの健全性、リンクやナビゲーションの整合性、図解の操作、テーマ、言語、PWA を検証できます。初回は `npm ci` のあと `npx playwright install chromium` が必要です。GitHub Actions でも main への push と PR のたびに実行されます。
+GitHub Actions は PR と `main` への push でテストを実行し、`main` で成功したビルドを GitHub Pages に公開します。初回公開前に、リポジトリの **Settings → Pages → Source** を **GitHub Actions** に設定してください。
 
 ## PWA
 
-オフライン表示に使う共通ファイルを追加・移動するときは、`sw.js` の `PRECACHE` を更新してください。キャッシュを入れ替えるときは `SW_VERSION` を上げます。
+ビルド時に、公開ファイルから Service Worker（`build/sw.js`）のキャッシュバージョンと事前取得リストを生成します。公開内容が変わると、新しいキャッシュの準備後に旧キャッシュが入れ替わります。PWA の動作確認には `npm run build` のあとに `npm run preview` を使ってください。
 
 ## ライセンス
 

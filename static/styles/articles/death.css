@@ -1,0 +1,15 @@
+.vcard{font-size:14.5px;transition:opacity .35s ease}
+.vcard b{font-size:16px}
+.vcard ul{margin:8px 0 0;padding-left:1.25em}
+.vcard li{margin:5px 0}
+.pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.pickbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
+.pickbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+.stepcard{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;font-size:15px}
+.stepcard.end-bad{border-color:#eec9c9;background:#fdf3f3}
+.stepcard.end-good{border-color:#c4dec4;background:#f2f8f2}
+.reflect{font-size:15px;font-weight:700;margin:16px 0 0;min-height:1.7em}
+.gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.gbtns button{min-height:44px;padding:10px 20px}
+.gbtns button[hidden]{display:none}
+.gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}

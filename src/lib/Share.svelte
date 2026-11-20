@@ -1,0 +1,15 @@
+<script>
+  let { label, title, description, shareEn, url } = $props();
+  let shareLink = $derived('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url));
+</script>
+
+<div class="share" data-title={title} data-text={description} data-title-en={shareEn.title} data-text-en={shareEn.text} data-url={url}>
+  <p class="share-title" data-i18n>{label}</p>
+  <div class="share-btns"><button class="share-main share-iconbtn" type="button" aria-label="シェア" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg></button><button class="share-copytext share-iconbtn" type="button" aria-label="テキストをコピー" data-i18n-label><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
+  <div class="share-alt" hidden>
+    <a class="share-x" href={shareLink} target="_blank" rel="noopener" data-i18n>Xでポストする</a>
+    <button class="share-copy" type="button" data-i18n>リンクをコピー</button>
+  </div>
+  <p class="share-note" hidden data-i18n>リンクをコピーしました</p>
+  <p class="share-note text-note" hidden data-i18n>テキストをコピーしました</p>
+</div>

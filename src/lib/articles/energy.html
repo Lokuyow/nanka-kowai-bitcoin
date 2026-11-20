@@ -1,0 +1,65 @@
+<div class="answer" data-i18n-html>電力は「守るためのコスト」。<br>たくさん必要だからこそ、攻撃が割に合わない</div>
+
+  <section>
+    <h2 data-i18n>なぜそう見えるか</h2>
+    <p class="lede" data-i18n>「小さな国ひとつ分の電力を使っている」という数字だけが一人歩きする。何のために使っているのかは、あまり語られない。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>電力は「壁」の高さ</h2>
+    <p class="lede" data-i18n>ビットコインの記録を書き換えるには、世界中の計算に真正面から勝たないといけない。その「勝てなさ」を作っているのが電力。壁が高いから、壊すのが割に合わない。</p>
+    <div class="card wall-wrap">
+      <svg width="300" height="150" viewBox="0 0 300 150">
+        <g>
+          <rect x="180" y="30" width="34" height="18" fill="#c9a86a"/><rect x="218" y="30" width="34" height="18" fill="#b8934f"/>
+          <rect x="199" y="52" width="34" height="18" fill="#c9a86a"/><rect x="237" y="52" width="34" height="18" fill="#b8934f"/>
+          <rect x="180" y="74" width="34" height="18" fill="#b8934f"/><rect x="218" y="74" width="34" height="18" fill="#c9a86a"/>
+          <rect x="199" y="96" width="34" height="18" fill="#b8934f"/><rect x="237" y="96" width="34" height="18" fill="#c9a86a"/>
+        </g>
+        <text x="216" y="140" font-size="12" text-anchor="middle" fill="#666" data-i18n>電力の壁</text>
+        <g class="arrow">
+          <rect x="30" y="58" width="52" height="10" rx="5" fill="#d33"/>
+          <path d="M82 52 L104 63 L82 74 Z" fill="#d33"/>
+        </g>
+        <text x="52" y="44" font-size="12" text-anchor="middle" fill="#d33" data-i18n>攻撃</text>
+        <text x="52" y="140" font-size="12" text-anchor="middle" fill="#666" data-i18n>跳ね返される</text>
+      </svg>
+      <p class="hint" data-i18n>電気は「無駄に燃やしている」のではなく不正を割に合わなくするためのコストとして使われている。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n>「どんな電力か」も一様じゃない</h2>
+    <p class="lede" data-i18n>使われている電力の中身も、全部が同じではない。割合は調査によって幅があるので、断定はしない。ただ「全部ムダ」でも「全部クリーン」でもない、というのが実情に近い。</p>
+    <div class="card">
+      <div class="stackbar">
+        <div class="seg1" style="width:38%"></div>
+        <div class="seg2" style="width:27%"></div>
+        <div class="seg3" style="width:35%"></div>
+      </div>
+      <div class="legend">
+        <span data-i18n-html><i style="background:#4a7a5c"></i>再生可能エネルギー</span>
+        <span data-i18n-html><i style="background:#f7931a"></i>余っていた電力の活用など</span>
+        <span data-i18n-html><i style="background:#999"></i>化石燃料を含むその他</span>
+      </div>
+      <p class="hint" data-i18n>※ 割合はイメージ。マイニングは「電気が余っている場所・時間」に集まりやすい性質がある。一例として、ケンブリッジ大学の調査（2025年）では、再エネ・原子力など持続可能な電源が約52%という推定もある。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n>マイニング競争に参加してみる</h2>
+    <p class="lede" data-i18n>マイニングは、世界中の参加者との競争。先に計算を当てた人だけが記録を書けて、報酬をもらえる。あなたの計算力を決めて、参加してみよう。</p>
+    <div class="card" id="mineCard">
+      <label><span data-i18n>あなたの計算力（全体に占める割合）:</span> <b id="minePct">5%</b><input type="range" id="mineRange" min="1" max="40" value="5" aria-label="あなたの計算力の割合" data-i18n-label></label>
+      <div class="center" style="margin:12px 0"><button id="mineBtn" type="button" data-i18n>掘る（次のブロックに挑戦）</button></div>
+      <div class="minestats">
+        <div><span data-i18n>挑戦</span> <b id="mineTry">0</b><span data-i18n> 回</span></div>
+        <div><span data-i18n>当てた</span> <b id="mineWin">0</b><span data-i18n> 回</span></div>
+        <div><span data-i18n>使った電気</span> <b id="mineKwh">0</b> kWh</div>
+      </div>
+      <p class="minemsg" id="mineMsg" aria-live="polite">計算力が大きいほど当たりやすい。でも、外れても電気は使っている。</p>
+      <p class="hint" data-i18n>数字はイメージ。当たる確率は計算力の割合どおり。参加者が増えると難易度が上がって、同じ計算力では当たりにくくなる調整も入る。</p>
+    </div>
+  </section>
+
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>電気は無駄に燃やしているんじゃなく不正を割に合わなくするための「壁」に使われている</span></div>
