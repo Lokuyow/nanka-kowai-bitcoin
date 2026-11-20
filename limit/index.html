@@ -90,7 +90,7 @@
     25%,80%{opacity:1;transform:none}100%{opacity:0}}
   .fblk.dead{background:#eee;border-color:#bbb;color:#999}
   .flink{flex:0 0 12px;height:3px;background:#bbb;border-radius:2px}
-  .flabel{font-size:13px;margin-left:6px}
+  .flabel{min-width:0;font-size:13px;margin-left:6px;overflow-wrap:anywhere}
   .flabel small{display:block;color:var(--sub);font-size:12px}
 
   .capbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
@@ -193,7 +193,7 @@
   :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
 
   @media(max-width:520px){
-    header{font-size:12px}header b{font-size:14px}
+    header{font-size:12px}header b{font-size:14px;white-space:normal}
     .head-right{gap:6px}
   }
 </style>

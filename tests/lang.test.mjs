@@ -1,4 +1,4 @@
-// 言語（日本語／English）: 代表ページ（トップ・第1層・第4層）で、
+// 言語（日本語／English）: 代表ページ（トップと各話）で、
 // EN に切り替えると主要文字列が英語になること、辞書不足の警告が出ないこと、
 // 日本語に戻すと元どおりになることを確認する。
 
@@ -20,8 +20,9 @@ after(async () => {
 });
 
 const TARGETS = [
-  { name: 'トップ', path: '', heading: '.hero .t' },
+  { name: 'トップ', path: '', heading: '.hero h1' },
   { name: 'scam', path: 'scam/', heading: 'h1' },
+  { name: 'hack', path: 'hack/', heading: 'h1' },
   { name: 'nation', path: 'nation/', heading: 'h1' },
 ];
 const KANA = /[\u3040-\u30ff]/;

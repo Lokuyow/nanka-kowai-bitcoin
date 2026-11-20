@@ -6,8 +6,9 @@
  * - 更新時は SW_VERSION を上げること。キャッシュ名が変わり、activate で旧キャッシュを
  *   削除して総入れ替えになる（README 参照）。
  */
-const SW_VERSION = '17';
-const CACHE_NAME = 'kowai-bitcoin-v' + SW_VERSION;
+const SW_VERSION = '18';
+const CACHE_PREFIX = 'kowai-bitcoin-v';
+const CACHE_NAME = CACHE_PREFIX + SW_VERSION;
 const BASE = '/nanka-kowai-bitcoin/';
 
 const UNITS = [
@@ -47,7 +48,7 @@ self.addEventListener('activate', (event) => {
     caches
       .keys()
       .then((keys) =>
-        Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+        Promise.all(keys.filter((k) => k.startsWith(CACHE_PREFIX) && k !== CACHE_NAME).map((k) => caches.delete(k)))
       )
       .then(() => self.clients.claim())
   );
