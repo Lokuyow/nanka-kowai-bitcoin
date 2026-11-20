@@ -1,5 +1,5 @@
 // PWA: manifest が読めて必須項目があること、Service Worker が activate されて
-// ページを制御すること、オフラインでもトップが再表示できることを確認する。
+// 他サイトのキャッシュを保持し、オフラインでも表示できることを確認する。
 
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -36,6 +36,14 @@ test('PWA: manifest の必須項目', async () => {
 test('PWA: SW が activate され、オフラインでも表示できる', async () => {
   const context = await newContext(browser);
   try {
+    const setupPage = await context.newPage();
+    await setupPage.goto(server.origin);
+    await setupPage.evaluate(async () => {
+      await caches.open('kowai-bitcoin-v17');
+      await caches.open('sibling-site-cache');
+    });
+    await setupPage.close();
+
     const { page } = await openPage(context, server.base);
     // SW がページを制御するまで待つ（clients.claim ですぐ制御下に入る想定。
     // 入らなければ1回リロードしてから待つ）
@@ -54,6 +62,12 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
       return { hasReg: !!reg, active: !!reg?.active };
     });
     assert.ok(swState.hasReg && swState.active, 'SW が登録され activate されている');
+
+    const cacheNames = await page.evaluate(() => caches.keys());
+    assert.ok(cacheNames.includes('sibling-site-cache'), '別サイトのキャッシュが残る');
+    assert.ok(!cacheNames.includes('kowai-bitcoin-v17'), '旧バージョンのキャッシュが削除される');
+    assert.equal(cacheNames.filter((name) => name.startsWith('kowai-bitcoin-v')).length, 1,
+      '本サイトの現行キャッシュが残る');
 
     await context.setOffline(true);
     try {

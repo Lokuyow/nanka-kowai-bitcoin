@@ -1,7 +1,4 @@
-// 全ページ健全性: 全25ページ（トップ＋404＋全23話）を幅375pxで開き、
-// JSエラー0件・横スクロールなし・見出しあり を確認する。
-// ※トップページは h1 を持たず、ヒーローのタイトル div が見出しを担う設計のため、
-//   トップだけはヒーローの存在で代替する。
+// 全25ページで主見出し、JSエラー、日英の横スクロールを確認する。
 
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -27,15 +24,23 @@ for (const { name, path } of PAGES) {
   test(`健全性: ${name}`, async () => {
     const { page, errors } = await openPage(context, server.base + path);
     try {
+      assert.equal(await page.getByRole('heading', { level: 1 }).count(), 1, '主見出しが1つあること');
       if (path === '') {
-        assert.equal(await page.locator('.hero .t').count(), 1, 'ヒーローのタイトルがあること');
-      } else {
-        assert.equal(await page.locator('h1').count(), 1, 'h1 が1つあること');
+        assert.equal(await page.locator('.hero h1').count(), 1, 'サイト名が主見出しであること');
       }
-      const overflow = await page.evaluate(
-        () => document.documentElement.scrollWidth - window.innerWidth,
-      );
-      assert.ok(overflow <= 0, `横スクロールが発生しています（超過 ${overflow}px）`);
+      for (const width of [375, 320]) {
+        await page.setViewportSize({ width, height: 667 });
+        for (const lang of ['ja', 'en']) {
+          if ((await page.locator('html').getAttribute('lang')) !== lang) {
+            await page.locator('.lang-toggle').click();
+          }
+          assert.equal(await page.locator('html').getAttribute('lang'), lang);
+          const overflow = await page.evaluate(
+            () => document.documentElement.scrollWidth - window.innerWidth,
+          );
+          assert.ok(overflow <= 0, `幅${width}px（${lang}）で横スクロールが発生しています（超過 ${overflow}px）`);
+        }
+      }
       assert.deepEqual(errors, [], `JSエラーが発生しました: ${errors.join(' / ')}`);
     } finally {
       await page.close();

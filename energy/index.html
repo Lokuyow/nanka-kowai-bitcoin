@@ -81,6 +81,7 @@
 </style>
 <style>
   .wall-wrap{text-align:center}
+  .wall-wrap svg{max-width:100%;height:auto}
   .arrow{animation:attack 2.8s ease-in-out infinite}
   @keyframes attack{0%{transform:translateX(0)}38%{transform:translateX(52px)}
     52%{transform:translateX(30px) rotate(24deg)}70%,100%{transform:translateX(0)}}
@@ -188,7 +189,7 @@
   :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
 
   @media(max-width:520px){
-    header{font-size:12px}header b{font-size:14px}
+    header{font-size:12px}header b{font-size:14px;white-space:normal}
     .head-right{gap:6px}
   }
 </style>

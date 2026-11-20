@@ -269,8 +269,8 @@
     /* ===== hack ===== */
     'ビットコインってハッキングされて盗まれたんでしょ？：なんか よくわからんけど こわい ビットコイン': "Bitcoin got hacked and stolen, right? | I don't really get it, but it's scary: Bitcoin",
     'ビットコインって<br>ハッキングされて盗まれたんでしょ？': 'Bitcoin got hacked<br>and stolen, right?',
-    '盗まれたのは取引所の金庫の中身。<br>ビットコインの台帳そのものは2009年から壊れていない': "What was stolen was the contents of exchanges' vaults.<br>Bitcoin's ledger itself has never been broken since 2009",
-    '盗まれたのは取引所の金庫の中身。ビットコインの台帳そのものは2009年から壊れていない': "What was stolen was the contents of exchanges' vaults. Bitcoin's ledger itself has never been broken since 2009",
+    '盗まれたのは取引所の金庫の中身。<br>これらの事件でビットコインの台帳は書き換えられていない': "What was stolen was the contents of exchanges' vaults.<br>These thefts did not alter the Bitcoin ledger",
+    '盗まれたのは取引所の金庫の中身。これらの事件でビットコインの台帳は書き換えられていない': "What was stolen was the contents of exchanges' vaults. These thefts did not alter the Bitcoin ledger",
     'ニュースは「ビットコイン○億円が流出」と書く。すると、ビットコインの仕組み自体が破られて盗まれたように聞こえる。': 'The news writes "$○○ of bitcoin leaked out". That makes it sound as if Bitcoin\'s system itself was broken into and robbed.',
     '「': '"',
     'ビットコインがハッキング': 'Bitcoin was hacked',
@@ -284,7 +284,7 @@
     '記録': 'Record',
     '新着': 'New',
     'ビットコインの台帳': "Bitcoin's ledger",
-    '2009年から止まらずに記録が増え続け、<br>台帳そのものが壊れたことは一度もない。': 'Records have kept being added, non-stop, since 2009.<br>The ledger itself has never once been broken.',
+    '取引は世界中の参加者が検証し、<br>取引所とは別に台帳に記録される。': 'Participants around the world verify transactions,<br>which are recorded on a ledger independent of exchanges.',
     '台帳を書き換えてみる': 'Try rewriting the ledger',
     'じゃあ、あなたが台帳の数字を書き換えたらどうなるか。自分の残高をこっそり増やして、ネットワークに送ってみよう。': 'So what happens if you rewrite the numbers in the ledger? Quietly bump up your own balance and send it to the network.',
     'あなたの写し': 'Your copy',
@@ -297,7 +297,7 @@
     '不一致で却下': 'Rejected: mismatch',
     '却下された回数:': 'Times rejected:',
     '回。何度送っても、結果は同じ。': ' — and no matter how many times you send it, the result is the same.',
-    '壊れたのはいつも取引所の金庫。ビットコインの台帳は一度も壊れていない': "What broke was always the exchange's vault. Bitcoin's ledger has never been broken, not once",
+    'ここで紹介した流出事件で破られたのは取引所の資産管理。ビットコインの台帳は書き換えられていない': "In these thefts, attackers compromised the exchanges' custody of funds. The Bitcoin ledger was not altered",
     '← 前の誤解：丸ごと買わないと買えない': "← Previous: Can't buy without a whole coin",
     '次の誤解：犯罪・匿名 →': 'Next: Crime & anonymity →',
 
