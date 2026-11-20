@@ -10,7 +10,7 @@ https://lokuyow.github.io/sawatte-wakaru-bitcoin/
 
 ## 開発とテスト
 
-Node.js 22.17 以降が必要です。初回は `npm ci` と `npx playwright install chromium` を実行してください。
+開発と CI では、`.node-version` に記載された Node.js と `package.json` の `packageManager` に記載された npm を使います。初回は `npm ci` と `npx playwright install chromium` を実行してください。
 
 - `npm run dev` で開発サーバーを起動します。サイトは `/nanka-kowai-bitcoin/` 配下にあります。
 - `npm run build` で SvelteKit が静的サイトを `build/` に出力します。
