@@ -68,7 +68,9 @@ var wedge = document.getElementById('wedge');
   function usd(){ return Math.round(10 * Math.pow(500, +range.value / 100)); }   /* 英語モードの金額: $10〜$5,000 */
   function amount(){ return window.LANG === 'en' ? usd() : yen(); }
   function price(){ return window.LANG === 'en' ? btcUsd : btcJpy; }
-  function msgFor(a){
+  function msgFor(a, sats){
+    if (sats > 100000000) return L('この金額なら、1 BTCより多く買える。', 'This amount buys more than 1 BTC.');
+    if (sats === 100000000) return L('この金額で、ちょうど1 BTC買える。', 'This amount buys exactly 1 BTC.');
     var en = window.LANG === 'en';
     var t1 = en ? 20 : 1000, t2 = en ? 200 : 10000, t3 = en ? 2000 : 100000;
     if (a < t1) return L('お小遣いでも、ちゃんと買える。', 'Even pocket money buys some, properly.');
@@ -82,7 +84,7 @@ var wedge = document.getElementById('wedge');
     lbl.textContent = window.LANG === 'en' ? '$' + y.toLocaleString('en-US') : y.toLocaleString('ja-JP') + '円';
     btcEl.textContent = L('＝ ', '= ') + (sats / 100000000).toFixed(8) + ' BTC';
     bar.style.width = Math.max(2, +range.value) + '%';
-    msg.textContent = msgFor(y);
+    msg.textContent = msgFor(y, sats);
     if (raf) cancelAnimationFrame(raf);
     var from = shown, to = sats, t0 = null;
     function step(t){

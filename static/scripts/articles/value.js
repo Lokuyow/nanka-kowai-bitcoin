@@ -15,6 +15,7 @@
   var slWant = document.getElementById('slWant');
   var slScarce = document.getElementById('slScarce');
   var slBelief = document.getElementById('slBelief');
+  var sliders = [slWant, slScarce, slBelief];
   var meterFill = document.getElementById('meterFill');
   var meterNum = document.getElementById('meterNum');
   var labMsg = document.getElementById('labMsg');
@@ -45,6 +46,7 @@
     meterFill.style.width = s + '%';
     meterNum.textContent = s;
     labMsg.textContent = message(s);
+    sliders.forEach(function(sl){ window.updateRangeFill?.(sl); });
   }
   function setItem(name){
     item = name;
@@ -54,7 +56,7 @@
     itemBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-item') === name); });
     render();
   }
-  [slWant, slScarce, slBelief].forEach(function(sl){
+  sliders.forEach(function(sl){
     sl.addEventListener('input', function(){ evtMsg.textContent = ''; evtPair = ['', '']; render(); });
   });
   itemBtns.forEach(function(b){

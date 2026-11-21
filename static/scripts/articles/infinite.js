@@ -9,7 +9,7 @@
   function setDiv(d){
     d = Math.max(1, Math.min(100000000, Math.round(d)));
     S.value = Math.round(Math.log10(d) / 8 * 1000);
-    upd();
+    S.dispatchEvent(new Event('input', { bubbles: true }));
   }
   function polar(deg){
     var rad = (deg - 90) * Math.PI / 180;

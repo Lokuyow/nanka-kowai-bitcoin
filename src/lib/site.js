@@ -68,10 +68,10 @@ export const LAYERS = [
     articles: [
       {
         slug: "hack",
-        heading: "ビットコインって<br>ハッキングされて盗まれたんでしょ？",
+        heading: "ビットコインって<br>ハッキングされて盗まれるんでしょ？",
         cardAnswer: "壊れたのは取引所の金庫の方",
         description: "盗まれたのは取引所の金庫の中身。これらの事件でビットコインの台帳は書き換えられていない",
-        shareEn: { title: "Bitcoin got hacked and stolen, right?", text: "What was stolen was the contents of exchanges' vaults. These thefts did not alter the Bitcoin ledger" }
+        shareEn: { title: "Bitcoin can be hacked and stolen, right?", text: "What was stolen was the contents of exchanges' vaults. These thefts did not alter the Bitcoin ledger" }
       },
       {
         slug: "crime",

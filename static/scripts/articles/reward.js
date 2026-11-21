@@ -65,6 +65,7 @@
     anim = setInterval(function(){
       var y = +S.value + 1;
       S.value = y;
+      window.updateRangeFill?.(S);
       upd(y === target && eraOf(y) > prevEra - 1 && (y - 2012) % 4 === 0);
       if (y >= target) { clearInterval(anim); anim = null; upd(eraOf(y) >= 1 && (y - 2012) % 4 === 0); }
     }, 60);

@@ -73,7 +73,7 @@
     '高いのは取引所の料金設定': "What's expensive is the exchange's own pricing",
     '1ビットコインって何百万円もするんでしょ？ 買えないよ': "One bitcoin costs tens of thousands of dollars — I can't afford that",
     'ケーキと同じで、一切れから買える': 'Like cake, you can buy it by the slice',
-    'ビットコインってハッキングされて盗まれたんでしょ？': 'Bitcoin got hacked and stolen, right?',
+    'ビットコインってハッキングされて盗まれるんでしょ？': 'Bitcoin can be hacked and stolen, right?',
     '壊れたのは取引所の金庫の方': "What got broken into was the exchange's vault",
     'ビットコインって匿名で犯罪に使われるんでしょ？': 'Bitcoin is anonymous and used for crime, right?',
     '匿名ではなく仮名。全部公開で残る': 'Not anonymous — pseudonymous. Everything stays public',
@@ -276,8 +276,8 @@
     '次の誤解：ハッキング →': 'Next: Hacking →',
 
     /* ===== hack ===== */
-    'ビットコインってハッキングされて盗まれたんでしょ？：なんか よくわからんけど こわい ビットコイン': "Bitcoin got hacked and stolen, right? | I don't really get it, but it's scary: Bitcoin",
-    'ビットコインって<br>ハッキングされて盗まれたんでしょ？': 'Bitcoin got hacked<br>and stolen, right?',
+    'ビットコインってハッキングされて盗まれるんでしょ？：なんか よくわからんけど こわい ビットコイン': "Bitcoin can be hacked and stolen, right? | I don't really get it, but it's scary: Bitcoin",
+    'ビットコインって<br>ハッキングされて盗まれるんでしょ？': 'Bitcoin can be hacked<br>and stolen, right?',
     '盗まれたのは取引所の金庫の中身。<br>これらの事件でビットコインの台帳は書き換えられていない': "What was stolen was the contents of exchanges' vaults.<br>These thefts did not alter the Bitcoin ledger",
     '盗まれたのは取引所の金庫の中身。これらの事件でビットコインの台帳は書き換えられていない': "What was stolen was the contents of exchanges' vaults. These thefts did not alter the Bitcoin ledger",
     'ニュースは「ビットコイン○億円が流出」と書く。すると、ビットコインの仕組み自体が破られて盗まれたように聞こえる。': 'The news writes "$○○ of bitcoin leaked out". That makes it sound as if Bitcoin\'s system itself was broken into and robbed.',
