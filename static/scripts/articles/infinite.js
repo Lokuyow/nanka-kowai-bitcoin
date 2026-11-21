@@ -6,11 +6,6 @@
   var wedge = document.getElementById('dvWedge');
   var lines = document.getElementById('dvLines');
   function divOf(){ return Math.max(1, Math.round(Math.pow(10, +S.value / 1000 * 8))); }
-  function setDiv(d){
-    d = Math.max(1, Math.min(100000000, Math.round(d)));
-    S.value = Math.round(Math.log10(d) / 8 * 1000);
-    S.dispatchEvent(new Event('input', { bubbles: true }));
-  }
   function polar(deg){
     var rad = (deg - 90) * Math.PI / 180;
     return [130 + 112 * Math.cos(rad), 130 + 112 * Math.sin(rad)];
@@ -54,7 +49,5 @@
   }
   S.addEventListener('input', upd);
   document.addEventListener('langchange', upd);
-  document.getElementById('dvX10').addEventListener('click', function(){ setDiv(divOf() * 10); });
-  document.getElementById('dvReset').addEventListener('click', function(){ setDiv(1); });
   upd();
 })();

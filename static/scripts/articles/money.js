@@ -7,173 +7,158 @@
     wood: '<circle cx="8" cy="16.5" r="3.4"/><circle cx="16" cy="16.5" r="3.4"/><circle cx="12" cy="9.5" r="3.4"/><circle cx="8" cy="16.5" r="1.1"/><circle cx="16" cy="16.5" r="1.1"/><circle cx="12" cy="9.5" r="1.1"/>',
     shell: '<path d="M4 19c0-6.8 3.8-12.8 8.5-12.8S21 12.2 21 19"/><path d="M3.5 19h18"/><path d="M12 6.8V19M7.9 8.4 9.5 19M16.1 8.4 14.5 19"/>'
   };
-  var NAMES = {fish:'魚', egg:'卵', bread:'パン', cloth:'布', wood:'まき', shell:'貝がら'};
-  var NAMES_EN = {fish:'Fish', egg:'Eggs', bread:'Bread', cloth:'Cloth', wood:'Firewood', shell:'Shells'};
-  function nameOf(k){ return L(NAMES[k], NAMES_EN[k]); }
-  function whoOf(p){ return L(p.who, p.whoEn); }
-  var PEOPLE = [
-    {who:'パンを焼く人', has:'bread', want:'egg',
-     reject:'「魚はいらないなあ。卵を持ってきてくれたら交換するよ」',
-     accept:'「その卵がほしかったんだ。さあ、パンをどうぞ」'},
-    {who:'布を織る人', has:'cloth', want:'bread',
-     reject:'「それでは困るなあ。パンなら交換するのに」'},
-    {who:'木こり', has:'wood', want:'cloth',
-     reject:'「それはいらない。布がほしいんだ」'},
-    {who:'漁師', has:'fish', want:'wood',
-     reject:'「お互い魚どうしだね。まきがあれば交換するよ」',
-     reject2:'「卵はいらない。まきがあれば交換するよ」'},
-    {who:'卵を売る人', has:'egg', want:'fish',
-     accept:'「魚がほしかったんだ。交換しよう」',
-     reject2:'「卵はもう足りてる。魚があれば交換するよ」'}
+  const names = {
+    fish: ['魚', 'Fish'], egg: ['卵', 'Eggs'], bread: ['パン', 'Bread'],
+    cloth: ['布', 'Cloth'], wood: ['まき', 'Firewood'], shell: ['貝がら', 'Shells']
+  };
+  const barter = [
+    { id: 'baker', name: ['パン屋', 'Bakery'], offer: 'bread', wants: 'cloth' },
+    { id: 'weaver', name: ['布屋', 'Weaver'], offer: 'cloth', wants: 'egg' },
+    { id: 'woodcutter', name: ['まき屋', 'Firewood stall'], offer: 'wood', wants: 'fish' },
+    { id: 'fisher', name: ['魚屋', 'Fish stall'], offer: 'fish', wants: 'wood' },
+    { id: 'eggs', name: ['卵屋', 'Egg stall'], offer: 'egg', wants: 'fish' }
   ];
-  var PEOPLE_EN = [
-    {who:'The baker',
-     reject:"\"I don't need fish. Bring me eggs and I'll trade.\"",
-     accept:"\"Those eggs are just what I wanted. Here — take the bread.\""},
-    {who:'The weaver',
-     reject:"\"That won't do. If it were bread, I'd trade.\""},
-    {who:'The woodcutter',
-     reject:"\"Don't need that. I want cloth.\""},
-    {who:'The fisher',
-     reject:"\"Fish for fish, eh? If you had firewood, I'd trade.\"",
-     reject2:"\"I don't need eggs. If you had firewood, I'd trade.\""},
-    {who:'The egg seller',
-     accept:"\"Fish is what I wanted. Let's trade.\"",
-     reject2:"\"I have enough eggs. If you had fish, I'd trade.\""}
+  const fishBuyers = [
+    { id: 'eggs', name: ['卵屋', 'Egg stall'], amount: 4 },
+    { id: 'woodcutter', name: ['まき屋', 'Firewood stall'], amount: 3 }
   ];
-  PEOPLE.forEach(function(p, i){
-    var e = PEOPLE_EN[i];
-    p.whoEn = e.who; p.rejectEn = e.reject; p.acceptEn = e.accept; p.reject2En = e.reject2;
-  });
+  const breadSellers = [
+    { id: 'baker', name: ['パン屋', 'Bakery'], amount: 3 },
+    { id: 'second-baker', name: ['広場のパン屋', 'Square bakery'], amount: 2 }
+  ];
+  const limit = 5;
+  const byId = id => document.getElementById(id);
+  const stalls = byId('marketStalls');
+  const next = byId('btnMoney');
+  const retry = byId('btnRetry');
+  const translate = pair => L(...pair);
+  const item = key => translate(names[key]);
+  const icon = name => '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + PATHS[name] + '</svg>';
+  const shells = count => L('貝がら ' + count + '枚', count + ' shells');
 
-  function icon(name){
-    return '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + PATHS[name] + '</svg>';
+  let mode, holding, balance, turns, history, feedback, barterTurns;
+
+  function offers() {
+    if (mode === 'barter') return barter;
+    return holding === 'fish' ? fishBuyers : breadSellers;
   }
-  function shuffle(a){
-    a = a.slice();
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1));
-      var t = a[i]; a[i] = a[j]; a[j] = t;
-    }
-    return a;
+
+  function reset(round) {
+    mode = round;
+    holding = 'fish';
+    balance = 0;
+    turns = 0;
+    history = [];
+    feedback = ['', ''];
+    if (round === 'barter') barterTurns = null;
+    render();
   }
-  var holdIcon = document.getElementById('holdIcon');
-  var holdName = document.getElementById('holdName');
-  var pWho = document.getElementById('pWho');
-  var pHas = document.getElementById('pHas');
-  var pWant = document.getElementById('pWant');
-  var pHasIcon = document.getElementById('pHasIcon');
-  var pWantIcon = document.getElementById('pWantIcon');
-  var pMsg = document.getElementById('pMsg');
-  var pTally = document.getElementById('pTally');
-  var personCard = document.getElementById('personCard');
-  var btnAsk = document.getElementById('btnAsk');
-  var btnNext = document.getElementById('btnNext');
-  var btnMoney = document.getElementById('btnMoney');
-  var btnRetry = document.getElementById('btnRetry');
-  document.getElementById('goalIcon').innerHTML = icon('bread');
-  var holding, rejects, trades, deck, pos, busy, finished;
-  function person(){ return PEOPLE[deck[pos]]; }
-  var msgPair = ['', ''];
-  function setMsg(ja, en){ msgPair = [ja, en]; pMsg.textContent = L(ja, en); }
-  function setTally(){
-    pTally.innerHTML = L('断られた回数 <b>' + rejects + '</b> ・ 交換した回数 <b>' + trades + '</b>', 'Turned down <b>' + rejects + '</b> times · Trades made <b>' + trades + '</b>');
+
+  function record(from, to) {
+    return () => from() + ' → ' + to();
   }
-  function setHold(){
-    holdIcon.innerHTML = icon(holding);
-    holdName.textContent = nameOf(holding);
-  }
-  function showPerson(){
-    var p = person();
-    pWho.textContent = whoOf(p);
-    pHas.textContent = nameOf(p.has);
-    pWant.textContent = nameOf(p.want);
-    pHasIcon.innerHTML = icon(p.has);
-    pWantIcon.innerHTML = icon(p.want);
-  }
-  function buttons(mode){
-    btnAsk.hidden = mode !== 'ask';
-    btnNext.hidden = mode !== 'next';
-    btnRetry.hidden = mode !== 'retry';
-    btnMoney.hidden = !(rejects >= 1 && !finished && mode !== 'retry');
-  }
-  function start(){
-    holding = 'fish'; rejects = 0; trades = 0;
-    deck = shuffle([0, 1, 2, 3, 4]); pos = 0;
-    busy = false; finished = false;
-    personCard.style.display = '';
-    setHold(); showPerson(); setTally();
-    setMsg('村の広場に来た。誰かに交換を持ちかけてみよう。', 'You arrived at the village square. Offer a trade to someone.');
-    buttons('ask');
-    btnMoney.hidden = true;
-  }
-  function finish(kind, acceptPair){
-    finished = true;
-    personCard.style.display = 'none';
-    if (kind === 'barter') {
-      setMsg(acceptPair[0] + ' 物々交換でもパンにたどり着けた。でもそれは相手の欲しい物を持っている人に会える運と、何度も交換する手間があってのことだった。',
-             acceptPair[1] + ' You reached bread by barter. But that took the luck of meeting people who wanted what you had, and the trouble of trading again and again.');
-    } else {
-      setMsg('お金を使うと、交換は一気に簡単になった。相手の「欲しい」と自分の「欲しい」が重ならなくてもよくなったからだ。',
-             'With money, trading became simple at once — your "want" and theirs no longer had to match.');
-    }
-    buttons('retry');
-    setTally();
-  }
-  btnAsk.addEventListener('click', function(){
-    if (busy || finished) return;
-    var p = person();
-    if (p.want === holding) {
-      trades++;
-      var got = p.has;
-      if (got === 'bread') {
-        holding = 'bread'; setHold(); setTally();
-        finish('barter', [p.who + '：' + p.accept, whoOf(p) + ': ' + p.acceptEn]);
+
+  function trade(offer) {
+    turns++;
+    if (mode === 'barter') {
+      if (offer.wants !== holding) {
+        feedback = ['この店が欲しいのは' + names[offer.wants][0] + '。ほかの店を見てみよう。',
+          'This stall wants ' + names[offer.wants][1].toLowerCase() + '. Try another stall.'];
       } else {
-        holding = got; setHold(); setTally();
-        setMsg(p.who + '：' + p.accept + ' 卵を手に入れた。パンを焼く人は卵を欲しがっていたはずだ。', whoOf(p) + ': ' + p.acceptEn + ' You got eggs. The baker wanted eggs, if I recall.');
-        buttons('next');
+        const former = holding;
+        holding = offer.offer;
+        history.push(record(() => item(former), () => item(offer.offer)));
+        feedback = ['交換できた。次は' + names[holding][0] + 'を欲しがる店を探そう。',
+          'Trade made. Look for a stall that wants your ' + names[holding][1].toLowerCase() + '.'];
       }
+    } else if (holding === 'fish') {
+      holding = 'shell';
+      balance = offer.amount;
+      history.push(record(() => item('fish'), () => shells(offer.amount)));
+      feedback = ['魚が売れた。パン屋の値段を比べてみよう。', 'You sold the fish. Compare the bread prices.'];
     } else {
-      rejects++;
-      var line = (holding !== 'fish' && p.reject2) ? p.reject2 : p.reject;
-      var lineEn = (holding !== 'fish' && p.reject2En) ? p.reject2En : p.rejectEn;
-      setMsg(p.who + '：' + line, whoOf(p) + ': ' + lineEn);
-      setTally();
-      buttons('next');
+      balance -= offer.amount;
+      holding = 'bread';
+      history.push(record(() => shells(offer.amount), () => item('bread')));
     }
-  });
-  btnNext.addEventListener('click', function(){
-    if (busy || finished) return;
-    pos++;
-    if (pos >= deck.length) {
-      deck = shuffle(deck); pos = 0;
-      showPerson();
-      setMsg('村を一周してしまった。並びを変えてもう一度ためしてみよう。', 'You circled the whole village. The order is shuffled — try again.');
-    } else {
-      showPerson();
-      setMsg('', '');
+
+    if (holding === 'bread') {
+      if (mode === 'barter') {
+        barterTurns = turns;
+        feedback = ['パンを手に入れた！ 交換のたびに、手持ちの品を欲しがる店を探した。',
+          'You got the bread! At each step you had to find a stall that wanted what you had.'];
+      } else {
+        const comparison = barterTurns === null
+          ? ['物々交換ではパンに届かなかった。貝がらを使うと、魚を売る店とパンを買う店を別々に選べた。',
+             'Barter did not get you to bread. With shells, you could sell your fish at one stall and buy bread at another.']
+          : ['物々交換は' + barterTurns + '手、貝がらを使うと' + turns + '手。',
+             'Barter took ' + barterTurns + ' moves. Using shells took ' + turns + '.'];
+        feedback = [balance > 0
+          ? 'パンを買えた！ 残った貝がら' + balance + '枚は次の買い物に使える。' + comparison[0]
+          : 'パンを買えた！ 貝がらは使い切った。' + comparison[0],
+          balance > 0
+            ? 'You bought the bread! You have ' + balance + ' shells left for another purchase. ' + comparison[1]
+            : 'You bought the bread! You used all your shells. ' + comparison[1]];
+      }
+    } else if (turns === limit) {
+      feedback = ['5手を使い切った。貝がらを使える市場でも試してみよう。',
+        'All five moves are used. Try the market that accepts shells.'];
     }
-    buttons('ask');
+  }
+
+  function render() {
+    const done = holding === 'bread' || turns === limit;
+    const active = document.activeElement;
+    const focusedTrader = stalls.contains(active) ? active.closest('[data-trader]')?.dataset.trader : null;
+    byId('marketRound').textContent = mode === 'barter' ? L('物々交換', 'Barter') : L('貝がらで売り買い', 'Trading with shells');
+    byId('marketTurns').textContent = L('残り ' + (limit - turns) + ' 手', (limit - turns) + ' moves left');
+    byId('holdIcon').innerHTML = icon(holding);
+    byId('holdName').textContent = holding === 'shell' ? shells(balance) : item(holding);
+    byId('marketGuide').textContent = done ? '' : mode === 'barter'
+      ? L('手持ちの品を欲しがる店を選んで交換しよう。', 'Pick a stall that wants what you have.')
+      : holding === 'fish' ? L('どの店に魚を売る？', 'Which stall will you sell your fish to?')
+        : L('どの店でパンを買う？', 'Which stall will you buy bread from?');
+    stalls.hidden = done;
+    stalls.replaceChildren(...offers().map(offer => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.trader = offer.id;
+      const title = document.createElement('strong');
+      title.textContent = translate(offer.name);
+      const detail = document.createElement('span');
+      detail.textContent = mode === 'barter'
+        ? L(item(offer.wants) + 'と' + item(offer.offer) + 'を交換', 'Trade ' + item(offer.wants).toLowerCase() + ' for ' + item(offer.offer).toLowerCase())
+        : holding === 'fish' ? L('魚を' + shells(offer.amount) + 'で買い取る', 'Buys fish for ' + shells(offer.amount))
+          : L('パンを' + shells(offer.amount) + 'で売る', 'Sells bread for ' + shells(offer.amount));
+      button.append(title, detail);
+      return button;
+    }));
+    byId('pMsg').textContent = translate(feedback);
+    const trail = byId('marketTrail');
+    trail.hidden = history.length === 0;
+    trail.replaceChildren(...history.map(step => {
+      const row = document.createElement('li');
+      row.textContent = step();
+      return row;
+    }));
+    next.hidden = !(done && mode === 'barter');
+    retry.hidden = !(done && mode === 'shells');
+    if (focusedTrader) {
+      const target = done ? (mode === 'barter' ? next : retry)
+        : [...stalls.children].find(button => button.dataset.trader === focusedTrader) || stalls.firstElementChild;
+      target.focus({preventScroll:true});
+    }
+  }
+
+  stalls.addEventListener('click', event => {
+    const button = event.target.closest('[data-trader]');
+    if (!button || stalls.hidden) return;
+    trade(offers().find(offer => offer.id === button.dataset.trader));
+    render();
   });
-  btnMoney.addEventListener('click', function(){
-    if (busy || finished) return;
-    busy = true;
-    buttons('none');
-    btnMoney.hidden = true;
-    setMsg('魚を貝がらと交換した。', 'You traded your fish for shells.');
-    holding = 'shell'; setHold();
-    setTimeout(function(){
-      setMsg('貝がらでパンを買った。', 'You bought bread with the shells.');
-      holding = 'bread'; setHold();
-      setTimeout(function(){ finish('money'); }, 800);
-    }, 850);
-  });
-  document.addEventListener('langchange', function(){
-    setHold(); setTally();
-    if (!finished) showPerson();
-    pMsg.textContent = L(msgPair[0], msgPair[1]);
-  });
-  btnRetry.addEventListener('click', start);
-  start();
+  document.addEventListener('langchange', render);
+  next.addEventListener('click', () => { reset('shells'); stalls.firstElementChild.focus(); });
+  retry.addEventListener('click', () => { reset('barter'); stalls.firstElementChild.focus(); });
+  byId('goalIcon').innerHTML = icon('bread');
+  reset('barter');
 })();

@@ -5,27 +5,24 @@
 
   <section>
     <h2 data-i18n>魚とパンを交換するには？</h2>
-    <p class="lede" data-i18n>あなたは魚を持っていて、パンが欲しい。物々交換なら、パンを持っていて魚と交換したい相手を探す。架空の村で相手を見つけてみよう。</p>
-    <div class="card">
+    <p class="lede" data-i18n>市場で魚をパンに換えよう。まずは物々交換。次に、貝がらをお金として使える市場で同じ買い物に挑戦しよう。</p>
+    <div class="card" id="marketGame">
+      <div class="market-round">
+        <b id="marketRound">物々交換</b>
+        <span id="marketTurns"></span>
+      </div>
       <div class="pstat">
         <span class="box"><span data-i18n>あなたの持ち物：</span><span class="itemicon" id="holdIcon"></span><b id="holdName">魚</b></span>
         <span class="box"><span data-i18n>ほしいもの：</span><span class="itemicon" id="goalIcon"></span><b data-i18n>パン</b></span>
       </div>
-      <div class="person" id="personCard">
-        <p class="who" id="pWho"></p>
-        <div class="have">
-          <span><span data-i18n>持っているもの：</span><span class="itemicon" id="pHasIcon"></span><b id="pHas"></b></span>
-          <span><span data-i18n>欲しいもの：</span><span class="itemicon" id="pWantIcon"></span><b id="pWant"></b></span>
-        </div>
-      </div>
-      <p class="pmsg" id="pMsg" aria-live="polite">村の広場に来た。誰かに交換を持ちかけてみよう。</p>
+      <p class="market-guide" id="marketGuide"></p>
+      <div class="market-stalls" id="marketStalls"></div>
+      <p class="pmsg" id="pMsg" aria-live="polite"></p>
+      <ol id="marketTrail" class="market-trail" hidden></ol>
       <div class="pbtns">
-        <button type="button" id="btnAsk" data-i18n>交換を持ちかける</button>
-        <button type="button" id="btnNext" class="sub-btn" hidden data-i18n>次の人に会う</button>
-        <button type="button" id="btnMoney" class="sub-btn" hidden data-i18n>貝がら（お金）で買う</button>
+        <button type="button" id="btnMoney" hidden data-i18n>今度は貝がらで買い物する</button>
         <button type="button" id="btnRetry" hidden data-i18n>もう一度ためす</button>
       </div>
-      <p class="tally" id="pTally">断られた回数 <b>0</b> ・ 交換した回数 <b>0</b></p>
     </div>
     <p class="hint" data-i18n>村の人が貝がらを受け取ってくれるなら、魚をある人に売り、受け取った貝がらで別の人からパンを買える。</p>
   </section>

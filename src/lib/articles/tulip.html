@@ -39,6 +39,28 @@
   <section>
     <h2 data-i18n>暴落のあと、何が起きた？</h2>
     <p class="lede" data-i18n>価格が急騰してから暴落する点は似ている。その後、市場で起きたことは違った。</p>
+    <figure class="card tulip-comparison">
+      <p class="tulip-axis" data-i18n>開始時の価格に対する倍率（対数目盛り）</p>
+      <svg viewBox="0 0 380 200" role="img" aria-label="チューリップは短期間で急騰して下落。ビットコインは長期間にわたり上下しながら高値を更新した模式図" data-i18n-label>
+        <g class="tulip-grid">
+          <path d="M43 20H359 M43 90H359 M43 160H359 M43 20V160 M148 20V160 M253 20V160 M359 20V160"/>
+        </g>
+        <g class="tulip-ticks">
+          <text x="35" y="24">100×</text><text x="35" y="94">10×</text><text x="35" y="164">1×</text>
+          <g text-anchor="middle">
+            <text x="43" y="184">0</text><text x="148" y="184">5</text><text x="253" y="184">10</text><text x="359" y="184">15</text>
+          </g>
+        </g>
+        <polyline id="compareTulip" class="tulip-series bulb"/>
+        <polyline id="compareBitcoin" class="tulip-series bitcoin"/>
+      </svg>
+      <p class="tulip-axis time" data-i18n>それぞれの開始からの年数</p>
+      <div class="tulip-legend">
+        <span><i class="tulip-series bulb"></i><span data-i18n>チューリップ</span></span>
+        <span><i class="tulip-series bitcoin"></i><span data-i18n>ビットコイン</span></span>
+      </div>
+      <figcaption class="hint" data-i18n>ゲームと同じ架空の価格を使い、それぞれの開始時を1倍にそろえた模式図。</figcaption>
+    </figure>
     <div class="cols">
       <div class="card tlvs" data-i18n-html><b style="color:var(--red)">チューリップバブル</b><br>1637年に球根への投機が崩れた。その後もチューリップは栽培され、取引された。</div>
       <div class="card tlvs" data-i18n-html><b style="color:var(--color-secondary)">ビットコイン</b><br>大きな暴落のあと、過去の高値を更新した時期が何度かあった。</div>

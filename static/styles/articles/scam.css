@@ -80,7 +80,7 @@
   :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
   :root[data-theme="dark"] .tradebtns .sell,
   :root[data-theme="dark"] .banbtns button:not(.banned),:root[data-theme="dark"] .capbtns button:not(.on),
-  :root[data-theme="dark"] .cutbtns button:not(.on),:root[data-theme="dark"] .dvbtns button,
+  :root[data-theme="dark"] .cutbtns button:not(.on),
   :root[data-theme="dark"] .hlbtns button:not(.right):not(.wrong),
   :root[data-theme="dark"] .pickbtns button:not(.on):not(.primary-btn),
   :root[data-theme="dark"] .routebtns button:not(.on),

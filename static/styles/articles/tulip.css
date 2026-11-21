@@ -18,3 +18,15 @@
 #gmDot{transition:cx .5s ease,cy .5s ease}
 #gmPath{transition:stroke .3s}
 :root[data-theme="dark"] #gmPrice{fill:#f0f0f2}
+.tulip-comparison{margin-inline:0}
+.tulip-comparison svg{display:block;width:100%;max-width:520px;margin:auto}
+.tulip-grid{stroke:var(--line);fill:none}
+.tulip-ticks{fill:var(--sub);font-size:14px;text-anchor:end}
+.tulip-axis{margin:0;color:var(--sub);font-size:13px;text-align:center}
+.tulip-series{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.tulip-series.bulb{stroke:var(--red);stroke-dasharray:5 4}
+.tulip-series.bitcoin{stroke:var(--color-secondary)}
+.tulip-legend{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:12px;font-size:14px;font-weight:700}
+.tulip-legend>span{display:inline-flex;align-items:center;gap:7px}
+.tulip-legend i{width:22px;border-top:3px solid var(--color-secondary)}
+.tulip-legend i.bulb{border-top:3px dashed var(--red)}

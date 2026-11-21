@@ -63,7 +63,7 @@ test('図解: 手数料データを取得できない場合は日英の目安で
   }
 });
 
-test('図解: スライダーの塗りが初期値・キー操作・ボタンによる変更に追従する', async () => {
+test('図解: スライダーの塗りが初期値・キー操作・項目の切り替えに追従する', async () => {
   const { page } = await openPage(context, server.base + 'fee/');
   try {
     const fill = (slider) => slider.evaluate((el) => parseFloat(el.style.getPropertyValue('--range-progress')));
@@ -76,9 +76,9 @@ test('図解: スライダーの塗りが初期値・キー操作・ボタンに
 
     await page.goto(server.base + 'infinite/');
     const pieces = page.locator('#dvS');
-    await page.locator('#dvX10').click();
+    await pieces.press('ArrowRight');
     assert.equal(await fill(pieces), 12.5);
-    await page.locator('#dvReset').click();
+    await pieces.press('Home');
     assert.equal(await fill(pieces), 0);
 
     await page.goto(server.base + 'value/');

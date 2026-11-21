@@ -190,5 +190,15 @@
     if (round === 0) startRound(1);
     else { totalProfit = 0; startRound(0); }
   });
+  function drawComparison(id, prices, elapsedYears){
+    var points = prices.map(function(price, index){
+      var x = 43 + elapsedYears[index] / 15 * 316;
+      var y = 160 - Math.log10(price / prices[0]) * 70;
+      return x.toFixed(1) + ',' + y.toFixed(1);
+    });
+    document.getElementById(id).setAttribute('points', points.join(' '));
+  }
+  drawComparison('compareTulip', ROUNDS[0].prices, [0, 0.75, 1, 1.9, 2, 2.9, 3, 3.08, 3.25, 4]);
+  drawComparison('compareBitcoin', ROUNDS[1].prices, [0, 2, 4, 6, 7, 9, 10, 11, 12, 13, 14, 15]);
   startRound(0);
 })();

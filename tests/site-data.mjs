@@ -29,10 +29,10 @@ const smokeTests = {
     steps: [{ clickFirst: '#capBtns button' }, { click: '#capGo' }],
     watch: '#capTally',
   },
-  infinite: { steps: [{ click: '#dvX10' }], watch: '#dvN' },
+  infinite: { steps: [{ range: '#dvS', to: 125 }], watch: '#dvN' },
   tulip: { steps: [{ click: '#gmNext' }], watch: '#gmYear' },
   value: { steps: [{ range: '#slWant', to: 'toggle' }], watch: '#meterNum' },
-  money: { steps: [{ click: '#btnAsk' }], watch: '#pMsg' },
+  money: { steps: [{ click: '[data-trader="baker"]' }], watch: '#pMsg' },
   freedom: {
     steps: [{ clickFirst: '#sysPick button' }, { click: '#btnDay' }],
     watch: '#evList',

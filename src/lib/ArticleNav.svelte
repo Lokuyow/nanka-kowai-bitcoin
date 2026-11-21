@@ -11,11 +11,19 @@
   </svg>
 {/snippet}
 
+{#snippet destination(target)}
+  {#if target.layer !== article.layer}
+    <span class="layer-number" aria-hidden="true">{target.layer}</span>
+  {:else}
+    <ArticleIcon slug={target.slug} />
+  {/if}
+{/snippet}
+
 <nav class="tabbar" aria-label="記事の移動" data-i18n-label>
   {#if previous}
     <a class="tb" href={articlePath(previous.slug)} aria-label="前の話" data-i18n-label>
       {@render symbol('M15 6l-6 6 6 6')}
-      <ArticleIcon slug={previous.slug} />
+      {@render destination(previous)}
     </a>
   {:else}
     <span class="tb off" aria-hidden="true">{@render symbol('M15 6l-6 6 6 6')}</span>
@@ -26,10 +34,16 @@
   </a>
   {#if next}
     <a class="tb" href={articlePath(next.slug)} aria-label="次の話" data-i18n-label>
-      <ArticleIcon slug={next.slug} />
+      {@render destination(next)}
       {@render symbol('M9 6l6 6-6 6')}
     </a>
   {:else}
     <span class="tb off" aria-hidden="true">{@render symbol('M9 6l6 6-6 6')}</span>
   {/if}
 </nav>
+
+<style>
+  .layer-number {
+    margin-inline-end: 0;
+  }
+</style>

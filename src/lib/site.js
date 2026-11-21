@@ -118,9 +118,9 @@ export const LAYERS = [
       {
         slug: "quantum",
         heading: "量子コンピューターができたら、<br>ビットコインは終わりでしょ？",
-        cardAnswer: "署名への脅威。移行方法を議論中",
-        description: "十分に強い量子コンピューターは今の署名を破りうる。実現時期は分からず、移行方法が議論されている。",
-        shareEn: { title: "Once quantum computers arrive, Bitcoin is done for, right?", text: "A powerful enough quantum computer could break current signatures. The timing is uncertain, and ways to migrate are being discussed." }
+        cardAnswer: "今の量子コンピューターでは鍵を破れない",
+        description: "今の量子コンピューターではビットコインの鍵を破れない。将来、鍵を破れるほど強力になれば、ビットコインが盗まれるおそれがある。",
+        shareEn: { title: "Once quantum computers arrive, Bitcoin is done for, right?", text: "Today's quantum computers cannot break Bitcoin's keys. If future machines become powerful enough, bitcoin could be stolen." }
       },
       {
         slug: "51",

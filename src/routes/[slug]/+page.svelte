@@ -57,7 +57,7 @@
   </main>
   <footer>
     <Share {...article} label={article.openQuestion ? 'この問いをシェアする' : 'この答えをシェアする'} {url} />
-    <Bridge />
+    <Bridge articleSlug={article.slug} />
   </footer>
 </div>
 <ArticleNav previous={data.previous} next={data.next} {article} total={ARTICLES.length} />
