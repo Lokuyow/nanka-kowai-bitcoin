@@ -220,7 +220,3 @@ export const ARTICLES = LAYERS.flatMap(({ number: layer, articles }) =>
 export function articlePath(slug) {
   return BASE_PATH + slug + '/';
 }
-
-export function layerHeading(layer) {
-  return '<span>第' + layer.number + '層</span>' + layer.title;
-}

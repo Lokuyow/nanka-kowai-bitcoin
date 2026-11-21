@@ -16,10 +16,10 @@
   var EN = {
     /* ===== 共通（ヘッダー・ナビ・共有・層名） ===== */
     'なんか よくわからんけど<br>こわい ビットコイン': "I don't really get it,<br>but it's scary: Bitcoin",
-    '<span>第1層</span>名前だけは知ってる': "<span>Layer 1</span>I've only heard the name",
-    '<span>第2層</span>ニュースで見たよ': '<span>Layer 2</span>I saw it on the news',
-    '<span>第3層</span>ちょっと詳しいよ': '<span>Layer 3</span>I know a thing or two',
-    '<span>第4層</span>そもそもお金って何？': '<span>Layer 4</span>Wait — what even is money?',
+    '名前だけは知ってる': "I've only heard the name",
+    'ニュースで見たよ': 'I saw it on the news',
+    'ちょっと詳しいよ': 'I know a thing or two',
+    'そもそもお金って何？': 'Wait — what even is money?',
     'なぜそう見えるか': 'Why it looks that way',
     '一言まとめ': 'In short',
     'この答えをシェアする': 'Share this answer',
@@ -33,6 +33,10 @@
     '一覧': 'List',
     '← 前': '← Prev',
     '次 →': 'Next →',
+    '記事の移動': 'Story navigation',
+    '本文へ移動': 'Skip to content',
+    '次の話': 'Next story',
+    '全話一覧に戻る': 'Back to all stories',
     '内側の仕組みを知りたくなったら →': 'Want to see how it works on the inside? →',
     'さわってわかるビットコイン': 'Sawatte Wakaru Bitcoin — Touch & Learn',
     'いいなと思ったら応援しよう！': 'Enjoyed it? Support with Bitcoin',
@@ -41,6 +45,9 @@
     'ソースコード': 'Source code',
 
     /* ===== トップページ ===== */
+    '第1話から読む': 'Start with story 1',
+    '話を選ぶ': 'Browse stories',
+    '全話一覧': 'All stories',
     'なんか よくわからんけど こわい ビットコイン': "I don't really get it, but it's scary: Bitcoin",
     'ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。': "The image from the news, and what it really looks like. Untangling the vague 'scary' around Bitcoin, one misunderstanding at a time.",
     'なんか': "I don't really get it,",
@@ -48,7 +55,6 @@
     'こわい': "it's scary:",
     'ビットコイン': 'Bitcoin',
     'ニュースで見たイメージと、ほんとの姿。': 'The image from the news — and what it really looks like.',
-    'なぜこわく見えるのか': 'Why does it look so scary?',
     '見出しだけを見ていると、目に入るのは事件と暴落の話ばかり。「わからない」ものは「こわい」ものに見える。ここではその誤解をひとつずつ図で解いていく。': "When all you look at are headlines, all you hear about are crimes and crashes. Things we don't understand tend to look scary. Here, we clear up those misunderstandings one by one, with pictures.",
     '価格とニュースの見出ししか見ていない段階の思い込み': 'Ideas formed from nothing but prices and news headlines',
     '事件報道でイメージが固まった思い込み': 'Ideas set in stone by crime reporting',

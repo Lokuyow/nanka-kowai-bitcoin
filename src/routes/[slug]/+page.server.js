@@ -24,6 +24,6 @@ export function load({ params }) {
     article,
     body,
     previous: ARTICLES[index - 1]?.slug,
-    next: ARTICLES[index + 1]?.slug
+    next: ARTICLES[index + 1]
   };
 }

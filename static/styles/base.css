@@ -8,24 +8,29 @@
     -webkit-tap-highlight-color:transparent;
     --ink:#1a1a1a; --sub:#666; --color-primary:#c44478; --color-on-primary:#fff; --bg:#f7f7f5;
     --card:#fff;--btnbg:#1a1a1a;--btnfg:#fff;--color-secondary:#9e2b5a; --color-secondary-bg:#f7e6ed; --line:#e3e3df; --red:#d33; --green:#2e7d32;
+    scroll-padding-top:88px;
   }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
     font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
 .wrap{max-width:640px;margin:0 auto;padding:0 18px 64px}
-header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
-header{position:sticky;top:0;z-index:60;margin:0 -18px;padding:10px 18px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header b{color:var(--ink);white-space:nowrap;font-size:15px}
-header a > b,.hero .t{font-family:"M PLUS 1 Code","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;font-weight:600}
-header a{text-decoration:none}
-header a.brand{display:inline-flex;align-items:center;gap:10px;vertical-align:middle}
+.site-header{position:sticky;top:0;z-index:60;margin:0 -18px;padding:10px 18px;
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    background:var(--bg);background:color-mix(in srgb,var(--bg) 94%,transparent);
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{display:inline-flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;line-height:1.45}
+.brand b,.hero .t{font-family:"M PLUS 1 Code","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;font-weight:600}
+.brand b{font-size:15px}
 .brand-icon{flex:none;width:46px;height:46px;display:block}
+.skip-link{position:absolute;left:18px;top:10px;z-index:1;transform:translateY(-180%);
+    padding:10px 14px;border-radius:10px;background:var(--btnbg);color:var(--btnfg)}
+.skip-link:focus{transform:none}
 :root[data-theme="dark"]{color-scheme:dark;
     --ink:#f0f0f2; --sub:#b3b5bd; --bg:#17181b;
     --card:#222328; --line:#3a3c42; --red:#ff7a66; --green:#7fc784;
     --btnbg:#f0f0f2; --btnfg:#1b1c20; --color-secondary:#ff9cc4; --color-secondary-bg:#35262f}
 .head-right{display:flex;align-items:center;gap:8px;white-space:nowrap}
-.theme-toggle{flex:0 0 auto;width:32px;height:32px;padding:0;border-radius:50%;
+.theme-toggle{flex:0 0 auto;width:44px;height:44px;padding:0;border-radius:50%;cursor:pointer;
     background:transparent;color:var(--sub);border:1px solid var(--line);
     display:flex;align-items:center;justify-content:center}
 .theme-toggle svg{width:17px;height:17px;fill:none;stroke:currentColor;
@@ -34,18 +39,25 @@ header a.brand{display:inline-flex;align-items:center;gap:10px;vertical-align:mi
 :root[data-theme-pref="light"] .theme-toggle .ic-sun{display:block}
 :root[data-theme-pref="dark"] .theme-toggle .ic-moon{display:block}
 :root[data-theme-pref="system"] .theme-toggle .ic-sys{display:block}
-:focus-visible{outline:3px solid var(--color-primary);outline-offset:2px}
-.lang-toggle{flex:0 0 auto;height:32px;padding:0 10px;font-size:12px;border-radius:999px;
+:focus-visible{outline:3px solid var(--color-secondary);outline-offset:2px}
+.lang-toggle{flex:0 0 auto;height:44px;padding:0 10px;border-radius:999px;cursor:pointer;
     background:transparent;color:var(--sub);border:1px solid var(--line);
-    display:flex;align-items:center;gap:5px;font-size:12.5px;line-height:1}
-.lang-toggle .lg-ja,.lang-toggle .lg-en{opacity:.5}
+    display:flex;align-items:center;gap:5px;font:inherit;font-size:12px;line-height:1}
 :root[data-lang="ja"] .lang-toggle .lg-ja,
-  :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
+  :root[data-lang="en"] .lang-toggle .lg-en{color:var(--ink);font-weight:700}
+.action-primary,.action-secondary{display:inline-flex;align-items:center;justify-content:center;
+    gap:10px;min-height:46px;padding:8px 16px;border:1px solid transparent;border-radius:12px;
+    font-size:15px;font-weight:700;text-align:center;text-decoration:none;line-height:1.4}
+.action-primary{background:var(--color-secondary);color:var(--card)}
+.action-secondary{background:var(--card);color:var(--ink);border-color:var(--line)}
+.layer-number{display:inline-block;background:var(--color-secondary-bg);color:var(--color-secondary);
+    padding:2px 9px;border-radius:999px;margin-inline-end:7px;font-size:.8em;white-space:nowrap}
+@media(hover:hover){
+    .theme-toggle:hover,.lang-toggle:hover,.action-secondary:hover{border-color:var(--color-secondary);color:var(--color-secondary)}
+    .action-primary:hover{filter:brightness(1.09)}
+  }
 @media(max-width:520px){
-    header{font-size:12px}header b{font-size:14px;white-space:normal}
-    /* 右側はテーマと言語の切り替えだけなので、アイコンとタイトルを2行のまま大きめに保つ */
-    .brand-icon{width:40px;height:40px}header a.brand{gap:8px}header a.brand b{font-size:14px;white-space:nowrap}
-    @media(max-width:370px){header a.brand b{font-size:13px}.brand-icon{width:36px;height:36px}header a.brand{gap:7px}}
-    @media(max-width:345px){header a.brand b{font-size:11px}.brand-icon{width:32px;height:32px}header a.brand{gap:6px}}
+    .brand{gap:8px}.brand b{font-size:clamp(11px,3.4vw,14px)}
+    .brand-icon{width:clamp(32px,10vw,40px);height:auto}
     .head-right{gap:6px}
   }

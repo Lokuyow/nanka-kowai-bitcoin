@@ -16,8 +16,10 @@
 
 <div class="wrap">
   <SiteHeader />
-  <img class="lost" src={BASE_PATH + 'ghost-lost.svg'} alt="" width="140" height="140" aria-hidden="true" />
-  <h1 data-i18n>{title}</h1>
-  <p class="lede" data-i18n data-i18n-en={explanationEn}>アドレスが変わったか、入力が間違っているかもしれません。全{ARTICLES.length}話はトップページから読めます。</p>
-  <a class="btn" href={BASE_PATH} data-i18n>トップへもどる</a>
+  <main class="not-found" id="main-content" tabindex="-1">
+    <img class="lost" src={BASE_PATH + 'ghost-lost.svg'} alt="" width="140" height="140" />
+    <h1 data-i18n>{title}</h1>
+    <p class="lede" data-i18n data-i18n-en={explanationEn}>アドレスが変わったか、入力が間違っているかもしれません。全{ARTICLES.length}話はトップページから読めます。</p>
+    <a class="btn action-primary" href={BASE_PATH} data-i18n>トップへもどる</a>
+  </main>
 </div>

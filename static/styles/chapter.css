@@ -1,6 +1,27 @@
+html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
 .wrap{padding-bottom:calc(108px + env(safe-area-inset-bottom))}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin:15px 0 4px;
+    font-size:14px;color:var(--color-secondary);text-decoration:none}
+.chapter h1{font-size:clamp(25px,5.5vw,37px);line-height:1.42;margin:0 0 10px;
+    overflow-wrap:anywhere;text-wrap:balance}
+.chapter section{margin-top:clamp(32px,7vw,48px)}
+.chapter h2{font-size:clamp(17px,3.4vw,21px);line-height:1.5;margin-bottom:6px}
+.chapter .lede{font-size:15px;line-height:1.8}
+.read-next{margin-top:20px;min-height:54px;padding:12px 16px;border:1px solid var(--line);
+    border-radius:14px;background:var(--card);color:var(--ink);text-decoration:none;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;line-height:1.55}
+.read-next small{display:block;color:var(--color-secondary);font-size:13px;margin-bottom:3px}
+.read-next>span:last-child{color:var(--color-secondary);font-weight:700}
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:8px max(18px,calc(50% - 302px)) calc(8px + env(safe-area-inset-bottom))}
 .tabbar .tb{flex:1 1 0;display:flex;align-items:center;justify-content:center;min-height:44px;color:var(--ink);text-decoration:none;padding:10px 4px;white-space:nowrap;background:var(--card);border:1px solid var(--line);border-radius:12px}
 .tabbar .idx{color:var(--sub);flex-direction:column;gap:1px;padding:5px 4px;line-height:1.25}
 .tabbar .idx .pos{font-size:11px;letter-spacing:.04em;font-variant-numeric:tabular-nums;opacity:.85}
 .tabbar .off{color:var(--sub);opacity:.45;background:transparent;border-color:transparent}
+.tabbar .next{background:var(--color-secondary-bg);color:var(--color-secondary);font-weight:700}
+@media(hover:hover){
+    .eyebrow:hover{text-decoration:underline}
+    .read-next:hover,.tabbar a:hover{border-color:var(--color-secondary)}
+  }
+@media(max-width:520px){
+    :root[data-lang="ja"] .chapter h1 br{display:none}
+  }

@@ -66,3 +66,32 @@ test('未知の深い URL に HTTP 404 を返し、設定とトップへのリ�
     await page.close();
   }
 });
+
+test('キーボードで本文に移動し、層から記事を選んで同じ位置に戻れる', async () => {
+  const page = await context.newPage();
+  try {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(server.base, { waitUntil: 'load' });
+    await page.keyboard.press('Tab');
+    assert.equal(await page.locator('.skip-link:focus').count(), 1);
+    await page.keyboard.press('Enter');
+    assert.equal(await page.locator('main:focus').count(), 1);
+
+    await page.locator('.hero-actions a[href="#stories"]').click();
+    assert.equal(new URL(page.url()).hash, '#stories');
+    await page.locator('.layer-menu a[href="#layer-2"]').click();
+    assert.equal(new URL(page.url()).hash, '#layer-2');
+    await page.locator('#story-hack').click();
+    assert.equal(page.url(), server.base + 'hack/');
+    await page.locator('.read-next').click();
+    assert.equal(page.url(), server.base + 'crime/');
+    await page.locator('.tabbar .idx').click();
+
+    assert.equal(page.url(), server.base + '#story-crime');
+    const card = await page.locator('#story-crime:target').boundingBox();
+    const header = await page.locator('.site-header').boundingBox();
+    assert.ok(card && header && card.y >= header.y + header.height && card.y < 844);
+  } finally {
+    await page.close();
+  }
+});

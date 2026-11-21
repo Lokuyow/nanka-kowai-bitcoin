@@ -1,10 +1,11 @@
 <script>
   import ArticleNav from '../../lib/ArticleNav.svelte';
   import Bridge from '../../lib/Bridge.svelte';
+  import LayerLabel from '../../lib/LayerLabel.svelte';
   import PageHead from '../../lib/PageHead.svelte';
   import Share from '../../lib/Share.svelte';
   import SiteHeader from '../../lib/SiteHeader.svelte';
-  import { ARTICLES, BASE_PATH, LAYERS, SITE_URL, layerHeading } from '../../lib/site.js';
+  import { ARTICLES, BASE_PATH, LAYERS, SITE_URL, articlePath } from '../../lib/site.js';
 
   let { data } = $props();
   let article = $derived(data.article);
@@ -26,10 +27,34 @@
 
 <div class="wrap">
   <SiteHeader />
-  <p class="eyebrow" data-i18n-html>{@html layerHeading(LAYERS[article.layer - 1])}</p>
-  <h1 data-i18n-html>{@html article.heading}</h1>
-  {@html data.body}
-  <Share {...article} label={article.openQuestion ? 'この問いをシェアする' : 'この答えをシェアする'} {url} />
-  <Bridge />
+  <main id="main-content" tabindex="-1">
+    <article class="chapter">
+      <a class="eyebrow" href={BASE_PATH + '#layer-' + article.layer}>
+        <span aria-hidden="true">←</span>
+        <LayerLabel layer={LAYERS[article.layer - 1]} />
+      </a>
+      <!-- 見出しと本文の HTML はリポジトリ内の原稿から読み込む。 -->
+      <h1 data-i18n-html>{@html article.heading}</h1>
+      {@html data.body}
+    </article>
+    {#if data.next}
+      <a class="read-next" href={articlePath(data.next.slug)}>
+        <span>
+          <small data-i18n>次の話</small>
+          <strong data-i18n>{data.next.title}</strong>
+        </span>
+        <span aria-hidden="true">→</span>
+      </a>
+    {:else}
+      <a class="read-next" href={BASE_PATH + '#stories'}>
+        <strong data-i18n>全話一覧に戻る</strong>
+        <span aria-hidden="true">↑</span>
+      </a>
+    {/if}
+  </main>
+  <footer>
+    <Share {...article} label={article.openQuestion ? 'この問いをシェアする' : 'この答えをシェアする'} {url} />
+    <Bridge />
+  </footer>
 </div>
-<ArticleNav previous={data.previous} next={data.next} number={article.number} total={ARTICLES.length} />
+<ArticleNav previous={data.previous} next={data.next} {article} total={ARTICLES.length} />
