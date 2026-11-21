@@ -2,6 +2,7 @@
   import { ARTICLES, BASE_PATH, HOME, LAYERS, SITE_URL, articlePath } from '../lib/site.js';
   import ArticleIcon from '../lib/ArticleIcon.svelte';
   import Bridge from '../lib/Bridge.svelte';
+  import ChevronRight from '../lib/ChevronRight.svelte';
   import LayerLabel from '../lib/LayerLabel.svelte';
   import PageHead from '../lib/PageHead.svelte';
   import Share from '../lib/Share.svelte';
@@ -43,7 +44,7 @@
       <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
       <p class="lede" data-i18n>ビットコインの「こわい」をひとつずつ解きほぐす</p>
       <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
-        <span data-i18n>最初から見る</span><span aria-hidden="true">→</span>
+        <span data-i18n>最初から見る</span><ChevronRight />
       </a>
     </div>
 
@@ -60,7 +61,7 @@
                     <ArticleIcon slug={article.slug} />
                   </span>
                   <span class="q" data-i18n>{article.title}</span>
-                  <span class="arr" aria-hidden="true">→</span>
+                  <ChevronRight class="arr" />
                 </a>
               </li>
             {/each}

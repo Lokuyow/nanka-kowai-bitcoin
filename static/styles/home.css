@@ -37,7 +37,7 @@
 .bridge-card img{display:block;width:100%;height:auto;border-radius:6px}
 .bridge-copy{display:grid;gap:3px;font-size:14px;line-height:1.4}
 .bridge-lede{color:var(--sub);font-size:12px}
-.bridge-arrow{color:var(--color-secondary);font-weight:700}
+.bridge-chevron{color:var(--color-secondary)}
 @media(hover:hover){
     .hero .action-primary:hover{filter:brightness(.94)}
     .bridge-card:hover{border-color:var(--color-secondary)}
@@ -56,7 +56,7 @@
 .unit-marker{flex:0 0 38px;height:38px;border-radius:12px;
     display:grid;place-items:center;background:var(--color-secondary-bg);color:var(--color-secondary)}
 .unit .q{font-weight:700;font-size:16px;line-height:1.5}
-.unit .arr{margin-left:auto;color:var(--color-secondary);font-weight:900}
+.unit .arr{flex:none;margin-left:auto;color:var(--color-secondary)}
 @media(hover:hover){
     .unit:hover{border-color:var(--color-secondary);background:var(--color-secondary-bg)}
   }

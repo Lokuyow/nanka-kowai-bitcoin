@@ -1,5 +1,6 @@
 <script>
   import { BASE_PATH } from './site.js';
+  import ChevronRight from './ChevronRight.svelte';
 
   let { preview = false } = $props();
   const url = 'https://lokuyow.github.io/sawatte-wakaru-bitcoin/';
@@ -15,7 +16,7 @@
       <span class="bridge-lede" data-i18n>内側の仕組みを知りたくなったら</span>
       <strong data-i18n>さわってわかるビットコイン</strong>
     </span>
-    <span class="bridge-arrow" aria-hidden="true">→</span>
+    <ChevronRight class="bridge-chevron" />
   </a>
 {:else}
   <p class="bridge">
