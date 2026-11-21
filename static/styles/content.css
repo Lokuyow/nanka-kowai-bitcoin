@@ -33,7 +33,17 @@ button:active{transform:scale(.97)}
     border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
     transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
 .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
-input[type=range]{width:100%;accent-color:var(--color-secondary);height:32px}
+input[type=range]{appearance:none;display:block;width:100%;height:44px;margin:0;
+    background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:12px;border:1px solid var(--sub);
+    border-radius:999px;background:var(--color-secondary-bg)}
+input[type=range]::-moz-range-track{height:10px;border:1px solid var(--sub);
+    border-radius:999px;background:var(--color-secondary-bg)}
+input[type=range]::-webkit-slider-thumb{appearance:none;margin-top:-9px;width:28px;height:28px;
+    border:2px solid var(--card);border-radius:50%;background:var(--color-secondary)}
+input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px;
+    border:2px solid var(--card);border-radius:50%;background:var(--color-secondary)}
+@media(forced-colors:active){input[type=range]{appearance:auto}}
 .share{margin-top:20px;text-align:center}
 .share-title{font-size:16px;font-weight:700;margin:0 0 10px}
 .share-iconbtn{width:44px;height:44px;padding:0;border-radius:12px;background:var(--card);

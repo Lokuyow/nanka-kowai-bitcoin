@@ -160,8 +160,8 @@
     var rateTxt = fmtRate(state.rate);
     labelEl.textContent = L('いまの目安', 'Live estimate');
     mainEl.innerHTML = L(
-      '約' + sats.toLocaleString('ja-JP') + ' sats<span class="nw">（' + fmtBtc(sats) + ' BTC・' + rateTxt + ' sat/vB）</span>',
-      'about ' + sats.toLocaleString('en-US') + ' sats <span class="nw">(' + fmtBtc(sats) + ' BTC, ' + rateTxt + ' sat/vB)</span>');
+      '約' + fmtBtc(sats) + ' BTC<span class="livefee-detail">（' + sats.toLocaleString('ja-JP') + ' sats・' + rateTxt + ' sat/vB）</span>',
+      'about ' + fmtBtc(sats) + ' BTC<span class="livefee-detail">(' + sats.toLocaleString('en-US') + ' sats, ' + rateTxt + ' sat/vB)</span>');
     srcEl.textContent = L(
       'いまの実データ（' + state.source + '）から計算。普通の送金1回を約140 vBとして計算しています',
       'Calculated from live data (' + state.source + '), for a typical transfer of about 140 vB');
