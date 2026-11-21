@@ -6,7 +6,7 @@
 .hero .t span:nth-child(4){animation-delay:.36s}
 .subtitle{font-size:16px;color:var(--sub);margin:14px 0 0}
 .layerhead{margin:40px 0 4px;font-size:14px;color:var(--sub)}
-.layerhead span{background:var(--color-primary);color:#261719;border-radius:999px;
+.layerhead span{background:var(--color-secondary-bg);color:var(--color-secondary);border-radius:999px;
     padding:2px 10px;font-size:12px;margin-right:6px}
 .layerdesc{font-size:13px;color:var(--sub);margin:0 0 6px}
 .unit{display:flex;align-items:center;gap:12px;background:var(--card);
@@ -20,7 +20,7 @@
 .unit .arr{margin-left:auto;color:var(--color-secondary);font-weight:900}
 .tipw{text-align:center;margin:36px 0 0}
 .tip p{color:var(--sub);font-size:14px;margin:0 0 12px}
-.tipb{display:inline-block;background:var(--color-primary);color:#261719;font-weight:700;
+.tipb{display:inline-block;background:var(--color-primary);color:var(--color-on-primary);font-weight:700;
     text-decoration:none;padding:12px 24px;border-radius:999px;font-size:15px}
 @media(hover:hover){.tipb:hover{filter:brightness(1.05)}}
 .credit{margin:20px 0 0;display:flex;justify-content:center;align-items:center;

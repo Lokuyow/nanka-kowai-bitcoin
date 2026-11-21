@@ -1,5 +1,5 @@
 .eyebrow{margin:28px 0 6px;font-size:13px;color:var(--sub)}
-.eyebrow span{background:var(--color-primary);color:#261719;border-radius:999px;
+.eyebrow span{background:var(--color-secondary-bg);color:var(--color-secondary);border-radius:999px;
     padding:2px 10px;font-size:12px;margin-right:6px}
 h1{font-size:30px;line-height:1.35;margin:0 0 8px}
 .answer{border-left:5px solid var(--color-primary);background:var(--card);
@@ -17,7 +17,7 @@ button{font:inherit;cursor:pointer;border:0;border-radius:999px;
     background:var(--btnbg);color:var(--btnfg);padding:10px 20px;font-size:15px}
 button:active{transform:scale(.97)}
 .center{text-align:center}
-.summary{margin-top:44px;background:#fff3e0;color:var(--ink);border:1px solid #f0d7ae;border-radius:16px;
+.summary{margin-top:44px;background:var(--color-secondary-bg);color:var(--ink);border:1px solid var(--line);border-radius:16px;
     padding:20px;font-size:19px;font-weight:700;line-height:1.6}
 .summary small{display:block;font-size:12px;color:var(--color-secondary);font-weight:400;margin-bottom:6px}
 .bridge{margin-top:36px;font-size:14px;color:var(--sub);text-align:center}
@@ -26,7 +26,7 @@ button:active{transform:scale(.97)}
 @media(max-width:520px){.cols{grid-template-columns:1fr}}
 .tbl{width:100%;border-collapse:collapse;font-size:14px}
 .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-.tbl th{background:#fdf0ef;font-weight:700}
+.tbl th{background:#efefec;font-weight:700}
 .ok{color:var(--green);font-weight:700}
 .no{color:var(--red);font-weight:700}
 .mid{color:var(--color-secondary);font-weight:700}
@@ -50,17 +50,16 @@ input[type=range]{width:100%;accent-color:var(--color-secondary);height:32px}
     border-radius:999px;padding:10px 20px;font-size:15px;line-height:1.7}
 .share-copy{background:#fff;color:var(--ink);border:1px solid var(--line)}
 .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
-:root[data-theme="dark"] .summary{background:#332f1e;border-color:#5a5138}
-:root[data-theme="dark"] .tbl th{background:#2f2b23}
-:root[data-theme="dark"] .share-copy{background:#2e2c29}
-:root[data-theme="dark"] .share-iconbtn{background:#2e2c29}
+:root[data-theme="dark"] .tbl th{background:#292b30}
+:root[data-theme="dark"] .share-copy{background:#2a2c31}
+:root[data-theme="dark"] .share-iconbtn{background:#2a2c31}
 :root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
   :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
   :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
   :root[data-theme="dark"] .lockbox,:root[data-theme="dark"] .receipt,
   :root[data-theme="dark"] .vs .mini,:root[data-theme="dark"] .minestats div,
   :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span,
-  :root[data-theme="dark"] .outdot{background:#2e2c29}
+  :root[data-theme="dark"] .outdot{background:#2a2c31}
 :root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
   :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
   :root[data-theme="dark"] .tradebtns .sell,
@@ -69,16 +68,16 @@ input[type=range]{width:100%;accent-color:var(--color-secondary);height:32px}
   :root[data-theme="dark"] .hlbtns button:not(.right):not(.wrong),
   :root[data-theme="dark"] .pickbtns button:not(.on):not(.primary-btn),
   :root[data-theme="dark"] .routebtns button:not(.on),
-  :root[data-theme="dark"] .tlbtns button:not(.on){background:#2e2c29}
+  :root[data-theme="dark"] .tlbtns button:not(.on){background:#2a2c31}
 :root[data-theme="dark"] .chip:not(.ghost):not(.insert),:root[data-theme="dark"] .same b,
   :root[data-theme="dark"] .unit .n,:root[data-theme="dark"] .receipt .line.hl,
   :root[data-theme="dark"] .tag.mix,:root[data-theme="dark"] .recaprow .chip,
   :root[data-theme="dark"] .pstat .box,:root[data-theme="dark"] .qmsg,
-  :root[data-theme="dark"] .dvtotal{background:#442c30}
+  :root[data-theme="dark"] .dvtotal{background:#34272d}
 :root[data-theme="dark"] .addr,:root[data-theme="dark"] .feebar-wrap,
   :root[data-theme="dark"] .yenbar-wrap,:root[data-theme="dark"] .powbar,
   :root[data-theme="dark"] .trackbar,:root[data-theme="dark"] .hpbar-wrap,
-  :root[data-theme="dark"] .meter{background:#1e1d1b}
+  :root[data-theme="dark"] .meter{background:#1b1c20}
 :root[data-theme="dark"] .can{background:#24331e;border-color:#47603f}
 :root[data-theme="dark"] .cannot{background:#452423;border-color:#74443d}
 :root[data-theme="dark"] .hlbtns button.right,:root[data-theme="dark"] .tag.good,
@@ -90,11 +89,11 @@ input[type=range]{width:100%;accent-color:var(--color-secondary);height:32px}
 :root[data-theme="dark"] .stepcard.end-bad{border-color:#74443d}
 :root[data-theme="dark"] .receipt{border-color:#6a6355}
 :root[data-theme="dark"] .chip.ghost,:root[data-theme="dark"] .fblk.dead,
-  :root[data-theme="dark"] .banbtns button.banned{background:#1b1a18}
-:root[data-theme="dark"] [stroke="#eadbda"]{stroke:#574448}
-:root[data-theme="dark"] [fill="#fdf0ef"]{fill:#302528}
+  :root[data-theme="dark"] .banbtns button.banned{background:#1b1c20}
+:root[data-theme="dark"] [stroke="#e3e3df"]{stroke:#43454b}
+:root[data-theme="dark"] [fill="#efefec"]{fill:#292b30}
 :root[data-theme="dark"] [fill="#d33"]{fill:#ff7a66}
 :root[data-theme="dark"] [stroke="#d33"]{stroke:#ff7a66}
-:root[data-theme="dark"] text[fill="#666"]{fill:#bda9aa}
+:root[data-theme="dark"] text[fill="#666"]{fill:#b3b5bd}
 :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
-:root[data-theme="dark"] .dot{fill:#282122}
+:root[data-theme="dark"] .dot{fill:#222328}

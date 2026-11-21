@@ -6,7 +6,7 @@
 .lrow:nth-child(4){animation-delay:3.6s}
 .lrow:nth-child(5){animation-delay:4.8s}
 @keyframes lrow{0%{opacity:0;transform:translateY(6px)}12%,80%{opacity:1;transform:none}95%,100%{opacity:.25}}
-.addr{font-family:ui-monospace,monospace;font-size:12px;background:#f5e9e8;
+.addr{font-family:ui-monospace,monospace;font-size:12px;background:#e9e9e6;
     border-radius:6px;padding:1px 6px}
 .trail{display:flex;align-items:center;gap:5px;padding:8px 0}
 .dot{width:13px;height:13px;border-radius:50%;background:var(--ink)}

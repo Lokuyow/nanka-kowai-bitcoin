@@ -2,7 +2,7 @@
 .dvcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
 .dvpiece{font-size:15px;margin:14px 0 0}
 .dvtotal{margin-top:10px;border:2px solid var(--color-primary);border-radius:12px;padding:10px;
-    font-size:17px;font-weight:700;text-align:center;background:#fdf0ef}
+    font-size:17px;font-weight:700;text-align:center;background:#efefec}
 .dvtotal b{color:var(--color-secondary)}
 .dvbtns{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
 .dvbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}

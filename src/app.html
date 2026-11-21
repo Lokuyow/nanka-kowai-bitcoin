@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff9f8">
+  <meta name="theme-color" content="#f7f7f5">
   <script>
     (() => {
       const root = document.documentElement;
@@ -32,7 +32,7 @@
         const theme = preference === 'system' ? (systemTheme.matches ? 'dark' : 'light') : preference;
         root.dataset.theme = theme;
         root.dataset.themePref = preference;
-        themeColor.content = theme === 'dark' ? '#191516' : '#fff9f8';
+        themeColor.content = theme === 'dark' ? '#17181b' : '#f7f7f5';
         if (button) {
           const [ja, en] = labels[preference];
           button.setAttribute('aria-label', root.lang === 'en' ? en : ja);
