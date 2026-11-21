@@ -4,19 +4,19 @@
 .hero .t span:nth-child(2){animation-delay:.12s}
 .hero .t span:nth-child(3){animation-delay:.24s;color:var(--color-primary)}
 .hero .t span:nth-child(4){animation-delay:.36s}
-/* タイトルを白い枠に入れ、おばけが枠の上から顔を出してふちに手をかける */
-.peek{position:relative;padding-top:84px;--peek-line:#e7a3bb;--peek-ghost:#fff;--peek-eye:#1e1410}
-:root[data-theme="dark"] .peek{--peek-line:#8a5a6c}
+/* タイトルを少し傾いた紙のカードに載せ、おばけが紙の裏から顔を出してふちに手をかける */
+.peek{position:relative;padding-top:84px;--peek-line:#e3d9dc;--peek-ghost:#fff;--peek-eye:#1e1410;
+    --paper-shadow:0 8px 22px rgba(80,40,55,.12),0 1px 3px rgba(80,40,55,.08)}
+:root[data-theme="dark"] .peek{--peek-line:#55474d;--paper-shadow:0 8px 22px rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.3)}
 .peek-head{position:absolute;top:0;right:40px;width:150px;height:105px;z-index:0;overflow:visible;
     fill:var(--peek-ghost);stroke:var(--peek-line);stroke-width:2.2;
-    animation:peek-in .8s cubic-bezier(.3,1.4,.5,1) .5s both,peek-bob 4s ease-in-out 1.4s infinite}
+    animation:peek-in .8s cubic-bezier(.3,1.4,.5,1) .5s both}
 .peek-head ellipse{fill:var(--peek-eye);stroke:none}
-.hero-card{position:relative;z-index:1;background:var(--card);border:2px solid var(--peek-line);
-    border-radius:22px;padding:26px 24px 22px}
+.hero-card{position:relative;z-index:1;background:var(--card);border-radius:6px;
+    padding:28px 26px 24px;box-shadow:var(--paper-shadow);transform:rotate(-1.2deg)}
 .peek-hands{position:absolute;top:-16px;right:38px;width:150px;height:33px;overflow:visible;
     fill:var(--peek-ghost);stroke:var(--peek-line);stroke-width:2.2;animation:rise .5s ease .9s both}
 @keyframes peek-in{from{transform:translateY(46px)}to{transform:none}}
-@keyframes peek-bob{0%,100%{transform:none}50%{transform:translateY(5px)}}
 @media(prefers-reduced-motion:reduce){.peek-head,.peek-hands{animation:none}}
 .subtitle{font-size:16px;color:var(--sub);margin:14px 0 0}
 .layerhead{margin:40px 0 4px;font-size:14px;color:var(--sub)}
@@ -48,6 +48,6 @@
     .peek{padding-top:66px}
     .peek-head{width:120px;height:84px;right:24px;top:0}
     .peek-hands{width:120px;height:26px;right:22px;top:-13px}
-    .hero-card{padding:20px 18px 18px;border-radius:20px}
+    .hero-card{padding:22px 18px 18px}
     :root[data-lang="en"] .hero .t{font-size:clamp(22px, 7.2vw, 27px)}
   }

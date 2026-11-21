@@ -19,7 +19,7 @@
 
   <div class="hero">
     <div class="peek">
-      <!-- タイトルの枠のうしろから顔を出し、ふちに手をかけるおばけ -->
+      <!-- タイトルを書いた紙のうしろから顔を出し、ふちに手をかけるおばけ -->
       <!-- 首を左にかしげ、目線をタイトルの方へ向ける -->
       <svg class="peek-head" viewBox="0 0 120 84" aria-hidden="true">
         <g transform="rotate(-9 60 84)">
