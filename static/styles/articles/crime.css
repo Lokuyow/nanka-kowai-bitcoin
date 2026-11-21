@@ -5,12 +5,11 @@
     border-radius:6px;padding:1px 6px}
 .payment-method{border:1px solid var(--line);border-radius:10px;padding:12px}
 .payment-method h3{margin:0 0 8px;font-size:15px}
-.payment-method p,.payment-case{margin:0;font-size:13px;color:var(--sub)}
+.payment-method p{margin:0;font-size:13px;color:var(--sub)}
 .payment-record{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 10px;
     margin-bottom:8px;padding:6px 8px;border-radius:6px;font-size:13px;background:var(--color-secondary-bg)}
 .payment-record b{white-space:nowrap;color:var(--color-secondary)}
-.payment-case{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
-.ledger.game .lrow{opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease}
-.ledger.game .lrow.show{opacity:1;transform:none}
+.payment-record.cash{background:var(--bg);color:var(--sub)}
+.ledger.game .lrow:not(.show){display:none}
 .tracemsg{font-size:14px;min-height:3.2em;margin:12px 0 0}
 #traceBtn{min-height:44px}
