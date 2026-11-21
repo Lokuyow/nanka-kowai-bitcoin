@@ -57,7 +57,6 @@
     display:grid;place-items:center;background:var(--color-secondary-bg);color:var(--color-secondary)}
 .unit .q{font-weight:700;font-size:16px;line-height:1.5}
 .unit .arr{margin-left:auto;color:var(--color-secondary);font-weight:900}
-.unit:target{border-color:var(--color-secondary);box-shadow:0 0 0 2px var(--color-secondary)}
 @media(hover:hover){
     .unit:hover{border-color:var(--color-secondary);background:var(--color-secondary-bg)}
   }
