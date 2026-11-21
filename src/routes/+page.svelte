@@ -1,5 +1,6 @@
 <script>
   import { ARTICLES, BASE_PATH, HOME, LAYERS, SITE_URL, articlePath } from '../lib/site.js';
+  import ArticleIcon from '../lib/ArticleIcon.svelte';
   import Bridge from '../lib/Bridge.svelte';
   import LayerLabel from '../lib/LayerLabel.svelte';
   import PageHead from '../lib/PageHead.svelte';
@@ -54,7 +55,10 @@
             {#each ARTICLES.filter((article) => article.layer === layer.number) as article (article.slug)}
               <li>
                 <a class="unit" href={articlePath(article.slug)} id={'story-' + article.slug}>
-                  <span class="n">{article.number}</span>
+                  <span class="unit-marker">
+                    <ArticleIcon slug={article.slug} />
+                    <span class="n">{article.number}</span>
+                  </span>
                   <span class="q" data-i18n>{article.title}</span>
                   <span class="arr" aria-hidden="true">→</span>
                 </a>

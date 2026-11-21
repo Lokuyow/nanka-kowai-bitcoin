@@ -66,7 +66,7 @@ input[type=range]{width:100%;accent-color:var(--color-secondary);height:32px}
   :root[data-theme="dark"] .routebtns button:not(.on),
   :root[data-theme="dark"] .tlbtns button:not(.on){background:#2a2c31}
 :root[data-theme="dark"] .chip:not(.ghost):not(.insert),:root[data-theme="dark"] .same b,
-  :root[data-theme="dark"] .unit .n,:root[data-theme="dark"] .receipt .line.hl,
+  :root[data-theme="dark"] .receipt .line.hl,
   :root[data-theme="dark"] .tag.mix,:root[data-theme="dark"] .recaprow .chip,
   :root[data-theme="dark"] .pstat .box,:root[data-theme="dark"] .qmsg,
   :root[data-theme="dark"] .dvtotal{background:#34272d}
