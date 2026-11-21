@@ -16,7 +16,7 @@
   var EN = {
     /* ===== 共通（ヘッダー・ナビ・共有・層名） ===== */
     'なんか よくわからんけど<br>こわい ビットコイン': "I don't really get it,<br>but it's scary: Bitcoin",
-    '名前だけは知ってる': "I've only heard the name",
+    '名前はしってる': "I've heard the name",
     'ニュースで見たよ': 'I saw it on the news',
     'ちょっと詳しいよ': 'I know a thing or two',
     'そもそもお金って何？': 'Wait — what even is money?',
@@ -54,7 +54,7 @@
     'こわい': "it's scary:",
     'ビットコイン': 'Bitcoin',
     'ニュースで見たイメージと、ほんとの姿。': 'The image from the news — and what it really looks like.',
-    'ビットコインの「こわい」を、図でひとつずつ解きほぐす。': 'Explore what makes Bitcoin seem scary, one illustration at a time.',
+    'ビットコインの「こわい」をひとつずつ解きほぐす': 'Explore what makes Bitcoin seem scary, one question at a time',
     '価格やニュースの見出しから浮かぶ疑問': 'Questions raised by prices and news headlines',
     'ニュースを見て気になること': 'Questions that come up in the news',
     '仕組みを知るうちに出てくる疑問': 'Questions that come up as you learn how Bitcoin works',

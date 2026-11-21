@@ -40,7 +40,7 @@
         </div>
       </div>
       <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
-      <p class="lede" data-i18n>ビットコインの「こわい」を、図でひとつずつ解きほぐす。</p>
+      <p class="lede" data-i18n>ビットコインの「こわい」をひとつずつ解きほぐす</p>
       <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
         <span data-i18n>最初から見る</span><span aria-hidden="true">→</span>
       </a>

@@ -30,20 +30,17 @@
 .subtitle{font-size:clamp(17px,3.4vw,22px);font-weight:700;margin:22px 0 6px}
 .hero .lede{font-size:15px;margin:0}
 .hero .action-primary{margin-top:16px;background:var(--color-primary);color:var(--color-on-primary)}
-.bridge-card{display:grid;grid-template-columns:minmax(0,44%) minmax(0,1fr) auto;align-items:center;
-    margin-top:36px;border:1px solid var(--line);border-radius:16px;background:var(--card);
+.bridge-card{display:grid;grid-template-columns:clamp(64px,20vw,104px) minmax(0,1fr) auto;align-items:center;
+    gap:10px;max-width:400px;margin:30px auto 0;padding:10px;
+    border:1px solid var(--line);border-radius:12px;background:var(--card);
     color:var(--ink);text-decoration:none}
-.bridge-card img{display:block;width:100%;height:auto;border-radius:15px 0 0 15px}
-.bridge-copy{display:grid;gap:4px;padding:14px 12px 14px 16px;line-height:1.45}
-.bridge-lede{color:var(--sub);font-size:13px}
-.bridge-arrow{padding-inline-end:16px;color:var(--color-secondary);font-weight:700}
+.bridge-card img{display:block;width:100%;height:auto;border-radius:6px}
+.bridge-copy{display:grid;gap:3px;font-size:14px;line-height:1.4}
+.bridge-lede{color:var(--sub);font-size:12px}
+.bridge-arrow{color:var(--color-secondary);font-weight:700}
 @media(hover:hover){
     .hero .action-primary:hover{filter:brightness(.94)}
     .bridge-card:hover{border-color:var(--color-secondary)}
-  }
-@media(max-width:440px){
-    .bridge-card{grid-template-columns:minmax(0,1fr) auto}
-    .bridge-card img{grid-column:1/-1;border-radius:15px 15px 0 0}
   }
 .story-index{margin-top:clamp(28px,5vw,48px)}
 .story-layer{margin-top:0}
