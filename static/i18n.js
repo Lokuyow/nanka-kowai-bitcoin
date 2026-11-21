@@ -115,6 +115,8 @@
     '昔は国以外もお金を作っていた': 'Long ago, non-governments made money too',
 
     /* ===== scam ===== */
+    "金融庁にはSNSで暗号資産などへの投資を勧められ、出金しようとしたら手数料や税金の名目で追加の入金を求められたという相談が寄せられている。": "Japan’s Financial Services Agency has received reports from people who were urged on social media to invest in crypto or similar products, then asked to deposit more money for supposed fees or taxes when they tried to withdraw.",
+    "金融庁の注意喚起": "Warning from Japan’s Financial Services Agency",
     "詐欺でよく使われる文句を、5問のクイズで見分ける。": "A five-question quiz on common warning signs in scams that use Bitcoin.",
     "ビットコインを使った詐欺の手口を見分ける": "Recognize common Bitcoin scam pitches",
     '結局ビットコインって詐欺なんじゃないの？：なんか よくわからんけど こわい ビットコイン': "So Bitcoin is basically a scam, right? | I don't really get it, but it's scary: Bitcoin",
@@ -208,6 +210,12 @@
     '次の誤解：価格は誰かが決めている →': 'Next: Someone sets the price →',
 
     /* ===== price ===== */
+    "実際の取引ではどう動く？": "How does the price move in actual trades?",
+    "取引所Krakenで2024年1月1日午前0時（UTC）から成立した最初の5件。順に見ると、同じ値段が続くことも、次の取引で値段が変わることもある。": "These are the first five BTC/USD trades on Kraken from midnight UTC on January 1, 2024. The price can stay the same from one trade to the next or change with the next trade.",
+    "取引順": "Trade order",
+    "価格（米ドル / BTC）": "Price (USD / BTC)",
+    "取引量（BTC）": "Size (BTC)",
+    "Krakenの取引データ": "Kraken trade records",
     "直近の取引価格": "Last traded price",
     "売り手と買い手が合意した値段が、その取引の価格になる。": "A trade happens at a price a buyer and seller agree on.",
     "取引が成立した値段が価格になる": "The price comes from a completed trade",
@@ -299,6 +307,8 @@
     '次の誤解：ハッキング →': 'Next: Hacking →',
 
     /* ===== hack ===== */
+    "2024年5月31日、取引所DMM Bitcoinが管理していた顧客の資産4,502.9 BTCが不正に送金された。その送金も通常の取引と同じように台帳に記録された。": "On May 31, 2024, 4,502.9 BTC that DMM Bitcoin held for customers was transferred without authorization. The transfer was recorded on the ledger like any other transaction.",
+    "関東財務局の発表": "Kanto Local Finance Bureau announcement",
     "取引所の資産管理と、台帳に送金を記録する仕組みは別々。": "Exchange custody and recording transfers on the ledger are separate.",
     "取引所が預かる資産は盗まれることがある": "Funds held by exchanges can be stolen",
     "警察庁の発表": "Statement from Japan’s National Police Agency",
@@ -313,7 +323,6 @@
     '正しくは「取引所の金庫が破られた」': 'Correctly: "the exchange\'s vault was broken into"',
     '銀行に強盗が入っても、「円がハッキングされた」とは言わない。': 'When robbers hit a bank, nobody says "the dollar was hacked".',
     "資産の盗難と台帳に残る送金記録": "Stolen funds and the transfers recorded on the ledger",
-    "2024年のDMM Bitcoinの事件では、取引所の資産が盗まれた。盗まれた資産の送金も通常の取引と同じように台帳に記録される。": "In the 2024 DMM Bitcoin theft, the exchange lost funds. The transfer of the stolen funds was recorded on the ledger like any other transaction.",
     '取引所の金庫': 'The exchange vault',
     "取引所は預かった資産を管理する。<br>その管理の仕組みを破られると資産を失う。": "An exchange holds customers' funds.<br>If its custody is compromised, funds can be lost.",
     '記録': 'Record',
@@ -337,6 +346,7 @@
     '次の誤解：犯罪・匿名 →': 'Next: Crime & anonymity →',
 
     /* ===== crime ===== */
+    "2021年、米コロニアル・パイプラインが身代金として約75 BTCを支払った。米捜査当局は公開台帳でその送金を追い、このうち63.7 BTCを押収した。": "In 2021, Colonial Pipeline paid a ransom of about 75 BTC. US investigators traced the payment on the public ledger and seized 63.7 BTC of it.",
     'ビットコインって匿名だから犯罪に使いやすいんでしょ？：なんか よくわからんけど こわい ビットコイン': "Bitcoin is anonymous, so it's easy to use for crime, right? | I don't really get it, but it's scary: Bitcoin",
     'ビットコインって匿名だから<br>犯罪に使いやすいんでしょ？': "Bitcoin is anonymous,<br>so it's easy to use for crime, right?",
     "あとを追いにくいのは手渡しの現金だ。<br>ビットコインの公開台帳には、どこにいくら送ったかが残る。": "Cash handed over in person is harder to trace.<br>Bitcoin's public ledger shows how much was sent and where it went.",
@@ -354,7 +364,6 @@
     'アドレス A → アドレス B': 'Address A → Address B',
     '本名は載らないが、誰でも送り先のアドレスと金額を公開台帳で確認できる。': 'The ledger omits real names, but anyone can look up the receiving address and amount.',
     '実際に送金をたどった事件': 'A case where investigators traced a payment',
-    '2021年の米コロニアル・パイプラインの事件では、捜査当局が公開台帳で身代金の送金を追い、支払われたビットコインの一部を押収した。': 'In the 2021 Colonial Pipeline case, investigators traced the ransom payment on the public ledger and seized some of the bitcoin that had been paid.',
     '米司法省の発表': 'U.S. Department of Justice announcement',
     '手渡しの現金は、公開記録から支払いをたどれない。ビットコインは本名が載らなくても送金記録が手がかりになる。': 'Cash handed over in person leaves no public record to trace. Bitcoin transfer records provide clues even without real names.',
     '← 前の誤解：ハッキング': '← Previous: Hacking',
@@ -397,8 +406,16 @@
     '次の誤解：政府が禁止 →': 'Next: A government ban →',
 
     /* ===== ban ===== */
-    "ケンブリッジ大学の採掘データ": "University of Cambridge mining data",
-    "<b>採掘の拠点が移った。</b><br>中国の比率は大きく下がり、アメリカなどの比率が上がった。": "<b>The distribution of mining shifted.</b><br>China’s share fell substantially, while the US and others gained share.",
+    "世界の採掘計算力に占める割合（推計）": "Estimated share of global Bitcoin mining power",
+    "時期": "Date",
+    "中国": "China",
+    "米国": "US",
+    "2021年4月": "Apr. 2021",
+    "2021年8月": "Aug. 2021",
+    "2022年1月": "Jan. 2022",
+    "中国の割合は規制後の集計でいったんゼロになり、翌年1月には約21%だった。": "China’s estimated share fell to zero after the restrictions and was back to about 21% by the following January.",
+    "ケンブリッジ大学（規制前）": "Cambridge data (before restrictions)",
+    "ケンブリッジ大学（規制後）": "Cambridge data (after restrictions)",
     "国内の活動が規制されても、国外の参加者はネットワークを動かし続けられる。": "A ban can restrict activity at home while participants abroad keep the network running.",
     "国内は規制できる。国外では続けられる": "A home ban can leave activity abroad",
     '国が禁止したら、ビットコインは終わりでしょ？：なんか よくわからんけど こわい ビットコイン': "If a country bans it, Bitcoin is finished, right? | I don't really get it, but it's scary: Bitcoin",
@@ -496,6 +513,8 @@
     '← 前の誤解：量子コンピューター': '← Previous: Quantum computers',
     '次の誤解：AIで掘れなくなる →': 'Next: AI makes mining impossible →',
     /* ===== ai ===== */
+    "2024年、採掘事業者のCore Scientificは、AI向けの計算設備を提供する契約を結んだ。同社は既存の拠点を改修し、CoreWeaveのGPUを設置するために約200 MW分の設備を用意すると発表した。": "In 2024, Bitcoin miner Core Scientific signed contracts to provide computing infrastructure for AI. It said it would modify existing sites to provide about 200 MW of infrastructure for CoreWeave’s GPUs.",
+    "Core Scientificの発表": "Core Scientific announcement",
     "AIと採掘は同じ地域で電力を取り合うことがある。ビットコインは計算力の変化に合わせて難易度を調整する。": "AI and mining can compete for power in the same area. Bitcoin adjusts its mining difficulty as computing power changes.",
     "電力は競合しうる。難易度はあとで調整": "They can compete for power. Difficulty adjusts later.",
     '電力と計算力をAIに使われてビットコインは掘れなくなるんでしょ？：なんか よくわからんけど こわい ビットコイン': "If AI uses up the electricity and computing power, Bitcoin can't be mined anymore, right? | I don't really get it, but it's scary: Bitcoin",
@@ -521,6 +540,11 @@
     '← 前の誤解：51%攻撃': '← Previous: The 51% attack',
     '次の誤解：報酬がなくなったら →': 'Next: When the reward runs out →',
     /* ===== reward ===== */
+    "2024年4月20日、84万番目のブロックで新規発行分が6.25 BTCから3.125 BTCに減った。半減を挟む3ブロックを比べると、手数料は新規発行分とは別に大きく動いている。": "On April 20, 2024, newly issued bitcoin fell from 6.25 BTC to 3.125 BTC at block 840,000. The three blocks around the halving show how sharply fees can vary independently of new issuance.",
+    "ブロック": "Block",
+    "新規発行（BTC）": "New issuance (BTC)",
+    "手数料（BTC）": "Fees (BTC)",
+    "ブロック番号から記録を開ける。手数料は小数第2位に丸めた。": "Select a block number to open its record. Fees are rounded to two decimal places.",
     "スライダーで年を進めると、報酬の2つの内訳である新規発行分と手数料の割合が変わる。「次の半減期」を押すと、新規発行分が半減する次の年まで進められる。": "Advance the year to see how the shares of new issuance and fees change. “Next halving” jumps to the next halving year.",
     "マイナーの収入は、ビットコインの新規発行分と手数料。新規発行が終わると手数料だけになる。": "Miners earn newly issued bitcoin and transaction fees. After issuance ends, only fees remain.",
     "新規発行が終わっても手数料は残る": "Fees remain when issuance ends",
@@ -546,6 +570,8 @@
     '← 前の誤解：AIで掘れなくなる': '← Previous: AI makes mining impossible',
     '次の誤解：発行上限 →': 'Next: The supply cap →',
     /* ===== limit ===== */
+    "2017年8月、ブロックのサイズ上限を8 MBにするルールを採用した参加者は、ビットコインから分岐してビットコインキャッシュを始めた。分岐するまでの取引記録は共通している。": "In August 2017, participants adopting an 8 MB block size limit split from Bitcoin to start Bitcoin Cash. The two chains share the same transaction history up to the split.",
+    "ビットコインキャッシュの変更記録": "Bitcoin Cash upgrade record",
     "発行ルール違反": "Invalid issuance",
     "ほかの条件も満たしていれば、そのブロックを受け入れる。": "They accept the block if it also meets the other rules.",
     "新しい上限を採用したノード": "Nodes using the new cap",
@@ -652,6 +678,8 @@
     '← 前の誤解：分割と上限': '← Previous: Splitting and the cap',
     '次の誤解：裏付けと価値 →': 'Next: Backing and value →',
     /* ===== value ===== */
+    "2010年、ある利用者が掲示板で「ピザと1万 BTCを交換したい」と持ちかけた。引き受ける人が現れ、本人が5月22日に交換が成立したと報告した。2人の合意で、ビットコインで何が買えるかが決まった一例だ。": "In 2010, a forum user offered 10,000 BTC in exchange for pizza. Someone took the offer, and on May 22 the user reported that the trade had gone through. The two participants agreed on what the bitcoin could buy.",
+    "当時の掲示板": "Original forum thread",
     "金や円との交換保証がなくても、買い手と売り手がいれば価格がつく。": "Buyers and sellers can give bitcoin a market price without a promise to redeem it for gold or yen.",
     "欲しい人がいれば市場で価格がつく": "Buyer demand can give it a market price",
     '裏付けがないビットコインは価値ゼロでしょ？：なんか よくわからんけど こわい ビットコイン': "With no backing, Bitcoin is worth zero, right? | I don't really get it, but it's scary: Bitcoin",
@@ -672,6 +700,9 @@
     '← 前の誤解：チューリップバブル': '← Previous: The tulip bubble',
     '次の問い：お金とは何か →': 'Next question: What is money? →',
     /* ===== money ===== */
+    "裏面に波模様があり、中央に四角い穴が開いた寛永通宝": "Reverse of a Kan’ei Tsūhō coin with a wave pattern and a square hole in the middle",
+    "江戸時代の寛永通宝。この1枚は4文。いまの円と同じように、文は値段を数える単位だった。": "An Edo-period Kan’ei Tsūhō coin worth four mon. Like the yen today, the mon was a unit used to express prices.",
+    "クリーブランド美術館所蔵": "Collection of the Cleveland Museum of Art",
     "<b style=\"color:var(--color-secondary)\">あとで使う</b><br>今日受け取った分を、明日の買い物に回せる。": "<b style=\"color:var(--color-secondary)\">Save for later</b><br>Money you receive today can pay for something tomorrow.",
     "<b style=\"color:var(--color-secondary)\">値段を比べる</b><br>パンが200円、魚が400円なら、同じ単位で値段を比べられる。": "<b style=\"color:var(--color-secondary)\">Compare prices</b><br>If bread costs $2 and fish costs $4, the shared unit makes the prices easy to compare.",
     "<b style=\"color:var(--color-secondary)\">支払う</b><br>店がお金を受け取ってくれるので、パンや魚を買える。": "<b style=\"color:var(--color-secondary)\">Pay</b><br>Shops accept money in exchange for bread or fish.",
@@ -728,6 +759,9 @@
     '← 前の問い：お金とは何か': '← Previous question: What is money?',
     '次の問い：先行者はずるいか →': 'Next question: Are early holders cheating? →',
     /* ===== fair ===== */
+    "2009年": "2009",
+    "サトシ・ナカモトが最初のソフトを公開した。当時は自分のパソコンで採掘してビットコインを手に入れられた。": "Satoshi Nakamoto released the first version of the software. At the time, people could earn bitcoin by mining on a personal computer.",
+    "当時の公開メール": "Original release email",
     "先に知って買えた利点と、先に引き受けた値下がりのリスクをどう見る？": "How do you weigh the advantage of buying early against the risk early buyers faced?",
     "早く買う利点と、そのときのリスク": "The advantage and risk of buying early",
     '早く持った人が得をするのは、ずるくない？：なんか よくわからんけど こわい ビットコイン': "Isn't it cheating when early holders profit? | I don't really get it, but it's scary: Bitcoin",
@@ -736,7 +770,6 @@
     "早く買って持ち続けた人の中には、大きな利益を得た人がいる。あとから見ると早く知っていたことが有利に見えるが、当時は買ったあとにどこまで値下がりし、価格が回復するかどうかも分からなかった。": "Some people who bought early and held made large gains. In hindsight, finding out early looks like an advantage. At the time, no one knew how far prices might fall or whether they would recover.",
     "初期と今ではビットコインをどう手に入れる？": "How did people get bitcoin then and now?",
     "ビットコインのソフトは最初から公開されていた。初期にはビットコインを知って、自分でソフトを動かすところから始める人がいた。今は取引所で買う方法もある。": "The software was public from the start. Some early participants found out about it and ran the software themselves. Today, exchanges offer another way to get bitcoin.",
-    "<span class=\"yr\">2009年</span>初期のソフトが公開され、自分のパソコンで採掘できた。": "<span class=\"yr\">2009</span>The early software was public, and people could mine on a personal computer.",
     "<span class=\"yr\">2010年代</span>取引所が登場し、売買できる場所が増えた。大きな値下がりや取引所の破綻もあった。": "<span class=\"yr\">2010s</span>Exchanges made trading easier. Large price drops and exchange failures also occurred.",
     "<span class=\"yr\">今</span>取引所では、口座を開いた人が少額から購入できる。": "<span class=\"yr\">Today</span>People who open an exchange account can buy small amounts.",
     "「あの年に買っていたら」を体験する": "Try buying in a past year",
@@ -777,6 +810,9 @@
     '← 前の問い：先行者はずるいか': '← Previous question: Are early holders cheating?',
     '次の問い：当たり前になった社会 →': 'Next question: A world where it is normal →',
     /* ===== future ===== */
+    "支払いと値札": "Payments and price tags",
+    "決済サービスのBitPayでは、店が米ドルなどで価格を決め、会計時の相場で支払うビットコインの量に換算できる。": "With the BitPay payment service, a merchant can set the price in US dollars or another currency and convert it to a bitcoin amount at checkout.",
+    "BitPayの仕様": "BitPay documentation",
     "ビットコインが広く使える社会なら、あなたは支払いや貯金に何を選ぶ？": "If Bitcoin were widely accepted, what would you choose for payments and savings?",
     "支払い方と値段の付け方を考える": "How might we pay and set prices?",
     'ビットコインが当たり前になったら、社会はどうなる？：なんか よくわからんけど こわい ビットコイン': "If Bitcoin became ordinary, what would happen to society? | I don't really get it, but it's scary: Bitcoin",
@@ -790,12 +826,13 @@
     'もう一度別の選び方で': 'Once more, with different choices',
     "円とビットコインをどう使い分ける？": "When might you choose yen or Bitcoin?",
     "店でビットコインが使えるようになっても、値札や契約の金額をどの通貨で決めるかは別の話だ。": "A shop can accept Bitcoin and still set its prices in another currency. Contracts can do the same.",
-    "<b style=\"color:var(--color-secondary)\">支払いと値札</b><br>コーヒーの値札は500円のままにして、支払いのときだけその日の相場でビットコインに換算する店も考えられる。": "<b style=\"color:var(--color-secondary)\">Payments and price tags</b><br>A shop could keep the price of coffee at ¥500 and convert it into bitcoin at checkout.",
     "<b style=\"color:var(--color-secondary)\">給料と家賃</b><br>給料をビットコインで受け取り、家賃を円で払うなら、相場によって家賃に必要なビットコインの量が変わる。": "<b style=\"color:var(--color-secondary)\">Wages and rent</b><br>If you earn bitcoin and pay rent in yen, the amount of bitcoin you need for rent changes with the exchange rate.",
     "円とビットコインが並んで使われることもありうる。": "Yen and bitcoin could end up being used side by side.",
     '← 前の問い：死んだらどうなる': '← Previous question: What happens when you die?',
     '次の問い：国が作らないお金 →': 'Next question: Money no country makes →',
     /* ===== nation ===== */
+    "伊勢の山田羽書（やまだはがき）は、銀貨の釣り銭代わりに渡された預かり証だった。やがて伊勢の周辺で紙幣として使われるようになった。": "In Ise, Yamada hagaki were first given as receipts in place of small change in silver. They came to circulate as paper money around Ise.",
+    "現存する山田羽書を見る": "See a surviving Yamada hagaki",
     "日本銀行 貨幣博物館": "Bank of Japan Currency Museum",
     "<b style=\"color:var(--color-secondary)\">ビットコイン</b><br>新規発行はネットワークのルールで決まる。国境を越えて送れるが、実際に使えるかは相手が受け取ってくれるかどうかにもよる。": "<b style=\"color:var(--color-secondary)\">Bitcoin</b><br>Issuance follows the network’s rules. Bitcoin can be sent across borders, and spending it depends on finding someone who accepts it.",
     "<b style=\"color:var(--color-secondary)\">国の通貨</b><br>給料や税金などの共通の単位になる。中央銀行は物価の安定を目指して金融政策を行う。": "<b style=\"color:var(--color-secondary)\">National currency</b><br>It gives wages and taxes a common unit. The central bank uses monetary policy to pursue stable prices.",

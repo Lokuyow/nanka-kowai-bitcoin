@@ -35,4 +35,21 @@
       <p class="hint" data-i18n>取引は世界中で24時間行われていて、取引所ごとに価格は少しずつ違う。</p>
     </div>
   </section>
+  <section>
+    <h2 data-i18n>実際の取引ではどう動く？</h2>
+    <p class="lede" data-i18n>取引所Krakenで2024年1月1日午前0時（UTC）から成立した最初の5件。順に見ると、同じ値段が続くことも、次の取引で値段が変わることもある。</p>
+    <div class="card">
+      <table class="tbl">
+        <thead><tr><th scope="col" data-i18n>取引順</th><th scope="col" data-i18n>価格（米ドル / BTC）</th><th scope="col" data-i18n>取引量（BTC）</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">1</th><td>42,241.10</td><td>0.00038521</td></tr>
+          <tr><th scope="row">2</th><td>42,241.10</td><td>0.00100000</td></tr>
+          <tr><th scope="row">3</th><td>42,256.60</td><td>0.00100000</td></tr>
+          <tr><th scope="row">4</th><td>42,259.00</td><td>0.00091479</td></tr>
+          <tr><th scope="row">5</th><td>42,258.90</td><td>0.00100000</td></tr>
+        </tbody>
+      </table>
+      <p class="hint"><a href="https://api.kraken.com/0/public/Trades?pair=XBTUSD&amp;since=1704067200000000000&amp;count=5" data-i18n>Krakenの取引データ</a></p>
+    </div>
+  </section>
 <div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>売り手と買い手の注文が合うと、その値段で取引が成立する</span></div>

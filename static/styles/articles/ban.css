@@ -8,3 +8,11 @@
 #banNodes text{font-size:10px;fill:#666}
 :root[data-theme="dark"] #banNodes text{fill:#b3b5bd}
 :root[data-theme="dark"] #banMiners circle{fill:#e2dfd8}
+.ban-history{margin-inline:0}
+.ban-history .tbl{table-layout:fixed}
+.ban-history .tbl :is(th,td){padding-inline:6px}
+.ban-history caption{font-weight:700;text-align:left;margin-bottom:8px}
+.ban-history .tbl td{font-variant-numeric:tabular-nums}
+.mining-share{display:block;height:5px;margin-top:4px;border-radius:999px;background:var(--line);overflow:hidden}
+.mining-share::before{content:"";display:block;width:var(--share);height:100%;border-radius:inherit;background:var(--color-secondary)}
+.mining-share.us::before{background:var(--sub)}

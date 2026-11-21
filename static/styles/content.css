@@ -6,6 +6,7 @@ h2{font-size:15px;margin:0 0 4px}
 h2::before{content:"";display:inline-block;width:10px;height:10px;
     background:var(--color-primary);border-radius:2px;margin-right:8px}
 .lede{color:var(--sub);font-size:14px;margin:0 0 14px}
+.lede.fact-note{margin-top:14px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;
     padding:20px 16px;margin-top:12px}
 .hint{font-size:12px;color:var(--sub);text-align:center;margin:10px 0 0}
