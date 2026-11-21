@@ -6,7 +6,7 @@
   }
 :root{
     -webkit-tap-highlight-color:transparent;
-    --ink:#1a1a1a; --sub:#666; --color-primary:#fd4958; --color-on-primary:#261719; --bg:#f7f7f5;
+    --ink:#1a1a1a; --sub:#666; --color-primary:#fe3e7e; --color-on-primary:#261719; --bg:#f7f7f5;
     --card:#fff;--btnbg:#1a1a1a;--btnfg:#fff;--color-secondary:#9b2940; --color-secondary-bg:#f6e8ea; --line:#e3e3df; --red:#d33; --green:#2e7d32;
   }
 *{box-sizing:border-box}
