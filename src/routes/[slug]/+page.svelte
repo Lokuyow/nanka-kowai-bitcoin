@@ -23,6 +23,7 @@
   {/if}
   <script defer src={BASE_PATH + 'scripts/articles/' + article.slug + '.js'}></script>
   <script defer src={BASE_PATH + 'scripts/share.js'}></script>
+  <script defer src={BASE_PATH + 'scripts/navigation-feedback.js'}></script>
 </svelte:head>
 
 <div class="wrap">

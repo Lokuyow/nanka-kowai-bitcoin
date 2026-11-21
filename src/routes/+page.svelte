@@ -15,7 +15,7 @@
   <link rel="stylesheet" href={BASE_PATH + 'styles/content.css'} />
   <link rel="stylesheet" href={BASE_PATH + 'styles/home.css'} />
   <script defer src={BASE_PATH + 'scripts/share.js'}></script>
-  <script defer src={BASE_PATH + 'scripts/story-press.js'}></script>
+  <script defer src={BASE_PATH + 'scripts/navigation-feedback.js'}></script>
 </svelte:head>
 
 <div class="wrap home">

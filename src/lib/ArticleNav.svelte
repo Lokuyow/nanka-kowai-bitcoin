@@ -25,7 +25,7 @@
     <span class="pos" id="article-position">{article.number} / {total}</span>
   </a>
   {#if next}
-    <a class="tb next" href={articlePath(next.slug)} aria-label="次の話" data-i18n-label>
+    <a class="tb" href={articlePath(next.slug)} aria-label="次の話" data-i18n-label>
       <ArticleIcon slug={next.slug} />
       {@render symbol('M9 6l6 6-6 6')}
     </a>

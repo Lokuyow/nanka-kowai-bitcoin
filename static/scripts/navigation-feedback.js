@@ -1,7 +1,5 @@
 (() => {
-  const stories = document.getElementById('stories');
-  if (!stories) return;
-
+  const links = '#stories a.unit, .tabbar a.tb';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let frame;
   let animation;
@@ -13,20 +11,20 @@
 
   function clearCardFocus() {
     const focused = document.activeElement;
-    if (focused?.matches('a.unit') && stories.contains(focused)) focused.blur();
+    if (focused?.matches('#stories a.unit')) focused.blur();
   }
 
-  stories.addEventListener('click', (event) => {
+  document.addEventListener('click', (event) => {
     if (event.defaultPrevented || event.button !== 0 || reducedMotion.matches ||
         event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
 
-    const card = event.target.closest('a.unit');
-    if (!card?.animate) return;
+    const link = event.target.closest(links);
+    if (!link?.animate) return;
 
     // Leave link activation to the browser. Paint feedback only if the old page is still visible.
     clearFeedback();
     frame = requestAnimationFrame(() => {
-      animation = card.animate([
+      animation = link.animate([
         { transform: 'scale(1)' },
         { transform: 'scale(.98)', offset: .35 },
         { transform: 'scale(1)' }
