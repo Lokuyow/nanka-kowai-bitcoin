@@ -55,8 +55,8 @@
           <p class="layerdesc" data-i18n>{layer.description}</p>
           <ul class="story-list">
             {#each ARTICLES.filter((article) => article.layer === layer.number) as article (article.slug)}
-              <li>
-                <a class="unit" href={articlePath(article.slug)} id={'story-' + article.slug}>
+              <li id={'story-' + article.slug}>
+                <a class="unit" href={articlePath(article.slug)}>
                   <span class="unit-marker">
                     <ArticleIcon slug={article.slug} />
                   </span>

@@ -62,11 +62,11 @@ test('前後ナビの鎖が 1→23 でつながっている', async () => {
 
 test('トップのカード23件が各話の h1 と一致する', async () => {
   const top = await read('index.html');
-  const cards = [...top.matchAll(/<a class="unit" href="([^"]+)\/" id="story-([^"]+)">([\s\S]*?)<\/a>/g)];
+  const cards = [...top.matchAll(/<li id="story-([^"]+)">\s*<a class="unit" href="([^"]+)\/">([\s\S]*?)<\/a>/g)];
   assert.equal(cards.length, UNITS.length, 'カードが23件あること');
   for (const [i, { slug }] of UNITS.entries()) {
-    assert.equal(cards[i][1], BASE_PATH + slug, `カード${i + 1}件目のリンク先`);
-    assert.equal(cards[i][2], slug, `一覧に戻るリンクの位置: ${slug}`);
+    assert.equal(cards[i][1], slug, `一覧に戻るリンクの位置: ${slug}`);
+    assert.equal(cards[i][2], BASE_PATH + slug, `カード${i + 1}件目のリンク先`);
     const q = cards[i][3].match(/<span class="q"[^>]*>([\s\S]*?)<\/span>/);
     assert.ok(q, `${slug}: カードの見出しがあること`);
     const unitHtml = await read(`${slug}/index.html`);

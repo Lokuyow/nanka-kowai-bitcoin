@@ -82,10 +82,10 @@ test('キーボードで本文に移動し、記事から層や一覧の元の�
     assert.equal(page.url(), server.base + 'scam/');
     await page.locator('.eyebrow').click();
     assert.equal(new URL(page.url()).hash, '#layer-1');
-    await page.locator('#story-hack').click();
+    await page.locator('#story-hack .unit').click();
     await page.locator('.eyebrow').click();
     assert.equal(new URL(page.url()).hash, '#layer-2');
-    await page.locator('#story-hack').click();
+    await page.locator('#story-hack .unit').click();
     assert.equal(page.url(), server.base + 'hack/');
     await page.locator('.read-next').click();
     assert.equal(page.url(), server.base + 'crime/');
@@ -95,6 +95,18 @@ test('キーボードで本文に移動し、記事から層や一覧の元の�
     const card = await page.locator('#story-crime:target').boundingBox();
     const header = await page.locator('.site-header').boundingBox();
     assert.ok(card && header && card.y >= header.y + header.height && card.y < 844);
+    assert.equal(await page.locator('.unit:focus').count(), 0);
+
+    await page.reload({ waitUntil: 'load' });
+    assert.equal(await page.locator('.unit:focus').count(), 0);
+    await page.locator('#story-hack .unit').focus();
+    await page.keyboard.press('Tab');
+    assert.equal(await page.locator('#story-crime .unit:focus-visible').count(), 1);
+    await page.keyboard.press('Enter');
+    await page.waitForURL(server.base + 'crime/');
+    await page.goBack({ waitUntil: 'load' });
+    assert.equal(page.url(), server.base + '#story-crime');
+    assert.equal(await page.locator('.unit:focus').count(), 0);
   } finally {
     await page.close();
   }

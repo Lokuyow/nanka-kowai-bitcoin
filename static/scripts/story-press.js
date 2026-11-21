@@ -11,6 +11,11 @@
     animation?.cancel();
   }
 
+  function clearCardFocus() {
+    const focused = document.activeElement;
+    if (focused?.matches('a.unit') && stories.contains(focused)) focused.blur();
+  }
+
   stories.addEventListener('click', (event) => {
     if (event.defaultPrevented || event.button !== 0 || reducedMotion.matches ||
         event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
@@ -29,5 +34,11 @@
     });
   }, { passive: true });
 
-  window.addEventListener('pagehide', clearFeedback);
+  window.addEventListener('pagehide', () => {
+    clearFeedback();
+    clearCardFocus();
+  });
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) clearCardFocus();
+  });
 })();
