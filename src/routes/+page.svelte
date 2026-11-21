@@ -57,7 +57,6 @@
                 <a class="unit" href={articlePath(article.slug)} id={'story-' + article.slug}>
                   <span class="unit-marker">
                     <ArticleIcon slug={article.slug} />
-                    <span class="n">{article.number}</span>
                   </span>
                   <span class="q" data-i18n>{article.title}</span>
                   <span class="arr" aria-hidden="true">→</span>
