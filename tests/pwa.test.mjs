@@ -134,6 +134,9 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
     try {
       await page.reload({ waitUntil: 'load' });
       assert.equal(await page.locator('.hero .t').count(), 1, 'オフラインでもトップが表示される');
+      const titleFonts = await page.locator('.hero .t').evaluate((title) =>
+        document.fonts.load('400 34px "Yusei Magic"', title.textContent).then((fonts) => fonts.length));
+      assert.equal(titleFonts, 1, 'オフラインでもサイトタイトルのフォントが読み込まれる');
       const article = await page.goto(`${server.base}price/`, { waitUntil: 'load' });
       assert.equal(article.status(), 200, '未訪問の記事をオフラインで開ける');
       assert.equal(await page.locator('h1').count(), 1);

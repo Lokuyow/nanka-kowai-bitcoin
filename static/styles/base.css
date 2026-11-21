@@ -1,3 +1,9 @@
+@font-face{
+    font-family:"Yusei Magic";
+    src:url("../fonts/yusei-magic-title.woff2") format("woff2");
+    font-weight:400;
+    font-display:swap;
+  }
 :root{
     -webkit-tap-highlight-color:transparent;
     --ink:#1a1a1a; --sub:#666; --orange:#f7931a; --bg:#fffaf3;
@@ -10,6 +16,7 @@ body{margin:0;background:var(--bg);color:var(--ink);
 header{font-size:13px;color:var(--sub);display:flex;justify-content:space-between}
 header{position:sticky;top:0;z-index:60;margin:0 -18px;padding:10px 18px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header b{color:var(--ink);white-space:nowrap;font-size:15px}
+header a > b,.hero .t{font-family:"Yusei Magic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;font-weight:400}
 header a{text-decoration:none}
 :root[data-theme="dark"]{color-scheme:dark;
     --ink:#f3ecdf; --sub:#b3a48d; --bg:#171614;

@@ -28,4 +28,6 @@ GitHub Actions は PR と `main` への push でテストを実行し、`main` �
 
 ## ライセンス
 
-CC0 1.0 Universal（パブリックドメイン）。全文は LICENSE ファイルを参照してください。
+このサイトのオリジナルの文章・コードなどは CC0 1.0 Universal で公開しています。全文は [LICENSE](LICENSE) を参照してください。
+
+サイトタイトルに使う Yusei Magic のサブセットは SIL Open Font License 1.1 で配布しています。著作権表示とライセンス全文は [OFL.txt](static/fonts/OFL.txt) を参照してください。

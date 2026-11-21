@@ -11,12 +11,14 @@ const files = (await readdir(buildDir, { recursive: true, withFileTypes: true })
   .sort();
 
 const pages = ['', ...ARTICLES.map(({ slug }) => slug + '/'), '404.html'];
+const fonts = files.filter((file) => file.startsWith('fonts/') && file.endsWith('.woff2'));
 const assets = files.filter((file) =>
   file.startsWith('scripts/') || file.startsWith('styles/') || file.startsWith('icons/') ||
   ['i18n.js', 'livedata.js', 'favicon.svg', 'ceo/news-telop.jpg'].includes(file)
 );
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex').slice(0, 16);
 const assetUrls = new Map();
+const site = new URL(BASE_PATH, 'https://example.invalid');
 
 async function fingerprint(file, bytes) {
   const ext = path.extname(file);
@@ -25,8 +27,16 @@ async function fingerprint(file, bytes) {
   return BASE_PATH + versioned;
 }
 
-for (const file of assets) {
-  assetUrls.set(BASE_PATH + file, await fingerprint(file, await readFile(path.join(buildDir, file))));
+for (const file of [...fonts, ...assets]) {
+  let bytes = await readFile(path.join(buildDir, file));
+  if (file.endsWith('.css')) {
+    const cssUrl = new URL(file, site);
+    bytes = bytes.toString('utf8').replace(/url\("(\.\.\/fonts\/[^"\n]+\.woff2)"\)/g, (match, source) => {
+      const versioned = assetUrls.get(new URL(source, cssUrl).pathname);
+      return versioned ? `url("${versioned}")` : match;
+    });
+  }
+  assetUrls.set(BASE_PATH + file, await fingerprint(file, bytes));
 }
 
 const manifestFile = 'manifest.webmanifest';
@@ -37,7 +47,6 @@ for (const icon of manifest.icons) {
 assetUrls.set(BASE_PATH + manifestFile, await fingerprint(manifestFile, JSON.stringify(manifest)));
 
 const precache = Object.fromEntries([...assetUrls.values()].map((url) => [url, url]));
-const site = new URL(BASE_PATH, 'https://example.invalid');
 for (const page of pages) {
   const file = page.endsWith('.html') ? page : page + 'index.html';
   const filename = path.join(buildDir, file);
