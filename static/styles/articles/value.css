@@ -1,12 +1,12 @@
 .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tlbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-.tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+.tlbtns button.on{background:var(--color-primary);border-color:var(--color-primary);color:#fff;font-weight:700}
 .sliders{margin-top:18px;display:grid;gap:8px}
 .sliders label{font-size:14px;font-weight:700}
 .meterwrap{margin-top:18px}
 .meterlabel{font-size:13px;color:var(--sub)}
 .meter{height:22px;background:#f3ead9;border-radius:999px;overflow:hidden;margin-top:4px}
-.meterfill{height:100%;width:0;background:var(--orange);border-radius:999px;transition:width .45s ease}
+.meterfill{height:100%;width:0;background:var(--color-primary);border-radius:999px;transition:width .45s ease}
 .meternum{font-size:26px;font-weight:900;text-align:right;margin-top:2px;line-height:1.2}
-.evtmsg{font-size:14px;color:var(--amber);font-weight:700;min-height:1.7em;margin:10px 0 0}
+.evtmsg{font-size:14px;color:var(--color-secondary);font-weight:700;min-height:1.7em;margin:10px 0 0}
 .labmsg{font-size:15px;min-height:3.4em;margin:4px 0 14px}

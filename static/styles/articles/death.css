@@ -4,7 +4,7 @@
 .vcard li{margin:5px 0}
 .pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .pickbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-.pickbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+.pickbtns button.on{background:var(--color-primary);border-color:var(--color-primary);color:#fff;font-weight:700}
 .stepcard{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:10px;font-size:15px}
 .stepcard.end-bad{border-color:#eec9c9;background:#fdf3f3}
 .stepcard.end-good{border-color:#c4dec4;background:#f2f8f2}

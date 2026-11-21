@@ -22,7 +22,7 @@
 .hlbtns button.wrong{border-color:var(--red);background:#fff6f6;color:var(--red)}
 .hlbtns button[disabled]{cursor:default;opacity:.85}
 .hlfeed{font-size:14px;min-height:3.2em;margin:10px 0 0}
-.hlfeed .acc{background:#fdeeda;border-radius:6px;padding:1px 6px;font-weight:700}
+.hlfeed .acc{background:var(--color-secondary-bg);border-radius:6px;padding:1px 6px;font-weight:700}
 .newsfig{margin:14px 0 0;background:var(--card);border:1px solid var(--line);
     border-radius:16px;padding:12px}
 .newsfig img{display:block;width:100%;max-width:100%;height:auto;border-radius:10px}

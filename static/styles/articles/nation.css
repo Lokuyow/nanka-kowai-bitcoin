@@ -4,17 +4,17 @@
 .vcard li{margin:5px 0}
 .pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .pickbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-.pickbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+.pickbtns button.on{background:var(--color-primary);border-color:var(--color-primary);color:#fff;font-weight:700}
 .evcard{border:1px solid var(--line);border-left:6px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:12px}
 .evcard.good{border-left-color:var(--green)}
 .evcard.bad{border-left-color:var(--red)}
-.evcard.mix{border-left-color:var(--orange)}
+.evcard.mix{border-left-color:var(--color-primary)}
 .evcard .et{font-weight:700;font-size:15.5px;margin:0}
 .evcard .eo{font-size:14.5px;margin:4px 0 0}
 .evcard .tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px}
 .tag.good{background:#e9f4e9;color:var(--green)}
 .tag.bad{background:#fbeaea;color:var(--red)}
-.tag.mix{background:#fdeeda;color:var(--amber)}
+.tag.mix{background:var(--color-secondary-bg);color:var(--color-secondary)}
 .tally{font-size:14px;text-align:center;margin:14px 0 0}
 .tally b{font-size:17px}
 .reflect{font-size:15px;font-weight:700;margin:16px 0 0;min-height:1.7em}

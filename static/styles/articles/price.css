@@ -14,9 +14,9 @@
 .nowprice.up{color:var(--green)}
 .nowprice.down{color:var(--red)}
 .flash{animation:flash .6s ease}
-@keyframes flash{0%{background:#fdeeda}100%{background:transparent}}
+@keyframes flash{0%{background:var(--color-secondary-bg)}100%{background:transparent}}
 .tradebtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
 .tradebtns button{min-height:44px;padding:10px 18px}
-.tradebtns .buy{background:var(--orange)}
+.tradebtns .buy{background:var(--color-primary)}
 .tradebtns .sell{background:#fff;color:var(--ink);border:2px solid var(--ink)}
 :root[data-theme="dark"] .flash{animation:none;background:#3d3524}

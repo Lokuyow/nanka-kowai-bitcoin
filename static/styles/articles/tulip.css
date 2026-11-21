@@ -1,6 +1,6 @@
 .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-.tlbtns button.on{background:var(--orange);border-color:var(--orange);color:#fff;font-weight:700}
+.tlbtns button.on{background:var(--color-primary);border-color:var(--color-primary);color:#fff;font-weight:700}
 .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
 .tlvs{font-size:15px}
 .tlvs b{font-size:16px}
@@ -10,7 +10,7 @@
 .gmmsg{font-size:14px;min-height:3.2em;margin:10px 0 0}
 .gmbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
 .gmbtns button{min-height:48px;font-size:15px}
-#gmBuy{background:var(--orange)}
+#gmBuy{background:var(--color-primary)}
 #gmSell{background:#fff;color:var(--ink);border:2px solid var(--ink)}
 .gmbtns button[disabled]{opacity:.4;cursor:default}
 .gmhold{font-size:13px;color:var(--sub);text-align:center;margin:8px 0 0}

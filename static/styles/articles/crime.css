@@ -17,7 +17,7 @@
 .trail.cash .dot:nth-child(5){animation-delay:1s}
 .trail.cash .dot:nth-child(6){animation-delay:1.25s}
 @keyframes fadeout{0%,30%{opacity:1}80%,100%{opacity:.08}}
-.trail.btc .dot{background:var(--orange);animation:stayglow 3s ease-in-out infinite}
+.trail.btc .dot{background:var(--color-primary);animation:stayglow 3s ease-in-out infinite}
 @keyframes stayglow{0%,100%{box-shadow:0 0 0 0 rgba(247,147,26,0)}50%{box-shadow:0 0 0 5px rgba(247,147,26,.25)}}
 .trail-lbl{flex:0 0 86px;font-size:13px;font-weight:700}
 .ledger.game .lrow{animation:none;opacity:0;transform:translateY(6px);transition:opacity .5s ease,transform .5s ease}
