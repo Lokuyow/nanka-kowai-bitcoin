@@ -1,6 +1,6 @@
 var wedge = document.getElementById('wedge');
   var lines = document.getElementById('sliceLines');
-  var ptext = document.getElementById('pizzaText');
+  var share = document.getElementById('cakeShare');
   var cx = 110, cy = 110, r = 96;
   function pt(deg){ var a = (deg - 90) * Math.PI / 180; return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; }
   function wedgePath(sweep){
@@ -10,9 +10,9 @@ var wedge = document.getElementById('wedge');
   }
   var L = window.L || function (ja) { return ja; };
   var steps = [
-    {sweep: 360, ja: '1ホール全部（1 BTC）', en: 'The whole pizza (1 BTC)', ln: 0},
+    {sweep: 360, ja: '1ホール全部（1 BTC）', en: 'The whole cake (1 BTC)', ln: 0},
     {sweep: 180, ja: '半分（0.5 BTC）', en: 'Half (0.5 BTC)', ln: 2},
-    {sweep: 90,  ja: '1/4 ホール（0.25 BTC）', en: '1/4 of the pizza (0.25 BTC)', ln: 4},
+    {sweep: 90,  ja: '1/4 ホール（0.25 BTC）', en: '1/4 of the cake (0.25 BTC)', ln: 4},
     {sweep: 6,   ja: '100万分の1（0.000001 BTC）', en: 'One millionth (0.000001 BTC)', ln: 12},
     {sweep: 1.2, ja: '1 satoshi（0.00000001 BTC）：これでも買える', en: '1 satoshi (0.00000001 BTC) — you can buy even this', ln: 12}
   ];
@@ -27,7 +27,7 @@ var wedge = document.getElementById('wedge');
     }
     lines.innerHTML = html;
     curStep = step;
-    ptext.innerHTML = L('あなたの分: ', 'Your share: ') + '<b>' + L(s.ja, s.en) + '</b>';
+    share.innerHTML = L('あなたの分: ', 'Your share: ') + '<b>' + L(s.ja, s.en) + '</b>';
     document.querySelectorAll('#cutBtns button').forEach(function(b, i){
       b.classList.toggle('on', i === step);
     });

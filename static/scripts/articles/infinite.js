@@ -43,7 +43,7 @@
     } else {
       wedge.style.display = 'none';
     }
-    var n = Math.min(d, 720);
+    var n = d === 1 ? 0 : Math.min(d, 720);
     var html = '';
     for (var i = 0; i < n; i++) {
       var p = polar(i * 360 / n);

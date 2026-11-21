@@ -7,16 +7,17 @@
 
   <section>
     <h2 data-i18n>割っても全体は同じ</h2>
-    <p class="lede" data-i18n>ピザを何切れに分けても、ピザ全体の量は変わらない。ビットコインも同じで、切り分ける数を増やしても合計は1BTCのまま。スライダーを動かして確かめてみよう。</p>
+    <p class="lede" data-i18n>ケーキを何切れに分けても、全部合わせれば1ホール分。ビットコインも同じで、切り分ける数を増やしても合計は1BTCのまま。スライダーを動かして確かめてみよう。</p>
     <div class="card">
       <label><span data-i18n>切り分ける数:</span> <b id="dvN">1個</b><input type="range" id="dvS" min="0" max="1000" value="0" step="1" aria-label="切り分ける数" data-i18n-label></label>
       <div class="dvscale"><span>1</span><span>100</span><span data-i18n>1万</span><span data-i18n>1億</span></div>
       <div class="center" style="margin-top:12px">
         <svg id="dvSvg" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="1BTCを切り分ける円グラフ" data-i18n-label>
-          <circle cx="130" cy="130" r="112" fill="#c97988"/>
-          <path id="dvWedge" fill="#753044" d="" style="display:none"/>
-          <g id="dvLines" stroke="#fff" stroke-width="2"></g>
-          <circle cx="130" cy="130" r="112" fill="none" stroke="#753044" stroke-width="2"/>
+          <circle cx="130" cy="130" r="112" fill="#fff3df"/>
+          <path id="dvWedge" fill="#ef9ab1" d="" style="display:none"/>
+          <circle cx="130" cy="130" r="105" fill="none" stroke="#fffaf2" stroke-width="8" stroke-linecap="round" stroke-dasharray="1 13"/>
+          <g id="dvLines" stroke="#ae6b7c" stroke-width="2"></g>
+          <circle cx="130" cy="130" r="112" fill="none" stroke="#ae6b7c" stroke-width="2"/>
         </svg>
       </div>
       <p class="dvpiece"><span data-i18n>一切れ:</span> <b id="dvPiece">1 BTC</b></p>

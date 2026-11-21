@@ -1,6 +1,6 @@
-.pizza-wrap{text-align:center}
-.pizzanum{font-size:15px;color:var(--sub);margin-top:4px}
-.pizzanum b{color:var(--ink);font-size:20px}
+.cake-wrap{text-align:center}
+.cake-share{font-size:15px;color:var(--sub);margin-top:4px}
+.cake-share b{color:var(--ink);font-size:20px}
 .cutbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
 .cutbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px}
 .cutbtns button.on{background:var(--color-secondary-bg);border-color:var(--color-secondary);color:var(--color-secondary)}

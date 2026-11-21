@@ -47,7 +47,7 @@ export const LAYERS = [
       {
         slug: "satoshi",
         heading: "1ビットコインって何百万円も<br>するんでしょ？ 買えないよ",
-        cardAnswer: "ピザと同じで、一切れから買える",
+        cardAnswer: "ケーキと同じで、一切れから買える",
         description: "丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える",
         shareEn: { title: "A bitcoin costs tens of thousands of dollars, right? No way I can buy that", text: "You don't have to buy a whole one. You can buy from 0.00000001 (1 satoshi) — even $1 worth" },
         liveData: true
