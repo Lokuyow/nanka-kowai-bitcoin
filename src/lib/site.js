@@ -12,7 +12,7 @@ export const LAYERS = [
   {
     number: 1,
     title: "名前だけは知ってる",
-    description: "価格とニュースの見出ししか見ていない段階の思い込み",
+    description: "価格やニュースの見出しから浮かぶ疑問",
     articles: [
       {
         slug: "scam",
@@ -57,7 +57,7 @@ export const LAYERS = [
   {
     number: 2,
     title: "ニュースで見たよ",
-    description: "事件報道でイメージが固まった思い込み",
+    description: "事件のニュースを見て気になること",
     articles: [
       {
         slug: "hack",
@@ -92,7 +92,7 @@ export const LAYERS = [
   {
     number: 3,
     title: "ちょっと詳しいよ",
-    description: "仕組みを半分知っている人の思い込み",
+    description: "仕組みを知るうちに出てくる疑問",
     articles: [
       {
         slug: "quantum",
@@ -148,7 +148,7 @@ export const LAYERS = [
   {
     number: 4,
     title: "そもそもお金って何？",
-    description: "答えのない問い。考え始めると、お金そのものの話になる",
+    description: "ビットコインをきっかけに、お金について考える",
     articles: [
       {
         slug: "value",
