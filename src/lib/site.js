@@ -51,13 +51,20 @@ export const LAYERS = [
         description: "丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える",
         shareEn: { title: "A bitcoin costs tens of thousands of dollars, right? No way I can buy that", text: "You don't have to buy a whole one. You can buy from 0.00000001 (1 satoshi) — even $1 worth" },
         liveData: true
+      },
+      {
+        slug: "value",
+        heading: "裏付けがないビットコインは<br>価値ゼロでしょ？",
+        cardAnswer: "円も金も裏付けはない",
+        description: "円にも金にも「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる",
+        shareEn: { title: "With no backing, Bitcoin is worth zero, right?", text: "Neither the dollar nor gold really has anything you could call \"backing\". Value is born from there being people who want it and think it is usable" }
       }
     ]
   },
   {
     number: 2,
     title: "ニュースで見たよ",
-    description: "事件のニュースを見て気になること",
+    description: "ニュースを見て気になること",
     articles: [
       {
         slug: "hack",
@@ -81,11 +88,25 @@ export const LAYERS = [
         shareEn: { title: "Bitcoin is a waste of electricity, right?", text: "Electricity is the \"cost of protection\". Because so much is needed, attacks do not pay off" }
       },
       {
+        slug: "ai",
+        heading: "電力と計算力をAIに使われて<br>ビットコインは掘れなくなるんでしょ？",
+        cardAnswer: "道具が違う。難易度の自己調整もある",
+        description: "マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある",
+        shareEn: { title: "If AI uses up the electricity and computing power, Bitcoin can't be mined anymore, right?", text: "Mining is a job for dedicated machines (ASICs) — different tools from AI GPUs. And if miners leave, difficulty adjusts itself downward" }
+      },
+      {
         slug: "ban",
         heading: "国が禁止したら、<br>ビットコインは終わりでしょ？",
         cardAnswer: "一国では止められない",
         description: "世界中で動く仕組みだから、一国では止められない。実際に禁止した国でも消えていない",
         shareEn: { title: "If a country bans it, Bitcoin is finished, right?", text: "Because it runs all over the world, one country cannot stop it. It did not vanish even from the country that banned it" }
+      },
+      {
+        slug: "tulip",
+        heading: "チューリップバブルと同じで、<br>弾けるんでしょ？",
+        cardAnswer: "何度も戻ってきた17年",
+        description: "チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた",
+        shareEn: { title: "It's like the tulip bubble — it'll pop, right?", text: "Tulips popped once and ended. Bitcoin has come back every time it fell hard and was declared finished" }
       }
     ]
   },
@@ -109,13 +130,6 @@ export const LAYERS = [
         shareEn: { title: "A 51% attack would finish Bitcoin, right?", text: "Even holding a majority, what you can do is limited. And the cost is enormous, so there is almost no point" }
       },
       {
-        slug: "ai",
-        heading: "電力と計算力をAIに使われて<br>ビットコインは掘れなくなるんでしょ？",
-        cardAnswer: "道具が違う。難易度の自己調整もある",
-        description: "マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある",
-        shareEn: { title: "If AI uses up the electricity and computing power, Bitcoin can't be mined anymore, right?", text: "Mining is a job for dedicated machines (ASICs) — different tools from AI GPUs. And if miners leave, difficulty adjusts itself downward" }
-      },
-      {
         slug: "reward",
         heading: "マイニング報酬がなくなったら<br>ビットコインは終わりでしょ？",
         cardAnswer: "収入は報酬と手数料の2本立て",
@@ -135,13 +149,6 @@ export const LAYERS = [
         cardAnswer: "割っても総量は同じ",
         description: "割るのは「発行」ではなく「切り分け」。総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ",
         shareEn: { title: "If it can be split into tiny pieces, there's no real cap, right?", text: "Splitting is not issuing — it is slicing. The total stays 21 million BTC; 1 BTC is just cut into 100 million satoshi" }
-      },
-      {
-        slug: "tulip",
-        heading: "チューリップバブルと同じで、<br>弾けるんでしょ？",
-        cardAnswer: "何度も戻ってきた17年",
-        description: "チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた",
-        shareEn: { title: "It's like the tulip bubble — it'll pop, right?", text: "Tulips popped once and ended. Bitcoin has come back every time it fell hard and was declared finished" }
       }
     ]
   },
@@ -150,13 +157,6 @@ export const LAYERS = [
     title: "そもそもお金って何？",
     description: "ビットコインをきっかけに、お金について考える",
     articles: [
-      {
-        slug: "value",
-        heading: "裏付けがないビットコインは<br>価値ゼロでしょ？",
-        cardAnswer: "円も金も裏付けはない",
-        description: "円にも金にも「裏付け」と呼べるものは実はない。価値は「欲しい・使えると思う人がいる」ことから生まれる",
-        shareEn: { title: "With no backing, Bitcoin is worth zero, right?", text: "Neither the dollar nor gold really has anything you could call \"backing\". Value is born from there being people who want it and think it is usable" }
-      },
       {
         slug: "money",
         openQuestion: true,

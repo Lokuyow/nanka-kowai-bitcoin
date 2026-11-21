@@ -56,7 +56,7 @@
     'ニュースで見たイメージと、ほんとの姿。': 'The image from the news — and what it really looks like.',
     'ビットコインの「こわい」を、図でひとつずつ解きほぐす。': 'Explore what makes Bitcoin seem scary, one illustration at a time.',
     '価格やニュースの見出しから浮かぶ疑問': 'Questions raised by prices and news headlines',
-    '事件のニュースを見て気になること': 'Questions that come up when you see reports of incidents',
+    'ニュースを見て気になること': 'Questions that come up in the news',
     '仕組みを知るうちに出てくる疑問': 'Questions that come up as you learn how Bitcoin works',
     'ビットコインをきっかけに、お金について考える': 'Starting with Bitcoin, thinking about money itself',
     '読み終わったら': 'The takeaway',
