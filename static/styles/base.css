@@ -50,7 +50,7 @@ body{margin:0;background:var(--bg);color:var(--ink);
     font-size:15px;font-weight:700;text-align:center;text-decoration:none;line-height:1.4;
     background:var(--color-secondary);color:var(--card)}
 .layer-number{display:inline-block;background:var(--color-secondary-bg);color:var(--color-secondary);
-    padding:2px 9px;border-radius:999px;margin-inline-end:7px;font-size:.8em;white-space:nowrap}
+    min-width:1.8em;padding:2px 6px;border-radius:999px;margin-inline-end:7px;font-size:.8em;text-align:center}
 @media(hover:hover){
     .theme-toggle:hover,.lang-toggle:hover{border-color:var(--color-secondary);color:var(--color-secondary)}
     .action-primary:hover{filter:brightness(1.09)}

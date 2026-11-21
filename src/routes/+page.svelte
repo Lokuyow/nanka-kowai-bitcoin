@@ -42,7 +42,7 @@
       <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
       <p class="lede" data-i18n>ビットコインの「こわい」を、図でひとつずつ解きほぐす。</p>
       <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
-        <span data-i18n>第1話から読む</span><span aria-hidden="true">→</span>
+        <span data-i18n>最初から見る</span><span aria-hidden="true">→</span>
       </a>
     </div>
 
@@ -73,7 +73,7 @@
   </main>
   <footer class="home-end">
     <Share {...HOME} label="このサイトをシェアする" url={SITE_URL} />
-    <Bridge />
+    <Bridge preview />
     <div class="tipw"><div class="tip"><p data-i18n>いいなと思ったら応援しよう！</p><a class="tipb" href="https://satssupport.app/t/v5mSDzHPFkju" target="_blank" rel="noopener noreferrer" data-i18n>ビットコインで応援する</a></div></div>
     <p class="credit"><span class="count" data-i18n data-i18n-en={ARTICLES.length + ' stories'}>全{ARTICLES.length}話</span><i aria-hidden="true">·</i><span data-i18n>つくった人</span> <a href="https://lokuyow.github.io/" target="_blank" rel="noopener">ロクヨウ</a><i aria-hidden="true">·</i><a href="https://github.com/Lokuyow/nanka-kowai-bitcoin" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.88.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg><span data-i18n>ソースコード</span></a></p>
   </footer>

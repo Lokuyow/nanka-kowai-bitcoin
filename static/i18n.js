@@ -38,6 +38,7 @@
     '次の話': 'Next story',
     '全話一覧に戻る': 'Back to all stories',
     '内側の仕組みを知りたくなったら →': 'Want to see how it works on the inside? →',
+    '内側の仕組みを知りたくなったら': 'Want to see how it works on the inside?',
     'さわってわかるビットコイン': 'Sawatte Wakaru Bitcoin — Touch & Learn',
     'いいなと思ったら応援しよう！': 'Enjoyed it? Support with Bitcoin',
     'ビットコインで応援する': 'Support with Bitcoin',
@@ -45,7 +46,7 @@
     'ソースコード': 'Source code',
 
     /* ===== トップページ ===== */
-    '第1話から読む': 'Start with story 1',
+    '最初から見る': 'Start from the beginning',
     'なんか よくわからんけど こわい ビットコイン': "I don't really get it, but it's scary: Bitcoin",
     'ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。': "The image from the news, and what it really looks like. Untangling the vague 'scary' around Bitcoin, one misunderstanding at a time.",
     'なんか': "I don't really get it,",
