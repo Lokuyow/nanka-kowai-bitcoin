@@ -20,7 +20,10 @@
   </SiteHeader>
 
   <div class="hero">
-    <h1 class="t"><span data-i18n>なんか</span><span data-i18n>よくわからんけど</span><span data-i18n>こわい</span><span data-i18n>ビットコイン</span></h1>
+    <div class="hero-head">
+      <h1 class="t"><span data-i18n>なんか</span><span data-i18n>よくわからんけど</span><span data-i18n>こわい</span><span data-i18n>ビットコイン</span></h1>
+      <img class="hero-icon" src={BASE_PATH + 'favicon.svg'} alt="" width="128" height="128" aria-hidden="true" />
+    </div>
     <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
   </div>
 

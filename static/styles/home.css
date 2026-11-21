@@ -4,6 +4,12 @@
 .hero .t span:nth-child(2){animation-delay:.12s}
 .hero .t span:nth-child(3){animation-delay:.24s;color:var(--color-primary)}
 .hero .t span:nth-child(4){animation-delay:.36s}
+/* 後半の短い2行（こわい／ビットコイン）の横におばけを浮かべる */
+.hero-head{position:relative}
+.hero-icon{position:absolute;right:4px;bottom:2px;width:128px;height:128px;
+    border-radius:28%;animation:rise .7s ease .48s both,float 3.6s ease-in-out 1.2s infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(-3deg)}}
+@media(prefers-reduced-motion:reduce){.hero-icon{animation:none}}
 .subtitle{font-size:16px;color:var(--sub);margin:14px 0 0}
 .layerhead{margin:40px 0 4px;font-size:14px;color:var(--sub)}
 .layerhead span{background:var(--color-secondary-bg);color:var(--color-secondary);border-radius:999px;
@@ -31,5 +37,6 @@
 .credit i{font-style:normal;opacity:.6}
 @media(max-width:520px){
     .hero .t{font-size:34px}
+    .hero-icon{width:82px;height:82px;right:0;bottom:3px}
     :root[data-lang="en"] .hero .t{font-size:clamp(22px, 7.2vw, 27px)}
   }
