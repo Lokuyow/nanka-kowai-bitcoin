@@ -22,6 +22,8 @@ https://lokuyow.github.io/sawatte-wakaru-bitcoin/
 
 GitHub Actions は PR と `main` への push でテストを実行し、`main` で成功したビルドを GitHub Pages に公開します。初回公開前に、リポジトリの **Settings → Pages → Source** を **GitHub Actions** に設定してください。
 
+手動で再公開する場合は、認証済みの GitHub CLI（`gh`）を用意して `npm run deploy` を実行します。GitHub 上の `main` をテストしてから公開するため、ローカルの未コミット・未プッシュの変更は含まれません。実行状況は `gh run list --workflow test.yml` で確認できます。
+
 ## PWA
 
 ビルド時に、ページと表示用の JS・CSS・画像などに内容のハッシュを付けたファイルを生成します。Service Worker（`build/sw.js`）はキャッシュを優先して表示し、更新時は同じハッシュのファイルを再利用して、変更・追加されたファイルだけを取得します。ページの公開 URL は引き続き `/price/` のような通常の URL です。PWA の動作確認には `npm run build` のあとに `npm run preview` を使ってください。
