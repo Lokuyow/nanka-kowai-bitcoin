@@ -423,7 +423,7 @@
     '過半数を握ってみる': 'Try holding a majority',
     'まず「握る」ところから。スライダーであなたの計算力を上げて、過半数を超えてみよう。超えたら、何ができるか試せる。': 'Start by "holding" it. Raise your hash power with the slider and pass 50%. Once you do, you can try out what becomes possible.',
     'あなたの計算力:': 'Your hash power:',
-    'あなた（オレンジ）': 'You (orange)',
+    'あなた（ピンク）': 'You (pink)',
     '50%のライン': 'The 50% line',
     '世界の残り': 'The rest of the world',
     '過半数を超えた。何ができる？ 試してみよう。': 'Past a majority. What can you do? Try it.',
