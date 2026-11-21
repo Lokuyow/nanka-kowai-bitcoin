@@ -270,6 +270,7 @@
     '買う金額:': 'Amount to buy:',
     '買う金額': 'Amount to buy',
     '買える量:': 'You get:',
+    '1 BTCに対する割合': 'Share of 1 BTC',
     '1BTC = 1,500万円として計算（イメージ）。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。': 'Calculated at 1 BTC = $100,000 (illustrative). A small amount is still real bitcoin, and its percentage moves match buying a whole coin.',
     'ビットコインはケーキと同じ。一切れ分から買える': 'Bitcoin is like cake. You can start with just one slice',
     '← 前の誤解：手数料': '← Previous: Fees',

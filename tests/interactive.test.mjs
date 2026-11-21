@@ -105,16 +105,19 @@ test('図解: 実価格から買える量を計算し、1 BTCとの大小に合�
     let jpy;
     await page.route('https://mempool.space/api/v1/prices', (route) =>
       route.fulfill({ json: { JPY: jpy, USD: jpy / 200 } }));
-    for (const [price, btc, messageJa, messageEn] of [
-      [9_580_000, '0.10438413', /ビットコインの一部を買える/, /buys a fraction of a bitcoin/],
-      [1_000_000, '1.00000000', /ちょうど1 BTC/, /exactly 1 BTC/],
-      [500_000, '2.00000000', /1 BTCより多く/, /more than 1 BTC/],
+    for (const [price, btc, share, messageJa, messageEn] of [
+      [9_580_000, '0.10438413', '10.44%', /ビットコインの一部を買える/, /buys a fraction of a bitcoin/],
+      [1_000_000, '1.00000000', '100%', /ちょうど1 BTC/, /exactly 1 BTC/],
+      [500_000, '2.00000000', '200%', /1 BTCより多く/, /more than 1 BTC/],
     ]) {
       jpy = price;
       await page.goto(server.base + 'satoshi/');
       await page.waitForFunction(() => document.getElementById('satHint').textContent.includes('mempool.space'));
       await page.locator('#yenRange').press('End');
       assert.equal(await page.locator('#satBtc').textContent(), '＝ ' + btc + ' BTC');
+      assert.equal(await page.locator('#satShare').textContent(), share);
+      const fill = await page.locator('#satBar').evaluate((bar) => parseFloat(bar.style.width));
+      assert.ok(Math.abs(fill - Math.min(1, Number(btc)) * 100) < 0.001);
       assert.match(await page.locator('#satMsg').textContent(), messageJa);
       await page.locator('.lang-toggle').click();
       assert.match(await page.locator('#satMsg').textContent(), messageEn);

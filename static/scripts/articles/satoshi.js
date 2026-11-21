@@ -44,6 +44,7 @@ var wedge = document.getElementById('wedge');
   var lbl = document.getElementById('yenLbl');
   var numEl = document.getElementById('satNum');
   var btcEl = document.getElementById('satBtc');
+  var shareEl = document.getElementById('satShare');
   var bar = document.getElementById('satBar');
   var msg = document.getElementById('satMsg');
   var hintEl = document.getElementById('satHint');
@@ -76,9 +77,13 @@ var wedge = document.getElementById('wedge');
   function upd(){
     var y = amount();
     var sats = Math.round(y / price() * 100000000);
+    var btc = sats / 100000000;
     lbl.textContent = window.LANG === 'en' ? '$' + y.toLocaleString('en-US') : y.toLocaleString('ja-JP') + '円';
-    btcEl.textContent = L('＝ ', '= ') + (sats / 100000000).toFixed(8) + ' BTC';
-    bar.style.width = Math.max(2, +range.value) + '%';
+    btcEl.textContent = L('＝ ', '= ') + btc.toFixed(8) + ' BTC';
+    shareEl.textContent = btc > 0 && btc < 0.0001
+      ? L('0.01%未満', 'Less than 0.01%')
+      : btc.toLocaleString(L('ja-JP', 'en-US'), {style: 'percent', maximumFractionDigits: 2});
+    bar.style.width = (Math.min(1, btc) * 100) + '%';
     msg.textContent = msgFor(sats);
     if (raf) cancelAnimationFrame(raf);
     var from = shown, to = sats, t0 = null;
