@@ -15,7 +15,7 @@ const pages = ['', ...ARTICLES.map(({ slug }) => slug + '/'), '404.html'];
 const fonts = files.filter((file) => file.startsWith('fonts/') && file.endsWith('.woff2'));
 const assets = files.filter((file) =>
   file.startsWith('scripts/') || file.startsWith('styles/') || file.startsWith('icons/') ||
-  ['i18n.js', 'livedata.js', 'favicon.svg', 'favicon.ico', 'ghost-lost.svg', 'ceo/news-telop.jpg'].includes(file)
+  ['i18n.js', 'livedata.js', 'favicon.svg', 'favicon.ico', 'brand-mark.svg', 'ghost-lost.svg', 'ceo/news-telop.jpg'].includes(file)
 );
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex').slice(0, 16);
 const assetUrls = new Map();

@@ -88,6 +88,11 @@ function iconSvg({ rounded = true, scale = 1, simple = false } = {}) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">${bg}${body}</svg>`;
 }
 
+// ヘッダー用：小さく表示しても見えるよう、タイルいっぱいまでおばけを大きくしたマーク
+function brandMarkSvg() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="${COLORS.tile}"/><g transform="translate(50 52) scale(1.17) translate(-55 -54)">${ghost()}</g></svg>`;
+}
+
 function escapeHtml(text) {
   return text.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 }
@@ -197,6 +202,7 @@ try {
 
   // ファビコン（SVG）と PWA・ホーム画面用アイコン
   await writeFile(path.join(STATIC, 'favicon.svg'), iconSvg() + '\n');
+  await writeFile(path.join(STATIC, 'brand-mark.svg'), brandMarkSvg() + '\n');
   await writeFile(path.join(STATIC, 'ghost-lost.svg'), lostGhostSvg() + '\n');
   await mkdir(path.join(STATIC, 'icons'), { recursive: true });
   const icons = [
