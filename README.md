@@ -29,6 +29,8 @@ python scripts/convert-image.py source.png static/media/example.avif --quality 8
 
 `--width` は表示用のサムネイルなどを縮小するときに指定します。既存の JPEG や WebP を軽量な代替画像にする場合も、出力の拡張子を変えて同じスクリプトを使えます。ページでは `<picture>` 内に AVIF の `<source>` と代替画像の `<img>` を置きます。`static/media/` にはページで使う画像を置くと、PWA で事前キャッシュされます。
 
+ニュース画像は元の「ビットコイン逮捕報道のニューススタジオ.png」から幅1200px、さわビの紹介画像は[公式OGPのPNG](https://lokuyow.github.io/sawatte-wakaru-bitcoin/og-image-v9.png?v=20261028c)から幅320pxで生成します。AVIF と代替画像はそれぞれ元の PNG を入力にします。
+
 ## 公開
 
 GitHub Actions は PR と `main` への push でテストを実行し、`main` で成功したビルドを GitHub Pages に公開します。初回公開前に、リポジトリの **Settings → Pages → Source** を **GitHub Actions** に設定してください。
