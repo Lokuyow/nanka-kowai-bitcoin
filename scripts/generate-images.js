@@ -28,9 +28,17 @@ const GHOST_BODY =
   'M22 78C21 55 24 30 38 20 47 13 60 14 66 24 71 33 70 46 73 56 76 66 81 72 86 76 88 78 87 80 84 81 79 83 74 83 70 82 66 81 64 84 63 87 62 90 58 90 54 89 48 87 42 86 37 88 32 90 26 89 23 85 22 83 22 81 22 78Z';
 const HAND_LEFT = 'M30.5 63.5C34 61 38.5 62.5 39 66.5 39.5 70.5 35.5 73 32 72 28.5 71 27.5 66 30.5 63.5Z';
 const HAND_RIGHT = 'M65.5 63.5C62 61 57.5 62.5 57 66.5 56.5 70.5 60.5 73 64 72 67.5 71 68.5 66 65.5 63.5Z';
-// ₿ をフォントに頼らず線で描く（コインの中心を原点にした座標）
-const BITCOIN_SIGN =
-  'M-4.6-6.6V6.6M-4.6-6.6H1A3.25 3.25 0 0 1 1 -.1H-4.6M-4.6-.1H1.8A3.35 3.35 0 0 1 1.8 6.6H-4.6M-2.4-9.2V-6.6M.9-9.2V-6.6M-2.4 6.6V9.2M.9 6.6V9.2';
+// ₿ をフォントに頼らず塗りの字形で描く（コインの中心を原点にした座標、evenodd で穴を抜く）
+const BITCOIN_SIGN = [
+  // B の外形（下の膨らみを少し大きくする）
+  'M-5-6.6H1.7C4.7-6.6 6-5.1 6-3.3 6-1.8 5.1-.7 3.8-.25 5.5.15 6.7 1.5 6.7 3.3 6.7 5.3 5.2 6.6 2.3 6.6H-5Z',
+  // 上下の穴
+  'M-2-4.1H1.3C2.5-4.1 3.1-3.5 3.1-2.55 3.1-1.6 2.5-1.05 1.3-1.05H-2Z',
+  'M-2 1.3H1.7C3.1 1.3 3.8 2 3.8 3 3.8 3.95 3.1 4.55 1.7 4.55H-2Z',
+  // 上下に突き出る2本ずつの縦棒
+  // （evenodd で重なりが抜けないよう、外形の上下端にぴったり接する長さにする）
+  'M-4-9.1H-2.4V-6.6H-4ZM-.6-9.1H1V-6.6H-.6ZM-4 6.6H-2.4V9.1H-4ZM-.6 6.6H1V9.1H-.6Z'
+].join('');
 
 // おばけ本体（100×100 の座標）
 function ghost({ simple = false } = {}) {
@@ -50,7 +58,7 @@ function ghost({ simple = false } = {}) {
   <path d="M43.5 46.5Q48.5 47.8 53 47.2 53.2 53 48.3 53.6 43.8 53.3 43.5 46.5Z" fill="${COLORS.face}"/>
   <g transform="translate(48 70) rotate(-28)">
     <circle r="15" fill="${COLORS.coin}" stroke="${COLORS.coinInk}" stroke-width="2"/>
-    <path d="${BITCOIN_SIGN}" fill="none" stroke="${COLORS.coinInk}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" transform="translate(-.4 0)"/>
+    <path d="${BITCOIN_SIGN}" fill="${COLORS.coinInk}" fill-rule="evenodd" transform="translate(-.85 0)"/>
   </g>
   <path d="${HAND_LEFT}" fill="${COLORS.ghost}" transform="translate(-1 -4)"/>
   <path d="${HAND_RIGHT}" fill="${COLORS.ghost}" transform="translate(1 4)"/>
