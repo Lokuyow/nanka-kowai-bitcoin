@@ -3,15 +3,66 @@
 
 import { test, beforeAll, afterAll } from 'vitest';
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
+import { appendFile, cp, mkdtemp, readdir, rm } from 'node:fs/promises';
+import os from 'node:os';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { promisify } from 'node:util';
 import { BASE_PATH } from './site-data.mjs';
-import { startServer, launchBrowser, newContext, openPage } from './helpers.mjs';
+import { BUILD_DIR, startServer, launchBrowser, newContext, openPage } from './helpers.mjs';
 
 let server;
 let browser;
+const requests = [];
 
 beforeAll(async () => {
-  server = await startServer();
+  server = await startServer({ onRequest: (pathname) => requests.push(pathname) });
   browser = await launchBrowser();
+});
+
+test('PWA: 更新時は変更があったファイルだけを取得する', async () => {
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'kowai-bitcoin-pwa-'));
+  const updated = path.join(temp, 'build');
+  let buildDir = BUILD_DIR;
+  const requests = [];
+  const site = await startServer({ getBuildDir: () => buildDir, onRequest: (url) => requests.push(url) });
+  const context = await newContext(browser, { serviceWorkers: 'allow' });
+  try {
+    const { page } = await openPage(context, site.base);
+    await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+
+    // adapter-static に渡るページと静的ファイルから、トップの CSS だけを変更して公開し直す。
+    await cp(new URL('../static/', import.meta.url), updated, { recursive: true });
+    await cp(new URL('../.svelte-kit/output/prerendered/pages/', import.meta.url), updated, { recursive: true });
+    await appendFile(path.join(updated, 'styles/home.css'), '\n:root { --pwa-test: updated; }\n');
+    const script = fileURLToPath(new URL('../scripts/build-service-worker.js', import.meta.url));
+    await promisify(execFile)(process.execPath, [script], { cwd: temp });
+
+    const html = (await readdir(updated)).find((file) => /^index\.[a-f0-9]{16}\.html$/.test(file));
+    const css = (await readdir(path.join(updated, 'styles')))
+      .find((file) => /^home\.[a-f0-9]{16}\.css$/.test(file));
+    assert.ok(html && css, '変更後の HTML と CSS にハッシュ付きのファイル名がある');
+    buildDir = updated;
+    requests.length = 0;
+    await page.evaluate(async () => {
+      const registration = await navigator.serviceWorker.getRegistration();
+      const changed = new Promise((resolve) => {
+        navigator.serviceWorker.addEventListener('controllerchange', resolve, { once: true });
+      });
+      await registration.update();
+      await changed;
+    });
+    assert.deepEqual(requests.sort(), [BASE_PATH + html, BASE_PATH + 'styles/' + css, BASE_PATH + 'sw.js'].sort());
+
+    await page.reload({ waitUntil: 'load' });
+    assert.equal(page.url(), site.base);
+    assert.equal(await page.locator('html').evaluate((el) => getComputedStyle(el).getPropertyValue('--pwa-test')), 'updated');
+  } finally {
+    await context.close();
+    await site.close();
+    await rm(temp, { recursive: true, force: true });
+  }
 });
 
 afterAll(async () => {
@@ -71,6 +122,13 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
     assert.ok(!cacheNames.includes('kowai-bitcoin-v19'), '旧バージョンのキャッシュが削除される');
     assert.equal(cacheNames.filter((name) => name.startsWith('kowai-bitcoin-v')).length, 1,
       '本サイトの現行キャッシュが残る');
+
+    const mainStyle = new URL(await page.locator('link[href*="/styles/base."]').getAttribute('href'), server.base);
+    assert.match(mainStyle.pathname, /\/styles\/base\.[a-f0-9]{16}\.css$/);
+    requests.length = 0;
+    await page.reload({ waitUntil: 'load' });
+    assert.ok(!requests.includes(BASE_PATH), '再訪問の HTML はキャッシュから返る');
+    assert.ok(!requests.includes(mainStyle.pathname), 'ハッシュ付き CSS はキャッシュから返る');
 
     await context.setOffline(true);
     try {

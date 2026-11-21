@@ -24,7 +24,7 @@ GitHub Actions は PR と `main` への push でテストを実行し、`main` �
 
 ## PWA
 
-ビルド時に、公開ファイルから Service Worker（`build/sw.js`）のキャッシュバージョンと事前取得リストを生成します。公開内容が変わると、新しいキャッシュの準備後に旧キャッシュが入れ替わります。PWA の動作確認には `npm run build` のあとに `npm run preview` を使ってください。
+ビルド時に、ページと表示用の JS・CSS・画像などに内容のハッシュを付けたファイルを生成します。Service Worker（`build/sw.js`）はキャッシュを優先して表示し、更新時は同じハッシュのファイルを再利用して、変更・追加されたファイルだけを取得します。ページの公開 URL は引き続き `/price/` のような通常の URL です。PWA の動作確認には `npm run build` のあとに `npm run preview` を使ってください。
 
 ## ライセンス
 

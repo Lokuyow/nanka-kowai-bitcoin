@@ -1,47 +1,61 @@
 // BASE, VERSION, and PRECACHE are generated from the published site.
 const CACHE_PREFIX = 'kowai-bitcoin-v';
-const CACHE_NAME = CACHE_PREFIX + VERSION;
+const REVISION_CACHE_PREFIX = CACHE_PREFIX + '2-';
+const CACHE_NAME = REVISION_CACHE_PREFIX + VERSION;
+const entries = new Map(Object.entries(PRECACHE));
+
+function previousRevision(names) {
+  return names.filter((name) => name.startsWith(REVISION_CACHE_PREFIX) && name !== CACHE_NAME).at(-1);
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
+    const previous = previousRevision(await caches.keys());
     const cache = await caches.open(CACHE_NAME);
-    await cache.addAll(PRECACHE.map((url) => new Request(url, { cache: 'reload' })));
+    const keys = new Set(entries.values());
+    try {
+      const missing = (await Promise.all([...keys].map(async (key) => {
+        if (await cache.match(key)) return;
+        const cached = previous && await caches.match(key, { cacheName: previous });
+        if (cached) await cache.put(key, cached);
+        else return key;
+      }))).filter(Boolean);
+      if (missing.length) await cache.addAll(missing);
+    } catch (error) {
+      await caches.delete(CACHE_NAME);
+      throw error;
+    }
+
     await self.skipWaiting();
   })());
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
-    const names = await caches.keys();
-    const outdated = names.filter((name) => name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME);
-    await Promise.all(outdated.map((name) => caches.delete(name)));
+    const names = (await caches.keys()).filter((name) => name.startsWith(CACHE_PREFIX));
+    // The previous cache can still serve hashed assets referenced by an open page.
+    const previous = previousRevision(names);
+    await Promise.all(names.filter((name) => name !== CACHE_NAME && name !== previous)
+      .map((name) => caches.delete(name)));
     await self.clients.claim();
   })());
 });
 
-async function fetchAndCache(cache, request) {
-  const response = await fetch(request);
-  if (response.status === 200) {
-    // A quota or storage failure should still let the network response through.
-    await cache.put(request, response.clone()).catch(() => {});
-  }
-  return response;
-}
-
-async function respond(request, pathname) {
-  const cache = await caches.open(CACHE_NAME);
-  const match = () => cache.match(request, { ignoreSearch: true });
-  const navigation = request.mode === 'navigate';
-  const networkFirst = navigation || /\.(?:html|css|js)$/.test(pathname);
-
-  if (!networkFirst) return (await match()) || fetchAndCache(cache, request);
-  try {
-    return await fetchAndCache(cache, request);
-  } catch (error) {
-    const cached = await match();
+async function respond(request, key, pathname) {
+  if (key) {
+    const cached = await caches.match(key, { cacheName: CACHE_NAME });
     if (cached) return cached;
-    if (navigation) {
-      const notFound = await cache.match(BASE + '404.html');
+  } else if (/\.[a-f0-9]{16}\.[a-z]+$/.test(pathname)) {
+    const previous = previousRevision(await caches.keys());
+    const cached = previous && await caches.match(pathname, { cacheName: previous });
+    if (cached) return cached;
+  }
+
+  try {
+    return await fetch(request);
+  } catch (error) {
+    if (request.mode === 'navigate') {
+      const notFound = await caches.match(entries.get(BASE + '404.html'), { cacheName: CACHE_NAME });
       if (notFound) return new Response(notFound.body, { status: 404, headers: notFound.headers });
     }
     throw error;
@@ -50,8 +64,9 @@ async function respond(request, pathname) {
 
 self.addEventListener('fetch', (event) => {
   const { request } = event;
-  if (request.method !== 'GET') return;
+  if (request.method !== 'GET' || request.headers.has('range')) return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin || !url.pathname.startsWith(BASE)) return;
-  event.respondWith(respond(request, url.pathname));
+  const pagePath = url.pathname.replace(/\/index\.html$/, '/');
+  event.respondWith(respond(request, entries.get(pagePath), url.pathname));
 });

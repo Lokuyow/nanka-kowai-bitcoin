@@ -25,10 +25,11 @@ const MIME = {
 
 // ビルド結果を BASE_PATH 配下で配信するサーバーを立てる。
 // 存在しないパスには GitHub Pages と同じく 404.html を 404 で返す。
-export async function startServer() {
+export async function startServer({ onRequest = () => {}, getBuildDir = () => BUILD_DIR } = {}) {
   const server = http.createServer(async (req, res) => {
     try {
       let pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname);
+      onRequest(pathname);
       if (!pathname.startsWith(BASE_PATH)) {
         res.writeHead(404, { 'content-type': 'text/plain' });
         res.end('not found');
@@ -36,8 +37,9 @@ export async function startServer() {
       }
       let rel = pathname.slice(BASE_PATH.length);
       if (rel === '' || rel.endsWith('/')) rel += 'index.html';
-      const file = path.join(BUILD_DIR, rel);
-      if (!file.startsWith(BUILD_DIR + path.sep)) throw new Error('bad path');
+      const buildDir = getBuildDir();
+      const file = path.join(buildDir, rel);
+      if (!file.startsWith(buildDir + path.sep)) throw new Error('bad path');
       const body = await readFile(file);
       res.writeHead(200, {
         'content-type': MIME[path.extname(file)] || 'application/octet-stream',
@@ -45,7 +47,7 @@ export async function startServer() {
       res.end(body);
     } catch {
       try {
-        const body = await readFile(path.join(BUILD_DIR, '404.html'));
+        const body = await readFile(path.join(getBuildDir(), '404.html'));
         res.writeHead(404, { 'content-type': 'text/html; charset=utf-8' });
         res.end(body);
       } catch {
