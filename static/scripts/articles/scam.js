@@ -14,17 +14,17 @@ var card = document.getElementById('swapCard');
   });
   // ---- 見分けるクイズ ----
   var POOL_SCAM = [
-    {t: '「元本保証で、月利10%の投資です」', e: '"A guaranteed-principal investment paying 10% a month."', why: '元本保証と高い利回りの組み合わせは詐欺の定番。本物の投資に「保証」はない。', ew: 'Guaranteed principal plus high returns is the classic scam combo. Real investments never come with a "guarantee".'},
+    {t: '「元本保証で、月利10%の投資です」', e: '"A guaranteed-principal investment paying 10% a month."', why: '高い利回りと元本保証を同時に約束するのは、詐欺でよく使われる手口。', ew: 'Promises of both high returns and guaranteed principal are common warning signs.'},
     {t: '「今だけ限定。送ったビットコインが2倍になって戻ります」', e: '"Limited time only: send bitcoin and get double back."', why: '送ると2倍になって戻る仕組みは存在しない。送ったお金は戻ってこない。', ew: 'There is no mechanism that doubles what you send. Money sent is gone for good.'},
     {t: '「有名な実業家も勧めている投資です。今すぐ登録してください」', e: '"A famous entrepreneur recommends this investment. Sign up now."', why: '有名人の名前や写真を勝手に使うのは詐欺広告の典型。', ew: "Using a celebrity's name and photo without permission is a hallmark of scam ads."},
     {t: '「絶対に損はしません。参加者はみんな儲かっています」', e: '"You can\'t possibly lose. Everyone who joined is making money."', why: '「絶対」「みんな儲かっている」は冷静さを奪うための言葉。', ew: '"Absolutely" and "everyone profits" are words designed to stop you from thinking.'},
     {t: '「税金の還付があります。手続きのために送金してください」', e: '"You have a tax refund. Please send a processing payment first."', why: '還付の手続きで送金を求めることはない。公的機関をかたる詐欺。', ew: 'Refunds never require you to send money first. This is impersonation of a public office.'}
   ];
   var POOL_OK = [
-    {t: '「価格は大きく変動します。元本保証はありません」', e: '"Prices move a lot. Your principal is not guaranteed."', why: 'リスクを正直に書いている。保証しないのが本物の投資の案内。', ew: 'It states the risk honestly. Not guaranteeing anything is what a real investment offer looks like.'},
+    {t: '「価格は大きく変動します。元本保証はありません」', e: '"Prices move a lot. Your principal is not guaranteed."', why: '価格が下がるリスクを説明している。相手が信頼できるかは別に確認しよう。', ew: 'It describes the risk of losing money. Check who is making the offer separately.'},
     {t: '「まずは仕組みを自分で調べて、無理のない少額から始めてください」', e: '"Start by researching how it works yourself, and begin with a small amount you can afford."', why: '急がせず、自分で調べることを勧めている。', ew: "It doesn't rush you, and it tells you to do your own research."},
-    {t: '「セミナーで仕組みを解説します。投資の勧誘はしません」', e: '"Our seminar explains how it works. We will not pitch any investment."', why: '勧誘しないことを先に言っている。', ew: 'It says up front that there will be no sales pitch.'},
-    {t: '「手数料とリスクの説明を、必ず書面で確認してください」', e: '"Please always check the fees and risks in writing."', why: '書面での確認を促すのは正規の案内の作法。', ew: 'Asking you to confirm things in writing is how legitimate providers operate.'}
+    {t: '「セミナーで仕組みを解説します。投資の勧誘はしません」', e: '"Our seminar explains how it works. We will not pitch any investment."', why: 'この文面からは判断できない。セミナーの後で勧誘されることもある。', ew: 'The wording alone tells you little. A pitch could still follow the seminar.'},
+    {t: '「手数料とリスクの説明を、必ず書面で確認してください」', e: '"Please always check the fees and risks in writing."', why: '書面は確認の手がかりになる。書面があるというだけで相手を信用しない。', ew: 'Written information gives you something to check. It does not establish whether the provider is trustworthy.'}
   ];
   var quiz = [], qi = 0, score = 0, answered = false, lastSaid = null, finished = false;
   var qMsg = document.getElementById('qMsg');
@@ -64,7 +64,7 @@ var card = document.getElementById('swapCard');
   function renderFeedback(){
     var q = quiz[qi];
     var right = lastSaid === q.scam;
-    var ansName = q.scam ? L('詐欺の手口', 'Scam pitch') : L('大丈夫そう', 'Sounds safe');
+    var ansName = q.scam ? L('危険信号あり', 'Warning sign') : L('文面だけでは判断できない', 'Cannot tell from the wording');
     qStamp.classList.toggle('ok', right);
     qStamp.classList.toggle('ng', !right);
     qCard.classList.add('stamped');

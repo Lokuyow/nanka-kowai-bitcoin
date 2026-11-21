@@ -40,7 +40,7 @@
 .flow .ahead{position:absolute;left:0;top:16px;width:0;height:0;
     border-top:6px solid transparent;border-bottom:6px solid transparent;
     border-right:11px solid var(--sub)}
-.scene .medium{flex:0 0 62px;text-align:center;font-size:12px;color:var(--sub)}
+.scene .medium{flex:0 0 78px;text-align:center;font-size:12px;color:var(--sub)}
 .scene .medium b{display:block;color:var(--ink);font-size:14px}
 @media(max-width:440px){
     .scene .who{flex-basis:48px}

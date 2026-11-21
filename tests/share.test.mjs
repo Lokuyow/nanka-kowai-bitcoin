@@ -23,12 +23,12 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
     const expected = [
       {
         title: '国が禁止したら、ビットコインは終わりでしょ？',
-        text: '世界中で動く仕組みだから、一国では止められない。実際に禁止した国でも消えていない',
+        text: '国内の活動が規制されても、国外の参加者はネットワークを動かし続けられる。',
         url
       },
       {
         title: 'If a country bans it, Bitcoin is finished, right?',
-        text: 'Because it runs all over the world, one country cannot stop it. It did not vanish even from the country that banned it',
+        text: 'A ban can restrict activity at home while participants abroad keep the network running.',
         url
       }
     ];

@@ -1,11 +1,11 @@
 (function(){
   var EVENTS = [
-    {t: '送金先を1桁まちがえた',
-     bank: {o: '窓口に相談したら、送金を取り消すことができた。', good: true},
-     btc: {o: '送った記録は書き換えられない。お金は戻らなかった。', good: false}},
+    {t: '別の相手に送金しそうになった',
+     bank: {o: '処理が始まる前に窓口に相談でき、この送金は止められた。', good: true},
+     btc: {o: '送金が記録されたあとに気づいた。相手から返してもらう必要があった。', good: false}},
     {t: '土曜の夜、海外の家族に送金したい',
      bank: {o: '銀行が休みで、月曜まで待つことになった。', good: false},
-     btc: {o: 'その場で送れて、すぐに着いた。', good: true}},
+     btc: {o: 'その場で送信できた。家族は取引が台帳に載るのを待った。', good: true}},
     {t: '口座が突然凍結された',
      bank: {o: '理由を聞いて解けるのを待つしかなかった。', good: false},
      btc: {o: '凍結する管理者がいないので、そのまま使えた。', good: true}},
@@ -14,18 +14,18 @@
      btc: {o: '誰にも再発行してもらえない。中身に触れなくなった。', good: false}},
     {t: 'あやしいサイトに送金してしまった',
      bank: {o: '不審な送金として止められ、助かった。', good: true},
-     btc: {o: '送った時点で確定していて、取り返せなかった。', good: false}},
+     btc: {o: '台帳に載った送金を取り消してくれる窓口はない。このときは返金されなかった。', good: false}},
     {t: '引っ越し先の国でお金を使いたい',
      bank: {o: 'その国の口座を作り直す手続きが要った。', good: false},
      btc: {o: '国が変わっても、同じものをそのまま使えた。', good: true}}
   ];
   var EVENTS_EN = [
-    {t: 'You mistyped one digit of the destination',
-     bank: 'You went to the bank counter and were able to cancel the transfer.',
-     btc: 'The record of sending cannot be rewritten. The money did not come back.'},
+    {t: 'You nearly sent money to the wrong recipient',
+     bank: 'You reached the bank before processing began, and it stopped this transfer.',
+     btc: 'You noticed after it was recorded. You needed the recipient to send it back.'},
     {t: 'Saturday night — you want to send money to family overseas',
      bank: 'The bank was closed, so you had to wait until Monday.',
-     btc: 'You sent it on the spot, and it arrived right away.'},
+     btc: 'You submitted it on the spot. Your family waited for the transaction to be recorded.'},
     {t: 'Your account was suddenly frozen',
      bank: 'You had no choice but to ask why and wait for it to be lifted.',
      btc: 'There is no manager to freeze it, so you could keep using it as-is.'},
@@ -34,7 +34,7 @@
      btc: 'No one can reissue it for you. You could no longer touch what was inside.'},
     {t: 'You sent money to a suspicious site',
      bank: 'It was stopped as a suspicious transfer — you were saved.',
-     btc: 'It was final the moment you sent it, and could not be recovered.'},
+     btc: 'There was no service that could reverse the recorded transaction. In this case, you did not get a refund.'},
     {t: 'You want to use money in the country you moved to',
      bank: 'You had to go through the procedure of opening an account in that country.',
      btc: 'Even in a different country, you could use the same thing as-is.'}
@@ -69,7 +69,7 @@
   var msgPair = ['', ''];
   function renderSysLine(){
     if (!sys) { sysLine.textContent = L('まず、どちらのお金で暮らすか選んでみよう。', 'First, choose which money to live with.'); return; }
-    sysLine.innerHTML = (sys === 'bank' ? '<b>' + L('銀行', 'The bank') + '</b>' : '<b>' + L('ビットコイン', 'Bitcoin') + '</b>') + L('で暮らす1週間が始まる。', ' — your week of living with it begins.');
+    sysLine.innerHTML = (sys === 'bank' ? '<b>' + L('銀行口座', 'A bank account') + '</b>' : '<b>' + L('自分で鍵を持つウォレット', 'A wallet whose keys you hold') + '</b>') + L('を使った場合の例。', ' — see how it might work in practice.');
   }
   function buildCard(ev, idx, animate){
     var r = ev[sys];
@@ -85,9 +85,9 @@
     for (var i = 0; i < step; i++) evList.appendChild(buildCard(deck[i], i, false));
   }
 
-  function start(s){
+  function start(s, reuseDeck){
     sys = s;
-    deck = shuffle(EVENTS).slice(0, DAYS);
+    if (!reuseDeck) deck = shuffle(EVENTS).slice(0, DAYS);
     step = 0; good = 0; bad = 0;
     evList.innerHTML = '';
     gMsg.textContent = ''; msgPair = ['', ''];
@@ -114,14 +114,14 @@
     btnDay.hidden = true;
     btnOther.hidden = false;
     btnAgain.hidden = false;
-    msgPair = ['どちらの暮らしにも助かる日と困る日があった。違うのは困ったときに頼れる相手がいるかどうかだ。', 'Both lives had days that saved you and days that troubled you. The difference is whether there is someone to rely on when trouble comes.'];
+    msgPair = ['もう一方でも同じ出来事を試して、対応の違いを見てみよう。', 'Try the same situations with the other option to compare the responses.'];
     gMsg.textContent = L(msgPair[0], msgPair[1]);
   }
   sysBtns.forEach(function(b){
     b.addEventListener('click', function(){ start(b.getAttribute('data-sys')); });
   });
   btnDay.addEventListener('click', nextDay);
-  btnOther.addEventListener('click', function(){ start(sys === 'bank' ? 'btc' : 'bank'); });
+  btnOther.addEventListener('click', function(){ start(sys === 'bank' ? 'btc' : 'bank', true); });
   btnAgain.addEventListener('click', function(){ start(sys); });
   document.addEventListener('langchange', function(){
     renderSysLine();

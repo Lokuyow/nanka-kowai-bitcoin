@@ -14,7 +14,7 @@ var wedge = document.getElementById('wedge');
     {sweep: 180, ja: '半分（0.5 BTC）', en: 'Half (0.5 BTC)', ln: 2},
     {sweep: 90,  ja: '1/4 ホール（0.25 BTC）', en: '1/4 of the cake (0.25 BTC)', ln: 4},
     {sweep: 6,   ja: '100万分の1（0.000001 BTC）', en: 'One millionth (0.000001 BTC)', ln: 12},
-    {sweep: 1.2, ja: '1 satoshi（0.00000001 BTC）：これでも買える', en: '1 satoshi (0.00000001 BTC) — you can buy even this', ln: 12}
+    {sweep: 1.2, ja: '1 satoshi（0.00000001 BTC）', en: '1 satoshi (0.00000001 BTC)', ln: 12}
   ];
   var curStep = 2;
   function draw(step){

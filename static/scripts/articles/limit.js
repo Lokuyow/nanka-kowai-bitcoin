@@ -7,21 +7,21 @@
   var capPair = ['2,200万枚', '22 million'];
   var running = false;
   var played = false;
-  var lastTally = [0, 0, 0];
+  var rejected = 0;
   var msgPair = ['', ''];
   var LINES = [
-    ['ノードA「上限が約束と違う。受け取れません」', 'Node A: "The cap differs from the promise. I can\'t accept it."'],
-    ['ノードB「その版とは取引しません」', 'Node B: "I won\'t trade with that version."'],
-    ['ノードC「ルールが違うので、別の通貨として扱います」', 'Node C: "Different rules — I\'ll treat it as a different currency."'],
-    ['ノードD「今までの版を使い続けます」', 'Node D: "I\'ll keep using the current version."'],
-    ['ノードE「賛成はゼロ。却下します」', 'Node E: "Zero in favor. Rejected."']
+    ['ノードA「元の上限を超える発行を確認。ブロックを拒否」', 'Node A: "Issuance exceeds the old cap. Block rejected."'],
+    ['ノードB「同じ発行ルールで検証。ブロックを拒否」', 'Node B: "Checked against the same issuance rules. Block rejected."'],
+    ['ノードC「上限を超えたブロックは台帳に加えません」', 'Node C: "A block that exceeds the cap cannot join my ledger."'],
+    ['ノードD「元のルールに合わないので拒否」', 'Node D: "The block fails the old rules. Rejected."'],
+    ['ノードE「このブロックには余分な発行がある。拒否」', 'Node E: "This block issues extra coins. Rejected."']
   ];
   function setMsg(ja, en){ msgPair = [ja, en]; msg.textContent = L(ja, en); }
   function stText(st){
     return st === 'sent' ? L('届いた', 'Received') : st === 'ng' ? L('× 拒否', '× Rejected') : L('待機中', 'Waiting');
   }
   function setSt(n, st){ n.dataset.st = st; n.querySelector('.st').textContent = stText(st); }
-  function renderGo(){ go.textContent = played ? L('もう一度試す', 'Try again') : L('書き換えた版を配る', 'Send out the rewritten version'); }
+  function renderGo(){ go.textContent = played ? L('もう一度試す', 'Try again') : L('ブロックを送る', 'Send the block'); }
   document.querySelectorAll('#capBtns button').forEach(function(b){
     b.addEventListener('click', function(){
       if (running) return;
@@ -30,14 +30,14 @@
       capPair = [b.dataset.cap, b.dataset.capEn];
     });
   });
-  function setTally(ok, ng, users){
-    lastTally = [ok, ng, users];
-    tally.innerHTML = L('賛成 <b>' + ok + '</b> ・ 拒否 <b>' + ng + '</b> ・ あなたの版の利用者 <b>' + users + '人</b>',
-                        'For <b>' + ok + '</b> · Against <b>' + ng + '</b> · Users of your version <b>' + users + '</b>');
+  function setTally(count){
+    rejected = count;
+    var total = '<b>' + count + ' / ' + nodes.length + '</b>';
+    tally.innerHTML = L('ブロックを拒否したノード ', 'Nodes that rejected the block ') + total;
   }
   document.addEventListener('langchange', function(){
     nodes.forEach(function(n){ setSt(n, n.dataset.st || 'wait'); });
-    setTally(lastTally[0], lastTally[1], lastTally[2]);
+    setTally(rejected);
     msg.textContent = L(msgPair[0], msgPair[1]);
     renderGo();
   });
@@ -51,20 +51,20 @@
       n.className = 'node';
       setSt(n, 'wait');
     });
-    setTally(0, 0, 0);
-    setMsg('上限を' + capPair[0] + 'に書き換えた版を世界に配り始めた…', 'Your rewritten version (cap: ' + capPair[1] + ') starts going out to the world…');
+    setTally(0);
+    setMsg('上限を' + capPair[0] + 'に変え、増やした分の発行を含むブロックを送った…', 'Sending a block that issues extra coins under your new cap (' + capPair[1] + ')…');
     var i = 0;
     function step(){
       if (i > 0) {
         var prev = nodes[i - 1];
         prev.classList.add('ng');
         setSt(prev, 'ng');
-        setTally(0, i, 0);
+        setTally(i);
         setMsg(LINES[i - 1][0], LINES[i - 1][1]);
       }
       if (i >= nodes.length) {
         card.classList.add('stamped');
-        setMsg('全員が拒否。あなたの版はあなた1人だけの通貨になった。書き換えるのは自由。でも、ついてくる人がいなければ意味がない。', 'Everyone refused. Your version is now a currency of one — you. Rewriting is free. But with nobody following, it means nothing.');
+        setMsg('5つのノードはそれぞれ元のルールで確かめ、ブロックを拒否した。', 'All five nodes checked the block against the old rules and rejected it independently.');
         renderGo();
         go.disabled = false;
         running = false;

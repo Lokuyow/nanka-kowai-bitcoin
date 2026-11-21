@@ -1,16 +1,16 @@
-<div class="answer" data-i18n-html>割るのは「発行」ではなく「切り分け」。<br>総量は2,100万BTCのままで、1BTCを1億satoshiに切り分けただけ</div>
+<div class="answer" data-i18n-html>切り分けても、ビットコインの量は増えない。<br>1 BTCは1億 satoshiと同じ量</div>
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
-    <p class="lede" data-i18n>1BTCは最小単位のsatoshiに1億個まで細かく分けられる。全部合わせると2,100兆satoshi。「兆」という桁を聞くと、上限があるようには思えない。細かく割れるものはどんどん増やせる気がするのも自然なこと。</p>
+    <p class="lede" data-i18n>1 BTCを最小単位のsatoshiで数えると、1億になる。数が増えたように見えるけれど、1切れの大きさは小さくなっている。</p>
   </section>
 
   <section>
     <h2 data-i18n>割っても全体は同じ</h2>
     <p class="lede" data-i18n>ケーキを何切れに分けても、全部合わせれば1ホール分。ビットコインも同じで、切り分ける数を増やしても合計は1BTCのまま。スライダーを動かして確かめてみよう。</p>
     <div class="card">
-      <label><span data-i18n>切り分ける数:</span> <b id="dvN">1個</b><input type="range" id="dvS" min="0" max="1000" value="0" step="1" aria-label="切り分ける数" data-i18n-label></label>
-      <div class="dvscale"><span>1</span><span>100</span><span data-i18n>1万</span><span data-i18n>1億</span></div>
+      <label><span data-i18n>切り分ける数:</span> <b id="dvN">1個</b><input type="range" id="dvS" min="0" max="1000" value="0" step="125" aria-label="切り分ける数" data-i18n-label></label>
+      <div class="dvscale"><span>1</span><span>100</span><span data-i18n>1万</span><span data-i18n>100万</span><span data-i18n>1億</span></div>
       <div class="center" style="margin-top:12px">
         <svg id="dvSvg" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="1BTCを切り分ける円グラフ" data-i18n-label>
           <circle cx="130" cy="130" r="112" fill="#fff3df"/>
@@ -27,16 +27,16 @@
         <button type="button" id="dvX10" data-i18n>もっと細かく（×10）</button>
         <button type="button" id="dvReset" data-i18n>1つに戻す</button>
       </div>
-      <p class="hint" data-i18n>1円を100銭に分けても、財布の中身は増えない。ドルとセントも同じ。</p>
+      <p class="hint" data-i18n>切れ目は1,000分割から省略している。下の合計は、何切れにしても1 BTC。</p>
     </div>
   </section>
 
   <section>
     <h2 data-i18n>上限はsatoshiで数えても同じ</h2>
-    <p class="lede" data-i18n>発行上限をsatoshi単位で言い直すと2,100兆satoshi。数字が大きく見えるだけで、量は2,100万BTCとまったく同じ。</p>
+    <p class="lede" data-i18n>約2,100万 BTCの発行上限をsatoshiで数えると約2,100兆。どちらも同じ量を表している。</p>
     <div class="card center" style="font-size:17px;font-weight:700">
-      <span data-i18n-html>2,100万BTC ＝ <span style="color:var(--color-primary)">2,100兆satoshi</span></span>
+      <span data-i18n-html>約2,100万 BTC ＝ <span style="color:var(--color-primary)">約2,100兆 satoshi</span></span>
       <p class="hint" data-i18n>単位を細かく言い直しただけ。中身の量は変わらない。</p>
     </div>
   </section>
-<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>分割は「増やす」ではなく「切り分ける」。上限は2,100万BTC＝2,100兆satoshiで固定されている</span></div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>単位を小さくすると数は増える。発行できる量の上限は変わらない</span></div>

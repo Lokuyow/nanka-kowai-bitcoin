@@ -6,6 +6,8 @@ import { test, beforeAll, afterAll } from 'vitest';
 import assert from 'node:assert/strict';
 import { startServer, launchBrowser, newContext } from './helpers.mjs';
 
+import { UNITS } from './site-data.mjs';
+
 let server;
 let browser;
 
@@ -24,9 +26,7 @@ afterAll(async () => {
 
 const TARGETS = [
   { name: 'トップ', path: '', heading: '.hero h1' },
-  { name: 'scam', path: 'scam/', heading: 'h1' },
-  { name: 'hack', path: 'hack/', heading: 'h1' },
-  { name: 'nation', path: 'nation/', heading: 'h1' },
+  ...UNITS.map(({ slug }) => ({ name: slug, path: slug + '/', heading: 'h1' })),
 ];
 const KANA = /[\u3040-\u30ff]/;
 

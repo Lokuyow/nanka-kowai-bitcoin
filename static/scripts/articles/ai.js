@@ -18,8 +18,8 @@
     var region = Math.max(4, 80 * (1 - x / 100 * 1.15));
     var left = 80 - region;
     var moved = left * 0.9;
-    var world = 100 - left * 0.1 + (Math.random() * 2 - 1);
-    setBar('mine', region / 80 * 80);
+    var world = 100 - left * 0.1;
+    setBar('mine', region);
     setBar('move', moved);
     setBar('all', world);
     if (x < 35) cap.textContent = L('この地域では、AIとマイニングがまだ両立している。', 'In this region, AI and mining still coexist.');

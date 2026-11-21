@@ -1,4 +1,4 @@
-<div class="answer" data-i18n-html>書き換えるのは誰でもできる。<br>でも全員が受け入れなければ、それは「別のコイン」になるだけ</div>
+<div class="answer" data-i18n-html>発行のルールは、ノードがそれぞれ確かめる。<br>上限を超える発行は、今のルールを使うノードに拒否される</div>
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
@@ -6,27 +6,21 @@
   </section>
 
   <section>
-    <h2 data-i18n>書き換えた先は「別のコイン」</h2>
-    <p class="lede" data-i18n>コードを書き換えること自体は誰でも自由にできる。問題はその先。みんなが受け入れなければ、ただ枝分かれして終わる。</p>
-    <div class="card fork-wrap">
-      <div class="frow">
-        <div class="fblk" data-i18n>記録</div><div class="flink"></div>
-        <div class="fblk" data-i18n>記録</div><div class="flink"></div>
-        <div class="fblk" data-i18n>記録</div><div class="flink"></div>
-        <div class="fblk live" data-i18n>続く</div>
-        <div class="flabel"><b data-i18n>上限2,100万枚のまま</b><small data-i18n>みんなが使い続ける本流</small></div>
+    <h2 data-i18n>ルールが違うと、同じブロックでも判断が分かれる</h2>
+    <p class="lede" data-i18n>試しに発行上限を引き上げるソフトを作ったとする。増やした分を含むブロックが届いても、元のルールを使うノードは受け入れない。</p>
+    <div class="cols">
+      <div class="card">
+        <h3 data-i18n>元のルールを使うノード</h3>
+        <p data-i18n>上限を超えるので、そのブロックを拒否する。</p>
       </div>
-      <div class="frow">
-        <div class="fblk" style="visibility:hidden" data-i18n>記録</div><div class="flink" style="visibility:hidden"></div>
-        <div class="fblk" style="visibility:hidden" data-i18n>記録</div><div class="flink" style="visibility:hidden"></div>
-        <div class="fblk dead" data-i18n>変更版</div>
-        <div class="flabel"><b data-i18n>上限を書き換えた版</b><small data-i18n>使う人がいない＝ただの別物</small></div>
+      <div class="card">
+        <h3 data-i18n>新しい上限を採用したノード</h3>
+        <p data-i18n>ほかの条件も満たしていれば、そのブロックを受け入れる。</p>
       </div>
-      <p class="hint" data-i18n>サッカーで1チームだけ「ゴールは2点」と言い出しても、相手は試合をしてくれない。それと同じ。</p>
     </div>
     <div class="card" id="capCard">
-      <p style="margin:0 0 4px;font-size:15px"><b data-i18n>じゃあ実際にあなたが書き換えてみる</b></p>
-      <p class="hint" style="text-align:left;margin:0 0 12px" data-i18n>上限をいくつに書き換えますか？ 選んで「配る」を押すと、世界中の参加者（ノード）にあなたの変更版が届きます。</p>
+      <p style="margin:0 0 4px;font-size:15px"><b data-i18n>上限を変えて、ブロックを送ってみる</b></p>
+      <p class="hint" style="text-align:left;margin:0 0 12px" data-i18n>上限を選び、増やした分の発行を含むブロックを送ってみよう。図の5つのノードは、どれも元のルールを使っている。</p>
       <div class="capbtns" id="capBtns">
         <button type="button" data-cap="2,200万枚" data-cap-en="22 million" class="on" data-i18n>2,200万枚にする</button>
         <button type="button" data-cap="4,200万枚" data-cap-en="42 million" data-i18n>2倍の4,200万枚</button>
@@ -39,19 +33,18 @@
         <div class="node"><span class="st">待機中</span><span data-i18n>ノードD</span></div>
         <div class="node"><span class="st">待機中</span><span data-i18n>ノードE</span></div>
       </div>
-      <div class="captally" id="capTally">賛成 <b>0</b> ・ 拒否 <b>0</b> ・ あなたの版の利用者 <b>0人</b></div>
-      <div class="stamp-zone"><span class="stamp" data-i18n>誰もついてこない</span></div>
-      <div class="center"><button id="capGo" type="button">書き換えた版を配る</button></div>
+      <div class="captally" id="capTally">ブロックを拒否したノード <b>0 / 5</b></div>
+      <div class="stamp-zone"><span class="stamp" data-i18n>発行ルール違反</span></div>
+      <div class="center"><button id="capGo" type="button">ブロックを送る</button></div>
       <p class="capmsg" id="capMsg" aria-live="polite"></p>
     </div>
   </section>
 
   <section>
-    <h2 data-i18n>上限は「全員の約束」</h2>
-    <p class="lede" data-i18n>2,100万枚という数字を守っているのは特定の管理者ではない。</p>
+    <h2 data-i18n>ルールを変えるには何が必要？</h2>
+    <p class="lede" data-i18n>ルールを変えたソフトを使う参加者がいて、元のルールを使う参加者も残れば、記録が枝分かれすることがある。</p>
     <div class="card center" style="font-size:17px;font-weight:700">
-      <span data-i18n-html>守っているのは<span style="color:var(--color-primary)">使っている全員</span>の合意</span>
-      <p class="hint" data-i18n>変えたければ変えられる。でも、ついてくる人がいなければ意味がない。だから上限は守られ続ける。</p>
+      <span data-i18n-html>ノードがそれぞれ<span style="color:var(--color-primary)">発行ルール</span>を確かめる</span>
     </div>
   </section>
-<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>上限は「変えられない」のではなく「変えても誰もついてこない」から守られている</span></div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>一人がソフトを変えても、ほかのノードが使う発行ルールは変わらない</span></div>

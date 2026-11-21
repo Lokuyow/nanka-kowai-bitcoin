@@ -3,6 +3,8 @@
     font-size:13px;font-weight:700;transition:width .6s ease;white-space:nowrap;overflow:hidden}
 .inc-f{background:var(--btnbg);color:var(--btnfg);display:flex;align-items:center;justify-content:center;
     font-size:13px;font-weight:700;transition:width .6s ease;white-space:nowrap;overflow:hidden}
+.inc-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font-size:13px}
+.inc-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-inline-end:5px}
 .rwcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
 .pts{list-style:none;margin:0;padding:0}
 .pts li{padding:9px 0;border-bottom:1px dotted var(--line);font-size:14.5px}

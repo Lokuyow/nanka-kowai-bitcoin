@@ -13,10 +13,10 @@
       {text: '別の両替商も店を出し、競い合って手数料が下がった。', textEn: 'Another moneychanger opened shop too, and competing fees came down.', tag: 'good'}
     ]},
     none: {reflect: '誰の気分でも変わらない安心感はある。でも、困ったときに調整できる人もいない。', reflectEn: 'There is comfort in money that no one\'s mood can change. But there is also no one who can adjust it in hard times.', years: [
-      {text: '最初は不便だったが、量の決まったお金を皆が使うようになった。値段は作り手の気分では変わらない。', textEn: 'It was inconvenient at first, but everyone came to use the money with a fixed amount. Its value does not change with an issuer\'s mood.', tag: 'mix'},
+      {text: '最初は不便だったが、量の決まったお金を皆が使うようになった。発行のルールは同じでも、品物の値段はそのときの売り買いで変わった。', textEn: 'It was inconvenient at first, but everyone came to use the money with a fixed amount. Issuance followed the same rule, while prices still changed with buying and selling.', tag: 'mix'},
       [{text: '隣の村でも同じお金が使えた。村と村の境を越えて回り始めた。', textEn: 'The same money could be used in the next village. It began to circulate across village borders.', tag: 'good'},
        {text: '隣の村では受け取ってもらえず、交換のたびに両替が要った。', textEn: 'The next village would not accept it, so every trade needed an exchange.', tag: 'bad'}],
-      {text: '不作の年が来た。助けたくても、お金の量を増やせる人がいなかった。', textEn: 'A year of poor harvest came. People wanted to help, but there was no one who could increase the amount of money.', tag: 'bad'}
+      {text: '不作の年が来た。お金を新たに配ることはできず、村は備蓄や寄付でどう支えるかを話し合った。', textEn: 'A year of poor harvest came. The village could not issue extra money, so people discussed using reserves or donations to help.', tag: 'bad'}
     ]}
   };
   var TAGLABEL = {good: 'よかった', bad: '困った', mix: '両方'};

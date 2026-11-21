@@ -32,7 +32,7 @@
   routeSelf.addEventListener('click', function(){ setRoute('self'); });
   spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); });
   spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); });
-  var lastRun = null; /* { route, speed, v, mode:'live'|'legacy', congIdx, mult } */
+  var lastRun = null; /* { route, speed, v, mode:'live'|'legacy' } */
   var liveData = null;  /* LiveData の取得結果（使えなければ null） */
   var settled = false;  /* 取得が終わったかどうか（免責文の出し分け用） */
   var noteEl = document.getElementById('feeNote');
@@ -51,7 +51,7 @@
     return { fee: Math.round(rate * window.LiveData.VB * price / 1e8), rate: rate };
   }
   var EX_FEE = { jpy: 7500, usd: 50 };                      /* 従来計算の取引所手数料（0.0005 BTC の目安換算） */
-  var SELF_BASE = { jpy: [150, 400, 900], usd: [1, 3, 6] };  /* 従来計算の混雑度ごとの手数料のもと */
+  var SELF_BASE = { jpy: 400, usd: 3 };  /* 実データがない場合の低めの手数料の例 */
   function updateNote(){
     if (!noteEl || !settled) return;
     if (liveReady()) {
@@ -69,47 +69,43 @@
     var isLive = lastRun.mode === 'live' && liveReady();
     var run = isLive ? liveFee(lastRun.route, lastRun.speed)
       : lastRun.route === 'ex' ? { fee: isEn() ? EX_FEE.usd : EX_FEE.jpy, rate: null }
-      : { fee: Math.round((isEn() ? SELF_BASE.usd : SELF_BASE.jpy)[lastRun.congIdx] * lastRun.mult), rate: null };
+      : { fee: Math.round((isEn() ? SELF_BASE.usd : SELF_BASE.jpy) * (lastRun.speed === 'fast' ? 3 : 1)), rate: null };
     var fee = run.fee, msg;
-    var congIdx = isLive ? congIdxFor(liveData.tiers.halfHour) : lastRun.congIdx;
+    var congIdx = isLive ? congIdxFor(liveData.tiers.halfHour) : null;
     if (lastRun.route === 'ex') {
-      if (fee >= a) msg = L('送る額より手数料の方が大きい。固定料金は小さい額をそのまま食べてしまう。これが「送金手数料が高い」と感じる正体。', "The fee is bigger than the amount you're sending. A fixed charge eats small amounts whole. This is what's really behind the feeling that Bitcoin fees are high.");
+      if (fee >= a) msg = L('予算が出金手数料以下なので、この条件では送れない。', "The withdrawal fee uses up the entire budget or more, so the transfer cannot go ahead.");
       else {
         var pct = Math.round(fee / a * 100);
-        msg = L('手数料は全体の約' + pct + '%。金額が小さいほど、固定料金の重さが目立ってくる。', 'The fee is about ' + pct + '% of the total. The smaller the amount, the heavier the fixed charge feels.');
+        msg = L('手数料は予算の' + pct + '%。金額が小さいほど、固定料金の重さが目立ってくる。', 'The fee is about ' + pct + '% of the total. The smaller the amount, the heavier the fixed charge feels.');
         if (pct <= 2) msg += L('大きな額なら割合は小さくなる。でも、それはネットワークの手数料が下がったからではない。', ' With a large amount the share shrinks — but not because the network fee went down.');
       }
     } else if (fee >= a) {
-      msg = L('送る額より手数料の方が大きい。いまの手数料では、金額の小さい送金は手数料で消えてしまう。', 'The fee is bigger than the amount itself. At the current fee, a transfer this small would be eaten up by the fee.');
+      msg = L('予算がネットワーク手数料以下なので、この条件では送れない。', 'The network fee uses up the entire budget or more, so the transfer cannot go ahead.');
     } else {
       var congNames = [['空いている', 'quiet'], ['ふつう', 'normal'], ['混雑している', 'busy']];
       var pct2 = fee / a * 100;
       var pctTxt = pct2 < 0.1 ? '0.1%未満' : pct2.toFixed(1) + '%';
       var pctTxtEn = pct2 < 0.1 ? 'less than 0.1%' : pct2.toFixed(1) + '%';
       if (isLive) {
-        msg = L('いまのネットワークは「' + congNames[congIdx][0] + '」。手数料レートは約' + fmtRate(run.rate) + ' sat/vBで、手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
-                'The network is "' + congNames[congIdx][1] + '" right now, at a fee rate of about ' + fmtRate(run.rate) + ' sat/vB. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
+        msg = L('いまのネットワークは「' + congNames[congIdx][0] + '」。手数料レートは約' + fmtRate(run.rate) + ' sat/vBで、手数料は予算の' + pctTxt + '。この図では同じ大きさの取引を送るので、予算を変えても手数料は同じ。',
+                'The network is "' + congNames[congIdx][1] + '" right now, at a fee rate of about ' + fmtRate(run.rate) + ' sat/vB. The fee is ' + pctTxtEn + ' of the budget. The fee stays the same as you change the budget because the transaction data stays the same size.');
       } else {
-        msg = L('いまのネットワークは「' + congNames[congIdx][0] + '」。手数料は全体の約' + pctTxt + '。送る額が変わっても、手数料は混雑しだいで決まる。',
-                'The network is "' + congNames[congIdx][1] + '" right now. The fee is about ' + pctTxtEn + ' of the total. Change the amount and the fee stays the same — it depends on congestion, not size.');
+        msg = L('例として、手数料は予算の' + pctTxt + '。この図では同じ大きさの取引を送るので、予算を変えても手数料は同じ。',
+                'In this example, the fee is ' + pctTxtEn + ' of the budget. The fee stays the same as you change the budget because the transaction data stays the same size.');
       }
     }
     var got = Math.max(0, a - fee);
     document.getElementById('rAmt').textContent = money(a);
     document.getElementById('rFee').textContent = money(fee);
     document.getElementById('rGot').textContent = money(got);
-    document.getElementById('rBar').style.width = Math.max(2, got / a * 100) + '%';
+    document.getElementById('rBar').style.width = got / a * 100 + '%';
     document.getElementById('rMsg').textContent = msg;
     result.hidden = false;
   }
   document.getElementById('sendBtn').addEventListener('click', function(){
-    lastRun = { route: route, speed: speed, v: +range.value, mode: 'legacy', congIdx: 1, mult: 1 };
+    lastRun = { route: route, speed: speed, v: +range.value, mode: 'legacy' };
     if (liveReady()) {
       lastRun.mode = 'live';
-    } else if (route === 'self') {
-      var cong = Math.random();
-      lastRun.congIdx = cong < 0.4 ? 0 : (cong < 0.75 ? 1 : 2);
-      lastRun.mult = speed === 'wait' ? (0.8 + Math.random() * 0.5) : (2.5 + Math.random() * 1.5);
     }
     renderResult();
   });

@@ -20,6 +20,7 @@
   document.addEventListener('langchange', function(){
     renderNames();
     log.textContent = L(lastLog[0], lastLog[1]);
+    renderState();
   });
   var NS = 'http://www.w3.org/2000/svg';
   var nodesG = document.getElementById('banNodes');
@@ -28,6 +29,13 @@
   var log = document.getElementById('banLog');
   var countEl = document.getElementById('banCount');
   var banned = {};
+  var state = document.getElementById('banState');
+  function renderState(){
+    var active = COUNTRIES.length - Object.keys(banned).length;
+    countEl.textContent = COUNTRIES.length - active;
+    state.classList.toggle('ok', active > 0);
+    state.textContent = active ? L('図の中で稼働中', 'Running in this model') : L('図の中に稼働拠点なし', 'No active sites in this model');
+  }
   COUNTRIES.forEach(function(c, i){
     var dot = document.createElementNS(NS, 'circle');
     dot.setAttribute('cx', c.x); dot.setAttribute('cy', c.y); dot.setAttribute('r', 7);
@@ -50,7 +58,7 @@
       m.setAttribute('cx', mx); m.setAttribute('cy', my); m.setAttribute('r', 4);
       m.setAttribute('fill', '#1a1a1a');
       minersG.appendChild(m);
-      c.miners.push({el: m, hx: mx, hy: my});
+      c.miners.push(m);
     }
     var b = document.createElement('button');
     b.type = 'button';
@@ -60,9 +68,7 @@
     nameEls.push({tx: tx, b: b});
   });
   log.textContent = L(lastLog[0], lastLog[1]);
-  function unbannedList(except){
-    return COUNTRIES.filter(function(c, i){ return !banned[i] && i !== except; });
-  }
+  renderState();
   btnsWrap.addEventListener('click', function(e){
     var b = e.target.closest('button');
     if (!b) return;
@@ -75,35 +81,21 @@
       b.textContent = L(c.n + '（禁止中）', c.e + ' (banned)');
       dot.setAttribute('fill', '#bbb');
       x.style.display = '';
-      var targets = unbannedList(i);
-      c.miners.forEach(function(mn, k){
-        if (targets.length) {
-          var t = targets[Math.floor(Math.random() * targets.length)];
-          mn.el.setAttribute('cx', t.x + (k === 0 ? -11 : 11));
-          mn.el.setAttribute('cy', t.y + 11);
-          mn.el.style.opacity = '1';
-        } else {
-          mn.el.style.opacity = '.15';
-        }
-      });
-      var n = Object.keys(banned).length;
-      countEl.textContent = n;
-      if (c.n === '中国') setLog('中国が禁止。2021年に実際にあったことで、採掘は国外へ移り、ネットワークは止まらなかった。', 'China banned it. This really happened in 2021 — mining moved abroad and the network never stopped.');
-      else if (n >= 6) setLog('全部の国が禁止した。表立った拠点はなくなっても、参加者同士のネットワーク自体は消えていない。そもそも全部の国が足並みをそろえること自体起きにくい。', 'Every country banned it. Even with no public bases left, the network of participants itself hasn\'t vanished. And getting every country to move in lockstep is unlikely in the first place.');
-      else setLog(c.n + 'が禁止。採掘と参加者は国外へ移った。ネットワークは止まらない。', c.e + ' banned it. Mining and participants moved abroad. The network doesn\'t stop.');
+      c.miners.forEach(function(miner){ miner.style.display = 'none'; });
+      if (Object.keys(banned).length === COUNTRIES.length) {
+        setLog('図に出ている6か国の拠点が止まった。ほかの地域で続ける参加者がいれば、ネットワークは動き続けられる。', 'All six countries shown have stopped. The network can keep running if participants remain elsewhere.');
+      } else {
+        setLog(c.n + 'の拠点が止まった。ほかの国の拠点は動いている。', 'Sites in ' + c.e + ' stopped. Sites in other countries are still running.');
+      }
     } else {
       delete banned[i];
       b.classList.remove('banned');
       b.textContent = L(c.n + 'を禁止', 'Ban ' + c.e);
       dot.setAttribute('fill', '#527c72');
       x.style.display = 'none';
-      c.miners.forEach(function(mn){
-        mn.el.setAttribute('cx', mn.hx);
-        mn.el.setAttribute('cy', mn.hy);
-        mn.el.style.opacity = '1';
-      });
-      countEl.textContent = Object.keys(banned).length;
-      setLog(c.n + 'の禁止が解けた。活動は戻ってきた。', 'The ban in ' + c.e + ' was lifted. Activity came back.');
+      c.miners.forEach(function(miner){ miner.style.display = ''; });
+      setLog(c.n + 'の禁止を解除し、図の拠点を再開した。', 'The ban in ' + c.e + ' was lifted, and its sites in the diagram resumed.');
     }
+    renderState();
   });
 })();

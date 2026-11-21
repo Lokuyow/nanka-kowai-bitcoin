@@ -102,8 +102,8 @@
     var ev = plan.events[Math.min(idx, plan.events.length - 1)];
     if (phase === 'done') {
       simVal.textContent = fmt(plan.final);
-      simHead.textContent = L('現在', 'Now');
-      simMsg.textContent = L('最後まで持ち続けた。結果は大きい。でも途中の暴落で手放していたら、この結果はなかった。', 'You held to the very end. The result is big. But if you had let go in a crash along the way, this result would not exist.');
+      simHead.textContent = L('シミュレーション終了', 'End of the simulation');
+      simMsg.textContent = L('最後まで保有した場合の評価額。途中で売っていれば、その場面の金額で結果が決まる。', 'This is the value if you held until the end. Selling earlier would have locked in the value at that point.');
     } else if (phase === 'sold') {
       simVal.textContent = fmt(ev.v);
       simHead.textContent = L(ev.h, HEADS_EN[planKey][idx]);

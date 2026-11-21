@@ -10,13 +10,13 @@
   var card = document.getElementById('hackCard');
   var phase = 'init';
   function renderMsg(){
-    if (phase === 'init') msg.textContent = L('台帳は世界中の参加者が同じ写しを持っている。1つだけ書き換えても…？', 'Every participant around the world holds the same copy of the ledger. Rewrite just one of them, and…?');
+    if (phase === 'init') msg.textContent = L('ノードは取引履歴を保存し、取引がルールに合うか確かめる。', 'Nodes store transaction history and check transactions against the rules.');
     else if (phase === 'edited') msg.textContent = L('あなたの写しだけ ' + mine.toFixed(1) + ' BTC に書き換えた。世界の写しは 1.0 BTC のまま。この台帳、通ると思う？', 'You rewrote only your copy to ' + mine.toFixed(1) + ' BTC. The world\'s copies still say 1.0 BTC. Think this ledger will be accepted?');
     else if (phase === 'checking') msg.textContent = L('ネットワークが照合中…', 'The network is checking…');
     else if (phase === 'rejected') {
-      if (tries === 1) msg.textContent = L('世界の写しと食い違ったため却下。あなたの書き換えは消えて、数字は元に戻った。', 'Rejected — it disagreed with the world\'s copies. Your edit vanished and the numbers went back.');
-      else if (tries === 2) msg.textContent = L('また却下。正しいとされるのは多数派の写しの方。', 'Rejected again. The copies that count as correct are the majority\'s.');
-      else msg.textContent = L('何度送っても同じ。通すには世界中の写しを全部同時に書き換えるしかない。それは無理な話。', 'Same result every time. To get it through you\'d have to rewrite every copy in the world, all at once. Not happening.');
+      if (tries === 1) msg.textContent = L('増やした残高に対応する有効な取引がないので、ほかのノードは受け入れなかった。', 'The other nodes rejected the higher balance because there was no valid transaction to account for it.');
+      else if (tries === 2) msg.textContent = L('また却下。各ノードが同じルールで確かめている。', 'Rejected again. Each node checks the same rules independently.');
+      else msg.textContent = L('何度送っても結果は同じ。残高を増やすには、受け取りを示す有効な記録が必要。', 'Resending changes nothing. A higher balance needs a valid record of funds received.');
     }
   }
   document.addEventListener('langchange', renderMsg);

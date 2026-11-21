@@ -18,11 +18,10 @@
   function pieceText(d){
     if (d === 1) return '1 BTC';
     if (d === 100000000) return L('0.00000001 BTC（1 satoshi）', '0.00000001 BTC (1 satoshi)');
-    if (d <= 1000) return (1 / d) + ' BTC';
-    return L('約 ' + (1 / d).toExponential(1).replace('e', '×10の') + ' BTC', 'about ' + (1 / d).toExponential(1) + ' BTC');
+    return (1 / d).toFixed(Math.log10(d)) + ' BTC';
   }
   function capFor(d){
-    if (d === 1) return L('まだ割っていない状態。1BTCがまるごと1つ。スライダーを右へ引っぱると、好きなだけ細かく割れる。', 'Not split yet — one whole bitcoin. Drag the slider right and split it as fine as you like.');
+    if (d === 1) return L('まだ割っていない状態。1BTCがまるごと1つ。スライダーを右に動かすと、1 satoshiまで分けられる。', 'Not split yet — one whole bitcoin. Move the slider right to divide it down to one satoshi.');
     if (d === 100000000) return L('これ以上は割れない。1 satoshiが最小単位。線も細かすぎて描ききれない。それでも合計は1BTC。', 'No finer than this. 1 satoshi is the smallest unit. The lines are too fine to draw. And still, the total is 1 BTC.');
     if (d < 10) return L(d + 'つに割っても、全部合わせれば1BTCのまま。濃い色が一切れ。', 'Split into ' + d + ' pieces, it still adds up to 1 BTC. The dark slice is one piece.');
     if (d < 1000) return L('切れ目は増えた。でも全部集めれば1BTC。増えたのは「枚数の数字」だけ。', 'More cuts. But gather them all and it is 1 BTC. The only thing that grew is "the number of pieces".');

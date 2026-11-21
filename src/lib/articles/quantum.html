@@ -1,4 +1,4 @@
-<div class="answer" data-i18n-html>脅威になるのはずっと先。<br>今の量子コンピューターでは歯が立たず、対策に移行する時間もある</div>
+<div class="answer" data-i18n-html>十分に強い量子コンピューターは、今の署名を破りうる。<br>実現時期は分からず、移行方法が議論されている</div>
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
@@ -6,45 +6,40 @@
   </section>
 
   <section>
-    <h2 data-i18n>タイムラインで見る</h2>
-    <p class="lede" data-i18n>脅威が現実になるまでの道のりと対策が進む道のり。並べてみると、順番が見える。</p>
+    <h2 data-i18n>何が危なくなる？</h2>
+    <p class="lede" data-i18n>ビットコインを使うときは、秘密鍵で送金に署名する。公開鍵を使えば、その署名が正しいかを誰でも確かめられる。</p>
     <div class="card">
-      <p class="nowmark" data-i18n>いまここ（量子コンピューターはまだ実験段階）</p>
-      <div class="lane">
-        <div class="lbl"><b data-i18n>量子コンピューターの進歩</b><span data-i18n>実用レベルはまだ遠い</span></div>
-        <div class="trackbar"><div class="fill q"></div></div>
-      </div>
-      <div class="lane">
-        <div class="lbl"><b data-i18n>ビットコイン側の対策</b><span data-i18n>耐量子の署名へ移行する道がある</span></div>
-        <div class="trackbar"><div class="fill d"></div></div>
-      </div>
-      <p class="hint" data-i18n>「できたら即終わり」ではなく「ずっと先の脅威に備える時間がある」が実情。</p>
+      <ol>
+        <li data-i18n>今は、公開鍵から秘密鍵を求めるのは現実的ではない。</li>
+        <li data-i18n>十分に強い量子コンピューターは、公開鍵から秘密鍵を求めて署名を偽造できるおそれがある。</li>
+        <li data-i18n>対策には、量子計算に強い署名の導入と、利用者の移行が必要になる。</li>
+      </ol>
+      <p class="hint"><a href="https://bips.dev/360/" data-i18n>ビットコインの対策案（BIP 360）</a></p>
     </div>
   </section>
 
   <section>
-    <h2 data-i18n>鍵を総当たりで当ててみる</h2>
-    <p class="lede" data-i18n>ビットコインの鍵は2の256乗通りの中の1つ。総当たりで探したら、どれくらいかかるか。ボタンを押しっぱなし（連打でも進む）で試してみよう。</p>
+    <h2 data-i18n>今のコンピューターで鍵を総当たりすると？</h2>
+    <p class="lede" data-i18n>秘密鍵の候補はおよそ2の256乗通り。ボタンを押し続けて、手当たり次第に試すとどれくらいかかるか見てみよう。</p>
     <div class="card" id="bfCard">
       <div class="bfbig"><span data-i18n>試した回数</span> <b id="bfCount">0</b><span data-i18n> 回</span></div>
       <div class="bfrow"><span data-i18n>いまの速さ</span><b id="bfRate">毎秒 1億回</b></div>
       <div class="bfrow"><span id="bfTotalLbl">全体（2の256乗通り）に対して</span><b id="bfPct">0%</b></div>
       <div class="bfrow"><span data-i18n>このペースで全部試すと</span><b id="bfYears"></b></div>
-      <label class="bfq"><input type="checkbox" id="bfQuantum"><span data-i18n> 量子コンピューターを使う（総当たりは2の128乗回で済む）</span></label>
       <div class="center" style="margin-top:12px"><button id="bfBtn" type="button" data-i18n>押しっぱなしで総当たり</button></div>
       <p class="bfmsg" id="bfMsg" aria-live="polite">宇宙の年齢は約138億年。当たる気がしない理由が桁の大きさでわかる。</p>
     </div>
   </section>
 
   <section>
-    <h2 data-i18n>そもそも狙えないアドレスが多い</h2>
-    <p class="lede" data-i18n>量子攻撃が狙えるのは公開鍵が表に出ている場合だけ。送金に使っていないアドレスは、公開鍵がハッシュの後ろに隠れている。</p>
+    <h2 data-i18n>公開鍵はどこに出る？</h2>
+    <p class="lede" data-i18n>公開鍵から秘密鍵を求める攻撃では、公開鍵がすでに見えている資金が先にリスクにさらされる。公開される時期は受け取り方で変わる。</p>
     <div class="card">
       <div class="lockrow">
-        <div class="lockbox"><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.6-1.7"/></svg><span data-i18n> 狙われうる</span></b><span data-i18n-html>送金に使って<br>公開鍵が出たアドレス</span></div>
-        <div class="lockbox"><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n> 狙えない</span></b><span data-i18n-html>まだ使っていない<br>アドレス（鍵は隠れたまま）</span></div>
+        <div class="lockbox"><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.6-1.7"/></svg><span data-i18n> 公開鍵が見えている</span></b><span data-i18n-html>受け取った時点で公開される形式や<br>一度使って公開済みになった鍵</span></div>
+        <div class="lockbox"><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span data-i18n> 公開鍵がまだ見えない</span></b><span data-i18n-html>公開鍵のハッシュだけが記録され、<br>その鍵でまだ送金していない場合</span></div>
       </div>
-      <p class="hint" data-i18n>リスクがある部分も移行の対象として議論が進んでいる。「全部が一気に無防備になる」わけではない。</p>
+      <p class="hint" data-i18n>送金時に公開鍵が見える形式も、移行を考える対象になる。</p>
     </div>
   </section>
-<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>「即終わり」は嘘。脅威はずっと先で、備える時間も道もある</span></div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>量子計算が十分に進歩すると署名が危うくなる。備えには新しい署名の導入と移行が必要</span></div>

@@ -6,10 +6,10 @@
     ]},
     {title: '昼：海外の友だちに送金する', choices: [
       {label: '銀行経由で送る', out: '手数料がかかり、着くのは数日後になった。'},
-      {label: 'ビットコインで送る', out: 'すぐに着いた。でも送り先を間違えないよう、3回見直した。'}
+      {label: 'ビットコインで送る', out: '送金はすぐに送信できた。友だちは取引が台帳に載るのを待った。'}
     ]},
     {title: '夜：余ったお金をしまっておく', choices: [
-      {label: '銀行に預ける', out: '額面は減らない。その安心感で眠れる。'},
+      {label: '銀行に預ける', out: '口座の残高を円で確認できた。明日の支払いにいくら残るか計算しやすかった。'},
       {label: 'ビットコインで持つ', out: '寝る前につい値段を確認してしまった。'}
     ]}
   ];
@@ -20,10 +20,10 @@
     ]},
     {title: 'Midday: sending money to a friend overseas', choices: [
       {label: 'Send via a bank', out: 'A fee applied, and it arrived a few days later.'},
-      {label: 'Send in Bitcoin', out: 'It arrived right away. But you triple-checked the destination so as not to get it wrong.'}
+      {label: 'Send in Bitcoin', out: 'You submitted the transfer right away. Your friend waited for it to be recorded.'}
     ]},
     {title: 'Night: putting away the money left over', choices: [
-      {label: 'Deposit it in a bank', out: 'The amount will not shrink. You can sleep with that peace of mind.'},
+      {label: 'Deposit it in a bank', out: 'You could check your balance in dollars and easily see what was left for the next day\'s bills.'},
       {label: 'Hold it in Bitcoin', out: 'Before bed, you caught yourself checking the price.'}
     ]}
   ];

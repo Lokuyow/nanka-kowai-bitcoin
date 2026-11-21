@@ -6,8 +6,8 @@
   var msgIdx = 0;
   var MSGS = [
     ['誰かが送った 0.5 BTC。送り先を1件ずつたどってみよう。', 'Someone sent 0.5 BTC. Trace where it went, one hop at a time.'],
-    ['また別のアドレスへ。金額が少し減ったのは手数料やおつりの分。', 'On to another address. The amount shrank a little — fees and change.'],
-    ['まだたどれる。記録は消えずに残り続ける。', 'Still traceable. The records stay, unerasable.'],
+    ['受け取った0.5 BTCのうち、0.2 BTCを別のアドレスへ送った。', 'Of the 0.5 BTC received, 0.2 BTC went to the next address.'],
+    ['0.2 BTCがさらに次のアドレスへ移った。', 'The 0.2 BTC moved on to another address.'],
     ['次にどのアドレスへ送ったか、公開台帳で確かめられる。', 'The public ledger shows which address received the next transfer.'],
     ['行き着いた先は取引所のアドレス。取引所に本人確認の記録があれば、持ち主を調べる手がかりになる。', 'The trail ends at an exchange address. If the exchange has identity records, they can help identify the account holder.']
   ];

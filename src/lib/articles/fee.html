@@ -1,52 +1,52 @@
-<div class="answer" data-i18n-html>高いのは取引所の料金設定。<br>本物の送金手数料は別のもので、混雑しだいで変わる</div>
+<div class="answer" data-i18n-html>取引所が決める出金手数料と<br>ネットワークに払う送金手数料がある</div>
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
-    <p class="lede" data-i18n>取引所で出金すると、明細に「手数料 ○○円」と出る。払う場面がそこしかないから、その全部がビットコインの手数料だと思ってしまう。</p>
+    <p class="lede" data-i18n>取引所の明細には、出金手数料がまとめて表示される。その金額を見て、自分のウォレットから送っても同じだけかかると思うかもしれない。</p>
   </section>
 
   <section>
-    <h2 data-i18n>レシートを比べてみる</h2>
-    <p class="lede" data-i18n>あなたが払っているのは左。本物の送金手数料は右。別々のもの。</p>
+    <h2 data-i18n>2種類の手数料を比べてみる</h2>
+    <p class="lede" data-i18n>取引所から出金するときは取引所の料金がかかる。自分のウォレットから送るときは、取引を記録するマイナーに手数料を払う。</p>
     <div class="cols" style="margin-top:12px">
       <div class="receipt">
-        <h3 data-i18n>取引所のレシート</h3>
+        <h3 data-i18n>取引所から出金する例</h3>
         <div class="line"><span data-i18n>出金する額</span><span>0.1 BTC</span></div>
         <div class="line hl"><span data-i18n>出金手数料</span><span>0.0005 BTC</span></div>
-        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n-html>固定<span class="nw">（いつも同じ）</span></span></div>
+        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n-html>取引所が設定</span></div>
       </div>
       <div class="receipt">
-        <h3 data-i18n>本物の送金レシート</h3>
+        <h3 data-i18n>自分のウォレットから送る例</h3>
         <div class="line"><span data-i18n>送る額</span><span>0.1 BTC</span></div>
-        <div class="line hl"><span data-i18n>送金手数料</span><span data-i18n>混雑しだい</span></div>
+        <div class="line hl"><span data-i18n>送金手数料</span><span data-i18n>取引ごとに変わる</span></div>
         <div class="line live-line" id="liveFeeLine" hidden>
           <span><span id="liveFeeLabel"></span><sup class="fee-note-ref"><a href="#liveFeeSrc">※1</a></sup></span>
           <span id="liveFeeMain"></span>
         </div>
-        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n-html>変動<span class="nw">（空いていれば安い）</span></span></div>
+        <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n-html>混雑や取引データの大きさで変わる</span></div>
       </div>
     </div>
-    <p class="lede" style="margin-top:12px" data-i18n>本物の送金手数料はたいてい取引所の出金手数料よりずっと安い。</p>
+    <p class="lede" style="margin-top:12px" data-i18n>ウォレット側の目安は、取引1件を記録するための手数料。取引所は複数人の出金をまとめて1件の取引で送ることもある。</p>
   </section>
 
   <section>
     <h2><span data-i18n>送ってみると違いが見える</span><sup class="fee-note-ref"><a href="#feeNote">※2</a></sup></h2>
-    <p class="lede" data-i18n>取引所の出金手数料は金額にかかわらず固定。本物の送金手数料は混雑しだいで変わる。送る額を変えて両方のやり方で送ってみよう。</p>
+    <p class="lede" data-i18n>この例では、取引所の出金手数料と送金データの大きさを固定している。送金に使う予算を変えて、手数料と相手に届く額を比べてみよう。</p>
     <div class="card" id="sendCard">
-      <label><span data-i18n>送る額:</span> <b id="amtLbl">11,200円</b><input type="range" id="amtRange" min="0" max="100" value="45" aria-label="送る額" data-i18n-label></label>
+      <label><span data-i18n>使う予算:</span> <b id="amtLbl">11,200円</b><input type="range" id="amtRange" min="0" max="100" value="45" aria-label="送金に使う予算" data-i18n-label></label>
       <div class="routebtns">
         <button type="button" id="routeEx" class="on" data-i18n>取引所から出金する</button>
         <button type="button" id="routeSelf" data-i18n>自分で送金する</button>
       </div>
       <div id="selfOpts" hidden>
         <div class="routebtns">
-          <button type="button" id="spdWait" class="on" data-i18n>待てる（安く送る）</button>
-          <button type="button" id="spdFast" data-i18n>急ぐ（高くても速く）</button>
+          <button type="button" id="spdWait" class="on" data-i18n>待てる（低めの手数料）</button>
+          <button type="button" id="spdFast" data-i18n>急ぐ（高めの手数料）</button>
         </div>
       </div>
       <div class="center" style="margin:6px 0"><button id="sendBtn" type="button" data-i18n>送ってみる</button></div>
       <div class="sendresult" id="sendResult" hidden>
-        <div class="line"><span data-i18n>送った額</span><b id="rAmt"></b></div>
+        <div class="line"><span data-i18n>使う予算</span><b id="rAmt"></b></div>
         <div class="line"><span data-i18n>手数料</span><b id="rFee"></b></div>
         <div class="line hl"><span data-i18n>相手に届く額</span><b id="rGot"></b></div>
         <div class="feebar-wrap"><div class="feebar" id="rBar"></div></div>
@@ -54,7 +54,7 @@
       </div>
     </div>
   </section>
-<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>高いのは取引所の料金設定。ビットコイン自体の手数料は別のもので、混雑しだいで変わる</span></div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>取引所の出金料金と、取引を記録するためのネットワーク手数料は別々に決まる</span></div>
 <div class="fee-notes">
   <p id="liveFeeSrc" data-note-mark="※1" hidden></p>
   <p id="feeNote" data-note-mark="※2" data-i18n>手数料は目安です。取引所の出金手数料は一例として 0.0005 BTC で計算しています。</p>
