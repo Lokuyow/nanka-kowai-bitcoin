@@ -88,6 +88,14 @@ function iconSvg({ rounded = true, scale = 1, simple = false } = {}) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">${bg}${body}</svg>`;
 }
 
+// PWA・ホーム画面用：おばけの見た目の中心をタイルの中心に合わせ、背景が多くなりすぎない大きさにする
+function appIconSvg({ rounded = true, scale = 1.15 } = {}) {
+  const bg = rounded
+    ? `<rect width="100" height="100" rx="22" fill="${COLORS.tile}"/>`
+    : `<rect width="100" height="100" fill="${COLORS.tile}"/>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">${bg}<g transform="translate(50 51) scale(${scale}) translate(-55 -54)">${ghost()}</g></svg>`;
+}
+
 // ヘッダー用：小さく表示しても見えるよう、タイルいっぱいまでおばけを大きくしたマーク
 function brandMarkSvg() {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="${COLORS.tile}"/><g transform="translate(50 52) scale(1.17) translate(-55 -54)">${ghost()}</g></svg>`;
@@ -211,15 +219,15 @@ try {
   await writeFile(path.join(STATIC, 'ghost-lost.svg'), lostGhostSvg() + '\n');
   await mkdir(path.join(STATIC, 'icons'), { recursive: true });
   const icons = [
-    ['icons/icon-192.png', 192, { rounded: true }, true],
-    ['icons/icon-512.png', 512, { rounded: true }, true],
-    // maskable は端末側で切り抜かれるので全面塗りにし、中央 80% の安全域に収める
-    ['icons/icon-maskable-512.png', 512, { rounded: false, scale: 0.76 }, false],
+    ['icons/icon-192.png', 192, { rounded: true, scale: 1.15 }, true],
+    ['icons/icon-512.png', 512, { rounded: true, scale: 1.15 }, true],
+    // maskable は端末側で円などに切り抜かれるので全面塗りにする。中央の安全域に顔とコインが収まる大きさにする
+    ['icons/icon-maskable-512.png', 512, { rounded: false, scale: 0.94 }, false],
     // iOS が角を丸めるので全面塗り
-    ['icons/apple-touch-icon.png', 180, { rounded: false, scale: 0.84 }, false]
+    ['icons/apple-touch-icon.png', 180, { rounded: false, scale: 1.1 }, false]
   ];
   for (const [rel, size, options, transparent] of icons) {
-    await writeFile(path.join(STATIC, rel), await renderPng(page, iconSvg(options), size, size, { transparent }));
+    await writeFile(path.join(STATIC, rel), await renderPng(page, appIconSvg(options), size, size, { transparent }));
   }
   const ico = [];
   for (const size of [16, 32, 48]) {
