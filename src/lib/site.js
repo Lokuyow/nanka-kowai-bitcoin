@@ -75,10 +75,10 @@ export const LAYERS = [
       },
       {
         slug: "crime",
-        heading: "ビットコインって匿名で<br>犯罪に使われるんでしょ？",
-        cardAnswer: "匿名ではなく仮名。全部公開で残る",
-        description: "匿名ではなく「仮名」。取引は全部公開の台帳に残るから、現金より足がつきやすい",
-        shareEn: { title: "Bitcoin is anonymous and used for crime, right?", text: "Not anonymous — \"pseudonymous\". Every transaction stays on a public ledger, so it is easier to trace than cash" }
+        heading: "ビットコインって匿名だから<br>犯罪に使いやすいんでしょ？",
+        cardAnswer: "本名は載らない。送金の記録は公開されている",
+        description: "台帳に本名は載らない。送金の記録は公開されていて、資金の流れをたどれる",
+        shareEn: { title: "Bitcoin is anonymous, so it's easy to use for crime, right?", text: "The ledger doesn't show real names. Transfers are public, so the flow of funds can be traced" }
       },
       {
         slug: "energy",

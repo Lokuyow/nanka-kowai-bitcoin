@@ -56,27 +56,22 @@ var wedge = document.getElementById('wedge');
     if (livePrice && (window.LANG === 'en' ? livePrice.usd : livePrice.jpy)) {
       var man = Math.round(livePrice.jpy / 10000).toLocaleString('ja-JP');
       hintEl.textContent = L(
-        '1BTC = 約' + man + '万円（いまの実価格・' + livePrice.source + '）として計算。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。',
-        'Calculated at 1 BTC = $' + Math.round(livePrice.usd).toLocaleString('en-US') + ' (the current price, live from ' + livePrice.source + '). A small amount is still real bitcoin, and its percentage moves match buying a whole coin.');
+        '1 BTC = 約' + man + '万円（実価格・' + livePrice.source + '）で換算。',
+        'Converted using the latest available price of $' + Math.round(livePrice.usd).toLocaleString('en-US') + ' per BTC from ' + livePrice.source + '.');
     } else {
       hintEl.textContent = L(
-        '1BTC = 1,500万円として計算（イメージ）。量は少なくても、れっきとしたビットコイン。値動きの割合は丸ごと買った場合と同じ。',
-        'Calculated at 1 BTC = $100,000 (illustrative). A small amount is still real bitcoin, and its percentage moves match buying a whole coin.');
+        '1 BTC = 1,500万円で換算（参考価格）。',
+        'Converted at an illustrative price of $100,000 per BTC.');
     }
   }
   function yen(){ return Math.round(100 * Math.pow(10000, +range.value / 100) / 10) * 10; }
   function usd(){ return Math.round(10 * Math.pow(500, +range.value / 100)); }   /* 英語モードの金額: $10〜$5,000 */
   function amount(){ return window.LANG === 'en' ? usd() : yen(); }
   function price(){ return window.LANG === 'en' ? btcUsd : btcJpy; }
-  function msgFor(a, sats){
+  function msgFor(sats){
     if (sats > 100000000) return L('この金額なら、1 BTCより多く買える。', 'This amount buys more than 1 BTC.');
     if (sats === 100000000) return L('この金額で、ちょうど1 BTC買える。', 'This amount buys exactly 1 BTC.');
-    var en = window.LANG === 'en';
-    var t1 = en ? 20 : 1000, t2 = en ? 200 : 10000, t3 = en ? 2000 : 100000;
-    if (a < t1) return L('お小遣いでも、ちゃんと買える。', 'Even pocket money buys some, properly.');
-    if (a < t2) return L('ランチ代で、これだけの量になる。', 'For the price of lunch, you get this much.');
-    if (a < t3) return L('怯むのは「1BTCの値段」。買うのは、そのうちの割合でいい。', 'What makes you flinch is "the price of 1 BTC". But you only need to buy a fraction of it.');
-    return L('それでも1BTCには届かない。でも値動きの割合は、丸ごと買った場合と同じ。', 'Still not a whole BTC. But the percentage moves are the same as buying it whole.');
+    return L('この金額で、ビットコインの一部を買える。', 'This amount buys a fraction of a bitcoin.');
   }
   function upd(){
     var y = amount();
@@ -84,7 +79,7 @@ var wedge = document.getElementById('wedge');
     lbl.textContent = window.LANG === 'en' ? '$' + y.toLocaleString('en-US') : y.toLocaleString('ja-JP') + '円';
     btcEl.textContent = L('＝ ', '= ') + (sats / 100000000).toFixed(8) + ' BTC';
     bar.style.width = Math.max(2, +range.value) + '%';
-    msg.textContent = msgFor(y, sats);
+    msg.textContent = msgFor(sats);
     if (raf) cancelAnimationFrame(raf);
     var from = shown, to = sats, t0 = null;
     function step(t){
