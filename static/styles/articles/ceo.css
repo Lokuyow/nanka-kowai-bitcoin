@@ -4,12 +4,20 @@
 .profile.found td.v{color:var(--red);font-weight:700}
 .profile.found td.v s{color:#bbb;font-weight:400}
 .stamp-zone{position:relative;text-align:center;padding:20px 0 2px;min-height:84px;overflow:hidden}
-.net{display:block;margin:0 auto}
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:520px){.vs{grid-template-columns:1fr}}
 .vs .mini{background:#fff;border:1px solid var(--line);border-radius:12px;
     padding:12px;text-align:center;font-size:13px}
 .vs .mini b{display:block;font-size:14px;margin-bottom:6px}
+.network-diagram{display:block;width:100%;max-width:220px;height:auto;margin:0 auto 6px}
+.company-hub{fill:var(--btnbg)}
+.company-hub-label{fill:var(--btnfg)}
+.company-links{stroke:var(--sub)}
+.company-users{fill:var(--sub)}
+.company-users-label{fill:var(--ink)}
+.peer-links{stroke:var(--color-secondary);opacity:.55}
+.peer-nodes{fill:var(--color-secondary);stroke:var(--card);stroke-width:1.5}
+.diagram-caption{display:block;text-wrap:balance}
 .can{border:2px solid #c9d8c9;background:#fbfefb}
 .cannot{border:2px solid #e5c4c4;background:#fffbfb}
 .can h3,.cannot h3{margin:0 0 8px;font-size:15px}
@@ -17,6 +25,7 @@
 .can li,.cannot li{padding:5px 0;border-bottom:1px dotted var(--line)}
 .can li:last-child,.cannot li:last-child{border-bottom:0}
 .hlbtns{display:flex;flex-direction:column;gap:8px}
+.hlprompt{margin:0 0 12px;color:var(--sub);font-size:14px}
 .hlbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);min-height:48px;font-size:15px;border-radius:12px;padding:10px 14px;text-align:left}
 .hlbtns button.right{border-color:var(--green);background:#f2f9f2;color:var(--green);font-weight:700}
 .hlbtns button.wrong{border-color:var(--red);background:#fff6f6;color:var(--red)}
@@ -29,6 +38,3 @@
 .newsfig .note{margin:12px 0 2px;font-size:12px;color:var(--sub);line-height:1.6}
 :root[data-theme="dark"] .hlfeed .acc{background:#34272d}
 :root[data-theme="dark"] .profile td.v{color:#a79a85}
-:root[data-theme="dark"] .vs .mini text{fill:#e9e7e1}
-:root[data-theme="dark"] .vs .mini rect[fill="#eee"]{fill:#43454b}
-:root[data-theme="dark"] .vs .mini rect[fill="#1a1a1a"]{fill:#141311}

@@ -9,7 +9,7 @@
     </figure>
     <div class="card" id="hlCard">
       <p style="margin:0 0 4px;font-size:15px"><b data-i18n>見出しクイズ</b></p>
-      <p class="hint" style="text-align:left;margin:0 0 12px" data-i18n>2015年の逮捕を伝える見出し。正確なものはどれ？ タップして選んでみよう。</p>
+      <p class="hlprompt" data-i18n>上のニュースで、逮捕された人の肩書きを正しく伝えている見出しはどれ？</p>
       <div class="hlbtns" id="hlBtns">
         <button type="button" data-ok="0" data-i18n>「ビットコインの元CEOを逮捕」</button>
         <button type="button" data-ok="1" data-i18n>「取引所マウントゴックスの社長を逮捕」</button>
@@ -39,39 +39,37 @@
     <p class="lede" data-i18n>動かしているのは世界中の参加者みんな。真ん中に立つ「誰か」はいない。</p>
     <div class="card">
       <div class="vs">
-        <div class="mini"><b data-i18n>ふつうのサービス</b>
-          <svg width="150" height="120" viewBox="0 0 150 120">
-            <rect x="50" y="4" width="50" height="24" rx="6" fill="#1a1a1a"/>
-            <text x="75" y="20" fill="#fff" font-size="11" text-anchor="middle" data-i18n>社長</text>
-            <line x1="75" y1="28" x2="35" y2="52" stroke="#bbb" stroke-width="2"/>
-            <line x1="75" y1="28" x2="115" y2="52" stroke="#bbb" stroke-width="2"/>
-            <rect x="10" y="52" width="50" height="24" rx="6" fill="#eee"/>
-            <text x="35" y="68" font-size="11" text-anchor="middle" data-i18n>会社</text>
-            <rect x="90" y="52" width="50" height="24" rx="6" fill="#eee"/>
-            <text x="115" y="68" font-size="11" text-anchor="middle" data-i18n>会社</text>
-            <line x1="35" y1="76" x2="35" y2="96" stroke="#bbb" stroke-width="2"/>
-            <line x1="115" y1="76" x2="115" y2="96" stroke="#bbb" stroke-width="2"/>
-            <text x="35" y="110" font-size="11" text-anchor="middle" data-i18n>利用者</text>
-            <text x="115" y="110" font-size="11" text-anchor="middle" data-i18n>利用者</text>
+        <div class="mini"><b data-i18n>会社が運営するサービス</b>
+          <svg class="network-diagram" width="220" height="120" viewBox="0 0 220 120" aria-hidden="true">
+            <path class="company-links" d="M110 38v28M110 42 45 66m65-24 65 24" fill="none" stroke-width="2"/>
+            <rect class="company-hub" x="45" y="8" width="130" height="30" rx="8"/>
+            <text class="company-hub-label" x="110" y="27" text-anchor="middle" font-size="13" data-i18n>運営会社</text>
+            <g class="company-users">
+              <circle cx="45" cy="75" r="9"/>
+              <circle cx="110" cy="75" r="9"/>
+              <circle cx="175" cy="75" r="9"/>
+            </g>
+            <text class="company-users-label" x="110" y="106" text-anchor="middle" font-size="13" data-i18n>利用者</text>
           </svg>
-          <span data-i18n>トップの判断で止まる・変わる</span>
+          <span class="diagram-caption" data-i18n>利用者は運営会社を通じてサービスを使う</span>
         </div>
         <div class="mini"><b data-i18n>ビットコイン</b>
-          <svg class="net" width="150" height="120" viewBox="0 0 150 120">
-            <g stroke="#f0c48a" stroke-width="2">
-              <line x1="75" y1="18" x2="24" y2="52"/><line x1="75" y1="18" x2="126" y2="52"/>
-              <line x1="24" y1="52" x2="48" y2="100"/><line x1="126" y1="52" x2="102" y2="100"/>
-              <line x1="48" y1="100" x2="102" y2="100"/><line x1="24" y1="52" x2="126" y2="52"/>
-              <line x1="75" y1="18" x2="75" y2="100" stroke-dasharray="4 4"/>
+          <svg class="network-diagram" width="220" height="120" viewBox="0 0 220 120" aria-hidden="true">
+            <path class="peer-links" d="M48 24 115 14 178 28 200 72 164 101 97 104 28 83 20 47 48 24 81 58 115 14M20 47l61 11 16 46M28 83l53-25 52 16 31 27M97 104l36-30 45-46m-63-14 18 60 67-2" fill="none" stroke-width="2"/>
+            <g class="peer-nodes">
+              <circle cx="48" cy="24" r="7"/>
+              <circle cx="115" cy="14" r="7"/>
+              <circle cx="178" cy="28" r="7"/>
+              <circle cx="200" cy="72" r="7"/>
+              <circle cx="164" cy="101" r="7"/>
+              <circle cx="97" cy="104" r="7"/>
+              <circle cx="28" cy="83" r="7"/>
+              <circle cx="20" cy="47" r="7"/>
+              <circle cx="81" cy="58" r="7"/>
+              <circle cx="133" cy="74" r="7"/>
             </g>
-            <circle class="node" cx="75" cy="18" r="9" fill="#527c72"/>
-            <circle class="node" cx="24" cy="52" r="9" fill="#527c72"/>
-            <circle class="node" cx="126" cy="52" r="9" fill="#527c72"/>
-            <circle class="node" cx="48" cy="100" r="9" fill="#527c72"/>
-            <circle class="node" cx="102" cy="100" r="9" fill="#527c72"/>
-            <circle class="node" cx="75" cy="62" r="9" fill="#527c72"/>
           </svg>
-          <span data-i18n>全員が対等。止める人もいない</span>
+          <span class="diagram-caption" data-i18n>ノード同士がつながり、取引やブロックを伝え合う</span>
         </div>
       </div>
       <p class="hint" data-i18n-html>※ 取引所やウォレットのアプリには会社がある。でもそれは「ビットコインを使う道具」の会社で、<span class="nw">ビットコイン自体の運営ではない。</span></p>
@@ -97,6 +95,8 @@
           <li data-i18n>発行上限などのルールを無理やり変える</li>
           <li data-i18n>ネットワークを止める</li>
           <li data-i18n>コインを持っているだけで支配する</li>
+          <li data-i18n>他人のビットコインを、送金に必要な鍵なしで動かす</li>
+          <li data-i18n>ルールに違反した取引を他のノードに受け入れさせる</li>
         </ul>
       </div>
     </div>
