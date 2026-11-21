@@ -21,12 +21,16 @@ beforeAll(async () => {
   browser = await launchBrowser();
 });
 
-test('PWA: 更新時は変更があったファイルだけを取得する', async () => {
+test('PWA: 1 回の再読み込みで最新版を表示し、更新時は変更ファイルだけを取得する', async () => {
   const temp = await mkdtemp(path.join(os.tmpdir(), 'kowai-bitcoin-pwa-'));
   const updated = path.join(temp, 'build');
   let buildDir = BUILD_DIR;
+  let workerBuildDir = BUILD_DIR;
   const requests = [];
-  const site = await startServer({ getBuildDir: () => buildDir, onRequest: (url) => requests.push(url) });
+  const site = await startServer({
+    getBuildDir: (url) => url === BASE_PATH + 'sw.js' ? workerBuildDir : buildDir,
+    onRequest: (url) => requests.push(url)
+  });
   const context = await newContext(browser, { serviceWorkers: 'allow' });
   try {
     const { page } = await openPage(context, site.base);
@@ -44,6 +48,17 @@ test('PWA: 更新時は変更があったファイルだけを取得する', asy
       .find((file) => /^home\.[a-f0-9]{16}\.css$/.test(file));
     assert.ok(html && css, '変更後の HTML と CSS にハッシュ付きのファイル名がある');
     buildDir = updated;
+
+    // 新しい Worker の配信前でも、公開された HTML と CSS は最初の再読み込みで表示される。
+    requests.length = 0;
+    await page.reload({ waitUntil: 'load' });
+    assert.equal(page.url(), site.base);
+    assert.equal(await page.locator('html').evaluate((el) => getComputedStyle(el).getPropertyValue('--pwa-test')), 'updated');
+    assert.ok(requests.includes(BASE_PATH));
+    assert.ok(requests.includes(BASE_PATH + 'styles/' + css));
+    assert.ok(!requests.some((url) => url.startsWith(BASE_PATH + 'styles/base.')));
+
+    workerBuildDir = updated;
     requests.length = 0;
     await page.evaluate(async () => {
       const registration = await navigator.serviceWorker.getRegistration();
@@ -53,8 +68,11 @@ test('PWA: 更新時は変更があったファイルだけを取得する', asy
       await registration.update();
       await changed;
     });
-    assert.deepEqual(requests.sort(), [BASE_PATH + html, BASE_PATH + 'styles/' + css, BASE_PATH + 'sw.js'].sort());
+    assert.ok(requests.includes(BASE_PATH + 'sw.js'));
+    assert.ok(requests.includes(BASE_PATH + html));
+    assert.ok(requests.every((url) => [BASE_PATH + html, BASE_PATH + 'styles/' + css, BASE_PATH + 'sw.js'].includes(url)));
 
+    await context.setOffline(true);
     await page.reload({ waitUntil: 'load' });
     assert.equal(page.url(), site.base);
     assert.equal(await page.locator('html').evaluate((el) => getComputedStyle(el).getPropertyValue('--pwa-test')), 'updated');
@@ -127,7 +145,7 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
     assert.match(mainStyle.pathname, /\/styles\/base\.[a-f0-9]{16}\.css$/);
     requests.length = 0;
     await page.reload({ waitUntil: 'load' });
-    assert.ok(!requests.includes(BASE_PATH), '再訪問の HTML はキャッシュから返る');
+    assert.ok(requests.includes(BASE_PATH), '再訪問の HTML はネットワークで再検証される');
     assert.ok(!requests.includes(mainStyle.pathname), 'ハッシュ付き CSS はキャッシュから返る');
 
     await context.setOffline(true);

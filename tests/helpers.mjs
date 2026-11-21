@@ -37,7 +37,7 @@ export async function startServer({ onRequest = () => {}, getBuildDir = () => BU
       }
       let rel = pathname.slice(BASE_PATH.length);
       if (rel === '' || rel.endsWith('/')) rel += 'index.html';
-      const buildDir = getBuildDir();
+      const buildDir = getBuildDir(pathname);
       const file = path.join(buildDir, rel);
       if (!file.startsWith(buildDir + path.sep)) throw new Error('bad path');
       const body = await readFile(file);

@@ -1,63 +1,53 @@
-// BASE, VERSION, and PRECACHE are generated from the published site.
-const CACHE_PREFIX = 'kowai-bitcoin-v';
-const REVISION_CACHE_PREFIX = CACHE_PREFIX + '2-';
-const CACHE_NAME = REVISION_CACHE_PREFIX + VERSION;
-const entries = new Map(Object.entries(PRECACHE));
+import { PrecacheController } from 'workbox-precaching';
 
-function previousRevision(names) {
-  return names.filter((name) => name.startsWith(REVISION_CACHE_PREFIX) && name !== CACHE_NAME).at(-1);
+// BASE and PRECACHE are generated from the published site.
+const CACHE_PREFIX = 'kowai-bitcoin-v';
+const CACHE_NAME = CACHE_PREFIX + '3-workbox';
+const precache = new PrecacheController({ cacheName: CACHE_NAME });
+const urls = [...new Set(Object.values(PRECACHE))];
+precache.addToCacheList(urls.map((url) => ({ url, revision: null })));
+
+async function reuseLegacyEntries() {
+  const legacyName = (await caches.keys()).filter((name) => name.startsWith(CACHE_PREFIX + '2-')).at(-1);
+  if (!legacyName) return;
+
+  const legacy = await caches.open(legacyName);
+  const cache = await caches.open(CACHE_NAME);
+  await Promise.all(urls.map(async (url) => {
+    const response = await legacy.match(url);
+    if (response) await cache.put(url, response);
+  }));
 }
 
 self.addEventListener('install', (event) => {
   event.waitUntil((async () => {
-    const previous = previousRevision(await caches.keys());
-    const cache = await caches.open(CACHE_NAME);
-    const keys = new Set(entries.values());
-    try {
-      const missing = (await Promise.all([...keys].map(async (key) => {
-        if (await cache.match(key)) return;
-        const cached = previous && await caches.match(key, { cacheName: previous });
-        if (cached) await cache.put(key, cached);
-        else return key;
-      }))).filter(Boolean);
-      if (missing.length) await cache.addAll(missing);
-    } catch (error) {
-      await caches.delete(CACHE_NAME);
-      throw error;
-    }
-
+    await reuseLegacyEntries();
+    await precache.install(event);
     await self.skipWaiting();
   })());
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
-    const names = (await caches.keys()).filter((name) => name.startsWith(CACHE_PREFIX));
-    // The previous cache can still serve hashed assets referenced by an open page.
-    const previous = previousRevision(names);
-    await Promise.all(names.filter((name) => name !== CACHE_NAME && name !== previous)
+    await precache.activate(event);
+    const names = await caches.keys();
+    await Promise.all(names.filter((name) => name.startsWith(CACHE_PREFIX) && name !== CACHE_NAME)
       .map((name) => caches.delete(name)));
     await self.clients.claim();
   })());
 });
 
-async function respond(request, key, pathname) {
-  if (key) {
-    const cached = await caches.match(key, { cacheName: CACHE_NAME });
-    if (cached) return cached;
-  } else if (/\.[a-f0-9]{16}\.[a-z]+$/.test(pathname)) {
-    const previous = previousRevision(await caches.keys());
-    const cached = previous && await caches.match(pathname, { cacheName: previous });
-    if (cached) return cached;
-  }
-
+async function navigate(request, pathname) {
   try {
-    return await fetch(request);
+    return await fetch(request, { cache: 'no-cache' });
   } catch (error) {
-    if (request.mode === 'navigate') {
-      const notFound = await caches.match(entries.get(BASE + '404.html'), { cacheName: CACHE_NAME });
-      if (notFound) return new Response(notFound.body, { status: 404, headers: notFound.headers });
-    }
+    const pagePath = pathname.replace(/\/index\.html$/, '/');
+    const page = PRECACHE[pagePath.endsWith('/') || pagePath.endsWith('.html') ? pagePath : pagePath + '/'];
+    const cached = page && await precache.matchPrecache(page);
+    if (cached) return cached;
+
+    const notFound = await precache.matchPrecache(PRECACHE[BASE + '404.html']);
+    if (notFound) return new Response(notFound.body, { status: 404, headers: notFound.headers });
     throw error;
   }
 }
@@ -67,6 +57,10 @@ self.addEventListener('fetch', (event) => {
   if (request.method !== 'GET' || request.headers.has('range')) return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin || !url.pathname.startsWith(BASE)) return;
-  const pagePath = url.pathname.replace(/\/index\.html$/, '/');
-  event.respondWith(respond(request, entries.get(pagePath), url.pathname));
+
+  if (request.mode === 'navigate') {
+    event.respondWith(navigate(request, url.pathname));
+  } else if (precache.getCacheKeyForURL(url.pathname)) {
+    event.respondWith(precache.matchPrecache(url.pathname).then((cached) => cached ?? fetch(request)));
+  }
 });
