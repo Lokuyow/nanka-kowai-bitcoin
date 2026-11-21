@@ -1,19 +1,35 @@
 <script>
   import { BASE_PATH, articlePath } from './site.js';
+  import ArticleIcon from './ArticleIcon.svelte';
 
   let { article, previous, next, total } = $props();
 </script>
 
+{#snippet symbol(path)}
+  <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true">
+    <path d={path} />
+  </svg>
+{/snippet}
+
 <nav class="tabbar" aria-label="記事の移動" data-i18n-label>
   {#if previous}
-    <a class="tb" href={articlePath(previous)} data-i18n>← 前</a>
+    <a class="tb" href={articlePath(previous.slug)} aria-label="前の話" data-i18n-label>
+      {@render symbol('M19 12H5m6-6-6 6 6 6')}
+      <ArticleIcon slug={previous.slug} />
+    </a>
   {:else}
-    <span class="tb off" data-i18n>← 前</span>
+    <span class="tb off" aria-hidden="true">{@render symbol('M19 12H5m6-6-6 6 6 6')}</span>
   {/if}
-  <a class="tb idx" href={BASE_PATH + '#story-' + article.slug}><span data-i18n>一覧</span><small class="pos">{article.number} / {total}</small></a>
+  <a class="tb idx" href={BASE_PATH + '#story-' + article.slug} aria-label="一覧" aria-describedby="article-position" data-i18n-label>
+    {@render symbol('M8 6h11M8 12h11M8 18h11M4 6h.01M4 12h.01M4 18h.01')}
+    <span class="pos" id="article-position">{article.number} / {total}</span>
+  </a>
   {#if next}
-    <a class="tb next" href={articlePath(next.slug)} data-i18n>次 →</a>
+    <a class="tb next" href={articlePath(next.slug)} aria-label="次の話" data-i18n-label>
+      <ArticleIcon slug={next.slug} />
+      {@render symbol('M5 12h14m-6-6 6 6-6 6')}
+    </a>
   {:else}
-    <span class="tb off" data-i18n>次 →</span>
+    <span class="tb off" aria-hidden="true">{@render symbol('M5 12h14m-6-6 6 6-6 6')}</span>
   {/if}
 </nav>

@@ -15,5 +15,8 @@
     <span class="bridge-arrow" aria-hidden="true">→</span>
   </a>
 {:else}
-  <p class="bridge"><span data-i18n>内側の仕組みを知りたくなったら →</span> <a href={url} data-i18n>さわってわかるビットコイン</a></p>
+  <p class="bridge">
+    <span data-i18n>内側の仕組みを知りたくなったら</span>
+    <a href={url} data-i18n>さわってわかるビットコイン</a>
+  </p>
 {/if}

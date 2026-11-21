@@ -23,7 +23,7 @@ export function load({ params }) {
   return {
     article,
     body,
-    previous: ARTICLES[index - 1]?.slug,
+    previous: ARTICLES[index - 1],
     next: ARTICLES[index + 1]
   };
 }

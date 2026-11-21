@@ -1,11 +1,12 @@
 var el = document.getElementById('nowPrice');
   var msg = document.getElementById('dealMsg');
-  var card = document.getElementById('boardCard');
   var unitEl = document.getElementById('unitLbl');
   var noteEl = document.getElementById('liveNote');
   var myTrades = 0;
   var tradesEl = document.getElementById('myTrades');
   var lastPair = null;
+  var lastFill = null;
+  var fillTimer;
   // 板：段は {p: 価格（表示通貨）, a: 量}。バーの幅は a そのもの（最大100の固定スケール。正規化しない）
   // 表示通貨は日本語=円／英語=ドル。出発価格は実データ（LiveData）が取れたら
   // その現在価格、取れなければ例示価格（円とドルで対にしたイメージ）から始める。
@@ -50,6 +51,10 @@ var el = document.getElementById('nowPrice');
     // 組み直しで段数が初期値に戻らないよう、量の並びを現在の板から引き継ぐ
     asks.forEach(function(lv, i){ if (askA[i] !== undefined) lv.a = askA[i]; });
     bids.forEach(function(lv, i){ if (bidA[i] !== undefined) lv.a = bidA[i]; });
+    if (lastFill) {
+      var book = lastFill.side === 'ask' ? asks : bids;
+      lastFill.p = book[0].p + (lastFill.remaining ? 0 : lastFill.side === 'ask' ? -TICK : TICK);
+    }
   }
   var askRows = document.getElementById('askRows');
   var bidRows = document.getElementById('bidRows');
@@ -76,49 +81,60 @@ var el = document.getElementById('nowPrice');
       noteEl.hidden = true;
     }
   }
-  function makeRow(lv){
+  function makeRow(lv, fill){
     var row = document.createElement('div');
     row.className = 'row';
     row.dataset.p = lv.p;
     var p = document.createElement('span');
     p.className = 'p';
     p.textContent = manLabel(lv.p);
+    var track = document.createElement('div');
+    track.className = 'bar-track';
     var bar = document.createElement('div');
     bar.className = 'bar';
     bar.style.width = lv.a + '%';
+    track.appendChild(bar);
+    if (fill) {
+      row.classList.add('filled');
+      var consumed = document.createElement('div');
+      consumed.className = 'consumed';
+      consumed.style.left = fill.remaining + '%';
+      consumed.style.width = fill.amount + '%';
+      track.appendChild(consumed);
+    }
     row.appendChild(p);
-    row.appendChild(bar);
+    row.appendChild(track);
     return row;
   }
-  function render(hit){
-    askRows.innerHTML = '';
-    asks.slice().reverse().forEach(function(lv){ askRows.appendChild(makeRow(lv)); }); // 高い段が上、最良気配が中央のすぐ上
-    bidRows.innerHTML = '';
-    bids.forEach(function(lv){ bidRows.appendChild(makeRow(lv)); }); // 最良気配が中央のすぐ下、安い段ほど下
-    if (hit) {
-      var wrap = hit.side === 'ask' ? askRows : bidRows;
-      var row = wrap.querySelector('[data-p="' + hit.p + '"]');
-      if (row) {
-        row.classList.add('hit');
-        setTimeout(function(){ row.classList.remove('hit'); }, 700);
-      }
+  function renderSide(wrap, book, side){
+    var fill = lastFill && lastFill.side === side ? lastFill : null;
+    var levels = book.slice();
+    if (fill && !fill.remaining) {
+      levels.unshift({p: fill.p, a: 0});
     }
+    if (side === 'ask') levels.reverse();
+    wrap.replaceChildren(...levels.map(function(lv){
+      return makeRow(lv, fill && lv.p === fill.p ? fill : null);
+    }));
   }
-  function flash(){ card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash'); }
+  function render(){
+    renderSide(askRows, asks, 'ask');
+    renderSide(bidRows, bids, 'bid');
+  }
   function show(d, pair){
     el.textContent = fmtPrice(price);
     el.className = 'nowprice ' + (d > 0 ? 'up' : d < 0 ? 'down' : '');
     lastPair = pair;
     msg.textContent = L(pair[0], pair[1]);
-    flash();
   }
   // side='ask' は買い（最良の売り注文を取る）、'bid' は売り（最良の買い注文を取る）。
   // 約定した段だけが減り、空になったら消えて外側に新しい段が補充される。他の段は変わらない。
-  function deal(side, size, pair){
+  function deal(side, size, pair, ownTrade){
     var book = side === 'ask' ? asks : bids;
     var lv = book[0];
     var hitP = lv.p;
-    lv.a -= size;
+    var amount = Math.min(size, lv.a);
+    lv.a -= amount;
     if (lv.a <= 0) {
       book.shift();
       var np = side === 'ask' ? book[book.length - 1].p + TICK : book[book.length - 1].p - TICK;
@@ -126,8 +142,16 @@ var el = document.getElementById('nowPrice');
     }
     var d = hitP - price;
     price = hitP;
+    if (ownTrade) {
+      lastFill = { side: side, p: hitP, amount: amount, remaining: lv.a };
+      clearTimeout(fillTimer);
+      fillTimer = setTimeout(function(){
+        lastFill = null;
+        render();
+      }, 2600);
+    }
     show(d, pair);
-    render({side: side, p: hitP});
+    render();
   }
   buildBook(EXAMPLE[cur]);
   el.textContent = fmtPrice(price);
@@ -136,7 +160,7 @@ var el = document.getElementById('nowPrice');
   // 実データが取れたら、その現在価格を出発点に板を組み直す（取引回数は引き継ぐ）
   if (window.LiveData) {
     window.LiveData.load().then(function(d){
-      if (!d || (!d.jpy && !d.usd)) return;
+      if (myTrades || !d || (!d.jpy && !d.usd)) return;
       liveRates = {
         jpy: d.jpy || Math.round(d.usd * EXAMPLE.jpy / EXAMPLE.usd),
         usd: d.usd || Math.round(d.jpy * EXAMPLE.usd / EXAMPLE.jpy)
@@ -150,6 +174,7 @@ var el = document.getElementById('nowPrice');
     });
   }
   setInterval(function(){
+    if (lastFill) return;
     if (Math.random() < 0.5) {
       deal('ask', 10 + Math.round(Math.random() * 20), ['世界の誰かが、少し高い値段で買った', 'Someone in the world just bought at a slightly higher price']);
     } else {
@@ -159,12 +184,12 @@ var el = document.getElementById('nowPrice');
   document.getElementById('buyBtn').addEventListener('click', function(){
     myTrades++;
     renderTrades();
-    deal('ask', 30 + Math.round(Math.random() * 25), ['あなたが買った。買いたい注文が増えて、価格が押し上がった', 'You bought. Buy orders piled up and pushed the price up']);
+    deal('ask', 30 + Math.round(Math.random() * 25), ['あなたが買った分だけ、売り注文が減った', 'Your purchase reduced the sell orders at that price'], true);
   });
   document.getElementById('sellBtn').addEventListener('click', function(){
     myTrades++;
     renderTrades();
-    deal('bid', 30 + Math.round(Math.random() * 25), ['あなたが売った。売りたい注文が増えて、価格が押し下がった', 'You sold. Sell orders piled up and pushed the price down']);
+    deal('bid', 30 + Math.round(Math.random() * 25), ['あなたが売った分だけ、買い注文が減った', 'Your sale reduced the buy orders at that price'], true);
   });
   document.addEventListener('langchange', function(){
     convertTo(window.LANG === 'en' ? 'usd' : 'jpy');

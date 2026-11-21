@@ -1,22 +1,23 @@
 .boardv{display:block}
 .side h3{font-size:13px;margin:0 0 6px;text-align:left}
 .row{display:flex;align-items:center;gap:6px;margin:6px 0;font-size:12px;border-radius:6px}
-.row .bar{height:16px;border-radius:4px}
-.side.buy .bar{background:#527c72}
-.side.sell .bar{background:#999}
-.row .p{flex:0 0 64px;text-align:right;font-variant-numeric:tabular-nums}
-.row.hit{animation:flash .6s ease}
-:root[data-theme="dark"] .row.hit{animation:flashd .6s ease}
-@keyframes flashd{0%{background:#34272d}100%{background:transparent}}
+.side.buy{--bar-color:var(--green)}
+.side.sell{--bar-color:var(--red)}
+.row .bar-track{position:relative;flex:1;min-width:0;height:16px}
+.row .bar{height:100%;border-radius:4px;background:var(--bar-color)}
+.row .consumed{position:absolute;top:0;height:100%;border:1px solid var(--bar-color);
+    border-radius:3px;background:repeating-linear-gradient(135deg,
+    transparent 0 3px,var(--bar-color) 3px 5px,transparent 5px 7px)}
+.row .p{flex:0 0 8em;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.row.filled .p{color:var(--bar-color);font-weight:700}
 .nowbox{text-align:center;padding:12px 4px;margin:14px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .nowbox .lbl{font-size:12px;color:var(--sub)}
 .nowprice{font-size:30px;font-weight:900;font-variant-numeric:tabular-nums;line-height:1.2;transition:color .3s}
 .nowprice.up{color:var(--green)}
 .nowprice.down{color:var(--red)}
-.flash{animation:flash .6s ease}
-@keyframes flash{0%{background:var(--color-secondary-bg)}100%{background:transparent}}
 .tradebtns{display:flex;gap:8px;justify-content:center;margin-top:10px}
-.tradebtns button{min-height:44px;padding:10px 18px}
-.tradebtns .buy{background:var(--color-primary);color:var(--color-on-primary)}
-.tradebtns .sell{background:#fff;color:var(--ink);border:2px solid var(--ink)}
-:root[data-theme="dark"] .flash{animation:none;background:#34272d}
+.tradebtns button{flex:1 1 0;max-width:140px;min-height:44px;padding:10px 12px;
+    background:var(--bg);color:var(--ink);border:1px solid var(--line);font-weight:700}
+@media(hover:hover){
+    .tradebtns button:hover{border-color:var(--color-secondary)}
+  }
