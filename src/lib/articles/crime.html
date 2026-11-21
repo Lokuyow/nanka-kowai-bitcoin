@@ -2,12 +2,12 @@
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
-    <p class="lede" data-i18n>ビットコインは銀行を介さず送金でき、実際に身代金の支払いに使われたこともある。台帳には本名の代わりにアドレスが載るので、送金した人もお金の行き先も分からないように思える。</p>
+    <p class="lede" data-i18n>ビットコインは銀行を介さずに送金でき、実際に身代金の支払いに使われたこともある。台帳に載るのは本名の代わりにアドレスなので、誰が送ったのかも、お金がどこに行ったのかも分からないように思える。</p>
   </section>
 
   <section>
-    <h2 data-i18n>台帳は全部公開されている</h2>
-    <p class="lede" data-i18n>台帳には、どの受け取り分を使って、どこにいくら送ったかが残る。アドレスだけで持ち主が分かるとは限らないけれど、取引のつながりは誰でも調べられる。</p>
+    <h2 data-i18n>公開台帳でたどる送金記録</h2>
+    <p class="lede" data-i18n>台帳はすべて公開されている。前に受け取ったどのビットコインを使い、どこにいくら送ったかが分かる。アドレスだけで持ち主が分かるとは限らないけれど、取引のつながりは誰でも調べられる。</p>
     <div class="card ledger game" id="traceCard">
       <div class="lrow show"><span><span class="addr">1A2b…x9</span> → <span class="addr">3Cd4…m2</span></span><b>0.5 BTC</b></div>
       <div class="lrow"><span><span class="addr">3Cd4…m2</span> → <span class="addr">7Ef8…q7</span></span><b>0.2 BTC</b></div>
@@ -16,7 +16,7 @@
       <div class="lrow"><span><span class="addr">2Jk5…w8</span> → <span class="addr" data-i18n>取引所</span></span><b>0.19 BTC</b></div>
       <p class="tracemsg" id="traceMsg" aria-live="polite">誰かが送った 0.5 BTC。送り先を1件ずつたどってみよう。</p>
       <div class="center" style="margin-top:10px"><button id="traceBtn" type="button">次の送金をたどる</button></div>
-      <p class="hint" data-i18n>図では一つの経路を表示している。実際の取引は、複数の送金先に分かれることもある。</p>
+      <p class="hint" data-i18n>図でたどるのは一つの経路。実際の取引では複数の送り先に分かれることもある。</p>
     </div>
   </section>
 

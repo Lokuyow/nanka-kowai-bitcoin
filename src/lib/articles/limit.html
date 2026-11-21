@@ -1,13 +1,13 @@
-<div class="answer" data-i18n-html>発行のルールは、ノードがそれぞれ確かめる。<br>上限を超える発行は、今のルールを使うノードに拒否される</div>
+<div class="answer" data-i18n-html>ノードは発行ルールに沿ってそれぞれブロックを確かめる。<br>今のルールを使うノードは、上限を超える発行を認めない</div>
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
-    <p class="lede" data-i18n>ソフトウェアはアップデートでルールが変わるのがふつう。だから発行上限も運営がその気になれば変えられそうに見える。でも、ビットコインには「運営」がいない。</p>
+    <p class="lede" data-i18n>ソフトウェアはアップデートでルールが変わるのがふつうだ。ビットコインの発行上限も、運営する人が変えようと思えば変えられそうに見える。でもビットコインには「運営」がいない。</p>
   </section>
 
   <section>
-    <h2 data-i18n>ルールが違うと、同じブロックでも判断が分かれる</h2>
-    <p class="lede" data-i18n>試しに発行上限を引き上げるソフトを作ったとする。増やした分を含むブロックが届いても、元のルールを使うノードは受け入れない。</p>
+    <h2 data-i18n>元のルールと新しい上限での判断</h2>
+    <p class="lede" data-i18n>発行上限を引き上げるソフトを作ったとする。元の上限を超える発行を含んだブロックが届いても、元のルールを使うノードは受け入れない。</p>
     <div class="cols">
       <div class="card">
         <h3 data-i18n>元のルールを使うノード</h3>
@@ -20,7 +20,7 @@
     </div>
     <div class="card" id="capCard">
       <p style="margin:0 0 4px;font-size:15px"><b data-i18n>上限を変えて、ブロックを送ってみる</b></p>
-      <p class="hint" style="text-align:left;margin:0 0 12px" data-i18n>上限を選び、増やした分の発行を含むブロックを送ってみよう。図の5つのノードは、どれも元のルールを使っている。</p>
+      <p class="hint" style="text-align:left;margin:0 0 12px" data-i18n>上限を選び、元の上限を超える発行を含んだブロックを送ってみよう。図の5つのノードはどれも元のルールを使っている。</p>
       <div class="capbtns" id="capBtns">
         <button type="button" data-cap="2,200万枚" data-cap-en="22 million" class="on" data-i18n>2,200万枚にする</button>
         <button type="button" data-cap="4,200万枚" data-cap-en="42 million" data-i18n>2倍の4,200万枚</button>
@@ -41,8 +41,8 @@
   </section>
 
   <section>
-    <h2 data-i18n>ルールを変えるには何が必要？</h2>
-    <p class="lede" data-i18n>ルールを変えたソフトを使う参加者がいて、元のルールを使う参加者も残れば、記録が枝分かれすることがある。</p>
+    <h2 data-i18n>ルールを変えると記録はどうなる？</h2>
+    <p class="lede" data-i18n>新しいルールのソフトを使う参加者と、元のルールのソフトを使う参加者の両方がいれば、記録が枝分かれすることがある。</p>
     <div class="card center" style="font-size:17px;font-weight:700">
       <span data-i18n-html>ノードがそれぞれ<span style="color:var(--color-primary)">発行ルール</span>を確かめる</span>
     </div>

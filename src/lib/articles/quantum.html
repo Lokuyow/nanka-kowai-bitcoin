@@ -1,18 +1,18 @@
-<div class="answer" data-i18n-html>十分に強い量子コンピューターは、今の署名を破りうる。<br>実現時期は分からず、移行方法が議論されている</div>
+<div class="answer" data-i18n-html>十分に強い量子コンピューターは今の署名を破りうる。<br>実現する時期は分かっておらず、移行の方法が議論されている</div>
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
-    <p class="lede" data-i18n>「量子コンピューターは今の暗号を破る」という話だけが先行する。だから、完成した瞬間にビットコインも終わるという絵に見える。</p>
+    <p class="lede" data-i18n>「量子コンピューターは今の暗号を破る」という話だけを聞くと、完成したとたんにビットコインも終わるように思える。</p>
   </section>
 
   <section>
-    <h2 data-i18n>何が危なくなる？</h2>
-    <p class="lede" data-i18n>ビットコインを使うときは、秘密鍵で送金に署名する。公開鍵を使えば、その署名が正しいかを誰でも確かめられる。</p>
+    <h2 data-i18n>量子コンピューターは署名にどう影響する？</h2>
+    <p class="lede" data-i18n>ビットコインを送る人は秘密鍵で署名する。公開鍵を使えば、その署名が正しいかどうかを誰でも確かめられる。</p>
     <div class="card">
       <ol>
         <li data-i18n>今は、公開鍵から秘密鍵を求めるのは現実的ではない。</li>
-        <li data-i18n>十分に強い量子コンピューターは、公開鍵から秘密鍵を求めて署名を偽造できるおそれがある。</li>
-        <li data-i18n>対策には、量子計算に強い署名の導入と、利用者の移行が必要になる。</li>
+        <li data-i18n>十分に強い量子コンピューターは公開鍵から秘密鍵を求めて署名を偽造できるおそれがある。</li>
+        <li data-i18n>対策には量子計算に強い署名を導入し、利用者がその署名に移行する必要がある。</li>
       </ol>
       <p class="hint"><a href="https://bips.dev/360/" data-i18n>ビットコインの対策案（BIP 360）</a></p>
     </div>
@@ -20,7 +20,7 @@
 
   <section>
     <h2 data-i18n>今のコンピューターで鍵を総当たりすると？</h2>
-    <p class="lede" data-i18n>秘密鍵の候補はおよそ2の256乗通り。ボタンを押し続けて、手当たり次第に試すとどれくらいかかるか見てみよう。</p>
+    <p class="lede" data-i18n>秘密鍵の候補はおよそ2の256乗通り。ボタンを押し続けて、候補を1つずつ試すとどれくらいかかるか確かめよう。</p>
     <div class="card" id="bfCard">
       <div class="bfbig"><span data-i18n>試した回数</span> <b id="bfCount">0</b><span data-i18n> 回</span></div>
       <div class="bfrow"><span data-i18n>いまの速さ</span><b id="bfRate">毎秒 1億回</b></div>
@@ -33,7 +33,7 @@
 
   <section>
     <h2 data-i18n>公開鍵はどこに出る？</h2>
-    <p class="lede" data-i18n>公開鍵から秘密鍵を求める攻撃では、公開鍵がすでに見えている資金が先にリスクにさらされる。公開される時期は受け取り方で変わる。</p>
+    <p class="lede" data-i18n>公開鍵から秘密鍵を求める攻撃では、公開鍵がすでに見えている資金が先にリスクにさらされる。公開鍵がいつ見えるかは、ビットコインの受け取り方で変わる。</p>
     <div class="card">
       <div class="lockrow">
         <div class="lockbox"><b><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 7.6-1.7"/></svg><span data-i18n> 公開鍵が見えている</span></b><span data-i18n-html>受け取った時点で公開される形式や<br>一度使って公開済みになった鍵</span></div>

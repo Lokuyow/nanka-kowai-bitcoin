@@ -1,13 +1,13 @@
-<div class="answer" data-i18n-html>マイニングに使う電力は、<br>過去の取引を書き換えにくくする仕組みの一部</div>
+<div class="answer" data-i18n-html>マイニングの計算には電力がかかる。<br>その計算が過去の取引を書き換えにくくしている</div>
 
   <section>
     <h2 data-i18n>なぜそう見えるか</h2>
-    <p class="lede" data-i18n>「小さな国ひとつ分の電力を使っている」という数字だけが一人歩きする。何のために使っているのかはあまり語られない。</p>
+    <p class="lede" data-i18n>「小さな国ひとつ分の電力を使っている」という数字にばかり注目が集まる。何のために電力を使うのかはあまり語られない。</p>
   </section>
 
   <section>
-    <h2 data-i18n>計算が積み上がるほど書き換えにくい</h2>
-    <p class="lede" data-i18n>取引をまとめた記録を「ブロック」と呼ぶ。新しいブロックをつなぐたびに計算が必要になる。その計算に電力がかかる。</p>
+    <h2 data-i18n>過去のブロックを書き換えるのに必要な計算</h2>
+    <p class="lede" data-i18n>取引をまとめた記録を「ブロック」と呼ぶ。新しいブロックをつなぐたびに計算が必要で、その計算に電力がかかる。</p>
     <figure class="card work-diagram">
       <ol class="work-blocks">
         <li><span data-i18n-html>変更する<br>ブロック</span></li>
@@ -15,15 +15,15 @@
         <li><span data-i18n-html>さらに次の<br>ブロック</span></li>
       </ol>
       <figcaption>
-        <p class="work-redo" data-i18n>最初の1つを変えるにも、この範囲の計算をすべてやり直す必要がある。</p>
-        <p class="work-note" data-i18n>その間も元の記録には新しいブロックが加わる。元の記録を追い越すにはさらに計算が必要になる。</p>
+        <p class="work-redo" data-i18n>図の最初の1つを変えるだけでも、そのブロックと右に並ぶブロックすべての計算をやり直す必要がある。</p>
+        <p class="work-note" data-i18n>計算をやり直す間にも、元の記録には新しいブロックが加わる。元の記録を追い越すには、その分も計算が必要になる。</p>
       </figcaption>
     </figure>
   </section>
 
   <section>
     <h2 data-i18n>マイニングにはどんな電源が使われる？</h2>
-    <p class="lede" data-i18n>環境への負荷は、使う電力の量と発電方法の両方で変わる。下の図はケンブリッジ大学のチームが調査した事業者の電源構成。</p>
+    <p class="lede" data-i18n>環境への負荷は使う電力の量と発電方法の両方で変わる。図ではケンブリッジ大学のチームが調査した事業者の電源構成を示している。</p>
     <div class="card">
       <div class="stackbar">
         <div class="seg1" style="width:42.6%"></div>
@@ -41,7 +41,7 @@
 
   <section>
     <h2 data-i18n>マイニング競争に参加してみる</h2>
-    <p class="lede" data-i18n>マイナーは、ルールを満たすブロックを作るために計算を繰り返す。ブロックが台帳に加わると報酬を得る。計算力の割合を変えて試してみよう。</p>
+    <p class="lede" data-i18n>マイナーはルールを満たすブロックを作るために計算を繰り返し、そのブロックが台帳に加わると報酬を得る。計算力の割合を変えて試してみよう。</p>
     <div class="card" id="mineCard">
       <label><span data-i18n>あなたの計算力（全体に占める割合）:</span> <b id="minePct">5%</b><input type="range" id="mineRange" min="1" max="40" value="5" aria-label="あなたの計算力の割合" data-i18n-label></label>
       <div class="center" style="margin:12px 0"><button id="mineBtn" type="button" data-i18n>掘る（次のブロックに挑戦）</button></div>
@@ -51,7 +51,7 @@
         <div><span data-i18n>使った電気</span> <b id="mineKwh">0</b> kWh</div>
       </div>
       <p class="minemsg" id="mineMsg" aria-live="polite">計算力が大きいほど当たりやすい。でも、外れても電気は使っている。</p>
-      <p class="hint" data-i18n>この図では、次のブロックを見つける確率を計算力の割合で表す。電力消費量はイメージ。</p>
+      <p class="hint" data-i18n>この図では次のブロックを見つける確率を、全体に占める計算力の割合で表す。電力消費量はイメージ。</p>
     </div>
   </section>
 
