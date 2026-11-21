@@ -2,7 +2,7 @@
 .hero .t{margin:0;font-size:44px;line-height:1.3;letter-spacing:.02em}
 .hero .t span{display:block;white-space:nowrap;animation:rise .7s ease both}
 .hero .t span:nth-child(2){animation-delay:.12s}
-.hero .t span:nth-child(3){animation-delay:.24s;color:var(--color-secondary)}
+.hero .t span:nth-child(3){animation-delay:.24s;color:var(--color-primary)}
 .hero .t span:nth-child(4){animation-delay:.36s}
 .subtitle{font-size:16px;color:var(--sub);margin:14px 0 0}
 .layerhead{margin:40px 0 4px;font-size:14px;color:var(--sub)}
