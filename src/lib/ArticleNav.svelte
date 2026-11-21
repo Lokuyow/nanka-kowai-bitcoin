@@ -1,7 +1,7 @@
 <script>
   import { BASE_PATH, articlePath } from './site.js';
 
-  let { previous, next } = $props();
+  let { previous, next, number, total } = $props();
 </script>
 
 <footer class="tabbar">
@@ -10,7 +10,7 @@
   {:else}
     <span class="tb off" data-i18n>← 前</span>
   {/if}
-  <a class="tb idx" href={BASE_PATH} data-i18n>一覧</a>
+  <a class="tb idx" href={BASE_PATH}><span data-i18n>一覧</span><small class="pos">{number} / {total}</small></a>
   {#if next}
     <a class="tb" href={articlePath(next)} data-i18n>次 →</a>
   {:else}

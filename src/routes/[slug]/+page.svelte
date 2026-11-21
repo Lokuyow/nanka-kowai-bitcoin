@@ -25,13 +25,11 @@
 </svelte:head>
 
 <div class="wrap">
-  <SiteHeader>
-    {#snippet label()}{article.number} / {ARTICLES.length}{/snippet}
-  </SiteHeader>
+  <SiteHeader />
   <p class="eyebrow" data-i18n-html>{@html layerHeading(LAYERS[article.layer - 1])}</p>
   <h1 data-i18n-html>{@html article.heading}</h1>
   {@html data.body}
   <Share {...article} label={article.openQuestion ? 'この問いをシェアする' : 'この答えをシェアする'} {url} />
   <Bridge />
 </div>
-<ArticleNav previous={data.previous} next={data.next} />
+<ArticleNav previous={data.previous} next={data.next} number={article.number} total={ARTICLES.length} />

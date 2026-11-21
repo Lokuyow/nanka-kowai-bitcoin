@@ -82,7 +82,7 @@ test('言語: 英語環境で開始し、既存の設定が記事間で引き継
     const page = await context.newPage();
     await page.goto(server.base, { waitUntil: 'load' });
     assert.equal(await page.locator('html').getAttribute('lang'), 'en');
-    assert.equal(await page.locator('.head-right > span').textContent(), '23 stories');
+    assert.equal(await page.locator('.credit .count').textContent(), '23 stories');
     await page.locator('.lang-toggle').click();
     await page.locator('.unit').first().click();
     assert.equal(page.url(), server.base + 'scam/');

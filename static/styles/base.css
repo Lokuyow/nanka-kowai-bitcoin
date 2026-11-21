@@ -43,9 +43,9 @@ header a.brand{display:inline-flex;align-items:center;gap:10px;vertical-align:mi
   :root[data-lang="en"] .lang-toggle .lg-en{opacity:1;color:var(--ink);font-weight:700}
 @media(max-width:520px){
     header{font-size:12px}header b{font-size:14px;white-space:normal}
-    /* アイコンの分だけタイトルを詰め、各話の進捗表示と並んでも2行に収める */
-    .brand-icon{width:34px;height:34px}header a.brand{gap:6px}header a.brand b{font-size:12px;white-space:nowrap}
-    @media(max-width:370px){header a.brand b{font-size:11px}.brand-icon{width:28px;height:28px}header a.brand{gap:5px}}
-    @media(max-width:345px){header a.brand b{white-space:normal}}
+    /* 右側はテーマと言語の切り替えだけなので、アイコンとタイトルを2行のまま大きめに保つ */
+    .brand-icon{width:40px;height:40px}header a.brand{gap:8px}header a.brand b{font-size:14px;white-space:nowrap}
+    @media(max-width:370px){header a.brand b{font-size:13px}.brand-icon{width:36px;height:36px}header a.brand{gap:7px}}
+    @media(max-width:345px){header a.brand b{font-size:11px}.brand-icon{width:32px;height:32px}header a.brand{gap:6px}}
     .head-right{gap:6px}
   }
