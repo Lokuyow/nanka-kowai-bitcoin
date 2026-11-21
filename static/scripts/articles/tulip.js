@@ -190,15 +190,54 @@
     if (round === 0) startRound(1);
     else { totalProfit = 0; startRound(0); }
   });
-  function drawComparison(id, prices, elapsedYears){
-    var points = prices.map(function(price, index){
-      var x = 43 + elapsedYears[index] / 15 * 316;
-      var y = 160 - Math.log10(price / prices[0]) * 70;
-      return x.toFixed(1) + ',' + y.toFixed(1);
+  // Thompson (2007), Appendix I. The first point represents early November.
+  const bulbIndex = [
+    [1636, 11, 5, 8.9], [1636, 11, 12, 10.5], [1636, 11, 25, 97],
+    [1636, 12, 1, 108], [1636, 12, 12, 176],
+    [1637, 2, 1, 199], [1637, 2, 3, 202], [1637, 2, 5, 178],
+    [1637, 2, 9, 148], [1637, 2, 11, 145], [1637, 5, 1, 11],
+  ];
+
+  // Coin Metrics PriceUSD, rounded month-end values from Jan 2013 to Dec 2025.
+  // CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/).
+  const bitcoinUsd = [
+    [20.51, 33.38, 93.9, 139, 128, 89.48, 98.02, 128, 126, 203, 1119, 730],
+    [803, 551, 455, 449, 628, 639, 582, 479, 389, 337, 379, 321],
+    [217, 255, 245, 236, 229, 264, 285, 231, 237, 314, 377, 430],
+    [366, 438, 416, 450, 531, 674, 625, 572, 609, 699, 742, 969],
+    [968, 1188, 1082, 1382, 2299, 2453, 2863, 4740, 4335, 6429, 9997, 13921],
+    [10050, 10307, 6922, 9229, 7479, 6376, 7725, 7025, 6604, 6306, 3973, 3687],
+    [3410, 3793, 4094, 5267, 8556, 10843, 10059, 9605, 8282, 9155, 7556, 7167],
+    [9357, 8582, 6432, 8652, 9434, 9144, 11338, 11678, 10772, 13807, 19664, 29023],
+    [33158, 45359, 58792, 57741, 37313, 35065, 41793, 47219, 43782, 61433, 57097, 46355],
+    [38463, 43179, 45562, 37714, 31831, 19333, 23356, 20025, 19435, 20491, 17177, 16524],
+    [23130, 23146, 28515, 29362, 27218, 30485, 29220, 25955, 26978, 34636, 37713, 42217],
+    [42589, 61395, 71227, 60636, 67378, 62763, 64691, 58960, 63260, 70367, 96464, 93390],
+    [102263, 84244, 82461, 94237, 104709, 107153, 115848, 108316, 113972, 109554, 90608, 87517],
+  ];
+
+  function drawComparison(id, samples){
+    const [startDate, startPrice] = samples[0];
+    const monthMs = 365.2425 / 12 * 86400000;
+    const points = samples.map(([date, price]) => {
+      const months = (date - startDate) / monthMs;
+      const x = 58 + Math.log1p(months) / Math.log1p(156) * 302;
+      const y = 172 - Math.log10(price / startPrice) * 38;
+      return [x.toFixed(1), y.toFixed(1)];
     });
-    document.getElementById(id).setAttribute('points', points.join(' '));
+    document.getElementById(id).setAttribute('points', points.map(point => point.join(',')).join(' '));
+    return points;
   }
-  drawComparison('compareTulip', ROUNDS[0].prices, [0, 0.75, 1, 1.9, 2, 2.9, 3, 3.08, 3.25, 4]);
-  drawComparison('compareBitcoin', ROUNDS[1].prices, [0, 2, 4, 6, 7, 9, 10, 11, 12, 13, 14, 15]);
+
+  drawComparison('compareBitcoin', bitcoinUsd.flat().map((price, month) => [Date.UTC(2013, month + 1, 0), price]));
+  const bulbPoints = drawComparison('compareTulip', bulbIndex.map(([year, month, day, price]) => [Date.UTC(year, month - 1, day), price]));
+  const bulbMarkers = document.getElementById('compareTulipMarkers');
+  for (const [x, y] of bulbPoints) {
+    const marker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    marker.setAttribute('cx', x);
+    marker.setAttribute('cy', y);
+    marker.setAttribute('r', 2.4);
+    bulbMarkers.append(marker);
+  }
   startRound(0);
 })();

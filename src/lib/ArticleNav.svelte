@@ -12,10 +12,9 @@
 {/snippet}
 
 {#snippet destination(target)}
+  <ArticleIcon slug={target.slug} />
   {#if target.layer !== article.layer}
     <span class="layer-number" aria-hidden="true">{target.layer}</span>
-  {:else}
-    <ArticleIcon slug={target.slug} />
   {/if}
 {/snippet}
 

@@ -41,25 +41,32 @@
     <p class="lede" data-i18n>価格が急騰してから暴落する点は似ている。その後、市場で起きたことは違った。</p>
     <figure class="card tulip-comparison">
       <p class="tulip-axis" data-i18n>開始時の価格に対する倍率（対数目盛り）</p>
-      <svg viewBox="0 0 380 200" role="img" aria-label="チューリップは短期間で急騰して下落。ビットコインは長期間にわたり上下しながら高値を更新した模式図" data-i18n-label>
+      <svg viewBox="0 0 380 207" role="img" aria-label="過去の価格を比べた図。球根の価格指数は約3か月で20倍を超え、半年後には最初の水準に近づいた。ビットコインは約13年の間に下落と高値更新を繰り返した" data-i18n-label>
         <g class="tulip-grid">
-          <path d="M43 20H359 M43 90H359 M43 160H359 M43 20V160 M148 20V160 M253 20V160 M359 20V160"/>
+          <path d="M58 20H360 M58 58H360 M58 96H360 M58 134H360 M58 172H360 M58 20V172 M99.4 20V172 M174.2 20V172 M250.3 20V172 M303.5 20V172 M360 20V172"/>
         </g>
         <g class="tulip-ticks">
-          <text x="35" y="24">100×</text><text x="35" y="94">10×</text><text x="35" y="164">1×</text>
+          <text x="52" y="24" data-i18n>1万×</text><text x="52" y="62">1,000×</text><text x="52" y="100">100×</text><text x="52" y="138">10×</text><text x="52" y="176">1×</text>
           <g text-anchor="middle">
-            <text x="43" y="184">0</text><text x="148" y="184">5</text><text x="253" y="184">10</text><text x="359" y="184">15</text>
+            <text x="58" y="196">0</text><text x="99.4" y="196" data-i18n>1か月</text><text x="174.2" y="196" data-i18n>6か月</text><text x="250.3" y="196" data-i18n>2年</text><text x="303.5" y="196" data-i18n>5年</text><text x="360" y="196" data-i18n>13年</text>
           </g>
         </g>
-        <polyline id="compareTulip" class="tulip-series bulb"/>
         <polyline id="compareBitcoin" class="tulip-series bitcoin"/>
+        <polyline id="compareTulip" class="tulip-series bulb"/>
+        <g id="compareTulipMarkers" class="tulip-markers"/>
       </svg>
-      <p class="tulip-axis time" data-i18n>それぞれの開始からの年数</p>
+      <p class="tulip-axis" data-i18n>それぞれの開始からの期間（最初の数か月を拡大）</p>
       <div class="tulip-legend">
-        <span><i class="tulip-series bulb"></i><span data-i18n>チューリップ</span></span>
-        <span><i class="tulip-series bitcoin"></i><span data-i18n>ビットコイン</span></span>
+        <span><i class="tulip-series bulb"></i><span data-i18n>チューリップ（1636〜37年）</span></span>
+        <span><i class="tulip-series bitcoin"></i><span data-i18n>ビットコイン（2013〜25年）</span></span>
       </div>
-      <figcaption class="hint" data-i18n>ゲームと同じ架空の価格を使い、それぞれの開始時を1倍にそろえた模式図。</figcaption>
+      <figcaption class="hint">
+        <span data-i18n>球根は史料をもとにした価格指数、ビットコインは米ドル建ての月末価格。どちらも最初の値を1倍にそろえた。</span>
+        <span class="tulip-sources">
+          <a href="https://lavoiedubitcoin.info/public/tulipe/Thompson.pdf" data-i18n>球根の価格指数（Thompson）</a>
+          <a href="https://github.com/coinmetrics/data/blob/master/csv/btc.csv" data-i18n>ビットコインの価格（Coin Metrics）</a>
+        </span>
+      </figcaption>
     </figure>
     <div class="cols">
       <div class="card tlvs" data-i18n-html><b style="color:var(--red)">チューリップバブル</b><br>1637年に球根への投機が崩れた。その後もチューリップは栽培され、取引された。</div>
