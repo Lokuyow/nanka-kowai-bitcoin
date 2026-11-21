@@ -12,12 +12,12 @@
 .sscap{font-size:14px;min-height:3.2em;margin:8px 0 0}
 .powrow{display:flex;align-items:center;gap:8px;margin:10px 0;font-size:13px}
 .pow-lbl{flex:0 0 118px}
-.powbar{flex:1;background:#f4ede1;border-radius:999px;height:20px;overflow:hidden}
+.powbar{flex:1;background:#f5e9e8;border-radius:999px;height:20px;overflow:hidden}
 .powfill{height:100%;border-radius:999px;transition:width .35s ease}
 .powfill.mine{background:#999}
 .powfill.move{background:var(--color-primary)}
 .powfill.all{background:var(--ink)}
 .powrow b{flex:0 0 32px;text-align:right;font-variant-numeric:tabular-nums}
 .powcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
-:root[data-theme="dark"] .tool [fill="#1a1a1a"]{fill:#49463d}
+:root[data-theme="dark"] .tool [fill="#1a1a1a"]{fill:#574448}
 :root[data-theme="dark"] .tool [fill="#666"]{fill:#7d7668}

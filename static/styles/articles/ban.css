@@ -6,5 +6,5 @@
 .banlog{font-size:14px;min-height:3.2em;margin:6px 0 0}
 #banMiners circle{transition:cx 1s ease,cy 1s ease,opacity .6s}
 #banNodes text{font-size:10px;fill:#666}
-:root[data-theme="dark"] #banNodes text{fill:#b3a48d}
+:root[data-theme="dark"] #banNodes text{fill:#bda9aa}
 :root[data-theme="dark"] #banMiners circle{fill:#e2dfd8}

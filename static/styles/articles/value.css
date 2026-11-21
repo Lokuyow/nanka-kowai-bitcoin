@@ -1,6 +1,6 @@
 .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tlbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-.tlbtns button.on{background:var(--color-primary);border-color:var(--color-primary);color:#fff;font-weight:700}
+.tlbtns button.on{background:var(--color-primary);border-color:var(--color-secondary);color:#261719;font-weight:700}
 .sliders{margin-top:18px;display:grid;gap:8px}
 .sliders label{font-size:14px;font-weight:700}
 .meterwrap{margin-top:18px}

@@ -1,6 +1,6 @@
 .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tlbtns button{padding:8px 16px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-.tlbtns button.on{background:var(--color-primary);border-color:var(--color-primary);color:#fff;font-weight:700}
+.tlbtns button.on{background:var(--color-primary);border-color:var(--color-secondary);color:#261719;font-weight:700}
 .tlcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
 .tlvs{font-size:15px}
 .tlvs b{font-size:16px}
@@ -17,4 +17,4 @@
 #gmRestart{min-height:44px}
 #gmDot{transition:cx .5s ease,cy .5s ease}
 #gmPath{transition:stroke .3s}
-:root[data-theme="dark"] #gmPrice{fill:#f3ecdf}
+:root[data-theme="dark"] #gmPrice{fill:#f5ebeb}

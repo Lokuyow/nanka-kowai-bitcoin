@@ -7,7 +7,7 @@
 .stackbar div{animation:grow 1.4s ease both}
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 .seg1{background:#4a7a5c;transform-origin:left}
-.seg2{background:#f7931a;transform-origin:center}
+.seg2{background:#fd4958;transform-origin:center}
 .seg3{background:#999;transform-origin:right}
 .legend{font-size:12px;color:var(--sub);display:flex;gap:14px;flex-wrap:wrap}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}

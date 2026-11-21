@@ -27,8 +27,8 @@
     border-radius:16px;padding:12px}
 .newsfig img{display:block;width:100%;max-width:100%;height:auto;border-radius:10px}
 .newsfig .note{margin:12px 0 2px;font-size:12px;color:var(--sub);line-height:1.6}
-:root[data-theme="dark"] .hlfeed .acc{background:#3d3524}
+:root[data-theme="dark"] .hlfeed .acc{background:#442c30}
 :root[data-theme="dark"] .profile td.v{color:#a79a85}
 :root[data-theme="dark"] .vs .mini text{fill:#e9e7e1}
-:root[data-theme="dark"] .vs .mini rect[fill="#eee"]{fill:#49463d}
+:root[data-theme="dark"] .vs .mini rect[fill="#eee"]{fill:#574448}
 :root[data-theme="dark"] .vs .mini rect[fill="#1a1a1a"]{fill:#141311}

@@ -31,7 +31,7 @@
   COUNTRIES.forEach(function(c, i){
     var dot = document.createElementNS(NS, 'circle');
     dot.setAttribute('cx', c.x); dot.setAttribute('cy', c.y); dot.setAttribute('r', 7);
-    dot.setAttribute('fill', '#f7931a'); dot.id = 'bnode' + i;
+    dot.setAttribute('fill', '#fd4958'); dot.id = 'bnode' + i;
     nodesG.appendChild(dot);
     var x1 = document.createElementNS(NS, 'path');
     x1.setAttribute('d', 'M' + (c.x - 5) + ' ' + (c.y - 5) + ' L' + (c.x + 5) + ' ' + (c.y + 5) + ' M' + (c.x + 5) + ' ' + (c.y - 5) + ' L' + (c.x - 5) + ' ' + (c.y + 5));
@@ -95,7 +95,7 @@
       delete banned[i];
       b.classList.remove('banned');
       b.textContent = L(c.n + 'を禁止', 'Ban ' + c.e);
-      dot.setAttribute('fill', '#f7931a');
+      dot.setAttribute('fill', '#fd4958');
       x.style.display = 'none';
       c.miners.forEach(function(mn){
         mn.el.setAttribute('cx', mn.hx);

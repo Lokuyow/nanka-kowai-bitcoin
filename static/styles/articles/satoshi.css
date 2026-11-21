@@ -3,9 +3,9 @@
 .pizzanum b{color:var(--ink);font-size:20px}
 .cutbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:14px}
 .cutbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px}
-.cutbtns button.on{background:var(--color-primary);border-color:var(--color-primary);color:#fff}
+.cutbtns button.on{background:var(--color-primary);border-color:var(--color-secondary);color:#261719}
 #wedge{transition:all .5s ease}
-.yenbar-wrap{background:#f4ede1;border-radius:999px;height:22px;overflow:hidden;margin:10px 0 4px}
+.yenbar-wrap{background:#f5e9e8;border-radius:999px;height:22px;overflow:hidden;margin:10px 0 4px}
 .yenbar{height:100%;background:var(--color-primary);width:0;border-radius:999px;
     animation:yenfill 1.6s ease .3s both}
 @keyframes yenfill{from{width:0}to{width:22%}}

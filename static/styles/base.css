@@ -6,8 +6,8 @@
   }
 :root{
     -webkit-tap-highlight-color:transparent;
-    --ink:#1a1a1a; --sub:#666; --color-primary:#fd4958; --bg:#fffaf3;
-    --card:#fff;--btnbg:#1a1a1a;--btnfg:#fff;--color-secondary:#9b2940; --color-secondary-bg:#ffebed; --line:#e8e0d4; --red:#d33; --green:#2e7d32;
+    --ink:#1a1a1a; --sub:#666; --color-primary:#fd4958; --bg:#fff9f8;
+    --card:#fff;--btnbg:#1a1a1a;--btnfg:#fff;--color-secondary:#9b2940; --color-secondary-bg:#ffebed; --line:#eadbda; --red:#d33; --green:#2e7d32;
   }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);
@@ -19,9 +19,9 @@ header b{color:var(--ink);white-space:nowrap;font-size:15px}
 header a > b,.hero .t{font-family:"Yusei Magic","Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;font-weight:400}
 header a{text-decoration:none}
 :root[data-theme="dark"]{color-scheme:dark;
-    --ink:#f3ecdf; --sub:#b3a48d; --bg:#171614;
-    --card:#242322; --line:#43413c; --red:#ff7a66; --green:#7fc784;
-    --btnbg:#f3ecdf; --btnfg:#1d1c1a; --color-secondary:#ff9ca5; --color-secondary-bg:#4a252b}
+    --ink:#f5ebeb; --sub:#bda9aa; --bg:#191516;
+    --card:#282122; --line:#514044; --red:#ff7a66; --green:#7fc784;
+    --btnbg:#f5ebeb; --btnfg:#21191a; --color-secondary:#ff9ca5; --color-secondary-bg:#4a252b}
 .head-right{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .theme-toggle{flex:0 0 auto;width:32px;height:32px;padding:0;border-radius:50%;
     background:transparent;color:var(--sub);border:1px solid var(--line);

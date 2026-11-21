@@ -140,7 +140,7 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
       const article = await page.goto(`${server.base}price/`, { waitUntil: 'load' });
       assert.equal(article.status(), 200, '未訪問の記事をオフラインで開ける');
       assert.equal(await page.locator('h1').count(), 1);
-      assert.equal(await page.locator('body').evaluate((body) => getComputedStyle(body).backgroundColor), 'rgb(255, 250, 243)');
+      assert.equal(await page.locator('body').evaluate((body) => getComputedStyle(body).backgroundColor), 'rgb(255, 249, 248)');
       assert.equal(await page.locator('.tabbar').evaluate((el) => getComputedStyle(el).position),
         'fixed', 'オフラインでも各話共通の CSS が適用される');
       assert.equal(await page.locator('.share-btns').evaluate((el) => getComputedStyle(el).display),

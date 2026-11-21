@@ -7,7 +7,7 @@
 .blk{flex:0 0 auto;width:44px;height:44px;border-radius:10px;background:#fff;
     border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;
     font-size:11px;font-weight:700}
-.blk.new{background:var(--color-primary);border-color:var(--color-primary);color:#fff;
+.blk.new{background:var(--color-primary);border-color:var(--color-secondary);color:#261719;
     animation:blkin 3s ease-in-out infinite}
 @keyframes blkin{0%{opacity:0;transform:translateX(-16px) scale(.7)}
     25%,80%{opacity:1;transform:none}100%{opacity:0;transform:none}}
@@ -19,7 +19,7 @@
 @media(min-width:560px){.copies{grid-template-columns:1fr 1fr 1fr}}
 .copy{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13px;background:#fff;transition:all .3s}
 .copy-h{font-weight:700;font-size:12px;color:var(--sub);margin-bottom:6px}
-.copy.mine{border-color:var(--color-primary)}
+.copy.mine{border-color:var(--color-secondary)}
 .copy.edited{border-color:var(--red);background:#fff6f6}
 .copy.checking{border-color:var(--btnbg)}
 .copy-row{display:flex;justify-content:space-between;gap:6px;padding:3px 0;font-variant-numeric:tabular-nums}

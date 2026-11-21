@@ -13,7 +13,7 @@
 .chip{background:var(--color-secondary-bg);border:2px solid var(--color-primary);border-radius:10px;
     padding:4px 12px;transition:transform .5s ease,opacity .5s ease}
 .chip.ghost{border-color:#bbb;background:#f4f4f4;color:#999}
-.chip.insert{background:var(--color-primary);color:#fff;
+.chip.insert{background:var(--color-primary);color:#261719;
     opacity:0;transform:scale(.6) translateY(8px)}
 .swapped .chip.insert{opacity:1;transform:scale(1) translateY(0)}
 .swapped .chip.move{transform:translateX(6px)}
@@ -32,7 +32,7 @@
 .flow .track{position:absolute;left:0;right:0;top:21px;height:3px;
     background:var(--line);border-radius:2px}
 .flow .coin{position:absolute;top:8px;left:calc(50% - 14px);width:28px;height:28px;
-    border-radius:50%;background:var(--color-primary);color:#fff;font-weight:700;
+    border-radius:50%;background:var(--color-primary);color:#261719;font-weight:700;
     font-size:12px;display:flex;align-items:center;justify-content:center}
 .flow .coin.yen{background:#4a7a5c}
 .flow .ahead{position:absolute;left:0;top:16px;width:0;height:0;
@@ -46,7 +46,7 @@
 .word{border:2px solid var(--ink);border-radius:10px;padding:8px 14px;
     font-weight:700;font-size:17px;background:#fff}
 .qwrap{position:relative}
-.qmsg{font-size:19px;font-weight:700;text-align:center;padding:18px 10px;background:#fdf3e3;border-radius:12px;line-height:1.6;min-height:4.6em;display:flex;align-items:center;justify-content:center}
+.qmsg{font-size:19px;font-weight:700;text-align:center;padding:18px 10px;background:#fdf0ef;border-radius:12px;line-height:1.6;min-height:4.6em;display:flex;align-items:center;justify-content:center}
 .qbtns{display:flex;gap:8px;justify-content:center;margin-top:14px;flex-wrap:wrap}
 .qbtns[hidden]{display:none}
 .qbtns button{min-height:48px;font-size:16px;position:relative}
@@ -55,7 +55,7 @@
 /* 自分が選んだボタン: オレンジの輪と「あなたの答え」タグ */
 .qbtns button.picked{outline:3px solid var(--color-primary);outline-offset:2px}
 .qbtns button.picked::after{content:'あなたの答え';position:absolute;top:-12px;right:-8px;
-    background:var(--color-primary);color:#fff;font-size:11px;font-weight:700;line-height:1;
+    background:var(--color-primary);color:#261719;font-size:11px;font-weight:700;line-height:1;
     padding:4px 8px;border-radius:999px;box-shadow:0 1px 4px rgba(0,0,0,.3);white-space:nowrap}
 :root[data-lang="en"] .qbtns button.picked::after{content:'Your answer'}
 /* 正解のボタン: 緑の輪と「○ 正解」タグ（自分の答えと同時に表示できる） */

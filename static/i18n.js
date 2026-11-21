@@ -335,7 +335,7 @@
     '「どんな電力か」も一様じゃない': 'The kind of electricity varies, too',
     '使われている電力の中身も、全部が同じではない。割合は調査によって幅があるので、断定はしない。ただ「全部ムダ」でも「全部クリーン」でもない、というのが実情に近い。': "The electricity being used isn't all the same, either. Estimates vary by study, so no firm claims here. But \"all waste\" and \"all clean\" are both off — the truth is in between.",
     '<i style="background:#4a7a5c"></i>再生可能エネルギー': '<i style="background:#4a7a5c"></i>Renewable energy',
-    '<i style="background:#f7931a"></i>余っていた電力の活用など': '<i style="background:#f7931a"></i>Using surplus power, etc.',
+    '<i style="background:#fd4958"></i>余っていた電力の活用など': '<i style="background:#fd4958"></i>Using surplus power, etc.',
     '<i style="background:#999"></i>化石燃料を含むその他': '<i style="background:#999"></i>Other, incl. fossil fuels',
     '※ 割合はイメージ。マイニングは「電気が余っている場所・時間」に集まりやすい性質がある。一例として、ケンブリッジ大学の調査（2025年）では、再エネ・原子力など持続可能な電源が約52%という推定もある。': 'Note: the proportions are illustrative. Mining tends to gather where and when electricity is surplus. One example: a University of Cambridge study (2025) estimated that sustainable sources — renewables, nuclear and the like — make up about 52%.',
     'マイニング競争に参加してみる': 'Join the mining race',
