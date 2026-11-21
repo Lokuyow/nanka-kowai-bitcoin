@@ -83,8 +83,17 @@ test('図解: スライダーの塗りが初期値・キー操作・ボタンに
 
     await page.goto(server.base + 'value/');
     await page.locator('[data-item="gold"]').click();
-    assert.deepEqual(await Promise.all(['#slWant', '#slScarce', '#slBelief'].map((id) =>
-      fill(page.locator(id)))), [70, 65, 80]);
+    const want = page.locator('#slWant');
+    const scarce = page.locator('#slScarce');
+    const meter = page.locator('#meterNum');
+    assert.equal(await page.locator('.sliders input[type=range]').count(), 2);
+    assert.equal(await fill(want), 70);
+    assert.equal(await fill(scarce), 65);
+    const initialScore = Number(await meter.textContent());
+    await scarce.press('End');
+    assert.ok(Number(await meter.textContent()) > initialScore);
+    await want.press('Home');
+    assert.equal(await meter.textContent(), '0');
   } finally {
     await page.close();
   }
