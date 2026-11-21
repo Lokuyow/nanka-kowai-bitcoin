@@ -138,7 +138,7 @@
     '詐欺の手口': 'Scam pitch',
     '大丈夫そう': 'Sounds safe',
     '次の文句へ': 'Next pitch',
-    'ビットコイン以前に、詐欺の手口そのものを見分ける目が役に立つ。': 'Before Bitcoin even enters the picture, an eye for scam pitches themselves comes in handy.',
+    'ビットコイン以前に詐欺の手口そのものを見分ける目が役に立つ。': 'Before Bitcoin even enters the picture, an eye for scam pitches themselves comes in handy.',
     '次の誤解：会社とCEOがいる →': 'Next: A company and a CEO →',
 
     /* ===== ceo ===== */

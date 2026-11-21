@@ -73,8 +73,8 @@ var card = document.getElementById('swapCard');
     (q.scam ? qScamBtn : qOkBtn).classList.add('correct');
     qBtns.classList.add('done');
     qFeed.innerHTML = (right
-      ? L('<b>正解。</b>これは「', '<b>Correct.</b> This one is "') + ansName + L('」。', '". ')
-      : L('<b>残念。</b>正解は「', '<b>Not quite.</b> The answer is "') + ansName + L('」。', '". ')) + qw(q);
+      ? L('<b>正解。</b>これは「', '<b>Correct.</b> This one is "')
+      : L('<b>残念。</b>正解は「', '<b>Not quite.</b> The answer is "')) + ansName + L('」。', '".') + '<br>' + qw(q);
     qScore.innerHTML = scoreLine(qi + 1 - score);
     qNext.textContent = qi + 1 >= quiz.length ? L('結果を見る', 'See the result') : L('次の文句へ', 'Next pitch');
     qNext.hidden = false;

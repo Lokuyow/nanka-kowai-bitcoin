@@ -30,14 +30,35 @@
     <p class="lede" data-i18n>お金が「円」か「ビットコイン」かだけ。悪い人のやることは変わらない。</p>
     <div class="card">
       <div class="scene">
-        <div class="who"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="12" r="8" fill="#333"/><path d="M6 38c0-8 6-12 14-12s14 4 14 12z" fill="#333"/></svg> <span data-i18n>悪い人</span></div>
+        <div class="who">
+          <svg class="scammer-icon" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+            <path fill="currentColor" d="M6 38c0-8 6-12 14-12s14 4 14 12zM12 13a8 8 0 1 0 16 0zM9 11h4l2-7h10l2 7h4v3H9z"/>
+            <path class="scammer-eyes" d="m15 16 3 1m4 0 3-1" fill="none" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n>悪い人</span>
+        </div>
         <div class="flow"><div class="track"></div><div class="coin yen" data-i18n>円</div><div class="ahead"></div></div>
         <div class="who"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="12" r="8" fill="#527c72"/><path d="M6 38c0-8 6-12 14-12s14 4 14 12z" fill="#527c72"/></svg> <span data-i18n>被害者</span></div>
         <div class="medium"><b data-i18n>振込詐欺</b><span data-i18n>電話でだます</span></div>
       </div>
       <div class="scene">
-        <div class="who"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="12" r="8" fill="#333"/><path d="M6 38c0-8 6-12 14-12s14 4 14 12z" fill="#333"/></svg> <span data-i18n>悪い人</span></div>
-        <div class="flow"><div class="track"></div><div class="coin">₿</div><div class="ahead"></div></div>
+        <div class="who">
+          <svg class="scammer-icon" width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+            <path fill="currentColor" d="M6 38c0-8 6-12 14-12s14 4 14 12zM12 13a8 8 0 1 0 16 0zM9 11h4l2-7h10l2 7h4v3H9z"/>
+            <path class="scammer-eyes" d="m15 16 3 1m4 0 3-1" fill="none" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span data-i18n>悪い人</span>
+        </div>
+        <div class="flow">
+          <div class="track"></div>
+          <div class="coin" role="img" aria-label="ビットコイン" data-i18n-label>
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 6v12m-2-12h8a3 3 0 0 1 0 6H8m6 0h1a3 3 0 0 1 0 6H6m4-15v3m4-3v3m-4 12v3m4-3v3"/>
+            </svg>
+          </div>
+          <div class="ahead"></div>
+        </div>
         <div class="who"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="12" r="8" fill="#527c72"/><path d="M6 38c0-8 6-12 14-12s14 4 14 12z" fill="#527c72"/></svg> <span data-i18n>被害者</span></div>
         <div class="medium"><b data-i18n>ビットコイン詐欺</b><span data-i18n>勧誘でだます</span></div>
       </div>
@@ -57,7 +78,7 @@
       <p class="qfeed" id="qFeed" aria-live="polite"></p>
       <p class="qscore" id="qScore"></p>
       <div class="center"><button type="button" id="qNext" hidden data-i18n>次の文句へ</button></div>
-      <p class="hint" data-i18n>ビットコイン以前に、詐欺の手口そのものを見分ける目が役に立つ。</p>
+      <p class="hint" data-i18n>ビットコイン以前に詐欺の手口そのものを見分ける目が役に立つ。</p>
     </div>
   </section>
 <div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>悪いのはビットコインを使った手口で、ビットコインそのものじゃない</span></div>
