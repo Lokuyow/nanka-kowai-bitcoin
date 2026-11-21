@@ -7,7 +7,7 @@
 /* タイトルを白い枠に入れ、おばけが枠の上から顔を出してふちに手をかける */
 .peek{position:relative;padding-top:84px;--peek-line:#e7a3bb;--peek-ghost:#fff;--peek-eye:#1e1410}
 :root[data-theme="dark"] .peek{--peek-line:#8a5a6c}
-.peek-head{position:absolute;top:0;right:40px;width:150px;height:105px;z-index:0;
+.peek-head{position:absolute;top:0;right:40px;width:150px;height:105px;z-index:0;overflow:visible;
     fill:var(--peek-ghost);stroke:var(--peek-line);stroke-width:2.2;
     animation:peek-in .8s cubic-bezier(.3,1.4,.5,1) .5s both,peek-bob 4s ease-in-out 1.4s infinite}
 .peek-head ellipse{fill:var(--peek-eye);stroke:none}

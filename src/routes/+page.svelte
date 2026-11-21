@@ -22,10 +22,13 @@
   <div class="hero">
     <div class="peek">
       <!-- タイトルの枠のうしろから顔を出し、ふちに手をかけるおばけ -->
+      <!-- 首を左にかしげ、目線をタイトルの方へ向ける -->
       <svg class="peek-head" viewBox="0 0 120 84" aria-hidden="true">
-        <path d="M6 84C5 60 12 34 30 18 44 6 70 4 86 16 104 30 112 56 114 84Z" />
-        <ellipse cx="47" cy="44" rx="6.2" ry="7.8" transform="rotate(-8 47 44)" />
-        <ellipse cx="73" cy="46" rx="5.9" ry="7.8" transform="rotate(7 73 46)" />
+        <g transform="rotate(-9 60 84)">
+          <path d="M6 84C5 60 12 34 30 18 44 6 70 4 86 16 104 30 112 56 114 84Z" />
+          <ellipse cx="38" cy="45" rx="6.2" ry="7.8" transform="rotate(-8 38 45)" />
+          <ellipse cx="63" cy="46" rx="5.9" ry="7.8" transform="rotate(7 63 46)" />
+        </g>
       </svg>
       <div class="hero-card">
         <svg class="peek-hands" viewBox="0 0 120 26" aria-hidden="true">
