@@ -15,8 +15,8 @@ const pages = ['', ...ARTICLES.map(({ slug }) => slug + '/'), '404.html'];
 const fonts = files.filter((file) => file.startsWith('fonts/') && file.endsWith('.woff2'));
 const assets = files.filter((file) =>
   file.startsWith('scripts/') || file.startsWith('styles/') || file.startsWith('icons/') ||
-  ['i18n.js', 'livedata.js', 'favicon.svg', 'favicon.ico', 'brand-mark.svg', 'ghost-lost.svg',
-    'ceo/news-telop.jpg', 'sawatte-og.webp'].includes(file)
+  file.startsWith('media/') ||
+  ['i18n.js', 'livedata.js', 'favicon.svg', 'favicon.ico', 'brand-mark.svg', 'ghost-lost.svg'].includes(file)
 );
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex').slice(0, 16);
 const assetUrls = new Map();
@@ -55,7 +55,7 @@ for (const page of pages) {
   const pageUrl = new URL(page, site);
   const html = await readFile(filename, 'utf8');
   const rewritten = html.replace(
-    /(<(?:link|script|img)\b[^>]*?\s(?:href|src)=")([^"]+)"/g,
+    /(<(?:link|script|img|source)\b[^>]*?\s(?:href|src|srcset)=")([^"]+)"/g,
     (match, prefix, source) => {
       const url = new URL(source, pageUrl);
       const versioned = url.origin === site.origin && assetUrls.get(url.pathname);

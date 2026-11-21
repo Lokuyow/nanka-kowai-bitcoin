@@ -18,6 +18,17 @@ https://lokuyow.github.io/sawatte-wakaru-bitcoin/
 
 記事の並びとメタデータは `src/lib/site.js`、本文は `src/lib/articles/` にあります。図解の JS と記事固有の CSS は、それぞれ `static/scripts/articles/` と `static/styles/articles/` にあります。
 
+### ページ内画像の追加
+
+Python に Pillow 11.3 以降をインストールし、次のように元画像から AVIF を生成します。
+
+```sh
+python -m pip install "Pillow>=11.3"
+python scripts/convert-image.py source.png static/media/example.avif --quality 80
+```
+
+`--width` は表示用のサムネイルなどを縮小するときに指定します。既存の JPEG や WebP を軽量な代替画像にする場合も、出力の拡張子を変えて同じスクリプトを使えます。ページでは `<picture>` 内に AVIF の `<source>` と代替画像の `<img>` を置きます。`static/media/` にはページで使う画像を置くと、PWA で事前キャッシュされます。
+
 ## 公開
 
 GitHub Actions は PR と `main` への push でテストを実行し、`main` で成功したビルドを GitHub Pages に公開します。初回公開前に、リポジトリの **Settings → Pages → Source** を **GitHub Actions** に設定してください。

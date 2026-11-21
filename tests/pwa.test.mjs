@@ -155,6 +155,22 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
       const titleFonts = await page.locator('.hero .t').evaluate((title) =>
         document.fonts.load('600 34px "M PLUS 1 Code"', title.textContent).then((fonts) => fonts.length));
       assert.equal(titleFonts, 1, 'オフラインでもサイトタイトルのフォントが読み込まれる');
+      const previewSource = await page.locator('.bridge-card img').evaluate(async (img) => {
+        await img.decode();
+        return img.currentSrc;
+      });
+      assert.match(previewSource, /\/media\/sawatte-preview\.[a-f0-9]{16}\.avif$/);
+
+      await page.goto(`${server.base}ceo/`, { waitUntil: 'load' });
+      const newsSource = await page.locator('.newsfig img').evaluate(async (img) => {
+        await img.decode();
+        return img.currentSrc;
+      });
+      assert.match(newsSource, /\/media\/news-telop\.[a-f0-9]{16}\.avif$/);
+      await page.locator('.newsfig source').evaluate((source) => { source.type = 'image/unsupported'; });
+      await page.waitForFunction(() => document.querySelector('.newsfig img').currentSrc.endsWith('.jpg'));
+      await page.locator('.newsfig img').evaluate((img) => img.decode());
+
       const article = await page.goto(`${server.base}price/`, { waitUntil: 'load' });
       assert.equal(article.status(), 200, '未訪問の記事をオフラインで開ける');
       assert.equal(await page.locator('h1').count(), 1);
