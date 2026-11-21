@@ -54,7 +54,13 @@ export async function startServer() {
       }
     }
   });
-  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(0, '127.0.0.1', () => {
+      server.off('error', reject);
+      resolve();
+    });
+  });
   const { port } = server.address();
   return {
     origin: `http://127.0.0.1:${port}`,
@@ -67,13 +73,17 @@ export async function launchBrowser() {
   return chromium.launch({ args: ['--no-sandbox'] });
 }
 
-// 既定のコンテキスト: 幅375px・日本語ロケール（初期表示が日本語になる条件）
-export function newContext(browser, options = {}) {
-  return browser.newContext({
+// 幅375px・日本語ロケールを既定にし、外部通信を遮断する。
+// Service Worker は PWA テストでのみ有効にする。
+export async function newContext(browser, options = {}) {
+  const context = await browser.newContext({
     viewport: { width: 375, height: 667 },
     locale: 'ja-JP',
+    serviceWorkers: 'block',
     ...options,
   });
+  await context.route(/^https:\/\//, (route) => route.abort());
+  return context;
 }
 
 // ページを開き、JSエラー（pageerror）を集める配列を返す

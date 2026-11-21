@@ -25,8 +25,11 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await browser.close();
-  await server.close();
+  try {
+    await browser?.close();
+  } finally {
+    await server?.close();
+  }
 });
 
 for (const { slug, smoke } of UNITS) {
@@ -45,9 +48,8 @@ for (const { slug, smoke } of UNITS) {
 }
 
 test('図解: 手数料データを取得できない場合は日英の目安で計算する', async () => {
-  const offlineData = await newContext(browser, { serviceWorkers: 'block' });
+  const offlineData = await newContext(browser);
   try {
-    await offlineData.route(/^https:\/\//, (route) => route.abort());
     const { page, errors } = await openPage(offlineData, server.base + 'fee/');
     await page.waitForFunction(() => document.getElementById('feeNote').textContent.includes('実データを取得できなかった'));
     await page.locator('#sendBtn').click();

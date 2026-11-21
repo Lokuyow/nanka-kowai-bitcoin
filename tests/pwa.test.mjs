@@ -15,8 +15,11 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await browser.close();
-  await server.close();
+  try {
+    await browser?.close();
+  } finally {
+    await server?.close();
+  }
 });
 
 test('PWA: manifest の必須項目', async () => {
@@ -34,7 +37,7 @@ test('PWA: manifest の必須項目', async () => {
 });
 
 test('PWA: SW が activate され、オフラインでも表示できる', async () => {
-  const context = await newContext(browser);
+  const context = await newContext(browser, { serviceWorkers: 'allow' });
   try {
     const setupPage = await context.newPage();
     await setupPage.goto(server.origin);

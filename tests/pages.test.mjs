@@ -16,8 +16,11 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await browser.close();
-  await server.close();
+  try {
+    await browser?.close();
+  } finally {
+    await server?.close();
+  }
 });
 
 for (const { name, path } of PAGES) {

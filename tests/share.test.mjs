@@ -4,8 +4,9 @@ import { startServer, launchBrowser, newContext } from './helpers.mjs';
 
 test('シェア: 日英の文言・X の URL・コピーするテキストが一致する', async () => {
   const server = await startServer();
-  const browser = await launchBrowser();
+  let browser;
   try {
+    browser = await launchBrowser();
     const context = await newContext(browser);
     await context.addInitScript(() => {
       Object.defineProperty(navigator, 'share', {
@@ -42,7 +43,10 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
       await page.locator('.lang-toggle').click();
     }
   } finally {
-    await browser.close();
-    await server.close();
+    try {
+      await browser?.close();
+    } finally {
+      await server.close();
+    }
   }
 });

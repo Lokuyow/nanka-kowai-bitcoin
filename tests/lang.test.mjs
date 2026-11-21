@@ -15,8 +15,11 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await browser.close();
-  await server.close();
+  try {
+    await browser?.close();
+  } finally {
+    await server?.close();
+  }
 });
 
 const TARGETS = [
