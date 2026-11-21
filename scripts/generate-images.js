@@ -93,6 +93,11 @@ function brandMarkSvg() {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="24" fill="${COLORS.tile}"/><g transform="translate(50 52) scale(1.17) translate(-55 -54)">${ghost()}</g></svg>`;
 }
 
+// ファビコン用：タブの小さな枠でも見えるよう、顔とコインのあたりを大きく切り抜く（体のふちは見切れてよい）
+function faviconSvg({ scale = 1.7, cx = 49, cy = 57 } = {}) {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><clipPath id="tile"><rect width="100" height="100" rx="22"/></clipPath></defs><g clip-path="url(#tile)"><rect width="100" height="100" fill="${COLORS.tile}"/><g transform="translate(50 50) scale(${scale}) translate(${-cx} ${-cy})">${ghost()}</g></g></svg>`;
+}
+
 function escapeHtml(text) {
   return text.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 }
@@ -201,7 +206,7 @@ try {
   const page = await browser.newPage({ deviceScaleFactor: 1 });
 
   // ファビコン（SVG）と PWA・ホーム画面用アイコン
-  await writeFile(path.join(STATIC, 'favicon.svg'), iconSvg() + '\n');
+  await writeFile(path.join(STATIC, 'favicon.svg'), faviconSvg() + '\n');
   await writeFile(path.join(STATIC, 'brand-mark.svg'), brandMarkSvg() + '\n');
   await writeFile(path.join(STATIC, 'ghost-lost.svg'), lostGhostSvg() + '\n');
   await mkdir(path.join(STATIC, 'icons'), { recursive: true });
@@ -217,8 +222,8 @@ try {
     await writeFile(path.join(STATIC, rel), await renderPng(page, iconSvg(options), size, size, { transparent }));
   }
   const ico = [];
-  for (const [size, simple] of [[16, true], [32, false], [48, false]]) {
-    ico.push({ size, data: await renderPng(page, iconSvg({ simple }), size, size, { transparent: true }) });
+  for (const size of [16, 32, 48]) {
+    ico.push({ size, data: await renderPng(page, faviconSvg(), size, size, { transparent: true }) });
   }
   await writeFile(path.join(STATIC, 'favicon.ico'), buildIco(ico));
 
