@@ -17,7 +17,6 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
 .tabbar .unit-icon{flex:none;width:28px;height:28px}
 .tabbar .layer-number{display:grid;place-items:center;flex:0 0 22px;height:22px;min-width:0;padding:0;
     font-size:12px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
-.tabbar .tb:last-child .layer-number{order:-1}
 .nav-symbol{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;
     stroke-linecap:round;stroke-linejoin:round}
 .tabbar .idx{gap:7px}

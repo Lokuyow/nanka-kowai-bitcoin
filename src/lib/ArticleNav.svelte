@@ -12,8 +12,8 @@
 {/snippet}
 
 {#snippet destination(target)}
-  <ArticleIcon slug={target.slug} />
   <span class="layer-number" aria-hidden="true">{target.layer}</span>
+  <ArticleIcon slug={target.slug} />
 {/snippet}
 
 <nav class="tabbar" aria-label="記事の移動" data-i18n-label>
