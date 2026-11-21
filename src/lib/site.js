@@ -110,17 +110,17 @@ export const LAYERS = [
       },
       {
         slug: "ai",
-        heading: "AIに全部持っていかれたら、<br>ビットコインは掘れなくなるんじゃないの？",
+        heading: "電力と計算力をAIに使われて<br>ビットコインは掘れなくなるんでしょ？",
         cardAnswer: "道具が違う。難易度の自己調整もある",
         description: "マイニングは専用機（ASIC）の仕事で、AIのGPUとは道具が違う。掘る人が減れば、難易度が下がる自己調整もある",
-        shareEn: { title: "If AI takes everything, Bitcoin can't be mined anymore, right?", text: "Mining is a job for dedicated machines (ASICs) — different tools from AI GPUs. And if miners leave, difficulty adjusts itself downward" }
+        shareEn: { title: "If AI uses up the electricity and computing power, Bitcoin can't be mined anymore, right?", text: "Mining is a job for dedicated machines (ASICs) — different tools from AI GPUs. And if miners leave, difficulty adjusts itself downward" }
       },
       {
         slug: "reward",
-        heading: "報酬がなくなったら、<br>ビットコインは終わるんでしょ？",
+        heading: "マイニング報酬がなくなったら<br>ビットコインは終わりでしょ？",
         cardAnswer: "収入は報酬と手数料の2本立て",
         description: "マイナーの収入は「新しいコインの報酬」と「送金の手数料」の2本立て。報酬が細っても、手数料の柱が残る",
-        shareEn: { title: "When the reward runs out, Bitcoin ends, right?", text: "Miner income stands on two pillars: the new coin reward and transaction fees. Even as the reward thins, the fee pillar remains" }
+        shareEn: { title: "If mining rewards run out, Bitcoin is finished, right?", text: "Miner income stands on two pillars: the new coin reward and transaction fees. Even as the reward thins, the fee pillar remains" }
       },
       {
         slug: "limit",
@@ -168,10 +168,10 @@ export const LAYERS = [
       {
         slug: "freedom",
         openQuestion: true,
-        heading: "管理する人がいないお金は<br>自由？ それともこわい？",
+        heading: "管理する人がいないお金は<br>自由？ それとも危ない？",
         cardAnswer: "止められない自由と、助けのない自己責任",
         description: "誰にも邪魔されないことは、誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？",
-        shareEn: { title: "Money with no one in charge — is it freedom? Or is it scary?", text: "Being disturbed by no one is the flip side of being helped by no one. Which weighs more for you?" }
+        shareEn: { title: "Money with no one in charge: freedom or danger?", text: "Being disturbed by no one is the flip side of being helped by no one. Which weighs more for you?" }
       },
       {
         slug: "fair",
@@ -192,10 +192,10 @@ export const LAYERS = [
       {
         slug: "future",
         openQuestion: true,
-        heading: "ビットコインが当たり前になったら、<br>社会はどう変わる？",
+        heading: "ビットコインが当たり前になったら、<br>社会はどうなる？",
         cardAnswer: "送金も貯金も、意味が変わる",
         description: "お金の選択肢が増える社会は、便利な社会だろうか、それとも面倒な社会だろうか。あなたはどう思う？",
-        shareEn: { title: "If Bitcoin became ordinary, how would society change?", text: "Would a society with more choices of money be a convenient society, or a troublesome one? What do you think?" }
+        shareEn: { title: "If Bitcoin became ordinary, what would happen to society?", text: "Would a society with more choices of money be a convenient society, or a troublesome one? What do you think?" }
       },
       {
         slug: "nation",
