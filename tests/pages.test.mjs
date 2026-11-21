@@ -67,7 +67,7 @@ test('未知の深い URL に HTTP 404 を返し、設定とトップへのリ�
   }
 });
 
-test('キーボードで本文に移動し、層から記事を選んで同じ位置に戻れる', async () => {
+test('キーボードで本文に移動し、記事から層や一覧の元の位置に戻れる', async () => {
   const page = await context.newPage();
   try {
     await page.setViewportSize({ width: 390, height: 844 });
@@ -77,9 +77,13 @@ test('キーボードで本文に移動し、層から記事を選んで同じ�
     await page.keyboard.press('Enter');
     assert.equal(await page.locator('main:focus').count(), 1);
 
-    await page.locator('.hero-actions a[href="#stories"]').click();
-    assert.equal(new URL(page.url()).hash, '#stories');
-    await page.locator('.layer-menu a[href="#layer-2"]').click();
+    assert.equal(await page.locator('.hero a').count(), 1);
+    await page.locator('.hero .action-primary').click();
+    assert.equal(page.url(), server.base + 'scam/');
+    await page.locator('.eyebrow').click();
+    assert.equal(new URL(page.url()).hash, '#layer-1');
+    await page.locator('#story-hack').click();
+    await page.locator('.eyebrow').click();
     assert.equal(new URL(page.url()).hash, '#layer-2');
     await page.locator('#story-hack').click();
     assert.equal(page.url(), server.base + 'hack/');

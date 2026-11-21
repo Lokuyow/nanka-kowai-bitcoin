@@ -29,19 +29,15 @@
 @media(prefers-reduced-motion:reduce){.peek-head,.peek-hands,.hero .t span{animation:none}}
 .subtitle{font-size:clamp(17px,3.4vw,22px);font-weight:700;margin:22px 0 6px}
 .hero .lede{font-size:15px;margin:0}
-.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.story-index{margin-top:clamp(32px,6vw,64px)}
-.story-index h2{font-size:clamp(22px,4vw,30px);margin:0 0 12px}
-.story-index h2::before{display:none}
-.layer-menu,.story-list{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
-.layer-menu a{display:flex;align-items:center;justify-content:space-between;gap:6px;
-    padding:9px 12px;min-height:46px;background:var(--card);border:1px solid var(--line);
-    border-radius:12px;font-size:14px;font-weight:700;line-height:1.45;color:var(--ink);text-decoration:none}
-.layer-menu a>span:last-child{color:var(--color-secondary)}
-.story-layer{margin-top:34px}
+.hero .action-primary{margin-top:16px}
+.story-index{margin-top:clamp(28px,5vw,48px)}
+.story-layer{margin-top:0}
+.story-layer+.story-layer{margin-top:34px}
 .layerhead{font-size:clamp(18px,3vw,23px);line-height:1.4;margin:0 0 5px}
+.layerhead::before{display:none}
 .layerdesc{font-size:14px;color:var(--sub);margin:0 0 12px}
-.story-list{padding:0;margin:0;list-style:none}
+.story-list{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr));
+    padding:0;margin:0;list-style:none}
 .unit{display:flex;align-items:center;gap:12px;min-height:100%;background:var(--card);
     border:1px solid var(--line);border-radius:14px;padding:14px;
     text-decoration:none;color:var(--ink)}
@@ -53,7 +49,7 @@
 .unit .arr{margin-left:auto;color:var(--color-secondary);font-weight:900}
 .unit:target{border-color:var(--color-secondary);box-shadow:0 0 0 2px var(--color-secondary)}
 @media(hover:hover){
-    .unit:hover,.layer-menu a:hover{border-color:var(--color-secondary);background:var(--color-secondary-bg)}
+    .unit:hover{border-color:var(--color-secondary);background:var(--color-secondary-bg)}
   }
 .tipw{text-align:center;margin:36px 0 0}
 .tip p{color:var(--sub);font-size:14px;margin:0 0 12px}
@@ -66,12 +62,6 @@
     padding:0 6px;border-radius:6px;color:var(--sub);text-decoration:none}
 @media(hover:hover){.credit a:hover{color:var(--ink)}}
 .credit i{font-style:normal;opacity:.6}
-@media(min-width:840px){
-    .layer-menu{grid-template-columns:repeat(4,minmax(0,1fr))}
-  }
-@media(max-width:520px),(min-width:840px){
-    .layer-menu .layer-label{display:grid;justify-items:start;gap:4px}
-  }
 @media(max-width:680px){
     .story-list{grid-template-columns:1fr}
   }

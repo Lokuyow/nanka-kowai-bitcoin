@@ -45,15 +45,14 @@ body{margin:0;background:var(--bg);color:var(--ink);
     display:flex;align-items:center;gap:5px;font:inherit;font-size:12px;line-height:1}
 :root[data-lang="ja"] .lang-toggle .lg-ja,
   :root[data-lang="en"] .lang-toggle .lg-en{color:var(--ink);font-weight:700}
-.action-primary,.action-secondary{display:inline-flex;align-items:center;justify-content:center;
-    gap:10px;min-height:46px;padding:8px 16px;border:1px solid transparent;border-radius:12px;
-    font-size:15px;font-weight:700;text-align:center;text-decoration:none;line-height:1.4}
-.action-primary{background:var(--color-secondary);color:var(--card)}
-.action-secondary{background:var(--card);color:var(--ink);border-color:var(--line)}
+.action-primary{display:inline-flex;align-items:center;justify-content:center;
+    gap:10px;min-height:46px;padding:8px 16px;border-radius:12px;
+    font-size:15px;font-weight:700;text-align:center;text-decoration:none;line-height:1.4;
+    background:var(--color-secondary);color:var(--card)}
 .layer-number{display:inline-block;background:var(--color-secondary-bg);color:var(--color-secondary);
     padding:2px 9px;border-radius:999px;margin-inline-end:7px;font-size:.8em;white-space:nowrap}
 @media(hover:hover){
-    .theme-toggle:hover,.lang-toggle:hover,.action-secondary:hover{border-color:var(--color-secondary);color:var(--color-secondary)}
+    .theme-toggle:hover,.lang-toggle:hover{border-color:var(--color-secondary);color:var(--color-secondary)}
     .action-primary:hover{filter:brightness(1.09)}
   }
 @media(max-width:520px){

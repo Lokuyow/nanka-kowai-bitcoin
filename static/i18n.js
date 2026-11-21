@@ -46,8 +46,6 @@
 
     /* ===== トップページ ===== */
     '第1話から読む': 'Start with story 1',
-    '話を選ぶ': 'Browse stories',
-    '全話一覧': 'All stories',
     'なんか よくわからんけど こわい ビットコイン': "I don't really get it, but it's scary: Bitcoin",
     'ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。': "The image from the news, and what it really looks like. Untangling the vague 'scary' around Bitcoin, one misunderstanding at a time.",
     'なんか': "I don't really get it,",

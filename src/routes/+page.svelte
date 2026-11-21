@@ -40,30 +40,15 @@
       </div>
       <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
       <p class="lede" data-i18n>見出しだけを見ていると、目に入るのは事件と暴落の話ばかり。「わからない」ものは「こわい」ものに見える。ここではその誤解をひとつずつ図で解いていく。</p>
-      <div class="hero-actions">
-        <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
-          <span data-i18n>第1話から読む</span><span aria-hidden="true">→</span>
-        </a>
-        <a class="action-secondary" href="#stories">
-          <span data-i18n>話を選ぶ</span><span aria-hidden="true">↓</span>
-        </a>
-      </div>
+      <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
+        <span data-i18n>第1話から読む</span><span aria-hidden="true">→</span>
+      </a>
     </div>
 
-    <section class="story-index" id="stories" aria-labelledby="stories-title">
-      <h2 id="stories-title" data-i18n>全話一覧</h2>
-      <nav class="layer-menu" aria-labelledby="stories-title">
-        {#each LAYERS as layer (layer.number)}
-          <a href={'#layer-' + layer.number}>
-            <LayerLabel {layer} />
-            <span aria-hidden="true">↓</span>
-          </a>
-        {/each}
-      </nav>
-
+    <div class="story-index" id="stories">
       {#each LAYERS as layer (layer.number)}
         <section class="story-layer" id={'layer-' + layer.number} aria-labelledby={'layer-title-' + layer.number}>
-          <h3 class="layerhead" id={'layer-title-' + layer.number}><LayerLabel {layer} /></h3>
+          <h2 class="layerhead" id={'layer-title-' + layer.number}><LayerLabel {layer} /></h2>
           <p class="layerdesc" data-i18n>{layer.description}</p>
           <ul class="story-list">
             {#each ARTICLES.filter((article) => article.layer === layer.number) as article (article.slug)}
@@ -81,7 +66,7 @@
           </ul>
         </section>
       {/each}
-    </section>
+    </div>
 
     <div class="summary home-end"><small data-i18n>読み終わったら</small>
       <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span></div>
