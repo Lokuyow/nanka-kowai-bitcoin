@@ -4,15 +4,15 @@ export const SITE_URL = 'https://lokuyow.github.io' + BASE_PATH;
 
 export const HOME = {
   title: SITE_TITLE,
-  description: "ニュースで見たイメージと、ほんとの姿。なんとなくの「こわい」を誤解ひとつずつほどいていく。",
-  shareEn: { title: "I don't really get it, but it's scary: Bitcoin", text: "The image from the news, and what it really looks like. Untangling the vague 'scary' around Bitcoin, one misunderstanding at a time." }
+  description: "ネットやSNSで見たビットコインの話、どこまで本当？ 値段や送金から、盗難や規制まで、図解で確かめる。",
+  shareEn: { title: "I don't really get it, but it's scary: Bitcoin", text: "How much of what you read about Bitcoin online is true? Explore prices, transfers, theft, and regulation with interactive diagrams." }
 };
 
 export const LAYERS = [
   {
     number: 1,
     title: "名前はしってる",
-    description: "価格やニュースの見出しから浮かぶ疑問",
+    description: "値段や買い方など、最初に気になること",
     articles: [
       {
         slug: "scam",
@@ -64,7 +64,7 @@ export const LAYERS = [
   {
     number: 2,
     title: "ニュースで見たよ",
-    description: "ニュースを見て気になること",
+    description: "盗難や電力、規制をめぐる疑問",
     articles: [
       {
         slug: "hack",
