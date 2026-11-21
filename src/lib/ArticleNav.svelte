@@ -12,13 +12,13 @@
 {/snippet}
 
 {#snippet destination(target)}
-  <span class="layer-number" aria-hidden="true">{target.layer}</span>
   <ArticleIcon slug={target.slug} />
+  <span class="nav-title" id={'nav-title-' + target.slug} data-i18n>{target.navTitle}</span>
 {/snippet}
 
 <nav class="tabbar" aria-label="記事の移動" data-i18n-label>
   {#if previous}
-    <a class="tb" href={articlePath(previous.slug)} aria-label="前の話" data-i18n-label>
+    <a class="tb" href={articlePath(previous.slug)} aria-label="前の話" aria-describedby={'nav-title-' + previous.slug} data-i18n-label>
       {@render symbol('M15 6l-6 6 6 6')}
       {@render destination(previous)}
     </a>
@@ -30,7 +30,7 @@
     <span class="pos" id="article-position">{article.number} / {total}</span>
   </a>
   {#if next}
-    <a class="tb" href={articlePath(next.slug)} aria-label="次の話" data-i18n-label>
+    <a class="tb" href={articlePath(next.slug)} aria-label="次の話" aria-describedby={'nav-title-' + next.slug} data-i18n-label>
       {@render destination(next)}
       {@render symbol('M9 6l6 6-6 6')}
     </a>
@@ -38,9 +38,3 @@
     <span class="tb off" aria-hidden="true">{@render symbol('M9 6l6 6-6 6')}</span>
   {/if}
 </nav>
-
-<style>
-  .layer-number {
-    margin-inline-end: 0;
-  }
-</style>

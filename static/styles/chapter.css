@@ -15,8 +15,7 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;background:var(--bg);background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:8px max(18px,calc(50% - 302px)) calc(8px + env(safe-area-inset-bottom))}
 .tabbar .tb{flex:1 1 0;display:flex;align-items:center;justify-content:center;gap:5px;min-height:44px;color:var(--ink);text-decoration:none;padding:8px 4px;white-space:nowrap;background:var(--card);border-radius:12px;touch-action:manipulation}
 .tabbar .unit-icon{flex:none;width:28px;height:28px}
-.tabbar .layer-number{display:grid;place-items:center;flex:0 0 22px;height:22px;min-width:0;padding:0;
-    font-size:12px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.tabbar .nav-title{font-size:13px;font-weight:600;line-height:1.25;text-transform:capitalize}
 .nav-symbol{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;
     stroke-linecap:round;stroke-linejoin:round}
 .tabbar .idx{gap:7px}
@@ -27,6 +26,14 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
     .eyebrow:hover{text-decoration:underline}
     .read-next:hover{border-color:var(--color-secondary)}
     .tabbar a.tb:hover:not(:active){background:color-mix(in srgb,var(--card) 92%,var(--ink))}
+  }
+@media(max-width:480px){
+    .tabbar{gap:6px;padding-inline:12px}
+    .tabbar .tb{gap:4px}
+    .tabbar .idx{flex:0 0 66px}
+    .tabbar .unit-icon{width:24px;height:24px}
+    .tabbar .nav-symbol{width:16px;height:16px}
+    .tabbar .idx .pos,.tabbar .nav-title{font-size:12px}
   }
 @media(max-width:520px){
     :root[data-lang="ja"] .chapter h1 br{display:none}

@@ -16,6 +16,7 @@ export const LAYERS = [
     articles: [
       {
         slug: "scam",
+        navTitle: "詐欺",
         heading: "結局ビットコインって<br>詐欺なんじゃないの？",
         cardAnswer: "ビットコインを使った詐欺の手口を見分ける",
         description: "詐欺でよく使われる文句を、5問のクイズで見分ける。",
@@ -23,6 +24,7 @@ export const LAYERS = [
       },
       {
         slug: "ceo",
+        navTitle: "運営",
         heading: "ビットコインって<br>どこの会社がやってるの？",
         cardAnswer: "世界中の参加者が動かしている",
         description: "ビットコインのネットワークは、世界中の参加者が動かしている。",
@@ -30,6 +32,7 @@ export const LAYERS = [
       },
       {
         slug: "price",
+        navTitle: "価格",
         heading: "ビットコインの値段って<br>誰かが決めてるんでしょ？",
         cardAnswer: "取引が成立した値段が価格になる",
         description: "売り手と買い手が合意した値段が、その取引の価格になる。",
@@ -38,6 +41,7 @@ export const LAYERS = [
       },
       {
         slug: "fee",
+        navTitle: "手数料",
         heading: "ビットコインの送金手数料って<br>高いよね？",
         cardAnswer: "出金手数料と送金手数料は別々",
         description: "取引所の出金料金と、取引を記録するネットワークの手数料は別々に決まる。",
@@ -46,6 +50,7 @@ export const LAYERS = [
       },
       {
         slug: "satoshi",
+        navTitle: "少額",
         heading: "1ビットコインって何百万円も<br>するんでしょ？ 買えないよ",
         cardAnswer: "1 BTCより少ない量でも買える",
         description: "1 BTCを丸ごと買う必要はない。金額を決めて、その分だけ買える。",
@@ -54,6 +59,7 @@ export const LAYERS = [
       },
       {
         slug: "value",
+        navTitle: "価値",
         heading: "裏付けがないビットコインは<br>価値ゼロでしょ？",
         cardAnswer: "欲しい人がいれば市場で価格がつく",
         description: "金や円との交換保証がなくても、買い手と売り手がいれば価格がつく。",
@@ -68,6 +74,7 @@ export const LAYERS = [
     articles: [
       {
         slug: "hack",
+        navTitle: "盗難",
         heading: "ビットコインって<br>ハッキングされて盗まれるんでしょ？",
         cardAnswer: "取引所が預かる資産は盗まれることがある",
         description: "取引所の資産管理と、台帳に送金を記録する仕組みは別々。",
@@ -75,6 +82,7 @@ export const LAYERS = [
       },
       {
         slug: "crime",
+        navTitle: "匿名",
         heading: "ビットコインって匿名だから<br>犯罪に使いやすいんでしょ？",
         cardAnswer: "支払いをたどりにくいのは手渡しの現金",
         description: "手渡しの現金には公開の支払い記録が残らない。ビットコインは送金先と金額が公開台帳に残る。",
@@ -82,6 +90,7 @@ export const LAYERS = [
       },
       {
         slug: "energy",
+        navTitle: "電力",
         heading: "ビットコインって<br>電気の無駄遣いでしょ？",
         cardAnswer: "マイニングの計算が記録を守る",
         description: "電力を使って積み上げたマイニングの計算が、過去の取引を書き換えにくくする。",
@@ -89,6 +98,7 @@ export const LAYERS = [
       },
       {
         slug: "ai",
+        navTitle: "AI",
         heading: "電力と計算力をAIに使われて<br>ビットコインは掘れなくなるんでしょ？",
         cardAnswer: "電力は競合しうる。難易度はあとで調整",
         description: "AIと採掘は同じ地域で電力を取り合うことがある。ビットコインは計算力の変化に合わせて難易度を調整する。",
@@ -96,6 +106,7 @@ export const LAYERS = [
       },
       {
         slug: "ban",
+        navTitle: "規制",
         heading: "国が禁止したら、<br>ビットコインは終わりでしょ？",
         cardAnswer: "国内は規制できる。国外では続けられる",
         description: "国内の活動が規制されても、国外の参加者はネットワークを動かし続けられる。",
@@ -103,6 +114,7 @@ export const LAYERS = [
       },
       {
         slug: "tulip",
+        navTitle: "バブル",
         heading: "チューリップバブルと同じで、<br>弾けるんでしょ？",
         cardAnswer: "ビットコインは暴落と回復を繰り返してきた",
         description: "球根の投機は1637年に崩れた。ビットコインは暴落と回復を繰り返してきた。",
@@ -117,6 +129,7 @@ export const LAYERS = [
     articles: [
       {
         slug: "quantum",
+        navTitle: "量子",
         heading: "量子コンピューターができたら、<br>ビットコインは終わりでしょ？",
         cardAnswer: "今の量子コンピューターでは鍵を破れない",
         description: "今の量子コンピューターではビットコインの鍵を破れない。将来、鍵を破れるほど強力になれば、ビットコインが盗まれるおそれがある。",
@@ -124,6 +137,7 @@ export const LAYERS = [
       },
       {
         slug: "51",
+        navTitle: "攻撃",
         heading: "51%攻撃されたら、<br>ビットコインは終わりなんでしょ？",
         cardAnswer: "妨害はできる。発行ルールは変えられない",
         description: "計算力の過半数があれば取引を妨害しやすくなるが、他人の資産を動かしたり、発行ルールを変えたりはできない。",
@@ -131,6 +145,7 @@ export const LAYERS = [
       },
       {
         slug: "reward",
+        navTitle: "報酬",
         heading: "マイニング報酬がなくなったら<br>ビットコインは終わりでしょ？",
         cardAnswer: "新規発行が終わっても手数料は残る",
         description: "マイナーの収入は、ビットコインの新規発行分と手数料。新規発行が終わると手数料だけになる。",
@@ -138,6 +153,7 @@ export const LAYERS = [
       },
       {
         slug: "limit",
+        navTitle: "上限",
         heading: "発行上限って<br>その気になれば変えられるんでしょ？",
         cardAnswer: "ノードが発行ルールをそれぞれ確かめる",
         description: "一人がソフトを書き換えても、ほかのノードが使うルールは変わらない。",
@@ -145,6 +161,7 @@ export const LAYERS = [
       },
       {
         slug: "infinite",
+        navTitle: "分割",
         heading: "小さく割れるなら、<br>上限なんてないじゃん？",
         cardAnswer: "切り分けても量は同じ",
         description: "1 BTCは1億 satoshiと同じ量。単位を細かくしても発行上限は変わらない。",
@@ -159,6 +176,7 @@ export const LAYERS = [
     articles: [
       {
         slug: "money",
+        navTitle: "お金",
         openQuestion: true,
         heading: "お金ってそもそも何？",
         cardAnswer: "支払う、値段を比べる、あとで使う",
@@ -167,6 +185,7 @@ export const LAYERS = [
       },
       {
         slug: "freedom",
+        navTitle: "自由",
         openQuestion: true,
         heading: "管理する人がいないお金は<br>自由？ それとも危ない？",
         cardAnswer: "自分で送れる。鍵の管理も自分で",
@@ -175,6 +194,7 @@ export const LAYERS = [
       },
       {
         slug: "fair",
+        navTitle: "公平",
         openQuestion: true,
         heading: "早く持った人が得をするのは、<br>ずるくない？",
         cardAnswer: "早く買う利点と、そのときのリスク",
@@ -183,6 +203,7 @@ export const LAYERS = [
       },
       {
         slug: "death",
+        navTitle: "相続",
         openQuestion: true,
         heading: "自分が死んだら、<br>ビットコインはどうなる？",
         cardAnswer: "鍵や復元情報を引き継げるか",
@@ -191,6 +212,7 @@ export const LAYERS = [
       },
       {
         slug: "future",
+        navTitle: "未来",
         openQuestion: true,
         heading: "ビットコインが当たり前になったら、<br>社会はどうなる？",
         cardAnswer: "支払い方と値段の付け方を考える",
@@ -199,6 +221,7 @@ export const LAYERS = [
       },
       {
         slug: "nation",
+        navTitle: "発行",
         openQuestion: true,
         heading: "国が作らないお金って<br>ありなの？",
         cardAnswer: "江戸時代には商人が発行したお金もあった",
