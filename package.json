@@ -12,6 +12,7 @@
     "dev": "vite dev",
     "build": "vite build && node scripts/build-service-worker.js",
     "deploy": "gh workflow run test.yml --ref main",
+    "images": "node scripts/generate-images.js",
     "preview": "vite preview",
     "test": "npm run build && vitest run"
   },

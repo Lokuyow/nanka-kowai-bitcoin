@@ -15,9 +15,16 @@
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
+    <meta property="og:locale" content="ja_JP" />
     <meta property="og:image" content={url + 'ogp.png'} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={url + 'ogp.png'} />
+    <meta name="twitter:image:alt" content={title} />
   {/if}
 </svelte:head>
