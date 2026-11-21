@@ -58,6 +58,27 @@ function ghost({ simple = false } = {}) {
 </g>`;
 }
 
+// Arial Bold の「?」（20px・中央揃え・ベースラインは原点の 7 下）
+const QUESTION_MARK =
+  'M1.23 3.31H-1.26Q-1.27 2.77 -1.27 2.65Q-1.27 1.44 -0.87 0.66Q-0.47 -0.12 0.73 -1.1Q1.93 -2.07 2.16 -2.38Q2.52 -2.85 2.52 -3.43Q2.52 -4.23 1.88 -4.8Q1.25 -5.37 0.16 -5.37Q-0.88 -5.37 -1.59 -4.78Q-2.29 -4.18 -2.55 -2.96L-5.07 -3.27Q-4.97 -5.02 -3.58 -6.24Q-2.2 -7.46 0.04 -7.46Q2.41 -7.46 3.8 -6.23Q5.2 -4.99 5.2 -3.35Q5.2 -2.44 4.69 -1.63Q4.17 -0.82 2.5 0.57Q1.63 1.3 1.42 1.74Q1.21 2.18 1.23 3.31ZM-1.26 7V4.26H1.48V7Z';
+
+// 404 用：コインをなくして「あれ？」となっているおばけ
+function lostGhostSvg() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<rect width="100" height="100" rx="22" fill="${COLORS.tile}"/>
+<g transform="translate(-3 1)">
+  <ellipse cx="22" cy="56" rx="5.5" ry="4.2" transform="rotate(-35 22 56)" fill="${COLORS.ghost}"/>
+  <ellipse cx="73" cy="52" rx="5.5" ry="4.2" transform="rotate(35 73 52)" fill="${COLORS.ghost}"/>
+  <path d="${GHOST_BODY}" fill="${COLORS.ghost}"/>
+  <ellipse cx="38" cy="37" rx="4" ry="5" transform="rotate(-10 38 37)" fill="${COLORS.face}"/>
+  <ellipse cx="53" cy="39" rx="3.8" ry="5" transform="rotate(8 53 39)" fill="${COLORS.face}"/>
+  <ellipse cx="46.5" cy="50" rx="2.6" ry="3.2" fill="${COLORS.face}"/>
+</g>
+<path d="${QUESTION_MARK}" fill="${COLORS.ghost}" transform="translate(80 20) rotate(14) scale(1.15)"/>
+<path d="${QUESTION_MARK}" fill="${COLORS.ghost}" opacity=".7" transform="translate(88 36) rotate(-10) scale(.7)"/>
+</svg>`;
+}
+
 // rounded: 角丸タイル（透過）／ scale: 安全域に収めるための、タイル中心を基準にした縮小率
 function iconSvg({ rounded = true, scale = 1, simple = false } = {}) {
   const bg = rounded
@@ -176,6 +197,7 @@ try {
 
   // ファビコン（SVG）と PWA・ホーム画面用アイコン
   await writeFile(path.join(STATIC, 'favicon.svg'), iconSvg() + '\n');
+  await writeFile(path.join(STATIC, 'ghost-lost.svg'), lostGhostSvg() + '\n');
   await mkdir(path.join(STATIC, 'icons'), { recursive: true });
   const icons = [
     ['icons/icon-192.png', 192, { rounded: true }, true],
