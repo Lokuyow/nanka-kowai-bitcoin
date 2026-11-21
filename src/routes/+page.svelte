@@ -20,9 +20,20 @@
   </SiteHeader>
 
   <div class="hero">
-    <div class="hero-head">
-      <h1 class="t"><span data-i18n>なんか</span><span data-i18n>よくわからんけど</span><span data-i18n>こわい</span><span data-i18n>ビットコイン</span></h1>
-      <img class="hero-icon" src={BASE_PATH + 'favicon.svg'} alt="" width="128" height="128" aria-hidden="true" />
+    <div class="peek">
+      <!-- タイトルの枠のうしろから顔を出し、ふちに手をかけるおばけ -->
+      <svg class="peek-head" viewBox="0 0 120 84" aria-hidden="true">
+        <path d="M6 84C5 60 12 34 30 18 44 6 70 4 86 16 104 30 112 56 114 84Z" />
+        <ellipse cx="47" cy="44" rx="6.2" ry="7.8" transform="rotate(-8 47 44)" />
+        <ellipse cx="73" cy="46" rx="5.9" ry="7.8" transform="rotate(7 73 46)" />
+      </svg>
+      <div class="hero-card">
+        <svg class="peek-hands" viewBox="0 0 120 26" aria-hidden="true">
+          <ellipse cx="17" cy="13" rx="13" ry="9.5" transform="rotate(-8 17 13)" />
+          <ellipse cx="103" cy="13" rx="13" ry="9.5" transform="rotate(8 103 13)" />
+        </svg>
+        <h1 class="t"><span data-i18n>なんか</span><span data-i18n>よくわからんけど</span><span data-i18n>こわい</span><span data-i18n>ビットコイン</span></h1>
+      </div>
     </div>
     <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
   </div>

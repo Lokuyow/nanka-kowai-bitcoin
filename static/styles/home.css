@@ -4,12 +4,20 @@
 .hero .t span:nth-child(2){animation-delay:.12s}
 .hero .t span:nth-child(3){animation-delay:.24s;color:var(--color-primary)}
 .hero .t span:nth-child(4){animation-delay:.36s}
-/* 後半の短い2行（こわい／ビットコイン）の横におばけを浮かべる */
-.hero-head{position:relative}
-.hero-icon{position:absolute;right:4px;bottom:2px;width:128px;height:128px;
-    border-radius:28%;animation:rise .7s ease .48s both,float 3.6s ease-in-out 1.2s infinite}
-@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(-3deg)}}
-@media(prefers-reduced-motion:reduce){.hero-icon{animation:none}}
+/* タイトルを白い枠に入れ、おばけが枠の上から顔を出してふちに手をかける */
+.peek{position:relative;padding-top:84px;--peek-line:#e7a3bb;--peek-ghost:#fff;--peek-eye:#1e1410}
+:root[data-theme="dark"] .peek{--peek-line:#8a5a6c}
+.peek-head{position:absolute;top:0;right:40px;width:150px;height:105px;z-index:0;
+    fill:var(--peek-ghost);stroke:var(--peek-line);stroke-width:2.2;
+    animation:peek-in .8s cubic-bezier(.3,1.4,.5,1) .5s both,peek-bob 4s ease-in-out 1.4s infinite}
+.peek-head ellipse{fill:var(--peek-eye);stroke:none}
+.hero-card{position:relative;z-index:1;background:var(--card);border:2px solid var(--peek-line);
+    border-radius:22px;padding:26px 24px 22px}
+.peek-hands{position:absolute;top:-16px;right:38px;width:150px;height:33px;overflow:visible;
+    fill:var(--peek-ghost);stroke:var(--peek-line);stroke-width:2.2;animation:rise .5s ease .9s both}
+@keyframes peek-in{from{transform:translateY(46px)}to{transform:none}}
+@keyframes peek-bob{0%,100%{transform:none}50%{transform:translateY(5px)}}
+@media(prefers-reduced-motion:reduce){.peek-head,.peek-hands{animation:none}}
 .subtitle{font-size:16px;color:var(--sub);margin:14px 0 0}
 .layerhead{margin:40px 0 4px;font-size:14px;color:var(--sub)}
 .layerhead span{background:var(--color-secondary-bg);color:var(--color-secondary);border-radius:999px;
@@ -37,6 +45,9 @@
 .credit i{font-style:normal;opacity:.6}
 @media(max-width:520px){
     .hero .t{font-size:34px}
-    .hero-icon{width:82px;height:82px;right:0;bottom:3px}
+    .peek{padding-top:66px}
+    .peek-head{width:120px;height:84px;right:24px;top:0}
+    .peek-hands{width:120px;height:26px;right:22px;top:-13px}
+    .hero-card{padding:20px 18px 18px;border-radius:20px}
     :root[data-lang="en"] .hero .t{font-size:clamp(22px, 7.2vw, 27px)}
   }

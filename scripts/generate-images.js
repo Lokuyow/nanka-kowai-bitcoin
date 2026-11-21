@@ -20,8 +20,8 @@ const COLORS = {
   bg: '#f7f7f5',
   ink: '#1a1a1a',
   sub: '#666',
-  primary: '#fe3e7e',
-  accentText: '#d42a63'
+  primary: '#d6457f',
+  accentText: '#b8326b'
 };
 
 const GHOST_BODY =
