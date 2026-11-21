@@ -6,26 +6,19 @@
   </section>
 
   <section>
-    <h2 data-i18n>電力は「壁」の高さ</h2>
-    <p class="lede" data-i18n>ビットコインの記録を書き換えるには、世界中の計算に真正面から勝たないといけない。その「勝てなさ」を作っているのが電力。壁が高いから、壊すのが割に合わない。</p>
-    <div class="card wall-wrap">
-      <svg width="300" height="150" viewBox="0 0 300 150">
-        <g>
-          <rect x="180" y="30" width="34" height="18" fill="#c9a86a"/><rect x="218" y="30" width="34" height="18" fill="#b8934f"/>
-          <rect x="199" y="52" width="34" height="18" fill="#c9a86a"/><rect x="237" y="52" width="34" height="18" fill="#b8934f"/>
-          <rect x="180" y="74" width="34" height="18" fill="#b8934f"/><rect x="218" y="74" width="34" height="18" fill="#c9a86a"/>
-          <rect x="199" y="96" width="34" height="18" fill="#b8934f"/><rect x="237" y="96" width="34" height="18" fill="#c9a86a"/>
-        </g>
-        <text x="216" y="140" font-size="12" text-anchor="middle" fill="#666" data-i18n>電力の壁</text>
-        <g class="arrow">
-          <rect x="30" y="58" width="52" height="10" rx="5" fill="#d33"/>
-          <path d="M82 52 L104 63 L82 74 Z" fill="#d33"/>
-        </g>
-        <text x="52" y="44" font-size="12" text-anchor="middle" fill="#d33" data-i18n>攻撃</text>
-        <text x="52" y="140" font-size="12" text-anchor="middle" fill="#666" data-i18n>跳ね返される</text>
-      </svg>
-      <p class="hint" data-i18n>電気は「無駄に燃やしている」のではなく不正を割に合わなくするためのコストとして使われている。</p>
-    </div>
+    <h2 data-i18n>計算が積み上がるほど書き換えにくい</h2>
+    <p class="lede" data-i18n>取引をまとめた記録を「ブロック」と呼ぶ。新しいブロックをつなぐたびに計算が必要になる。その計算に電力がかかる。</p>
+    <figure class="card work-diagram">
+      <ol class="work-blocks">
+        <li><span data-i18n-html>変更する<br>ブロック</span></li>
+        <li><span data-i18n-html>次の<br>ブロック</span></li>
+        <li><span data-i18n-html>さらに次の<br>ブロック</span></li>
+      </ol>
+      <figcaption>
+        <p class="work-redo" data-i18n>最初の1つを変えるにも、この範囲の計算をすべてやり直す必要がある。</p>
+        <p class="work-note" data-i18n>その間も元の記録には新しいブロックが加わる。元の記録を追い越すにはさらに計算が必要になる。</p>
+      </figcaption>
+    </figure>
   </section>
 
   <section>
@@ -62,4 +55,4 @@
     </div>
   </section>
 
-<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>電気は無駄に燃やしているんじゃなく不正を割に合わなくするための「壁」に使われている</span></div>
+<div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>電力を使って積み上げた計算が、過去の記録を書き換えにくくしている</span></div>
