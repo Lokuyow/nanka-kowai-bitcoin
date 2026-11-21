@@ -30,7 +30,9 @@
   <main id="main-content" tabindex="-1">
     <article class="chapter">
       <a class="eyebrow" href={BASE_PATH + '#layer-' + article.layer}>
-        <span aria-hidden="true">←</span>
+        <svg class="nav-symbol" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M15 6l-6 6 6 6" />
+        </svg>
         <LayerLabel layer={LAYERS[article.layer - 1]} />
       </a>
       <!-- 見出しと本文の HTML はリポジトリ内の原稿から読み込む。 -->
