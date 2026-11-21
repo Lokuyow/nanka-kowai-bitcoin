@@ -15,8 +15,8 @@ const COLORS = {
   tile: '#e895b0',
   ghost: '#fff',
   face: '#1e1410',
-  coin: '#ffd36b',
-  coinInk: '#2a1a14',
+  coin: '#f9b54c',
+  coinMark: '#fff',
   bg: '#f7f7f5',
   ink: '#1a1a1a',
   sub: '#666',
@@ -41,7 +41,7 @@ function ghost({ simple = false } = {}) {
   <path d="${GHOST_BODY}" fill="${COLORS.ghost}"/>
   <ellipse cx="40" cy="37" rx="5.5" ry="6.5" fill="${COLORS.face}"/>
   <ellipse cx="55" cy="39" rx="5.5" ry="6.5" fill="${COLORS.face}"/>
-  <circle cx="48" cy="70" r="16" fill="${COLORS.coin}" stroke="${COLORS.coinInk}" stroke-width="3"/>
+  <circle cx="48" cy="70" r="16" fill="${COLORS.coin}"/>
 </g>`;
   }
   return `<g transform="translate(1 2)">
@@ -50,8 +50,8 @@ function ghost({ simple = false } = {}) {
   <ellipse cx="55" cy="39" rx="3.8" ry="5" transform="rotate(8 55 39)" fill="${COLORS.face}"/>
   <path d="M43.5 46.5Q48.5 47.8 53 47.2 53.2 53 48.3 53.6 43.8 53.3 43.5 46.5Z" fill="${COLORS.face}"/>
   <g transform="translate(48 70) rotate(-28)">
-    <circle r="15" fill="${COLORS.coin}" stroke="${COLORS.coinInk}" stroke-width="2"/>
-    <path d="${BITCOIN_SIGN}" fill="${COLORS.coinInk}"/>
+    <circle r="15" fill="${COLORS.coin}"/>
+    <path d="${BITCOIN_SIGN}" fill="${COLORS.coinMark}"/>
   </g>
   <path d="${HAND_LEFT}" fill="${COLORS.ghost}" transform="translate(-1 -4)"/>
   <path d="${HAND_RIGHT}" fill="${COLORS.ghost}" transform="translate(1 4)"/>
