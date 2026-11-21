@@ -12,7 +12,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STATIC = path.join(ROOT, 'static');
 
 const COLORS = {
-  tile: '#e89bb9',
+  tile: '#c44478',
   ghost: '#fff',
   face: '#1e1410',
   coin: '#f9b54c',
