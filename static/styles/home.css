@@ -43,9 +43,7 @@
     text-decoration:none;color:var(--ink)}
 .unit .n{flex:0 0 34px;height:34px;border-radius:50%;background:var(--color-secondary-bg);
     color:var(--color-secondary);font-weight:900;display:flex;align-items:center;justify-content:center;font-size:15px}
-.unit-text{display:grid;gap:4px}
 .unit .q{font-weight:700;font-size:16px;line-height:1.5}
-.unit .a{font-size:13px;color:var(--sub);line-height:1.5}
 .unit .arr{margin-left:auto;color:var(--color-secondary);font-weight:900}
 .unit:target{border-color:var(--color-secondary);box-shadow:0 0 0 2px var(--color-secondary)}
 @media(hover:hover){

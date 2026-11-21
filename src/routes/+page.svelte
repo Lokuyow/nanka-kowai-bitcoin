@@ -55,10 +55,7 @@
               <li>
                 <a class="unit" href={articlePath(article.slug)} id={'story-' + article.slug}>
                   <span class="n">{article.number}</span>
-                  <span class="unit-text">
-                    <span class="q" data-i18n>{article.title}</span>
-                    <span class="a" data-i18n>{article.cardAnswer}</span>
-                  </span>
+                  <span class="q" data-i18n>{article.title}</span>
                   <span class="arr" aria-hidden="true">→</span>
                 </a>
               </li>
