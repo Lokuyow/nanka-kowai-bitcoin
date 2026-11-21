@@ -51,6 +51,32 @@ for (const { name, path } of PAGES) {
   });
 }
 
+test('スマホでトップを再読み込みしても登場アニメーションでスクロール位置がずれない', async () => {
+  const mobile = await newContext(browser, {
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+    reducedMotion: 'no-preference',
+  });
+  try {
+    const { page } = await openPage(mobile, server.base);
+    const waitForHero = () => page.locator('.peek').evaluate(async (peek) => {
+      await Promise.all(peek.getAnimations({ subtree: true }).map((animation) => animation.finished));
+    });
+
+    await waitForHero();
+    for (const scrollPosition of [160, 0]) {
+      await page.evaluate((y) => window.scrollTo(0, y), scrollPosition);
+      await page.waitForFunction((y) => window.scrollY === y, scrollPosition);
+      await page.reload({ waitUntil: 'load' });
+      await waitForHero();
+      assert.equal(await page.evaluate(() => window.scrollY), scrollPosition);
+    }
+  } finally {
+    await mobile.close();
+  }
+});
+
 test('未知の深い URL に HTTP 404 を返し、設定とトップへのリンクが使える', async () => {
   const page = await context.newPage();
   try {

@@ -26,6 +26,8 @@
 .peek-hands{position:absolute;top:-16px;right:38px;width:150px;height:33px;overflow:visible;
     fill:var(--peek-ghost);stroke:var(--peek-line);stroke-width:2.2;animation:rise .5s ease .9s both}
 @keyframes peek-in{from{transform:translateY(46px)}to{transform:none}}
+/* 動く部分をスクロール位置の基準にすると、再読み込み時に表示位置がずれる */
+.peek-head,.peek-hands,.hero .t span{overflow-anchor:none}
 @media(prefers-reduced-motion:reduce){.peek-head,.peek-hands,.hero .t span{animation:none}}
 .subtitle{font-size:clamp(17px,3.4vw,22px);font-weight:700;margin:22px 0 6px}
 .hero .lede{font-size:15px;margin:0}
