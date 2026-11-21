@@ -79,7 +79,7 @@
     'ケーキと同じで一切れから買える': 'Like cake, you can buy it by the slice',
     'ビットコインってハッキングされて盗まれるんでしょ？': 'Bitcoin can be hacked and stolen, right?',
     '壊れたのは取引所の金庫の方': "What got broken into was the exchange's vault",
-    'ビットコインは現金より匿名で使えるの？': 'Is Bitcoin more anonymous than cash?',
+    'ビットコインって匿名だから犯罪に使いやすいんでしょ？': "Bitcoin is anonymous, so it's easy to use for crime, right?",
     '支払いをたどりにくいのは手渡しの現金': 'Cash handed over in person is harder to trace',
     'ビットコインって電気の無駄遣いでしょ？': 'Bitcoin wastes electricity, right?',
     '電力は不正を防ぐ「壁」のコスト': 'Electricity is the cost of the wall that stops cheating',
@@ -337,8 +337,8 @@
     '次の誤解：犯罪・匿名 →': 'Next: Crime & anonymity →',
 
     /* ===== crime ===== */
-    'ビットコインは現金より匿名で使えるの？：なんか よくわからんけど こわい ビットコイン': "Is Bitcoin more anonymous than cash? | I don't really get it, but it's scary: Bitcoin",
-    'ビットコインは現金より<br>匿名で使えるの？': 'Is Bitcoin more anonymous<br>than cash?',
+    'ビットコインって匿名だから犯罪に使いやすいんでしょ？：なんか よくわからんけど こわい ビットコイン': "Bitcoin is anonymous, so it's easy to use for crime, right? | I don't really get it, but it's scary: Bitcoin",
+    'ビットコインって匿名だから<br>犯罪に使いやすいんでしょ？': "Bitcoin is anonymous,<br>so it's easy to use for crime, right?",
     '支払いをあとからたどりにくいのは、手渡しの現金。<br>ビットコインは送金先と金額が公開台帳に残る。': 'Cash handed over in person is harder to trace.<br>Bitcoin records the destination and amount on a public ledger.',
     '手渡しの現金には公開の支払い記録が残らない。ビットコインは送金先と金額が公開台帳に残る。': 'Handing over cash leaves no public payment record. Bitcoin records the destination and amount on a public ledger.',
     "公開台帳でたどる送金記録": "Tracing transfers on the public ledger",

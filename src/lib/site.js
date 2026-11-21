@@ -75,10 +75,10 @@ export const LAYERS = [
       },
       {
         slug: "crime",
-        heading: "ビットコインは現金より<br>匿名で使えるの？",
+        heading: "ビットコインって匿名だから<br>犯罪に使いやすいんでしょ？",
         cardAnswer: "支払いをたどりにくいのは手渡しの現金",
         description: "手渡しの現金には公開の支払い記録が残らない。ビットコインは送金先と金額が公開台帳に残る。",
-        shareEn: { title: "Is Bitcoin more anonymous than cash?", text: "Handing over cash leaves no public payment record. Bitcoin records the destination and amount on a public ledger." }
+        shareEn: { title: "Bitcoin is anonymous, so it's easy to use for crime, right?", text: "Handing over cash leaves no public payment record. Bitcoin records the destination and amount on a public ledger." }
       },
       {
         slug: "energy",
