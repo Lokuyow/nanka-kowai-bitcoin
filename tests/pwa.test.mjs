@@ -105,6 +105,34 @@ test('PWA: manifest の必須項目', async () => {
   assert.ok(sizes.includes('512x512'), '512x512 アイコンがある');
 });
 
+test('PWA: スマホでサイト内リンクを押すと HTML の通信なしで遷移する', async () => {
+  const context = await newContext(browser, { serviceWorkers: 'allow', hasTouch: true, isMobile: true });
+  try {
+    const { page } = await openPage(context, server.base);
+    await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+
+    requests.length = 0;
+    await page.locator('#story-price a').tap();
+    await page.waitForURL(server.base + 'price/', { waitUntil: 'load' });
+    await page.getByRole('link', { name: '次の話', exact: true }).tap();
+    await page.waitForURL(server.base + 'fee/', { waitUntil: 'load' });
+    await page.locator('.tabbar .idx').tap();
+    await page.waitForURL(server.base + '#story-fee', { waitUntil: 'load' });
+    assert.ok(!requests.some((url) => [BASE_PATH, BASE_PATH + 'price/', BASE_PATH + 'fee/'].includes(url)
+      || url.endsWith('.html')), 'トップとフッターのリンクで HTML を再取得しない');
+
+    requests.length = 0;
+    await page.reload({ waitUntil: 'load' });
+    assert.ok(requests.includes(BASE_PATH), 'サイト内リンクで開いたページも再読み込みでは再検証する');
+
+    requests.length = 0;
+    await page.goto(server.base + 'price/', { waitUntil: 'load' });
+    assert.ok(requests.includes(BASE_PATH + 'price/'), 'URL を直接開いたときは再検証する');
+  } finally {
+    await context.close();
+  }
+});
+
 test('PWA: SW が activate され、オフラインでも表示できる', async () => {
   const context = await newContext(browser, { serviceWorkers: 'allow' });
   try {

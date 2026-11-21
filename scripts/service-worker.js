@@ -37,11 +37,19 @@ self.addEventListener('activate', (event) => {
   })());
 });
 
-async function navigate(request, pathname) {
+async function navigate(request, url) {
+  // Use the active release for internal links. Direct visits and recognized reloads check the server.
+  const isReload = request.isReloadNavigation ?? (request.cache !== 'default');
+  if (!isReload && !url.search && request.referrer.startsWith(self.location.origin + BASE)) {
+    const page = PRECACHE[url.pathname];
+    const cached = page && await precache.matchPrecache(page);
+    if (cached) return cached;
+  }
+
   try {
     return await fetch(request, { cache: 'no-cache' });
   } catch (error) {
-    const pagePath = pathname.replace(/\/index\.html$/, '/');
+    const pagePath = url.pathname.replace(/\/index\.html$/, '/');
     const page = PRECACHE[pagePath.endsWith('/') || pagePath.endsWith('.html') ? pagePath : pagePath + '/'];
     const cached = page && await precache.matchPrecache(page);
     if (cached) return cached;
@@ -59,7 +67,7 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin || !url.pathname.startsWith(BASE)) return;
 
   if (request.mode === 'navigate') {
-    event.respondWith(navigate(request, url.pathname));
+    event.respondWith(navigate(request, url));
   } else if (precache.getCacheKeyForURL(url.pathname)) {
     event.respondWith(precache.matchPrecache(url.pathname).then((cached) => cached ?? fetch(request)));
   }
