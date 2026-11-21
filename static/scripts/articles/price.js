@@ -129,7 +129,7 @@ var el = document.getElementById('nowPrice');
   }
   // side='ask' は買い（最良の売り注文を取る）、'bid' は売り（最良の買い注文を取る）。
   // 約定した段だけが減り、空になったら消えて外側に新しい段が補充される。他の段は変わらない。
-  function deal(side, size, pair, ownTrade){
+  function deal(side, size, pair){
     var book = side === 'ask' ? asks : bids;
     var lv = book[0];
     var hitP = lv.p;
@@ -142,14 +142,12 @@ var el = document.getElementById('nowPrice');
     }
     var d = hitP - price;
     price = hitP;
-    if (ownTrade) {
-      lastFill = { side: side, p: hitP, amount: amount, remaining: lv.a };
-      clearTimeout(fillTimer);
-      fillTimer = setTimeout(function(){
-        lastFill = null;
-        render();
-      }, 2600);
-    }
+    lastFill = { side: side, p: hitP, amount: amount, remaining: lv.a };
+    clearTimeout(fillTimer);
+    fillTimer = setTimeout(function(){
+      lastFill = null;
+      render();
+    }, 2600);
     show(d, pair);
     render();
   }
@@ -173,23 +171,15 @@ var el = document.getElementById('nowPrice');
       render();
     });
   }
-  setInterval(function(){
-    if (lastFill) return;
-    if (Math.random() < 0.5) {
-      deal('ask', 10 + Math.round(Math.random() * 20), ['世界の誰かが少し高い値段で買った', 'Someone in the world just bought at a slightly higher price']);
-    } else {
-      deal('bid', 10 + Math.round(Math.random() * 20), ['世界の誰かが少し安い値段で売った', 'Someone in the world just sold at a slightly lower price']);
-    }
-  }, 2600);
   document.getElementById('buyBtn').addEventListener('click', function(){
     myTrades++;
     renderTrades();
-    deal('ask', 30 + Math.round(Math.random() * 25), ['あなたが買った分だけ売り注文が減った', 'Your purchase reduced the sell orders at that price'], true);
+    deal('ask', 30 + Math.round(Math.random() * 25), ['あなたが買った分だけ売り注文が減った', 'Your purchase reduced the sell orders at that price']);
   });
   document.getElementById('sellBtn').addEventListener('click', function(){
     myTrades++;
     renderTrades();
-    deal('bid', 30 + Math.round(Math.random() * 25), ['あなたが売った分だけ買い注文が減った', 'Your sale reduced the buy orders at that price'], true);
+    deal('bid', 30 + Math.round(Math.random() * 25), ['あなたが売った分だけ買い注文が減った', 'Your sale reduced the buy orders at that price']);
   });
   document.addEventListener('langchange', function(){
     convertTo(window.LANG === 'en' ? 'usd' : 'jpy');

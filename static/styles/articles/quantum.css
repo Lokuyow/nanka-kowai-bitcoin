@@ -4,10 +4,8 @@
 .lane .lbl b{font-size:14px}
 .trackbar{background:#e9e9e6;border-radius:999px;height:20px;overflow:hidden}
 .fill{height:100%;border-radius:999px}
-.fill.q{background:#999;animation:qcreep 5s ease-in-out infinite}
-@keyframes qcreep{0%{width:6%}55%{width:26%}100%{width:6%}}
-.fill.d{background:var(--color-primary);animation:dahead 5s ease-in-out infinite}
-@keyframes dahead{0%{width:48%}55%{width:64%}100%{width:48%}}
+.fill.q{background:#999;width:26%}
+.fill.d{background:var(--color-primary);width:64%}
 .nowmark{font-size:12px;color:var(--sub);border-left:2px dashed var(--red);
     padding-left:8px;margin:2px 0 10px}
 .lockrow{display:flex;gap:10px}

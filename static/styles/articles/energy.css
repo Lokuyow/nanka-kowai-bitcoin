@@ -1,8 +1,8 @@
 .wall-wrap{text-align:center}
 .wall-wrap svg{max-width:100%;height:auto}
-.arrow{animation:attack 2.8s ease-in-out infinite}
-@keyframes attack{0%{transform:translateX(0)}38%{transform:translateX(52px)}
-    52%{transform:translateX(30px) rotate(24deg)}70%,100%{transform:translateX(0)}}
+.arrow{animation:attack 1.2s ease-in-out}
+@keyframes attack{0%,100%{transform:none}55%{transform:translateX(72px)}}
+@media(prefers-reduced-motion:reduce){.arrow{animation:none}}
 .stackbar{display:flex;height:34px;border-radius:8px;overflow:hidden;margin:12px 0 6px}
 .stackbar div{animation:grow 1.4s ease both}
 @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}

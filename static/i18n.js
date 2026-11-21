@@ -589,7 +589,6 @@
     '出回る量の少なさ': 'How scarce the supply is',
     '値段のつき具合': 'How high a price it can command',
     '事件を起こす': 'Cause an event',
-    '数字は目安。買いたい人がいるものは、出回る量が少ないほど値段がつきやすい。': 'The numbers are illustrative. When people want to buy something, a smaller supply can push the price up.',
     '裏付けがないのは円も金も同じ。価値は「欲しい人がいる」ことから生まれる': 'The dollar and gold have no backing either. Value is born from "there are people who want it"',
     '← 前の誤解：チューリップバブル': '← Previous: The tulip bubble',
     '次の問い：お金とは何か →': 'Next question: What is money? →',
