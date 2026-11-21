@@ -39,7 +39,7 @@
         </div>
       </div>
       <p class="subtitle" data-i18n>ニュースで見たイメージと、ほんとの姿。</p>
-      <p class="lede" data-i18n>見出しだけを見ていると、目に入るのは事件と暴落の話ばかり。「わからない」ものは「こわい」ものに見える。ここではその誤解をひとつずつ図で解いていく。</p>
+      <p class="lede" data-i18n>ビットコインの「こわい」を、図でひとつずつ解きほぐす。</p>
       <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
         <span data-i18n>第1話から読む</span><span aria-hidden="true">→</span>
       </a>
