@@ -11,6 +11,10 @@
     scroll-padding-top:88px;
   }
 *{box-sizing:border-box}
+button,a:is(.action-primary,.tipb,.tb,.share-x){
+    -webkit-user-select:none;
+    user-select:none;
+  }
 body{margin:0;background:var(--bg);color:var(--ink);
     font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;line-height:1.7}
 .wrap{max-width:640px;margin:0 auto;padding:0 18px 64px}
