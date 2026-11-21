@@ -4,15 +4,15 @@
       {h: '2011年：大きく値下がり、「やっぱり怪しい」と騒がれた', v: 1.2, peak: null},
       {h: '2014年：取引所が破たんし、最高値から8割下がった', v: 90, peak: 450},
       {h: '2018年：熱狂が冷めて、また8割下がった', v: 500, peak: 2400},
-      {h: '2022年：大手の破たんで、また大きく下がった', v: 1500, peak: 4600}
+      {h: '2022年：大手の破たんでまた大きく下がった', v: 1500, peak: 4600}
     ]},
     y2015: {start: 10, final: 870, events: [
       {h: '2018年：熱狂が冷めて、8割下がった', v: 55, peak: 280},
-      {h: '2022年：大手の破たんで、また大きく下がった', v: 240, peak: 800}
+      {h: '2022年：大手の破たんでまた大きく下がった', v: 240, peak: 800}
     ]},
     y2019: {start: 10, final: 350, events: [
-      {h: '2020年：世界的な混乱で、一時半分になった', v: 5, peak: null},
-      {h: '2022年：大手の破たんで、また大きく下がった', v: 90, peak: 320}
+      {h: '2020年：世界的な混乱で一時半分になった', v: 5, peak: null},
+      {h: '2022年：大手の破たんでまた大きく下がった', v: 90, peak: 320}
     ]},
     y2023: {start: 10, final: 62, events: [
       {h: '2025年：最高値から3割ほど下がった', v: 38, peak: 55}
@@ -107,7 +107,7 @@
     } else if (phase === 'sold') {
       simVal.textContent = fmt(ev.v);
       simHead.textContent = L(ev.h, HEADS_EN[planKey][idx]);
-      simMsg.textContent = L('ここで手放した。早く買うことは、暴落のたびに「売るかどうか」を迫られ続けることでもあった。', 'You let go here. Buying early also meant being pressed, at every crash, with the question of whether to sell.');
+      simMsg.textContent = L('ここで手放した。早く買うことは暴落のたびに「売るかどうか」を迫られ続けることでもあった。', 'You let go here. Buying early also meant being pressed, at every crash, with the question of whether to sell.');
     } else {
       simVal.textContent = fmt(ev.v);
       simHead.textContent = L(ev.h, HEADS_EN[planKey][idx]);

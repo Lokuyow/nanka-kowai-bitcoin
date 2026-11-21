@@ -47,7 +47,7 @@ export const LAYERS = [
       {
         slug: "satoshi",
         heading: "1ビットコインって何百万円も<br>するんでしょ？ 買えないよ",
-        cardAnswer: "ケーキと同じで、一切れから買える",
+        cardAnswer: "ケーキと同じで一切れから買える",
         description: "丸ごと買わなくていい。0.00000001（1 satoshi）から、100円分でも買える",
         shareEn: { title: "A bitcoin costs tens of thousands of dollars, right? No way I can buy that", text: "You don't have to buy a whole one. You can buy from 0.00000001 (1 satoshi) — even $1 worth" },
         liveData: true
@@ -155,7 +155,7 @@ export const LAYERS = [
   {
     number: 4,
     title: "そもそもお金って何？",
-    description: "ビットコインをきっかけに、お金について考える",
+    description: "ビットコインをきっかけにお金について考える",
     articles: [
       {
         slug: "money",
@@ -169,15 +169,15 @@ export const LAYERS = [
         slug: "freedom",
         openQuestion: true,
         heading: "管理する人がいないお金は<br>自由？ それとも危ない？",
-        cardAnswer: "止められない自由と、助けのない自己責任",
-        description: "誰にも邪魔されないことは、誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？",
+        cardAnswer: "止められない自由と助けのない自己責任",
+        description: "誰にも邪魔されないことは誰にも助けてもらえないことと裏表だ。あなたはどちらを重く見る？",
         shareEn: { title: "Money with no one in charge: freedom or danger?", text: "Being disturbed by no one is the flip side of being helped by no one. Which weighs more for you?" }
       },
       {
         slug: "fair",
         openQuestion: true,
         heading: "早く持った人が得をするのは、<br>ずるくない？",
-        cardAnswer: "先に持った人の得は、不公平か",
+        cardAnswer: "先に持った人の得は不公平か",
         description: "不公平に見えるのは結果だけを見たときで、同じ年月をリスクの側から見ると景色が変わる。あなたはどちらで見る？",
         shareEn: { title: "Isn't it cheating when early holders profit?", text: "It looks unfair when you see only the result; the same years look different from the side of risk. Which way do you see it?" }
       },
@@ -186,15 +186,15 @@ export const LAYERS = [
         openQuestion: true,
         heading: "自分が死んだら、<br>ビットコインはどうなる？",
         cardAnswer: "鍵を残せるかどうかで変わる",
-        description: "自分のものにできる強さは、引き継げなさと表裏一体だ。あなたなら、鍵を誰にどう残す？",
+        description: "自分のものにできる強さは引き継げなさと表裏一体だ。あなたなら鍵を誰にどう残す？",
         shareEn: { title: "If I die, what happens to my Bitcoin?", text: "The strength of making it truly yours is two sides of a coin with being unable to pass it on. How would you leave your key, and to whom?" }
       },
       {
         slug: "future",
         openQuestion: true,
         heading: "ビットコインが当たり前になったら、<br>社会はどうなる？",
-        cardAnswer: "送金も貯金も、意味が変わる",
-        description: "お金の選択肢が増える社会は、便利な社会だろうか、それとも面倒な社会だろうか。あなたはどう思う？",
+        cardAnswer: "送金も貯金も意味が変わる",
+        description: "お金の選択肢が増える社会は便利な社会だろうか、それとも面倒な社会だろうか。あなたはどう思う？",
         shareEn: { title: "If Bitcoin became ordinary, what would happen to society?", text: "Would a society with more choices of money be a convenient society, or a troublesome one? What do you think?" }
       },
       {
@@ -202,7 +202,7 @@ export const LAYERS = [
         openQuestion: true,
         heading: "国が作らないお金って<br>ありなの？",
         cardAnswer: "昔は国以外もお金を作っていた",
-        description: "お金は国だけのものという感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は、代わり同士なのか、並べて使うものなのか。あなたはどう思う？",
+        description: "お金は国だけのものという感覚は近代になってできたものかもしれない。国の通貨と国の外のお金は代わり同士なのか、並べて使うものなのか。あなたはどう思う？",
         shareEn: { title: "Can money exist that no country makes?", text: "The feeling that money belongs only to countries may itself be a modern invention. Are a national currency and money outside countries substitutes, or things to use side by side? What do you think?" }
       }
     ]

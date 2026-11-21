@@ -56,7 +56,7 @@
     if (!noteEl || !settled) return;
     if (liveReady()) {
       var srcs = liveData.rateSource === liveData.priceSource ? liveData.rateSource : liveData.rateSource + ' / ' + liveData.priceSource;
-      noteEl.textContent = L('「自分で送金する」の手数料は、いまの実データ（' + srcs + '）から計算しています。取引所の出金手数料は一例として 0.0005 BTC を、同じ価格で円に換算しています。',
+      noteEl.textContent = L('「自分で送金する」の手数料はいまの実データ（' + srcs + '）から計算しています。取引所の出金手数料は一例として 0.0005 BTC を同じ価格で円に換算しています。',
         'The "send it yourself" fee is calculated from live data (' + srcs + '). The exchange withdrawal fee is an example 0.0005 BTC, converted to dollars at the same price.');
     } else {
       noteEl.textContent = L('実データを取得できなかったため、手数料は目安の数値で計算しています。取引所の出金手数料は一例として 0.0005 BTC（1BTC=1,500万円なら7,500円）で計算しています。',
@@ -73,7 +73,7 @@
     var fee = run.fee, msg;
     var congIdx = isLive ? congIdxFor(liveData.tiers.halfHour) : lastRun.congIdx;
     if (lastRun.route === 'ex') {
-      if (fee >= a) msg = L('送る額より手数料の方が大きい。固定料金は、小さい額をそのまま食べてしまう。これが「送金手数料が高い」と感じる正体。', "The fee is bigger than the amount you're sending. A fixed charge eats small amounts whole. This is what's really behind the feeling that Bitcoin fees are high.");
+      if (fee >= a) msg = L('送る額より手数料の方が大きい。固定料金は小さい額をそのまま食べてしまう。これが「送金手数料が高い」と感じる正体。', "The fee is bigger than the amount you're sending. A fixed charge eats small amounts whole. This is what's really behind the feeling that Bitcoin fees are high.");
       else {
         var pct = Math.round(fee / a * 100);
         msg = L('手数料は全体の約' + pct + '%。金額が小さいほど、固定料金の重さが目立ってくる。', 'The fee is about ' + pct + '% of the total. The smaller the amount, the heavier the fixed charge feels.');

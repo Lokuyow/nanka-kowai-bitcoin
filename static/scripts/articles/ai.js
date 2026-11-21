@@ -24,7 +24,7 @@
     setBar('all', world);
     if (x < 35) cap.textContent = L('この地域では、AIとマイニングがまだ両立している。', 'In this region, AI and mining still coexist.');
     else if (x < 65) cap.textContent = L('電気の取り合いで値段が上がり、マイナーは安い地域へ引っ越し始めた。', 'Competition for electricity pushed prices up, and miners started moving to cheaper regions.');
-    else cap.textContent = L('その地域のマイニングは、ほぼ撤退。でも世界全体はほとんど減っていない。行き先は、水力などの安い電気がある場所。', 'Mining has mostly left this region. But the world total has barely dropped. The destination: places with cheap power, like hydro.');
+    else cap.textContent = L('その地域のマイニングはほぼ撤退。でも世界全体はほとんど減っていない。行き先は水力などの安い電気がある場所。', 'Mining has mostly left this region. But the world total has barely dropped. The destination: places with cheap power, like hydro.');
   }
   range.addEventListener('input', upd);
   document.addEventListener('langchange', upd);

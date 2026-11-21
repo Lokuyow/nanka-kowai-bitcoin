@@ -52,7 +52,7 @@
       setSt(n, 'wait');
     });
     setTally(0, 0, 0);
-    setMsg('上限を' + capPair[0] + 'に書き換えた版を、世界に配り始めた…', 'Your rewritten version (cap: ' + capPair[1] + ') starts going out to the world…');
+    setMsg('上限を' + capPair[0] + 'に書き換えた版を世界に配り始めた…', 'Your rewritten version (cap: ' + capPair[1] + ') starts going out to the world…');
     var i = 0;
     function step(){
       if (i > 0) {
@@ -64,7 +64,7 @@
       }
       if (i >= nodes.length) {
         card.classList.add('stamped');
-        setMsg('全員が拒否。あなたの版は、あなた1人だけの通貨になった。書き換えるのは自由。でも、ついてくる人がいなければ意味がない。', 'Everyone refused. Your version is now a currency of one — you. Rewriting is free. But with nobody following, it means nothing.');
+        setMsg('全員が拒否。あなたの版はあなた1人だけの通貨になった。書き換えるのは自由。でも、ついてくる人がいなければ意味がない。', 'Everyone refused. Your version is now a currency of one — you. Rewriting is free. But with nobody following, it means nothing.');
         renderGo();
         go.disabled = false;
         running = false;

@@ -22,7 +22,7 @@
     pctEl.textContent = v + '%';
     youEl.style.width = v + '%';
     if (v < 30) {
-      state.textContent = L('まだ過半数には遠い。この割合では、記録を書き換える力はない。', 'Still far from a majority. At this share, you have no power to rewrite records.');
+      state.textContent = L('まだ過半数には遠い。この割合では記録を書き換える力はない。', 'Still far from a majority. At this share, you have no power to rewrite records.');
       actions.hidden = true;
     } else if (v < 51) {
       state.textContent = L('かなり集めた。でも過半数に届かなければ、ルールを曲げる力はない。あと少し。', "You've gathered a lot. But short of a majority, you have no power to bend the rules. Almost there.");
@@ -57,7 +57,7 @@
   }
   document.addEventListener('langchange', function(){ upd(); renderFeed(); costEl.textContent = fmtCost(); });
   document.getElementById('actDouble').addEventListener('click', function(){
-    finish('actDouble', this, 'できた。ただし取り消せるのは、自分の最近の送金だけ。相手が承認を待てば防げるし、この一瞬のためにコストは燃え続ける。', 'It worked. But you can only reverse your own recent payments. The other side can defend by waiting for confirmations — and the cost keeps burning the whole time.', true);
+    finish('actDouble', this, 'できた。ただし取り消せるのは自分の最近の送金だけ。相手が承認を待てば防げるし、この一瞬のためにコストは燃え続ける。', 'It worked. But you can only reverse your own recent payments. The other side can defend by waiting for confirmations — and the cost keeps burning the whole time.', true);
   });
   document.getElementById('actSteal').addEventListener('click', function(){
     finish('actSteal', this, 'できない。他人のコインを動かすには、その人の鍵（署名）が要る。計算力では代わりにならない。', "You can't. Moving someone else's coins takes their key (signature). Hash power is no substitute.", false);

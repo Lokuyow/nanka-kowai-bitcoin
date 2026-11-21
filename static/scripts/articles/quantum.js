@@ -11,7 +11,7 @@
   var msgEl = document.getElementById('bfMsg');
   var btn = document.getElementById('bfBtn');
   var qbox = document.getElementById('bfQuantum');
-  var msgPair = ['宇宙の年齢は約138億年。当たる気がしない理由が、桁の大きさでわかる。', 'The universe is about 13.8 billion years old. The sheer scale of the digits shows why a hit feels impossible.'];
+  var msgPair = ['宇宙の年齢は約138億年。当たる気がしない理由が桁の大きさでわかる。', 'The universe is about 13.8 billion years old. The sheer scale of the digits shows why a hit feels impossible.'];
   function setMsg(ja, en){ msgPair = [ja, en]; msgEl.textContent = L(ja, en); }
   function fmtSci(x){
     if (x <= 0) return '0';
@@ -39,8 +39,8 @@
     pctEl.innerHTML = pct <= 0 ? '0%' : fmtSci(pct) + ' %';
     var years = total / eff / SEC_YEAR;
     yearsEl.innerHTML = L('約 ' + fmtSci(years) + ' 年', 'About ' + fmtSci(years) + ' years');
-    if (attempts > 1e18) setMsg('100京回を超えた。でも全体は10の77乗通り。残り時間は、ほぼ減っていない。', 'Over 100 quintillion tries. But the total is 10^77 possibilities — the remaining time has barely shrunk.');
-    else if (attempts > 1e12) setMsg('1兆回を試した。それでも全体の、ほんの入口にも届いていない。', "A trillion tries — and you still haven't reached even the entrance of the whole space.");
+    if (attempts > 1e18) setMsg('100京回を超えた。でも全体は10の77乗通り。残り時間はほぼ減っていない。', 'Over 100 quintillion tries. But the total is 10^77 possibilities — the remaining time has barely shrunk.');
+    else if (attempts > 1e12) setMsg('1兆回を試した。それでも全体のほんの入口にも届いていない。', "A trillion tries — and you still haven't reached even the entrance of the whole space.");
     else if (attempts > 1e9) setMsg('10億回。速さは上がっていくのに、ゴールは遠いまま。', 'A billion tries. The speed keeps climbing, but the goal stays just as far away.');
   }
   function tick(){
@@ -69,7 +69,7 @@
   btn.addEventListener('keyup', stop);
   document.addEventListener('langchange', function(){ msgEl.textContent = L(msgPair[0], msgPair[1]); upd(); });
   qbox.addEventListener('change', function(){
-    if (qbox.checked) setMsg('量子コンピューターでは、総当たりは2の128乗回で済む。それでも全部試すには、宇宙の年齢では全然足りない。しかも鍵が隠れたアドレスは、そもそも狙えない。', "With a quantum computer, brute force takes \"only\" 2^128 tries. Even so, the age of the universe isn't nearly enough to try them all. And addresses whose keys stay hidden can't be targeted in the first place.");
+    if (qbox.checked) setMsg('量子コンピューターでは総当たりは2の128乗回で済む。それでも全部試すには、宇宙の年齢では全然足りない。しかも鍵が隠れたアドレスはそもそも狙えない。', "With a quantum computer, brute force takes \"only\" 2^128 tries. Even so, the age of the universe isn't nearly enough to try them all. And addresses whose keys stay hidden can't be targeted in the first place.");
     else setMsg('ふつうのコンピューターに戻した。桁の壁は変わらない。', 'Back to a normal computer. The wall of digits is unchanged.');
     upd();
   });

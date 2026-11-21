@@ -32,7 +32,7 @@
     if (y < 2016) return L('収入はほぼ全部が「新しいコインの報酬」。手数料はまだほぼゼロ。', 'Income is almost entirely the "new coin reward". Fees are still nearly zero.');
     if (y < 2032) return L('半減期を経ても、まだ報酬が主役。手数料は細い柱。', 'Even after halvings, the reward is still the star. Fees are a thin pillar.');
     if (y < 2100) return L('半減を繰り返し、報酬は細くなっていく。使う人が増えるほど、手数料の合計は増えやすい。', 'Halving after halving, the reward keeps thinning. The more people use it, the more total fees tend to grow.');
-    return L('新規発行は終わりに近い。収入の中心は、手数料へ移っていく。', 'New issuance is nearing its end. The center of income shifts to fees.');
+    return L('新規発行は終わりに近い。収入の中心は手数料へ移っていく。', 'New issuance is nearing its end. The center of income shifts to fees.');
   }
   function upd(justHalved){
     lastHalved = !!justHalved;

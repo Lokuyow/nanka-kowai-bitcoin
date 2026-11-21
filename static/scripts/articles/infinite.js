@@ -26,7 +26,7 @@
     if (d === 100000000) return L('これ以上は割れない。1 satoshiが最小単位。線も細かすぎて描ききれない。それでも合計は1BTC。', 'No finer than this. 1 satoshi is the smallest unit. The lines are too fine to draw. And still, the total is 1 BTC.');
     if (d < 10) return L(d + 'つに割っても、全部合わせれば1BTCのまま。濃い色が一切れ。', 'Split into ' + d + ' pieces, it still adds up to 1 BTC. The dark slice is one piece.');
     if (d < 1000) return L('切れ目は増えた。でも全部集めれば1BTC。増えたのは「枚数の数字」だけ。', 'More cuts. But gather them all and it is 1 BTC. The only thing that grew is "the number of pieces".');
-    if (d < 1000000) return L('一切れはどんどん小さくなる。合計は1BTCから、1 satoshiも増えていない。', 'Each piece keeps shrinking. The total has not grown by even 1 satoshi from 1 BTC.');
+    if (d < 1000000) return L('一切れはどんどん小さくなる。合計は1BTCから1 satoshiも増えていない。', 'Each piece keeps shrinking. The total has not grown by even 1 satoshi from 1 BTC.');
     return L('satoshi単位の世界。桁が大きく見えるだけで、量は同じ。', 'The world of satoshi units. The digits look bigger — the amount is the same.');
   }
   function upd(){

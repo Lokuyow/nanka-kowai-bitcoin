@@ -71,8 +71,8 @@ var wedge = document.getElementById('wedge');
   function price(){ return window.LANG === 'en' ? btcUsd : btcJpy; }
   function msgFor(sats){
     if (sats > 100000000) return L('この金額なら、1 BTCより多く買える。', 'This amount buys more than 1 BTC.');
-    if (sats === 100000000) return L('この金額で、ちょうど1 BTC買える。', 'This amount buys exactly 1 BTC.');
-    return L('この金額で、ビットコインの一部を買える。', 'This amount buys a fraction of a bitcoin.');
+    if (sats === 100000000) return L('この金額でちょうど1 BTC買える。', 'This amount buys exactly 1 BTC.');
+    return L('この金額でビットコインの一部を買える。', 'This amount buys a fraction of a bitcoin.');
   }
   function upd(){
     var y = amount();

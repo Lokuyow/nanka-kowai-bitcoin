@@ -15,8 +15,8 @@
     else if (phase === 'checking') msg.textContent = L('ネットワークが照合中…', 'The network is checking…');
     else if (phase === 'rejected') {
       if (tries === 1) msg.textContent = L('世界の写しと食い違ったため却下。あなたの書き換えは消えて、数字は元に戻った。', 'Rejected — it disagreed with the world\'s copies. Your edit vanished and the numbers went back.');
-      else if (tries === 2) msg.textContent = L('また却下。正しいとされるのは、多数派の写しの方。', 'Rejected again. The copies that count as correct are the majority\'s.');
-      else msg.textContent = L('何度送っても同じ。通すには世界中の写しを全部、同時に書き換えるしかない。それは無理な話。', 'Same result every time. To get it through you\'d have to rewrite every copy in the world, all at once. Not happening.');
+      else if (tries === 2) msg.textContent = L('また却下。正しいとされるのは多数派の写しの方。', 'Rejected again. The copies that count as correct are the majority\'s.');
+      else msg.textContent = L('何度送っても同じ。通すには世界中の写しを全部同時に書き換えるしかない。それは無理な話。', 'Same result every time. To get it through you\'d have to rewrite every copy in the world, all at once. Not happening.');
     }
   }
   document.addEventListener('langchange', renderMsg);

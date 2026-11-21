@@ -9,7 +9,7 @@
   var kwhEl = document.getElementById('mineKwh');
   var LOSE = [
     ['外れ。世界のだれかが先に当てた。電気だけが消えた。', 'Miss. Someone in the world solved it first. All that electricity, spent for nothing.'],
-    ['また外れ。当たりは、世界中の参加者の取り合い。', 'Missed again. The win is a scramble among participants worldwide.'],
+    ['また外れ。当たりは世界中の参加者の取り合い。', 'Missed again. The win is a scramble among participants worldwide.'],
     ['外れ。計算は正しかったのに、速さで負けた。', 'Miss. Your math was right — you just lost on speed.']
   ];
   var minePair = ['計算力が大きいほど当たりやすい。でも、外れても電気は使っている。', 'The more hash power you have, the more likely you are to win. But even when you lose, the electricity is spent.'];
@@ -43,7 +43,7 @@
       wins++;
       winEl.textContent = wins;
       card.classList.remove('flashwin'); void card.offsetWidth; card.classList.add('flashwin');
-      minePair = ['当たった！ 記録を書く権利と報酬をゲット。電気は、この瞬間のために使われていた。', 'You won! You earned the right to write the record, plus the reward. The electricity was being spent for this moment.'];
+      minePair = ['当たった！ 記録を書く権利と報酬をゲット。電気はこの瞬間のために使われていた。', 'You won! You earned the right to write the record, plus the reward. The electricity was being spent for this moment.'];
       loseIdx = -1;
       renderMine();
     } else {

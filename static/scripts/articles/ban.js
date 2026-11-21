@@ -89,7 +89,7 @@
       var n = Object.keys(banned).length;
       countEl.textContent = n;
       if (c.n === '中国') setLog('中国が禁止。2021年に実際にあったことで、採掘は国外へ移り、ネットワークは止まらなかった。', 'China banned it. This really happened in 2021 — mining moved abroad and the network never stopped.');
-      else if (n >= 6) setLog('全部の国が禁止した。表立った拠点はなくなっても、参加者同士のネットワーク自体は消えていない。そもそも全部の国が足並みをそろえること自体、起きにくい。', 'Every country banned it. Even with no public bases left, the network of participants itself hasn\'t vanished. And getting every country to move in lockstep is unlikely in the first place.');
+      else if (n >= 6) setLog('全部の国が禁止した。表立った拠点はなくなっても、参加者同士のネットワーク自体は消えていない。そもそも全部の国が足並みをそろえること自体起きにくい。', 'Every country banned it. Even with no public bases left, the network of participants itself hasn\'t vanished. And getting every country to move in lockstep is unlikely in the first place.');
       else setLog(c.n + 'が禁止。採掘と参加者は国外へ移った。ネットワークは止まらない。', c.e + ' banned it. Mining and participants moved abroad. The network doesn\'t stop.');
     } else {
       delete banned[i];

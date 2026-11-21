@@ -111,7 +111,7 @@
     finished = true;
     personCard.style.display = 'none';
     if (kind === 'barter') {
-      setMsg(acceptPair[0] + ' 物々交換でもパンにたどり着けた。でもそれは、相手の欲しい物を持っている人に会える運と、何度も交換する手間があってのことだった。',
+      setMsg(acceptPair[0] + ' 物々交換でもパンにたどり着けた。でもそれは相手の欲しい物を持っている人に会える運と、何度も交換する手間があってのことだった。',
              acceptPair[1] + ' You reached bread by barter. But that took the luck of meeting people who wanted what you had, and the trouble of trading again and again.');
     } else {
       setMsg('お金を使うと、交換は一気に簡単になった。相手の「欲しい」と自分の「欲しい」が重ならなくてもよくなったからだ。',
@@ -149,7 +149,7 @@
     if (pos >= deck.length) {
       deck = shuffle(deck); pos = 0;
       showPerson();
-      setMsg('村を一周してしまった。並びを変えて、もう一度ためしてみよう。', 'You circled the whole village. The order is shuffled — try again.');
+      setMsg('村を一周してしまった。並びを変えてもう一度ためしてみよう。', 'You circled the whole village. The order is shuffled — try again.');
     } else {
       showPerson();
       setMsg('', '');

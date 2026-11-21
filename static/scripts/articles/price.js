@@ -176,20 +176,20 @@ var el = document.getElementById('nowPrice');
   setInterval(function(){
     if (lastFill) return;
     if (Math.random() < 0.5) {
-      deal('ask', 10 + Math.round(Math.random() * 20), ['世界の誰かが、少し高い値段で買った', 'Someone in the world just bought at a slightly higher price']);
+      deal('ask', 10 + Math.round(Math.random() * 20), ['世界の誰かが少し高い値段で買った', 'Someone in the world just bought at a slightly higher price']);
     } else {
-      deal('bid', 10 + Math.round(Math.random() * 20), ['世界の誰かが、少し安い値段で売った', 'Someone in the world just sold at a slightly lower price']);
+      deal('bid', 10 + Math.round(Math.random() * 20), ['世界の誰かが少し安い値段で売った', 'Someone in the world just sold at a slightly lower price']);
     }
   }, 2600);
   document.getElementById('buyBtn').addEventListener('click', function(){
     myTrades++;
     renderTrades();
-    deal('ask', 30 + Math.round(Math.random() * 25), ['あなたが買った分だけ、売り注文が減った', 'Your purchase reduced the sell orders at that price'], true);
+    deal('ask', 30 + Math.round(Math.random() * 25), ['あなたが買った分だけ売り注文が減った', 'Your purchase reduced the sell orders at that price'], true);
   });
   document.getElementById('sellBtn').addEventListener('click', function(){
     myTrades++;
     renderTrades();
-    deal('bid', 30 + Math.round(Math.random() * 25), ['あなたが売った分だけ、買い注文が減った', 'Your sale reduced the buy orders at that price'], true);
+    deal('bid', 30 + Math.round(Math.random() * 25), ['あなたが売った分だけ買い注文が減った', 'Your sale reduced the buy orders at that price'], true);
   });
   document.addEventListener('langchange', function(){
     convertTo(window.LANG === 'en' ? 'usd' : 'jpy');

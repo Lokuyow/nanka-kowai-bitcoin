@@ -6,11 +6,11 @@
     {t: '土曜の夜、海外の家族に送金したい',
      bank: {o: '銀行が休みで、月曜まで待つことになった。', good: false},
      btc: {o: 'その場で送れて、すぐに着いた。', good: true}},
-    {t: '口座が突然、凍結された',
-     bank: {o: '理由を聞いて、解けるのを待つしかなかった。', good: false},
+    {t: '口座が突然凍結された',
+     bank: {o: '理由を聞いて解けるのを待つしかなかった。', good: false},
      btc: {o: '凍結する管理者がいないので、そのまま使えた。', good: true}},
     {t: '鍵のメモをなくした',
-     bank: {o: '窓口で本人確認をして、再発行してもらえた。', good: true},
+     bank: {o: '窓口で本人確認をして再発行してもらえた。', good: true},
      btc: {o: '誰にも再発行してもらえない。中身に触れなくなった。', good: false}},
     {t: 'あやしいサイトに送金してしまった',
      bank: {o: '不審な送金として止められ、助かった。', good: true},
@@ -114,7 +114,7 @@
     btnDay.hidden = true;
     btnOther.hidden = false;
     btnAgain.hidden = false;
-    msgPair = ['どちらの暮らしにも、助かる日と困る日があった。違うのは、困ったときに頼れる相手がいるかどうかだ。', 'Both lives had days that saved you and days that troubled you. The difference is whether there is someone to rely on when trouble comes.'];
+    msgPair = ['どちらの暮らしにも助かる日と困る日があった。違うのは困ったときに頼れる相手がいるかどうかだ。', 'Both lives had days that saved you and days that troubled you. The difference is whether there is someone to rely on when trouble comes.'];
     gMsg.textContent = L(msgPair[0], msgPair[1]);
   }
   sysBtns.forEach(function(b){

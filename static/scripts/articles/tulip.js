@@ -21,17 +21,17 @@
       msgs: [
         '球根が少し話題になり始めた。',
         '値段がじわじわ上がっている。',
-        '珍しい球根に、高い値がつき始めた。',
+        '珍しい球根に高い値がつき始めた。',
         '街の居酒屋でも球根の取引が始まった。',
-        '一部の球根は、高級住宅並みの値段だと言われる。',
+        '一部の球根は高級住宅並みの値段だと言われる。',
         '熱狂の頂点。まだ上がる気がする。',
-        'なんとなく、雲行きが怪しい。',
-        '突然、買い手が消えた。',
+        'なんとなく雲行きが怪しい。',
+        '突然買い手が消えた。',
         '値段は元より下がり、戻る気配がない。',
-        '熱狂は終わった。球根は、ただの球根に戻った。'
+        '熱狂は終わった。球根はただの球根に戻った。'
       ],
       endMsg: function(profit, held){
-        if (held) return '持ち続けた球根は、ほぼ紙くずに。チューリップの熱狂は一度きりで、二度と戻らなかった。';
+        if (held) return '持ち続けた球根はほぼ紙くずに。チューリップの熱狂は一度きりで、二度と戻らなかった。';
         return profit >= 0 ? 'うまく逃げ切った。でも、それは運とタイミングの話。熱狂そのものは一度きりで終わった。'
                            : '熱狂に巻かれて損をした。チューリップは一度弾けたら、二度と戻らなかった。';
       },
@@ -73,11 +73,11 @@
         'それでもネットワークは止まらず、価格は戻してきた。',
         'また過去最高のあたりへ。',
         '波は今も続いている。',
-        '17年続いた波は、まだ終わっていない。'
+        '17年続いた波はまだ終わっていない。'
       ],
       endMsg: function(profit, held){
-        if (profit >= 0) return '暴落のたびに「終わった」と言われても、戻ってきた。チューリップとの違いは、この「戻ってくる」が何度も起きたこと。';
-        return '途中の暴落で手放すと、戻ってくる波に乗れない。チューリップとの違いは、暴落のあとに「次」があったこと。';
+        if (profit >= 0) return '暴落のたびに「終わった」と言われても、戻ってきた。チューリップとの違いはこの「戻ってくる」が何度も起きたこと。';
+        return '途中の暴落で手放すと、戻ってくる波に乗れない。チューリップとの違いは暴落のあとに「次」があったこと。';
       },
       endMsgEn: function(profit, held){
         if (profit >= 0) return "Every crash brought \"it's over\" — and it came back. The difference from tulips: this \"coming back\" happened again and again.";
@@ -156,7 +156,7 @@
     var r = ROUNDS[round];
     units = cash / r.prices[idx];
     cash = 0;
-    setMsg('全額で買った。ここから先は、価格しだい。', 'You bought with everything. From here, it all depends on the price.');
+    setMsg('全額で買った。ここから先は価格しだい。', 'You bought with everything. From here, it all depends on the price.');
     draw();
   });
   sellBtn.addEventListener('click', function(){

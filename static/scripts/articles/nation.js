@@ -8,13 +8,13 @@
     ]},
     merchant: {reflect: '民間の作り手は便利で、競争も生まれる。でも、信用が崩れたときの受け止め先がない。', reflectEn: 'A private issuer is convenient, and competition arises. But when trust collapses, there is no one to catch it.', years: [
       {text: '両替商のお金は使いやすく、村の店はどこでも受け取るようになった。', textEn: 'The moneychanger\'s money was easy to use, and every shop in the village came to accept it.', tag: 'good'},
-      [{text: '両替商が夜逃げした。持っていたお金は、ただの紙になった。', textEn: 'The moneychanger fled in the night. The money people held became mere paper.', tag: 'bad'},
+      [{text: '両替商が夜逃げした。持っていたお金はただの紙になった。', textEn: 'The moneychanger fled in the night. The money people held became mere paper.', tag: 'bad'},
        {text: '両替商が店をたたむことになったが、次の両替商が引き継いで、お金はそのまま使えた。', textEn: 'The moneychanger closed shop, but the next moneychanger took over, and the money could be used as-is.', tag: 'good'}],
       {text: '別の両替商も店を出し、競い合って手数料が下がった。', textEn: 'Another moneychanger opened shop too, and competing fees came down.', tag: 'good'}
     ]},
     none: {reflect: '誰の気分でも変わらない安心感はある。でも、困ったときに調整できる人もいない。', reflectEn: 'There is comfort in money that no one\'s mood can change. But there is also no one who can adjust it in hard times.', years: [
-      {text: '最初は不便だったが、量の決まったお金を皆が使うようになった。値段は、作り手の気分では変わらない。', textEn: 'It was inconvenient at first, but everyone came to use the money with a fixed amount. Its value does not change with an issuer\'s mood.', tag: 'mix'},
-      [{text: '隣の村でも同じお金が使えた。村と村の境を越えて、回り始めた。', textEn: 'The same money could be used in the next village. It began to circulate across village borders.', tag: 'good'},
+      {text: '最初は不便だったが、量の決まったお金を皆が使うようになった。値段は作り手の気分では変わらない。', textEn: 'It was inconvenient at first, but everyone came to use the money with a fixed amount. Its value does not change with an issuer\'s mood.', tag: 'mix'},
+      [{text: '隣の村でも同じお金が使えた。村と村の境を越えて回り始めた。', textEn: 'The same money could be used in the next village. It began to circulate across village borders.', tag: 'good'},
        {text: '隣の村では受け取ってもらえず、交換のたびに両替が要った。', textEn: 'The next village would not accept it, so every trade needed an exchange.', tag: 'bad'}],
       {text: '不作の年が来た。助けたくても、お金の量を増やせる人がいなかった。', textEn: 'A year of poor harvest came. People wanted to help, but there was no one who could increase the amount of money.', tag: 'bad'}
     ]}
