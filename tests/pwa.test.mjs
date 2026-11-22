@@ -213,7 +213,7 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
       const missing = await page.goto(`${server.base}missing/deep/`, { waitUntil: 'load' });
       assert.equal(missing.status(), 404);
       await page.locator('.lang-toggle').click();
-      assert.equal(await page.locator('h1').textContent(), 'Page not found');
+      await page.getByRole('heading', { name: 'Page not found', exact: true }).waitFor();
     } finally {
       await context.setOffline(false);
     }

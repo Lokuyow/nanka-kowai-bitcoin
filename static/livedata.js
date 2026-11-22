@@ -1,5 +1,6 @@
 /* 実データ取得の共通モジュール（/fee/ /price/ /satoshi/ などが共用）
- * - 取得はページ内で1回だけ（single-flight）。結果は全利用箇所で共有する。
+ * - 各系統はページ内で1回だけ取得し、結果を共有する。
+ * - 価格だけを使うページは loadPrices() で価格のみ取得する。
  * - 2系統を独立に取得し、それぞれ主系→副系の順に試す：
  *     手数料レート（sat/vB）: mempool.space fees/recommended → Blockstream fee-estimates
  *     BTC価格（JPY・USD）   : mempool.space prices          → CoinGecko simple/price
@@ -13,16 +14,20 @@
  */
 window.LiveData = (function () {
   var VB = 140; /* 普通の送金1回の大きさの目安（vB） */
-  var cache = null;
+  let ratesRequest;
+  let pricesRequest;
+  let combinedRequest;
 
-  function fetchJson(url) {
-    var ctl = new AbortController();
-    var timer = setTimeout(function () { ctl.abort(); }, 5000);
-    return fetch(url, { signal: ctl.signal }).then(function (res) {
-      clearTimeout(timer);
+  async function fetchJson(url) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 5000);
+    try {
+      const res = await fetch(url, { signal: controller.signal });
       if (!res.ok) throw new Error('http ' + res.status);
-      return res.json();
-    }).catch(function (err) { clearTimeout(timer); throw err; });
+      return await res.json();
+    } finally {
+      clearTimeout(timer);
+    }
   }
   function num(v) { return (typeof v === 'number' && isFinite(v) && v > 0) ? v : null; }
   function pick(f, keys) {
@@ -56,7 +61,8 @@ window.LiveData = (function () {
     });
   }
   function loadRates() {
-    return ratesFromMempool().catch(function () { return ratesFromBackup(); }).catch(function () { return null; });
+    ratesRequest ??= ratesFromMempool().catch(ratesFromBackup).catch(() => null);
+    return ratesRequest;
   }
 
   /* --- BTC価格（JPY・USD） --- */
@@ -77,29 +83,23 @@ window.LiveData = (function () {
     });
   }
   function loadPrices() {
-    return pricesFromMempool().catch(function () { return pricesFromBackup(); }).catch(function () { return null; });
+    pricesRequest ??= pricesFromMempool().catch(pricesFromBackup).catch(() => null);
+    return pricesRequest;
   }
 
   function load() {
-    if (!cache) {
-      if (!window.fetch || !window.AbortController) {
-        cache = Promise.resolve(null);
-      } else {
-        cache = Promise.all([loadRates(), loadPrices()]).then(function (r) {
-          var rates = r[0], prices = r[1];
-          if (!rates && !prices) return null;
-          return {
-            tiers: rates ? rates.tiers : null,
-            rateSource: rates ? rates.source : null,
-            jpy: prices ? prices.jpy : null,
-            usd: prices ? prices.usd : null,
-            priceSource: prices ? prices.source : null
-          };
-        });
-      }
-    }
-    return cache;
+    combinedRequest ??= Promise.all([loadRates(), loadPrices()]).then(([rates, prices]) => {
+      if (!rates && !prices) return null;
+      return {
+        tiers: rates?.tiers ?? null,
+        rateSource: rates?.source ?? null,
+        jpy: prices?.jpy ?? null,
+        usd: prices?.usd ?? null,
+        priceSource: prices?.source ?? null
+      };
+    });
+    return combinedRequest;
   }
 
-  return { load: load, VB: VB };
+  return { load, loadPrices, VB };
 })();

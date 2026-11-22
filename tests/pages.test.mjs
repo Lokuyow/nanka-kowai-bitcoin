@@ -34,10 +34,11 @@ for (const { name, path } of PAGES) {
       for (const width of [375, 320]) {
         await page.setViewportSize({ width, height: 667 });
         for (const lang of ['ja', 'en']) {
+          await page.locator('.lang-toggle:not([aria-busy])').waitFor();
           if ((await page.locator('html').getAttribute('lang')) !== lang) {
             await page.locator('.lang-toggle').click();
           }
-          assert.equal(await page.locator('html').getAttribute('lang'), lang);
+          await page.locator(`html[lang="${lang}"]`).waitFor();
           const overflow = await page.evaluate(
             () => document.documentElement.scrollWidth - window.innerWidth,
           );

@@ -81,12 +81,33 @@ test('言語: 英語環境で開始し、既存の設定が記事間で引き継
   try {
     const page = await context.newPage();
     await page.goto(server.base, { waitUntil: 'load' });
+    await page.getByText('23 stories', { exact: true }).waitFor();
     assert.equal(await page.locator('html').getAttribute('lang'), 'en');
-    assert.equal(await page.locator('.credit .count').textContent(), '23 stories');
     await page.locator('.lang-toggle').click();
     await page.locator('.unit').first().click();
     assert.equal(page.url(), server.base + 'scam/');
     assert.equal(await page.locator('html').getAttribute('lang'), 'ja');
+  } finally {
+    await context.close();
+  }
+});
+
+test('言語: 日本語では英語辞書の取得を切り替えまで遅らせる', async () => {
+  const context = await newContext(browser);
+  try {
+    const page = await context.newPage();
+    const dictionaries = [];
+    page.on('request', (request) => {
+      const { pathname } = new URL(request.url());
+      if (pathname.includes('/i18n-en.')) dictionaries.push(pathname);
+    });
+    await page.goto(server.base, { waitUntil: 'load' });
+    assert.deepEqual(dictionaries, []);
+
+    await page.locator('.lang-toggle').click();
+    await page.getByText('23 stories', { exact: true }).waitFor();
+    assert.equal(dictionaries.length, 1);
+    assert.match(dictionaries[0], /\/i18n-en\.[a-f0-9]{16}\.js$/);
   } finally {
     await context.close();
   }

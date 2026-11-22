@@ -32,7 +32,11 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
         url
       }
     ];
-    for (const data of expected) {
+    for (const [index, data] of expected.entries()) {
+      if (index === 1) {
+        await page.locator('.lang-toggle').click();
+        await page.locator('html[lang="en"]').waitFor();
+      }
       await page.locator('.share-main').click();
       assert.deepEqual(await page.evaluate(() => window.sharedData), data);
       const xLink = new URL(await page.locator('.share-x').getAttribute('href'));
@@ -40,7 +44,6 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
       assert.equal(xLink.searchParams.get('url'), url);
       await page.locator('.share-copytext').click();
       assert.equal(await page.evaluate(() => window.copiedText), [data.title, data.text, url].join('\n'));
-      await page.locator('.lang-toggle').click();
     }
   } finally {
     try {

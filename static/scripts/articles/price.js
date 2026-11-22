@@ -157,13 +157,13 @@ var el = document.getElementById('nowPrice');
   render();
   // 実データが取れたら、その現在価格を出発点に板を組み直す（取引回数は引き継ぐ）
   if (window.LiveData) {
-    window.LiveData.load().then(function(d){
+    window.LiveData.loadPrices().then(function(d){
       if (myTrades || !d || (!d.jpy && !d.usd)) return;
       liveRates = {
         jpy: d.jpy || Math.round(d.usd * EXAMPLE.jpy / EXAMPLE.usd),
         usd: d.usd || Math.round(d.jpy * EXAMPLE.usd / EXAMPLE.jpy)
       };
-      liveSource = d.priceSource;
+      liveSource = d.source;
       buildBook(liveRates[cur]);
       el.textContent = fmtPrice(price);
       renderUnit();

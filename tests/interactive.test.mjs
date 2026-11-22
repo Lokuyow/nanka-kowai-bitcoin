@@ -55,6 +55,7 @@ test('図解: 手数料データを取得できない場合は日英の目安で
     await page.locator('#sendBtn').click();
     assert.equal(await page.locator('#rFee').textContent(), '7,500円');
     await page.locator('.lang-toggle').click();
+    await page.locator('html[lang="en"]').waitFor();
     assert.equal(await page.locator('#rFee').textContent(), '$50');
     assert.match(await page.locator('#feeNote').textContent(), /Live data could not be loaded/);
     assert.deepEqual(errors, []);
@@ -120,6 +121,7 @@ test('図解: 実価格から買える量を計算し、1 BTCとの大小に合�
       assert.ok(Math.abs(fill - Math.min(1, Number(btc)) * 100) < 0.001);
       assert.match(await page.locator('#satMsg').textContent(), messageJa);
       await page.locator('.lang-toggle').click();
+      await page.locator('html[lang="en"]').waitFor();
       assert.match(await page.locator('#satMsg').textContent(), messageEn);
       await page.locator('.lang-toggle').click();
     }

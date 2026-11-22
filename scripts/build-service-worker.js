@@ -16,7 +16,7 @@ const fonts = files.filter((file) => file.startsWith('fonts/') && file.endsWith(
 const assets = files.filter((file) =>
   file.startsWith('scripts/') || file.startsWith('styles/') || file.startsWith('icons/') ||
   file.startsWith('media/') ||
-  ['i18n.js', 'livedata.js', 'favicon.svg', 'favicon.ico', 'brand-mark.svg', 'ghost-lost.svg'].includes(file)
+  ['i18n.js', 'i18n-en.js', 'livedata.js', 'favicon.svg', 'favicon.ico', 'brand-mark.svg', 'ghost-lost.svg'].includes(file)
 );
 const hash = (bytes) => createHash('sha256').update(bytes).digest('hex').slice(0, 16);
 const assetUrls = new Map();
@@ -55,12 +55,15 @@ for (const page of pages) {
   const pageUrl = new URL(page, site);
   const html = await readFile(filename, 'utf8');
   const rewritten = html.replace(
-    /(<(?:link|script|img|source)\b[^>]*?\s(?:href|src|srcset)=")([^"]+)"/g,
-    (match, prefix, source) => {
-      const url = new URL(source, pageUrl);
-      const versioned = url.origin === site.origin && assetUrls.get(url.pathname);
-      return versioned ? prefix + versioned + url.search + url.hash + '"' : match;
-    },
+    /<(?:link|script|img|source)\b[^>]*>/g,
+    (tag) => tag.replace(
+      /(\s(?:href|src|srcset|data-dictionary)=")([^"]+)"/g,
+      (match, prefix, source) => {
+        const url = new URL(source, pageUrl);
+        const versioned = url.origin === site.origin && assetUrls.get(url.pathname);
+        return versioned ? prefix + versioned + url.search + url.hash + '"' : match;
+      },
+    ),
   );
   await writeFile(filename, rewritten);
   precache[pageUrl.pathname] = await fingerprint(file, rewritten);

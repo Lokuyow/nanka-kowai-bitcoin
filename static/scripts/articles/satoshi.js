@@ -102,11 +102,11 @@ var wedge = document.getElementById('wedge');
   upd();
   // 実データが取れたら、その現在価格（円／ドル）で換算し直す
   if (window.LiveData) {
-    window.LiveData.load().then(function(d){
+    window.LiveData.loadPrices().then(function(d){
       if (!d || (!d.jpy && !d.usd)) return;
       if (d.jpy) btcJpy = d.jpy;
       if (d.usd) btcUsd = d.usd;
-      livePrice = { jpy: d.jpy, usd: d.usd, source: d.priceSource };
+      livePrice = d;
       renderHint();
       upd();
     });
