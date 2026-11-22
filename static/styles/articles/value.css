@@ -10,3 +10,93 @@
 .meternum{font-size:26px;font-weight:900;text-align:right;margin-top:2px;line-height:1.2}
 .evtmsg{font-size:14px;color:var(--color-secondary);font-weight:700;min-height:1.7em;margin:10px 0 0}
 .labmsg{font-size:15px;min-height:3.4em;margin:4px 0 14px}
+
+.gold-figure {
+  margin-inline: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.gold-figure figcaption {
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.gold-figure .hint { text-align: start; }
+.gold-investment { --segment: var(--color-primary); }
+.gold-jewelry { --segment: #daa74e; }
+.gold-industry { --segment: #43827a; }
+.gold-other { --segment: #777b88; }
+
+.gold-demand-bar {
+  display: flex;
+  height: 24px;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.gold-demand-bar span {
+  flex: var(--share) 0 0;
+  background: var(--segment);
+}
+
+.gold-demand-legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px 18px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gold-demand-legend li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.gold-demand-legend li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--segment);
+}
+
+.gold-demand-legend b { font-variant-numeric: tabular-nums; }
+
+.gold-price-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gold-price-flow li {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 8px 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.gold-price-flow li:nth-child(2) { background: var(--color-secondary-bg); }
+
+.gold-price-flow [aria-hidden] {
+  position: absolute;
+  left: 100%;
+  width: 24px;
+  color: var(--color-secondary);
+}
+
+@media (max-width: 520px) {
+  .gold-demand-legend { grid-template-columns: 1fr; }
+  .gold-price-flow { font-size: 12px; }
+}
