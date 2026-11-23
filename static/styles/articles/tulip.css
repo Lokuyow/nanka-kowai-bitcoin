@@ -8,12 +8,20 @@
 .gm-round{font-weight:700}
 .gm-assets b{font-size:17px;font-variant-numeric:tabular-nums}
 .gmmsg{font-size:14px;min-height:3.2em;margin:10px 0 0}
-.gmbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.gmbtns{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:10px}
 .gmbtns button{min-height:48px;font-size:15px}
-#gmBuy{background:var(--color-primary);color:var(--color-on-primary)}
-#gmSell{background:#fff;color:var(--ink);border:2px solid var(--ink)}
 .gmbtns button[disabled]{opacity:.4;cursor:default}
-.gmhold{font-size:13px;color:var(--sub);text-align:center;margin:8px 0 0}
+/* 売買はつながった1組のボタン（左が買う、右が売る） */
+.gm-trade{display:flex;border-radius:999px;box-shadow:0 0 0 2px var(--ink)}
+.gm-trade button{border-radius:0;min-width:128px;padding:10px 18px;font-weight:700}
+#gmBuy{border-radius:999px 0 0 999px;background:var(--color-primary);color:var(--color-on-primary)}
+#gmSell{border-radius:0 999px 999px 0;background:var(--card);color:var(--ink);border:0;border-left:2px solid var(--ink)}
+.gmhold{font-size:13px;color:var(--sub);text-align:center;margin:0}
+/* 時を進めるは、売買とは別の四角いボタンにして、時計と矢印を添える */
+.gm-next{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:10px 16px;
+    background:var(--color-secondary-bg);color:var(--color-secondary);border:1px dashed var(--color-secondary);font-weight:700}
+.gm-next svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.gm-next svg:last-child{width:16px;height:16px}
 #gmRestart{min-height:44px}
 #gmDot{transition:cx .5s ease,cy .5s ease}
 #gmPath{transition:stroke .3s}

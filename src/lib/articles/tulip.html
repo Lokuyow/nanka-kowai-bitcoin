@@ -64,12 +64,15 @@
         </svg>
       </div>
       <p class="gmmsg" id="gmMsg" aria-live="polite"></p>
+      <!-- 売買の2つは1組のボタンにまとめ、話を先へ進めるボタンとは形と位置を分ける -->
       <div class="gmbtns">
-        <button type="button" id="gmBuy" data-i18n>買う（全額）</button>
-        <button type="button" id="gmSell" data-i18n>売る（全部）</button>
-        <button type="button" id="gmNext" data-i18n>時を進める</button>
+        <div class="gm-trade" role="group" aria-label="売買" data-i18n-label>
+          <button type="button" id="gmBuy" data-i18n>買う（全額）</button>
+          <button type="button" id="gmSell" data-i18n>売る（全部）</button>
+        </div>
+        <p class="gmhold" id="gmHold">持ち分: 現金のみ</p>
+        <button type="button" id="gmNext" class="gm-next"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg><span data-i18n>時を進める</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
-      <p class="gmhold" id="gmHold">持ち分: 現金のみ</p>
       <div class="center" style="margin-top:10px"><button type="button" id="gmMain" hidden>第2戦へ</button></div>
       <p class="hint" data-i18n>価格と時間の目盛りはチャートごとに違う。</p>
     </div>

@@ -672,6 +672,7 @@ export default {
   '買う（全額）': 'Buy (all in)',
   '売る（全部）': 'Sell (everything)',
   '時を進める': 'Advance time',
+  '売買': 'Trade',
   '球根は植えれば増やせるし、花が咲けば終わる実物だった。ビットコインは発行上限が固定され、ネットワークは17年止まらず動き続けている。': 'Bulbs were physical things: plant them and they multiply; once they bloom, they are done. Bitcoin\'s supply cap is fixed, and its network has kept running for 17 years without stopping.',
   "価格と時間の目盛りはチャートごとに違う。": "The two charts use different price and time scales.",
   "暴落のあと、何が起きた？": "What happened after the crashes?",
