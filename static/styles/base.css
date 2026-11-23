@@ -64,9 +64,8 @@ body{margin:0;background:var(--bg);color:var(--ink);
     .brand-icon{width:clamp(32px,10vw,40px);height:auto}
     .head-right{gap:6px}
   }
-/* 日本語の見出しや短い一文は、「ビットコイ／ン」のように語の途中で折り返さず文節で改行する。
-   1つの文節が画面幅に収まらないときだけ語の途中で折り返す。長い本文は行末がそろわなくなるので対象にしない。 */
-:lang(ja) :is(h1,h2,h3,.subtitle,.hero .lede,.answer,.summary,.unit .q,.layerdesc,.read-next strong,.share-title){
-    word-break:auto-phrase;overflow-wrap:anywhere}
-/* 一言まとめは行の長さをそろえて、「そのもの／じゃない」のように句の途中で切れないようにする */
-:lang(ja) .summary{text-wrap:balance}
+/* 日本語は scripts/ja-wrap.js が文節の切れ目に <wbr> を入れるので、それ以外の場所では改行しない。
+   1つの文節が幅に収まらないときだけ語の途中で折り返す。スクリプトが動く前は通常の改行のまま。 */
+:root.ja-wrap:lang(ja) body{word-break:keep-all;overflow-wrap:anywhere}
+/* 答えと一言まとめは行の長さをそろえ、「運営会社が／ない。」のように2行目だけ短くならないようにする */
+:lang(ja) :is(.answer,.summary){text-wrap:balance}
