@@ -19,3 +19,8 @@
 .captally{text-align:center;font-size:14px;margin-top:10px}
 .capmsg{font-size:14px;min-height:3.4em;margin:10px 0 0;text-align:center}
 .stamp-zone{position:relative;text-align:center;padding:26px 0 6px;min-height:96px;overflow:hidden}
+/* 2つのノードの判断を並べたカード。見出しと本文の標準の余白を詰め、ほかの章のカードと大きさをそろえる */
+.cols>.card h3{margin:0 0 8px;font-size:15px}
+.cols>.card p{margin:0;font-size:14px}
+.cols:has(>.card){margin-top:12px}
+.cols>.card{margin-top:0}
