@@ -16,7 +16,7 @@
           <li>
             <a href={articlePath(article.slug)} aria-current={article.slug === current ? 'page' : undefined}>
               <ArticleIcon slug={article.slug} />
-              <span data-i18n>{article.title}</span>
+              <span data-i18n>{article.navTitle}</span>
             </a>
           </li>
         {/each}
