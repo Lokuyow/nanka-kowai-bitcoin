@@ -46,7 +46,7 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
     .tabbar .idx .pos,.tabbar .nav-title{font-size:12px}
   }
 @media(max-width:520px){
-    :root[data-lang="ja"] .chapter h1 br{display:none}
+    :root[data-lang="ja"] .chapter h1 br:not(.jw-br){display:none}
   }
 /* 幅320px前後では「ハッキングされて」のような長い文節が1行に入りきらないので、題名を少し小さくする */
 @media(max-width:340px){
