@@ -55,10 +55,16 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
     html{scroll-padding-bottom:0}
     .wrap{margin-left:calc(50% - 190px);padding-bottom:64px}
     .tabbar{display:none}
+    /* ヘッダーは目次の上まで伸ばし、ロゴを目次の左端にそろえる。 */
+    .site-header{margin-left:-296px}
+    /* 今いる層は目次で分かるので、題名の上の層リンクは出さない。 */
+    .eyebrow{display:none}
+    .chapter h1{margin-top:28px}
     .toc{display:block;position:fixed;top:68px;bottom:16px;left:calc(50% - 450px);width:200px;
-        overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;padding:16px 0 24px;
+        overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;padding:26px 0 24px;
         mask-image:linear-gradient(to bottom,transparent,#000 20px,#000 calc(100% - 32px),transparent)}
     .toc::-webkit-scrollbar{display:none}
+    .toc-layer{margin:0}
     .toc-layer+.toc-layer{margin-top:16px}
     .toc-head{margin:0 0 4px;padding:0 10px;font-size:12px;font-weight:700;color:var(--sub)}
     /* 層番号の丸を下の話のアイコンと同じ幅にして、縦の列をそろえる */
