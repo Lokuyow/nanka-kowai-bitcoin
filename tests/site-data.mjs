@@ -42,11 +42,8 @@ const smokeTests = {
     steps: [{ clickFirst: '#wayPick button' }, { click: '#btnTime' }],
     watch: '#storyList',
   },
-  future: { steps: [{ clickFirst: '#sceneBtns button' }], watch: '#sceneArea' },
-  nation: {
-    steps: [{ clickFirst: '#issuerPick button' }, { click: '#btnYear' }],
-    watch: '#yearList',
-  },
+  future: { steps: [{ range: '#dayRange', to: 'toggle' }], watch: '#tagPay' },
+  nation: { steps: [{ click: '#eraNext' }], watch: '#eraPanels' },
 };
 
 export const UNITS = ARTICLES.map(({ slug }) => ({ slug, smoke: smokeTests[slug] }));

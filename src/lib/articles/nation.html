@@ -1,43 +1,86 @@
 <section class="intro">
     <h2 data-i18n>なぜこの問いが浮かぶか</h2>
-    <p class="lede" data-i18n>江戸時代には幕府の貨幣に加え、藩が発行した藩札や商人が発行した私札も地域で使われた。身近な歴史にも、発行する人の違うお金を並べて使った例がある。</p>
-    <p class="lede"><span data-i18n>伊勢の山田羽書（やまだはがき）は、銀貨の釣り銭代わりに渡された預かり証だった。やがて伊勢の周辺で紙幣として使われるようになった。</span> <a href="https://www.imes.boj.or.jp/cm/history/historyfaq/index.html" data-i18n>日本銀行 貨幣博物館</a> · <a href="https://www.i-repository.net/il/meta_pub/G0000381kahei_1_23_7" data-i18n>現存する山田羽書を見る</a></p>
+    <p class="lede" data-i18n>お金は国が作るもの、と思いがちだ。でも日本の歴史をさかのぼると、国以外が作ったお金や、外国から来たお金が使われた時代も長い。</p>
   </section>
 
   <section>
-    <h2 data-i18n>小さな村でお金の発行方法を選ぶ</h2>
-    <p class="lede" data-i18n>あなたが小さな村でお金の発行方法を選ぶとしたら、どれを選ぶ？ 発行方法を選んで、村の3年間を見てみよう。起きることは試すたびに少しずつ違う。</p>
+    <h2 data-i18n>日本のお金は誰が作ってきた？</h2>
+    <p class="lede" data-i18n>時代を選ぶと、そのころ使われていたお金と、誰が作っていたかがわかる。色のついた行が、その時代に作り手だった人たちだ。</p>
     <div class="card">
-      <div class="pickbtns" role="group" aria-label="お金の作り手の選択" id="issuerPick" data-i18n-label>
-        <button type="button" data-issuer="chief" data-i18n>村長が作る</button>
-        <button type="button" data-issuer="merchant" data-i18n>民間の両替商が作る</button>
-        <button type="button" data-issuer="none" data-i18n>決めたルールで発行する</button>
+      <div class="lanes" id="lanes" role="group" aria-label="時代" data-i18n-label>
+        <span class="lane-corner" aria-hidden="true"></span>
+        <button type="button" class="era-btn" data-era="0" aria-pressed="true">708</button>
+        <button type="button" class="era-btn" data-era="1" aria-pressed="false" data-i18n>12世紀</button>
+        <button type="button" class="era-btn" data-era="2" aria-pressed="false">1600</button>
+        <button type="button" class="era-btn" data-era="3" aria-pressed="false">1661</button>
+        <button type="button" class="era-btn" data-era="4" aria-pressed="false">1871</button>
+        <button type="button" class="era-btn" data-era="5" aria-pressed="false">1899</button>
+        <button type="button" class="era-btn" data-era="6" aria-pressed="false">2009</button>
       </div>
-      <div class="stage" style="--stage-min:min(calc(244px + (100cqw - 250px) * 0.0000), calc(244px + (100cqw - 305px) * -0.0906))">
-      <div class="idle" aria-hidden="true"><svg class="scene" viewBox="0 0 240 110"><ellipse class="sh" cx="38" cy="103" rx="30" ry="3.5"/><ellipse class="sh" cx="120" cy="103" rx="24" ry="3.5"/><ellipse class="sh" cx="202" cy="103" rx="24" ry="3.5"/><rect class="nf" x="16" y="64" width="44" height="34" rx="2"/><path class="ac" d="M10 66L38 44l28 22z"/><rect class="nl" x="31" y="78" width="12" height="20" rx="2"/><rect class="nl" x="47" y="72" width="8" height="8" rx="1"/><rect class="nf" x="184" y="72" width="36" height="26" rx="2"/><path class="ac" d="M178 74l24-18 24 18z"/><rect class="nl" x="196" y="80" width="10" height="9" rx="1"/><g class="float"><g transform="translate(80.88 35.92) scale(0.72)"><path class="gb" d="M22 78C21 55 24 30 38 20 47 13 60 14 66 24 71 33 70 46 73 56 76 66 81 72 86 76 88 78 87 80 84 81 79 83 74 83 70 82 66 81 64 84 63 87 62 90 58 90 54 89 48 87 42 86 37 88 32 90 26 89 23 85 22 83 22 81 22 78Z"/><g transform="translate(0.00 0)"><ellipse class="ge" cx="40" cy="37" rx="4" ry="5" transform="rotate(-10 40 37)"/><ellipse class="ge" cx="55" cy="39" rx="3.8" ry="5" transform="rotate(8 55 39)"/></g><path class="ge" transform="translate(0.00 0)" d="M43.5 46.5Q48.5 47.8 53 47.2 53.2 53 48.3 53.6 43.8 53.3 43.5 46.5Z"/></g><circle class="ac" cx="120" cy="27" r="15"/><circle class="al" cx="120" cy="27" r="10.5"/><rect class="hl" x="116" y="23" width="8" height="8" rx="1"/><path class="gb" d="M30.5 63.5C34 61 38.5 62.5 39 66.5 39.5 70.5 35.5 73 32 72 28.5 71 27.5 66 30.5 63.5Z" transform="translate(105 40) rotate(30) scale(0.72) translate(-33.5 -67)"/><path class="gb" d="M30.5 63.5C34 61 38.5 62.5 39 66.5 39.5 70.5 35.5 73 32 72 28.5 71 27.5 66 30.5 63.5Z" transform="translate(135 40) rotate(-30) scale(0.72) translate(-33.5 -67)"/></g><g class="float d2"><circle class="ac" cx="80" cy="92" r="5.5"/><rect class="hl" x="78.2" y="90.2" width="3.6" height="3.6"/></g><g class="float"><circle class="ac" cx="162" cy="94" r="4.5"/><rect class="hl" x="160.6" y="92.6" width="2.8" height="2.8"/></g><path class="af tw" d="M94 12.6l1.44 3.96 3.96 1.44-3.96 1.44-1.44 3.96-1.44-3.96-3.96-1.44 3.96-1.44z"/><path class="af tw d2" d="M148 7.800000000000001l1.12 3.08 3.08 1.12-3.08 1.12-1.12 3.08-1.12-3.08-3.08-1.12 3.08-1.12z"/></svg></div>
-      <div class="stage-body">
-      <div id="yearList" data-result></div>
-      <p class="tally" id="vTally" hidden><span data-i18n>よかった</span> <b id="vGood">0</b> <span data-i18n>件 ・ 困った</span> <b id="vBad">0</b> <span data-i18n>件</span></p>
-      <p class="reflect" id="vReflect" aria-live="polite"></p>
-      <div class="gbtns">
-        <button type="button" id="btnYear" hidden data-i18n>1年進める</button>
-        <button type="button" id="btnRetryIssuer" class="sub-btn" hidden data-i18n>別の作り手で試す</button>
+      <div class="eranav">
+        <button type="button" id="eraPrev" class="sub-btn" aria-label="前の時代" data-i18n-label>←</button>
+        <span class="erapos" id="eraPos" aria-hidden="true">1 / 7</span>
+        <button type="button" id="eraNext" class="sub-btn" aria-label="次の時代" data-i18n-label>→</button>
       </div>
-      </div>
+      <!-- 7つの時代を同じ場所に重ね、切り替えても高さが変わらないようにする -->
+      <div class="eras" id="eraPanels" aria-live="polite">
+        <div class="era" data-era="0">
+          <p class="era-when" data-i18n>708年 奈良時代</p>
+          <h3 data-i18n>和同開珎</h3>
+          <p data-i18n>朝廷が銅の銭を作った。都づくりの支払いなどに使われた。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>朝廷の命令</span></p>
+        </div>
+        <div class="era off" data-era="1">
+          <p class="era-when" data-i18n>12〜16世紀 平安時代の終わり〜戦国時代</p>
+          <h3 data-i18n>中国から来た銭</h3>
+          <p data-i18n>朝廷は958年を最後に銭を作らなくなった。代わりに、中国から運ばれた銭や、それをまねて国内で作られた銭が広く使われた。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>多くの人が受け取ること</span></p>
+        </div>
+        <div class="era off" data-era="2">
+          <p class="era-when" data-i18n>1600年ごろ 江戸時代の初め</p>
+          <h3 data-i18n>山田羽書</h3>
+          <p data-i18n>伊勢の商人が、銀貨の釣り銭代わりに預かり証を出した。やがて紙幣として使われるようになり、日本で最も古い紙幣とされる。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>発行した商人の信用と、銀と交換できること</span></p>
+          <p class="era-src"><a href="https://www.imes.boj.or.jp/cm/history/historyfaq/index.html" data-i18n>日本銀行 貨幣博物館</a> · <a href="https://www.i-repository.net/il/meta_pub/G0000381kahei_1_23_7" data-i18n>現存する山田羽書を見る</a></p>
+        </div>
+        <div class="era off" data-era="3">
+          <p class="era-when" data-i18n>1661年〜 江戸時代</p>
+          <h3 data-i18n>藩札</h3>
+          <p data-i18n>福井藩をはじめ、多くの藩が自分の領内で使う紙幣を出した。幕府の金貨・銀貨・銭や、商人の私札と並んで使われた。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>藩の信用と、金や銀と交換できること</span></p>
+        </div>
+        <div class="era off" data-era="4">
+          <p class="era-when" data-i18n>1871年〜 明治時代</p>
+          <h3 data-i18n>円と国立銀行の紙幣</h3>
+          <p data-i18n>1871年に円が単位になった。翌年からは民間の銀行が「国立銀行」として紙幣を出した。1882年には日本銀行ができた。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>国の法律と、銀行の信用</span></p>
+        </div>
+        <div class="era off" data-era="5">
+          <p class="era-when" data-i18n>1899年〜</p>
+          <h3 data-i18n>日本銀行券</h3>
+          <p data-i18n>国立銀行の紙幣が使えなくなり、紙幣は日本銀行券にまとまった。いま使っている円も、この流れの上にある。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>国の法律と、中央銀行の信用</span></p>
+        </div>
+        <div class="era off" data-era="6">
+          <p class="era-when" data-i18n>2009年〜</p>
+          <h3 data-i18n>ビットコイン</h3>
+          <p data-i18n>発行する人や会社はいない。新しく出る量は、参加者が使うプログラムのルールで決まる。円と並んで使われている。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>公開されたルールと、受け取る人がいること</span></p>
+        </div>
       </div>
     </div>
+    <p class="hint" data-i18n>紙幣を日本銀行だけが出す形になってから、まだ130年ほどだ。</p>
   </section>
 
   <section>
-    <h2 data-i18n>発行方法によって何が変わる？</h2>
-    <p class="lede" data-i18n>お金を発行して使うときのルールによって、そのお金を使える場所や困ったときにできることが違う。</p>
-    <div class="cols">
-      <div class="card vcard" data-i18n-html><b style="color:var(--color-secondary)">国の通貨</b><br>給料や税金などの共通の単位になる。中央銀行は物価の安定を目指して金融政策を行う。
-      </div>
-      <div class="card vcard" data-i18n-html><b style="color:var(--color-secondary)">ビットコイン</b><br>新規発行はネットワークのルールで決まる。国境を越えて送れるが、実際に使えるかは相手が受け取ってくれるかどうかにもよる。
-      </div>
+    <h2 data-i18n>どのお金にも、つまずいた時期がある</h2>
+    <p class="lede" data-i18n>作り手が国でも、民間でも、ルールでも、お金の信用が揺らいだことはある。</p>
+    <div class="cols trips">
+      <div class="card trip"><span class="trip-who foreign" data-i18n>外国の銭</span><h3 data-i18n>悪い銭が混ざる</h3><p data-i18n>質の悪い銭が増え、受け取りを嫌がる「撰銭（えりぜに）」が広がった。大名や幕府は、どの銭を受け取るべきかを命令で決めた。</p></div>
+      <div class="card trip"><span class="trip-who han" data-i18n>藩</span><h3 data-i18n>刷りすぎる</h3><p data-i18n>お金に困った藩が藩札を出しすぎて、価値が大きく下がることがあった。</p></div>
+      <div class="card trip"><span class="trip-who state" data-i18n>国</span><h3 data-i18n>物価が跳ね上がる</h3><p data-i18n>戦争が終わったあと、物の値段が数年で何十倍にも上がり、円の価値は大きく下がった。</p></div>
+      <div class="card trip"><span class="trip-who rule" data-i18n>ルール</span><h3 data-i18n>値段が大きく動く</h3><p data-i18n>発行の決まりは変わらなくても、ビットコインの値段が1年で半分以下になった年もある。</p></div>
     </div>
-    <p class="hint" data-i18n>お金の作り手が誰かは時代ごとに変わってきた。これからも変わらないとは限らない。</p>
   </section>
 
 <div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>異なるしくみのお金を並べて使うなら、それぞれどんな場面に向いているだろう？</span></div>

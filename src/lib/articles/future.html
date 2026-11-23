@@ -4,34 +4,125 @@
   </section>
 
   <section>
-    <h2 data-i18n>ビットコインが使える街での1日</h2>
-    <p class="lede" data-i18n>架空の1日を過ごしながら、コーヒーの支払い、海外への送金、残ったお金の持ち方を選んでみよう。</p>
+    <h2 data-i18n>値札はどちらの単位で書く？</h2>
+    <p class="lede" data-i18n>店がビットコインを受け取るとしても、値札を円で書くか、ビットコインで書くかで、値動きを引き受ける人が変わる。曜日を動かしてみよう。</p>
     <div class="card">
-      <div id="sceneArea">
-        <p class="scenetitle" id="sceneTitle"></p>
-        <div class="pickbtns" id="sceneBtns"></div>
-        <div class="stage" style="--stage-min:max(calc(65px + (100cqw - 250px) * -0.0545), calc(62px + (100cqw - 305px) * 0.0000))">
-        <div class="idle" aria-hidden="true"><svg class="scene" viewBox="27 0 240 110"><ellipse class="sh" cx="86" cy="103" rx="24" ry="3.5"/><ellipse class="sh" cx="150" cy="103" rx="30" ry="3.5"/><ellipse class="sh" cx="212" cy="103" rx="18" ry="3.5"/><g class="float"><g transform="translate(46.88 29.92) scale(0.72)"><path class="gb" d="M22 78C21 55 24 30 38 20 47 13 60 14 66 24 71 33 70 46 73 56 76 66 81 72 86 76 88 78 87 80 84 81 79 83 74 83 70 82 66 81 64 84 63 87 62 90 58 90 54 89 48 87 42 86 37 88 32 90 26 89 23 85 22 83 22 81 22 78Z"/><g transform="translate(2.78 0)"><ellipse class="ge" cx="40" cy="37" rx="4" ry="5" transform="rotate(-10 40 37)"/><ellipse class="ge" cx="55" cy="39" rx="3.8" ry="5" transform="rotate(8 55 39)"/></g><path class="ge" transform="translate(1.39 0)" d="M43.5 46.5Q48.5 47.8 53 47.2 53.2 53 48.3 53.6 43.8 53.3 43.5 46.5Z"/></g><path class="gb" d="M30.5 63.5C34 61 38.5 62.5 39 66.5 39.5 70.5 35.5 73 32 72 28.5 71 27.5 66 30.5 63.5Z" transform="translate(72 76) rotate(-10) scale(0.72) translate(-33.5 -67)"/><path class="gb" d="M30.5 63.5C34 61 38.5 62.5 39 66.5 39.5 70.5 35.5 73 32 72 28.5 71 27.5 66 30.5 63.5Z" transform="translate(112 70) rotate(30) scale(0.72) translate(-33.5 -67)"/></g><path class="nl" d="M150 86v13M136 100h28"/><ellipse class="nf" cx="150" cy="80" rx="38" ry="6"/><ellipse class="ac" cx="149" cy="75" rx="14" ry="3"/><path class="al" d="M159 61a4.5 4.5 0 0 1 0 9"/><path class="ac" d="M139 58h20v8a10 9 0 0 1-10 9 10 9 0 0 1-10-9z"/><path class="al steam" d="M145 52c-3-4 3-6 0-11"/><path class="al steam d2" d="M153 52c-3-4 3-6 0-11"/><path class="nl" d="M200 98l5-20M228 98l-5-20"/><rect class="nf" x="196" y="48" width="36" height="32" rx="3"/><text class="tx" x="214" y="64">¥ ₿</text><path class="nl" d="M203 72h22"/></svg></div>
-        <div class="stage-body"><p class="sceneout" id="sceneOut" aria-live="polite" data-result></p></div>
+      <div class="unitpick" role="group" aria-label="値札の単位" data-i18n-label>
+        <button type="button" id="unitYen" aria-pressed="true" data-i18n>値札は円</button>
+        <button type="button" id="unitBtc" aria-pressed="false" data-i18n>値札はビットコイン</button>
+      </div>
+
+      <div class="tagwrap">
+        <div class="pricetag" aria-hidden="true">
+          <span class="tag-hole"></span>
+          <span class="tag-item" data-i18n>コーヒー</span>
+          <b class="tag-price" id="tagPrice">¥500</b>
+        </div>
+        <svg class="spark" id="spark" viewBox="0 0 168 64" aria-hidden="true">
+          <path class="spark-line" id="sparkLine" d=""/>
+          <circle class="spark-dot" id="sparkDot" r="4.5" cx="0" cy="0"/>
+        </svg>
+      </div>
+      <p class="rate"><span data-i18n>この日の相場</span> <b id="rateVal">1 BTC = 1,500万円</b></p>
+
+      <div class="flows">
+        <div class="flow" id="flowPay">
+          <span class="who" data-i18n>客が払う</span>
+          <b id="tagPay">3,333 satoshi</b>
+          <span class="sway" data-i18n>日によって変わる</span>
+        </div>
+        <div class="flow" id="flowGet">
+          <span class="who" data-i18n>店が受け取る（円にすると）</span>
+          <b id="tagGet">¥500</b>
+          <span class="sway" data-i18n>日によって変わる</span>
         </div>
       </div>
-      <div id="recapArea" hidden>
-        <p class="scenetitle" data-i18n>あなたの1日はこんな組み合わせだった</p>
-        <div id="recapList"></div>
-        <p class="sceneout" data-i18n>どの組み合わせが正解ということはない。選べるものが増えるのは、便利さと面倒さがセットで増えることでもある。</p>
-        <div class="gbtns"><button type="button" id="btnDayAgain" class="sub-btn" data-i18n>もう一度別の選び方で</button></div>
+
+      <label class="daylbl" for="dayRange"><span data-i18n>曜日</span> <b id="dayName">月曜日</b></label>
+      <input type="range" id="dayRange" min="0" max="6" step="1" value="0" aria-describedby="dayNote">
+      <div class="dayticks" aria-hidden="true"><span data-i18n>月</span><span data-i18n>火</span><span data-i18n>水</span><span data-i18n>木</span><span data-i18n>金</span><span data-i18n>土</span><span data-i18n>日</span></div>
+      <p class="unitout" id="unitOut" aria-live="polite"></p>
+      <p class="hint" id="dayNote" data-i18n>相場は説明のための架空の数字。1 satoshiは1億分の1 BTC。</p>
+    </div>
+    <p class="hint" data-i18n>値動きはなくならない。値札の単位で、それを誰が引き受けるかが決まる。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>立場ごとに見ると</h2>
+    <p class="lede" data-i18n>同じ変化でも、店、払う人、働く人、国で見え方が違う。立場を選んでみよう。</p>
+    <div class="card">
+      <div class="rolepick" role="group" aria-label="立場" data-i18n-label>
+        <button type="button" data-role="shop" aria-pressed="true" data-i18n>お店</button>
+        <button type="button" data-role="payer" aria-pressed="false" data-i18n>払う人</button>
+        <button type="button" data-role="worker" aria-pressed="false" data-i18n>働く人</button>
+        <button type="button" data-role="state" aria-pressed="false" data-i18n>国</button>
+      </div>
+      <!-- 4つの立場を同じ場所に重ね、切り替えても高さが変わらないようにする -->
+      <div class="roles" id="roles">
+        <div class="role" data-role="shop">
+          <div class="cols">
+            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
+              <li data-i18n>海外から来た客も、両替せずに支払える</li>
+              <li data-i18n>決済サービスを使えば、受け取った分をすぐ円などに換えられる</li>
+            </ul></div>
+            <div class="con"><h3 data-i18n>困りそう</h3><ul>
+              <li data-i18n>レジや帳簿で、円とビットコインの2つの単位を扱う手間が増える</li>
+              <li data-i18n>円に換えるまでに相場が動けば、売上が増えたり減ったりする</li>
+            </ul></div>
+          </div>
+          <p class="now"><b data-i18n>いまの日本では</b><span data-i18n>ビットコインで払える店はまだ少ない。</span></p>
+        </div>
+        <div class="role off" data-role="payer">
+          <div class="cols">
+            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
+              <li data-i18n>海外の相手にも、銀行の営業時間に関係なく送れる</li>
+              <li data-i18n>自分で鍵を持てば、銀行口座がなくても受け取ったり払ったりできる</li>
+            </ul></div>
+            <div class="con"><h3 data-i18n>困りそう</h3><ul>
+              <li data-i18n>宛先を間違えて送ると、取り消せない</li>
+              <li data-i18n>払うたびに、その時点の相場が気になる</li>
+            </ul></div>
+          </div>
+          <p class="now"><b data-i18n>いまの日本では</b><span><span data-i18n>ビットコインで買い物をすると、手に入れたときより値上がりしていれば、その差が所得として税金の計算に入る。</span> <a href="https://www.nta.go.jp/publication/pamph/pdf/virtual_currency_faq_03.pdf" data-i18n>国税庁のFAQ</a></span></p>
+        </div>
+        <div class="role off" data-role="worker">
+          <div class="cols">
+            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
+              <li data-i18n>給料のうち貯める分だけ、ビットコインで受け取るといった選び方ができる</li>
+              <li data-i18n>海外の仕事の報酬も、同じ方法で受け取れる</li>
+            </ul></div>
+            <div class="con"><h3 data-i18n>困りそう</h3><ul>
+              <li data-i18n>家賃や税金が円のままなら、払うのに必要なビットコインの量が相場で変わる</li>
+              <li data-i18n>ローンや保険のような長い約束の金額を、どちらの単位で決めるか迷う</li>
+            </ul></div>
+          </div>
+          <p class="now"><b data-i18n>いまの日本では</b><span data-i18n>給料は原則として、円で支払う決まりになっている。</span></p>
+        </div>
+        <div class="role off" data-role="state">
+          <div class="cols">
+            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
+              <li data-i18n>観光客や海外とのやりとりで、支払いの手段が増える</li>
+              <li data-i18n>発行のルールが公開されていて、誰でも同じ記録を確かめられる</li>
+            </ul></div>
+            <div class="con"><h3 data-i18n>困りそう</h3><ul>
+              <li data-i18n>税金や年金は円で決まっている。単位が2つになると計算や管理が増える</li>
+              <li data-i18n>景気が悪いときに、ビットコインの量を増やして支えることはできない</li>
+            </ul></div>
+          </div>
+          <p class="now"><b data-i18n>いまの日本では</b><span data-i18n>法定通貨は円。ビットコインは法律上「暗号資産」として扱われる。</span></p>
+        </div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2 data-i18n>円とビットコインをどう使い分ける？</h2>
-    <p class="lede" data-i18n>店でビットコインが使えるようになっても、値札や契約の金額をどの通貨で決めるかは別の話だ。</p>
-    <div class="cols">
-      <div class="card vcard"><b style="color:var(--color-secondary)" data-i18n>支払いと値札</b><br><span data-i18n>決済サービスのBitPayでは、店が米ドルなどで価格を決め、会計時の相場で支払うビットコインの量に換算できる。</span> <a href="https://developer.bitpay.com/docs/create-invoice" data-i18n>BitPayの仕様</a></div>
-      <div class="card vcard" data-i18n-html><b style="color:var(--color-secondary)">給料と家賃</b><br>給料をビットコインで受け取り、家賃を円で払うなら、相場によって家賃に必要なビットコインの量が変わる。</div>
-    </div>
-    <p class="hint" data-i18n>円とビットコインが並んで使われることもありうる。</p>
+    <h2 data-i18n>実際に試した国がある</h2>
+    <p class="lede" data-i18n>中米のエルサルバドルは、国としてビットコインを広く使う方向へ進み、その後に決まりを改めた。</p>
+    <ol class="steps">
+      <li><span class="when" data-i18n>2021年</span><p data-i18n>ビットコインを法定通貨にした。店は原則として受け取ることになり、国のアプリに登録した人には30ドル分のビットコインが配られた。</p></li>
+      <li><span class="when" data-i18n>2025年</span><p data-i18n>法律を改め、店が受け取るかどうかは任意になった。税金もビットコインでは払えなくなった。</p></li>
+    </ol>
+    <p class="hint"><a href="https://reason.com/2025/02/03/el-salvador-walks-back-its-bitcoin-law/" data-i18n>2025年の法改正についての記事（英語）</a></p>
   </section>
 
 <div class="summary"><small data-i18n>答えはひとつじゃない</small><span data-i18n>お金の選択肢が増えたら、暮らしは便利になるだろうか。それとも面倒になるだろうか。あなたはどう思う？</span></div>

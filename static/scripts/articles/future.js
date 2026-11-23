@@ -1,102 +1,81 @@
 (function(){
-  var SCENES = [
-    {title: '朝：カフェでコーヒーを買う', choices: [
-      {label: '円で払う', out: 'いつも通り何も考えずに払えた。'},
-      {label: 'ビットコインで払う', out: 'その場で払えた。ただ、今朝の値段でいくら分かを少しだけ考えた。'}
-    ]},
-    {title: '昼：海外の友だちに送金する', choices: [
-      {label: '銀行経由で送る', out: '手数料がかかり、着くのは数日後になった。'},
-      {label: 'ビットコインで送る', out: '送金はすぐに送信できた。友だちは取引が台帳に載るのを待った。'}
-    ]},
-    {title: '夜：余ったお金をしまっておく', choices: [
-      {label: '銀行に預ける', out: '口座の残高を円で確認できた。明日の支払いにいくら残るか計算しやすかった。'},
-      {label: 'ビットコインで持つ', out: '寝る前につい値段を確認してしまった。'}
-    ]}
-  ];
-  var SCENES_EN = [
-    {title: 'Morning: buying coffee at a café', choices: [
-      {label: 'Pay in dollars', out: 'As always, you paid without thinking.'},
-      {label: 'Pay in Bitcoin', out: "You paid on the spot. But you did think for a moment about how much that was at this morning's price."}
-    ]},
-    {title: 'Midday: sending money to a friend overseas', choices: [
-      {label: 'Send via a bank', out: 'A fee applied, and it arrived a few days later.'},
-      {label: 'Send in Bitcoin', out: 'You submitted the transfer right away. Your friend waited for it to be recorded.'}
-    ]},
-    {title: 'Night: putting away the money left over', choices: [
-      {label: 'Deposit it in a bank', out: 'You could check your balance in dollars and easily see what was left for the next day\'s bills.'},
-      {label: 'Hold it in Bitcoin', out: 'Before bed, you caught yourself checking the price.'}
-    ]}
-  ];
-  SCENES.forEach(function(s, i){
-    s.titleEn = SCENES_EN[i].title;
-    s.choices.forEach(function(c, j){
-      c.labelEn = SCENES_EN[i].choices[j].label;
-      c.outEn = SCENES_EN[i].choices[j].out;
+  // 説明のための架空の相場（1 BTC あたりの円）。月曜から日曜まで。
+  var RATES = [15000000, 15600000, 14400000, 13800000, 14700000, 16200000, 15300000];
+  var DAYS = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
+  var DAYS_EN = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  var PRICE_YEN = 500;
+  // ビットコインの値札は、月曜の相場で500円分を切りのよい数にしたもの。
+  var PRICE_SAT = 3300;
+
+  var unit = 'yen';
+  var range = document.getElementById('dayRange');
+  var unitYen = document.getElementById('unitYen');
+  var unitBtc = document.getElementById('unitBtc');
+  var tagPrice = document.getElementById('tagPrice');
+  var tagPay = document.getElementById('tagPay');
+  var tagGet = document.getElementById('tagGet');
+  var flowPay = document.getElementById('flowPay');
+  var flowGet = document.getElementById('flowGet');
+  var rateVal = document.getElementById('rateVal');
+  var dayName = document.getElementById('dayName');
+  var unitOut = document.getElementById('unitOut');
+  var sparkLine = document.getElementById('sparkLine');
+  var sparkDot = document.getElementById('sparkDot');
+
+  function n(x){ return Math.round(x).toLocaleString('en-US'); }
+  function yen(x){ return '¥' + n(x); }
+  function sat(x){ return n(x) + ' satoshi'; }
+  function man(x){ return L(n(x / 10000) + '万円', '¥' + n(x)); }
+
+  // 相場の折れ線。高いほど上に描く。
+  var lo = Math.min.apply(null, RATES), hi = Math.max.apply(null, RATES);
+  function px(i){ return 8 + i * (152 / (RATES.length - 1)); }
+  function py(r){ return 56 - (r - lo) / (hi - lo) * 48; }
+  sparkLine.setAttribute('d', RATES.map(function(r, i){ return (i ? 'L' : 'M') + px(i).toFixed(1) + ' ' + py(r).toFixed(1); }).join(''));
+
+  function render(){
+    var d = range.valueAsNumber || 0;
+    var rate = RATES[d];
+    var isYen = unit === 'yen';
+    var pay = isYen ? PRICE_YEN / rate * 1e8 : PRICE_SAT;
+    var get = isYen ? PRICE_YEN : PRICE_SAT * rate / 1e8;
+    tagPrice.textContent = isYen ? yen(PRICE_YEN) : sat(PRICE_SAT);
+    tagPay.textContent = sat(pay);
+    tagGet.textContent = yen(get);
+    flowPay.classList.toggle('moves', isYen);
+    flowGet.classList.toggle('moves', !isYen);
+    rateVal.textContent = '1 BTC = ' + man(rate);
+    dayName.textContent = L(DAYS[d], DAYS_EN[d]);
+    sparkDot.setAttribute('cx', px(d).toFixed(1));
+    sparkDot.setAttribute('cy', py(rate).toFixed(1));
+    unitYen.setAttribute('aria-pressed', String(isYen));
+    unitBtc.setAttribute('aria-pressed', String(!isYen));
+    unitOut.textContent = isYen
+      ? L('店の売上はいつも500円。値動きの分は、客が払うsatoshiの数で吸収される。', "The shop always gets ¥500. The price swing shows up in how many satoshi the customer pays.")
+      : L('客が払うのはいつも3,300 satoshi。値動きの分は、店が受け取る円の価値で吸収される。', 'The customer always pays 3,300 satoshi. The price swing shows up in what the shop receives in yen.');
+    if (window.updateRangeFill) window.updateRangeFill(range);
+  }
+
+  unitYen.addEventListener('click', function(){ unit = 'yen'; render(); });
+  unitBtc.addEventListener('click', function(){ unit = 'btc'; render(); });
+  range.addEventListener('input', render);
+
+  // 立場の切り替え。4つの面は重ねてあり、見えるものだけを入れ替える。
+  var roleBtns = document.querySelectorAll('.rolepick button');
+  var roles = document.querySelectorAll('#roles .role');
+  roleBtns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var key = b.getAttribute('data-role');
+      roleBtns.forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      roles.forEach(function(r){
+        var on = r.getAttribute('data-role') === key;
+        r.classList.toggle('off', !on);
+        if (on) r.removeAttribute('aria-hidden'); else r.setAttribute('aria-hidden', 'true');
+      });
     });
   });
+  roles.forEach(function(r){ if (r.classList.contains('off')) r.setAttribute('aria-hidden', 'true'); });
 
-  var idx = 0, picks = [], currentOut = null, done = false;
-  var sceneArea = document.getElementById('sceneArea');
-  var recapArea = document.getElementById('recapArea');
-  var sceneTitle = document.getElementById('sceneTitle');
-  var sceneBtns = document.getElementById('sceneBtns');
-  var sceneOut = document.getElementById('sceneOut');
-  var recapList = document.getElementById('recapList');
-  function renderScene(){
-    var s = SCENES[idx];
-    sceneTitle.textContent = L(s.title, s.titleEn);
-    sceneOut.textContent = currentOut ? L(currentOut.out, currentOut.outEn) : '';
-    sceneBtns.innerHTML = '';
-    if (currentOut) {
-      var last = idx >= SCENES.length - 1;
-      var nb = document.createElement('button');
-      nb.type = 'button';
-      nb.className = 'primary-btn';
-      nb.textContent = last ? L('1日を終える', 'End the day') : L('次の場面へ', 'Next scene');
-      nb.addEventListener('click', function(){
-        if (last) finish();
-        else { idx++; currentOut = null; renderScene(); }
-      });
-      sceneBtns.appendChild(nb);
-    } else {
-      s.choices.forEach(function(c){
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.textContent = L(c.label, c.labelEn);
-        b.addEventListener('click', function(){
-          picks.push({scene: idx, choice: c});
-          currentOut = c;
-          renderScene();
-        });
-        sceneBtns.appendChild(b);
-      });
-    }
-  }
-  function renderRecap(){
-    recapList.innerHTML = picks.map(function(p){
-      var s = SCENES[p.scene];
-      var chip = window.LANG === 'en' ? s.titleEn.split(':')[0] : s.title.split('：')[0];
-      return '<div class="recaprow"><span class="chip">' + chip + '</span><p><b>' + L(p.choice.label, p.choice.labelEn) + '</b>' + L('：', ': ') + L(p.choice.out, p.choice.outEn) + '</p></div>';
-    }).join('');
-  }
-  function finish(){
-    done = true;
-    sceneArea.hidden = true;
-    recapArea.hidden = false;
-    renderRecap();
-  }
-  document.getElementById('btnDayAgain').addEventListener('click', function(){
-    idx = 0;
-    picks = [];
-    currentOut = null;
-    done = false;
-    recapArea.hidden = true;
-    sceneArea.hidden = false;
-    renderScene();
-  });
-  document.addEventListener('langchange', function(){
-    if (done) renderRecap();
-    else renderScene();
-  });
-  renderScene();
+  document.addEventListener('langchange', render);
+  render();
 })();

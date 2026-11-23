@@ -1,32 +1,64 @@
-.vcard{font-size:14.5px;transition:opacity .35s ease}
-.vcard b{font-size:16px}
-.vcard ul{margin:8px 0 0;padding-left:1.25em}
-.vcard li{margin:5px 0}
-.pickbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
-.pickbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
-.pickbtns button.on{background:var(--color-secondary-bg);border-color:var(--color-secondary);color:var(--color-secondary);box-shadow:inset 0 0 0 1px var(--color-secondary)}
-.evcard{border:1px solid var(--line);border-left:6px solid var(--line);border-radius:12px;padding:12px 14px;margin-top:12px}
-.evcard.good{border-left-color:var(--green)}
-.evcard.bad{border-left-color:var(--red)}
-.evcard.mix{border-left-color:var(--color-secondary)}
-.evcard .et{font-weight:700;font-size:15.5px;margin:0}
-.evcard .eo{font-size:14.5px;margin:4px 0 0}
-.evcard .tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px}
-.tag.good{background:#e9f4e9;color:var(--green)}
-.tag.bad{background:#fbeaea;color:var(--red)}
-.tag.mix{background:var(--color-secondary-bg);color:var(--color-secondary)}
-.tally{font-size:14px;text-align:center;margin:14px 0 0}
-.tally b{font-size:17px}
-.reflect{font-size:15px;font-weight:700;margin:16px 0 0;min-height:1.7em}
-.gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
-.gbtns button{min-height:44px;padding:10px 20px}
-.gbtns button[hidden]{display:none}
-.gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
+/* 作り手ごとの色 */
+.chapter{--l-state:#9e2b5a;--l-han:#b86a1e;--l-private:#3f7f4f;--l-foreign:#3b6aa8;--l-rule:#6b5bb5}
+:root[data-theme="dark"] .chapter{--l-state:#ff9cc4;--l-han:#f0a860;--l-private:#7fc787;--l-foreign:#8db4f0;--l-rule:#b5a8f5}
 
-.gmsg:empty,.reflect:empty{display:none}
-.gbtns:not(:has(button:not([hidden]))){display:none}
-/* まだ来ていない年の枠。場所だけ取っておき、年が進むと出来事に置き換わる */
-.evcard.slot{border-style:dashed;border-left-width:1px;color:var(--sub);opacity:.6}
-.evcard.slot .et{font-weight:400}
-/* 最後の振り返りが出てもボタンが下にずれないよう、ゲーム中はその行を空けておく */
-.stage-body #vReflect:empty{display:block}
+/* 時代 × 作り手の表。上の行が時代のボタン、左の列が作り手 */
+.lanes{display:grid;grid-template-columns:46px repeat(7,minmax(0,1fr));gap:4px 3px;align-items:center}
+.era-btn{min-height:40px;padding:4px 0;border-radius:9px;background:transparent;color:var(--sub);border:0;
+    font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.02em}
+.era-btn[aria-pressed="true"]{background:var(--color-primary);color:var(--color-on-primary)}
+.lane-lbl{font-size:12px;font-weight:700;line-height:1.2;white-space:nowrap}
+.lane-lbl.state{color:var(--l-state)}
+.lane-lbl.han{color:var(--l-han)}
+.lane-lbl.private{color:var(--l-private)}
+.lane-lbl.foreign{color:var(--l-foreign)}
+.lane-lbl.rule{color:var(--l-rule)}
+.cell{height:22px;border-radius:6px;background:color-mix(in srgb,var(--sub) 9%,transparent);cursor:pointer;
+    transition:transform .2s ease,box-shadow .2s ease}
+.cell.on.state{background:var(--l-state)}
+.cell.on.han{background:var(--l-han)}
+.cell.on.private{background:var(--l-private)}
+.cell.on.foreign{background:var(--l-foreign)}
+.cell.on.rule{background:var(--l-rule)}
+/* 選んだ時代の列だけ濃く、少し高く見せる */
+.cell.sel{transform:scaleY(1.15)}
+.cell.sel:not(.on){background:color-mix(in srgb,var(--color-primary) 18%,transparent)}
+.cell.on:not(.sel){opacity:.45}
+
+.eranav{display:flex;align-items:center;justify-content:center;gap:14px;margin:14px 0 0}
+.eranav button{min-width:56px;min-height:40px;padding:6px 12px;font-size:17px;background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.eranav button:disabled{opacity:.35;cursor:default}
+.erapos{font-size:13px;color:var(--sub);font-variant-numeric:tabular-nums;min-width:3.5em;text-align:center}
+
+/* 時代ごとの説明。全部を重ね、いちばん背の高いものに高さを合わせる */
+.eras{display:grid;margin-top:12px}
+.era{grid-area:1/1;padding:14px 16px;border-radius:12px;background:var(--bg)}
+.era.off{visibility:hidden}
+.era-when{margin:0;font-size:12.5px;font-weight:700;color:var(--sub)}
+.era h3{margin:2px 0 6px;font-size:19px}
+.era p{margin:0;font-size:14.5px}
+.era .era-base{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);display:flex;gap:10px;align-items:baseline}
+.era-base b{flex:none;font-size:12px;color:var(--color-secondary)}
+.era .era-src{margin-top:6px;font-size:12.5px}
+.era-src a{display:inline-block;padding:.35em 0}
+
+/* つまずいた時期 */
+.trips{margin-top:12px}
+.trip{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.trip-who{font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 10px;color:#fff}
+.trip-who.state{background:var(--l-state)}
+.trip-who.han{background:var(--l-han)}
+.trip-who.foreign{background:var(--l-foreign)}
+.trip-who.rule{background:var(--l-rule)}
+:root[data-theme="dark"] .trip-who{color:#17181c}
+.trip h3{margin:4px 0 0;font-size:16px}
+.trip p{margin:0;font-size:14px}
+
+@media(max-width:400px){
+    .lanes{grid-template-columns:38px repeat(7,minmax(0,1fr));gap:4px 2px}
+    .era-btn,.lane-lbl{font-size:11px}
+  }
+/* 英語の行名（Domains など）は日本語より長いので、行名の列を広げる */
+:root[data-lang="en"] .lanes{grid-template-columns:60px repeat(7,minmax(0,1fr))}
+:root[data-lang="en"] .lane-lbl{font-size:11px}
+:root[data-lang="en"] .era-btn{font-size:11px}
