@@ -118,11 +118,13 @@
       ? L('手持ちの品を欲しがる店を選んで交換しよう。', 'Pick a stall that wants what you have.')
       : holding === 'fish' ? L('どの店に魚を売る？', 'Which stall will you sell your fish to?')
         : L('どの店でパンを買う？', 'Which stall will you buy bread from?');
-    stalls.hidden = done;
+    // 終わっても店の列は消さずに押せなくするだけにして、カードの高さが急に変わらないようにする。
+    stalls.classList.toggle('done', done);
     stalls.replaceChildren(...offers().map(offer => {
       const button = document.createElement('button');
       button.type = 'button';
       button.dataset.trader = offer.id;
+      button.disabled = done;
       const title = document.createElement('strong');
       title.textContent = translate(offer.name);
       const detail = document.createElement('span');
@@ -152,13 +154,13 @@
 
   stalls.addEventListener('click', event => {
     const button = event.target.closest('[data-trader]');
-    if (!button || stalls.hidden) return;
+    if (!button || button.disabled) return;
     trade(offers().find(offer => offer.id === button.dataset.trader));
     render();
   });
   document.addEventListener('langchange', render);
-  next.addEventListener('click', () => { reset('shells'); stalls.firstElementChild.focus(); });
-  retry.addEventListener('click', () => { reset('barter'); stalls.firstElementChild.focus(); });
+  next.addEventListener('click', () => { reset('shells'); stalls.firstElementChild.focus({preventScroll:true}); });
+  retry.addEventListener('click', () => { reset('barter'); stalls.firstElementChild.focus({preventScroll:true}); });
   byId('goalIcon').innerHTML = icon('bread');
   reset('barter');
 })();

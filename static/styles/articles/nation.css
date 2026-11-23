@@ -25,3 +25,8 @@
 
 .gmsg:empty,.reflect:empty{display:none}
 .gbtns:not(:has(button:not([hidden]))){display:none}
+/* まだ来ていない年の枠。場所だけ取っておき、年が進むと出来事に置き換わる */
+.evcard.slot{border-style:dashed;border-left-width:1px;color:var(--sub);opacity:.6}
+.evcard.slot .et{font-weight:400}
+/* 最後の振り返りが出てもボタンが下にずれないよう、ゲーム中はその行を空けておく */
+.stage-body #vReflect:empty{display:block}

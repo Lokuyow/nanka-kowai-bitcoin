@@ -80,16 +80,24 @@
       '<p class="eo">' + L(r.o, r.oEn) + '</p>';
     return div;
   }
+  // まだ来ていない日は空の枠を置いて場所を取っておき、日が進んでもボタンの位置が動かないようにする。
+  function buildSlot(idx){
+    var div = document.createElement('div');
+    div.className = 'evcard slot';
+    div.setAttribute('aria-hidden', 'true');
+    div.innerHTML = '<p class="et">' + L((idx + 1) + '日目', 'Day ' + (idx + 1)) + '</p><p class="eo">&nbsp;</p>';
+    return div;
+  }
   function renderList(){
     evList.innerHTML = '';
-    for (var i = 0; i < step; i++) evList.appendChild(buildCard(deck[i], i, false));
+    for (var i = 0; i < DAYS; i++) evList.appendChild(i < step ? buildCard(deck[i], i, false) : buildSlot(i));
   }
 
   function start(s, reuseDeck){
     sys = s;
     if (!reuseDeck) deck = shuffle(EVENTS).slice(0, DAYS);
     step = 0; good = 0; bad = 0;
-    evList.innerHTML = '';
+    renderList();
     gMsg.textContent = ''; msgPair = ['', ''];
     gTally.hidden = false;
     setTally();
@@ -106,7 +114,7 @@
     var r = ev[sys];
     step++;
     if (r.good) good++; else bad++;
-    evList.appendChild(buildCard(ev, step - 1, true));
+    evList.replaceChild(buildCard(ev, step - 1, true), evList.children[step - 1]);
     setTally();
     if (step >= DAYS) finish();
   }

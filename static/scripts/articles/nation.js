@@ -43,11 +43,19 @@
       '<p class="eo">' + L(y.text, y.textEn) + '</p>';
     return div;
   }
+  // まだ来ていない年は空の枠を置いて場所を取っておき、年が進んでもボタンの位置が動かないようにする。
+  function makeSlot(i){
+    var div = document.createElement('div');
+    div.className = 'evcard slot';
+    div.setAttribute('aria-hidden', 'true');
+    div.innerHTML = '<p class="et">' + L((i + 1) + '年目', 'Year ' + (i + 1)) + '</p><p class="eo">&nbsp;</p>';
+    return div;
+  }
   function reveal(){
     var y = plan.years[idx];
     if (y.tag === 'good' || y.tag === 'mix') good++;
     if (y.tag === 'bad' || y.tag === 'mix') bad++;
-    yearList.appendChild(makeCard(y, idx, true));
+    yearList.replaceChild(makeCard(y, idx, true), yearList.children[idx]);
     vGood.textContent = good;
     vBad.textContent = bad;
     idx++;
@@ -60,7 +68,7 @@
   function renderYears(){
     if (!plan) return;
     yearList.innerHTML = '';
-    for (var i = 0; i < idx; i++) yearList.appendChild(makeCard(plan.years[i], i, false));
+    for (var i = 0; i < plan.years.length; i++) yearList.appendChild(i < idx ? makeCard(plan.years[i], i, false) : makeSlot(i));
     if (idx >= plan.years.length) vReflect.textContent = L(plan.reflect, plan.reflectEn);
   }
   document.addEventListener('langchange', renderYears);
@@ -68,7 +76,7 @@
     var src = ISSUERS[key];
     plan = {reflect: src.reflect, reflectEn: src.reflectEn, years: resolve(src.years)};
     idx = 0; good = 0; bad = 0;
-    yearList.innerHTML = '';
+    renderYears();
     vReflect.textContent = '';
     vTally.hidden = false;
     vGood.textContent = 0;
