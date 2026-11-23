@@ -19,5 +19,17 @@
 .powfill.all{background:var(--ink)}
 .powrow b{flex:0 0 32px;text-align:right;font-variant-numeric:tabular-nums}
 .powcap{font-size:14px;min-height:3.2em;margin:12px 0 0}
-:root[data-theme="dark"] .tool [fill="#1a1a1a"]{fill:#43454b}
-:root[data-theme="dark"] .tool [fill="#666"]{fill:#7d7668}
+/* 機材のイラスト。ASIC は₿の入った専用チップ、GPU はファンの付いたグラフィックボード。色は図の線と同じ太さ・角丸でそろえる */
+.tool-ic{display:block;margin:0 auto;overflow:visible;stroke-linecap:round;stroke-linejoin:round}
+.tool-ic.asic{color:var(--color-secondary)}
+.tool-ic.gpu{color:#3f7f74}
+:root[data-theme="dark"] .tool-ic.gpu{color:#73b8ad}
+.tool-ic .sh{fill:var(--ink);opacity:.08}
+.tool-ic .bd{fill:var(--card);stroke:currentColor;stroke-width:2}
+.tool-ic .pin{fill:none;stroke:currentColor;stroke-width:2.4;opacity:.6}
+.tool-ic .core{fill:color-mix(in srgb,currentColor 14%,var(--card));stroke:currentColor;stroke-width:1.5}
+.tool-ic .mark{font:700 15px/1 sans-serif;fill:currentColor;text-anchor:middle}
+.tool-ic .finger{fill:currentColor;opacity:.45}
+.tool-ic .fan{fill:color-mix(in srgb,currentColor 12%,var(--card));stroke:currentColor;stroke-width:1.5}
+.tool-ic .blade{fill:none;stroke:currentColor;stroke-width:1.6}
+.tool-ic .hub{fill:currentColor}

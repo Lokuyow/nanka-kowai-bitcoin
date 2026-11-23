@@ -24,7 +24,8 @@
 
 .gold-figure .hint { text-align: start; }
 .gold-investment { --segment: var(--color-primary); }
-.gold-jewelry { --segment: #daa74e; }
+/* 宝飾品も資産として買われるので、投資と同じピンク系の淡い色にして同じ仲間に見せる */
+.gold-jewelry { --segment: color-mix(in srgb, var(--color-primary) 50%, var(--card)); }
 .gold-industry { --segment: #43827a; }
 .gold-other { --segment: #777b88; }
 
