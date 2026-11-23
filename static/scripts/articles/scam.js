@@ -64,7 +64,7 @@ var card = document.getElementById('swapCard');
   function renderFeedback(){
     var q = quiz[qi];
     var right = lastSaid === q.scam;
-    var ansName = q.scam ? L('危険信号あり', 'Warning sign') : L('文面だけでは判断できない', 'Cannot tell from the wording');
+    var ansName = q.scam ? L('危険信号あり', 'Warning sign') : L('危険信号なし', 'No warning sign');
     qStamp.classList.toggle('ok', right);
     qStamp.classList.toggle('ng', !right);
     qCard.classList.add('stamped');

@@ -151,7 +151,7 @@ export default {
   "詐欺の手がかりを見分けるクイズ": "Quiz: spot the warning signs",
   "勧誘の文面に詐欺を疑う手がかりはある？ 5問のクイズで確かめよう。": "Can you spot a warning sign in each pitch? Try five examples.",
   '危険信号あり': 'Warning sign',
-  '文面だけでは判断できない': 'Cannot tell from the wording',
+  '危険信号なし': 'No warning sign',
   '次の文句へ': 'Next pitch',
   "怪しい言葉が見当たらなくても、相手や投資先が信頼できるとは限らない。": "A pitch can sound reasonable and still come from an untrustworthy source.",
   '次の誤解：会社とCEOがいる →': 'Next: A company and a CEO →',
