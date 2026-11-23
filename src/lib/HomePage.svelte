@@ -72,7 +72,32 @@
       {/each}
     </div>
 
-    <div class="summary home-end"><small data-i18n>読み終わったら</small>
+    <div class="summary home-end">
+      <!-- 壁に映った大きな影の正体は、ライトの前にいる小さなおばけだった、という挿絵 -->
+      <svg class="scene end-scene" viewBox="0 0 260 112" aria-hidden="true">
+        <path class="beam" d="M60 78L262 -6V112H60L60 106Z" />
+        <ellipse class="sh" cx="38" cy="104" rx="26" ry="3.5" />
+        <ellipse class="sh" cx="116" cy="104" rx="22" ry="3.5" />
+        <g class="float">
+          <path class="shade" transform="translate(152 -10) scale(1.28)" d="M22 78C21 55 24 30 38 20 47 13 60 14 66 24 71 33 70 46 73 56 76 66 81 72 86 76 88 78 87 80 84 81 79 83 74 83 70 82 66 81 64 84 63 87 62 90 58 90 54 89 48 87 42 86 37 88 32 90 26 89 23 85 22 83 22 81 22 78Z" />
+          <path class="shade" transform="translate(152 -10) scale(1.28)" d="M80 34c6-4 11 0 10 6-1 5-7 7-11 3-3-3-2-7 1-9Z" />
+        </g>
+        <rect class="nf" x="14" y="84" width="34" height="16" rx="4" />
+        <path class="nl" d="M22 92h12" />
+        <path class="ac" d="M48 82L60 76V108L48 102Z" />
+        <g class="float">
+          <g transform="translate(88 48) scale(.62)">
+            <path class="gb" d="M22 78C21 55 24 30 38 20 47 13 60 14 66 24 71 33 70 46 73 56 76 66 81 72 86 76 88 78 87 80 84 81 79 83 74 83 70 82 66 81 64 84 63 87 62 90 58 90 54 89 48 87 42 86 37 88 32 90 26 89 23 85 22 83 22 81 22 78Z" />
+            <ellipse class="ge" cx="40" cy="37" rx="4" ry="5" transform="rotate(-10 40 37)" />
+            <ellipse class="ge" cx="55" cy="39" rx="3.8" ry="5" transform="rotate(8 55 39)" />
+            <path class="ge" d="M43.5 46.5Q48.5 47.8 53 47.2 53.2 53 48.3 53.6 43.8 53.3 43.5 46.5Z" />
+            <path class="gb" d="M80 34c6-4 11 0 10 6-1 5-7 7-11 3-3-3-2-7 1-9Z" />
+          </g>
+        </g>
+        <path class="af tw" d="M146 34l1.4 3.8 3.8 1.4-3.8 1.4-1.4 3.8-1.4-3.8-3.8-1.4 3.8-1.4z" />
+        <path class="af tw d2" d="M78 40l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z" />
+      </svg>
+      <small data-i18n>読み終わったら</small>
       <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span></div>
   </main>
   <footer class="home-end">

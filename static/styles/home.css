@@ -87,3 +87,7 @@
     .hero-card{padding:22px 20px 18px}
     :root[data-lang="en"] .hero .t{font-size:clamp(22px, 7.2vw, 27px)}
   }
+/* 最後のまとめの挿絵。ライトの光と、壁に映った大きな影 */
+.end-scene{--scene-h:118px;margin:2px auto 10px}
+.end-scene .beam{fill:var(--color-secondary);opacity:.08}
+.end-scene .shade{fill:var(--ink);opacity:.13}
