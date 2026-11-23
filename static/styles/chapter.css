@@ -9,7 +9,7 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
 .chapter .lede{font-size:15px;line-height:1.8}
 /* 章の冒頭で問いの背景を述べる導入。後に続く体験や説明の見出しと区別するため、
    小さなラベルと淡い枠にまとめる。 */
-.chapter section.intro{margin-top:20px;padding:14px 16px 16px;border-radius:14px;
+.chapter section.intro{margin-top:28px;padding:14px 16px 16px;border-radius:14px;
     background:color-mix(in srgb,var(--sub) 7%,transparent);border:1px dashed var(--line)}
 .chapter .intro h2{font-size:13px;line-height:1.4;font-weight:700;color:var(--sub);
     letter-spacing:.04em;margin:0 0 6px}

@@ -64,3 +64,7 @@ body{margin:0;background:var(--bg);color:var(--ink);
     .brand-icon{width:clamp(32px,10vw,40px);height:auto}
     .head-right{gap:6px}
   }
+/* 日本語の見出しや短い一文は、「ビットコイ／ン」のように語の途中で折り返さず文節で改行する。
+   長い本文は行末がそろわなくなるので対象にしない。 */
+:lang(ja) :is(h1,h2,h3,.subtitle,.hero .lede,.answer,.summary,.unit .q,.layerdesc,.read-next strong,.share-title){
+    word-break:auto-phrase}
