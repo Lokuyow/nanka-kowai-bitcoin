@@ -48,6 +48,10 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
 @media(max-width:520px){
     :root[data-lang="ja"] .chapter h1 br{display:none}
   }
+/* 幅320px前後では「ハッキングされて」のような長い文節が1行に入りきらないので、題名を少し小さくする */
+@media(max-width:340px){
+    .chapter h1{font-size:22px}
+  }
 /* 横幅が広い画面では、本文のすぐ左に短い題名の目次を置き、目次と本文をひとまとまりで中央に寄せる。 */
 .toc{display:none}
 @media(min-width:1100px){

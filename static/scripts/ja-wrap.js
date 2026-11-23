@@ -45,17 +45,21 @@
       )) indexes.push(index);
       previous = segment;
     }
-    // 句読点で終わる文字の後に別の要素が続くときも、そこで改行できるようにする。
-    if (PHRASE_END.test(text) && text.length > 1) indexes.push(text.length);
     return indexes;
   }
 
   function wrapTextNode(node) {
+    // 「サトシ・ナカモト」のような中黒の後ろはブラウザが改行してしまうので、語をつなぐ記号（U+2060）を挟む。
+    if (/[ァ-ヿ]・[ァ-ヿ]/.test(node.data)) {
+      node.data = node.data.replace(/([ァ-ヿ]・)(?=[ァ-ヿ])/g, '$1⁠');
+    }
     const text = node.data;
     if (done.get(node) === text || !CJK.test(text)) return;
     const parent = node.parentElement;
     if (!parent || parent.closest(SKIP)) return;
     const indexes = breakIndexes(text);
+    // 句読点で終わるとき、または <br> の前（狭い画面で <br> を隠す題名がある）は、そこでも改行できるようにする。
+    if (text.length > 1 && (PHRASE_END.test(text) || node.nextSibling?.nodeName === 'BR')) indexes.push(text.length);
     if (indexes.at(-1) === text.length && node.nextSibling?.nodeName === 'WBR') indexes.pop();
     const pieces = [node];
     for (const index of indexes.reverse()) {
