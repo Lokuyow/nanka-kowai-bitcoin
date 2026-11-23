@@ -114,10 +114,8 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
 .idle{display:flex;justify-content:center;margin-top:14px}
 :not(:empty)+.idle{display:none}
 .scene{display:block;width:min(100%,264px);height:auto;overflow:visible;stroke-linecap:round;stroke-linejoin:round}
-.scene .gb{fill:var(--ghost);stroke:var(--ghost-line);stroke-width:2}
+.scene .gb{fill:var(--ghost);stroke:var(--ghost-line);stroke-width:2;vector-effect:non-scaling-stroke}
 .scene .ge{fill:var(--ghost-eye)}
-.scene .gm{fill:none;stroke:var(--ghost-eye);stroke-width:2}
-.scene .bl{fill:var(--color-primary);opacity:.22}
 .scene .ac{fill:var(--color-secondary-bg);stroke:var(--color-secondary);stroke-width:2}
 .scene .al{fill:none;stroke:var(--color-secondary);stroke-width:2}
 .scene .al.k{stroke-width:4}
