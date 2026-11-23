@@ -250,7 +250,7 @@ export default {
   "出金手数料と送金手数料は別々": "Withdrawals and transactions have separate fees",
   'ビットコインの送金手数料って高いよね？：なんか よくわからんけど こわい ビットコイン': "Bitcoin transfer fees are expensive, right? | I don't really get it, but it's scary: Bitcoin",
   'ビットコインの送金手数料って<br>高いよね？': 'Bitcoin transfer fees<br>are expensive, right?',
-  "手数料は送り方しだい。<br>出金料は取引所が決める。自分で送る手数料は混み具合や取引の大きさで変わる。": "Fees vary with how you send.<br>Exchanges set withdrawal fees. When you send from your own wallet, the fee depends on network demand and transaction size.",
+  "手数料は送り方しだい。<br>出金料は取引所が決める。<br>自分で送る手数料は混み具合や取引の大きさで変わる。": "Fees vary with how you send.<br>Exchanges set withdrawal fees.<br>When you send from your own wallet, the fee depends on network demand and transaction size.",
   '高いのは取引所の料金設定。本物の送金手数料は別のもので、混雑しだいで変わる': "What's expensive is the exchange's pricing. The real transfer fee is a different thing, and it changes with congestion",
   "取引所の明細には出金手数料がまとめて表示される。その金額を見ると、自分のウォレットから送るときも同じ手数料がかかると思うかもしれない。": "An exchange statement shows what the exchange charges to withdraw. It is easy to assume that sending from your own wallet costs the same.",
   "2種類の手数料": "Two types of fees",
