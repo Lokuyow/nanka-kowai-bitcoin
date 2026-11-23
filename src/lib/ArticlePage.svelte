@@ -23,7 +23,6 @@
     <script defer src={BASE_PATH + 'livedata.js'}></script>
   {/if}
   <script defer src={BASE_PATH + 'scripts/articles/' + article.slug + '.js'}></script>
-  <script defer src={BASE_PATH + 'scripts/reveal-result.js'}></script>
   <script defer src={BASE_PATH + 'scripts/share.js'}></script>
   <script defer src={BASE_PATH + 'scripts/navigation-feedback.js'}></script>
   <script defer src={BASE_PATH + 'scripts/toc.js'}></script>
