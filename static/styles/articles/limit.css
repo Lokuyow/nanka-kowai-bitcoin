@@ -17,5 +17,5 @@
 .node.ng{border-color:var(--red);color:var(--red);background:#fff6f6}
 .node.ng .st{color:var(--red)}
 .captally{text-align:center;font-size:14px;margin-top:10px}
-.capmsg{font-size:14px;min-height:3.2em;margin:10px 0 0;text-align:center}
+.capmsg{font-size:14px;min-height:3.4em;margin:10px 0 0;text-align:center}
 .stamp-zone{position:relative;text-align:center;padding:26px 0 6px;min-height:96px;overflow:hidden}

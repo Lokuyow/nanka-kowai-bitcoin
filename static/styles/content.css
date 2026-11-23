@@ -111,9 +111,21 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
 :root[data-theme="dark"] .dot{fill:#222328}
 :root{--ghost:#fff;--ghost-line:#d6c9ce;--ghost-eye:#1e1410}
 :root[data-theme="dark"]{--ghost:#f4f4f6;--ghost-line:#6b5a61}
-.idle{display:flex;justify-content:center;margin-top:14px}
-:not(:empty)+.idle{display:none}
-.scene{display:block;width:min(100%,264px);height:auto;overflow:visible;stroke-linecap:round;stroke-linejoin:round}
+.idle{display:flex;align-items:center;justify-content:center;transition:opacity .25s ease,visibility .25s}
+/* イラストと結果を同じ枠に重ね、枠の高さは最初の結果の高さで確保する。結果が出てもずれない。 */
+/* 375px より狭い画面では結果の文章が折り返して高くなる分だけ、確保する高さも伸ばす。 */
+.stage{display:grid;min-height:max(var(--stage-h,0px),calc(var(--stage-h,0px) + (375px - 100vw) * var(--stage-k,0)))}
+.stage>*{grid-area:1/1;min-width:0}
+.stage>.idle{align-self:center}
+.stage-body{align-self:start}
+.stage:has([data-result]:not(:empty):not([hidden]))>.idle,
+  .stamped .stamp-zone>.idle{opacity:0;visibility:hidden}
+.stamp-zone>.idle{position:absolute;inset:0}
+.scene{display:block;max-width:100%;width:auto;height:min(var(--scene-h,121px),calc(var(--stage-h,999px) - 8px));
+    overflow:visible;stroke-linecap:round;stroke-linejoin:round}
+.scene.tall{--scene-h:999px}
+.stamp-zone .scene{height:88px}
+.scene .dash{stroke-dasharray:4 5}
 .scene .gb{fill:var(--ghost);stroke:var(--ghost-line);stroke-width:2;vector-effect:non-scaling-stroke}
 .scene .ge{fill:var(--ghost-eye)}
 .scene .ac{fill:var(--color-secondary-bg);stroke:var(--color-secondary);stroke-width:2}
