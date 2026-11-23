@@ -45,7 +45,6 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
 @media(max-width:480px){
     .tabbar{gap:6px;padding-inline:12px}
     .tabbar .tb{gap:4px}
-    .tabbar .idx{flex:0 0 66px}
     .tabbar .unit-icon{width:24px;height:24px}
     .tabbar .nav-symbol{width:16px;height:16px}
     .tabbar .idx .pos,.tabbar .nav-title{font-size:12px}
