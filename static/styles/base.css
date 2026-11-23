@@ -68,3 +68,5 @@ body{margin:0;background:var(--bg);color:var(--ink);
    1つの文節が画面幅に収まらないときだけ語の途中で折り返す。長い本文は行末がそろわなくなるので対象にしない。 */
 :lang(ja) :is(h1,h2,h3,.subtitle,.hero .lede,.answer,.summary,.unit .q,.layerdesc,.read-next strong,.share-title){
     word-break:auto-phrase;overflow-wrap:anywhere}
+/* 一言まとめは行の長さをそろえて、「そのもの／じゃない」のように句の途中で切れないようにする */
+:lang(ja) .summary{text-wrap:balance}
