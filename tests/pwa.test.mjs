@@ -70,7 +70,10 @@ test('PWA: 1 回の再読み込みで最新版を表示し、更新時は変更�
     });
     assert.ok(requests.includes(BASE_PATH + 'sw.js'));
     assert.ok(requests.includes(BASE_PATH + html));
-    assert.ok(requests.every((url) => [BASE_PATH + html, BASE_PATH + 'styles/' + css, BASE_PATH + 'sw.js'].includes(url)));
+    // トップの CSS は英語版のトップ（/en/）も使うので、その HTML も取り直す。
+    const enHtml = (await readdir(path.join(updated, 'en'))).find((file) => /^index\.[a-f0-9]{16}\.html$/.test(file));
+    const expected = [BASE_PATH + html, BASE_PATH + 'en/' + enHtml, BASE_PATH + 'styles/' + css, BASE_PATH + 'sw.js'];
+    assert.ok(requests.every((url) => expected.includes(url)), requests.join(' / '));
 
     await context.setOffline(true);
     await page.reload({ waitUntil: 'load' });

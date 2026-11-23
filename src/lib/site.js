@@ -243,3 +243,8 @@ export const ARTICLES = LAYERS.flatMap(({ number: layer, articles }) =>
 export function articlePath(slug) {
   return BASE_PATH + slug + '/';
 }
+
+// 共有用の絶対 URL。英語版は /en/ 以下に同じページを置き、OGP だけ英語にする。
+export function siteUrl(path = '', lang = 'ja') {
+  return SITE_URL + (lang === 'en' ? 'en/' : '') + path;
+}

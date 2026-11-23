@@ -98,6 +98,9 @@ test('キーボードで本文に移動し、記事から層や一覧の元の�
   const page = await context.newPage();
   try {
     await page.setViewportSize({ width: 390, height: 844 });
+    // 前のテストで英語に切り替えた設定が残っていると、URL が英語版（/en/）に変わる。
+    await page.goto(server.base, { waitUntil: 'load' });
+    await page.evaluate(() => localStorage.setItem('lang', 'ja'));
     await page.goto(server.base, { waitUntil: 'load' });
     await page.keyboard.press('Tab');
     assert.equal(await page.locator('.skip-link:focus').count(), 1);

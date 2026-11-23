@@ -12,7 +12,7 @@ import { readFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import { BUILD_DIR } from './helpers.mjs';
 import { SITE_TITLE, UNITS, BASE_PATH } from './site-data.mjs';
-import { SITE_URL } from '../src/lib/site.js';
+import { ARTICLES, HOME, SITE_URL } from '../src/lib/site.js';
 
 const read = (rel) => readFile(path.join(BUILD_DIR, rel), 'utf8');
 
@@ -75,7 +75,8 @@ test('トップのカード23件が各話の h1 と一致する', async () => {
 });
 
 test('内部リンク切れがない', async () => {
-  const files = ['index.html', '404.html', ...UNITS.map((u) => `${u.slug}/index.html`)];
+  const pages = ['', ...UNITS.map((u) => `${u.slug}/`)];
+  const files = ['404.html', ...[...pages, ...pages.map((page) => 'en/' + page)].map((page) => page + 'index.html')];
   const missing = [];
   for (const rel of files) {
     const html = await read(rel);
@@ -104,7 +105,8 @@ test('内部リンク切れがない', async () => {
 });
 
 test('ogp.png が 1200×630', async () => {
-  const targets = ['ogp.png', ...UNITS.map((u) => `${u.slug}/ogp.png`)];
+  const pages = ['', ...UNITS.map((u) => `${u.slug}/`)];
+  const targets = [...pages, ...pages.map((page) => 'en/' + page)].map((page) => page + 'ogp.png');
   for (const rel of targets) {
     const buf = await readFile(path.join(BUILD_DIR, rel));
     assert.equal(buf.toString('ascii', 1, 4), 'PNG', `${rel}: PNG であること`);
@@ -120,5 +122,27 @@ test('トップと各話の canonical・OGP は公開 URL を指す', async () =
     assert.ok(html.includes(`<link rel="canonical" href="${url}"`), `${route}: canonical`);
     assert.ok(html.includes(`<meta property="og:url" content="${url}"`), `${route}: og:url`);
     assert.ok(html.includes(`<meta property="og:image" content="${url}ogp.png"`), `${route}: og:image`);
+  }
+});
+
+test('英語版（/en/）は英語の OGP と、日本語版への相互リンクを持つ', async () => {
+  const shares = [{ route: '', ...HOME }, ...ARTICLES.map((article) => ({ route: article.slug + '/', ...article }))];
+  for (const { route, shareEn } of shares) {
+    const html = await read('en/' + route + 'index.html');
+    const url = SITE_URL + 'en/' + route;
+    const escape = (text) => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;');
+    assert.match(html, /<html lang="en" data-page-lang="en">/, `en/${route}: lang`);
+    assert.ok(html.includes(`<link rel="canonical" href="${url}"`), `en/${route}: canonical`);
+    assert.ok(html.includes(`<meta property="og:url" content="${url}"`), `en/${route}: og:url`);
+    assert.ok(html.includes(`<meta property="og:image" content="${url}ogp.png"`), `en/${route}: og:image`);
+    assert.ok(html.includes(`<meta property="og:locale" content="en_US"`), `en/${route}: og:locale`);
+    assert.ok(html.includes(`<meta property="og:title" content="${escape(shareEn.title)}"`), `en/${route}: og:title`);
+    assert.ok(html.includes(`<meta property="og:description" content="${escape(shareEn.text)}"`), `en/${route}: og:description`);
+    assert.ok(html.includes(`<link rel="alternate" hreflang="ja" href="${SITE_URL + route}"`), `en/${route}: hreflang ja`);
+    assert.ok(!/<title>[^<]*[\u3040-\u30ff]/.test(html), `en/${route}: 英語のタイトル`);
+
+    const ja = await read(route + 'index.html');
+    assert.match(ja, /<html lang="ja">/, `${route}: lang`);
+    assert.ok(ja.includes(`<link rel="alternate" hreflang="en" href="${url}"`), `${route}: hreflang en`);
   }
 });

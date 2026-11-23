@@ -29,7 +29,7 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
       {
         title: 'If a country bans it, Bitcoin is finished, right?',
         text: 'A ban can restrict activity at home while participants abroad keep the network running.',
-        url
+        url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/en/ban/'
       }
     ];
     for (const [index, data] of expected.entries()) {
@@ -41,9 +41,12 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
       assert.deepEqual(await page.evaluate(() => window.sharedData), data);
       const xLink = new URL(await page.locator('.share-x').getAttribute('href'));
       assert.equal(xLink.searchParams.get('text'), data.title);
-      assert.equal(xLink.searchParams.get('url'), url);
+      assert.equal(xLink.searchParams.get('url'), data.url);
       await page.locator('.share-copytext').click();
-      assert.equal(await page.evaluate(() => window.copiedText), [data.title, data.text, url].join('\n'));
+      assert.equal(await page.evaluate(() => window.copiedText), [data.title, data.text, data.url].join('\n'));
+      // navigator.share がある環境では隠れているリンクのコピーボタンも、同じ URL をコピーする。
+      await page.locator('.share-copy').dispatchEvent('click');
+      assert.equal(await page.evaluate(() => window.copiedText), data.url);
     }
   } finally {
     try {

@@ -11,7 +11,8 @@ const files = (await readdir(buildDir, { recursive: true, withFileTypes: true })
   .map((entry) => path.relative(buildDir, path.join(entry.parentPath, entry.name)).split(path.sep).join('/'))
   .sort();
 
-const pages = ['', ...ARTICLES.map(({ slug }) => slug + '/'), '404.html'];
+const articlePages = ['', ...ARTICLES.map(({ slug }) => slug + '/')];
+const pages = [...articlePages, ...articlePages.map((page) => 'en/' + page), '404.html'];
 const fonts = files.filter((file) => file.startsWith('fonts/') && file.endsWith('.woff2'));
 const assets = files.filter((file) =>
   file.startsWith('scripts/') || file.startsWith('styles/') || file.startsWith('icons/') ||

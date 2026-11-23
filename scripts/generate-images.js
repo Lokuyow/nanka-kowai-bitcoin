@@ -7,6 +7,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { HOME, LAYERS, SITE_TITLE } from '../src/lib/site.js';
+import dictionary from '../static/i18n-en.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STATIC = path.join(ROOT, 'static');
@@ -179,12 +180,20 @@ async function renderOgp(page, html) {
   return page.screenshot({ type: 'png', clip: { x: 0, y: 0, width: 1200, height: 630 } });
 }
 
-async function homeOgp() {
-  const [l1, l2, l3, l4] = ['なんか', 'よくわからんけど', 'こわい', 'ビットコイン'];
+// 英語版（/en/）の OGP 画像の文言
+const EN = {
+  homeLines: ["I don't really get it,", 'but somehow', "it's scary:", 'Bitcoin'],
+  homeLead: 'What you hear about Bitcoin, and what is really true.',
+  foot: 'Untangling the worries one at a time'
+};
+
+async function homeOgp(lang = 'ja') {
+  const en = lang === 'en';
+  const [l1, l2, l3, l4] = en ? EN.homeLines.map(escapeHtml) : ['なんか', 'よくわからんけど', 'こわい', 'ビットコイン'];
   return ogpHtml(
-    `<div class="text">
+    `<div class="text${en ? ' en' : ''}">
       <p class="title code"><span>${l1}</span><span>${l2}</span><span class="hl">${l3}</span><span>${l4}</span></p>
-      <p class="lead">ニュースで見たイメージと、ほんとの姿。</p>
+      <p class="lead">${en ? escapeHtml(EN.homeLead) : 'ニュースで見たイメージと、ほんとの姿。'}</p>
     </div>
     <div class="tile">${iconSvg()}</div>`,
     `.text{position:absolute;left:84px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
@@ -192,18 +201,23 @@ async function homeOgp() {
      .title span{display:block;white-space:nowrap}
      .hl{color:${COLORS.primary}}
      .lead{margin:30px 0 0;font-size:28px;font-weight:500;color:${COLORS.sub}}
+     .en .title{font-size:54px;letter-spacing:0}
+     .en .lead{max-width:560px;line-height:1.4}
      .tile{position:absolute;right:84px;top:125px;width:380px;height:380px}`
   );
 }
 
-async function articleOgp(heading) {
+async function articleOgp(heading, lang = 'ja') {
+  const en = lang === 'en';
   return ogpHtml(
-    `<p class="brand code">${escapeHtml(SITE_TITLE)}</p>
-    <h1 class="fit" data-max-height="210">${heading}</h1>
-    <p class="foot">誤解をひとつずつほどいていく</p>
+    `<p class="brand code${en ? ' en' : ''}">${escapeHtml(en ? dictionary[SITE_TITLE] : SITE_TITLE)}</p>
+    <h1 class="fit${en ? ' en' : ''}" data-max-height="250">${heading}</h1>
+    <p class="foot">${en ? escapeHtml(EN.foot) : '誤解をひとつずつほどいていく'}</p>
     <div class="tile">${iconSvg()}</div>`,
     `.brand{position:absolute;left:84px;top:72px;margin:0;font-size:30px;color:${COLORS.sub};word-spacing:-.3em}
      h1{position:absolute;left:84px;right:84px;top:170px;margin:0;font-size:68px;font-weight:800;line-height:1.45;letter-spacing:.01em;white-space:nowrap}
+     .brand.en{word-spacing:normal}
+     h1.en{font-size:64px;line-height:1.3;letter-spacing:0;right:300px;white-space:normal;text-wrap:balance}
      .foot{position:absolute;left:84px;bottom:72px;margin:0;font-size:30px;font-weight:700;color:${COLORS.accentText}}
      .tile{position:absolute;right:84px;bottom:56px;width:180px;height:180px}`
   );
@@ -243,7 +257,19 @@ try {
       await writeFile(path.join(STATIC, article.slug, 'ogp.png'), await renderOgp(page, await articleOgp(article.heading)));
     }
   }
-  console.log(`generated icons and ${1 + LAYERS.flatMap((l) => l.articles).length} OGP images (${HOME.title})`);
+
+  // 英語版（/en/）の OGP。見出しは辞書の訳（改行位置つき）を使う。
+  await mkdir(path.join(STATIC, 'en'), { recursive: true });
+  await writeFile(path.join(STATIC, 'en', 'ogp.png'), await renderOgp(page, await homeOgp('en')));
+  for (const layer of LAYERS) {
+    for (const article of layer.articles) {
+      const heading = dictionary[article.heading];
+      if (!heading) throw new Error('missing English heading: ' + article.slug);
+      await mkdir(path.join(STATIC, 'en', article.slug), { recursive: true });
+      await writeFile(path.join(STATIC, 'en', article.slug, 'ogp.png'), await renderOgp(page, await articleOgp(heading, 'en')));
+    }
+  }
+  console.log(`generated icons and ${2 * (1 + LAYERS.flatMap((l) => l.articles).length)} OGP images (${HOME.title})`);
 } finally {
   await browser.close();
 }

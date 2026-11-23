@@ -1,19 +1,19 @@
 (() => {
   const share = document.querySelector('.share');
-  const { title, text, titleEn, textEn, url } = share.dataset;
+  const { title, text, titleEn, textEn, url, urlEn } = share.dataset;
   const shareButton = share.querySelector('.share-main');
   const alternatives = share.querySelector('.share-alt');
   const x = share.querySelector('.share-x');
 
   function shareData() {
     return window.LANG === 'en'
-      ? { title: titleEn, text: textEn, url }
+      ? { title: titleEn, text: textEn, url: urlEn }
       : { title, text, url };
   }
 
   function syncX() {
     x.href = 'https://twitter.com/intent/tweet?text=' +
-      encodeURIComponent(shareData().title) + '&url=' + encodeURIComponent(url);
+      encodeURIComponent(shareData().title) + '&url=' + encodeURIComponent(shareData().url);
   }
 
   async function copy(value, note) {
@@ -48,7 +48,7 @@
 
   const linkNote = share.querySelector('.share-note:not(.text-note)');
   const textNote = share.querySelector('.text-note');
-  share.querySelector('.share-copy').addEventListener('click', () => copy(url, linkNote));
+  share.querySelector('.share-copy').addEventListener('click', () => copy(shareData().url, linkNote));
   share.querySelector('.share-copytext').addEventListener('click', () => {
     const data = shareData();
     copy([data.title, data.text, data.url].join('\n'), textNote);

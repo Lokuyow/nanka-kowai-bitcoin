@@ -53,6 +53,25 @@
     if (md) descItem = { el: md, key: norm(md.getAttribute('content') || ''), orig: md.getAttribute('content') };
   }
 
+  // 英語版（/en/）は <title> などが最初から英語なので、日本語は辞書を逆に引いて戻す。
+  let englishDictionary = null;
+  const KANA = /[\u3040-\u30ff]/;
+  function text(l, item) {
+    if (l === 'en') return englishDictionary?.[item.key] ?? item.orig;
+    if (!englishDictionary || KANA.test(item.orig)) return item.orig;
+    return Object.keys(englishDictionary).find((key) => englishDictionary[key] === item.orig) ?? item.orig;
+  }
+
+  // アドレスバーの URL を表示中の言語のページに合わせ、そのままコピーしても同じ言語で開けるようにする。
+  function syncUrl(l) {
+    const alternate = document.querySelector('link[rel="alternate"][hreflang="' + l + '"]');
+    if (!alternate) return;
+    const { pathname } = new URL(alternate.href);
+    if (pathname !== location.pathname) {
+      history.replaceState(history.state, '', pathname + location.search + location.hash);
+    }
+  }
+
   function syncToggle() {
     button?.setAttribute('aria-label', window.LANG === 'en' ? 'Switch to Japanese' : '英語に切り替える');
     button?.setAttribute('aria-pressed', String(window.LANG === 'en'));
@@ -78,8 +97,10 @@
         else it.el.setAttribute(it.attr, it.orig);
       }
     });
-    if (titleItem) document.title = dictionary?.[titleItem.key] ?? titleItem.orig;
-    if (descItem) descItem.el.setAttribute('content', dictionary?.[descItem.key] ?? descItem.orig);
+    if (dictionary) englishDictionary = dictionary;
+    if (titleItem) document.title = text(l, titleItem);
+    if (descItem) descItem.el.setAttribute('content', text(l, descItem));
+    syncUrl(l);
     syncToggle();
     document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: l } }));
   }

@@ -20,9 +20,14 @@
         try { return localStorage.getItem(key); } catch { return null; }
       }
 
+      // 英語版の URL（/en/）で開いたら英語にし、ほかのページでも英語のまま読めるよう保存する。
+      if (root.dataset.pageLang === 'en') {
+        try { localStorage.setItem('lang', 'en'); } catch {}
+      }
       const savedLang = savedPreference('lang');
       const browserLang = (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'ja';
-      root.lang = root.dataset.lang = ['ja', 'en'].includes(savedLang) ? savedLang : browserLang;
+      root.lang = root.dataset.lang = root.dataset.pageLang ||
+        (['ja', 'en'].includes(savedLang) ? savedLang : browserLang);
 
       const savedTheme = savedPreference('theme');
       let preference = themes.includes(savedTheme) ? savedTheme : 'system';
