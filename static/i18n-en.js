@@ -147,7 +147,6 @@ export default {
   '電話でだます': 'Lies over the phone',
   'ビットコイン詐欺': 'Bitcoin scam',
   '勧誘でだます': 'Lies in a sales pitch',
-  "矢印は被害者から詐欺をする人へお金が渡る向き。": "The arrow shows money going from the victim to the scammer.",
   "詐欺の手がかりを見分けるクイズ": "Quiz: spot the warning signs",
   "勧誘の文面に詐欺を疑う手がかりはある？ 5問のクイズで確かめよう。": "Can you spot a warning sign in each pitch? Try five examples.",
   '危険信号あり': 'Warning sign',
