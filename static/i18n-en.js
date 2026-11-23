@@ -45,6 +45,7 @@ export default {
   '← 前': '← Prev',
   '次 →': 'Next →',
   '記事の移動': 'Story navigation',
+  '目次': 'Contents',
   '本文へ移動': 'Skip to content',
   '次の話': 'Next story',
   '全話一覧に戻る': 'Back to all stories',

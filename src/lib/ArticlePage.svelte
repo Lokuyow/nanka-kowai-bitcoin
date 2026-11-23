@@ -1,5 +1,6 @@
 <script>
   import ArticleNav from './ArticleNav.svelte';
+  import ArticleToc from './ArticleToc.svelte';
   import Bridge from './Bridge.svelte';
   import LayerLabel from './LayerLabel.svelte';
   import PageHead from './PageHead.svelte';
@@ -25,6 +26,7 @@
   <script defer src={BASE_PATH + 'scripts/reveal-result.js'}></script>
   <script defer src={BASE_PATH + 'scripts/share.js'}></script>
   <script defer src={BASE_PATH + 'scripts/navigation-feedback.js'}></script>
+  <script defer src={BASE_PATH + 'scripts/toc.js'}></script>
 </svelte:head>
 
 <div class="wrap">
@@ -61,4 +63,5 @@
     <Bridge articleSlug={article.slug} />
   </footer>
 </div>
+<ArticleToc current={article.slug} />
 <ArticleNav previous={data.previous} next={data.next} {article} total={ARTICLES.length} />
