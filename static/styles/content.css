@@ -111,11 +111,30 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
 :root[data-theme="dark"] .dot{fill:#222328}
 :root{--ghost:#fff;--ghost-line:#d6c9ce;--ghost-eye:#1e1410}
 :root[data-theme="dark"]{--ghost:#f4f4f6;--ghost-line:#6b5a61}
-.idle{display:flex;align-items:center;justify-content:center;gap:22px;min-height:92px;margin-top:14px}
+.idle{display:flex;justify-content:center;margin-top:14px}
 :not(:empty)+.idle{display:none}
-.idle svg{flex:none;overflow:visible}
-.idle .ghost{width:56px;height:62px;fill:var(--ghost);stroke:var(--ghost-line);stroke-width:2;animation:idle-float 3.2s ease-in-out infinite}
-.idle .ghost ellipse{fill:var(--ghost-eye);stroke:none}
-.idle .prop{width:34px;height:34px;fill:none;stroke:var(--color-secondary);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
-@keyframes idle-float{50%{transform:translateY(-5px)}}
-@media(prefers-reduced-motion:reduce){.idle .ghost{animation:none}}
+.scene{display:block;width:min(100%,264px);height:auto;overflow:visible;stroke-linecap:round;stroke-linejoin:round}
+.scene .gb{fill:var(--ghost);stroke:var(--ghost-line);stroke-width:2}
+.scene .ge{fill:var(--ghost-eye)}
+.scene .gm{fill:none;stroke:var(--ghost-eye);stroke-width:2}
+.scene .bl{fill:var(--color-primary);opacity:.22}
+.scene .ac{fill:var(--color-secondary-bg);stroke:var(--color-secondary);stroke-width:2}
+.scene .al{fill:none;stroke:var(--color-secondary);stroke-width:2}
+.scene .al.k{stroke-width:4}
+.scene .af{fill:var(--color-secondary)}
+.scene .hl{fill:var(--card);stroke:var(--color-secondary);stroke-width:2}
+.scene .nf{fill:var(--card);stroke:var(--ghost-line);stroke-width:2}
+.scene .nl{fill:none;stroke:var(--ghost-line);stroke-width:2}
+.scene .sh{fill:var(--ink);opacity:.07}
+.scene .qm{font:700 18px/1 sans-serif;fill:var(--color-secondary)}
+.scene .tx{font:700 12px/1 sans-serif;fill:var(--ink);text-anchor:middle}
+.scene .float{animation:idle-float 3.2s ease-in-out infinite}
+.scene .look{animation:idle-look 5s ease-in-out infinite}
+.scene .tw{transform-box:fill-box;transform-origin:center;animation:idle-tw 2.4s ease-in-out infinite}
+.scene .steam{animation:idle-steam 2.6s ease-in-out infinite}
+.scene .d2{animation-delay:-1.3s}
+@keyframes idle-float{50%{transform:translateY(-4px)}}
+@keyframes idle-look{0%,20%,100%{transform:translateX(-2px)}35%,70%{transform:translateX(2px)}}
+@keyframes idle-tw{50%{transform:scale(.6);opacity:.45}}
+@keyframes idle-steam{0%{opacity:0;transform:translateY(3px)}40%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+@media(prefers-reduced-motion:reduce){.scene *{animation:none!important}}
