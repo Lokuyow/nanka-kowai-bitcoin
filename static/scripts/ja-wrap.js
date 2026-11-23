@@ -39,6 +39,8 @@
         NO_LINE_START.test(segment) || OPEN_END.test(previous) || /・$/.test(previous) ||
         (HIRAGANA_START.test(segment) && !PHRASE_END.test(previous) &&
           !(PARTICLE.test(previous) && segment.length >= 2)) ||
+        // 「足す」を のように、閉じ括弧の直後の助詞は行頭に来ないよう前につなげる。
+        (PARTICLE.test(segment) && /[」』）)】]$/.test(previous)) ||
         (KATAKANA_END.test(previous) && KATAKANA_START.test(segment)) ||
         (KANJI_END.test(previous) && KANJI_START.test(segment)) ||
         (ALNUM_END.test(previous) && UNIT.test(segment)) ||
@@ -91,6 +93,7 @@
   // 改行してよい句読点。閉じ括弧が続くときは、その閉じ括弧の後ろで切る。
   const PUNCTUATION = /[、。！？!?」』）)]/;
   const CLOSING = /[」』）)]/;
+  const SENTENCE_END = /[。！？!?]/;
   // 句読点で切った行が、幅のこの割合より短くなるときは切らない（「その後、」だけの行を作らない）。
   const MIN_FILL = 0.35;
   const blocks = new Set();
@@ -171,23 +174,27 @@
       }
       if (!pending.length) break;
       const lineTop = pending[0].top;
-      const onLine = pending.filter((p) => Math.abs(p.top - lineTop) < 2).reverse();
+      // 文の終わり（。！？、またその後ろの閉じ括弧）を読点より先に試し、それぞれ行の後ろのものから試す。
+      const sentenceEnd = (i) => SENTENCE_END.test(chars[i].ch) ||
+        (CLOSING.test(chars[i].ch) && SENTENCE_END.test(chars[i - 1]?.ch ?? ''));
+      const onLine = pending.filter((p) => Math.abs(p.top - lineTop) < 2)
+        .sort((a, b) => (sentenceEnd(b.i) - sentenceEnd(a.i)) || (b.i - a.i));
       let accepted = null;
       for (const p of onLine) {
-        if (p.right - left < width * MIN_FILL) break;
+        if (p.right - left < width * MIN_FILL) continue;
         const br = insertBreakAfter(chars[p.i]);
         if (fits(block, height)) { accepted = p; break; }
         br.remove();
         chars = charsOf(block);
       }
-      fixedUpTo = accepted ? accepted.i : onLine[0].i;
+      fixedUpTo = accepted ? accepted.i : Math.max(...onLine.map((p) => p.i));
     }
   }
 
   /* ---- 見出しや答えのような短い文は、最後の行だけが短くならないように行の長さをそろえる ----
      （text-wrap:balance は <wbr> と keep-all の組み合わせでは効かないため、自前でそろえる） */
 
-  const BALANCE = 'h1,h2,h3,.answer,.summary,.unit .q,.read-next strong,.subtitle';
+  const BALANCE = 'h1,h2,h3,.answer,.summary,.unit .q,.read-next strong,.subtitle,.diagram-caption,.qfeed';
 
   // 文字のすぐ後ろに強制改行（<br>）があるか。<wbr> と空白は飛ばして見る。
   function forcedBreakAfter(c) {
@@ -230,9 +237,11 @@
       for (let k = 0; k + 1 < all.length; k++) {
         const first = all[k];
         const second = all[k + 1];
-        // 同じ文の中で折り返していて、次の行で文が終わる（その後ろが強制改行か段落の終わり）組だけを見る。
+        // 同じ文の中で折り返していて、次の行がそこで切れる（強制改行・段落の終わり・句読点）組だけを見る。
+        // 「…使った／手口で、／ビットコイン…」のように、句読点で終わる短い行もそろえる。
         if (forcedBreakAfter(first.chars.at(-1))) continue;
-        const isLast = k + 2 >= all.length || forcedBreakAfter(second.chars.at(-1));
+        const isLast = k + 2 >= all.length || forcedBreakAfter(second.chars.at(-1)) ||
+          PUNCTUATION.test(second.chars.at(-1).ch);
         if (!isLast) continue;
         const w1 = first.right - first.left;
         const w2 = second.right - second.left;
@@ -321,6 +330,11 @@
     observer.takeRecords();
     watch();
     root.classList.add('ja-wrap');
+    // 最初の表示と言語の切り替えでは、改行位置が後から動いて見えないよう、その場で組む。
+    if (frame) {
+      cancelAnimationFrame(frame);
+      flush();
+    }
   }
 
   // i18n.js が DOMContentLoaded で原文を読み取った後に動くよう、同じイベントの後ろに登録する。

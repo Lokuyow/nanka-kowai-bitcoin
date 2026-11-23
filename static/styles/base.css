@@ -67,5 +67,5 @@ body{margin:0;background:var(--bg);color:var(--ink);
 /* 日本語は scripts/ja-wrap.js が文節の切れ目に <wbr> を入れるので、それ以外の場所では改行しない。
    1つの文節が幅に収まらないときだけ語の途中で折り返す。スクリプトが動く前は通常の改行のまま。 */
 :root.ja-wrap:lang(ja) body{word-break:keep-all;overflow-wrap:anywhere}
-/* 答えと一言まとめは行の長さをそろえ、「運営会社が／ない。」のように2行目だけ短くならないようにする */
-:lang(ja) :is(.answer,.summary){text-wrap:balance}
+/* 改行位置はスクリプトが句読点を優先して決めるので、ブラウザの balance / pretty で動かさない（「手口で、」が次の行へ移ってしまう）。 */
+:root.ja-wrap:lang(ja) :is(.lede,.subtitle,.chapter h1,.diagram-caption,.qfeed){text-wrap:wrap}
