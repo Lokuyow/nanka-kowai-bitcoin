@@ -33,21 +33,34 @@
   function breakIndexes(text) {
     const indexes = [];
     let previous = '';
-    for (const { segment, index } of segmenter.segment(text)) {
+    let phrase = '';
+    const segments = [...segmenter.segment(text)];
+    segments.forEach(({ segment, index }, n) => {
+      const following = segments[n + 1]?.segment ?? '';
       if (index > 0 && !(
         /^\s/.test(segment) || /\s$/.test(previous) ||
         NO_LINE_START.test(segment) || OPEN_END.test(previous) || /・$/.test(previous) ||
         (HIRAGANA_START.test(segment) && !PHRASE_END.test(previous) &&
           !(PARTICLE.test(previous) && segment.length >= 2)) ||
+        // 「話し｜合う」「動かし｜続ける」のような複合動詞（連用形＋動詞）は分けない。
+        // 単語区切りは「話｜し｜合｜われ」と細かく分けるので、文節の末尾と次の語のつながりで見る。
+        // 後ろの動詞は「漢字1文字＋送り仮名」の形に限る（「強い｜署名」のような形容詞＋名詞は分けてよい）。
+        (/[㐀-鿿][いきしちひみりぎじびえけせねめれげべ]$/.test(phrase) &&
+          /^[㐀-鿿][ぁ-ゟ]*$/.test(segment) &&
+          (segment.length > 1 || HIRAGANA_START.test(following))) ||
         // 「足す」を のように、閉じ括弧の直後の助詞は行頭に来ないよう前につなげる。
         (PARTICLE.test(segment) && /[」』）)】]$/.test(previous)) ||
         (KATAKANA_END.test(previous) && KATAKANA_START.test(segment)) ||
         (KANJI_END.test(previous) && KANJI_START.test(segment)) ||
         (ALNUM_END.test(previous) && UNIT.test(segment)) ||
         (!CJK.test(segment) && !CJK.test(previous))
-      )) indexes.push(index);
+      )) {
+        indexes.push(index);
+        phrase = '';
+      }
+      phrase += segment;
       previous = segment;
-    }
+    });
     return indexes;
   }
 

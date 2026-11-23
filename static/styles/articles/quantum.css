@@ -22,3 +22,27 @@
 #bfBtn{touch-action:none;user-select:none;-webkit-user-select:none;min-height:52px;font-size:16px}
 #bfBtn.holding{background:var(--color-primary);color:var(--color-on-primary)}
 .bfmsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
+/* いま／もし将来の切り替え */
+.qtab{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.qtab button{min-height:44px;padding:8px;border-radius:10px;background:transparent;color:var(--sub);font-weight:700}
+.qtab button[aria-pressed="true"]{background:var(--color-primary);color:var(--color-on-primary)}
+/* 2つの状態を同じ場所に重ね、切り替えても高さが変わらないようにする */
+.qstates{display:grid;margin-top:12px}
+.qstate{grid-area:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:18px 14px;
+    border-radius:12px;background:var(--bg);text-align:center}
+.qstate.off{visibility:hidden}
+.qstate.safe{color:var(--green)}
+.qstate.prep{color:var(--color-secondary)}
+.qicon{width:40px;height:40px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.qstate b{font-size:17px}
+.qstate p{margin:0;font-size:14px;color:var(--ink)}
+/* ほんとう／誤解 */
+.qfacts{margin-top:12px}
+.qfacts .can,.qfacts .cannot{border-radius:12px;padding:12px 14px}
+.qfacts .can{border:2px solid #c9d8c9;background:#fbfefb}
+.qfacts .cannot{border:2px solid #e5c4c4;background:#fffbfb}
+.qfacts h3{margin:0 0 6px;font-size:15px}
+.qfacts ul{margin:0;padding:0;list-style:none;font-size:14px}
+.qfacts li{padding:5px 0;border-bottom:1px dotted var(--line)}
+.qfacts li:last-child{border-bottom:0}
+:root[data-lang="en"] .qstate p span+span::before{content:" "}

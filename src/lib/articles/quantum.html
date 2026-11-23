@@ -8,12 +8,40 @@
   <section>
     <h2 data-i18n>量子コンピューターは署名にどう影響する？</h2>
     <p class="lede" data-i18n>ビットコインを送る人は秘密鍵で署名する。公開鍵を使えば、その署名が正しいかどうかを誰でも確かめられる。</p>
-    <div class="card">
-      <ol>
-        <li data-i18n>今は、公開鍵から秘密鍵を求めるのは現実的ではない。</li>
-        <li data-i18n>十分に強い量子コンピューターは公開鍵から秘密鍵を求めて署名を偽造できるおそれがある。</li>
-        <li data-i18n>対策には量子計算に強い署名を導入し、利用者がその署名に移行する必要がある。</li>
-      </ol>
+    <!-- 「いま」と「もし将来」を切り替えて、今の安全と将来の備えを分けて見せる -->
+    <div class="card qcard">
+      <div class="qtab" role="group" aria-label="時期" data-i18n-label>
+        <button type="button" id="qNow" aria-pressed="true" data-i18n>いま</button>
+        <button type="button" id="qFuture" aria-pressed="false" data-i18n>もし将来</button>
+      </div>
+      <div class="qstates">
+        <div class="qstate safe" id="qStateNow">
+          <svg class="qicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.3-7 10-4-1.7-7-5.4-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+          <b data-i18n>鍵は安全</b>
+          <p><span data-i18n>今は、公開鍵から秘密鍵を求めるのは現実的ではない。</span><span data-i18n>今の量子コンピューターは、まだその計算ができるほど強力ではない。</span></p>
+        </div>
+        <div class="qstate prep off" id="qStateFuture" aria-hidden="true">
+          <svg class="qicon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 5.5a4 4 0 0 0-5 5L4 16v4h4l5.5-5.5a4 4 0 0 0 5-5l-2.8 2.8-2.7-.3-.3-2.7z"/></svg>
+          <b data-i18n>対策を準備中</b>
+          <p><span data-i18n>十分に強い量子コンピューターは公開鍵から秘密鍵を求めて署名を偽造できるおそれがある。</span><span data-i18n>対策には量子計算に強い署名を導入し、利用者がその署名に移行する必要がある。</span></p>
+        </div>
+      </div>
+      <div class="cols qfacts">
+        <div class="can">
+          <h3><span class="ok"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/></svg></span><span data-i18n> ほんとう</span></h3>
+          <ul>
+            <li data-i18n>十分に強い量子コンピューターは、将来の課題になりうる</li>
+            <li data-i18n>量子計算に強い署名への移行が話し合われている</li>
+          </ul>
+        </div>
+        <div class="cannot">
+          <h3><span class="no"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span data-i18n> 誤解</span></h3>
+          <ul>
+            <li data-i18n>今の量子コンピューターで鍵がすぐ破られる</li>
+            <li data-i18n>ビットコインは対策できない</li>
+          </ul>
+        </div>
+      </div>
       <p class="hint"><a href="https://bips.dev/360/" data-i18n>ビットコインの対策案（BIP 360）</a></p>
     </div>
   </section>

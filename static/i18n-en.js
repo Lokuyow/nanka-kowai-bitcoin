@@ -886,5 +886,18 @@ export default {
   'ページが見つかりません：なんか よくわからんけど こわい ビットコイン': "Page not found | I don't really get it, but it's scary: Bitcoin",
   'お探しのページは見つかりませんでした。': 'The page you are looking for could not be found.',
   'ページが見つかりません': 'Page not found',
-  'トップへもどる': 'Back to the top page'
+  'トップへもどる': 'Back to the top page',
+  /* ===== 量子: いま／もし将来 ===== */
+  '時期': 'Timing',
+  'いま': 'Now',
+  'もし将来': 'In the future',
+  '鍵は安全': 'Keys are safe',
+  '今の量子コンピューターは、まだその計算ができるほど強力ではない。': "Today's quantum computers are not yet powerful enough to do that.",
+  '対策を準備中': 'Countermeasures in progress',
+  'ほんとう': 'True',
+  '誤解': 'Myth',
+  '十分に強い量子コンピューターは、将来の課題になりうる': 'A powerful enough quantum computer could become a future challenge',
+  '量子計算に強い署名への移行が話し合われている': 'A move to quantum-resistant signatures is being discussed',
+  '今の量子コンピューターで鍵がすぐ破られる': "Today's quantum computers can break keys right away",
+  'ビットコインは対策できない': "Bitcoin can't respond to it"
 };

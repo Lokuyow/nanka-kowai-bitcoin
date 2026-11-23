@@ -65,3 +65,22 @@
   document.addEventListener('langchange', function(){ msgEl.textContent = L(msgPair[0], msgPair[1]); upd(); });
   upd();
 })();
+
+// いま／もし将来の切り替え
+(function(){
+  var now = document.getElementById('qNow');
+  var future = document.getElementById('qFuture');
+  var nowState = document.getElementById('qStateNow');
+  var futureState = document.getElementById('qStateFuture');
+  if (!now || !future) return;
+  function show(isFuture){
+    now.setAttribute('aria-pressed', String(!isFuture));
+    future.setAttribute('aria-pressed', String(isFuture));
+    nowState.classList.toggle('off', isFuture);
+    futureState.classList.toggle('off', !isFuture);
+    nowState.setAttribute('aria-hidden', String(isFuture));
+    futureState.setAttribute('aria-hidden', String(!isFuture));
+  }
+  now.addEventListener('click', function(){ show(false); });
+  future.addEventListener('click', function(){ show(true); });
+})();
