@@ -35,7 +35,8 @@
     const button = event.target.closest('main button');
     if (!button || button.closest('.share') || !window.ResizeObserver) return;
     const card = button.closest('.card') || button.closest('section');
-    if (!card) return;
+    // 何度も押して進めるゲームなどは、押すたびに画面が動くと邪魔なので data-no-reveal で外す。
+    if (!card || card.closest('[data-no-reveal]')) return;
 
     stop();
     const anchor = { top: button.getBoundingClientRect().top, scrollY: window.scrollY };
