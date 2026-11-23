@@ -22,3 +22,6 @@
 .gbtns button{min-height:44px;padding:10px 20px}
 .gbtns button[hidden]{display:none}
 .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
+
+.gmsg:empty,.reflect:empty{display:none}
+.gbtns:not(:has(button:not([hidden]))){display:none}

@@ -38,3 +38,4 @@
 .newsfig .note{margin:12px 0 2px;font-size:12px;color:var(--sub);line-height:1.6}
 :root[data-theme="dark"] .hlfeed .acc{background:#34272d}
 :root[data-theme="dark"] .profile td.v{color:#a79a85}
+.hlfeed:empty{display:none}

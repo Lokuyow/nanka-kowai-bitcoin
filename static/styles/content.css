@@ -109,3 +109,13 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
 :root[data-theme="dark"] text[fill="#666"]{fill:#b3b5bd}
 :root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
 :root[data-theme="dark"] .dot{fill:#222328}
+:root{--ghost:#fff;--ghost-line:#d6c9ce;--ghost-eye:#1e1410}
+:root[data-theme="dark"]{--ghost:#f4f4f6;--ghost-line:#6b5a61}
+.idle{display:flex;align-items:center;justify-content:center;gap:22px;min-height:92px;margin-top:14px}
+:not(:empty)+.idle{display:none}
+.idle svg{flex:none;overflow:visible}
+.idle .ghost{width:56px;height:62px;fill:var(--ghost);stroke:var(--ghost-line);stroke-width:2;animation:idle-float 3.2s ease-in-out infinite}
+.idle .ghost ellipse{fill:var(--ghost-eye);stroke:none}
+.idle .prop{width:34px;height:34px;fill:none;stroke:var(--color-secondary);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+@keyframes idle-float{50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){.idle .ghost{animation:none}}

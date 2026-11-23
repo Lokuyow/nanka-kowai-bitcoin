@@ -13,3 +13,4 @@
 .gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
 .gbtns button{min-height:44px;padding:10px 20px}
 .gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.sceneout:empty{display:none}
