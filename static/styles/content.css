@@ -59,6 +59,66 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
 .share-iconbtn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;
     stroke-linecap:round;stroke-linejoin:round}
 .share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.share-note{font-size:13px;color:var(--green);margin:8px 0 0}
+:root[data-theme="dark"] .tbl th{background:#292b30}
+:root[data-theme="dark"] .share-iconbtn{background:#2a2c31}
+:root[data-theme="dark"] .blk:not(.new),:root[data-theme="dark"] .fblk:not(.live):not(.dead),
+  :root[data-theme="dark"] .node:not(.ng),:root[data-theme="dark"] .copy:not(.edited),
+  :root[data-theme="dark"] .word,:root[data-theme="dark"] .tool,
+  :root[data-theme="dark"] .lockbox,:root[data-theme="dark"] .receipt,
+  :root[data-theme="dark"] .vs .mini,:root[data-theme="dark"] .minestats div,
+  :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span,
+  :root[data-theme="dark"] .outdot{background:#2a2c31}
+:root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
+  :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
+  :root[data-theme="dark"] .banbtns button:not(.banned),:root[data-theme="dark"] .capbtns button:not(.on),
+  :root[data-theme="dark"] .cutbtns button:not(.on),
+  :root[data-theme="dark"] .hlbtns button:not(.right):not(.wrong),
+  :root[data-theme="dark"] .pickbtns button:not(.on):not(.primary-btn),
+  :root[data-theme="dark"] .routebtns button:not(.on),
+  :root[data-theme="dark"] .tlbtns button:not(.on){background:#2a2c31}
+:root[data-theme="dark"] .chip:not(.ghost):not(.insert),:root[data-theme="dark"] .same b,
+  :root[data-theme="dark"] .receipt .line.hl,
+  :root[data-theme="dark"] .tag.mix,:root[data-theme="dark"] .recaprow .chip,
+  :root[data-theme="dark"] .pstat .box,:root[data-theme="dark"] .qmsg,
+  :root[data-theme="dark"] .dvtotal{background:#34272d}
+:root[data-theme="dark"] .addr,:root[data-theme="dark"] .feebar-wrap,
+  :root[data-theme="dark"] .yenbar-wrap,:root[data-theme="dark"] .powbar,
+  :root[data-theme="dark"] .trackbar,:root[data-theme="dark"] .hpbar-wrap,
+  :root[data-theme="dark"] .meter{background:#1b1c20}
+:root[data-theme="dark"] .can{background:#24331e;border-color:#47603f}
+:root[data-theme="dark"] .cannot{background:#452423;border-color:#74443d}
+:root[data-theme="dark"] .hlbtns button.right,:root[data-theme="dark"] .tag.good,
+  :root[data-theme="dark"] .stepcard.end-good{background:#24331e}
+:root[data-theme="dark"] .stepcard.end-good{border-color:#47603f}
+:root[data-theme="dark"] .hlbtns button.wrong,:root[data-theme="dark"] .tag.bad,
+  :root[data-theme="dark"] .node.ng,:root[data-theme="dark"] .copy.edited,
+  :root[data-theme="dark"] .stepcard.end-bad{background:#452423}
+:root[data-theme="dark"] .stepcard.end-bad{border-color:#74443d}
+:root[data-theme="dark"] .receipt{border-color:#6a6355}
+:root[data-theme="dark"] .chip.ghost,:root[data-theme="dark"] .fblk.dead,
+  :root[data-theme="dark"] .banbtns button.banned{background:#1b1c20}
+:root[data-theme="dark"] [stroke="#e3e3df"]{stroke:#43454b}
+:root[data-theme="dark"] [fill="#efefec"]{fill:#292b30}
+:root[data-theme="dark"] [fill="#d33"]{fill:#ff7a66}
+:root[data-theme="dark"] [stroke="#d33"]{stroke:#ff7a66}
+:root[data-theme="dark"] text[fill="#666"]{fill:#b3b5bd}
+:root[data-theme="dark"] text[fill="#999"]{fill:#a79a85}
+:root[data-theme="dark"] .dot{fill:#222328}
+:root{--ghost:#fff;--ghost-line:#d6c9ce;--ghost-eye:#1e1410}
+:root[data-theme="dark"]{--ghost:#f4f4f6;--ghost-line:#6b5a61}
+.idle{display:flex;align-items:center;justify-content:center;transition:opacity .25s ease,visibility .25s}
+/* イラストと結果を同じ枠に重ねる。枠の高さは最初の結果のうち一番短いものに合わせ、
+   カードの横幅（cqw）から求める。押した後に余白が残らず、長い結果のときだけ下に伸びる。 */
+.card:has(.stage){container-type:inline-size}
+.stage{display:grid;min-height:var(--stage-min,0px)}
+.stage>*{grid-area:1/1;min-width:0}
+.stage>.idle{align-self:center}
+.stage-body{align-self:start}
+.stage:has([data-result]:not(:empty):not([hidden]))>.idle,
+  .stamped .stamp-zone>.idle{opacity:0;visibility:hidden}
+.stamp-zone>.idle{position:absolute;inset:0}
+.scene{display:block;max-width:100%;width:auto;height:min(var(--scene-h,140px),calc(var(--stage-min,999px) - 8px));
     overflow:visible;stroke-linecap:round;stroke-linejoin:round}
 .scene.tall{--scene-h:200px}
 .scene.xtall{--scene-h:300px}
