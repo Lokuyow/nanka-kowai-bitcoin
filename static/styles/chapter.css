@@ -7,6 +7,15 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
 .chapter section{margin-top:clamp(32px,7vw,48px)}
 .chapter h2{font-size:clamp(17px,3.4vw,21px);line-height:1.5;margin-bottom:6px}
 .chapter .lede{font-size:15px;line-height:1.8}
+/* 章の冒頭で問いの背景を述べる導入。後に続く体験や説明の見出しと区別するため、
+   小さなラベルと淡い枠にまとめる。 */
+.chapter section.intro{margin-top:20px;padding:14px 16px 16px;border-radius:14px;
+    background:color-mix(in srgb,var(--sub) 7%,transparent);border:1px dashed var(--line)}
+.chapter .intro h2{font-size:13px;line-height:1.4;font-weight:700;color:var(--sub);
+    letter-spacing:.04em;margin:0 0 6px}
+.chapter .intro h2::before{content:"?";width:auto;height:auto;background:none;border-radius:0;
+    margin-right:6px;color:var(--color-secondary);font-weight:900}
+.chapter .intro .lede{margin:0}
 .read-next{margin-top:20px;min-height:54px;padding:12px 16px;border:1px solid var(--line);
     border-radius:14px;background:var(--card);color:var(--ink);text-decoration:none;
     display:flex;justify-content:space-between;align-items:center;gap:16px;line-height:1.55}
