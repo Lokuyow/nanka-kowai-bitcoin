@@ -54,9 +54,12 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
 @media(forced-colors:active){input[type=range]{appearance:auto}}
 .share{margin-top:20px;text-align:center}
 .share-title{font-size:16px;font-weight:700;margin:0 0 10px}
-.share-iconbtn{width:44px;height:44px;padding:0;border-radius:12px;background:var(--card);
-    border:1px solid var(--line);color:var(--ink);display:inline-flex;align-items:center;justify-content:center}
-.share-iconbtn svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.9;
+/* アイコンの右に名前を書いたボタン */
+.share-iconbtn{min-height:44px;padding:0 16px 0 14px;border-radius:12px;background:var(--card);
+    border:1px solid var(--line);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;
+    gap:8px;font-size:15px;font-weight:700;white-space:nowrap}
+.share-iconbtn[hidden]{display:none}
+.share-iconbtn svg{flex:none;width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;
     stroke-linecap:round;stroke-linejoin:round}
 .share-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .share-note{font-size:13px;color:var(--green);margin:8px 0 0}
