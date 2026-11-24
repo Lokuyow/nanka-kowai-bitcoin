@@ -27,3 +27,5 @@
 #hkEdit{background:#fff;color:var(--ink);border:2px solid var(--ink)}
 .hkmsg{font-size:14px;min-height:5.1em;margin:12px 0 0;text-align:center}
 .stamp-zone{position:relative;text-align:center;padding:26px 0 6px;min-height:96px;overflow:hidden}
+/* 結論の補足を、見出しと同じくらい目立たせる */
+.hint.hint-strong{font-size:16px;font-weight:700;color:var(--ink);margin:16px 0 0;line-height:1.7}
