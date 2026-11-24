@@ -39,6 +39,7 @@ export default {
   'リンクをコピー': 'Copy link',
   'リンクをコピーしました': 'Link copied',
   'テキストをコピー': 'Copy text',
+  'コピー': 'Copy',
   'テキストをコピーしました': 'Text copied',
   '一覧': 'List',
   '前の話': 'Previous story',
