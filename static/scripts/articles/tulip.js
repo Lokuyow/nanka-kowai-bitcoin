@@ -140,6 +140,9 @@
     priceEl.textContent = L('価格 ' + r.prices[idx], 'Price ' + r.prices[idx]);
     assetsEl.textContent = Math.round(assets()).toLocaleString('ja-JP');
     holdEl.textContent = units > 0 ? L('持ち分: 保有中（資産は価格で上下する）', 'Holding: invested (assets move with the price)') : L('持ち分: 現金のみ', 'Holding: cash only');
+    // 押せる方のボタンだけを見せる。現金なら「買う」、保有中なら「売る」。
+    buyBtn.hidden = units > 0;
+    sellBtn.hidden = units <= 0;
     buyBtn.disabled = over || units > 0;
     sellBtn.disabled = over || units <= 0;
     nextBtn.disabled = over;

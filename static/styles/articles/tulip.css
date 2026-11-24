@@ -11,7 +11,8 @@
 .gmbtns{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:10px}
 .gmbtns button{min-height:48px;font-size:15px}
 .gmbtns button[disabled]{opacity:.4;cursor:default}
-/* 売買は離した2つのボタン。押せる方だけ塗りつぶし、押せない方は斜線と点線の枠で消して見せる */
+/* 売買は今できる方のボタンだけを出す。ゲームが終わって押せないときは斜線と点線の枠で消して見せる */
+.gm-trade button[hidden]{display:none}
 .gm-trade{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
 .gm-trade button{min-width:128px;padding:10px 18px;font-weight:700;border-radius:999px;
     background:var(--color-primary);color:var(--color-on-primary)}
