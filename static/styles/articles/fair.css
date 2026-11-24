@@ -1,19 +1,50 @@
 .tlbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
 .tlbtns button{padding:10px 16px;min-height:44px;font-size:14px;background:#fff;color:var(--ink);border:1px solid var(--line)}
 .tlbtns button.on{background:var(--color-secondary-bg);border-color:var(--color-secondary);color:var(--color-secondary);box-shadow:inset 0 0 0 1px var(--color-secondary)}
-.simval{font-size:15px;text-align:center;margin-top:16px}
-.simval b{font-size:24px}
-#simChart{margin-top:6px}
+/* 値動きゲーム。上に日付・評価額・下落率、真ん中にグラフ、下にニュースか結果を置く */
+.simtop{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"date dd" "val val";align-items:baseline;gap:0 8px;margin-top:16px}
+.simdate{grid-area:date}
+.simval{grid-area:val}
+.simdd{grid-area:dd}
+.simdate{font-size:13px;font-weight:700;color:var(--sub);font-variant-numeric:tabular-nums;white-space:nowrap}
+.simval{display:flex;flex-direction:column;align-items:center;line-height:1.2}
+.simval b{font-size:26px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.simx{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;min-height:1.3em}
+.simx.up{color:var(--green)}
+.simx.down{color:var(--red)}
+.simdd{justify-self:end;font-size:12.5px;font-weight:700;color:var(--sub);white-space:nowrap;font-variant-numeric:tabular-nums}
+.simdd.deep{color:var(--red)}
+:root[data-theme="dark"] .simx.up{color:#7fc787}
+:root[data-theme="dark"] .simx.down,:root[data-theme="dark"] .simdd.deep{color:#ff8a8a}
+#simChart{display:block;margin-top:8px;overflow:visible}
 .chartline{stroke:var(--color-primary);stroke-width:2.5;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.afterline{stroke:var(--sub);stroke-width:2;fill:none;stroke-dasharray:3 4;stroke-linejoin:round;opacity:.7}
 .basedash{stroke:var(--line);stroke-width:1}
-.dot{fill:#fff;stroke:var(--color-primary);stroke-width:2}
-.dotnow{fill:var(--color-primary);stroke:var(--color-primary);stroke-width:2}
-.simhead{font-weight:700;font-size:16px;min-height:1.7em;margin:10px 0 0}
-.simmsg{font-size:14.5px;min-height:3.2em;margin:4px 0 0}
-.gbtns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-.gbtns button{min-height:44px;padding:10px 20px}
-.gbtns button[hidden]{display:none}
-.gbtns .sub-btn{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.dotnow{fill:var(--color-primary);stroke:var(--card);stroke-width:2}
+.dotnow.ghost{fill:var(--sub)}
+.sellmark line{stroke:var(--color-secondary);stroke-width:1;stroke-dasharray:2 3}
+.sellmark circle{fill:var(--card);stroke:var(--color-secondary);stroke-width:2.5}
+.simfoot{display:grid;margin-top:8px}
+.simfoot>*{grid-area:1/1}
+.simfoot .off{visibility:hidden}
+.simnews{margin:0;align-self:start;text-align:center;font-size:15px;font-weight:700;min-height:3.4em;
+    display:flex;align-items:center;justify-content:center}
+.simhead{font-weight:700;font-size:16px;margin:0 0 6px}
+/* 結果の2行。幅が狭くても折り返して高さが変わらないよう、ラベルの下に金額を置く */
+.resgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.resrow{display:flex;flex-direction:column;gap:2px;padding:8px 10px;border-radius:10px;background:var(--bg);min-width:0}
+.resrow span{font-size:12px;color:var(--sub);line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.resrow b{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:16px;line-height:1.3}
+.resrow small{display:block;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.resrow.mine b{color:var(--color-secondary)}
+.simmsg{font-size:14px;margin:8px 0 0}
+.gbtns{display:grid;margin-top:14px;justify-items:center}
+.gbtns>*{grid-area:1/1}
+.gbtns button{min-height:48px;min-width:160px;padding:10px 28px}
+.gbtns .off{visibility:hidden}
+.sell-btn{font-size:17px;font-weight:700}
+.sell-btn:disabled{opacity:.45;cursor:default}
+.gbtns .sub-btn{background:var(--card);color:var(--ink);border:1px solid var(--line)}
 .tl3{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .tl3::before{content:"";position:absolute;top:7px;left:4%;right:4%;height:2px;background:var(--line)}
 .tl3 .pt{position:relative;padding-top:24px;font-size:12.5px;color:var(--sub);line-height:1.55}
@@ -34,3 +65,10 @@
 @media(max-width:560px){
     .gates{grid-template-columns:1fr}
   }
+.simnews.quiet{font-weight:400;color:var(--sub);font-size:14px}
+/* 始める前もゲームの高さを確保しておき、イラストをその中央に置く */
+#simArea[hidden]{display:block;visibility:hidden}
+.simmsg{min-height:5.1em}
+:root[data-lang="en"] .simmsg{min-height:6.8em}
+/* 1行に収める欄では、ja-wrap が入れる改行候補を使わない（nowrap でも <wbr> では折り返すため） */
+.resrow wbr,.simdd wbr,.simdate wbr{display:none}
