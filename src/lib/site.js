@@ -215,9 +215,9 @@ export const LAYERS = [
         navTitle: "未来",
         openQuestion: true,
         heading: "ビットコインが当たり前になったら<br>社会はどうなる？",
-        cardAnswer: "支払い方と値段の付け方を考える",
-        description: "ビットコインが広く使える社会なら、あなたは支払いや貯金に何を選ぶ？",
-        shareEn: { title: "If Bitcoin became ordinary, what would happen to society?", text: "If Bitcoin were widely accepted, what would you choose for payments and savings?" }
+        cardAnswer: "貯金と借金の重さが入れ替わる",
+        description: "お金の量が増えない社会では、貯金は目減りしにくく、借金は重くなる。暮らしの土台はどう変わる？",
+        shareEn: { title: "If Bitcoin became ordinary, what would happen to society?", text: "In a society where the amount of money doesn't grow, savings hold their value and debt gets heavier. How would the foundations of life change?" }
       },
       {
         slug: "nation",

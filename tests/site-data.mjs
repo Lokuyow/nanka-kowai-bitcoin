@@ -42,7 +42,7 @@ const smokeTests = {
     steps: [{ clickFirst: '#wayPick button' }, { click: '#btnTime' }],
     watch: '#storyList',
   },
-  future: { steps: [{ range: '#dayRange', to: 'toggle' }], watch: '#tagPay' },
+  future: { steps: [{ range: '#yearRange', to: 'toggle' }], watch: '#cupsYen' },
   nation: { steps: [{ click: '#eraNext' }], watch: '#eraPanels' },
 };
 

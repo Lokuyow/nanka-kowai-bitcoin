@@ -1,61 +1,53 @@
-/* 2択・4択の切り替え。押されている面だけ色をつける */
-.unitpick,.rolepick{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;
+/* 2つの世界の色。円は落ち着いた青、本位制はビットコインのオレンジ */
+.chapter{--w-yen:#3b6aa8;--w-btc:#c46a12}
+:root[data-theme="dark"] .chapter{--w-yen:#8db4f0;--w-btc:#f5a54a}
+
+/* 30年の比較。年数のスライダー、杯数のグラフ、2つの世界の数字 */
+.yrlbl{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px;color:var(--sub)}
+.yrlbl b{flex:none;min-width:4.5em;text-align:right;color:var(--ink);font-size:17px;font-variant-numeric:tabular-nums}
+.cupchart{display:block;margin-top:14px;overflow:visible}
+.cup-base{stroke:var(--line);stroke-dasharray:4 4}
+.cup-line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.cup-line.yen{stroke:var(--w-yen)}
+.cup-line.btc{stroke:var(--w-btc)}
+.cup-now{stroke:var(--sub);stroke-width:1;stroke-dasharray:2 3}
+.cup-dot{stroke:var(--card);stroke-width:2}
+.cup-dot.yen{fill:var(--w-yen)}
+.cup-dot.btc{fill:var(--w-btc)}
+.cupcap{margin:4px 0 0;font-size:12.5px;color:var(--sub);text-align:center}
+
+.worlds{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.world{padding:12px 12px 10px;border-radius:12px;border:2px solid var(--line);min-width:0}
+.world.yen{border-color:color-mix(in srgb,var(--w-yen) 45%,var(--card))}
+.world.btc{border-color:color-mix(in srgb,var(--w-btc) 45%,var(--card))}
+.world h3{margin:0 0 6px;font-size:13.5px;line-height:1.35}
+.world.yen h3{color:var(--w-yen)}
+.world.btc h3{color:var(--w-btc)}
+.world dl{margin:0}
+.world dt{font-size:11.5px;color:var(--sub);margin-top:6px;line-height:1.35}
+.world dd{margin:0;font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.world dt wbr,.world dd wbr{display:none}
+.outbox{display:grid;margin:14px 0 0}
+.outbox>.worldout{grid-area:1/1}
+.worldout{font-size:15px;font-weight:700;margin:0}
+.worldout.ghost{visibility:hidden}
+
+/* 立場の切り替え。押されている面だけ色をつけ、全部の面を重ねて高さをそろえる */
+.rolepick{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:4px;border-radius:14px;
     background:var(--bg);border:1px solid var(--line)}
-.rolepick{grid-template-columns:repeat(4,1fr)}
-.unitpick button,.rolepick button{min-height:44px;padding:8px 6px;border-radius:10px;background:transparent;
+.rolepick button{min-height:44px;padding:8px 4px;border-radius:10px;background:transparent;
     color:var(--sub);font-weight:700;font-size:14px;border:0}
-.unitpick button[aria-pressed="true"],.rolepick button[aria-pressed="true"]{background:var(--color-primary);color:var(--color-on-primary)}
-
-/* 値札と相場の折れ線 */
-.tagwrap{display:flex;align-items:center;justify-content:center;gap:clamp(14px,5vw,32px);margin:22px 0 6px}
-.pricetag{position:relative;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:150px;
-    padding:16px 18px 14px 30px;background:var(--color-secondary-bg);color:var(--ink);
-    clip-path:polygon(18px 0,100% 0,100% 100%,18px 100%,0 50%);border-radius:0 10px 10px 0}
-.tag-hole{position:absolute;left:12px;top:50%;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;
-    background:var(--card)}
-.tag-item{font-size:13px;color:var(--sub);font-weight:700}
-.tag-price{font-size:24px;line-height:1.2;color:var(--color-secondary);font-variant-numeric:tabular-nums;white-space:nowrap}
-.spark{width:120px;height:auto;flex:none;overflow:visible}
-.spark-line{fill:none;stroke:var(--sub);stroke-width:2;stroke-linejoin:round;stroke-linecap:round;opacity:.7}
-.spark-dot{fill:var(--color-primary);stroke:var(--card);stroke-width:2;transition:cx .2s ease,cy .2s ease}
-.rate{text-align:center;font-size:13px;color:var(--sub);margin:0 0 14px}
-.rate b{color:var(--ink);font-variant-numeric:tabular-nums}
-
-/* 客が払う量と店が受け取る額。日によって変わる方に印をつける */
-.flows{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.flow{display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 8px;border-radius:12px;
-    border:1px solid var(--line);text-align:center}
-.flow .who{font-size:12.5px;color:var(--sub);line-height:1.4}
-.flow b{font-size:19px;font-variant-numeric:tabular-nums;white-space:nowrap}
-.flow .sway{font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 9px;visibility:hidden;
-    background:var(--color-secondary-bg);color:var(--color-secondary)}
-.flow.moves{border-color:var(--color-secondary);box-shadow:inset 0 0 0 1px var(--color-secondary)}
-.flow.moves .sway{visibility:visible}
-
-.daylbl{display:flex;justify-content:space-between;align-items:baseline;font-size:13px;color:var(--sub);margin:18px 0 0}
-.daylbl b{color:var(--ink);font-size:15px}
-.dayticks{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);padding:0 7px;margin-top:-4px}
-.dayticks span{width:14px;text-align:center}
-.unitout{font-size:15px;font-weight:700;text-align:center;margin:14px 0 0;min-height:3.4em}
-
-/* 立場ごとの便利・困りごと。全部の面を重ねて、いちばん背の高い面に高さを合わせる */
+.rolepick button[aria-pressed="true"]{background:var(--color-primary);color:var(--color-on-primary)}
 .roles{display:grid;margin-top:14px}
-.role{grid-area:1/1;display:flex;flex-direction:column}
+.role{grid-area:1/1}
 .role.off{visibility:hidden}
-.role .pro,.role .con{border-radius:12px;padding:12px 14px}
-.role .pro{border:2px solid color-mix(in srgb,var(--green) 30%,var(--card))}
-.role .con{border:2px solid color-mix(in srgb,var(--red) 28%,var(--card))}
-.role h3{margin:0 0 6px;font-size:14.5px}
-.role .pro h3{color:var(--green)}
-.role .con h3{color:var(--red)}
-.role ul{margin:0;padding:0;list-style:none;font-size:14px}
-.role li{padding:6px 0;border-bottom:1px dotted var(--line)}
-.role li:last-child{border-bottom:0}
-.role .now{margin:12px 0 0;padding:12px 14px;border-radius:12px;background:var(--bg);font-size:14px}
-.role .now b{display:block;font-size:12px;color:var(--color-secondary);margin-bottom:2px}
-.role .now a{display:inline-block;padding:.3em 0}
-:root[data-theme="dark"] .role .pro h3{color:#7fc787}
-:root[data-theme="dark"] .role .con h3{color:#ff8a8a}
+.role .w-yen,.role .w-btc{border-radius:12px;padding:12px 14px;border:2px solid var(--line)}
+.role .w-yen{border-color:color-mix(in srgb,var(--w-yen) 40%,var(--card))}
+.role .w-btc{border-color:color-mix(in srgb,var(--w-btc) 40%,var(--card))}
+.role h3{margin:0 0 6px;font-size:14px}
+.role .w-yen h3{color:var(--w-yen)}
+.role .w-btc h3{color:var(--w-btc)}
+.role p{margin:0;font-size:14px}
 
 /* エルサルバドルの年表。左の線に点を打ち、年のラベルの下に出来事を置く */
 .steps{list-style:none;margin:14px 0 0;padding:0 0 0 22px;position:relative}
@@ -68,14 +60,12 @@
 
 @media(max-width:420px){
     .rolepick button{font-size:13px;padding:8px 2px}
-    .tagwrap{gap:12px}
-    .pricetag{min-width:0;padding-inline:26px 14px}
-    .tag-price{font-size:21px}
-    .spark{width:96px}
-    .flow b{font-size:17px}
+    .world{padding:10px 10px 8px}
+    .world dd{font-size:15.5px}
   }
-
-/* 値札の話のあとに置く「ビットコイン本位制なら」の補足 */
-.stdnote{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
-.stdnote b{display:block;font-size:13px;color:var(--color-secondary);margin-bottom:4px}
-.stdnote p{margin:0;font-size:14.5px}
+.cup-lbl{font-size:11px;font-weight:700}
+.cup-lbl.yen{fill:var(--w-yen)}
+.cup-lbl.btc{fill:var(--w-btc)}
+@media(max-width:360px){
+    .world dd{font-size:14px}
+  }

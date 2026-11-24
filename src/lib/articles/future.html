@@ -1,119 +1,82 @@
 <section class="intro">
     <h2 data-i18n>なぜこの問いが浮かぶか</h2>
-    <p class="lede" data-i18n>ビットコインが支払いや貯金のふつうの選択肢になれば、便利になることも、今の仕組みと合わなくなることもありそうだ。実際にどうなるかはまだ誰にもわからない。</p>
+    <p class="lede" data-i18n>ビットコインが当たり前になるとは、値札も給料も貯金もビットコインで数える社会になることだ。そこで大きく変わるのは毎日の支払い方より、貯金や借金、国のお金の集め方といった暮らしの土台かもしれない。</p>
   </section>
 
   <section>
-    <h2 data-i18n>値札はどちらの単位で書く？</h2>
-    <p class="lede" data-i18n>店がビットコインを受け取るとしても、値札を円で書くか、ビットコインで書くかで、値動きを引き受ける人が変わる。曜日を動かしてみよう。</p>
+    <h2 data-i18n>2つの世界で30年暮らす</h2>
+    <p class="lede" data-i18n>円の世界ではお金の量が増え、物の値段は少しずつ上がる。ビットコイン本位制の世界ではお金の量がほとんど増えない。年数を進めて、コーヒーの値段と貯金、借金の重さを比べてみよう。</p>
     <div class="card">
-      <div class="unitpick" role="group" aria-label="値札の単位" data-i18n-label>
-        <button type="button" id="unitYen" aria-pressed="true" data-i18n>値札は円</button>
-        <button type="button" id="unitBtc" aria-pressed="false" data-i18n>値札はビットコイン</button>
-      </div>
-
-      <div class="tagwrap">
-        <div class="pricetag" aria-hidden="true">
-          <span class="tag-hole"></span>
-          <span class="tag-item" data-i18n>コーヒー</span>
-          <b class="tag-price" id="tagPrice">¥500</b>
+      <div class="yrlbl"><span data-i18n>経過した年数</span><b id="yearVal">0年</b></div>
+      <input type="range" id="yearRange" min="0" max="30" step="1" value="0" aria-label="経過した年数" data-i18n-label>
+      <svg id="cupChart" class="cupchart" viewBox="0 0 320 130" width="100%" role="img" aria-label="貯金で買えるコーヒーの杯数の変化" data-i18n-label>
+        <line class="cup-base" x1="6" x2="314" y1="0" y2="0" id="cupBase"/>
+        <path id="lineYen" class="cup-line yen"/>
+        <path id="lineBtc" class="cup-line btc"/>
+        <line id="cupNow" class="cup-now" x1="6" x2="6" y1="4" y2="118"/>
+        <circle id="dotYen" class="cup-dot yen" r="4"/>
+        <circle id="dotBtc" class="cup-dot btc" r="4"/>
+        <text id="lblYen" class="cup-lbl yen" x="314" text-anchor="end"></text>
+        <text id="lblBtc" class="cup-lbl btc" x="314" text-anchor="end"></text>
+      </svg>
+      <p class="cupcap" data-i18n>線は、今の100万円分の貯金で買えるコーヒーの杯数。</p>
+      <div class="worlds">
+        <div class="world yen">
+          <h3 data-i18n>円の世界</h3>
+          <dl>
+            <dt data-i18n>コーヒー1杯</dt><dd id="priceYen"></dd>
+            <dt data-i18n>貯金で買える杯数</dt><dd id="cupsYen"></dd>
+            <dt data-i18n>借金の重さ</dt><dd id="loanYen"></dd>
+          </dl>
         </div>
-        <svg class="spark" id="spark" viewBox="0 0 168 64" aria-hidden="true">
-          <path class="spark-line" id="sparkLine" d=""/>
-          <circle class="spark-dot" id="sparkDot" r="4.5" cx="0" cy="0"/>
-        </svg>
-      </div>
-      <p class="rate"><span data-i18n>この日の相場</span> <b id="rateVal">1 BTC = 1,500万円</b></p>
-
-      <div class="flows">
-        <div class="flow" id="flowPay">
-          <span class="who" data-i18n>客が払う</span>
-          <b id="tagPay">3,333 satoshi</b>
-          <span class="sway" data-i18n>日によって変わる</span>
-        </div>
-        <div class="flow" id="flowGet">
-          <span class="who" data-i18n>店が受け取る（円にすると）</span>
-          <b id="tagGet">¥500</b>
-          <span class="sway" data-i18n>日によって変わる</span>
+        <div class="world btc">
+          <h3 data-i18n>ビットコイン本位制の世界</h3>
+          <dl>
+            <dt data-i18n>コーヒー1杯</dt><dd id="priceBtc"></dd>
+            <dt data-i18n>貯金で買える杯数</dt><dd id="cupsBtc"></dd>
+            <dt data-i18n>借金の重さ</dt><dd id="loanBtc"></dd>
+          </dl>
         </div>
       </div>
-
-      <label class="daylbl" for="dayRange"><span data-i18n>曜日</span> <b id="dayName">月曜日</b></label>
-      <input type="range" id="dayRange" min="0" max="6" step="1" value="0" aria-describedby="dayNote">
-      <div class="dayticks" aria-hidden="true"><span data-i18n>月</span><span data-i18n>火</span><span data-i18n>水</span><span data-i18n>木</span><span data-i18n>金</span><span data-i18n>土</span><span data-i18n>日</span></div>
-      <p class="unitout" id="unitOut" aria-live="polite"></p>
-      <p class="hint" id="dayNote" data-i18n>相場は説明のための架空の数字。1 satoshiは1億分の1 BTC。</p>
-    </div>
-    <p class="hint" data-i18n>値動きはなくならない。値札の単位で、それを誰が引き受けるかが決まる。</p>
-    <div class="stdnote">
-      <b data-i18n>ビットコイン本位制なら</b>
-      <p data-i18n>値札も給料も家賃もビットコインで決まる社会なら円との相場を毎日気にする必要はなくなる。そのかわりパンやコーヒーの値段がビットコインで上がったり下がったりする。</p>
+      <p class="worldout" id="worldOut" aria-live="polite"></p>
+      <p class="hint" data-i18n>円の世界は物価が毎年2%（日本銀行の目標）上がり、本位制の世界はお金の量が増えないまま物を作る効率が毎年1.5%上がると仮定した単純な例。借金の重さは、借りた1,000万円分が今のコーヒー何杯分にあたるかで示している。</p>
     </div>
   </section>
 
   <section>
     <h2 data-i18n>立場ごとに見ると</h2>
-    <p class="lede" data-i18n>同じ変化でも、店、払う人、働く人、国で見え方が違う。立場を選んでみよう。</p>
+    <p class="lede" data-i18n>お金の量が増えなくなると、得をする人と困る人が入れ替わる。立場を選んでみよう。</p>
     <div class="card">
       <div class="rolepick" role="group" aria-label="立場" data-i18n-label>
-        <button type="button" data-role="shop" aria-pressed="true" data-i18n>お店</button>
-        <button type="button" data-role="payer" aria-pressed="false" data-i18n>払う人</button>
-        <button type="button" data-role="worker" aria-pressed="false" data-i18n>働く人</button>
+        <button type="button" data-role="saver" aria-pressed="true" data-i18n>貯める人</button>
+        <button type="button" data-role="borrower" aria-pressed="false" data-i18n>借りる人</button>
         <button type="button" data-role="state" aria-pressed="false" data-i18n>国</button>
+        <button type="button" data-role="slump" aria-pressed="false" data-i18n>不景気</button>
       </div>
-      <!-- 4つの立場を同じ場所に重ね、切り替えても高さが変わらないようにする -->
       <div class="roles" id="roles">
-        <div class="role" data-role="shop">
+        <div class="role" data-role="saver">
           <div class="cols">
-            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
-              <li data-i18n>海外から来た客も、両替せずに支払える</li>
-              <li data-i18n>決済サービスを使えば、受け取った分をすぐ円などに換えられる</li>
-            </ul></div>
-            <div class="con"><h3 data-i18n>困りそう</h3><ul>
-              <li data-i18n>レジや帳簿で、円とビットコインの2つの単位を扱う手間が増える</li>
-              <li data-i18n>円に換えるまでに相場が動けば、売上が増えたり減ったりする</li>
-            </ul></div>
+            <div class="w-yen"><h3 data-i18n>円の世界</h3><p data-i18n>物価が年2%上がると、30年で貯金の買う力は半分近くになる。貯めておくだけでは目減りするので、株や不動産に回す人が増える。</p></div>
+            <div class="w-btc"><h3 data-i18n>ビットコイン本位制の世界</h3><p data-i18n>お金が薄まらないので、貯めておくだけで買う力を保ちやすい。そのかわり、値動きが落ち着くまでは短い期間で大きく上下する。</p></div>
           </div>
-          <p class="now"><b data-i18n>いまの日本では</b><span data-i18n>ビットコインで払える店はまだ少ない。</span></p>
         </div>
-        <div class="role off" data-role="payer">
+        <div class="role off" data-role="borrower" aria-hidden="true">
           <div class="cols">
-            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
-              <li data-i18n>海外の相手にも、銀行の営業時間に関係なく送れる</li>
-              <li data-i18n>自分で鍵を持てば、銀行口座がなくても受け取ったり払ったりできる</li>
-            </ul></div>
-            <div class="con"><h3 data-i18n>困りそう</h3><ul>
-              <li data-i18n>宛先を間違えて送ると、取り消せない</li>
-              <li data-i18n>値札や給料が円のままだと、払うたびに円との相場が気になる</li>
-            </ul></div>
+            <div class="w-yen"><h3 data-i18n>円の世界</h3><p data-i18n>物価や給料が上がると、同じ額の借金は相対的に軽くなる。家や事業のために借りやすい。</p></div>
+            <div class="w-btc"><h3 data-i18n>ビットコイン本位制の世界</h3><p data-i18n>物価が下がっていくと、同じ額の借金は相対的に重くなる。借りる前によく考えるようになるという見方も、新しい事業を始めにくくなるという見方もある。</p></div>
           </div>
-          <p class="now"><b data-i18n>いまの日本では</b><span><span data-i18n>ビットコインで買い物をすると、手に入れたときより値上がりしていれば、その差が所得として税金の計算に入る。</span> <a href="https://www.nta.go.jp/publication/pamph/pdf/virtual_currency_faq_03.pdf" data-i18n>国税庁のFAQ</a></span></p>
         </div>
-        <div class="role off" data-role="worker">
+        <div class="role off" data-role="state" aria-hidden="true">
           <div class="cols">
-            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
-              <li data-i18n>給料のうち貯める分だけ、ビットコインで受け取るといった選び方ができる</li>
-              <li data-i18n>海外の仕事の報酬も、同じ方法で受け取れる</li>
-            </ul></div>
-            <div class="con"><h3 data-i18n>困りそう</h3><ul>
-              <li data-i18n>家賃や税金が円のままなら、払うのに必要なビットコインの量が相場で変わる</li>
-              <li data-i18n>ローンや保険のような長い約束の金額を、どちらの単位で決めるか迷う</li>
-            </ul></div>
+            <div class="w-yen"><h3 data-i18n>円の世界</h3><p data-i18n>国は国債を出してお金を借りる。日本では国債の多くを日本銀行が持っていて、お金を増やして国の支出を支える形にもなっている。</p></div>
+            <div class="w-btc"><h3 data-i18n>ビットコイン本位制の世界</h3><p data-i18n>お金を増やせないので、国の支出は税金か、貸してくれる人からの借金でまかなうしかない。何にいくら使うかが見えやすくなる。</p></div>
           </div>
-          <p class="now"><b data-i18n>いまの日本では</b><span data-i18n>給料は原則として、円で支払う決まりになっている。</span></p>
         </div>
-        <div class="role off" data-role="state">
+        <div class="role off" data-role="slump" aria-hidden="true">
           <div class="cols">
-            <div class="pro"><h3 data-i18n>便利になりそう</h3><ul>
-              <li data-i18n>観光客や海外とのやりとりで、支払いの手段が増える</li>
-              <li data-i18n>発行のルールが公開されていて、誰でも同じ記録を確かめられる</li>
-            </ul></div>
-            <div class="con"><h3 data-i18n>困りそう</h3><ul>
-              <li data-i18n>税金や年金は円で決まっている。単位が2つになると計算や管理が増える</li>
-              <li data-i18n>景気が悪いときに、ビットコインの量を増やして支えることはできない</li>
-            </ul></div>
+            <div class="w-yen"><h3 data-i18n>円の世界</h3><p data-i18n>不景気になると、日本銀行が金利を下げたりお金を増やしたりして支える。そのぶん、お金を持っている人の買う力は薄まる。</p></div>
+            <div class="w-btc"><h3 data-i18n>ビットコイン本位制の世界</h3><p data-i18n>お金を増やして支えることはできない。立ち直るまで苦しい時期が長くなるおそれがある。そのかわり、救済のために誰かの貯金が薄まることもない。</p></div>
           </div>
-          <p class="now"><b data-i18n>いまの日本では</b><span data-i18n>法定通貨は円。ビットコインは法律上「暗号資産」として扱われる。</span></p>
         </div>
       </div>
     </div>
@@ -129,4 +92,4 @@
     <p class="hint"><a href="https://reason.com/2025/02/03/el-salvador-walks-back-its-bitcoin-law/" data-i18n>2025年の法改正についての記事（英語）</a></p>
   </section>
 
-<div class="summary"><small data-i18n>考えてみよう</small><span data-i18n>お金の選択肢が増えたら暮らしは便利になるだろうか。それとも面倒になるだろうか。あなたはどう思う？</span></div>
+<div class="summary"><small data-i18n>考えてみよう</small><span data-i18n>お金の量が増えない世界で、あなたの貯め方や借り方はどう変わるだろう？</span></div>

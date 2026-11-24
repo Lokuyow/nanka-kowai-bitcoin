@@ -1,80 +1,88 @@
 (function(){
-  // 説明のための架空の相場（1 BTC あたりの円）。月曜から日曜まで。
-  var RATES = [15000000, 15600000, 14400000, 13800000, 14700000, 16200000, 15300000];
-  var DAYS = ['月曜日', '火曜日', '水曜日', '木曜日', '金曜日', '土曜日', '日曜日'];
-  var DAYS_EN = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  var PRICE_YEN = 500;
-  // ビットコインの値札は、月曜の相場で500円分を切りのよい数にしたもの。
-  var PRICE_SAT = 3300;
+  // 円の世界は物価が毎年2%上がる。本位制の世界はお金の量が増えず、物を作る効率が毎年1.5%上がるので物価が1.5%下がる。
+  var YEN_RATE = 0.02, BTC_RATE = -0.015, YEARS = 30;
+  var COFFEE_YEN = 500, COFFEE_SAT = 3300, SAVE_CUPS = 2000, LOAN_CUPS = 20000;
+  var $ = function(id){ return document.getElementById(id); };
+  var range = $('yearRange');
 
-  var unit = 'yen';
-  var range = document.getElementById('dayRange');
-  var unitYen = document.getElementById('unitYen');
-  var unitBtc = document.getElementById('unitBtc');
-  var tagPrice = document.getElementById('tagPrice');
-  var tagPay = document.getElementById('tagPay');
-  var tagGet = document.getElementById('tagGet');
-  var flowPay = document.getElementById('flowPay');
-  var flowGet = document.getElementById('flowGet');
-  var rateVal = document.getElementById('rateVal');
-  var dayName = document.getElementById('dayName');
-  var unitOut = document.getElementById('unitOut');
-  var sparkLine = document.getElementById('sparkLine');
-  var sparkDot = document.getElementById('sparkDot');
+  function priceYen(t){ return COFFEE_YEN * Math.pow(1 + YEN_RATE, t); }
+  function priceSat(t){ return COFFEE_SAT * Math.pow(1 + BTC_RATE, t); }
+  function cupsYen(t){ return SAVE_CUPS / Math.pow(1 + YEN_RATE, t); }
+  function cupsBtc(t){ return SAVE_CUPS / Math.pow(1 + BTC_RATE, t); }
+  function n(v){ return Math.round(v).toLocaleString(window.LANG === 'en' ? 'en-US' : 'ja-JP'); }
+  function cups(v){ return L(n(v) + '杯', n(v) + ' cups'); }
 
-  function n(x){ return Math.round(x).toLocaleString('en-US'); }
-  function yen(x){ return '¥' + n(x); }
-  function sat(x){ return n(x) + ' satoshi'; }
-  function man(x){ return L(n(x / 10000) + '万円', '¥' + n(x)); }
+  // 杯数のグラフ。縦軸は 0〜4,000 杯、横軸は 0〜30 年。
+  function x(t){ return 6 + 308 * t / YEARS; }
+  function y(c){ return 118 - 110 * c / 4000; }
+  function path(fn){
+    var d = '';
+    for (var t = 0; t <= YEARS; t++) d += (t ? 'L' : 'M') + x(t).toFixed(1) + ' ' + y(fn(t)).toFixed(1);
+    return d;
+  }
+  $('lineYen').setAttribute('d', path(cupsYen));
+  $('lineBtc').setAttribute('d', path(cupsBtc));
+  $('lblYen').setAttribute('y', (y(cupsYen(YEARS)) + 16).toFixed(1));
+  $('lblBtc').setAttribute('y', (y(cupsBtc(YEARS)) - 8).toFixed(1));
+  $('cupBase').setAttribute('y1', y(SAVE_CUPS).toFixed(1));
+  $('cupBase').setAttribute('y2', y(SAVE_CUPS).toFixed(1));
 
-  // 相場の折れ線。高いほど上に描く。
-  var lo = Math.min.apply(null, RATES), hi = Math.max.apply(null, RATES);
-  function px(i){ return 8 + i * (152 / (RATES.length - 1)); }
-  function py(r){ return 56 - (r - lo) / (hi - lo) * 48; }
-  sparkLine.setAttribute('d', RATES.map(function(r, i){ return (i ? 'L' : 'M') + px(i).toFixed(1) + ' ' + py(r).toFixed(1); }).join(''));
+  function message(t){
+    var down = Math.round((1 - cupsYen(t) / SAVE_CUPS) * 100), up = Math.round((cupsBtc(t) / SAVE_CUPS - 1) * 100);
+    return t === 0
+      ? L('今はどちらの世界でも、コーヒー1杯は同じ値打ち。年数を進めてみよう。', 'Right now a cup of coffee is worth the same in both worlds. Move the years forward.')
+      : L(t + '年後、円の世界では貯金で買える杯数が' + down + '%減り、本位制の世界では' + up + '%増えた。借金は逆に、本位制の世界のほうが重くなる。',
+          'After ' + t + (t === 1 ? ' year' : ' years') + ', savings buy ' + down + '% fewer cups in the yen world and ' + up + '% more on the bitcoin standard. Debt works the other way: it gets heavier on the bitcoin standard.');
+  }
+  var out = $('worldOut'), box = document.createElement('div');
+  box.className = 'outbox';
+  out.parentNode.insertBefore(box, out);
+  var ghosts = [0, 1].map(function(){
+    var g = document.createElement('p');
+    g.className = 'worldout ghost';
+    g.setAttribute('aria-hidden', 'true');
+    box.appendChild(g);
+    return g;
+  });
+  box.appendChild(out);
 
   function render(){
-    var d = range.valueAsNumber || 0;
-    var rate = RATES[d];
-    var isYen = unit === 'yen';
-    var pay = isYen ? PRICE_YEN / rate * 1e8 : PRICE_SAT;
-    var get = isYen ? PRICE_YEN : PRICE_SAT * rate / 1e8;
-    tagPrice.textContent = isYen ? yen(PRICE_YEN) : sat(PRICE_SAT);
-    tagPay.textContent = sat(pay);
-    tagGet.textContent = yen(get);
-    flowPay.classList.toggle('moves', isYen);
-    flowGet.classList.toggle('moves', !isYen);
-    rateVal.textContent = '1 BTC = ' + man(rate);
-    dayName.textContent = L(DAYS[d], DAYS_EN[d]);
-    sparkDot.setAttribute('cx', px(d).toFixed(1));
-    sparkDot.setAttribute('cy', py(rate).toFixed(1));
-    unitYen.setAttribute('aria-pressed', String(isYen));
-    unitBtc.setAttribute('aria-pressed', String(!isYen));
-    unitOut.textContent = isYen
-      ? L('店の売上はいつも500円。値動きの分は、客が払うsatoshiの数で吸収される。', "The shop always gets ¥500. The price swing shows up in how many satoshi the customer pays.")
-      : L('客が払うのはいつも3,300 satoshi。値動きの分は、店が受け取る円の価値で吸収される。', 'The customer always pays 3,300 satoshi. The price swing shows up in what the shop receives in yen.');
+    var t = +range.value;
+    $('lblYen').textContent = L('円の世界', 'Yen world');
+    $('lblBtc').textContent = L('本位制の世界', 'Bitcoin standard');
+    $('yearVal').textContent = L(t + '年', t + (t === 1 ? ' year' : ' years'));
+    $('priceYen').textContent = L(n(priceYen(t)) + '円', '¥' + n(priceYen(t)));
+    $('priceBtc').textContent = n(priceSat(t)) + ' sat';
+    $('cupsYen').textContent = cups(cupsYen(t));
+    $('cupsBtc').textContent = cups(cupsBtc(t));
+    $('loanYen').textContent = cups(LOAN_CUPS / Math.pow(1 + YEN_RATE, t));
+    $('loanBtc').textContent = cups(LOAN_CUPS / Math.pow(1 + BTC_RATE, t));
+    $('cupNow').setAttribute('x1', x(t).toFixed(1));
+    $('cupNow').setAttribute('x2', x(t).toFixed(1));
+    $('dotYen').setAttribute('cx', x(t).toFixed(1)); $('dotYen').setAttribute('cy', y(cupsYen(t)).toFixed(1));
+    $('dotBtc').setAttribute('cx', x(t).toFixed(1)); $('dotBtc').setAttribute('cy', y(cupsBtc(t)).toFixed(1));
+    $('worldOut').textContent = message(t);
+    // 0年と30年の文を見えない形で重ね、いちばん長い文に高さを合わせる
+    ghosts[0].textContent = message(0);
+    ghosts[1].textContent = message(30);
     if (window.updateRangeFill) window.updateRangeFill(range);
   }
-
-  unitYen.addEventListener('click', function(){ unit = 'yen'; render(); });
-  unitBtc.addEventListener('click', function(){ unit = 'btc'; render(); });
   range.addEventListener('input', render);
 
-  // 立場の切り替え。4つの面は重ねてあり、見えるものだけを入れ替える。
+  // 立場の切り替え。全部の面を重ね、見えない面は場所だけ取る。
   var roleBtns = document.querySelectorAll('.rolepick button');
   var roles = document.querySelectorAll('#roles .role');
   roleBtns.forEach(function(b){
     b.addEventListener('click', function(){
-      var key = b.getAttribute('data-role');
+      var r = b.getAttribute('data-role');
       roleBtns.forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
-      roles.forEach(function(r){
-        var on = r.getAttribute('data-role') === key;
-        r.classList.toggle('off', !on);
-        if (on) r.removeAttribute('aria-hidden'); else r.setAttribute('aria-hidden', 'true');
+      roles.forEach(function(p){
+        var on = p.getAttribute('data-role') === r;
+        p.classList.toggle('off', !on);
+        if (on) p.removeAttribute('aria-hidden'); else p.setAttribute('aria-hidden', 'true');
       });
     });
   });
-  roles.forEach(function(r){ if (r.classList.contains('off')) r.setAttribute('aria-hidden', 'true'); });
 
   document.addEventListener('langchange', render);
   render();
