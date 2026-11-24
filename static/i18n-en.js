@@ -222,12 +222,11 @@ export default {
   '次の誤解：価格は誰かが決めている →': 'Next: Someone sets the price →',
 
   /* ===== price ===== */
-  "実際の取引ではどう動く？": "How does the price move in actual trades?",
-  "取引所Krakenで2024年1月1日午前0時（UTC）から成立した最初の5件。順に見ると、同じ値段が続くことも、次の取引で値段が変わることもある。": "These are the first five BTC/USD trades on Kraken from midnight UTC on January 1, 2024. The price can stay the same from one trade to the next or change with the next trade.",
-  "取引順": "Trade order",
-  "価格（米ドル / BTC）": "Price (USD / BTC)",
-  "取引量（BTC）": "Size (BTC)",
-  "Krakenの取引データ": "Kraken trade records",
+  "取引所ごとに値段が違う？": "Does each exchange have its own price?",
+  "チャートの「いまの価格」は、ある取引所で直前に成立した値段だ。取引所ごとに並ぶ注文が違うので、同じ時刻でも値段は少しずつずれる。そのずれを埋めるのも、売り買いする人たちだ。": "The current price on a chart is just the last trade on one exchange. Each exchange has its own orders, so prices drift apart a little even at the same moment. The people buying and selling are also the ones who close that gap.",
+  "取引所A": "Exchange A",
+  "取引所B": "Exchange B",
+  "値段の差": "Gap",
   "直近の取引価格": "Last traded price",
   "売り手と買い手が合意した値段が、その取引の価格になる。": "A trade happens at a price a buyer and seller agree on.",
   "取引が成立した値段が価格になる": "The price comes from a completed trade",

@@ -34,20 +34,23 @@
     </div>
   </section>
   <section>
-    <h2 data-i18n>実際の取引ではどう動く？</h2>
-    <p class="lede" data-i18n>取引所Krakenで2024年1月1日午前0時（UTC）から成立した最初の5件。順に見ると、同じ値段が続くことも、次の取引で値段が変わることもある。</p>
-    <div class="card">
-      <table class="tbl">
-        <thead><tr><th scope="col" data-i18n>取引順</th><th scope="col" data-i18n>価格（米ドル / BTC）</th><th scope="col" data-i18n>取引量（BTC）</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">1</th><td>42,241.10</td><td>0.00038521</td></tr>
-          <tr><th scope="row">2</th><td>42,241.10</td><td>0.00100000</td></tr>
-          <tr><th scope="row">3</th><td>42,256.60</td><td>0.00100000</td></tr>
-          <tr><th scope="row">4</th><td>42,259.00</td><td>0.00091479</td></tr>
-          <tr><th scope="row">5</th><td>42,258.90</td><td>0.00100000</td></tr>
-        </tbody>
-      </table>
-      <p class="hint"><a href="https://api.kraken.com/0/public/Trades?pair=XBTUSD&amp;since=1704067200000000000&amp;count=5" data-i18n>Krakenの取引データ</a></p>
+    <h2 data-i18n>取引所ごとに値段が違う？</h2>
+    <p class="lede" data-i18n>チャートの「いまの価格」は、ある取引所で直前に成立した値段だ。取引所ごとに並ぶ注文が違うので、同じ時刻でも値段は少しずつずれる。そのずれを埋めるのも、売り買いする人たちだ。</p>
+    <!-- 安い取引所で買って高い取引所で売ると、2つの値段が近づいていくことを試す。
+         値段をそろえる係はいなくても、差で得をしようとする売り買いで値段がそろうことを見せる。 -->
+    <div class="card" id="arbCard">
+      <div class="arb-ex">
+        <div class="arb-box" id="arbBoxA"><div class="arb-name" data-i18n>取引所A</div><div class="arb-price" id="arbPriceA"></div><div class="arb-tag" id="arbTagA"></div></div>
+        <div class="arb-gap"><span data-i18n>値段の差</span><b id="arbGap"></b></div>
+        <div class="arb-box" id="arbBoxB"><div class="arb-name" data-i18n>取引所B</div><div class="arb-price" id="arbPriceB"></div><div class="arb-tag" id="arbTagB"></div></div>
+      </div>
+      <p class="arb-msg" id="arbMsg" aria-live="polite"></p>
+      <div class="arb-btns">
+        <button type="button" id="arbTrade"></button>
+        <button type="button" id="arbNews"></button>
+      </div>
+      <p class="arb-profit" id="arbProfit"></p>
+      <p class="hint" id="arbNote"></p>
     </div>
   </section>
 <div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>売り手と買い手の注文が合うとその値段で取引が成立する</span></div>

@@ -191,3 +191,92 @@ var el = document.getElementById('nowPrice');
     render();
     if (lastPair) msg.textContent = L(lastPair[0], lastPair[1]);
   });
+/* 取引所ごとの値段のずれを、安い方で買って高い方で売ることで埋めていく試し。
+   値段は基準価格に対する倍率で持ち、日本語は円、英語はドルで表示する。 */
+(function(){
+  var card = document.getElementById('arbCard');
+  if (!card) return;
+  var $ = function(id){ return document.getElementById(id); };
+  var BASE = { jpy: 15000000, usd: 100000 };
+  var OPEN_GAP = 0.006;   // 差が開いたときの幅（基準価格の0.6%）
+  var FEE = 0.0005;       // 売り買い合わせた手数料（基準価格の0.05%）
+  var SIZE = 0.1;         // 1回に売り買いする量（BTC）
+  var mA, mB, profit, lastMsg, news;
+  function cur(){ return window.LANG === 'en' ? 'usd' : 'jpy'; }
+  function money(m){
+    var v = Math.round(m * BASE[cur()]);
+    return cur() === 'usd' ? '$' + v.toLocaleString('en-US') : v.toLocaleString('ja-JP') + '円';
+  }
+  function price(m){
+    var v = Math.round(m * BASE[cur()]);
+    return cur() === 'usd' ? '$' + v.toLocaleString('en-US') : v.toLocaleString('ja-JP');
+  }
+  function name(x){ return L('取引所' + x, 'Exchange ' + x); }
+  function cheap(){ return mA <= mB ? 'A' : 'B'; }
+  function pricey(){ return mA <= mB ? 'B' : 'A'; }
+  function gap(){ return Math.abs(mA - mB); }
+  function done(){ return gap() <= FEE; }
+  function setMsg(ja, en){ lastMsg = [ja, en]; $('arbMsg').textContent = L(ja, en); }
+  function flash(el, dir){
+    el.classList.remove('up', 'down');
+    void el.offsetWidth;
+    if (dir) el.classList.add(dir);
+  }
+  function render(){
+    $('arbPriceA').textContent = price(mA);
+    $('arbPriceB').textContent = price(mB);
+    $('arbGap').textContent = money(gap());
+    var c = cheap(), h = pricey(), same = done();
+    ['A', 'B'].forEach(function(x){
+      var box = $('arbBox' + x), tag = $('arbTag' + x);
+      box.classList.toggle('cheap', !same && x === c);
+      box.classList.toggle('pricey', !same && x === h);
+      tag.textContent = same ? L('ほぼ同じ', 'about the same') : x === c ? L('安い', 'cheaper') : L('高い', 'pricier');
+    });
+    var trade = $('arbTrade');
+    trade.textContent = L('安い' + name(c) + 'で買って、高い' + name(h) + 'で売る',
+                          'Buy on ' + name(c) + ', sell on ' + name(h));
+    trade.disabled = same;
+    $('arbNews').textContent = L('片方の取引所に注文が殺到する', 'Orders flood into one exchange');
+    $('arbProfit').textContent = L('あなたの利益（手数料を引いた後）: ', 'Your profit (after fees): ') + money(profit);
+    $('arbNote').textContent = L('1回に' + SIZE + ' BTCずつ売り買いし、手数料は合わせて' + money(FEE) + 'とした（イメージ）。',
+                                 'Each round trades ' + SIZE + ' BTC, with ' + money(FEE) + ' in total fees (illustrative).');
+    if (lastMsg) $('arbMsg').textContent = L(lastMsg[0], lastMsg[1]);
+  }
+  function reset(){
+    mA = 1; mB = 1 + OPEN_GAP; profit = 0; news = 0;
+    setMsg('同じ時刻なのに、取引所Bの方が取引所Aより高い。安い方で買って高い方で売ると、どうなる？',
+           'At the same moment, Exchange B is pricier than Exchange A. What happens if you buy on the cheaper one and sell on the pricier one?');
+    render();
+  }
+  $('arbTrade').addEventListener('click', function(){
+    if (done()) return;
+    var c = cheap(), h = pricey(), g = gap();
+    profit += (g - FEE) * SIZE;
+    // 安い方は買われて売り注文が減るので上がり、高い方は売られて買い注文が減るので下がる
+    var step = g / 4;
+    if (c === 'A') { mA += step; mB -= step; } else { mB += step; mA -= step; }
+    flash($('arbPrice' + c), 'up');
+    flash($('arbPrice' + h), 'down');
+    if (done()) {
+      setMsg('差が手数料より小さくなり、もう得をしない。値段をそろえる係はいないのに、差で得をしようとする人たちの売り買いで、2つの値段は近づいた。',
+             'The gap is now smaller than the fees, so there is no profit left. No one is in charge of matching prices, yet trades by people chasing the gap pulled the two prices together.');
+    } else {
+      setMsg(name(c) + 'で買ったので売り注文が減って値段が上がり、' + name(h) + 'で売ったので買い注文が減って値段が下がった。差が縮んだ。',
+             'Buying on ' + name(c) + ' used up sell orders and pushed its price up. Selling on ' + name(h) + ' used up buy orders and pushed its price down. The gap shrank.');
+    }
+    render();
+  });
+  $('arbNews').addEventListener('click', function(){
+    // 交互に片方だけ買いが殺到して、その取引所の値段だけが上がる
+    var x = news++ % 2 === 0 ? 'A' : 'B';
+    var other = x === 'A' ? mB : mA;
+    if (x === 'A') mA = other + OPEN_GAP; else mB = other + OPEN_GAP;
+    flash($('arbPrice' + x), 'up');
+    setMsg(name(x) + 'だけに買い注文が殺到して、' + name(x) + 'の値段だけが上がった。また差が開いた。',
+           'Buy orders flooded into ' + name(x) + ' only, so only its price rose. The gap opened again.');
+    render();
+  });
+  document.addEventListener('langchange', render);
+  reset();
+})();
