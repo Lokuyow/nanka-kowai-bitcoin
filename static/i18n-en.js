@@ -326,7 +326,7 @@ export default {
   'ビットコインがハッキング': 'Bitcoin was hacked',
   'された」': '"',
   '正しくは「取引所の金庫が破られた」': 'Correctly: "the exchange\'s vault was broken into"',
-  '銀行に強盗が入っても、「円がハッキングされた」とは言わない。': 'When robbers hit a bank, nobody says "the dollar was hacked".',
+  '銀行に強盗が入っても、「円という仕組みが破られた」とは言わない。': 'When robbers hit a bank, nobody says "the dollar system was broken".',
   "資産の盗難と台帳に残る送金記録": "Stolen funds and the transfers recorded on the ledger",
   '取引所の金庫': 'The exchange vault',
   "取引所は預かった資産を管理する。<br>その管理の仕組みを破られると資産を失う。": "An exchange holds customers' funds.<br>If its custody is compromised, funds can be lost.",
