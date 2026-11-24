@@ -42,17 +42,39 @@
 .era .era-src{margin-top:6px;font-size:12.5px}
 .era-src a{display:inline-block;padding:.35em 0}
 
-/* つまずいた時期 */
-.trips{margin-top:12px}
-.trip{display:flex;flex-direction:column;align-items:flex-start;gap:4px}
-.trip-who{font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 10px;color:#fff}
-.trip-who.state{background:var(--l-state)}
-.trip-who.han{background:var(--l-han)}
-.trip-who.foreign{background:var(--l-foreign)}
-.trip-who.rule{background:var(--l-rule)}
-:root[data-theme="dark"] .trip-who{color:#17181c}
-.trip h3{margin:4px 0 0;font-size:16px}
-.trip p{margin:0;font-size:14px}
+/* 通貨の競争。決まりの2択、増える量のスライダー、割合の積み上げグラフ */
+.lawpick{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;background:var(--bg);border:1px solid var(--line)}
+.lawpick button{min-height:44px;padding:8px 6px;border-radius:10px;background:transparent;color:var(--sub);font-weight:700;font-size:14px;border:0}
+.lawpick button[aria-pressed="true"]{background:var(--color-primary);color:var(--color-on-primary)}
+.inflbl{display:flex;justify-content:space-between;align-items:baseline;margin:16px 0 0;font-size:13.5px;color:var(--sub)}
+.inflbl b{color:var(--ink);font-size:17px;font-variant-numeric:tabular-nums}
+.sharechart{display:block;margin-top:14px}
+.ar{transition:d .25s ease}
+.ar.state{fill:var(--l-state)}
+.ar.private{fill:var(--l-private)}
+.ar.rule{fill:var(--l-rule)}
+.sharechart .yr{font-size:10px;fill:var(--sub)}
+.legend{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;list-style:none;margin:8px 0 0;padding:0;font-size:13px}
+.legend li{display:flex;align-items:center;gap:5px;white-space:nowrap}
+.legend i{width:10px;height:10px;border-radius:3px}
+.legend i.state{background:var(--l-state)}
+.legend i.private{background:var(--l-private)}
+.legend i.rule{background:var(--l-rule)}
+.legend b{font-variant-numeric:tabular-nums;min-width:3.3em}
+.keep{display:grid;gap:2px;margin:14px 0 0;padding:10px 12px;border-radius:10px;background:var(--bg);font-size:13.5px}
+.keep b{font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.simbox{display:grid;margin:12px 0 0}
+.simbox>.simout{grid-area:1/1}
+.simout{font-size:15px;font-weight:700;margin:0}
+.simout.ghost{visibility:hidden}
+
+/* 円が使われ続ける理由と、悪貨・良貨の法則 */
+.rules,.laws{margin-top:12px}
+.rule-card{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.rule-tag{font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 10px;color:#fff;background:var(--l-state)}
+:root[data-theme="dark"] .rule-tag{color:#17181c}
+.rule-card p,.law p{margin:0;font-size:14px}
+.law h3{margin:0 0 4px;font-size:16px}
 
 @media(max-width:400px){
     .lanes{grid-template-columns:38px repeat(7,minmax(0,1fr));gap:4px 2px}
@@ -62,3 +84,7 @@
 :root[data-lang="en"] .lanes{grid-template-columns:60px repeat(7,minmax(0,1fr))}
 :root[data-lang="en"] .lane-lbl{font-size:11px}
 :root[data-lang="en"] .era-btn{font-size:11px}
+.cols.rules{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:520px){.cols.rules{grid-template-columns:1fr}}
+.lawlbl{margin:0 0 8px;font-size:13.5px;color:var(--sub)}
+.inflbl{gap:10px}.inflbl b{flex:none;min-width:2.7em;text-align:right}

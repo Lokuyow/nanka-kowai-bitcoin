@@ -1,6 +1,6 @@
 <section class="intro">
     <h2 data-i18n>なぜこの問いが浮かぶか</h2>
-    <p class="lede" data-i18n>お金は国が作るもの、と思いがちだ。でも日本の歴史をさかのぼると、国以外が作ったお金や、外国から来たお金が使われた時代も長い。</p>
+    <p class="lede" data-i18n>お金は国が作るもの、と思いがちだ。でも日本の歴史では国以外が作ったお金も長く使われてきた。今の円が使われているのは、選ばれ続けているからだろうか。それとも決まりで使うことになっているからだろうか。</p>
   </section>
 
   <section>
@@ -73,14 +73,44 @@
   </section>
 
   <section>
-    <h2 data-i18n>どのお金にもつまずいた時期がある</h2>
-    <p class="lede" data-i18n>作り手が国でも、民間でも、ルールでも、お金の信用が揺らいだことはある。</p>
-    <div class="cols trips">
-      <div class="card trip"><span class="trip-who foreign" data-i18n>外国の銭</span><h3 data-i18n>悪い銭が混ざる</h3><p data-i18n>質の悪い銭が増え、受け取りを嫌がる「撰銭（えりぜに）」が広がった。大名や幕府は、どの銭を受け取るべきかを命令で決めた。</p></div>
-      <div class="card trip"><span class="trip-who han" data-i18n>藩</span><h3 data-i18n>刷りすぎる</h3><p data-i18n>お金に困った藩が藩札を出しすぎて、価値が大きく下がることがあった。</p></div>
-      <div class="card trip"><span class="trip-who state" data-i18n>国</span><h3 data-i18n>物価が跳ね上がる</h3><p data-i18n>戦争が終わったあと、物の値段が数年で何十倍にも上がり、円の価値は大きく下がった。</p></div>
-      <div class="card trip"><span class="trip-who rule" data-i18n>ルール</span><h3 data-i18n>値段が大きく動く</h3><p data-i18n>発行の決まりは変わらなくても、ビットコインの値段が1年で半分以下になった年もある。</p></div>
+    <h2 data-i18n>お金どうしを競わせたら？</h2>
+    <p class="lede" data-i18n>ある町で3つのお金が使えるとする。国の通貨が毎年どれだけ増えるかと、国の通貨を使う決まりがあるかを変えて、20年でどのお金が使われるかを見てみよう。</p>
+    <div class="card">
+      <p class="lawlbl" id="lawLbl" data-i18n>税金や給料を国の通貨で払う決まり</p>
+      <div class="lawpick" role="group" aria-labelledby="lawLbl">
+        <button type="button" id="lawOn" aria-pressed="true" data-i18n>決まりあり</button>
+        <button type="button" id="lawOff" aria-pressed="false" data-i18n>決まりなし</button>
+      </div>
+      <div class="inflbl"><span data-i18n>国の通貨が1年に増える量</span><b id="inflVal">8%</b></div>
+      <input type="range" id="inflRange" min="0" max="20" step="1" value="8" aria-label="国の通貨が1年に増える量" data-i18n-label>
+      <svg id="shareChart" class="sharechart" viewBox="0 0 320 150" width="100%" role="img" aria-label="20年間に使われたお金の割合" data-i18n-label>
+        <path id="areaState" class="ar state"/><path id="areaGold" class="ar private"/><path id="areaBtc" class="ar rule"/>
+        <text class="yr" x="4" y="146" data-i18n>今</text><text class="yr" x="316" y="146" text-anchor="end" data-i18n>20年後</text>
+      </svg>
+      <ul class="legend">
+        <li><i class="state"></i><span data-i18n>国の通貨</span><b id="shState"></b></li>
+        <li><i class="private"></i><span data-i18n>金の預かり証</span><b id="shGold"></b></li>
+        <li><i class="rule"></i><span data-i18n>ビットコイン</span><b id="shBtc"></b></li>
+      </ul>
+      <p class="keep"><span data-i18n>国の通貨で貯めた100万円の、20年後の買う力</span><b id="keepVal"></b></p>
+      <p class="simout" id="simOut" aria-live="polite"></p>
+      <p class="hint" data-i18n>考え方を示すための単純なモデルで、実際の予測ではない。金の預かり証は発行元が破たんするおそれ、ビットコインは値動きの大きさを、それぞれ選ばれにくさとして入れている。</p>
     </div>
   </section>
 
-<div class="summary"><small data-i18n>考えてみよう</small><span data-i18n>しくみの違うお金を並べて使うなら、どれがどんな場面に向くだろう？</span></div>
+  <section>
+    <h2 data-i18n>円が使われ続ける理由</h2>
+    <p class="lede" data-i18n>日本で円が使われるのは、品質で選ばれた結果だけではない。法律で円を使う場面が決められている。</p>
+    <div class="cols rules">
+      <div class="card rule-card"><span class="rule-tag" data-i18n>法貨</span><p data-i18n>日本銀行券は法律で「法貨」とされている。代金や借金の支払いに出されたら、原則として受け取りを断れない。</p></div>
+      <div class="card rule-card"><span class="rule-tag" data-i18n>税金</span><p data-i18n>税金は円で納める。だから稼いだうちの一部は必ず円で用意することになる。</p></div>
+      <div class="card rule-card"><span class="rule-tag" data-i18n>給料</span><p data-i18n>給料は原則として円で支払う決まりがある（労働基準法）。</p></div>
+    </div>
+    <div class="cols laws">
+      <div class="card law"><h3 data-i18n>悪貨は良貨を駆逐する</h3><p data-i18n>質の違うお金を同じ価値で受け取るよう法律で決めると、人は質の悪いほうで払い、良いほうはしまい込む。</p></div>
+      <div class="card law"><h3 data-i18n>良貨は悪貨を駆逐する</h3><p data-i18n>どのお金で受け取るかを自由に選べるなら、売る人は価値を保つお金を求め、悪いほうは受け取られなくなる。2009年のジンバブエでは、物価が激しく上がった自国通貨が使われなくなり、米ドルなどに置き換わった。</p></div>
+    </div>
+    <p class="hint" data-i18n>経済学者のハイエクは1976年に、国の独占をやめて民間の通貨を競わせるべきだと唱えた。</p>
+  </section>
+
+<div class="summary"><small data-i18n>考えてみよう</small><span data-i18n>決まりの後押しがなくても選ばれ続けるのは、どんなお金だろう？</span></div>
