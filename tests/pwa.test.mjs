@@ -186,6 +186,8 @@ test('PWA: SW が activate され、オフラインでも表示できる', async
       const titleFonts = await page.locator('.hero .t').evaluate((title) =>
         document.fonts.load('600 34px "M PLUS 1 Code"', title.textContent).then((fonts) => fonts.length));
       assert.equal(titleFonts, 1, 'オフラインでもサイトタイトルのフォントが読み込まれる');
+      // 遅延読み込みの画像は、画面に近づいて初めて読み込まれる（実利用と同じ手順で確認する）
+      await page.locator('.bridge-card').scrollIntoViewIfNeeded();
       const previewSource = await page.locator('.bridge-card img').evaluate(async (img) => {
         await img.decode();
         return img.currentSrc;
