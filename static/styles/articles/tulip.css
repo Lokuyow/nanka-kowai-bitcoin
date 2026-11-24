@@ -11,16 +11,16 @@
 .gmbtns{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:10px}
 .gmbtns button{min-height:48px;font-size:15px}
 .gmbtns button[disabled]{opacity:.4;cursor:default}
-/* 売買はつながった1組のボタン（左が買う、右が売る） */
-.gm-trade{display:flex;border-radius:999px;box-shadow:0 0 0 2px var(--ink)}
-.gm-trade button{border-radius:0;min-width:128px;padding:10px 18px;font-weight:700}
-#gmBuy{border-radius:999px 0 0 999px}
-#gmSell{border-radius:0 999px 999px 0;border:0;border-left:2px solid var(--ink)}
-/* 押せる方は塗りつぶし、押せない方は文字を薄くして斜線で消し、どちらが有効か一目でわかるようにする */
-.gm-trade button{background:var(--color-primary);color:var(--color-on-primary)}
+/* 売買は離した2つのボタン。押せる方だけ塗りつぶし、押せない方は斜線と点線の枠で消して見せる */
+.gm-trade{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.gm-trade button{min-width:128px;padding:10px 18px;font-weight:700;border-radius:999px;
+    background:var(--color-primary);color:var(--color-on-primary)}
 .gmbtns .gm-trade button[disabled]{opacity:1;cursor:not-allowed;color:var(--sub);font-weight:400;
+    border:1px dashed var(--line);
     background:repeating-linear-gradient(135deg,transparent 0 6px,var(--line) 6px 7px),var(--card)}
-.gmhold{font-size:13px;color:var(--sub);text-align:center;margin:0}
+/* いまの持ち分は、ボタンとは別の小さな札にして状態だとわかるようにする */
+.gmhold{font-size:13px;font-weight:700;color:var(--ink);text-align:center;margin:0;
+    padding:4px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
 /* 時を進めるは、売買とは別の四角いボタンにして、時計と矢印を添える */
 .gm-next{display:inline-flex;align-items:center;gap:8px;border-radius:12px;padding:10px 16px;
     background:var(--color-secondary-bg);color:var(--color-secondary);border:1px dashed var(--color-secondary);font-weight:700}
