@@ -15,7 +15,8 @@
     if (x <= 0) return '0';
     var e = Math.floor(Math.log10(x));
     var m = x / Math.pow(10, e);
-    return m.toFixed(1) + '×10<sup>' + e + '</sup>';
+    // 日本語は本文と同じ「10の61乗」形式、英語は上付き文字
+    return L(m.toFixed(1) + '×10の' + e + '乗', m.toFixed(1) + '×10<sup>' + e + '</sup>');
   }
   function fmtRate(r){
     if (window.LANG === 'en') {

@@ -477,7 +477,7 @@ export default {
   "今のコンピューターで鍵を総当たりすると？": "What if a conventional computer tried every key?",
   "秘密鍵の候補はおよそ2の256乗通り。ボタンを押し続けて、候補を1つずつ試すとどれくらいかかるか確かめよう。": "There are roughly 2^256 possible private keys. Hold the button to see how long it would take to try them one by one.",
   '試した回数': 'Attempts',
-  'いまの速さ': 'Current speed',
+  '今の速さ': 'Current speed',
 
   'このペースで全部試すと': 'To try them all at this pace',
   '量子コンピューターを使う（総当たりは2の128乗回で済む）': 'Use a quantum computer (brute force takes 2^128 tries)',
@@ -966,7 +966,7 @@ export default {
   'トップへもどる': 'Back to the top page',
   /* ===== 量子: いま／もし将来 ===== */
   '時期': 'Timing',
-  'いま': 'Now',
+  '今': 'Now',
   'もし将来': 'In the future',
   '鍵は安全': 'Keys are safe',
   '今の量子コンピューターは、まだその計算ができるほど強力ではない。': "Today's quantum computers are not yet powerful enough to do that.",
