@@ -52,7 +52,7 @@
     $('lblBtc').textContent = L('本位制の世界', 'Bitcoin standard');
     $('yearVal').textContent = L(t + '年', t + (t === 1 ? ' year' : ' years'));
     $('priceYen').textContent = L(n(priceYen(t)) + '円', '¥' + n(priceYen(t)));
-    $('priceBtc').textContent = n(priceSat(t)) + ' sat';
+    $('priceBtc').textContent = n(priceSat(t)) + ' sats';
     $('cupsYen').textContent = cups(cupsYen(t));
     $('cupsBtc').textContent = cups(cupsBtc(t));
     $('loanYen').textContent = cups(LOAN_CUPS / Math.pow(1 + YEN_RATE, t));
