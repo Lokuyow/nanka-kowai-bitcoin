@@ -74,3 +74,8 @@
     .spark{width:96px}
     .flow b{font-size:17px}
   }
+
+/* 値札の話のあとに置く「ビットコイン本位制なら」の補足 */
+.stdnote{margin-top:14px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.stdnote b{display:block;font-size:13px;color:var(--color-secondary);margin-bottom:4px}
+.stdnote p{margin:0;font-size:14.5px}
