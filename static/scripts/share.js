@@ -1,12 +1,12 @@
 (() => {
   const share = document.querySelector('.share');
-  const { title, text, titleEn, textEn, url, urlEn } = share.dataset;
+  const { title, titleEn, url, urlEn } = share.dataset;
   const shareButton = share.querySelector('.share-main');
 
   function shareData() {
     return window.LANG === 'en'
-      ? { title: titleEn, text: textEn, url: urlEn }
-      : { title, text, url };
+      ? { title: titleEn, url: urlEn }
+      : { title, url };
   }
 
   async function copy(value, note) {
@@ -40,6 +40,6 @@
   const textNote = share.querySelector('.text-note');
   share.querySelector('.share-copytext').addEventListener('click', () => {
     const data = shareData();
-    copy([data.title, data.text, data.url].join('\n'), textNote);
+    copy([data.title, data.url].join('\n'), textNote);
   });
 })();

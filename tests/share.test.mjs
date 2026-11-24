@@ -23,12 +23,10 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
     const expected = [
       {
         title: '国が禁止したらビットコインは終わりでしょ？',
-        text: '国内の活動が規制されても、国外の参加者はネットワークを動かし続けられる。',
         url
       },
       {
         title: 'If a country bans it, Bitcoin is finished, right?',
-        text: 'A ban can restrict activity at home while participants abroad keep the network running.',
         url: 'https://lokuyow.github.io/nanka-kowai-bitcoin/en/ban/'
       }
     ];
@@ -40,7 +38,7 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
       await page.locator('.share-main').click();
       assert.deepEqual(await page.evaluate(() => window.sharedData), data);
       await page.locator('.share-copytext').click();
-      assert.equal(await page.evaluate(() => window.copiedText), [data.title, data.text, data.url].join('\n'));
+      assert.equal(await page.evaluate(() => window.copiedText), [data.title, data.url].join('\n'));
     }
   } finally {
     try {
