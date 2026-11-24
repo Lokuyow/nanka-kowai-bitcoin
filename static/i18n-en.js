@@ -808,7 +808,7 @@ export default {
   "株": "Stocks",
   "はじめは限られた人": "A few people at first",
   "上場する前の株は創業者や出資した会社などが持つ。一般の人が買えるのはたいてい上場してからだ。": "Before a company goes public, its shares are held by founders and investors. The general public can usually buy only after it lists.",
-  "鉱山を掘るには国の許可や大きな設備がいる。一般の人は掘り出されたあとの金を買う。": "Mining requires government permits and heavy equipment. Ordinary people buy gold after it has been dug up.",
+  "鉱山を掘るには国の許可や大きな設備が必要になる。一般の人は掘り出されたあとの金を買う。": "Mining requires government permits and heavy equipment. Ordinary people buy gold after it has been dug up.",
   "ビットコインのソフトは最初から公開されていた。初期にはビットコインを知って、自分でソフトを動かすところから始める人がいた。今は取引所で買う方法もある。": "The software was public from the start. Some early participants found out about it and ran the software themselves. Today, exchanges offer another way to get bitcoin.",
   "<span class=\"yr\">2010年代</span>取引所が登場し、売買できる場所が増えた。大きな値下がりや取引所の破綻もあった。": "<span class=\"yr\">2010s</span>Exchanges made trading easier. Large price drops and exchange failures also occurred.",
   "<span class=\"yr\">今</span>取引所では、口座を開いた人が少額から購入できる。": "<span class=\"yr\">Today</span>People who open an exchange account can buy small amounts.",
