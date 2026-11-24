@@ -640,7 +640,7 @@ export default {
   '1万': '10K',
   '1億': '100M',
   '1 BTCを切り分ける円グラフ': 'Pie chart of splitting 1 BTC',
-  '一切れ:': 'One piece:',
+  '1切れ:': 'One piece:',
   '合計:': 'Total:',
   '（変わらない）': '(unchanged)',
   "発行上限をsatoshiで数える": "Counting the issuance limit in satoshis",
