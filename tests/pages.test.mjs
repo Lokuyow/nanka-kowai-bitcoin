@@ -107,7 +107,7 @@ test('キーボードで本文に移動し、記事から層や一覧の元の�
     await page.keyboard.press('Enter');
     assert.equal(await page.locator('main:focus').count(), 1);
 
-    assert.equal(await page.locator('.hero a').count(), 1);
+    assert.equal(await page.locator('.hero a').count(), 2);
     await page.locator('.hero .action-primary').click();
     assert.equal(page.url(), server.base + 'scam/');
     await page.locator('.eyebrow').click();

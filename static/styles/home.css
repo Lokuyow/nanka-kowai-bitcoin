@@ -31,6 +31,13 @@
 @media(prefers-reduced-motion:reduce){.peek-head,.peek-hands,.hero .t span{animation:none}}
 .subtitle{font-size:clamp(17px,3.4vw,22px);font-weight:700;margin:22px 0 6px}
 .hero .lede{font-size:15px;margin:0}
+.hero-q{display:flex;align-items:center;gap:6px;margin-top:12px;
+    font-size:13px;text-decoration:none}
+.hero-q-text{color:var(--ink);font-weight:700;white-space:nowrap;
+    transition:opacity .32s ease,transform .32s ease}
+.hero-q.swap .hero-q-text{opacity:0;transform:translateY(3px)}
+.hero-q .hero-q-arr{flex:none;color:var(--color-secondary)}
+@media(prefers-reduced-motion:reduce){.hero-q-text{transition:none}}
 .hero .action-primary{margin-top:16px;background:var(--color-primary);color:var(--color-on-primary)}
 .bridge-card{display:grid;grid-template-columns:clamp(64px,20vw,104px) minmax(0,1fr) auto;align-items:center;
     gap:10px;max-width:400px;margin:30px auto 0;padding:10px;

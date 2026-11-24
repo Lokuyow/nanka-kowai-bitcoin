@@ -17,6 +17,7 @@
   <link rel="stylesheet" href={BASE_PATH + 'styles/content.css'} />
   <link rel="stylesheet" href={BASE_PATH + 'styles/home.css'} />
   <script defer src={BASE_PATH + 'scripts/share.js'}></script>
+  <script defer src={BASE_PATH + 'scripts/hero-questions.js'}></script>
   <script defer src={BASE_PATH + 'scripts/navigation-feedback.js'}></script>
 </svelte:head>
 
@@ -45,6 +46,10 @@
       </div>
       <p class="subtitle" data-i18n>ネットやSNSで見たビットコインの話、どこまで本当？</p>
       <p class="lede" data-i18n>ビットコインの「こわい」をひとつずつ解きほぐす</p>
+      <a class="hero-q" id="heroQ" href={articlePath('scam')}>
+        <span class="hero-q-text" id="heroQText">結局ビットコインって詐欺なんじゃないの？</span>
+        <ChevronRight class="hero-q-arr" />
+      </a>
       <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
         <span data-i18n>最初から見る</span><ChevronRight />
       </a>
