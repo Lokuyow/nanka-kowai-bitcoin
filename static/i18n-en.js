@@ -715,7 +715,6 @@ export default {
   "貯蓄用の買いが増える": "Savers buy more iron",
   "鉄が値上がり": "Iron prices rise",
   "建物や車の原価が上がる": "Buildings and cars cost more to make",
-  "鉄の供給がすぐに増えない場合。": "This assumes iron supply can't grow quickly.",
   "金でも、高値を受けて半導体の金線を銅系材料に替える動きが進んだ。": "High gold prices sped up the switch from gold wires to copper-based alternatives in chips.",
   "World Gold Council（2026年7〜9月）": "World Gold Council (July–September 2026)",
   "ただ金は材料でもある。資産として買う人が増えて値上がりすれば材料に使うメーカーの負担も増える。身近な鉄に置き換えるとこうなる。": "But gold is also a raw material. If more people buy it as an asset and drive up its price, it costs manufacturers more to use it. Here is the same idea with iron, a more familiar material.",
