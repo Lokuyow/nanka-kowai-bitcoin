@@ -1,6 +1,5 @@
 <script>
   import { ARTICLES, BASE_PATH, HOME, LAYERS, articlePath, siteUrl } from './site.js';
-  import ArticleIcon from './ArticleIcon.svelte';
   import Bridge from './Bridge.svelte';
   import ChevronRight from './ChevronRight.svelte';
   import LayerLabel from './LayerLabel.svelte';
@@ -59,10 +58,10 @@
             {#each ARTICLES.filter((article) => article.layer === layer.number) as article (article.slug)}
               <li id={'story-' + article.slug}>
                 <a class="unit" href={articlePath(article.slug)}>
-                  <span class="unit-marker">
-                    <ArticleIcon slug={article.slug} />
+                  <span class="unit-text">
+                    <span class="unit-eyebrow"><span>{String(article.number).padStart(2, '0')}</span><span aria-hidden="true">·</span><span data-i18n>{article.navTitle}</span></span>
+                    <span class="q" data-i18n>{article.title}</span>
                   </span>
-                  <span class="q" data-i18n>{article.title}</span>
                   <ChevronRight class="arr" />
                 </a>
               </li>
