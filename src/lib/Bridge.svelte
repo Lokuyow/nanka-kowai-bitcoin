@@ -1,23 +1,38 @@
 <script module>
   const url = 'https://lokuyow.github.io/sawatte-wakaru-bitcoin/';
-  // 姉妹サイトが公開 URL で受け付ける ?s= の値。
+  // 姉妹サイトが公開 URL で受け付ける ?s= の値。各話の内容にいちばん近い章へ飛ばす。
   const lessons = {
+    intro: { ja: 'はじめに', en: 'What Bitcoin is' },
+    sign: { ja: '署名', en: 'Keys and signatures' },
+    keys: { ja: '鍵の強さ', en: 'How strong keys are' },
+    ledger: { ja: 'みんなの台帳', en: 'The shared ledger' },
+    chunks: { ja: 'コインのかたまり', en: 'Coins come in chunks' },
+    mine: { ja: 'マイニング', en: 'Mining and difficulty' },
     nodes: { ja: 'ブロックが届く', en: 'How blocks reach other nodes' },
-    flow: { ja: '支払いの流れ', en: 'The payment flow' },
+    fee: { ja: '手数料オークション', en: 'The fee auction' },
+    halving: { ja: '報酬半減', en: 'Halving and the 21 million cap' },
     quiz: { ja: 'ニセ取引を見破れ', en: 'Spot the fake transaction' },
-    mining: { ja: 'マイニング競争', en: 'Mining race' },
     '51': { ja: '51%攻撃', en: '51% attack' }
   };
   const lessonByArticle = {
+    scam: 'quiz',
     ceo: 'nodes',
-    fee: 'flow',
-    hack: 'quiz',
-    energy: 'mining',
-    ai: 'mining',
+    satoshi: 'chunks',
+    fee: 'fee',
+    hack: 'ledger',
+    crime: 'ledger',
+    energy: 'mine',
+    ai: 'mine',
     ban: 'nodes',
-    quantum: 'flow',
+    reward: 'halving',
+    limit: 'halving',
+    infinite: 'chunks',
     '51': '51',
-    limit: 'nodes'
+    quantum: 'keys',
+    money: 'intro',
+    freedom: 'sign',
+    death: 'sign',
+    nation: 'halving'
   };
 </script>
 
