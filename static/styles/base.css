@@ -6,7 +6,7 @@
   }
 :root{
     -webkit-tap-highlight-color:transparent;
-    --ink:#1a1a1a; --sub:#666; --color-primary:#c44478; --color-on-primary:#fff; --bg:#eeeeeb;
+    --ink:#1a1a1a; --sub:#666; --color-primary:#c44478; --color-on-primary:#fff; --bg:#f6f6f3;
     --card:#fff;--btnbg:#1a1a1a;--btnfg:#fff;--color-secondary:#9e2b5a; --color-secondary-bg:#f7e6ed; --line:#e3e3df; --red:#d33; --green:#2e7d32;
     scroll-padding-top:88px;
   }
