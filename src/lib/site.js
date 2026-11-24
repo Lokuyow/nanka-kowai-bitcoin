@@ -18,9 +18,9 @@ export const LAYERS = [
         slug: "scam",
         navTitle: "詐欺",
         heading: "結局ビットコインって<br>詐欺なんじゃないの？",
-        cardAnswer: "ビットコインを使った詐欺の手口を見分ける",
-        description: "詐欺でよく使われる文句を、5問のクイズで見分ける。",
-        shareEn: { title: "So Bitcoin is basically a scam, right?", text: "A five-question quiz on common warning signs in scams that use Bitcoin." }
+        cardAnswer: "ビットコインそのものは詐欺じゃない",
+        description: "悪いのはビットコインを使った詐欺の手口で、ビットコインそのものじゃない。",
+        shareEn: { title: "So Bitcoin is basically a scam, right?", text: "The problem is the scam that uses Bitcoin, not Bitcoin itself." }
       },
       {
         slug: "ceo",
