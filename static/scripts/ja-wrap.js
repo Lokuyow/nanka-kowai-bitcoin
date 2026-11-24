@@ -164,10 +164,11 @@
 
   function breakPunctuation(block, width, height, left) {
     let chars = charsOf(block);
-    // 句読点（閉じ括弧が続くならその後ろ）の位置。段落の最後は除く。
+    // 句読点（閉じ括弧や句点が続くならその後ろ）の位置。段落の最後は除く。
+    // 「（秘密鍵）。」の「）」と「。」の間のように、次の文字が行頭に来てはいけないときは切らない。
     const candidates = [];
     chars.forEach((c, i) => {
-      if (!PUNCTUATION.test(c.ch) || CLOSING.test(chars[i + 1]?.ch ?? '')) return;
+      if (!PUNCTUATION.test(c.ch) || NO_LINE_START.test(chars[i + 1]?.ch ?? '')) return;
       if (chars.slice(i + 1).some((d) => /\S/.test(d.ch))) candidates.push(i);
     });
     if (!candidates.length) return;
