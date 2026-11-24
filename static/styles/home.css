@@ -31,14 +31,36 @@
 @media(prefers-reduced-motion:reduce){.peek-head,.peek-hands,.hero .t span{animation:none}}
 .subtitle{font-size:clamp(17px,3.4vw,22px);font-weight:700;margin:22px 0 6px}
 .hero .lede{font-size:15px;margin:0}
-.hero-q{display:flex;align-items:center;gap:6px;margin-top:12px;
-    font-size:13px;text-decoration:none}
-.hero-q-text{color:var(--ink);font-weight:700;white-space:nowrap;
+/* よく聞く「こわい」を、小さなおばけが吹き出しで話しかける形で見せる */
+.hero{--peek-line:#e3d9dc;--peek-ghost:#fff;--peek-eye:#1e1410}
+:root[data-theme="dark"] .hero{--peek-line:#55474d}
+.hero-talk{display:flex;align-items:flex-end;gap:10px;margin-top:18px}
+.hero-talk-ghost{flex:none;width:38px;height:42px;overflow:visible;animation:talk-bob 3.8s ease-in-out infinite}
+.hero-talk-ghost .body{fill:var(--peek-ghost);stroke:var(--peek-line);stroke-width:3;stroke-linejoin:round}
+.hero-talk-ghost .eye{fill:var(--peek-eye)}
+@keyframes talk-bob{0%,100%{transform:none}50%{transform:translateY(-3px)}}
+.hero-q{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;
+    column-gap:8px;min-width:0;width:min(100%,430px);padding:9px 12px 10px 14px;
+    background:var(--card);border:1px solid var(--line);border-radius:16px 16px 16px 4px;
+    color:var(--ink);text-decoration:none;transition:border-color .2s}
+/* おばけの方へ向いた吹き出しのしっぽ */
+.hero-q::before{content:"";position:absolute;left:-7px;bottom:8px;width:12px;height:12px;
+    background:var(--card);border-left:1px solid var(--line);border-bottom:1px solid var(--line);
+    transform:rotate(45deg) skew(8deg,8deg);border-bottom-left-radius:3px}
+.hero-q-label{grid-column:1/-1;font-size:11px;font-weight:700;color:var(--color-secondary);letter-spacing:.04em}
+.hero-q-text{font-size:15px;font-weight:700;line-height:1.5;
     transition:opacity .32s ease,transform .32s ease}
 .hero-q.swap .hero-q-text{opacity:0;transform:translateY(3px)}
 .hero-q .hero-q-arr{flex:none;color:var(--color-secondary)}
-@media(prefers-reduced-motion:reduce){.hero-q-text{transition:none}}
-.hero .action-primary{margin-top:16px;background:var(--color-primary);color:var(--color-on-primary)}
+/* 狭い画面では問いが2行になることがあるので、高さを2行分とっておき、入れ替わっても下がずれないようにする */
+@media(max-width:520px){
+    .hero-q-text{min-height:3em;display:flex;align-items:center}
+  }
+@media(hover:hover){
+    .hero-q:hover{border-color:var(--color-secondary)}
+  }
+@media(prefers-reduced-motion:reduce){.hero-q-text{transition:none}.hero-talk-ghost{animation:none}}
+.hero .action-primary{margin-top:20px;background:var(--color-primary);color:var(--color-on-primary)}
 .bridge-card{display:grid;grid-template-columns:clamp(64px,20vw,104px) minmax(0,1fr) auto;align-items:center;
     gap:10px;max-width:400px;margin:30px auto 0;padding:10px;
     border:1px solid var(--line);border-radius:12px;background:var(--card);

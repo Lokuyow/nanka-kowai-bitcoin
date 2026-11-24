@@ -67,6 +67,7 @@ export default {
   'ビットコイン': 'Bitcoin',
   'ネットやSNSで見たビットコインの話、どこまで本当？': 'How much of what you read online or on social media about Bitcoin is true?',
   'ビットコインの「こわい」をひとつずつ解きほぐす': 'Explore what makes Bitcoin seem scary, one question at a time',
+  'よく聞く「こわい」': 'Common worries',
   '値段や買い方など、最初に気になること': 'First questions, from what it costs to how to buy it',
   '盗難や電力、規制をめぐる疑問': 'Questions about theft, electricity, and regulation',
   '仕組みを知るうちに出てくる疑問': 'Questions that come up as you learn how Bitcoin works',

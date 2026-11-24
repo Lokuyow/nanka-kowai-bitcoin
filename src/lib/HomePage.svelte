@@ -46,10 +46,19 @@
       </div>
       <p class="subtitle" data-i18n>ネットやSNSで見たビットコインの話、どこまで本当？</p>
       <p class="lede" data-i18n>ビットコインの「こわい」をひとつずつ解きほぐす</p>
-      <a class="hero-q" id="heroQ" href={articlePath('scam')}>
-        <span class="hero-q-text" id="heroQText">結局ビットコインって詐欺なんじゃないの？</span>
-        <ChevronRight class="hero-q-arr" />
-      </a>
+      <!-- 小さなおばけが、よく聞く「こわい」を吹き出しで順番に話す。吹き出しはその話へのリンク -->
+      <div class="hero-talk">
+        <svg class="hero-talk-ghost" viewBox="18 10 74 82" aria-hidden="true">
+          <path class="body" d="M22 78C21 55 24 30 38 20 47 13 60 14 66 24 71 33 70 46 73 56 76 66 81 72 86 76 88 78 87 80 84 81 79 83 74 83 70 82 66 81 64 84 63 87 62 90 58 90 54 89 48 87 42 86 37 88 32 90 26 89 23 85 22 83 22 81 22 78Z" />
+          <ellipse class="eye" cx="40" cy="37" rx="4" ry="5" transform="rotate(-10 40 37)" />
+          <ellipse class="eye" cx="55" cy="39" rx="3.8" ry="5" transform="rotate(8 55 39)" />
+        </svg>
+        <a class="hero-q" id="heroQ" href={articlePath('scam')}>
+          <span class="hero-q-label" data-i18n>よく聞く「こわい」</span>
+          <span class="hero-q-text" id="heroQText">結局ビットコインって詐欺なんじゃないの？</span>
+          <ChevronRight class="hero-q-arr" />
+        </a>
+      </div>
       <a class="action-primary" href={articlePath(ARTICLES[0].slug)}>
         <span data-i18n>最初から見る</span><ChevronRight />
       </a>
