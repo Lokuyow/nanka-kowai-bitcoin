@@ -76,6 +76,13 @@
       <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span>
       <!-- 壁に映った大きな影の正体は、ライトの前にいる小さなおばけだった、という挿絵 -->
       <svg class="scene end-scene" viewBox="0 0 260 112" aria-hidden="true">
+        <defs>
+          <!-- 光の端を枠で切らず、ランプから離れるほど透明にしてふわっと消す -->
+          <radialGradient id="beamFade" gradientUnits="userSpaceOnUse" cx="60" cy="78" r="200">
+            <stop offset="0" style="stop-color:var(--color-secondary)" />
+            <stop offset="1" style="stop-color:var(--color-secondary);stop-opacity:0" />
+          </radialGradient>
+        </defs>
         <path class="beam" d="M60 78L262 -6V112H60L60 106Z" />
         <ellipse class="sh" cx="38" cy="104" rx="26" ry="3.5" />
         <ellipse class="sh" cx="116" cy="104" rx="22" ry="3.5" />

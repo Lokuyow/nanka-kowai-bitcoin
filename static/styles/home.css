@@ -89,5 +89,5 @@
   }
 /* 最後のまとめの挿絵。ライトの光と、壁に映った大きな影 */
 .end-scene{--scene-h:118px;margin:2px auto 10px}
-.end-scene .beam{fill:var(--color-secondary);opacity:.08}
+.end-scene .beam{fill:url(#beamFade);opacity:.08}
 .end-scene .shade{fill:var(--ink);opacity:.13}
