@@ -693,7 +693,7 @@ export default {
   '次の誤解：裏付けと価値 →': 'Next: Backing and value →',
   /* ===== value ===== */
   "最初の値段はどうついた？": "Where did the first price come from?",
-  "生まれたばかりのビットコインには値段がなかった。2010年ある利用者が掲示板で「ピザと1万 BTCを交換したい」と持ちかけた。引き受ける人が現れ5月22日に本人が取引成立を報告した。交換を保証する人はいなかったが、ピザと引き換えに受け取ってもいいと考える人がいた。": "When bitcoin was new, it had no price. In 2010, a forum user offered 10,000 BTC for pizza. Someone took the offer, and on May 22 the user reported that the trade had gone through. Nobody guaranteed what bitcoin could be exchanged for, but one person was willing to accept it for pizza.",
+  "生まれたばかりのビットコインには値段がなかった。2010年、ある利用者が掲示板で「ピザと1万 BTCを交換したい」と持ちかけた。引き受ける人が現れ5月22日に本人が取引成立を報告した。交換を保証する人はいなかったが、ピザと引き換えに受け取ってもいいと考える人がいた。": "When bitcoin was new, it had no price. In 2010, a forum user offered 10,000 BTC for pizza. Someone took the offer, and on May 22 the user reported that the trade had gone through. Nobody guaranteed what bitcoin could be exchanged for, but one person was willing to accept it for pizza.",
   "円は国が発行し税金の支払いにも使える。金は宝飾品や電子部品の材料になる。ビットコインには発行する国も交換を約束する会社もない。そう聞くと価値の土台が何もないように思える。": "Yen is issued by the state and can be used to pay taxes. Gold is used in jewelry and electronics. Bitcoin has no issuing state and no company promising to redeem it. That makes it sound as if nothing supports its value.",
   "当時の掲示板": "Original forum thread",
   "金や円との交換保証がなくても、買い手と売り手がいれば価格がつく。": "Buyers and sellers can give bitcoin a market price without a promise to redeem it for gold or yen.",
@@ -712,7 +712,7 @@ export default {
   '値段のつき具合': 'How high a price it can command',
   '事件を起こす': 'Cause an event',
   "買う人は何に価値を感じている？": "What do buyers see in it?",
-  "銀行を介さずに送金したい人もいれば将来に備えて持っておきたい人もいる。後者の役割を金になぞらえたのが「デジタルゴールド」という呼び名だ。実際金の需要も使い道より資産として持つための買いが多い。": "Some want to send money without a bank. Others want to hold it for the future, and that role is why bitcoin is called ‘digital gold’. In fact, most demand for gold also comes from people buying it as an asset rather than to use it.",
+  "銀行を介さずに送金したい人もいれば将来に備えて持っておきたい人もいる。後者の役割を金になぞらえたのが「デジタルゴールド」という呼び名だ。実際、金の需要も使い道より資産として持つための買いが多い。": "Some want to send money without a bank. Others want to hold it for the future, and that role is why bitcoin is called ‘digital gold’. In fact, most demand for gold also comes from people buying it as an asset rather than to use it.",
   "世界の金需要（2025年、重量ベース）": "Global gold demand by weight in 2025",
   "投資・中央銀行など": "Investment and central banks",
   "宝飾品の生産": "Jewelry production",
