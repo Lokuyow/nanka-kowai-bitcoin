@@ -686,7 +686,7 @@ export default {
   /* ===== value ===== */
   "最初の値段はどうついた？": "Where did the first price come from?",
   "生まれたばかりのビットコインには、値段がなかった。2010年、ある利用者が掲示板で「ピザと1万 BTCを交換したい」と持ちかけた。引き受ける人が現れ、5月22日に本人が取引成立を報告した。交換を保証する人はいなかったが、ピザと引き換えに受け取ってもいいと考える人がいた。": "When bitcoin was new, it had no price. In 2010, a forum user offered 10,000 BTC for pizza. Someone took the offer, and on May 22 the user reported that the trade had gone through. Nobody guaranteed what bitcoin could be exchanged for, but one person was willing to accept it for pizza.",
-  "円は国が発行し、税金の支払いにも使える。金は宝飾品や電子部品の材料になる。ビットコインには発行する国も、交換を約束する会社もない。そう聞くと、価値の土台が何もないように思える。": "Yen is issued by the state and can be used to pay taxes. Gold is used in jewelry and electronics. Bitcoin has no issuing state and no company promising to redeem it. That makes it sound as if nothing supports its value.",
+  "円は国が発行し税金の支払いにも使える。金は宝飾品や電子部品の材料になる。ビットコインには発行する国も交換を約束する会社もない。そう聞くと価値の土台が何もないように思える。": "Yen is issued by the state and can be used to pay taxes. Gold is used in jewelry and electronics. Bitcoin has no issuing state and no company promising to redeem it. That makes it sound as if nothing supports its value.",
   "当時の掲示板": "Original forum thread",
   "金や円との交換保証がなくても、買い手と売り手がいれば価格がつく。": "Buyers and sellers can give bitcoin a market price without a promise to redeem it for gold or yen.",
   "欲しい人がいれば市場で価格がつく": "Buyer demand can give it a market price",
