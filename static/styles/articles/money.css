@@ -1,4 +1,7 @@
 .vcard{font-size:14.5px;transition:opacity .35s ease}
+/* お金の3つの役割。広い画面では3枚を1段に並べ、狭い画面では1列にする */
+.cols.roles{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:520px){.cols.roles{grid-template-columns:1fr}}
 .vcard b{font-size:16px}
 .vcard ul{margin:8px 0 0;padding-left:1.25em}
 .vcard li{margin:5px 0}
