@@ -22,7 +22,7 @@ test('シェア: 日英の文言・X の URL・コピーするテキストが一
     const url = 'https://lokuyow.github.io/nanka-kowai-bitcoin/ban/';
     const expected = [
       {
-        title: '国が禁止したら、ビットコインは終わりでしょ？',
+        title: '国が禁止したらビットコインは終わりでしょ？',
         text: '国内の活動が規制されても、国外の参加者はネットワークを動かし続けられる。',
         url
       },

@@ -107,7 +107,7 @@ export const LAYERS = [
       {
         slug: "ban",
         navTitle: "規制",
-        heading: "国が禁止したら、<br>ビットコインは終わりでしょ？",
+        heading: "国が禁止したら<br>ビットコインは終わりでしょ？",
         cardAnswer: "国内は規制できる。国外では続けられる",
         description: "国内の活動が規制されても、国外の参加者はネットワークを動かし続けられる。",
         shareEn: { title: "If a country bans it, Bitcoin is finished, right?", text: "A ban can restrict activity at home while participants abroad keep the network running." }
@@ -115,7 +115,7 @@ export const LAYERS = [
       {
         slug: "tulip",
         navTitle: "バブル",
-        heading: "チューリップバブルと同じで、<br>弾けるんでしょ？",
+        heading: "チューリップバブルと同じで<br>弾けるんでしょ？",
         cardAnswer: "ビットコインは暴落と回復を繰り返してきた",
         description: "球根の投機は1637年に崩れた。ビットコインは暴落と回復を繰り返してきた。",
         shareEn: { title: "It's like the tulip bubble — it'll pop, right?", text: "Tulip speculation collapsed in 1637. Bitcoin has seen repeated crashes and recoveries." }
@@ -130,7 +130,7 @@ export const LAYERS = [
       {
         slug: "quantum",
         navTitle: "量子",
-        heading: "量子コンピューターができたら、<br>ビットコインは終わりでしょ？",
+        heading: "量子コンピューターができたら<br>ビットコインは終わりでしょ？",
         cardAnswer: "今の量子コンピューターでは鍵を破れない",
         description: "今の量子コンピューターではビットコインの鍵を破れない。将来、鍵を破れるほど強力になれば、ビットコインが盗まれるおそれがある。",
         shareEn: { title: "Once quantum computers arrive, Bitcoin is done for, right?", text: "Today's quantum computers cannot break Bitcoin's keys. If future machines become powerful enough, bitcoin could be stolen." }
@@ -138,7 +138,7 @@ export const LAYERS = [
       {
         slug: "51",
         navTitle: "攻撃",
-        heading: "51%攻撃されたら、<br>ビットコインは終わりなんでしょ？",
+        heading: "51%攻撃されたら<br>ビットコインは終わりなんでしょ？",
         cardAnswer: "妨害はできる。発行ルールは変えられない",
         description: "計算力の過半数があれば取引を妨害しやすくなるが、他人の資産を動かしたり、発行ルールを変えたりはできない。",
         shareEn: { title: "A 51% attack would finish Bitcoin, right?", text: "Majority mining power makes it easier to disrupt transactions. It cannot spend other people's funds or change the issuance rules." }
@@ -162,7 +162,7 @@ export const LAYERS = [
       {
         slug: "infinite",
         navTitle: "分割",
-        heading: "小さく割れるなら、<br>上限なんてないじゃん？",
+        heading: "小さく割れるなら<br>上限なんてないじゃん？",
         cardAnswer: "切り分けても量は同じ",
         description: "1 BTCは1億 satoshiと同じ量。単位を細かくしても発行上限は変わらない。",
         shareEn: { title: "If it can be split into tiny pieces, there's no real cap, right?", text: "One bitcoin is the same amount as 100 million satoshis. Changing units does not change the issuance limit." }
@@ -179,7 +179,7 @@ export const LAYERS = [
         navTitle: "お金",
         openQuestion: true,
         heading: "お金ってそもそも何？",
-        cardAnswer: "支払う、値段を比べる、あとで使う",
+        cardAnswer: "支払う・値段を比べる・あとで使う",
         description: "お金には、支払う、値段を比べる、あとで使うという役割がある。",
         shareEn: { title: "What even is money, anyway?", text: "Money helps us pay, compare prices, and save for later." }
       },
@@ -196,8 +196,8 @@ export const LAYERS = [
         slug: "fair",
         navTitle: "公平",
         openQuestion: true,
-        heading: "早く持った人が得をするのは、<br>ずるくない？",
-        cardAnswer: "早く買う利点と、そのときのリスク",
+        heading: "早く持った人が得をするのは<br>ずるくない？",
+        cardAnswer: "早く買う利点とそのときのリスク",
         description: "先に知って買えた利点と、先に引き受けた値下がりのリスクをどう見る？",
         shareEn: { title: "Isn't it cheating when early holders profit?", text: "How do you weigh the advantage of buying early against the risk early buyers faced?" }
       },
@@ -205,7 +205,7 @@ export const LAYERS = [
         slug: "death",
         navTitle: "相続",
         openQuestion: true,
-        heading: "自分が死んだら、<br>ビットコインはどうなる？",
+        heading: "自分が死んだら<br>ビットコインはどうなる？",
         cardAnswer: "鍵や復元情報を引き継げるか",
         description: "自分で鍵を管理する場合、相続人が資産を動かすには鍵か復元情報が必要になる。",
         shareEn: { title: "If I die, what happens to my Bitcoin?", text: "If you hold your own keys, your heirs need them or enough information to recover them." }
@@ -214,7 +214,7 @@ export const LAYERS = [
         slug: "future",
         navTitle: "未来",
         openQuestion: true,
-        heading: "ビットコインが当たり前になったら、<br>社会はどうなる？",
+        heading: "ビットコインが当たり前になったら<br>社会はどうなる？",
         cardAnswer: "支払い方と値段の付け方を考える",
         description: "ビットコインが広く使える社会なら、あなたは支払いや貯金に何を選ぶ？",
         shareEn: { title: "If Bitcoin became ordinary, what would happen to society?", text: "If Bitcoin were widely accepted, what would you choose for payments and savings?" }
