@@ -201,7 +201,7 @@ var el = document.getElementById('nowPrice');
   var OPEN_GAP = 0.006;   // 差が開いたときの幅（基準価格の0.6%）
   var FEE = 0.0005;       // 売り買い合わせた手数料（基準価格の0.05%）
   var SIZE = 0.1;         // 1回に売り買いする量（BTC）
-  var mA, mB, profit, lastMsg, news;
+  var mA, mB, profit, lastMsg, news, touched = false;
   function cur(){ return window.LANG === 'en' ? 'usd' : 'jpy'; }
   function money(m){
     var v = Math.round(m * BASE[cur()]);
@@ -251,6 +251,7 @@ var el = document.getElementById('nowPrice');
   }
   $('arbTrade').addEventListener('click', function(){
     if (done()) return;
+    touched = true;
     var c = cheap(), h = pricey(), g = gap();
     profit += (g - FEE) * SIZE;
     // 安い方は買われて売り注文が減るので上がり、高い方は売られて買い注文が減るので下がる
@@ -269,6 +270,7 @@ var el = document.getElementById('nowPrice');
   });
   $('arbNews').addEventListener('click', function(){
     // 交互に片方だけ買いが殺到して、その取引所の値段だけが上がる
+    touched = true;
     var x = news++ % 2 === 0 ? 'A' : 'B';
     var other = x === 'A' ? mB : mA;
     if (x === 'A') mA = other + OPEN_GAP; else mB = other + OPEN_GAP;
@@ -279,4 +281,14 @@ var el = document.getElementById('nowPrice');
   });
   document.addEventListener('langchange', render);
   reset();
+  // 上の注文板と同じく、実データが取れたらいまの価格（円は1万円、ドルは100ドル単位に丸める）を基準にする
+  if (window.LiveData) {
+    window.LiveData.loadPrices().then(function(d){
+      if (touched || !d || (!d.jpy && !d.usd)) return;
+      var jpy = d.jpy || d.usd * BASE.jpy / BASE.usd;
+      var usd = d.usd || d.jpy * BASE.usd / BASE.jpy;
+      BASE = { jpy: Math.round(jpy / 10000) * 10000, usd: Math.round(usd / 100) * 100 };
+      render();
+    });
+  }
 })();
