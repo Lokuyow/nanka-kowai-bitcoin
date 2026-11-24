@@ -652,6 +652,7 @@ export default {
   '次の誤解：チューリップバブル →': 'Next: The tulip bubble →',
   /* ===== tulip ===== */
   '開始時の価格に対する倍率（対数目盛り）': 'Price relative to the start (log scale)',
+  '横軸の目盛りは等間隔ではない。最初の数か月ほど広く表示している。': 'The horizontal axis is not evenly spaced: the early months are stretched.',
   '過去の価格を比べた図。球根の価格指数は約3か月で20倍を超え、半年後には最初の水準に近づいた。ビットコインは約13年の間に下落と高値更新を繰り返した': 'Historical price comparison. The tulip bulb index rose more than twentyfold in about three months and was near its starting level after six months. Bitcoin saw repeated declines and new highs over nearly 13 years.',
   'それぞれの開始からの期間（最初の数か月を拡大）': 'Time since each series began (early months expanded)',
   '1万×': '10k×',
@@ -673,7 +674,7 @@ export default {
   'チューリップは一度弾けて終わった。ビットコインは大きく下げて「終わった」と言われるたびに戻ってきた': 'Tulips popped once and ended. Bitcoin has come back every time it fell hard and was declared "finished"',
   'チューリップバブルと同じで<br>弾けるんでしょ？': 'Just like the tulip bubble,<br>it\'ll pop, right?',
   "ビットコインは暴落のあとに何度も高値を更新した。<br>チューリップ球根の投機は1637年に崩れた。": "Bitcoin has set new highs after several crashes.<br>Tulip bulb speculation collapsed in 1637.",
-  "ビットコインの価格が急に上がると、歴史の教科書に載っているチューリップバブルの図を思い出す。メディアも「現代のチューリップバブル」とよく例える。急騰のあとに暴落すると聞くと、ビットコインもそのまま終わるように思える。": "A chart shooting straight up recalls the tulip bubble diagram from history textbooks. \"The modern tulip bubble\" is a comparison the media loves. Told as surge-then-collapse, it sounds like it simply ends.",
+  "ビットコインの価格が急に上がると、歴史の教科書に載っているチューリップバブルの図を思い出す。メディアも「現代のチューリップバブル」によく例えられる。急騰のあとに暴落すると聞くと、ビットコインもそのまま終わるように思える。": "A chart shooting straight up recalls the tulip bubble diagram from history textbooks. \"The modern tulip bubble\" is a comparison the media loves. Told as surge-then-collapse, it sounds like it simply ends.",
   "値動きを比べる売買ゲーム": "A trading game comparing price changes",
   "次の値動きがわからないとき、いつ買っていつ売る？ 2つの架空のチャートで試してみよう。": "When would you buy or sell if you couldn't see what comes next? Try it on two fictional charts.",
   '資産': 'Assets',

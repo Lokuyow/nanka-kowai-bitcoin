@@ -46,3 +46,4 @@
 .tulip-legend i.bulb{border-top:3px dashed var(--red)}
 .tulip-sources{display:flex;flex-wrap:wrap;justify-content:center;gap:2px 12px;margin-top:6px}
 .tulip-sources a{padding:.45em 0}
+.tulip-axis-warn{color:var(--red);font-weight:700}
