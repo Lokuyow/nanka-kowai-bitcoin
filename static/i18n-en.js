@@ -731,7 +731,7 @@ export default {
   "<b style=\"color:var(--color-secondary)\">支払う</b><br>店がお金を受け取ってくれるので、パンや魚を買える。": "<b style=\"color:var(--color-secondary)\">Pay</b><br>Shops accept money in exchange for bread or fish.",
   "お金には、支払う、値段を比べる、あとで使うという役割がある。": "Money helps us pay, compare prices, and save for later.",
   "支払う・値段を比べる・あとで使う": "Pay, compare prices, and save for later",
-  '答えはひとつじゃない': 'There is no single answer',
+  '考えてみよう': 'Something to think about',
   'この問いをシェアする': 'Share this question',
   'お金ってそもそも何？：なんか よくわからんけど こわい ビットコイン': "What even is money, anyway? | I don't really get it, but it's scary: Bitcoin",
   "支払う・値段を比べる・あとで使う。あなたならビットコインをどの役割に使いたい？": "Paying, comparing prices, or saving for later: which of these roles would you want Bitcoin to serve?",

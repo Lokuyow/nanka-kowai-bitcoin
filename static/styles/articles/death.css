@@ -16,3 +16,9 @@
 
 .gmsg:empty,.reflect:empty{display:none}
 .gbtns:not(:has(button:not([hidden]))){display:none}
+/* まだ来ていない場面と、最後のひとことは場所だけ取っておく */
+.stepcard.pending,.reflect.pending{visibility:hidden}
+/* 「時を進める」と「別の残し方で試す」は同じ場所で入れ替える */
+#btnTime:not([hidden]),#btnRetryWay:not([hidden]){grid-area:1/1}
+.gbtns:has(#btnTime){display:grid;justify-content:center}
+.gbtns:has(#btnTime:not([hidden])) .off{visibility:hidden}
