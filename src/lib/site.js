@@ -184,6 +184,15 @@ export const LAYERS = [
         shareEn: { title: "What even is money, anyway?", text: "Money helps us pay, compare prices, and save for later." }
       },
       {
+        slug: "nation",
+        navTitle: "発行",
+        openQuestion: true,
+        heading: "国が作らないお金って<br>ありなの？",
+        cardAnswer: "江戸時代には商人が発行したお金もあった",
+        description: "江戸時代には、幕府の貨幣と並んで藩札や商人の私札も使われた。",
+        shareEn: { title: "Can money exist that no country makes?", text: "In Edo-period Japan, locally issued domain and merchant notes circulated alongside the shogunate's money." }
+      },
+      {
         slug: "freedom",
         navTitle: "自由",
         openQuestion: true,
@@ -218,15 +227,6 @@ export const LAYERS = [
         cardAnswer: "貯金と借金の重さが入れ替わる",
         description: "お金の量が増えない社会では、貯金は目減りしにくく、借金は重くなる。暮らしの土台はどう変わる？",
         shareEn: { title: "If Bitcoin became ordinary, what would happen to society?", text: "In a society where the amount of money doesn't grow, savings hold their value and debt gets heavier. How would the foundations of life change?" }
-      },
-      {
-        slug: "nation",
-        navTitle: "発行",
-        openQuestion: true,
-        heading: "国が作らないお金って<br>ありなの？",
-        cardAnswer: "江戸時代には商人が発行したお金もあった",
-        description: "江戸時代には、幕府の貨幣と並んで藩札や商人の私札も使われた。",
-        shareEn: { title: "Can money exist that no country makes?", text: "In Edo-period Japan, locally issued domain and merchant notes circulated alongside the shogunate's money." }
       }
     ]
   }
