@@ -5,8 +5,6 @@
 /* 30年の比較。年数のスライダー、杯数のグラフ、2つの世界の数字 */
 .yrlbl{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:13.5px;color:var(--sub)}
 .yrlbl b{flex:none;min-width:4.5em;text-align:right;color:var(--ink);font-size:17px;font-variant-numeric:tabular-nums}
-/* つまみ（半径14px）が両端でカードからはみ出さないよう、左右につまみの半径分の余白を持たせる */
-#yearRange{padding-inline:14px}
 .cupchart{display:block;margin-top:14px;overflow:visible}
 .cup-base{stroke:var(--line);stroke-dasharray:4 4}
 .cup-line{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}

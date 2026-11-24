@@ -41,6 +41,8 @@ table a{display:inline-block;padding:.5em .4em;margin:-.5em -.4em}
     transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
 .stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
 input[type=range]{appearance:none;display:block;width:100%;height:44px;margin:0;
+    /* つまみ（半径14px）が両端でカードからはみ出さないよう、左右につまみの半径分の余白を持たせる */
+    padding-inline:14px;
     --range-track:linear-gradient(to right,var(--color-secondary) var(--range-progress,0%),var(--color-secondary-bg) 0);
     background:transparent;cursor:pointer}
 input[type=range]::-webkit-slider-runnable-track{box-sizing:border-box;height:16px;border:1px solid var(--sub);
