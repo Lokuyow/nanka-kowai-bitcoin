@@ -8,7 +8,9 @@
   let en = $derived(lang === 'en');
   // <title> と description は、言語切り替えで辞書と突き合わせるので辞書の訳を使う。
   let documentTitle = $derived(en ? dictionary[jaTitle] : jaTitle);
-  let metaDescription = $derived(en ? dictionary[description] : description);
+  let isArticle = $derived(shareType === 'article');
+  // 記事ページで共有される文は疑問文（タイトル）だけにする。答えの文は共有まわりに出さない。
+  let metaDescription = $derived(isArticle ? (en ? shareEn.title : title) : (en ? dictionary[description] : description));
   let url = $derived(path === undefined ? undefined : siteUrl(path, lang));
   let ogTitle = $derived(en ? shareEn.title : title);
   let ogDescription = $derived(en ? shareEn.text : description);
@@ -25,7 +27,9 @@
     <meta property="og:type" content={shareType} />
     <meta property="og:site_name" content={en ? dictionary[SITE_TITLE] : SITE_TITLE} />
     <meta property="og:title" content={ogTitle} />
-    <meta property="og:description" content={ogDescription} />
+    {#if !isArticle}
+      <meta property="og:description" content={ogDescription} />
+    {/if}
     <meta property="og:url" content={url} />
     <meta property="og:locale" content={en ? 'en_US' : 'ja_JP'} />
     <meta property="og:locale:alternate" content={en ? 'ja_JP' : 'en_US'} />
@@ -36,7 +40,9 @@
     <meta property="og:image:alt" content={ogTitle} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={ogTitle} />
-    <meta name="twitter:description" content={ogDescription} />
+    {#if !isArticle}
+      <meta name="twitter:description" content={ogDescription} />
+    {/if}
     <meta name="twitter:image" content={url + 'ogp.png'} />
     <meta name="twitter:image:alt" content={ogTitle} />
   {/if}

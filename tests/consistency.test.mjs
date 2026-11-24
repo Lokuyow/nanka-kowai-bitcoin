@@ -137,7 +137,11 @@ test('英語版（/en/）は英語の OGP と、日本語版への相互リン�
     assert.ok(html.includes(`<meta property="og:image" content="${url}ogp.png"`), `en/${route}: og:image`);
     assert.ok(html.includes(`<meta property="og:locale" content="en_US"`), `en/${route}: og:locale`);
     assert.ok(html.includes(`<meta property="og:title" content="${escape(shareEn.title)}"`), `en/${route}: og:title`);
-    assert.ok(html.includes(`<meta property="og:description" content="${escape(shareEn.text)}"`), `en/${route}: og:description`);
+    if (route === '') {
+      assert.ok(html.includes(`<meta property="og:description" content="${escape(shareEn.text)}"`), `en/${route}: og:description`);
+    } else {
+      assert.ok(!html.includes('og:description'), `en/${route}: 記事の og:description は出さない（疑問文だけ）`);
+    }
     assert.ok(html.includes(`<link rel="alternate" hreflang="ja" href="${SITE_URL + route}"`), `en/${route}: hreflang ja`);
     assert.ok(!/<title>[^<]*[\u3040-\u30ff]/.test(html), `en/${route}: 英語のタイトル`);
 
