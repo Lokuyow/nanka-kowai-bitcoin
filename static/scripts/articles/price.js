@@ -33,6 +33,7 @@ var el = document.getElementById('nowPrice');
   // 中心より上の最初の格子、最良の買いはその1段下。
   function buildBook(center){
     TICK = niceTick(center);
+    if (cur !== 'usd') TICK = Math.max(TICK, 10000); // 円は板を1万円単位（万円表記で割り切れる）にする
     price = center;
     var bestAsk = Math.ceil((center + 1) / TICK) * TICK;
     asks = ASK_A.map(function(a, i){ return { p: bestAsk + i * TICK, a: a }; }); // 安い順（先頭が最良気配）
@@ -65,8 +66,8 @@ var el = document.getElementById('nowPrice');
   }
   function manLabel(p){
     if (cur === 'usd') return '$' + Math.round(p).toLocaleString('en-US');
-    // 万円表記と円表記が交互に混ざると比べにくいので、常に円表記にそろえる
-    return Math.round(p).toLocaleString('ja-JP') + '円';
+    // 板の価格は1万円刻みなので、万円表記にそろえる（千の位以下は出さない）
+    return Math.round(p / 10000).toLocaleString('ja-JP') + '万円';
   }
   function renderUnit(){
     var base = cur === 'usd' ? 'USD / BTC' : '円 / BTC';
