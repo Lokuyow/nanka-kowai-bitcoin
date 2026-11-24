@@ -65,7 +65,7 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
     .tabbar{display:none}
     /* ヘッダーは目次の上まで伸ばし、ロゴを目次の左端にそろえる。 */
     .site-header{margin-left:-296px}
-    /* 今いる層は目次で分かるので、題名の上の層リンクは出さない。 */
+    /* 今いる層は目次でわかるので、題名の上の層リンクは出さない。 */
     .eyebrow{display:none}
     .chapter h1{margin-top:28px}
     .toc{display:block;position:fixed;top:68px;bottom:16px;left:calc(50% - 450px);width:200px;

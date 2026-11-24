@@ -50,7 +50,7 @@ var wedge = document.getElementById('wedge');
   var hintEl = document.getElementById('satHint');
   if (window.LANG === 'en') range.value = 37;   /* 英語モードの初期位置は $100 になる位置 */
   var shown = window.LANG === 'en' ? 100000 : 6667, raf = null;
-  var btcJpy = 15000000, btcUsd = 100000;   /* 換算に使う1BTCの価格（円／ドル）。実データが取れたら差し替える */
+  var btcJpy = 15000000, btcUsd = 100000;   /* 換算に使う1 BTCの価格（円／ドル）。実データが取れたら差し替える */
   var livePrice = null;    /* { jpy, usd, source } 実価格（取れた場合のみ） */
   function renderHint(){
     if (!hintEl) return;

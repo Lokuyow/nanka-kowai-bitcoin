@@ -29,6 +29,6 @@
 .money-coin img{position:absolute;top:50%;left:50%;width:200%;height:auto;transform:translate(-50%,-53%)}
 .money-history figcaption{font-size:14px}
 .money-history a{display:inline-block;margin-top:4px;font-size:12px}
-/* 終わったあとの店の列。押せないことが分かるよう薄くする */
+/* 終わったあとの店の列。押せないことがわかるよう薄くする */
 .market-stalls.done button{opacity:.45;cursor:default}
 .market-stalls.done button:hover{border-color:var(--line);background:var(--bg)}

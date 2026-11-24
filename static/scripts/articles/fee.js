@@ -59,7 +59,7 @@
       noteEl.textContent = L('「自分で送金する」の手数料はいまの実データ（' + srcs + '）から計算しています。取引所の出金手数料は一例として 0.0005 BTC を同じ価格で円に換算しています。',
         'The "send it yourself" fee is calculated from live data (' + srcs + '). The exchange withdrawal fee is an example 0.0005 BTC, converted to dollars at the same price.');
     } else {
-      noteEl.textContent = L('実データを取得できなかったため、手数料は目安の数値で計算しています。取引所の出金手数料は一例として 0.0005 BTC（1BTC=1,500万円なら7,500円）で計算しています。',
+      noteEl.textContent = L('実データを取得できなかったため、手数料は目安の数値で計算しています。取引所の出金手数料は一例として 0.0005 BTC（1 BTC=1,500万円なら7,500円）で計算しています。',
         'Live data could not be loaded, so the fees are calculated with illustrative values. The exchange withdrawal fee is an example 0.0005 BTC ($50 if 1 BTC = $100,000).');
     }
   }
