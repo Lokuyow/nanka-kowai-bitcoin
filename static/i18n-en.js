@@ -695,7 +695,7 @@ export default {
   '裏付けがないビットコインは<br>価値ゼロでしょ？': 'With no backing, Bitcoin is<br>worth zero, right?',
   "金や円との交換保証がなくても、売買が成立すれば価格はつく。": "A trade gives bitcoin a price, with or without a promise to redeem it for gold or yen.",
   "値段を動かすのは何？": "What moves the price?",
-  "ピザのような取引が積み重なると市場の値段になる。値段を左右するのは買いたい人の多さと出回る量だ。石ころ金ビットコインを切り替えて2つのスライダーを動かしてみよう。": "As trades like the pizza deal add up, a market price forms. That price depends on how many people want to buy and how much is available. Switch between a stone, gold and bitcoin, and try moving the two sliders.",
+  "ピザのような取引が積み重なると市場の値段になる。値段を左右するのは買いたい人の多さと出回る量だ。石ころ、金、ビットコインを切り替えて2つのスライダーを動かしてみよう。": "As trades like the pizza deal add up, a market price forms. That price depends on how many people want to buy and how much is available. Switch between a stone, gold and bitcoin, and try moving the two sliders.",
   'ものの切り替え': 'Switch item',
   'ただの石ころ': 'Just a stone',
   '金（ゴールド）': 'Gold',
