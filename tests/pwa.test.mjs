@@ -118,10 +118,10 @@ test('PWA: スマホでサイト内リンクを押すと HTML の通信なしで
     await page.locator('#story-price a').tap();
     await page.waitForURL(server.base + 'price/', { waitUntil: 'load' });
     await page.getByRole('link', { name: '次の話', exact: true }).tap();
-    await page.waitForURL(server.base + 'fee/', { waitUntil: 'load' });
+    await page.waitForURL(server.base + 'satoshi/', { waitUntil: 'load' });
     await page.locator('.tabbar .idx').tap();
-    await page.waitForURL(server.base + '#story-fee', { waitUntil: 'load' });
-    assert.ok(!requests.some((url) => [BASE_PATH, BASE_PATH + 'price/', BASE_PATH + 'fee/'].includes(url)
+    await page.waitForURL(server.base + '#story-satoshi', { waitUntil: 'load' });
+    assert.ok(!requests.some((url) => [BASE_PATH, BASE_PATH + 'price/', BASE_PATH + 'satoshi/'].includes(url)
       || url.endsWith('.html')), 'トップとフッターのリンクで HTML を再取得しない');
 
     requests.length = 0;

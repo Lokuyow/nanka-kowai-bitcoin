@@ -40,21 +40,21 @@ export const LAYERS = [
         liveData: true
       },
       {
-        slug: "fee",
-        navTitle: "手数料",
-        heading: "ビットコインの送金手数料って<br>高いよね？",
-        cardAnswer: "出金手数料と送金手数料は別々",
-        description: "取引所の出金手数料と、取引を記録するネットワークの手数料は別々に決まる。",
-        shareEn: { title: "Bitcoin transfer fees are expensive, right?", text: "Exchange withdrawal fees and transaction network fees are set separately." },
-        liveData: true
-      },
-      {
         slug: "satoshi",
         navTitle: "少額",
         heading: "1ビットコインって何百万円も<br>するんでしょ？ 買えないよ",
         cardAnswer: "1 BTCより少ない量でも買える",
         description: "1 BTCを丸ごと買う必要はない。金額を決めて、その分だけ買える。",
         shareEn: { title: "A bitcoin costs tens of thousands of dollars, right? No way I can buy that", text: "You can buy a fraction of a bitcoin by choosing how much to spend." },
+        liveData: true
+      },
+      {
+        slug: "fee",
+        navTitle: "手数料",
+        heading: "ビットコインの送金手数料って<br>高いよね？",
+        cardAnswer: "出金手数料と送金手数料は別々",
+        description: "取引所の出金手数料と、取引を記録するネットワークの手数料は別々に決まる。",
+        shareEn: { title: "Bitcoin transfer fees are expensive, right?", text: "Exchange withdrawal fees and transaction network fees are set separately." },
         liveData: true
       },
       {
@@ -128,22 +128,6 @@ export const LAYERS = [
     description: "仕組みを知るうちに出てくる疑問",
     articles: [
       {
-        slug: "quantum",
-        navTitle: "量子",
-        heading: "量子コンピューターができたら<br>ビットコインは終わりでしょ？",
-        cardAnswer: "今の量子コンピューターでは鍵を破れない",
-        description: "今の量子コンピューターではビットコインの鍵を破れない。将来、鍵を破れるほど強力になれば、ビットコインが盗まれるおそれがある。",
-        shareEn: { title: "Once quantum computers arrive, Bitcoin is done for, right?", text: "Today's quantum computers cannot break Bitcoin's keys. If future machines become powerful enough, bitcoin could be stolen." }
-      },
-      {
-        slug: "51",
-        navTitle: "攻撃",
-        heading: "51%攻撃されたら<br>ビットコインは終わりなんでしょ？",
-        cardAnswer: "妨害はできる。発行ルールは変えられない",
-        description: "計算力の過半数があれば取引を妨害しやすくなるが、他人の資産を動かしたり、発行ルールを変えたりはできない。",
-        shareEn: { title: "A 51% attack would finish Bitcoin, right?", text: "Majority mining power makes it easier to disrupt transactions. It cannot spend other people's funds or change the issuance rules." }
-      },
-      {
         slug: "reward",
         navTitle: "報酬",
         heading: "マイニング報酬がなくなったら<br>ビットコインは終わりでしょ？",
@@ -166,6 +150,22 @@ export const LAYERS = [
         cardAnswer: "切り分けても量は同じ",
         description: "1 BTCは1億 satoshiと同じ量。単位を細かくしても発行上限は変わらない。",
         shareEn: { title: "If it can be split into tiny pieces, there's no real cap, right?", text: "One bitcoin is the same amount as 100 million satoshis. Changing units does not change the issuance limit." }
+      },
+      {
+        slug: "51",
+        navTitle: "攻撃",
+        heading: "51%攻撃されたら<br>ビットコインは終わりなんでしょ？",
+        cardAnswer: "妨害はできる。発行ルールは変えられない",
+        description: "計算力の過半数があれば取引を妨害しやすくなるが、他人の資産を動かしたり、発行ルールを変えたりはできない。",
+        shareEn: { title: "A 51% attack would finish Bitcoin, right?", text: "Majority mining power makes it easier to disrupt transactions. It cannot spend other people's funds or change the issuance rules." }
+      },
+      {
+        slug: "quantum",
+        navTitle: "量子",
+        heading: "量子コンピューターができたら<br>ビットコインは終わりでしょ？",
+        cardAnswer: "今の量子コンピューターでは鍵を破れない",
+        description: "今の量子コンピューターではビットコインの鍵を破れない。将来、鍵を破れるほど強力になれば、ビットコインが盗まれるおそれがある。",
+        shareEn: { title: "Once quantum computers arrive, Bitcoin is done for, right?", text: "Today's quantum computers cannot break Bitcoin's keys. If future machines become powerful enough, bitcoin could be stolen." }
       }
     ]
   },

@@ -304,7 +304,7 @@ export default {
   'ホール': 'Whole',
   '半分': 'Half',
   '4切れ': '4 slices',
-  "手数料に出てくる 0.0005 BTC のように、1 BTCより小さい量も買える。次の話で、その仕組みを見る。": "Amounts below one bitcoin, like the 0.0005 BTC in these fees, can be bought too. The next chapter shows how.",
+  "手数料に出てくる 0.0005 BTC のように、1 BTCより小さい量も買える。その仕組みは前の話で見た。": "Amounts below one bitcoin, like the 0.0005 BTC in these fees, can be bought too. The previous chapter showed how.",
   '100万分の1': 'One millionth',
   '1 satoshi': '1 satoshi',
   "いちばん小さい単位は 1 satoshi（0.00000001 BTC）。図では100万分の1以下の一切れを、見えるように大きく描いている。": "The smallest unit is one satoshi (0.00000001 BTC). Slices of one millionth and smaller are enlarged so you can see them.",
