@@ -42,6 +42,7 @@
       <h1 data-i18n-html>{@html article.heading}</h1>
       {@html data.body}
     </article>
+    <Share {...article} label={article.openQuestion ? 'この問いをシェアする' : 'この答えをシェアする'} url={siteUrl(path)} urlEn={siteUrl(path, 'en')} {lang} />
     {#if data.next}
       <a class="read-next" href={articlePath(data.next.slug)}>
         <span>
@@ -58,7 +59,6 @@
     {/if}
   </main>
   <footer>
-    <Share {...article} label={article.openQuestion ? 'この問いをシェアする' : 'この答えをシェアする'} url={siteUrl(path)} urlEn={siteUrl(path, 'en')} {lang} />
     <Bridge articleSlug={article.slug} />
   </footer>
 </div>
