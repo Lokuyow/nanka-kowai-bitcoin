@@ -72,7 +72,8 @@
       {/each}
     </div>
 
-    <div class="summary home-end">
+    <div class="summary home-end"><small data-i18n>読み終わったら</small>
+      <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span>
       <!-- 壁に映った大きな影の正体は、ライトの前にいる小さなおばけだった、という挿絵 -->
       <svg class="scene end-scene" viewBox="0 0 260 112" aria-hidden="true">
         <path class="beam" d="M60 78L262 -6V112H60L60 106Z" />
@@ -96,9 +97,7 @@
         </g>
         <path class="af tw" d="M146 34l1.4 3.8 3.8 1.4-3.8 1.4-1.4 3.8-1.4-3.8-3.8-1.4 3.8-1.4z" />
         <path class="af tw d2" d="M78 40l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z" />
-      </svg>
-      <small data-i18n>読み終わったら</small>
-      <span data-i18n>「こわい」の正体はたいてい「わからなさ」だった</span></div>
+      </svg></div>
   </main>
   <footer class="home-end">
     <Share {...HOME} label="このサイトをシェアする" url={siteUrl()} urlEn={siteUrl('', 'en')} {lang} />
