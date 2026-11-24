@@ -301,7 +301,7 @@ export default {
   '1 satoshi': '1 satoshi',
   "いちばん小さい単位は 1 satoshi（0.00000001 BTC）。図では百万分の1以下の一切れを、見えるように大きく描いている。": "The smallest unit is one satoshi (0.00000001 BTC). Slices of one millionth and smaller are enlarged so you can see them.",
   '100円分でも買える': 'You can buy even $1 worth',
-  "最低購入額は取引所によって違う。スライダーを動かして、手数料を引く前の購入量の目安を見てみよう。": "The minimum purchase varies by exchange. Move the slider to estimate what your budget would buy before fees.",
+  "最低購入額は取引所によって違う。スライダーを動かして、購入量の目安を見てみよう。": "The minimum purchase varies by exchange. Move the slider to estimate how much you could buy.",
   '買う金額:': 'Amount to buy:',
   '買う金額': 'Amount to buy',
   '買える量:': 'You get:',
