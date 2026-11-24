@@ -44,7 +44,7 @@ export const LAYERS = [
         navTitle: "手数料",
         heading: "ビットコインの送金手数料って<br>高いよね？",
         cardAnswer: "出金手数料と送金手数料は別々",
-        description: "取引所の出金料金と、取引を記録するネットワークの手数料は別々に決まる。",
+        description: "取引所の出金手数料と、取引を記録するネットワークの手数料は別々に決まる。",
         shareEn: { title: "Bitcoin transfer fees are expensive, right?", text: "Exchange withdrawal fees and transaction network fees are set separately." },
         liveData: true
       },

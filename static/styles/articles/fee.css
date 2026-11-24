@@ -32,3 +32,8 @@
 .nw{white-space:nowrap}
 .receipt .line>span:first-child{flex:0 0 auto;white-space:nowrap}
 .receipt .line>span:last-child{text-align:right}
+/* 単位の短い説明。本文より小さく、用語名を太字で左にそろえる */
+.terms{display:grid;gap:4px;margin:12px 0 0;font-size:12px;line-height:1.6;color:var(--sub)}
+.terms div{display:flex;gap:10px}
+.terms dt{flex:none;min-width:4.5em;font-weight:700;color:var(--ink)}
+.terms dd{margin:0}
