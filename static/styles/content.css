@@ -72,7 +72,7 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
   :root[data-theme="dark"] .vs .mini,:root[data-theme="dark"] .minestats div,
   :root[data-theme="dark"] .rwnums div,:root[data-theme="dark"] .eras span,
   :root[data-theme="dark"] .outdot{background:#2a2c31}
-:root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
+:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,
   :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
   :root[data-theme="dark"] .banbtns button:not(.banned),:root[data-theme="dark"] .capbtns button:not(.on),
   :root[data-theme="dark"] .cutbtns button:not(.on),

@@ -78,7 +78,7 @@
 .qscore b{font-size:17px}
 #qNext{min-height:44px}
 .stamp.ok{border-color:var(--green);color:var(--green)}
-:root[data-theme="dark"] #gmSell,:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,:root[data-theme="dark"] #qScam,
+:root[data-theme="dark"] #hkEdit,:root[data-theme="dark"] #qOk,:root[data-theme="dark"] #qScam,
   :root[data-theme="dark"] .gbtns .sub-btn,:root[data-theme="dark"] .pbtns .sub-btn,
   :root[data-theme="dark"] .tradebtns .sell,
   :root[data-theme="dark"] .banbtns button:not(.banned),:root[data-theme="dark"] .capbtns button:not(.on),
