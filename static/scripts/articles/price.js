@@ -65,8 +65,8 @@ var el = document.getElementById('nowPrice');
   }
   function manLabel(p){
     if (cur === 'usd') return '$' + Math.round(p).toLocaleString('en-US');
-    return p % 10000 === 0 ? (p / 10000).toLocaleString('ja-JP') + '万円'
-                           : Math.round(p).toLocaleString('ja-JP') + '円';
+    // 万円表記と円表記が交互に混ざると比べにくいので、常に円表記にそろえる
+    return Math.round(p).toLocaleString('ja-JP') + '円';
   }
   function renderUnit(){
     var base = cur === 'usd' ? 'USD / BTC' : '円 / BTC';
