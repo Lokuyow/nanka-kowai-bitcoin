@@ -11,7 +11,7 @@ export const HOME = {
 export const LAYERS = [
   {
     number: 1,
-    title: "名前はしってる",
+    title: "名前は知ってる",
     description: "値段や買い方など、最初に気になること",
     articles: [
       {

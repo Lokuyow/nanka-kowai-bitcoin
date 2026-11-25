@@ -26,7 +26,7 @@ export default {
   "100万": "1M",
   "ふだん使うアプリには運営会社があることが多い。": "Many of the apps we use every day are run by companies.",
   'なんか よくわからんけど<br>こわい ビットコイン': "I don't really get it,<br>but it's scary: Bitcoin",
-  '名前はしってる': "I've heard the name",
+  '名前は知ってる': "I've heard the name",
   'ニュースで見たよ': 'I saw it on the news',
   'ちょっと詳しいよ': 'I know a thing or two',
   'そもそもお金って何？': 'Wait — what even is money?',

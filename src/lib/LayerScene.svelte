@@ -21,7 +21,7 @@
 <svg class="scene layer-scene" viewBox="0 0 160 92" aria-hidden="true">
   <ellipse class="sh" cx="40" cy="87" rx="20" ry="3" />
   {#if number === 1}
-    <!-- 名前はしってる：大きなコインを、おばけがのぞきこむ -->
+    <!-- 名前は知ってる：大きなコインを、おばけがのぞきこむ -->
     <ellipse class="sh" cx="112" cy="87" rx="26" ry="3" />
     <circle class="ac" cx="112" cy="50" r="30" />
     <circle class="hl" cx="112" cy="50" r="21" />
