@@ -22,3 +22,41 @@
 #btnTime:not([hidden]),#btnRetryWay:not([hidden]){grid-area:1/1}
 .gbtns:has(#btnTime){display:grid;justify-content:center}
 .gbtns:has(#btnTime:not([hidden])) .off{visibility:hidden}
+
+/* 失われたビットコインの帯。上限2,100万BTCを横幅100%とする */
+.lostfig{margin:12px 0 0}
+.lostbar{display:flex;height:26px;border-radius:8px;overflow:hidden;background:color-mix(in srgb,var(--sub) 12%,transparent)}
+.lostbar .seg{height:100%}
+.seg.lost-min,.lostlegend i.lost-min{background:var(--red)}
+.seg.lost-range{background:repeating-linear-gradient(135deg,var(--red) 0 4px,color-mix(in srgb,var(--red) 35%,transparent) 4px 8px)}
+.seg.issued,.lostlegend i.issued{background:var(--color-secondary)}
+.seg.future,.lostlegend i.future{background:color-mix(in srgb,var(--sub) 30%,transparent)}
+.lostlegend{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:6px}
+.lostlegend li{display:grid;grid-template-columns:12px 1fr auto;gap:8px;align-items:center;font-size:14px}
+.lostlegend i{width:12px;height:12px;border-radius:3px}
+.lostlegend b{font-variant-numeric:tabular-nums}
+.lostfig figcaption{margin-top:10px}
+
+/* 家族に残すメモ */
+.cols.memo{margin-top:12px}
+.memo-col{margin-top:0;border-top:4px solid var(--line)}
+.memo-col.keep{border-top-color:var(--green)}
+.memo-col.avoid{border-top-color:var(--red)}
+.memo-tag{display:inline-block;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px}
+.memo-col.keep .memo-tag{background:#e9f4e9;color:var(--green)}
+.memo-col.avoid .memo-tag{background:#fbeaea;color:var(--red)}
+:root[data-theme="dark"] .memo-col.keep .memo-tag{background:color-mix(in srgb,var(--green) 18%,transparent)}
+:root[data-theme="dark"] .memo-col.avoid .memo-tag{background:color-mix(in srgb,var(--red) 18%,transparent)}
+.memo-col ul{list-style:none;margin:10px 0 0;padding:0}
+.memo-col li{position:relative;padding:6px 0 6px 1.5em;font-size:14.5px;border-bottom:1px dashed var(--line)}
+.memo-col li:last-child{border-bottom:0}
+.memo-col.keep li::before{content:"\2713";position:absolute;left:0;color:var(--green);font-weight:700}
+.memo-col.avoid li::before{content:"\00D7";position:absolute;left:0;color:var(--red);font-weight:700}
+
+/* 財産として引き継ぐときの流れ */
+.estate{list-style:none;counter-reset:st;padding:6px 16px}
+.estate li{counter-increment:st;display:grid;grid-template-columns:1.8em 1fr;column-gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.estate li:last-child{border-bottom:0}
+.estate li::before{content:counter(st);grid-row:span 2;width:1.8em;height:1.8em;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--color-secondary-bg);color:var(--color-secondary)}
+.estate b{font-size:15px}
+.estate span{font-size:14.5px}
