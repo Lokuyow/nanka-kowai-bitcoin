@@ -37,6 +37,8 @@
 .market-stalls.done button:hover{border-color:var(--line);background:var(--bg)}
 /* 現金・金・ビットコインの比較表。左の列に性質と説明、右の3列に評価を並べ、1行で1つの性質が完結するようにする */
 .money-compare{table-layout:fixed;font-size:14px}
+/* 英語の長い単語（Verifiable など）が細い列からはみ出さないよう、必要なら単語の途中で改行する */
+.money-compare :is(th,td){overflow-wrap:anywhere;hyphens:auto}
 .money-compare caption{text-align:left;font-weight:700;margin-bottom:8px}
 .money-compare .trait-col{width:30%}
 .money-compare thead th{text-align:center}

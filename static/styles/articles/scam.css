@@ -48,6 +48,11 @@
 @media(max-width:440px){
     .scene .who{flex-basis:48px}
   }
+/* さらに狭い画面では手口名を上の行に出し、お金が動く通り道の幅を確保する */
+@media(max-width:380px){
+    .scene{flex-wrap:wrap;row-gap:2px}
+    .scene .medium{order:-1;flex-basis:100%;display:flex;align-items:baseline;justify-content:center;gap:8px}
+  }
 .same{margin:12px 0 0;font-size:14px;text-align:center}
 .same b{background:var(--color-secondary-bg);border-radius:6px;padding:1px 6px}
 .words{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}

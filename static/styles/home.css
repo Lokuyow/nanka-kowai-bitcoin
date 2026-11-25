@@ -85,7 +85,14 @@
 .layer-top-text{min-width:0}
 .layer-scene{flex:none;width:200px;height:auto;margin:0 0 4px}
 .layer-scene .qm{font-size:24px}
-@media(max-width:520px){.layer-scene{width:120px}}
+/* 狭い画面では見出しを横幅いっぱいに使い（英語の見出しが2行に割れないように）、挿絵は説明文の横に置く */
+@media(max-width:520px){
+    .layer-top{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:8px}
+    .layer-top-text{display:contents}
+    .layerhead{grid-column:1/-1}
+    .layerdesc{grid-column:1;grid-row:2}
+    .layer-scene{grid-column:2;grid-row:2;width:112px}
+  }
 .story-list{display:block;padding:0;margin:0;list-style:none}
 .story-list li+li{border-top:1px solid var(--line)}
 /* 各層の4話目以降をしまっておく「もっと見る」。開いたらボタンは消して、続きの話だけを並べる */
@@ -138,12 +145,12 @@
 .credit i{font-style:normal;opacity:.6}
 @media(max-width:520px){
     .hero{margin-top:18px}
-    .hero .t{font-size:34px}
+    .hero .t{font-size:clamp(26px, 9.2vw, 34px)}
     .peek{padding-top:66px}
     .peek-head{width:120px;height:84px;right:24px;top:0}
     .peek-hands{width:120px;height:26px;right:22px;top:-13px}
     .hero-card{padding:22px 20px 18px}
-    :root[data-lang="en"] .hero .t{font-size:clamp(22px, 7.2vw, 27px)}
+    :root[data-lang="en"] .hero .t{font-size:clamp(20px, 6.8vw, 27px)}
   }
 /* 最後のまとめの挿絵。ライトの光と、壁に映った大きな影 */
 .end-scene{--scene-h:118px;margin:2px auto 10px}
