@@ -19,6 +19,11 @@
   }
 
   render();
+  // 言語が切り替わったら、次のローテーションを待たずに今の問いを描き直す
+  new MutationObserver(() => render()).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+  });
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   setInterval(() => {
     if (document.hidden) return;
