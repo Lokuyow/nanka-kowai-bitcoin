@@ -26,3 +26,39 @@
 .evcard.slot .et{font-weight:400}
 /* 最後のメッセージが出てもボタンが下にずれないよう、ゲーム中はメッセージの行を空けておく */
 .stage-body #gMsg:empty{display:block}
+
+/* 管理のしかたの比較。4つの方法を同じ場所に重ね、選んだものだけ見せる */
+.waypick button{flex:1 1 calc(50% - 8px);max-width:220px;padding:10px 12px;font-size:14.5px}
+.ways{display:grid;margin-top:14px}
+.way{grid-area:1/1}
+.way.off{visibility:hidden}
+.way-desc{margin:0 0 10px;font-size:14.5px;color:var(--sub)}
+.way-rows{margin:0;border-top:1px solid var(--line)}
+.way-row{display:grid;grid-template-columns:9.5em 1fr;gap:12px;padding:10px 2px;border-bottom:1px solid var(--line)}
+.way-row dt{font-size:13.5px;font-weight:700;color:var(--sub)}
+.way-row dd{margin:0;font-size:14.5px;display:flex;gap:.5em;align-items:baseline}
+.way-row .mark{flex:none;font-weight:700;width:1.1em;text-align:center}
+.mark.ok{color:var(--green)}
+.mark.weak{color:var(--ink)}
+.mark.ng{color:var(--red)}
+@media(max-width:520px){.way-row{grid-template-columns:1fr;gap:2px}}
+
+/* 止められないことの両面 */
+.cols.sides{margin-top:12px}
+.side{margin-top:0;display:flex;flex-direction:column;align-items:flex-start;gap:8px;border-top:4px solid var(--line)}
+.side.help{border-top-color:var(--green)}
+.side.harm{border-top-color:var(--red)}
+.side p{margin:0;font-size:14.5px}
+.side-tag{font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px}
+.side.help .side-tag{background:#e9f4e9;color:var(--green)}
+.side.harm .side-tag{background:#fbeaea;color:var(--red)}
+:root[data-theme="dark"] .side.help .side-tag{background:color-mix(in srgb,var(--green) 18%,transparent)}
+:root[data-theme="dark"] .side.harm .side-tag{background:color-mix(in srgb,var(--red) 18%,transparent)}
+
+/* 自分で鍵を持つときに決めておくこと */
+.tips{list-style:none;counter-reset:tip;padding:6px 16px}
+.tips li{counter-increment:tip;display:grid;grid-template-columns:1.8em 1fr;column-gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.tips li:last-child{border-bottom:0}
+.tips li::before{content:counter(tip);grid-row:span 2;width:1.8em;height:1.8em;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;background:var(--color-secondary-bg);color:var(--color-secondary)}
+.tips b{font-size:15px}
+.tips span{font-size:14.5px}

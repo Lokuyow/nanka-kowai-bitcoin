@@ -29,4 +29,83 @@
     </div>
   </section>
 
+  <section>
+    <h2 data-i18n>管理のしかたは2択じゃない</h2>
+    <p class="lede" data-i18n>誰に任せ、どこまで自分で持つかで、守ってもらえることと自分で防ぐことが入れ替わる。方法を選んで比べてみよう。</p>
+    <div class="card">
+      <div class="pickbtns waypick" role="group" aria-label="管理のしかた" id="wayPick" data-i18n-label>
+        <button type="button" data-way="0" aria-pressed="true" class="on" data-i18n>銀行口座</button>
+        <button type="button" data-way="1" aria-pressed="false" data-i18n>取引所に預ける</button>
+        <button type="button" data-way="2" aria-pressed="false" data-i18n>鍵を1つ持つ</button>
+        <button type="button" data-way="3" aria-pressed="false" data-i18n>鍵を分けて持つ</button>
+      </div>
+      <!-- 4つの方法を同じ場所に重ね、切り替えても高さが変わらないようにする -->
+      <div class="ways" aria-live="polite">
+        <div class="way" data-way="0">
+          <p class="way-desc" data-i18n>銀行がお金を預かり、送金も銀行が行う。</p>
+          <dl class="way-rows">
+            <div class="way-row"><dt data-i18n>自分の判断で送れる？</dt><dd><span class="mark weak" role="img" aria-label="条件しだい" data-i18n-label>△</span><span data-i18n>銀行や国が止めたり凍結したりできる。詐欺の送金を止めてもらえることもある。</span></dd></div>
+            <div class="way-row"><dt data-i18n>鍵やパスワードをなくしたら</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>本人確認をすれば、カードや暗証番号を作り直せる。</span></dd></div>
+            <div class="way-row"><dt data-i18n>盗まれたら</dt><dd><span class="mark weak" role="img" aria-label="条件しだい" data-i18n-label>△</span><span data-i18n>不正に引き出されたとき、補償されることがある。</span></dd></div>
+            <div class="way-row"><dt data-i18n>預け先がつぶれたら</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>預金保険で一定額まで守られる国が多い。</span></dd></div>
+            <div class="way-row"><dt data-i18n>手間</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>管理は銀行に任せておける。</span></dd></div>
+          </dl>
+        </div>
+        <div class="way off" data-way="1" aria-hidden="true">
+          <p class="way-desc" data-i18n>ビットコインを取引所が預かる。鍵を持っているのは取引所だ。</p>
+          <dl class="way-rows">
+            <div class="way-row"><dt data-i18n>自分の判断で送れる？</dt><dd><span class="mark weak" role="img" aria-label="条件しだい" data-i18n-label>△</span><span data-i18n>取引所が出金を止めたり、口座を凍結したりできる。</span></dd></div>
+            <div class="way-row"><dt data-i18n>鍵やパスワードをなくしたら</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>本人確認をすれば、ログインし直せる。</span></dd></div>
+            <div class="way-row"><dt data-i18n>盗まれたら</dt><dd><span class="mark weak" role="img" aria-label="条件しだい" data-i18n-label>△</span><span data-i18n>取引所が補償することもあるが、取引所しだいだ。</span></dd></div>
+            <div class="way-row"><dt data-i18n>預け先がつぶれたら</dt><dd><span class="mark ng" role="img" aria-label="自分で防ぐしかない" data-i18n-label>×</span><span data-i18n>長いあいだ引き出せなくなった例がある（2014年のマウントゴックス、2022年のFTX）。</span></dd></div>
+            <div class="way-row"><dt data-i18n>手間</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>管理は取引所に任せておける。</span></dd></div>
+          </dl>
+        </div>
+        <div class="way off" data-way="2" aria-hidden="true">
+          <p class="way-desc" data-i18n>鍵を自分のウォレットで持つ。送金できるのは鍵を持つ人だけだ。</p>
+          <dl class="way-rows">
+            <div class="way-row"><dt data-i18n>自分の判断で送れる？</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>誰にも止められない。</span></dd></div>
+            <div class="way-row"><dt data-i18n>鍵やパスワードをなくしたら</dt><dd><span class="mark ng" role="img" aria-label="自分で防ぐしかない" data-i18n-label>×</span><span data-i18n>復元用の言葉の控えがなければ、二度と使えない。</span></dd></div>
+            <div class="way-row"><dt data-i18n>盗まれたら</dt><dd><span class="mark ng" role="img" aria-label="自分で防ぐしかない" data-i18n-label>×</span><span data-i18n>鍵を知られたら、取り返す方法はない。</span></dd></div>
+            <div class="way-row"><dt data-i18n>預け先がつぶれたら</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>預け先がない。アプリがなくなっても、鍵があれば別のアプリで使える。</span></dd></div>
+            <div class="way-row"><dt data-i18n>手間</dt><dd><span class="mark weak" role="img" aria-label="条件しだい" data-i18n-label>△</span><span data-i18n>鍵の保管は自分で行う。</span></dd></div>
+          </dl>
+        </div>
+        <div class="way off" data-way="3" aria-hidden="true">
+          <p class="way-desc" data-i18n>たとえば3つの鍵のうち2つがそろえば送れるようにする（マルチシグ）。</p>
+          <dl class="way-rows">
+            <div class="way-row"><dt data-i18n>自分の判断で送れる？</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>誰にも止められない。</span></dd></div>
+            <div class="way-row"><dt data-i18n>鍵やパスワードをなくしたら</dt><dd><span class="mark weak" role="img" aria-label="条件しだい" data-i18n-label>△</span><span data-i18n>3つのうち1つをなくしても、残り2つで送れる。</span></dd></div>
+            <div class="way-row"><dt data-i18n>盗まれたら</dt><dd><span class="mark weak" role="img" aria-label="条件しだい" data-i18n-label>△</span><span data-i18n>1つ盗まれただけでは動かせない。</span></dd></div>
+            <div class="way-row"><dt data-i18n>預け先がつぶれたら</dt><dd><span class="mark ok" role="img" aria-label="心配が少ない" data-i18n-label>○</span><span data-i18n>預け先がない。</span></dd></div>
+            <div class="way-row"><dt data-i18n>手間</dt><dd><span class="mark ng" role="img" aria-label="自分で防ぐしかない" data-i18n-label>×</span><span data-i18n>設定も保管も複雑で、間違えると使えなくなる。</span></dd></div>
+          </dl>
+        </div>
+      </div>
+      <p class="hint" data-i18n>○は心配が少ない、△は条件しだい、×は自分で防ぐしかない。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n>誰にも止められないことの両面</h2>
+    <p class="lede" data-i18n>銀行が送金を止められる力は、詐欺から守る力にもなり、口座を凍結する力にもなる。止める人がいないビットコインでは、その両方がなくなる。</p>
+    <div class="cols sides">
+      <div class="card side help"><span class="side-tag" data-i18n>止められずに済んだ</span><p data-i18n>2020年、ナイジェリアで警察の暴力に抗議する運動を支えていた団体は、寄付を受ける銀行口座が使えなくなった。そこでビットコインで寄付を受け付け、活動を続けた。</p></div>
+      <div class="card side harm"><span class="side-tag" data-i18n>止められずに困る</span><p data-i18n>パソコンのデータを人質にとるランサムウェアでは、身代金を暗号資産で払うよう求められることが多い。払ったお金を誰かに止めてもらうことはできない。</p></div>
+    </div>
+    <p class="hint" data-i18n>どちらも同じ仕組みから生まれる。止める人がいないことを自由と見るか危うさと見るかは、立場によって変わる。</p>
+  </section>
+
+  <section>
+    <h2 data-i18n>自分で鍵を持つなら、決めておくこと</h2>
+    <p class="lede" data-i18n>止めてくれる人がいないぶん、守りかたを先に用意しておく。</p>
+    <ol class="card tips">
+      <li><b data-i18n>控えは紙に</b><span data-i18n>復元用の言葉は紙に書き、写真やクラウドには残さない。</span></li>
+      <li><b data-i18n>誰にも教えない</b><span data-i18n>復元用の言葉を聞いてくる人は、相手が誰でも詐欺と考える。</span></li>
+      <li><b data-i18n>まず少額で</b><span data-i18n>初めての送り先には、まず少額を送って届くか確かめる。</span></li>
+      <li><b data-i18n>全体を見比べる</b><span data-i18n>貼り付けたアドレスは、最初と最後だけでなく全体を見比べる。</span></li>
+      <li><b data-i18n>家族に伝える</b><span data-i18n>もしものときに家族が困らないよう、伝えかたを決めておく。</span></li>
+    </ol>
+  </section>
+
 <div class="summary"><small data-i18n>考えてみよう</small><span data-i18n>鍵を自分で持てば自分の判断で送金できる。そのぶん鍵の保管や送金先の確認も自分で行う。あなたはどこまで自分で管理したい？</span></div>

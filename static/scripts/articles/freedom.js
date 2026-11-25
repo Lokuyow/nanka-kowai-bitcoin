@@ -138,3 +138,17 @@
   });
   renderSysLine();
 })();
+
+(function(){
+  // 管理のしかたを選ぶと、その方法で守ってもらえることと自分で防ぐことを表示する。
+  var btns = document.querySelectorAll('#wayPick button');
+  var panels = document.querySelectorAll('.ways .way');
+  function select(i){
+    btns.forEach(function(b, j){ b.classList.toggle('on', j === i); b.setAttribute('aria-pressed', String(j === i)); });
+    panels.forEach(function(p, j){
+      p.classList.toggle('off', j !== i);
+      if (j === i) p.removeAttribute('aria-hidden'); else p.setAttribute('aria-hidden', 'true');
+    });
+  }
+  btns.forEach(function(b, j){ b.addEventListener('click', function(){ select(j); }); });
+})();
