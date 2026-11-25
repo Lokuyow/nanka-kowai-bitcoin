@@ -130,7 +130,7 @@ export const LAYERS = [
       {
         slug: "reward",
         navTitle: "報酬",
-        heading: "マイニング報酬がなくなったら<br>ビットコインは終わりでしょ？",
+        heading: "採掘報酬がなくなったら<br>ビットコインは終わりでしょ？",
         cardAnswer: "新規発行が終わっても手数料は残る",
         description: "マイナーの収入は、ビットコインの新規発行分と手数料。新規発行が終わると手数料だけになる。",
         shareEn: { title: "If mining rewards run out, Bitcoin is finished, right?", text: "Miners earn newly issued bitcoin and transaction fees. After issuance ends, only fees remain." }
