@@ -45,4 +45,11 @@ GitHub Actions は PR と `main` への push でテストを実行し、`main` �
 
 このサイトのオリジナルの文章・コードなどは CC0 1.0 Universal で公開しています。全文は [LICENSE](LICENSE) を参照してください。
 
-サイトタイトルに使う M PLUS 1 Code のサブセットは SIL Open Font License 1.1 で配布しています。著作権表示とライセンス全文は [OFL.txt](static/fonts/OFL.txt) を参照してください。
+次のものは CC0 の対象外で、それぞれの権利者のライセンスに従います。
+
+- サイトタイトルに使う M PLUS 1 Code のサブセット（`static/fonts/m-plus-1-code-title.woff2`）は SIL Open Font License 1.1 で配布しています。著作権表示とライセンス全文は [OFL.txt](static/fonts/OFL.txt) を参照してください。
+- ビルドで生成されるファイル（`build/`）には、Svelte・SvelteKit・Workbox のコードが含まれます。これらは MIT ライセンスです。著作権表示とライセンス全文は、`npm install` 後の `node_modules/svelte/LICENSE.md`、`node_modules/@sveltejs/kit/LICENSE`、`node_modules/workbox-precaching/LICENSE` などを参照してください。
+
+次の素材は外部から取得したものですが、もとから CC0 で公開されています。
+
+- 寛永通宝の写真（`static/media/kanei-tsuho-four-mon.webp`）は、[クリーブランド美術館](https://www.clevelandart.org/art/1918.695)のオープンアクセス画像（CC0）を縮小・変換したものです。
