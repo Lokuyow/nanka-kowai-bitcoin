@@ -25,7 +25,8 @@
     <ellipse class="sh" cx="112" cy="87" rx="26" ry="3" />
     <circle class="ac" cx="112" cy="50" r="30" />
     <circle class="hl" cx="112" cy="50" r="21" />
-    <path class="al" d="M106 38v24M104 40h10a5 5 0 0 1 0 10h-10m0 0h11a5.5 5.5 0 0 1 0 11h-11M109 35v3M109 62v3" />
+    <!-- ₿：縦線1本と、上下2つのふくらみ、上下に飛び出す2本ずつの短い線 -->
+    <path class="al" stroke-linecap="round" stroke-linejoin="round" d="M106 38v25M104 38h9a6 6 0 0 1 0 12h-9M104 50h10a6.5 6.5 0 0 1 0 13h-10M108.5 34v4M113.5 34v4M108.5 63v4M113.5 63v4" />
     {@render ghost(6, 30, 0.6)}
     <text class="qm tw" x="62" y="30">?</text>
     <path class="af tw d2" d="M150 14l1.2 3.3 3.3 1.2-3.3 1.2-1.2 3.3-1.2-3.3-3.3-1.2 3.3-1.2z" />
