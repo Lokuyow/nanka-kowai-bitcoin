@@ -88,6 +88,19 @@
 @media(max-width:520px){.layer-scene{width:120px}}
 .story-list{display:block;padding:0;margin:0;list-style:none}
 .story-list li+li{border-top:1px solid var(--line)}
+/* 各層の4話目以降をしまっておく「残りN話を見る」。開いたらボタンは消して、続きの話だけを並べる */
+.story-more{border-top:1px solid var(--line)}
+.story-more summary{display:flex;align-items:center;justify-content:center;gap:6px;min-height:46px;margin-top:6px;
+    border-radius:12px;list-style:none;cursor:pointer;font-size:14px;font-weight:700;color:var(--color-secondary);
+    touch-action:manipulation;transition:background-color .18s ease}
+.story-more summary::-webkit-details-marker{display:none}
+.story-more summary .more-arr{transform:rotate(90deg)}
+.story-more summary:focus-visible{outline:2px solid var(--color-secondary);outline-offset:2px}
+.story-more[open]{border-top:0}
+.story-more[open] summary{display:none}
+.story-more[open] .story-list{border-top:1px solid var(--line)}
+@media(hover:hover){.story-more summary:hover{background:var(--color-secondary-bg)}}
+.story-more summary:active{background:var(--color-secondary-bg)}
 .unit{display:flex;align-items:center;gap:13px;border-radius:12px;padding:13px 10px;
     text-decoration:none;color:var(--ink);touch-action:manipulation;
     transition:background-color .18s ease}

@@ -10,7 +10,23 @@
   import SiteHeader from './SiteHeader.svelte';
 
   let { lang = 'ja' } = $props();
+  const SHOWN = 3;
 </script>
+
+{#snippet story(article)}
+  <li id={'story-' + article.slug}>
+    <a class="unit" href={articlePath(article.slug)}>
+      <span class="unit-marker">
+        <ArticleIcon slug={article.slug} />
+      </span>
+      <span class="unit-text">
+        <span class="unit-eyebrow"><span>{String(article.number).padStart(2, '0')}</span><span aria-hidden="true">·</span><span data-i18n>{article.navTitle}</span></span>
+        <span class="q" data-i18n>{article.title}</span>
+      </span>
+      <ChevronRight class="arr" />
+    </a>
+  </li>
+{/snippet}
 
 <PageHead title={HOME.title} description={HOME.description} shareEn={HOME.shareEn} path="" {lang} shareType="website" />
 
@@ -19,6 +35,7 @@
   <link rel="stylesheet" href={BASE_PATH + 'styles/home.css'} />
   <script defer src={BASE_PATH + 'scripts/share.js'}></script>
   <script defer src={BASE_PATH + 'scripts/hero-questions.js'}></script>
+  <script defer src={BASE_PATH + 'scripts/story-more.js'}></script>
   <script defer src={BASE_PATH + 'scripts/navigation-feedback.js'}></script>
 </svelte:head>
 
@@ -67,6 +84,7 @@
 
     <div class="story-index" id="stories">
       {#each LAYERS as layer (layer.number)}
+        {@const stories = ARTICLES.filter((article) => article.layer === layer.number)}
         <section class="story-layer" id={'layer-' + layer.number} aria-labelledby={'layer-title-' + layer.number}>
           <div class="layer-top">
             <div class="layer-top-text">
@@ -75,22 +93,22 @@
             </div>
             <LayerScene number={layer.number} />
           </div>
+          <!-- 一度に23話が並ぶと多く見えるので、各層は最初の3話だけ見せ、残りは開いて見る -->
           <ul class="story-list">
-            {#each ARTICLES.filter((article) => article.layer === layer.number) as article (article.slug)}
-              <li id={'story-' + article.slug}>
-                <a class="unit" href={articlePath(article.slug)}>
-                  <span class="unit-marker">
-                    <ArticleIcon slug={article.slug} />
-                  </span>
-                  <span class="unit-text">
-                    <span class="unit-eyebrow"><span>{String(article.number).padStart(2, '0')}</span><span aria-hidden="true">·</span><span data-i18n>{article.navTitle}</span></span>
-                    <span class="q" data-i18n>{article.title}</span>
-                  </span>
-                  <ChevronRight class="arr" />
-                </a>
-              </li>
+            {#each stories.slice(0, SHOWN) as article (article.slug)}
+              {@render story(article)}
             {/each}
           </ul>
+          {#if stories.length > SHOWN}
+            <details class="story-more">
+              <summary><span data-i18n data-i18n-en={'Show ' + (stories.length - SHOWN) + ' more'}>残り{stories.length - SHOWN}話を見る</span><ChevronRight class="more-arr" /></summary>
+              <ul class="story-list">
+                {#each stories.slice(SHOWN) as article (article.slug)}
+                  {@render story(article)}
+                {/each}
+              </ul>
+            </details>
+          {/if}
         </section>
       {/each}
     </div>
