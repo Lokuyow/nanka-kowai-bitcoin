@@ -3,7 +3,12 @@
    その層を開いてから、その話の位置へ移す。 */
 (() => {
   function reveal() {
-    const id = decodeURIComponent(location.hash.slice(1));
+    let id;
+    try {
+      id = decodeURIComponent(location.hash.slice(1));
+    } catch {
+      return;
+    }
     if (!id) return;
     const target = document.getElementById(id);
     const more = target && target.closest('details.story-more');
