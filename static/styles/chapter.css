@@ -75,10 +75,10 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
     .toc-layer{margin:0}
     .toc-layer+.toc-layer{margin-top:16px}
     .toc-head{margin:0 0 4px;padding:0 10px;font-size:12px;font-weight:700;color:var(--sub)}
-    /* 層番号の丸を下の話のアイコンと同じ幅にして、縦の列をそろえる */
+    /* 層番号の丸は、下の話数より少し大きくして見出しだとわかるようにする */
     .toc-head .layer-label{display:flex;align-items:center;gap:10px}
-    .toc-head .layer-number{display:grid;place-items:center;box-sizing:border-box;width:18px;min-width:0;height:18px;
-        padding:0;margin:0;font-size:11px;line-height:1;font-variant-numeric:tabular-nums}
+    .toc-head .layer-number{display:grid;place-items:center;box-sizing:border-box;width:22px;min-width:0;height:22px;
+        padding:0;margin:0;font-size:12.5px;line-height:1;font-variant-numeric:tabular-nums}
     .toc ol{list-style:none;margin:0;padding:0}
     .toc a{display:flex;align-items:center;gap:10px;min-height:34px;padding:0 10px;border-radius:9px;
         color:var(--sub);text-decoration:none;font-size:14px;line-height:1.3}
