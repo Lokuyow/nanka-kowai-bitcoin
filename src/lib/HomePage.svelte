@@ -4,6 +4,7 @@
   import Bridge from './Bridge.svelte';
   import ChevronRight from './ChevronRight.svelte';
   import LayerLabel from './LayerLabel.svelte';
+  import LayerScene from './LayerScene.svelte';
   import PageHead from './PageHead.svelte';
   import Share from './Share.svelte';
   import SiteHeader from './SiteHeader.svelte';
@@ -67,8 +68,13 @@
     <div class="story-index" id="stories">
       {#each LAYERS as layer (layer.number)}
         <section class="story-layer" id={'layer-' + layer.number} aria-labelledby={'layer-title-' + layer.number}>
-          <h2 class="layerhead" id={'layer-title-' + layer.number}><LayerLabel {layer} /></h2>
-          <p class="layerdesc" data-i18n>{layer.description}</p>
+          <div class="layer-top">
+            <div class="layer-top-text">
+              <h2 class="layerhead" id={'layer-title-' + layer.number}><LayerLabel {layer} /></h2>
+              <p class="layerdesc" data-i18n>{layer.description}</p>
+            </div>
+            <LayerScene number={layer.number} />
+          </div>
           <ul class="story-list">
             {#each ARTICLES.filter((article) => article.layer === layer.number) as article (article.slug)}
               <li id={'story-' + article.slug}>

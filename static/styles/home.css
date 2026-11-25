@@ -80,6 +80,12 @@
 .layerhead{font-size:clamp(18px,3vw,23px);line-height:1.4;margin:0 0 5px}
 .layerhead::before{display:none}
 .layerdesc{font-size:14px;color:var(--sub);margin:0 0 12px}
+/* 層の見出しの右に小さな挿絵を添える。狭い画面では少し小さくする */
+.layer-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.layer-top-text{min-width:0}
+.layer-scene{flex:none;width:200px;height:auto;margin:0 0 4px}
+.layer-scene .qm{font-size:24px}
+@media(max-width:520px){.layer-scene{width:120px}}
 .story-list{display:block;padding:0;margin:0;list-style:none}
 .story-list li+li{border-top:1px solid var(--line)}
 .unit{display:flex;align-items:center;gap:13px;border-radius:12px;padding:13px 10px;
