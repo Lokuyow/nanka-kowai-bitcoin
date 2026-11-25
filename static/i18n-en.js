@@ -273,7 +273,6 @@ export default {
   "混雑や取引データの大きさで変わる": "Varies with demand and transaction size",
   'ビットコインの最小単位 satoshi の数。1 BTC = 1億 sats': 'A count of satoshis, the smallest unit of bitcoin. 1 BTC = 100 million sats',
   '手数料の率。取引データの大きさ 1 vB（仮想バイト）あたり何 sats 払うか': 'The fee rate: how many sats you pay per vB (virtual byte) of transaction data',
-  "ウォレットから送る例では取引1件分の手数料の目安を示している。取引所は複数人の出金をまとめて1件の取引で送ることもある。": "The wallet estimate is for one transaction. An exchange can combine several customers' withdrawals into one transaction.",
   "手数料と相手に届く額の比較": "Compare the fees and the amount received",
   "この例では取引所の出金手数料と送金データの大きさを固定している。送金に使う予算を変えて、手数料と相手に届く額を比べてみよう。": "This example holds the exchange's fee and the size of the transaction data fixed. Change the transfer budget and compare the fee and the amount received.",
   '送る額:': 'Amount to send:',
