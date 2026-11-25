@@ -3,7 +3,7 @@
 :root[data-theme="dark"] .chapter{--l-state:#ff9cc4;--l-goods:#f0a860;--l-private:#7fc787;--l-rule:#b5a8f5}
 
 /* 時代 × 作り手の表。上の行が時代のボタン、左の列が作り手 */
-.lanes{display:grid;grid-template-columns:46px repeat(7,minmax(0,1fr));gap:4px 3px;align-items:center}
+.lanes{display:grid;grid-template-columns:64px repeat(7,minmax(0,1fr));gap:4px 3px;align-items:center}
 .era-btn{min-height:40px;padding:4px 0;border-radius:9px;background:transparent;color:var(--sub);border:0;
     font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;letter-spacing:-.02em}
 .era-btn[aria-pressed="true"]{background:var(--color-primary);color:var(--color-on-primary)}
@@ -75,8 +75,9 @@
 .law h3{margin:0 0 4px;font-size:16px}
 
 @media(max-width:400px){
-    .lanes{grid-template-columns:38px repeat(7,minmax(0,1fr));gap:4px 2px}
-    .era-btn,.lane-lbl{font-size:11px}
+    .lanes{grid-template-columns:50px repeat(7,minmax(0,1fr));gap:4px 2px}
+    .lane-lbl{font-size:10px}
+    .era-btn{font-size:10.5px;letter-spacing:-.04em}
   }
 /* 英語の行名（Private など）は日本語より長いので、行名の列を広げる */
 :root[data-lang="en"] .lanes{grid-template-columns:60px repeat(7,minmax(0,1fr))}

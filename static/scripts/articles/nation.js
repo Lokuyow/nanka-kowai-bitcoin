@@ -5,7 +5,7 @@
     {key: 'state', ja: '国・王', en: 'State', on: [0, 1, 1, 0, 1, 1, 1]},
     {key: 'private', ja: '民間', en: 'Private', on: [0, 0, 1, 1, 1, 0, 0]},
     {key: 'goods', ja: 'モノ', en: 'Goods', on: [1, 1, 0, 0, 1, 0, 0]},
-    {key: 'rule', ja: 'ルール', en: 'Rules', on: [0, 0, 0, 0, 0, 0, 1]}
+    {key: 'rule', ja: 'プログラム', en: 'Software', on: [0, 0, 0, 0, 0, 0, 1]}
   ];
   var lanes = document.getElementById('lanes');
   var eraBtns = lanes.querySelectorAll('.era-btn');
