@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { readFile, readdir, unlink, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from 'vite';
@@ -68,6 +68,13 @@ for (const page of pages) {
   );
   await writeFile(filename, rewritten);
   precache[pageUrl.pathname] = await fingerprint(file, rewritten);
+}
+
+// ページ・CSS・マニフェストからの参照はすべて versioned URL に差し替わっているので、
+// fingerprint 元のファイルは公開ディレクトリに残さない（ページ本体は対象外）。
+// manifest.webmanifest は素のURLでも取得できることが期待されているので残す。
+for (const file of [...fonts, ...assets]) {
+  await unlink(path.join(buildDir, file));
 }
 
 await build({
