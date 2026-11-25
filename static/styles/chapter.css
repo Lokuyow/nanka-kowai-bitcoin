@@ -83,6 +83,9 @@ html{scroll-padding-bottom:calc(74px + env(safe-area-inset-bottom))}
     .toc a{display:flex;align-items:center;gap:10px;min-height:34px;padding:0 10px;border-radius:9px;
         color:var(--sub);text-decoration:none;font-size:14px;line-height:1.3}
     .toc .unit-icon{flex:none;width:18px;height:18px;opacity:.75}
+    /* トップの一覧と同じ2桁の話数。名前の頭がそろうよう幅を固定する */
+    .toc .toc-num{flex:none;width:1.6em;margin-right:-4px;font-size:11.5px;font-weight:700;letter-spacing:.03em;font-variant-numeric:tabular-nums;color:var(--sub);opacity:.8}
+    .toc a[aria-current="page"] .toc-num{color:inherit;opacity:1}
     .toc a[aria-current="page"]{background:var(--color-secondary-bg);color:var(--color-secondary);font-weight:700}
     .toc a[aria-current="page"] .unit-icon{opacity:1}
   }

@@ -15,6 +15,7 @@
         {#each ARTICLES.filter((article) => article.layer === layer.number) as article (article.slug)}
           <li>
             <a href={articlePath(article.slug)} aria-current={article.slug === current ? 'page' : undefined}>
+              <span class="toc-num">{String(article.number).padStart(2, '0')}</span>
               <ArticleIcon slug={article.slug} />
               <span data-i18n>{article.navTitle}</span>
             </a>
