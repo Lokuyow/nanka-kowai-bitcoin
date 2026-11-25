@@ -77,6 +77,13 @@
     // 句読点で終わるとき、または <br> の前（狭い画面で <br> を隠す題名がある）は、そこでも改行できるようにする。
     if (text.length > 1 && (PHRASE_END.test(text) || node.nextSibling?.nodeName === 'BR')) indexes.push(text.length);
     if (indexes.at(-1) === text.length && node.nextSibling?.nodeName === 'WBR') indexes.pop();
+    // flex や grid の箱に文字が直接入っていると、<wbr> で分けた断片がそれぞれ別の子になり、
+    // 文節ごとに縦の列へ割れたり、gap のすき間が空いたりする。先に1つの span に包んでから分ける。
+    if (indexes.length && /flex|grid/.test(getComputedStyle(parent).display)) {
+      const span = document.createElement('span');
+      node.before(span);
+      span.append(node);
+    }
     const pieces = [node];
     for (const index of indexes.reverse()) {
       const wbr = document.createElement('wbr');
