@@ -132,7 +132,8 @@
     areas.forEach(function(el, i){ el.setAttribute('d', band(hist, i)); });
     shEls.forEach(function(el, i){ el.textContent = pct(end[i]); });
     var keep = 100 / Math.pow(1 + s, YEARS);
-    keepVal.textContent = L(Math.round(keep) + '万円分', '¥' + (Math.round(keep) * 10000).toLocaleString('en-US') + ' worth');
+    // 日本語は100万円、英語は1万ドルを元手にする
+    keepVal.textContent = L(Math.round(keep) + '万円分', '$' + (Math.round(keep) * 100).toLocaleString('en-US') + ' worth');
     simOut.textContent = message(law, s, range.value, pct(end[0]));
     // 4通りの文を見えない形で重ね、いちばん長い文に高さを合わせる（切り替えても下が動かない）
     ghosts.forEach(function(g, i){ g.textContent = message(i < 2, i % 2 ? 0.2 : 0, '20', '100%'); });
