@@ -93,7 +93,7 @@
             </div>
             <LayerScene number={layer.number} />
           </div>
-          <!-- 一度に23話が並ぶと多く見えるので、各層は最初の3話だけ見せ、残りは開いて見る -->
+          <!-- 一度に23話が並ぶと多く見えるので、各層は最初の3話だけ見せ、残りは「もっと見る」で開く -->
           <ul class="story-list">
             {#each stories.slice(0, SHOWN) as article (article.slug)}
               {@render story(article)}
@@ -101,7 +101,7 @@
           </ul>
           {#if stories.length > SHOWN}
             <details class="story-more">
-              <summary><span data-i18n data-i18n-en={'Show ' + (stories.length - SHOWN) + ' more'}>残り{stories.length - SHOWN}話を見る</span><ChevronRight class="more-arr" /></summary>
+              <summary><span data-i18n>もっと見る</span><ChevronRight class="more-arr" /></summary>
               <ul class="story-list">
                 {#each stories.slice(SHOWN) as article (article.slug)}
                   {@render story(article)}

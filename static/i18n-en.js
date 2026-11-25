@@ -936,6 +936,7 @@ export default {
   "多くの国で、暗号資産も相続する財産として扱われ、税金がかかることがある。計算のしかたは国の決まりによる。": "In many countries, crypto is treated as part of the estate and may be taxed. How it is calculated depends on national rules.",
   "財産として引き継ぐときの流れ": "How it passes on as part of an estate",
   "ビットコインも、預金や株と同じように相続する財産になる。違うのは、取り出す方法が預け先によって変わることだ。": "Bitcoin becomes part of an estate, just like deposits or stocks. The difference is that how you get it out depends on where it is held.",
+  "もっと見る": "Show more",
   '← 前の誤解：裏付けと価値': '← Previous: Backing and value',
   '次の問い：自由か、こわいか →': 'Next question: Freedom, or scary? →',
   /* ===== freedom ===== */
