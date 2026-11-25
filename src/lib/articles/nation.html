@@ -1,20 +1,20 @@
 <section class="intro">
     <h2 data-i18n>気になり始める理由</h2>
-    <p class="lede" data-i18n>お金は国が作るもの、と思いがちだ。でも日本の歴史では国以外が作ったお金も長く使われてきた。今の円が使われているのは、選ばれ続けているからだろうか。それとも決まりで使うことになっているからだろうか。</p>
+    <p class="lede" data-i18n>お金は国が作るもの、と思いがちだ。でも歴史を見ると、国以外が作ったお金も長く使われてきた。今の円が使われているのは、選ばれ続けているからだろうか。それとも決まりで使うことになっているからだろうか。</p>
   </section>
 
   <section>
-    <h2 data-i18n>日本のお金は誰が作ってきた？</h2>
-    <p class="lede" data-i18n>時代を選ぶと、そのころ使われていたお金と、誰が作っていたかがわかる。色のついた行が、その時代に作り手だった人たちだ。</p>
+    <h2 data-i18n>世界のお金は誰が作ってきた？</h2>
+    <p class="lede" data-i18n>時代を選ぶと、そのころ使われていたお金と、誰が価値を支えていたかがわかる。色のついた行が、その時代の作り手だ。「モノ」は、金や銀のように、発行する人がいなくても物そのものに価値があると考えられたお金を指す。</p>
     <div class="card">
       <div class="lanes" id="lanes" role="group" aria-label="時代" data-i18n-label>
         <span class="lane-corner" aria-hidden="true"></span>
-        <button type="button" class="era-btn" data-era="0" aria-pressed="true">708</button>
-        <button type="button" class="era-btn" data-era="1" aria-pressed="false" data-i18n>12世紀</button>
-        <button type="button" class="era-btn" data-era="2" aria-pressed="false">1600</button>
+        <button type="button" class="era-btn" data-era="0" aria-pressed="true" data-i18n>前3000</button>
+        <button type="button" class="era-btn" data-era="1" aria-pressed="false" data-i18n>前600</button>
+        <button type="button" class="era-btn" data-era="2" aria-pressed="false">1024</button>
         <button type="button" class="era-btn" data-era="3" aria-pressed="false">1661</button>
-        <button type="button" class="era-btn" data-era="4" aria-pressed="false">1871</button>
-        <button type="button" class="era-btn" data-era="5" aria-pressed="false">1899</button>
+        <button type="button" class="era-btn" data-era="4" aria-pressed="false">1870</button>
+        <button type="button" class="era-btn" data-era="5" aria-pressed="false">1971</button>
         <button type="button" class="era-btn" data-era="6" aria-pressed="false">2009</button>
       </div>
       <div class="eranav">
@@ -25,51 +25,50 @@
       <!-- 7つの時代を同じ場所に重ね、切り替えても高さが変わらないようにする -->
       <div class="eras" id="eraPanels" aria-live="polite">
         <div class="era" data-era="0">
-          <p class="era-when" data-i18n>708年 奈良時代</p>
-          <h3 data-i18n>和同開珎</h3>
-          <p data-i18n>朝廷が銅の銭を作った。都づくりの支払いなどに使われた。</p>
-          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>朝廷の命令</span></p>
+          <p class="era-when" data-i18n>紀元前3000年ごろ メソポタミア</p>
+          <h3 data-i18n>大麦と銀</h3>
+          <p data-i18n>神殿や王宮が、大麦や銀の重さで貸し借りや支払いを記録した。銀は量って渡すもので、形の決まった硬貨はまだなかった。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>銀や大麦そのものの値打ち</span></p>
         </div>
         <div class="era off" data-era="1">
-          <p class="era-when" data-i18n>12〜16世紀 平安時代の終わり〜戦国時代</p>
-          <h3 data-i18n>中国から来た銭</h3>
-          <p data-i18n>朝廷は958年を最後に銭を作らなくなった。代わりに、中国から運ばれた銭や、それをまねて国内で作られた銭が広く使われた。</p>
-          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>多くの人が受け取ること</span></p>
+          <p class="era-when" data-i18n>紀元前600年ごろ リディア（いまのトルコ）</p>
+          <h3 data-i18n>最初の硬貨</h3>
+          <p data-i18n>金と銀の混ざった粒に、王の印を打った。いちいち量らなくても、印を見れば重さと品質がわかるようになった。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>王の印と、金属の値打ち</span></p>
         </div>
         <div class="era off" data-era="2">
-          <p class="era-when" data-i18n>1600年ごろ 江戸時代の初め</p>
-          <h3 data-i18n>山田羽書</h3>
-          <p data-i18n>伊勢の商人が、銀貨の釣り銭代わりに預かり証を出した。やがて紙幣として使われるようになり、日本で最も古い紙幣とされる。</p>
-          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>発行した商人の信用と、銀と交換できること</span></p>
-          <p class="era-src"><a href="https://www.imes.boj.or.jp/cm/history/historyfaq/index.html" data-i18n>日本銀行 貨幣博物館</a> · <a href="https://www.i-repository.net/il/meta_pub/G0000381kahei_1_23_7" data-i18n>現存する山田羽書を見る</a></p>
+          <p class="era-when" data-i18n>11世紀 中国・宋</p>
+          <h3 data-i18n>交子</h3>
+          <p data-i18n>重い鉄銭の代わりに、四川の商人たちが預かり証を出し、紙幣として使われた。1024年からは政府が引き継いで発行した。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>商人の信用と、のちに政府の命令</span></p>
         </div>
         <div class="era off" data-era="3">
-          <p class="era-when" data-i18n>1661年〜 江戸時代</p>
-          <h3 data-i18n>藩札</h3>
-          <p data-i18n>福井藩をはじめ、多くの藩が自分の領内で使う紙幣を出した。幕府の金貨・銀貨・銭や、商人の私札と並んで使われた。</p>
-          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>藩の信用と、金や銀と交換できること</span></p>
+          <p class="era-when" data-i18n>1661年 スウェーデン</p>
+          <h3 data-i18n>ヨーロッパ最初の銀行券</h3>
+          <p data-i18n>ストックホルム銀行が、重い銅の板の代わりに紙幣を出した。出しすぎて交換に応じきれなくなり、数年で行き詰まった。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>銀行の信用と、銅と交換できること</span></p>
         </div>
         <div class="era off" data-era="4">
-          <p class="era-when" data-i18n>1871年〜 明治時代</p>
-          <h3 data-i18n>円と国立銀行の紙幣</h3>
-          <p data-i18n>1871年に円が単位になった。翌年からは民間の銀行が「国立銀行」として紙幣を出した。1882年には日本銀行ができた。</p>
-          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>国の法律と、銀行の信用</span></p>
+          <p class="era-when" data-i18n>1870年代〜 金本位制</p>
+          <h3 data-i18n>金と交換できる紙幣</h3>
+          <p data-i18n>多くの国が、紙幣をいつでも決まった量の金と交換すると約束した。国によっては民間の銀行も紙幣を出していた。</p>
+          <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>決まった量の金と交換できること</span></p>
         </div>
         <div class="era off" data-era="5">
-          <p class="era-when" data-i18n>1899年〜</p>
-          <h3 data-i18n>日本銀行券</h3>
-          <p data-i18n>国立銀行の紙幣が使えなくなり、紙幣は日本銀行券にまとまった。いま使っている円も、この流れの上にある。</p>
+          <p class="era-when" data-i18n>1971年〜</p>
+          <h3 data-i18n>金から切り離された通貨</h3>
+          <p data-i18n>アメリカがドルと金の交換をやめ、世界の通貨は金と結びつかなくなった。いまのドルや円は、この形で使われている。</p>
           <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>国の法律と、中央銀行の信用</span></p>
         </div>
         <div class="era off" data-era="6">
           <p class="era-when" data-i18n>2009年〜</p>
           <h3 data-i18n>ビットコイン</h3>
-          <p data-i18n>発行する人や会社はいない。新しく出る量は、参加者が使うプログラムのルールで決まる。円と並んで使われている。</p>
+          <p data-i18n>発行する人や会社はいない。新しく出る量は、参加者が使うプログラムのルールで決まる。国の通貨と並んで使われている。</p>
           <p class="era-base"><b data-i18n>信用の支え</b><span data-i18n>公開されたルールと、受け取る人がいること</span></p>
         </div>
       </div>
     </div>
-    <p class="hint" data-i18n>紙幣を日本銀行だけが出す形になってから、まだ130年ほどだ。</p>
+    <p class="hint" data-i18n>金と交換できない紙幣が世界中で当たり前になってから、まだ50年ほどだ。</p>
   </section>
 
   <section>

@@ -1,6 +1,6 @@
 /* 作り手ごとの色 */
-.chapter{--l-state:#9e2b5a;--l-han:#b86a1e;--l-private:#3f7f4f;--l-foreign:#3b6aa8;--l-rule:#6b5bb5}
-:root[data-theme="dark"] .chapter{--l-state:#ff9cc4;--l-han:#f0a860;--l-private:#7fc787;--l-foreign:#8db4f0;--l-rule:#b5a8f5}
+.chapter{--l-state:#9e2b5a;--l-goods:#b86a1e;--l-private:#3f7f4f;--l-rule:#6b5bb5}
+:root[data-theme="dark"] .chapter{--l-state:#ff9cc4;--l-goods:#f0a860;--l-private:#7fc787;--l-rule:#b5a8f5}
 
 /* 時代 × 作り手の表。上の行が時代のボタン、左の列が作り手 */
 .lanes{display:grid;grid-template-columns:46px repeat(7,minmax(0,1fr));gap:4px 3px;align-items:center}
@@ -9,16 +9,14 @@
 .era-btn[aria-pressed="true"]{background:var(--color-primary);color:var(--color-on-primary)}
 .lane-lbl{font-size:12px;font-weight:700;line-height:1.2;white-space:nowrap}
 .lane-lbl.state{color:var(--l-state)}
-.lane-lbl.han{color:var(--l-han)}
+.lane-lbl.goods{color:var(--l-goods)}
 .lane-lbl.private{color:var(--l-private)}
-.lane-lbl.foreign{color:var(--l-foreign)}
 .lane-lbl.rule{color:var(--l-rule)}
 .cell{height:22px;border-radius:6px;background:color-mix(in srgb,var(--sub) 9%,transparent);cursor:pointer;
     transition:transform .2s ease,box-shadow .2s ease}
 .cell.on.state{background:var(--l-state)}
-.cell.on.han{background:var(--l-han)}
+.cell.on.goods{background:var(--l-goods)}
 .cell.on.private{background:var(--l-private)}
-.cell.on.foreign{background:var(--l-foreign)}
 .cell.on.rule{background:var(--l-rule)}
 /* 選んだ時代の列だけ濃く、少し高く見せる */
 .cell.sel{transform:scaleY(1.15)}
@@ -80,10 +78,10 @@
     .lanes{grid-template-columns:38px repeat(7,minmax(0,1fr));gap:4px 2px}
     .era-btn,.lane-lbl{font-size:11px}
   }
-/* 英語の行名（Domains など）は日本語より長いので、行名の列を広げる */
+/* 英語の行名（Private など）は日本語より長いので、行名の列を広げる */
 :root[data-lang="en"] .lanes{grid-template-columns:60px repeat(7,minmax(0,1fr))}
 :root[data-lang="en"] .lane-lbl{font-size:11px}
-:root[data-lang="en"] .era-btn{font-size:11px}
+:root[data-lang="en"] .era-btn{font-size:11px;white-space:normal;line-height:1.15}
 .cols.rules{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:520px){.cols.rules{grid-template-columns:1fr}}
 .lawlbl{margin:0 0 8px;font-size:13.5px;color:var(--sub)}

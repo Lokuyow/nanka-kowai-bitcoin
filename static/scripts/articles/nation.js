@@ -1,10 +1,10 @@
 (function(){
-  // 作り手の行と、その時代に作り手だったかどうか（時代は左から 708, 12世紀, 1600, 1661, 1871, 1899, 2009）。
+  // 作り手の行と、その時代に作り手だったかどうか（時代は左から 前3000, 前600, 1024, 1661, 1870, 1971, 2009）。
+  // 「モノ」は、金や銀のように発行する人がいなくても物そのものに価値があると考えられたお金。
   var LANES = [
-    {key: 'state', ja: '国', en: 'State', on: [1, 0, 1, 1, 1, 1, 1]},
-    {key: 'han', ja: '藩', en: 'Domains', on: [0, 0, 0, 1, 0, 0, 0]},
-    {key: 'private', ja: '民間', en: 'Private', on: [0, 1, 1, 1, 1, 0, 0]},
-    {key: 'foreign', ja: '外国', en: 'Foreign', on: [0, 1, 1, 0, 0, 0, 0]},
+    {key: 'state', ja: '国・王', en: 'State', on: [0, 1, 1, 0, 1, 1, 1]},
+    {key: 'private', ja: '民間', en: 'Private', on: [0, 0, 1, 1, 1, 0, 0]},
+    {key: 'goods', ja: 'モノ', en: 'Goods', on: [1, 1, 0, 0, 1, 0, 0]},
     {key: 'rule', ja: 'ルール', en: 'Rules', on: [0, 0, 0, 0, 0, 0, 1]}
   ];
   var lanes = document.getElementById('lanes');

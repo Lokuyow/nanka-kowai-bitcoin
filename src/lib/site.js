@@ -188,9 +188,9 @@ export const LAYERS = [
         navTitle: "発行",
         openQuestion: true,
         heading: "国が作らないお金って<br>ありなの？",
-        cardAnswer: "江戸時代には商人が発行したお金もあった",
-        description: "江戸時代には、幕府の貨幣と並んで藩札や商人の私札も使われた。",
-        shareEn: { title: "Can money exist that no country makes?", text: "In Edo-period Japan, locally issued domain and merchant notes circulated alongside the shogunate's money." }
+        cardAnswer: "商人や銀行が発行したお金もあった",
+        description: "宋の交子やスウェーデンの銀行券のように、商人や民間の銀行が出したお金も使われてきた。",
+        shareEn: { title: "Can money exist that no country makes?", text: "Money issued by merchants and private banks, like Song China's jiaozi and Sweden's first banknotes, has circulated too." }
       },
       {
         slug: "freedom",
