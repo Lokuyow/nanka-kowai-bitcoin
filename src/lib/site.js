@@ -63,7 +63,7 @@ export const LAYERS = [
         heading: "裏付けがないビットコインは<br>価値ゼロでしょ？",
         cardAnswer: "欲しい人がいれば市場で価格がつく",
         description: "金や円との交換保証がなくても、買い手と売り手がいれば価格がつく。",
-        shareEn: { title: "With no backing, Bitcoin is worth zero, right?", text: "Buyers and sellers can give bitcoin a market price without a promise to redeem it for gold or yen." }
+        shareEn: { title: "With no backing, Bitcoin is worth zero, right?", text: "Buyers and sellers can give bitcoin a market price without a promise to redeem it for gold or dollars." }
       }
     ]
   },

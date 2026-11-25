@@ -1,6 +1,7 @@
 (function(){
   // 円の世界は物価が毎年2%上がる。本位制の世界はお金の量が増えず、物を作る効率が毎年1.5%上がるので物価が1.5%下がる。
   var YEN_RATE = 0.02, BTC_RATE = -0.015, YEARS = 30;
+  // 英語版はコーヒー1杯500円を5ドル、貯金100万円を1万ドル、借金1,000万円を10万ドルとして同じ杯数で示す
   var COFFEE_YEN = 500, COFFEE_SAT = 3300, SAVE_CUPS = 2000, LOAN_CUPS = 20000;
   var $ = function(id){ return document.getElementById(id); };
   var range = $('yearRange');
@@ -32,7 +33,7 @@
     return t === 0
       ? L('今はどちらの世界でも、コーヒー1杯は同じ値打ち。年数を進めてみよう。', 'Right now a cup of coffee is worth the same in both worlds. Move the years forward.')
       : L(t + '年後、円の世界では貯金で買える杯数が' + down + '%減り、本位制の世界では' + up + '%増えた。借金は逆に、本位制の世界のほうが重くなる。',
-          'After ' + t + (t === 1 ? ' year' : ' years') + ', savings buy ' + down + '% fewer cups in the yen world and ' + up + '% more on the bitcoin standard. Debt works the other way: it gets heavier on the bitcoin standard.');
+          'After ' + t + (t === 1 ? ' year' : ' years') + ', savings buy ' + down + '% fewer cups in the dollar world and ' + up + '% more on the bitcoin standard. Debt works the other way: it gets heavier on the bitcoin standard.');
   }
   var out = $('worldOut'), box = document.createElement('div');
   box.className = 'outbox';
@@ -48,10 +49,10 @@
 
   function render(){
     var t = +range.value;
-    $('lblYen').textContent = L('円の世界', 'Yen world');
+    $('lblYen').textContent = L('円の世界', 'Dollar world');
     $('lblBtc').textContent = L('本位制の世界', 'Bitcoin standard');
     $('yearVal').textContent = L(t + '年', t + (t === 1 ? ' year' : ' years'));
-    $('priceYen').textContent = L(n(priceYen(t)) + '円', '¥' + n(priceYen(t)));
+    $('priceYen').textContent = L(n(priceYen(t)) + '円', '$' + (priceYen(t) / 100).toFixed(2));
     $('priceBtc').textContent = n(priceSat(t)) + ' sats';
     $('cupsYen').textContent = cups(cupsYen(t));
     $('cupsBtc').textContent = cups(cupsBtc(t));
