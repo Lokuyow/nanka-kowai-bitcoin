@@ -3,14 +3,14 @@
   var pctEl = document.getElementById('minePct');
   var msg = document.getElementById('mineMsg');
   var card = document.getElementById('mineCard');
-  var tries = 0, wins = 0, kwh = 0, diff = 1;
+  var tries = 0, wins = 0, kwh = 0;
   var tryEl = document.getElementById('mineTry');
   var winEl = document.getElementById('mineWin');
   var kwhEl = document.getElementById('mineKwh');
   var LOSE = [
     ['外れ。世界のだれかが先に当てた。電気だけが消えた。', 'Miss. Someone in the world solved it first. All that electricity, spent for nothing.'],
     ['また外れ。当たりは世界中の参加者の取り合い。', 'Missed again. The win is a scramble among participants worldwide.'],
-    ['外れ。計算は正しかったのに、速さで負けた。', 'Miss. Your math was right — you just lost on speed.']
+    ['外れ。条件を満たす答えを、ほかの参加者が先に見つけた。', 'Miss. Another participant found a valid answer first.']
   ];
   var minePair = ['計算力が大きいほど当たりやすい。でも、外れても電気は使っている。', 'The more hash power you have, the more likely you are to win. But even when you lose, the electricity is spent.'];
   var loseIdx = -1;
@@ -31,15 +31,7 @@
     kwh += Math.round(share * 900 + 30 + Math.random() * 60);
     tryEl.textContent = tries;
     kwhEl.textContent = kwh.toLocaleString(window.LANG === 'en' ? 'en-US' : 'ja-JP');
-    if (Math.random() < 0.13 && diff < 2.2) {
-      diff *= 1.25;
-      minePair = ['参加者が増えた！ 難易度が上がって、同じ計算力では当たりにくくなった。これが難易度調整。', 'More participants joined! The difficulty went up, so the same hash power wins less often. This is the difficulty adjustment.'];
-      loseIdx = -1;
-      renderMine();
-      return;
-    }
-    var p = share / diff;
-    if (Math.random() < p) {
+    if (Math.random() < share) {
       wins++;
       winEl.textContent = wins;
       card.classList.remove('flashwin'); void card.offsetWidth; card.classList.add('flashwin');

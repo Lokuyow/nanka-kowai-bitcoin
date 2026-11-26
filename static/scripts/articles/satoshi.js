@@ -29,7 +29,9 @@ var wedge = document.getElementById('wedge');
     curStep = step;
     share.innerHTML = L('あなたの分: ', 'Your share: ') + '<b>' + L(s.ja, s.en) + '</b>';
     document.querySelectorAll('#cutBtns button').forEach(function(b, i){
-      b.classList.toggle('on', i === step);
+      var on = i === step;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
     });
   }
   document.querySelectorAll('#cutBtns button').forEach(function(b){
@@ -86,6 +88,11 @@ var wedge = document.getElementById('wedge');
     bar.style.width = (Math.min(1, btc) * 100) + '%';
     msg.textContent = msgFor(sats);
     if (raf) cancelAnimationFrame(raf);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      shown = sats;
+      numEl.textContent = shown.toLocaleString(window.LANG === 'en' ? 'en-US' : 'ja-JP');
+      return;
+    }
     var from = shown, to = sats, t0 = null;
     function step(t){
       if (!t0) t0 = t;

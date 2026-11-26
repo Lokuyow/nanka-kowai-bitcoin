@@ -106,3 +106,6 @@
   .gold-price-flow { gap: 14px; font-size: 11px; }
   .gold-price-flow [aria-hidden] { width: 14px; }
 }
+@media (prefers-reduced-motion: reduce) {
+  .meterfill { transition: none; }
+}

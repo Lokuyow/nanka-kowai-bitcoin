@@ -37,3 +37,4 @@
 .terms div{display:flex;gap:10px}
 .terms dt{flex:none;min-width:4.5em;font-weight:700;color:var(--ink)}
 .terms dd{margin:0}
+@media(prefers-reduced-motion:reduce){.feebar{transition:none}}

@@ -14,7 +14,7 @@
 .pow-lbl{flex:0 0 118px}
 .powbar{flex:1;background:#e9e9e6;border-radius:999px;height:20px;overflow:hidden}
 .powfill{height:100%;border-radius:999px;transition:width .35s ease}
-.powfill.mine{background:#999}
+.powfill.mine{background:#767676}
 .powfill.move{background:var(--color-primary)}
 .powfill.all{background:var(--ink)}
 .powrow b{flex:0 0 32px;text-align:right;font-variant-numeric:tabular-nums}

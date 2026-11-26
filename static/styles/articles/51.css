@@ -25,3 +25,4 @@
 .hpfeed{font-size:14px;min-height:3.4em;margin:10px 0 0}
 .hpcost{font-size:14px;margin:8px 0 0}
 .hpcost b{font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){#actSteal.shake,#actMint.shake{animation:none}.hpbar-you{transition:none}}

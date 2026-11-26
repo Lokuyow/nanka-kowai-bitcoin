@@ -53,3 +53,4 @@
     .arb-ex{gap:4px}
     .arb-box{padding:8px 4px}
   }
+@media(prefers-reduced-motion:reduce){.arb-price.up,.arb-price.down{animation:none}.arb-box{transition:none}}

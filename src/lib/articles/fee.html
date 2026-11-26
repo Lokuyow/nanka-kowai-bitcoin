@@ -20,7 +20,7 @@
         <div class="line"><span data-i18n>送る額</span><span>0.1 BTC</span></div>
         <div class="line hl"><span data-i18n>送金手数料</span><span data-i18n>取引ごとに変わる</span></div>
         <div class="line live-line" id="liveFeeLine" hidden>
-          <span><span id="liveFeeLabel"></span><sup class="fee-note-ref"><a href="#liveFeeSrc">※1</a></sup></span>
+          <span><span id="liveFeeLabel"></span><sup class="fee-note-ref"><a id="liveFeeRef" href="#liveFeeSrc">※1</a></sup></span>
           <span id="liveFeeMain"></span>
         </div>
         <div class="line"><span data-i18n>手数料の決め方</span><span data-i18n-html>混雑や取引データの大きさで変わる</span></div>
@@ -34,22 +34,22 @@
   </section>
 
   <section>
-    <h2><span data-i18n>手数料と相手に届く額の比較</span><sup class="fee-note-ref"><a href="#feeNote">※2</a></sup></h2>
+    <h2><span data-i18n>手数料と相手に届く額の比較</span><sup class="fee-note-ref"><a id="feeNoteRef" href="#feeNote">※1</a></sup></h2>
     <p class="lede" data-i18n>この例では取引所の出金手数料と送金データの大きさを固定している。送金に使う予算を変えて、手数料と相手に届く額を比べてみよう。</p>
     <div class="card" id="sendCard">
       <label><span data-i18n>使う予算:</span> <b id="amtLbl">11,200円</b><input type="range" id="amtRange" min="0" max="100" value="45" aria-label="送金に使う予算" data-i18n-label></label>
       <div class="routebtns">
-        <button type="button" id="routeEx" class="on" data-i18n>取引所から出金する</button>
-        <button type="button" id="routeSelf" data-i18n>自分で送金する</button>
+        <button type="button" id="routeEx" class="on" aria-pressed="true" data-i18n>取引所から出金する</button>
+        <button type="button" id="routeSelf" aria-pressed="false" data-i18n>自分で送金する</button>
       </div>
       <div id="selfOpts" hidden>
         <div class="routebtns">
-          <button type="button" id="spdWait" class="on" data-i18n>待てる（低めの手数料）</button>
-          <button type="button" id="spdFast" data-i18n>急ぐ（高めの手数料）</button>
+          <button type="button" id="spdWait" class="on" aria-pressed="true" data-i18n>待てる（低めの手数料）</button>
+          <button type="button" id="spdFast" aria-pressed="false" data-i18n>急ぐ（高めの手数料）</button>
         </div>
       </div>
       <div class="center" style="margin:6px 0"><button id="sendBtn" type="button" data-i18n>送ってみる</button></div>
-      <div class="sendresult" id="sendResult" hidden>
+      <div class="sendresult" id="sendResult" aria-live="polite" hidden>
         <div class="line"><span data-i18n>使う予算</span><b id="rAmt"></b></div>
         <div class="line"><span data-i18n>手数料</span><b id="rFee"></b></div>
         <div class="line hl"><span data-i18n>相手に届く額</span><b id="rGot"></b></div>
@@ -62,5 +62,5 @@
 <div class="summary"><small data-i18n>一言まとめ</small><span data-i18n>取引所の出金手数料とネットワーク手数料は別々に決まる</span></div>
 <div class="fee-notes">
   <p id="liveFeeSrc" data-note-mark="※1" hidden></p>
-  <p id="feeNote" data-note-mark="※2" data-i18n>手数料は目安です。取引所の出金手数料は一例として 0.0005 BTC で計算しています。</p>
+  <p id="feeNote" data-note-mark="※1" data-i18n>手数料は目安です。取引所の出金手数料は一例として 0.0005 BTC で計算しています。</p>
 </div>

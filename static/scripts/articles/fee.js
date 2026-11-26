@@ -18,7 +18,11 @@
     var raw = 500 * Math.pow(1000, v / 100);
     return raw >= 100000 ? Math.round(raw / 1000) * 1000 : Math.round(raw / 100) * 100;
   }
-  function money(n){ return isEn() ? '$' + n.toLocaleString('en-US') : n.toLocaleString('ja-JP') + '円'; }
+  function money(n){
+    if (!isEn()) return n.toLocaleString('ja-JP') + '円';
+    var decimals = Math.round(n * 100) % 100 !== 0 ? 2 : 0;
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+  }
   function updLbl(){ amtLbl.textContent = money(amt()); }
   range.addEventListener('input', updLbl);
   updLbl();
@@ -26,16 +30,26 @@
     route = r;
     routeEx.classList.toggle('on', r === 'ex');
     routeSelf.classList.toggle('on', r === 'self');
+    routeEx.setAttribute('aria-pressed', String(r === 'ex'));
+    routeSelf.setAttribute('aria-pressed', String(r === 'self'));
     selfOpts.hidden = r !== 'self';
   }
   routeEx.addEventListener('click', function(){ setRoute('ex'); });
   routeSelf.addEventListener('click', function(){ setRoute('self'); });
-  spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); });
-  spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); });
+  spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); spdWait.setAttribute('aria-pressed', 'true'); spdFast.setAttribute('aria-pressed', 'false'); });
+  spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); spdFast.setAttribute('aria-pressed', 'true'); spdWait.setAttribute('aria-pressed', 'false'); });
   var lastRun = null; /* { route, speed, v, mode:'live'|'legacy' } */
   var liveData = null;  /* LiveData の取得結果（使えなければ null） */
   var settled = false;  /* 取得が終わったかどうか（免責文の出し分け用） */
   var noteEl = document.getElementById('feeNote');
+  var feeNoteRefEl = document.getElementById('feeNoteRef');
+  var liveFeeLineEl = document.getElementById('liveFeeLine');
+  function syncNoteMarks(){
+    var hasLive = liveFeeLineEl && !liveFeeLineEl.hidden;
+    var mark = hasLive ? L('※2', '*2') : L('※1', '*1');
+    if (feeNoteRefEl) feeNoteRefEl.textContent = mark;
+    if (noteEl) noteEl.setAttribute('data-note-mark', mark);
+  }
   function fmtRate(rate){
     return rate < 10 ? String(Math.round(rate * 10) / 10) : String(Math.round(rate));
   }
@@ -48,7 +62,9 @@
     var price = curPrice();
     if (route === 'ex') return { fee: Math.round(0.0005 * price), rate: null };
     var rate = speed === 'fast' ? liveData.tiers.fastest : liveData.tiers.hour;
-    return { fee: Math.round(rate * window.LiveData.VB * price / 1e8), rate: rate };
+    var raw = rate * window.LiveData.VB * price / 1e8;
+    var fee = isEn() && raw > 0 && raw < 1 ? Math.max(0.01, Math.round(raw * 100) / 100) : Math.round(raw);
+    return { fee: fee, rate: rate };
   }
   var EX_FEE = { jpy: 7500, usd: 50 };                      /* 従来計算の取引所手数料（0.0005 BTC の目安換算） */
   var SELF_BASE = { jpy: 400, usd: 3 };  /* 実データがない場合の低めの手数料の例 */
@@ -75,9 +91,11 @@
     if (lastRun.route === 'ex') {
       if (fee >= a) msg = L('予算が出金手数料以下なので、この条件では送れない。', "The withdrawal fee uses up the entire budget or more, so the transfer cannot go ahead.");
       else {
-        var pct = Math.round(fee / a * 100);
-        msg = L('手数料は予算の' + pct + '%。金額が小さいほど、固定料金の重さが目立ってくる。', 'The fee is about ' + pct + '% of the total. The smaller the amount, the heavier the fixed charge feels.');
-        if (pct <= 2) msg += L('大きな額なら割合は小さくなる。でも、それはネットワークの手数料が下がったからではない。', ' With a large amount the share shrinks — but not because the network fee went down.');
+        var pctRaw = fee / a * 100;
+        var pctLabel = pctRaw < 0.1 ? '0.1%未満' : (pctRaw < 1 ? pctRaw.toFixed(1) : Math.round(pctRaw)) + '%';
+        var pctLabelEn = pctRaw < 0.1 ? 'less than 0.1%' : 'about ' + (pctRaw < 1 ? pctRaw.toFixed(1) : Math.round(pctRaw)) + '%';
+        msg = L('手数料は予算の' + pctLabel + '。金額が小さいほど、固定料金の重さが目立ってくる。', 'The fee is ' + pctLabelEn + ' of the total. The smaller the amount, the heavier the fixed charge feels.');
+        if (pctRaw <= 2) msg += L('大きな額なら割合は小さくなる。でも、それはネットワークの手数料が下がったからではない。', ' With a large amount the share shrinks — but not because the network fee went down.');
       }
     } else if (fee >= a) {
       msg = L('予算がネットワーク手数料以下なので、この条件では送れない。', 'The network fee uses up the entire budget or more, so the transfer cannot go ahead.');
@@ -94,7 +112,7 @@
                 'In this example, the fee is ' + pctTxtEn + ' of the budget. The fee stays the same as you change the budget because the transaction data stays the same size.');
       }
     }
-    var got = Math.max(0, a - fee);
+    var got = Math.round(Math.max(0, a - fee) * 100) / 100;
     document.getElementById('rAmt').textContent = money(a);
     document.getElementById('rFee').textContent = money(fee);
     document.getElementById('rGot').textContent = money(got);
@@ -109,18 +127,21 @@
     }
     renderResult();
   });
-  window.LiveData.load().then(function(d){
-    settled = true;
-    /* シミュレータの実データ計算にはレートと表示通貨の価格の両方が要る。欠けたら従来計算のまま */
-    liveData = (d && d.tiers && (d.jpy || d.usd)) ? d : null;
-    updateNote();
-    if (lastRun && liveReady()) { lastRun.mode = 'live'; renderResult(); }
-  });
+  if (window.LiveData) {
+    window.LiveData.load().then(function(d){
+      settled = true;
+      /* シミュレータの実データ計算にはレートと表示通貨の価格の両方が要る。欠けたら従来計算のまま */
+      liveData = (d && d.tiers && (d.jpy || d.usd)) ? d : null;
+      updateNote();
+      if (lastRun && liveReady()) { lastRun.mode = 'live'; renderResult(); }
+    });
+  }
   document.addEventListener('langchange', function(){
-    updLbl(); updateNote();
+    updLbl(); updateNote(); syncNoteMarks();
     if (lastRun && liveReady()) lastRun.mode = 'live';
     renderResult();
   });
+  syncNoteMarks();
 })();
 
 ;
@@ -132,6 +153,9 @@
   var labelEl = document.getElementById('liveFeeLabel');
   var mainEl = document.getElementById('liveFeeMain');
   var srcEl = document.getElementById('liveFeeSrc');
+  var liveRefEl = document.getElementById('liveFeeRef');
+  var feeNoteRefEl = document.getElementById('feeNoteRef');
+  var feeNoteEl = document.getElementById('feeNote');
   if (!line || !window.LiveData) return;
   var VB = window.LiveData.VB;
   var state = null; /* { rate: sat/vB, source: 表示名 } */
@@ -163,6 +187,11 @@
       'Calculated from live data (' + state.source + '), for a typical transfer of about 140 vB');
     line.hidden = false;
     srcEl.hidden = false;
+    var m1 = L('※1', '*1'), m2 = L('※2', '*2');
+    if (liveRefEl) liveRefEl.textContent = m1;
+    srcEl.setAttribute('data-note-mark', m1);
+    if (feeNoteRefEl) feeNoteRefEl.textContent = m2;
+    if (feeNoteEl) feeNoteEl.setAttribute('data-note-mark', m2);
   }
   document.addEventListener('langchange', render);
   window.LiveData.load().then(function(d){

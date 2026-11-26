@@ -1,5 +1,5 @@
 /* 2つの世界の色。円は落ち着いた青、本位制はビットコインのオレンジ */
-.chapter{--w-yen:#3b6aa8;--w-btc:#c46a12}
+.chapter{--w-yen:#3b6aa8;--w-btc:#a8580a}
 :root[data-theme="dark"] .chapter{--w-yen:#8db4f0;--w-btc:#f5a54a}
 
 /* 30年の比較。年数のスライダー、杯数のグラフ、2つの世界の数字 */
