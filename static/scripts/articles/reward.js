@@ -54,6 +54,7 @@
     prevEra = e;
   }
   S.addEventListener('input', function(){
+    if (anim) { clearInterval(anim); anim = null; }
     var e = eraOf(+S.value);
     upd(e > prevEra);
   });
@@ -65,8 +66,13 @@
       var y = +S.value + 1;
       S.value = y;
       window.updateRangeFill?.(S);
-      upd(y === target && eraOf(y) > prevEra - 1 && (y - 2012) % 4 === 0);
-      if (y >= target) { clearInterval(anim); anim = null; upd(eraOf(y) >= 1 && (y - 2012) % 4 === 0); }
+      if (y >= target) {
+        clearInterval(anim);
+        anim = null;
+        upd(eraOf(y) >= 1 && (y - 2012) % 4 === 0);
+      } else {
+        upd(false);
+      }
     }, 60);
   });
   document.addEventListener('langchange', function(){ upd(lastHalved); });
