@@ -112,7 +112,9 @@
       resMine.textContent = fmt(hold); resMineX.textContent = mult(hold);
       resHoldLbl.textContent = L('いちばん下がったとき', 'At the worst point');
       resHold.textContent = fmt(low); resHoldX.textContent = dateText(pts[worstIdx]) + ' ' + mult(low);
-      simMsg.textContent = L('途中で最高値から最大' + Math.round(worstDd * 100) + '%下がる場面を持ちこたえた。', 'Along the way you sat through a drop of up to ' + Math.round(worstDd * 100) + '% from the peak.');
+      simMsg.textContent = worstIdx === end
+        ? L('最高値から最大' + Math.round(worstDd * 100) + '%下がったところで終わった。', 'You ended down ' + Math.round(worstDd * 100) + '% from the peak.')
+        : L('途中で最高値から最大' + Math.round(worstDd * 100) + '%下がる場面を持ちこたえた。', 'Along the way you sat through a drop of up to ' + Math.round(worstDd * 100) + '% from the peak.');
     } else {
       var mine = valueAt(soldAt);
       resHoldLbl.textContent = L('最後まで持っていたら', 'If held to the end');
@@ -120,11 +122,13 @@
       simHead.textContent = L(dateText(pts[soldAt]) + 'に売った', 'You sold in ' + dateText(pts[soldAt]));
       resMineLbl.textContent = L('売ったときの額', 'When you sold');
       resMine.textContent = fmt(mine); resMineX.textContent = mult(mine);
-      simMsg.textContent = mine < invest()
-        ? L('怖くなって買った額より安く手放した。早く買った人もこの場面を通ってきた。', 'Fear won, and you sold below what you paid. Many early buyers went through this too.')
-        : mine >= hold
-          ? L('売ったあとに値下がりした。売りどきはその時点ではわからない。', 'It fell after you sold. No one knows the right time to sell when it happens.')
-          : L('利益は出たが売ったあとも値上がりが続いた。売りどきはその時点ではわからない。', 'You made a profit, but the price kept rising after you sold. No one knows the right time to sell when it happens.');
+      simMsg.textContent = soldAt === 0 || Math.abs(mine - invest()) < 1e-6
+        ? L('買った直後に同じ額で手放した。そのあとも値動きは続いた。', 'You sold right away at the same price you paid. The market kept moving after that.')
+        : mine < invest()
+          ? L('怖くなって買った額より安く手放した。早く買った人もこの場面を通ってきた。', 'Fear won, and you sold below what you paid. Many early buyers went through this too.')
+          : mine >= hold
+            ? L('売ったあとに値下がりした。売りどきはその時点ではわからない。', 'It fell after you sold. No one knows the right time to sell when it happens.')
+            : L('利益は出たが売ったあとも値上がりが続いた。売りどきはその時点ではわからない。', 'You made a profit, but the price kept rising after you sold. No one knows the right time to sell when it happens.');
     }
   }
 
@@ -133,6 +137,7 @@
     if (i >= pts.length - 1) { finish(); return; }
     i++;
     if (soldAt < 0 && ddAt(i) > worstDd) { worstDd = ddAt(i); worstIdx = i; }
+    if (i >= pts.length - 1) { finish(); return; }
     render();
     var fast = soldAt >= 0 ? 0.35 : 1;
     timer = setTimeout(tick, step() * fast);

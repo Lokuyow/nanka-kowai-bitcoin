@@ -16,7 +16,7 @@
         'Prices fell below where they started, with no sign of recovery.',
         'The mania is over. A bulb is just a bulb again.'
       ],
-      prices: [2, 3, 8, 30, 80, 100, 60, 8, 2, 2],
+      prices: [2, 3, 8, 30, 80, 100, 60, 8, 0.5, 0.2],
       years: ['1634年', '1634年 秋', '1635年', '1635年 冬', '1636年', '1636年 冬', '1637年 1月', '1637年 2月', '1637年 春', 'その後'],
       msgs: [
         '球根が少し話題になり始めた。',
