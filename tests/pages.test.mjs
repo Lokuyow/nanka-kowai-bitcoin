@@ -31,19 +31,33 @@ for (const { name, path } of PAGES) {
       if (path === '') {
         assert.equal(await page.locator('.hero h1').count(), 1, 'サイト名が主見出しであること');
       }
-      for (const width of [375, 320]) {
-        await page.setViewportSize({ width, height: 667 });
-        for (const lang of ['ja', 'en']) {
-          await page.locator('.lang-toggle:not([aria-busy])').waitFor();
-          if ((await page.locator('html').getAttribute('lang')) !== lang) {
-            await page.locator('.lang-toggle').click();
-          }
-          await page.locator(`html[lang="${lang}"]`).waitFor();
+      // 日本語はこのページで、英語は /en/ の URL で直接開いて確認する
+      // （言語の切替操作そのものは lang.test が全ページで確認している）。
+      const checkOverflow = async (lang) => {
+        for (const width of [375, 320]) {
+          await page.setViewportSize({ width, height: 667 });
           const overflow = await page.evaluate(
             () => document.documentElement.scrollWidth - window.innerWidth,
           );
           assert.ok(overflow <= 0, `幅${width}px（${lang}）で横スクロールが発生しています（超過 ${overflow}px）`);
         }
+      };
+      await checkOverflow('ja');
+      if (path === '404.html') {
+        // 404 には英語版 URL がないので、切替ボタンで英語表示を確認する
+        await page.locator('.lang-toggle:not([aria-busy])').waitFor();
+        await page.locator('.lang-toggle').click();
+        await page.locator('html[lang="en"]').waitFor();
+        await checkOverflow('en');
+        await page.locator('.lang-toggle').click();
+        await page.locator('html[lang="ja"]').waitFor();
+      } else {
+        await page.goto(server.base + 'en/' + path, { waitUntil: 'load' });
+        await checkOverflow('en');
+        // 次のテストのために言語設定を日本語へ戻す
+        await page.locator('.lang-toggle:not([aria-busy])').waitFor();
+        await page.locator('.lang-toggle').click();
+        await page.locator('html[lang="ja"]').waitFor();
       }
       assert.deepEqual(errors, [], `JSエラーが発生しました: ${errors.join(' / ')}`);
     } finally {

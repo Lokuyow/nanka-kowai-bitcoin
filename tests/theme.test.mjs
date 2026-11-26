@@ -95,7 +95,9 @@ test('テーマ: system のときだけ OS の変更にライブで追随する'
     await page.locator('.theme-toggle').click(); // light → dark
     assert.equal(await prefOf(page), 'dark', 'ダーク固定にした');
     await page.emulateMedia({ colorScheme: 'light' });
-    await page.waitForTimeout(300);
+    // 「変化しない」ことの確認なので一定時間待つ。読み込みの遅い環境でも
+    // 追随処理が走る余地を残すため、余裕を持って待つ。
+    await page.waitForTimeout(600);
     assert.equal(await themeOf(page), 'dark', '明示ダークのときは OS の変更に追随しない');
     await page.close();
   } finally {

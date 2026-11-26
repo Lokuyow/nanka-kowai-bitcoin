@@ -61,6 +61,16 @@ for (const { name, path, heading } of TARGETS) {
       assert.ok(!KANA.test(enHeading), `見出しが英語になること: ${enHeading}`);
       assert.notEqual(enHeading, jaHeading, '見出しが切り替わること');
 
+      // 本文の表示テキストにも日本語が残っていないこと
+      // （言語切替ボタン「日本語」と作者名「ロクヨウ」は意図した日本語表記。
+      //   中点「・」は英語の出典表記でも区切りに使うので除く）。
+      const residue = await page.evaluate(() => {
+        const text = document.body.innerText.replaceAll('日本語', '').replaceAll('ロクヨウ', '');
+        const m = text.match(/[\u3040-\u30fa\u30fc-\u30ff\u4e00-\u9fff]/);
+        return m ? text.slice(Math.max(0, m.index - 30), m.index + 30) : '';
+      });
+      assert.equal(residue, '', `英語表示に日本語が残っています: …${residue}…`);
+
       await page.locator('.lang-toggle').click();
       await page.waitForFunction(
         () => document.documentElement.getAttribute('data-lang') === 'ja',
