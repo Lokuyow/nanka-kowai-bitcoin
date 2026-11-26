@@ -42,10 +42,10 @@ export const LAYERS = [
       {
         slug: "satoshi",
         navTitle: "少額",
-        heading: "1ビットコインって何百万円も<br>するんでしょ？ 買えないよ",
+        heading: "1ビットコインって何千万円も<br>するんでしょ？ 買えないよ",
         cardAnswer: "1 BTCより少ない量でも買える",
         description: "1 BTCを丸ごと買う必要はない。金額を決めて、その分だけ買える。",
-        shareEn: { title: "A bitcoin costs tens of thousands of dollars, right? No way I can buy that", text: "You can buy a fraction of a bitcoin by choosing how much to spend." },
+        shareEn: { title: "A bitcoin costs over a hundred thousand dollars, right? No way I can buy that", text: "You can buy a fraction of a bitcoin by choosing how much to spend." },
         liveData: true
       },
       {
