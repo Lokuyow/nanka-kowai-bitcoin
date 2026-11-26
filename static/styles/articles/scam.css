@@ -96,3 +96,4 @@
 :root[data-theme="dark"] .flow .coin.yen{background:#c9a227;color:#3d2d05}
 /* 出典つきの説明は、クイズの指示文と同じ段落の流れに続けると続けて読めてしまうので、小さめの注記として区切る */
 .lede.source{font-size:13px;line-height:1.7;margin:14px 0 10px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
+@media(prefers-reduced-motion:reduce){.stamp,.chip{transition:none}}
