@@ -36,6 +36,7 @@
 .tulip-grid{stroke:var(--line);fill:none}
 .tulip-ticks{fill:var(--sub);font-size:14px;text-anchor:end}
 .tulip-axis{margin:0;color:var(--sub);font-size:13px;text-align:center}
+.tulip-axis-note{font-size:12px}
 .tulip-series{fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .tulip-series.bulb{stroke:var(--red);stroke-dasharray:5 4}
 .tulip-series.bitcoin{stroke:var(--color-secondary)}
