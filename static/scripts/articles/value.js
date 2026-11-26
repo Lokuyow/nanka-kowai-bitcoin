@@ -46,7 +46,7 @@
     var p = PRESETS[name];
     slWant.value = p.want; slScarce.value = p.scarce;
     evtMsg.textContent = ''; evtPair = ['', ''];
-    itemBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-item') === name); });
+    itemBtns.forEach(function(b){ var on = b.getAttribute('data-item') === name; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
     render();
   }
   sliders.forEach(function(sl){

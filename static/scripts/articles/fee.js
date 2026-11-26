@@ -30,12 +30,14 @@
     route = r;
     routeEx.classList.toggle('on', r === 'ex');
     routeSelf.classList.toggle('on', r === 'self');
+    routeEx.setAttribute('aria-pressed', String(r === 'ex'));
+    routeSelf.setAttribute('aria-pressed', String(r === 'self'));
     selfOpts.hidden = r !== 'self';
   }
   routeEx.addEventListener('click', function(){ setRoute('ex'); });
   routeSelf.addEventListener('click', function(){ setRoute('self'); });
-  spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); });
-  spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); });
+  spdWait.addEventListener('click', function(){ speed = 'wait'; spdWait.classList.add('on'); spdFast.classList.remove('on'); spdWait.setAttribute('aria-pressed', 'true'); spdFast.setAttribute('aria-pressed', 'false'); });
+  spdFast.addEventListener('click', function(){ speed = 'fast'; spdFast.classList.add('on'); spdWait.classList.remove('on'); spdFast.setAttribute('aria-pressed', 'true'); spdWait.setAttribute('aria-pressed', 'false'); });
   var lastRun = null; /* { route, speed, v, mode:'live'|'legacy' } */
   var liveData = null;  /* LiveData の取得結果（使えなければ null） */
   var settled = false;  /* 取得が終わったかどうか（免責文の出し分け用） */

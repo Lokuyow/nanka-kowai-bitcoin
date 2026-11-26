@@ -101,7 +101,7 @@
     gMsg.textContent = ''; msgPair = ['', ''];
     gTally.hidden = false;
     setTally();
-    sysBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-sys') === s); });
+    sysBtns.forEach(function(b){ var on = b.getAttribute('data-sys') === s; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
     renderSysLine();
     btnDay.hidden = false;
     btnOther.hidden = true;
@@ -119,18 +119,20 @@
     if (step >= DAYS) finish();
   }
   function finish(){
+    var moveFocus = document.activeElement === btnDay;
     btnDay.hidden = true;
     btnOther.hidden = false;
     btnAgain.hidden = false;
     msgPair = ['もう一方でも同じ出来事を試して、対応の違いを見てみよう。', 'Try the same situations with the other option to compare the responses.'];
     gMsg.textContent = L(msgPair[0], msgPair[1]);
+    if (moveFocus) btnOther.focus({preventScroll:true});
   }
   sysBtns.forEach(function(b){
     b.addEventListener('click', function(){ start(b.getAttribute('data-sys')); });
   });
   btnDay.addEventListener('click', nextDay);
-  btnOther.addEventListener('click', function(){ start(sys === 'bank' ? 'btc' : 'bank', true); });
-  btnAgain.addEventListener('click', function(){ start(sys); });
+  btnOther.addEventListener('click', function(){ start(sys === 'bank' ? 'btc' : 'bank', true); btnDay.focus({preventScroll:true}); });
+  btnAgain.addEventListener('click', function(){ start(sys); btnDay.focus({preventScroll:true}); });
   document.addEventListener('langchange', function(){
     renderSysLine();
     if (sys) renderList();

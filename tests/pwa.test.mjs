@@ -106,6 +106,11 @@ test('PWA: manifest の必須項目', async () => {
   const sizes = (manifest.icons || []).map((i) => i.sizes);
   assert.ok(sizes.includes('192x192'), '192x192 アイコンがある');
   assert.ok(sizes.includes('512x512'), '512x512 アイコンがある');
+  for (const icon of manifest.icons || []) {
+    const iconRes = await fetch(new URL(icon.src, server.origin));
+    assert.equal(iconRes.status, 200, `manifest アイコンが取得できる: ${icon.src}`);
+    assert.equal(iconRes.headers.get('content-type'), 'image/png', `manifest アイコンが PNG: ${icon.src}`);
+  }
 });
 
 test('PWA: スマホでサイト内リンクを押すと HTML の通信なしで遷移する', async () => {

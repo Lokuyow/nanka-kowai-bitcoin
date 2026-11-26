@@ -48,3 +48,4 @@
     .arb-price{font-size:17px}
     .arb-gap{min-width:4.5em}
   }
+@media(prefers-reduced-motion:reduce){.arb-price.up,.arb-price.down{animation:none}.arb-box{transition:none}}

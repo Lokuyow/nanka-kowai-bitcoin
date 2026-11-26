@@ -26,3 +26,4 @@
 @keyframes flash{0%{background:var(--color-secondary-bg);border-color:var(--color-primary)}}
 @media(prefers-reduced-motion:reduce){#mineCard.flashwin{animation:none}}
 :root[data-theme="dark"] .seg1{background:#5cbf8c}
+@media(prefers-reduced-motion:reduce){.stackbar div{animation:none}}
