@@ -122,19 +122,30 @@
     }
     return top + bot + 'Z';
   }
-  function pct(v){ return Math.round(v * 100) + '%'; }
+  function roundPcts(vals){
+    var scaled = vals.map(function(v){ return v * 100; });
+    var floors = scaled.map(Math.floor);
+    var rem = 100 - floors.reduce(function(a, b){ return a + b; }, 0);
+    if (rem > 0) {
+      scaled.map(function(v, i){ return { i: i, frac: v - floors[i] }; })
+        .sort(function(a, b){ return b.frac - a.frac; })
+        .slice(0, rem)
+        .forEach(function(item){ floors[item.i]++; });
+    }
+    return floors;
+  }
   function render(){
     var s = +range.value / 100;
     inflVal.textContent = range.value + '%';
     lawOn.setAttribute('aria-pressed', String(law));
     lawOff.setAttribute('aria-pressed', String(!law));
-    var hist = run(s), end = hist[YEARS];
+    var hist = run(s), end = hist[YEARS], pcts = roundPcts(end);
     areas.forEach(function(el, i){ el.setAttribute('d', band(hist, i)); });
-    shEls.forEach(function(el, i){ el.textContent = pct(end[i]); });
+    shEls.forEach(function(el, i){ el.textContent = pcts[i] + '%'; });
     var keep = 100 / Math.pow(1 + s, YEARS);
     // 日本語は100万円、英語は1万ドルを元手にする
     keepVal.textContent = L(Math.round(keep) + '万円分', '$' + (Math.round(keep) * 100).toLocaleString('en-US') + ' worth');
-    simOut.textContent = message(law, s, range.value, pct(end[0]));
+    simOut.textContent = message(law, s, range.value, pcts[0] + '%');
     // 4通りの文を見えない形で重ね、いちばん長い文に高さを合わせる（切り替えても下が動かない）
     ghosts.forEach(function(g, i){ g.textContent = message(i < 2, i % 2 ? 0.2 : 0, '20', '100%'); });
     if (window.updateRangeFill) window.updateRangeFill(range);
