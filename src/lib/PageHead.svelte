@@ -10,7 +10,7 @@
   let documentTitle = $derived(en ? dictionary[jaTitle] : jaTitle);
   let isArticle = $derived(shareType === 'article');
   // 記事ページで共有される文は疑問文（タイトル）だけにする。答えの文は共有まわりに出さない。
-  let metaDescription = $derived(isArticle ? (en ? shareEn.title : title) : (en ? dictionary[description] : description));
+  let metaDescription = $derived(isArticle ? (en ? dictionary[title] : title) : (en ? dictionary[description] : description));
   let url = $derived(path === undefined ? undefined : siteUrl(path, lang));
   let ogTitle = $derived(en ? shareEn.title : title);
   let ogDescription = $derived(en ? shareEn.text : description);

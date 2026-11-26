@@ -42,6 +42,14 @@
   var liveData = null;  /* LiveData の取得結果（使えなければ null） */
   var settled = false;  /* 取得が終わったかどうか（免責文の出し分け用） */
   var noteEl = document.getElementById('feeNote');
+  var feeNoteRefEl = document.getElementById('feeNoteRef');
+  var liveFeeLineEl = document.getElementById('liveFeeLine');
+  function syncNoteMarks(){
+    var hasLive = liveFeeLineEl && !liveFeeLineEl.hidden;
+    var mark = hasLive ? L('※2', '*2') : L('※1', '*1');
+    if (feeNoteRefEl) feeNoteRefEl.textContent = mark;
+    if (noteEl) noteEl.setAttribute('data-note-mark', mark);
+  }
   function fmtRate(rate){
     return rate < 10 ? String(Math.round(rate * 10) / 10) : String(Math.round(rate));
   }
@@ -129,10 +137,11 @@
     });
   }
   document.addEventListener('langchange', function(){
-    updLbl(); updateNote();
+    updLbl(); updateNote(); syncNoteMarks();
     if (lastRun && liveReady()) lastRun.mode = 'live';
     renderResult();
   });
+  syncNoteMarks();
 })();
 
 ;
@@ -144,6 +153,9 @@
   var labelEl = document.getElementById('liveFeeLabel');
   var mainEl = document.getElementById('liveFeeMain');
   var srcEl = document.getElementById('liveFeeSrc');
+  var liveRefEl = document.getElementById('liveFeeRef');
+  var feeNoteRefEl = document.getElementById('feeNoteRef');
+  var feeNoteEl = document.getElementById('feeNote');
   if (!line || !window.LiveData) return;
   var VB = window.LiveData.VB;
   var state = null; /* { rate: sat/vB, source: 表示名 } */
@@ -175,6 +187,11 @@
       'Calculated from live data (' + state.source + '), for a typical transfer of about 140 vB');
     line.hidden = false;
     srcEl.hidden = false;
+    var m1 = L('※1', '*1'), m2 = L('※2', '*2');
+    if (liveRefEl) liveRefEl.textContent = m1;
+    srcEl.setAttribute('data-note-mark', m1);
+    if (feeNoteRefEl) feeNoteRefEl.textContent = m2;
+    if (feeNoteEl) feeNoteEl.setAttribute('data-note-mark', m2);
   }
   document.addEventListener('langchange', render);
   window.LiveData.load().then(function(d){

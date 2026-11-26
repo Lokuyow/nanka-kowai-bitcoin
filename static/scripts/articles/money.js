@@ -97,7 +97,7 @@
           ? 'パンを買えた！ 残った貝がら' + balance + '枚は次の買い物に使える。' + comparison[0]
           : 'パンを買えた！ 貝がらは使い切った。' + comparison[0],
           balance > 0
-            ? 'You bought the bread! You have ' + balance + ' shells left for another purchase. ' + comparison[1]
+            ? 'You bought the bread! You have ' + (balance === 1 ? '1 shell' : balance + ' shells') + ' left for another purchase. ' + comparison[1]
             : 'You bought the bread! You used all your shells. ' + comparison[1]];
       }
     } else if (turns === limit) {
@@ -111,7 +111,8 @@
     const active = document.activeElement;
     const focusedTrader = stalls.contains(active) ? active.closest('[data-trader]')?.dataset.trader : null;
     byId('marketRound').textContent = mode === 'barter' ? L('物々交換', 'Barter') : L('貝がらで売り買い', 'Trading with shells');
-    byId('marketTurns').textContent = L('残り ' + (limit - turns) + ' 手', (limit - turns) + ' moves left');
+    const rem = limit - turns;
+    byId('marketTurns').textContent = L('残り ' + rem + ' 手', rem === 1 ? '1 move left' : rem + ' moves left');
     byId('holdIcon').innerHTML = icon(holding);
     byId('holdName').textContent = holding === 'shell' ? shells(balance) : item(holding);
     byId('marketGuide').textContent = done ? '' : mode === 'barter'
