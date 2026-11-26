@@ -38,8 +38,8 @@ table a{display:inline-block;padding:.5em .4em;margin:-.5em -.4em}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .stamp{display:inline-block;pointer-events:none;border:4px solid var(--red);color:var(--red);
     border-radius:12px;padding:6px 18px;font-size:24px;font-weight:900;
-    transform:rotate(-8deg) scale(2.4);opacity:0;transition:all .25s ease}
-.stamped .stamp{opacity:1;transform:rotate(-8deg) scale(1)}
+    transform:rotate(-8deg) scale(2.4);opacity:0;visibility:hidden;transition:all .25s ease}
+.stamped .stamp{opacity:1;visibility:visible;transform:rotate(-8deg) scale(1)}
 input[type=range]{appearance:none;display:block;width:100%;height:44px;margin:0;
     /* つまみ（半径14px）が両端でカードからはみ出さないよう、左右につまみの半径分の余白を持たせる */
     padding-inline:14px;
@@ -151,4 +151,4 @@ input[type=range]::-moz-range-thumb{box-sizing:border-box;width:28px;height:28px
 @keyframes idle-look{0%,20%,100%{transform:translateX(-2px)}35%,70%{transform:translateX(2px)}}
 @keyframes idle-tw{50%{transform:scale(.6);opacity:.45}}
 @keyframes idle-steam{0%{opacity:0;transform:translateY(3px)}40%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
-@media(prefers-reduced-motion:reduce){.scene *{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.scene *{animation:none!important}.rise{animation:none}.stamp{transition:none}}

@@ -24,15 +24,15 @@
     <p class="lede" data-i18n>鍵を守ることも、必要なときに家族がその鍵を見つけて使えることも大切だ。残し方を選び、時間を進めてみよう。</p>
     <div class="card">
       <div class="pickbtns" role="group" aria-label="鍵の残し方の選択" id="wayPick" data-i18n-label>
-        <button type="button" data-way="none" data-i18n>誰にも残さない</button>
-        <button type="button" data-way="env" data-i18n>封筒に入れて金庫へ</button>
-        <button type="button" data-way="split" data-i18n>2人の協力で復元する</button>
-        <button type="button" data-way="share" data-i18n>復元に必要な情報を共有</button>
+        <button type="button" data-way="none" aria-pressed="false" data-i18n>誰にも残さない</button>
+        <button type="button" data-way="env" aria-pressed="false" data-i18n>封筒に入れて金庫へ</button>
+        <button type="button" data-way="split" aria-pressed="false" data-i18n>2人の協力で復元する</button>
+        <button type="button" data-way="share" aria-pressed="false" data-i18n>復元に必要な情報を共有</button>
       </div>
       <div class="stage" style="--stage-min:max(calc(146px + (100cqw - 250px) * -0.4545), calc(121px + (100cqw - 305px) * 0.0000))">
       <div class="idle" aria-hidden="true"><svg class="scene" viewBox="0 0 240 110"><ellipse class="sh" cx="50" cy="103" rx="34" ry="3.5"/><ellipse class="sh" cx="130" cy="103" rx="26" ry="3.5"/><ellipse class="sh" cx="206" cy="103" rx="12" ry="3.5"/><rect class="nf" x="26" y="96" width="8" height="5" rx="1"/><rect class="nf" x="66" y="96" width="8" height="5" rx="1"/><rect class="nf" x="20" y="48" width="60" height="50" rx="7"/><rect class="nl" x="27" y="55" width="46" height="36" rx="4"/><circle class="ac" cx="47" cy="73" r="9"/><path class="al" d="M47 73v-6M47 61.5v-1M55.5 73h1M37.5 73h1"/><path class="al k" d="M66 66v14"/><g class="float"><g transform="translate(88.88 25.92) scale(0.72)"><path class="gb" d="M22 78C21 55 24 30 38 20 47 13 60 14 66 24 71 33 70 46 73 56 76 66 81 72 86 76 88 78 87 80 84 81 79 83 74 83 70 82 66 81 64 84 63 87 62 90 58 90 54 89 48 87 42 86 37 88 32 90 26 89 23 85 22 83 22 81 22 78Z"/><g transform="translate(-2.78 0)"><ellipse class="ge" cx="40" cy="37" rx="4" ry="5" transform="rotate(-10 40 37)"/><ellipse class="ge" cx="55" cy="39" rx="3.8" ry="5" transform="rotate(8 55 39)"/></g><path class="ge" transform="translate(-1.39 0)" d="M43.5 46.5Q48.5 47.8 53 47.2 53.2 53 48.3 53.6 43.8 53.3 43.5 46.5Z"/></g><rect class="ac" x="126" y="65" width="38" height="26" rx="3"/><path class="al" d="M127 67l18 12 18-12"/><circle class="af" cx="145" cy="80" r="4.5"/><path class="gb" d="M30.5 63.5C34 61 38.5 62.5 39 66.5 39.5 70.5 35.5 73 32 72 28.5 71 27.5 66 30.5 63.5Z" transform="translate(126 76) rotate(-15) scale(0.72) translate(-33.5 -67)"/><path class="gb" d="M30.5 63.5C34 61 38.5 62.5 39 66.5 39.5 70.5 35.5 73 32 72 28.5 71 27.5 66 30.5 63.5Z" transform="translate(164 76) rotate(15) scale(0.72) translate(-33.5 -67)"/></g><g class="float d2"><g transform="translate(206 40) rotate(35)"><circle class="ac" r="8"/><circle class="hl" r="3"/><path class="al k" d="M0 8v20M0 22h6M0 27h4"/></g></g><path class="af tw" d="M224 21.2l1.28 3.52 3.52 1.28-3.52 1.28-1.28 3.52-1.28-3.52-3.52-1.28 3.52-1.28z"/><path class="af tw d2" d="M186 18.4l0.96 2.64 2.64 0.96-2.64 0.96-0.96 2.64-0.96-2.64-2.64-0.96 2.64-0.96z"/></svg></div>
       <div class="stage-body">
-      <div id="storyList" data-result></div>
+      <div id="storyList" aria-live="polite" data-result></div>
       <p class="reflect" id="reflect" aria-live="polite"></p>
       <div class="gbtns">
         <button type="button" id="btnTime" hidden data-i18n>時を進める</button>

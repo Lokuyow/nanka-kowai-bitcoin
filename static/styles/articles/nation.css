@@ -87,3 +87,4 @@
 @media(max-width:520px){.cols.rules{grid-template-columns:1fr}}
 .lawlbl{margin:0 0 8px;font-size:13.5px;color:var(--sub)}
 .inflbl{gap:10px}.inflbl b{flex:none;min-width:2.7em;text-align:right}
+@media(prefers-reduced-motion:reduce){.cell,.ar{transition:none}}

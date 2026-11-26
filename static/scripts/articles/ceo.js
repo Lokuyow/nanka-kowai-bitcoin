@@ -6,8 +6,9 @@
     var btns = Array.prototype.slice.call(btnsWrap.children);
     for (var i = btns.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
-      btnsWrap.appendChild(btns[j]);
+      var t = btns[i]; btns[i] = btns[j]; btns[j] = t;
     }
+    btns.forEach(function(b){ btnsWrap.appendChild(b); });
   }
   function renderFeed(){
     if (answeredOk === null) { feed.innerHTML = ''; return; }

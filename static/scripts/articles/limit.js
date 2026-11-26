@@ -25,8 +25,9 @@
   document.querySelectorAll('#capBtns button').forEach(function(b){
     b.addEventListener('click', function(){
       if (running) return;
-      document.querySelectorAll('#capBtns button').forEach(function(x){ x.classList.remove('on'); });
+      document.querySelectorAll('#capBtns button').forEach(function(x){ x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
       b.classList.add('on');
+      b.setAttribute('aria-pressed', 'true');
       capPair = [b.dataset.cap, b.dataset.capEn];
     });
   });

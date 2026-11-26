@@ -154,6 +154,7 @@ var el = document.getElementById('nowPrice');
   }
   buildBook(EXAMPLE[cur]);
   el.textContent = fmtPrice(price);
+  renderTrades();
   renderUnit();
   render();
   // 実データが取れたら、その現在価格を出発点に板を組み直す（取引回数は引き継ぐ）
@@ -239,8 +240,8 @@ var el = document.getElementById('nowPrice');
     trade.disabled = same;
     $('arbNews').textContent = L('片方の取引所に注文が殺到する', 'Orders flood into one exchange');
     $('arbProfit').textContent = L('あなたの利益（手数料を引いた後）: ', 'Your profit (after fees): ') + money(profit);
-    $('arbNote').textContent = L('1回に' + SIZE + ' BTCずつ売り買いし、手数料は合わせて' + money(FEE) + 'とした（イメージ）。',
-                                 'Each round trades ' + SIZE + ' BTC, with ' + money(FEE) + ' in total fees (illustrative).');
+    $('arbNote').textContent = L('1回に' + SIZE + ' BTCずつ売り買いし、手数料は合わせて' + money(FEE * SIZE) + 'とした（イメージ）。',
+                                 'Each round trades ' + SIZE + ' BTC, with ' + money(FEE * SIZE) + ' in total fees (illustrative).');
     if (lastMsg) $('arbMsg').textContent = L(lastMsg[0], lastMsg[1]);
   }
   function reset(){
@@ -263,8 +264,8 @@ var el = document.getElementById('nowPrice');
       setMsg('差が手数料より小さくなり、もう得をしない。値段をそろえる係はいないのに、差で得をしようとする人たちの売り買いで、2つの値段は近づいた。',
              'The gap is now smaller than the fees, so there is no profit left. No one is in charge of matching prices, yet trades by people chasing the gap pulled the two prices together.');
     } else {
-      setMsg(name(c) + 'で買ったので売り注文が減って値段が上がり、' + name(h) + 'で売ったので買い注文が減って値段が下がった。差が縮んだ。',
-             'Buying on ' + name(c) + ' used up sell orders and pushed its price up. Selling on ' + name(h) + ' used up buy orders and pushed its price down. The gap shrank.');
+      setMsg('取引所' + c + 'で買ったので売り注文が減って値段が上がり、取引所' + h + 'で売ったので買い注文が減って値段が下がった。差が縮んだ。',
+             'Buying on Exchange ' + c + ' used up sell orders and pushed its price up. Selling on Exchange ' + h + ' used up buy orders and pushed its price down. The gap shrank.');
     }
     render();
   });
@@ -275,8 +276,8 @@ var el = document.getElementById('nowPrice');
     var other = x === 'A' ? mB : mA;
     if (x === 'A') mA = other + OPEN_GAP; else mB = other + OPEN_GAP;
     flash($('arbPrice' + x), 'up');
-    setMsg(name(x) + 'だけに買い注文が殺到して、' + name(x) + 'の値段だけが上がった。また差が開いた。',
-           'Buy orders flooded into ' + name(x) + ' only, so only its price rose. The gap opened again.');
+    setMsg('取引所' + x + 'だけに買い注文が殺到して、取引所' + x + 'の値段だけが上がった。また差が開いた。',
+           'Buy orders flooded into Exchange ' + x + ' only, so only its price rose. The gap opened again.');
     render();
   });
   document.addEventListener('langchange', render);

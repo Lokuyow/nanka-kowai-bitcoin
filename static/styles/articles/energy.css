@@ -23,4 +23,7 @@
 .minestats b{font-size:16px;font-variant-numeric:tabular-nums}
 .minemsg{font-size:14px;min-height:3.2em;margin:12px 0 0;text-align:center}
 #mineCard.flashwin{animation:flash .6s ease}
+@keyframes flash{0%{background:var(--color-secondary-bg);border-color:var(--color-primary)}}
+@media(prefers-reduced-motion:reduce){#mineCard.flashwin{animation:none}}
 :root[data-theme="dark"] .seg1{background:#5cbf8c}
+@media(prefers-reduced-motion:reduce){.stackbar div{animation:none}}
