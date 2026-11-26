@@ -16,7 +16,7 @@
         'Prices fell below where they started, with no sign of recovery.',
         'The mania is over. A bulb is just a bulb again.'
       ],
-      prices: [2, 3, 8, 30, 80, 100, 60, 8, 2, 2],
+      prices: [2, 3, 8, 30, 80, 100, 60, 8, 0.5, 0.2],
       years: ['1634年', '1634年 秋', '1635年', '1635年 冬', '1636年', '1636年 冬', '1637年 1月', '1637年 2月', '1637年 春', 'その後'],
       msgs: [
         '球根が少し話題になり始めた。',
@@ -113,6 +113,7 @@
   var assetsEl = document.getElementById('gmAssets');
   var holdEl = document.getElementById('gmHold');
   var roundEl = document.getElementById('gmRound');
+  var svgEl = document.getElementById('gmSvg');
   var buyBtn = document.getElementById('gmBuy');
   var sellBtn = document.getElementById('gmSell');
   var nextBtn = document.getElementById('gmNext');
@@ -146,6 +147,7 @@
     buyBtn.disabled = over || units > 0;
     sellBtn.disabled = over || units <= 0;
     nextBtn.disabled = over;
+    svgEl.setAttribute('aria-label', L('価格のグラフ（' + r.years[idx] + '・価格 ' + r.prices[idx] + '）', 'Price chart (' + r.yearsEn[idx] + ', Price ' + r.prices[idx] + ')'));
   }
   function startRound(n){
     round = n; idx = 0; cash = 1000; units = 0; over = false;
@@ -161,6 +163,7 @@
     cash = 0;
     setMsg('全額で買った。ここから先は価格しだい。', 'You bought with everything. From here, it all depends on the price.');
     draw();
+    sellBtn.focus({preventScroll:true});
   });
   sellBtn.addEventListener('click', function(){
     if (over || units <= 0) return;
@@ -169,6 +172,7 @@
     units = 0;
     setMsg('全部売った。資産は ' + Math.round(cash).toLocaleString('ja-JP') + ' で確定。', 'Sold everything. Assets locked in at ' + Math.round(cash).toLocaleString('en-US') + '.');
     draw();
+    buyBtn.focus({preventScroll:true});
   });
   nextBtn.addEventListener('click', function(){
     var r = ROUNDS[round];
@@ -183,6 +187,7 @@
       mainBtn.hidden = false;
       draw();
       buyBtn.disabled = true; sellBtn.disabled = true; nextBtn.disabled = true;
+      mainBtn.focus({preventScroll:true});
       return;
     }
     idx++;
@@ -192,6 +197,7 @@
   mainBtn.addEventListener('click', function(){
     if (round === 0) startRound(1);
     else { totalProfit = 0; startRound(0); }
+    buyBtn.focus({preventScroll:true});
   });
   // Thompson (2007), Appendix I. The first point represents early November.
   const bulbIndex = [

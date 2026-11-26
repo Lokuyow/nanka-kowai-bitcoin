@@ -54,6 +54,7 @@
     prevEra = e;
   }
   S.addEventListener('input', function(){
+    if (anim) { clearInterval(anim); anim = null; }
     var e = eraOf(+S.value);
     upd(e > prevEra);
   });
@@ -61,12 +62,23 @@
     if (anim) return;
     var target = Math.min(2140, 2012 + eraOf(+S.value) * 4);
     if (+S.value >= target) target = Math.min(2140, target + 4);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      S.value = target;
+      window.updateRangeFill?.(S);
+      upd(eraOf(target) >= 1 && (target - 2012) % 4 === 0);
+      return;
+    }
     anim = setInterval(function(){
       var y = +S.value + 1;
       S.value = y;
       window.updateRangeFill?.(S);
-      upd(y === target && eraOf(y) > prevEra - 1 && (y - 2012) % 4 === 0);
-      if (y >= target) { clearInterval(anim); anim = null; upd(eraOf(y) >= 1 && (y - 2012) % 4 === 0); }
+      if (y >= target) {
+        clearInterval(anim);
+        anim = null;
+        upd(eraOf(y) >= 1 && (y - 2012) % 4 === 0);
+      } else {
+        upd(false);
+      }
     }, 60);
   });
   document.addEventListener('langchange', function(){ upd(lastHalved); });

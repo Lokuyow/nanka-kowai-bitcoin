@@ -129,3 +129,25 @@ test('図解: 実価格から買える量を計算し、1 BTCとの大小に合�
     await page.close();
   }
 });
+
+test('図解: /price/ の裁定手数料表示と言語切替時の取引所名、/en/price/ の取引回数初期表示が正しい', async () => {
+  const isoContext = await newContext(browser);
+  try {
+    const { page, errors } = await openPage(isoContext, server.base + 'price/');
+    assert.match(await page.locator('#arbNote').textContent(), /750円/);
+    await page.locator('#arbTrade').click();
+    assert.match(await page.locator('#arbMsg').textContent(), /取引所A/);
+    await page.locator('.lang-toggle').click();
+    await page.locator('html[lang="en"]').waitFor();
+    assert.match(await page.locator('#arbNote').textContent(), /\$5\b/);
+    const enMsg = await page.locator('#arbMsg').textContent();
+    assert.ok(!enMsg.includes('取引所'), `英語切替後に日本語が残らないこと: ${enMsg}`);
+    assert.match(enMsg, /Exchange A/);
+
+    const { page: enPage, errors: enErrors } = await openPage(isoContext, server.base + 'en/price/');
+    assert.equal(await enPage.locator('#myTrades').textContent(), 'Your trades: 0');
+    assert.deepEqual([...errors, ...enErrors], []);
+  } finally {
+    await isoContext.close();
+  }
+});

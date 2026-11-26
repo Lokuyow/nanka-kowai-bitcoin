@@ -68,6 +68,7 @@
     b.type = 'button';
     b.textContent = btnLabel(c, false);
     b.dataset.i = i;
+    b.setAttribute('aria-pressed', 'false');
     btnsWrap.appendChild(b);
     nameEls.push({tx: tx, b: b});
   });
@@ -82,6 +83,7 @@
     if (!banned[i]) {
       banned[i] = true;
       b.classList.add('banned');
+      b.setAttribute('aria-pressed', 'true');
       b.textContent = btnLabel(c, true);
       dot.setAttribute('fill', '#bbb');
       x.style.display = '';
@@ -94,6 +96,7 @@
     } else {
       delete banned[i];
       b.classList.remove('banned');
+      b.setAttribute('aria-pressed', 'false');
       b.textContent = btnLabel(c, false);
       dot.setAttribute('fill', '#527c72');
       x.style.display = 'none';

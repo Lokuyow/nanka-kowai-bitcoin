@@ -26,3 +26,4 @@
 .cols>.card p{margin:0;font-size:14px}
 .cols:has(>.card){margin-top:12px}
 .cols>.card{margin-top:0}
+#capGo:disabled{opacity:.45;cursor:default}

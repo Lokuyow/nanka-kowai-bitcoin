@@ -576,7 +576,6 @@ export default {
   "次の値動きがわからないとき、いつ買っていつ売る？ 2つの架空のチャートで試してみよう。": "When would you buy or sell if you couldn't see what comes next? Try it on two fictional charts.",
   '資産': 'Assets',
   '価格のイメージ': 'Price (illustrative)',
-  '価格チャートで売り買いするゲーム': 'A buy-and-sell game on a price chart',
   '全額で買う': 'Buy with everything',
   '全部売る': 'Sell everything',
   '時を進める': 'Advance time',
