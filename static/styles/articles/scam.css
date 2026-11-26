@@ -24,6 +24,11 @@
     .sentence{flex-wrap:nowrap;font-size:16px;gap:6px;min-height:44px}
     .sentence .chip{padding:3px 8px}
   }
+@media(max-width:380px){
+    .sentence{font-size:14px;gap:4px}
+    .sentence .chip{padding:3px 6px}
+    .swapped .chip.move{transform:translateX(3px)}
+  }
 .card:has(.scene){padding:10px 14px}
 /* 共通の .scene は挿絵用に高さを 140px 固定しているため、この図では内容の高さに合わせる */
 .scene{display:flex;align-items:center;gap:6px;padding:8px 4px;height:auto}

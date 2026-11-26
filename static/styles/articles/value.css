@@ -86,6 +86,7 @@
   font-weight: 700;
   line-height: 1.4;
   text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .gold-price-flow li:nth-child(2) { background: var(--color-secondary-bg); }
@@ -100,6 +101,10 @@
 @media (max-width: 520px) {
   .gold-demand-legend { grid-template-columns: 1fr; }
   .gold-price-flow { font-size: 12px; }
+}
+@media (max-width: 380px) {
+  .gold-price-flow { gap: 14px; font-size: 11px; }
+  .gold-price-flow [aria-hidden] { width: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .meterfill { transition: none; }

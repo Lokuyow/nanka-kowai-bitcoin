@@ -2,8 +2,8 @@
   var COUNTRIES = [
     {n: 'アメリカ', e: 'US', eIn: 'the US', x: 80, y: 66},
     {n: 'ドイツ', e: 'Germany', x: 148, y: 52},
-    {n: '中国', e: 'China', x: 212, y: 70},
-    {n: '日本', e: 'Japan', x: 238, y: 92},
+    {n: '中国', e: 'China', x: 206, y: 68},
+    {n: '日本', e: 'Japan', x: 244, y: 96},
     {n: 'ブラジル', e: 'Brazil', x: 104, y: 150},
     {n: 'オーストラリア', e: 'Australia', x: 224, y: 152}
   ];

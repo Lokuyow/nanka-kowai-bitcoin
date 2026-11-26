@@ -4,4 +4,4 @@
 .dvtotal{margin-top:10px;border:2px solid var(--color-primary);border-radius:12px;padding:10px;
     font-size:17px;font-weight:700;text-align:center;background:#efefec}
 .dvtotal b{color:var(--color-secondary)}
-#dvSvg{touch-action:pan-y}
+#dvSvg{max-width:100%;height:auto;touch-action:pan-y}
