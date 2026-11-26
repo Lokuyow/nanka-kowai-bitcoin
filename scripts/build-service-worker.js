@@ -47,7 +47,9 @@ const manifest = JSON.parse(await readFile(path.join(buildDir, manifestFile), 'u
 for (const icon of manifest.icons) {
   icon.src = assetUrls.get(icon.src) ?? icon.src;
 }
-assetUrls.set(BASE_PATH + manifestFile, await fingerprint(manifestFile, JSON.stringify(manifest)));
+const rewrittenManifest = JSON.stringify(manifest);
+await writeFile(path.join(buildDir, manifestFile), rewrittenManifest);
+assetUrls.set(BASE_PATH + manifestFile, await fingerprint(manifestFile, rewrittenManifest));
 
 const precache = Object.fromEntries([...assetUrls.values()].map((url) => [url, url]));
 for (const page of pages) {

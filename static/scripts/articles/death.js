@@ -54,7 +54,7 @@
       storyList.appendChild(div);
     });
     var finished = idx >= story.steps.length;
-    reflect.textContent = L(story.reflect, story.reflectEn);
+    reflect.textContent = finished ? L(story.reflect, story.reflectEn) : '';
     reflect.classList.toggle('pending', !finished);
     btnTime.hidden = false;
     btnRetryWay.hidden = false;
@@ -93,23 +93,28 @@
     story = buildStory(way);
     idx = 0;
     reserve();
-    wayBtns.forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-way') === way); });
+    wayBtns.forEach(function(b){ var on = b.getAttribute('data-way') === way; b.classList.toggle('on', on); b.setAttribute('aria-pressed', String(on)); });
     reveal();
   }
   wayBtns.forEach(function(b){
     b.addEventListener('click', function(){ start(b.getAttribute('data-way')); });
   });
   btnTime.addEventListener('click', function(){
-    if (story && idx < story.steps.length) reveal();
+    if (story && idx < story.steps.length) {
+      reveal();
+      if (idx >= story.steps.length) btnRetryWay.focus({preventScroll:true});
+    }
   });
   btnRetryWay.addEventListener('click', function(){
+    var cur = Array.prototype.find.call(wayBtns, function(b){ return b.classList.contains('on'); }) || wayBtns[0];
     story = null;
     storyList.innerHTML = '';
     reflect.textContent = '';
     reflect.classList.remove('pending');
     storyList.style.minHeight = ''; reflect.style.minHeight = '';
-    wayBtns.forEach(function(b){ b.classList.remove('on'); });
+    wayBtns.forEach(function(b){ b.classList.remove('on'); b.setAttribute('aria-pressed', 'false'); });
     btnTime.hidden = true;
     btnRetryWay.hidden = true;
+    cur.focus({preventScroll:true});
   });
 })();

@@ -25,9 +25,11 @@
   }
   function upd(){
     var d = divOf();
-    N.textContent = L(d.toLocaleString('ja-JP') + '切れ', d.toLocaleString('en-US') + (d === 1 ? ' piece' : ' pieces'));
+    var countText = L(d.toLocaleString('ja-JP') + '切れ', d.toLocaleString('en-US') + (d === 1 ? ' piece' : ' pieces'));
+    N.textContent = countText;
     pieceEl.textContent = pieceText(d);
     capEl.textContent = capFor(d);
+    S.setAttribute('aria-valuetext', L(countText + '（1切れ ' + pieceText(d) + '）', countText + ' (' + pieceText(d) + ' each)'));
     if (d > 1 && d <= 360) {
       var a2 = 360 / d;
       var p1 = polar(0), p2 = polar(a2);

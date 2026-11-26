@@ -39,17 +39,17 @@
     <div class="card" id="sendCard">
       <label><span data-i18n>使う予算:</span> <b id="amtLbl">11,200円</b><input type="range" id="amtRange" min="0" max="100" value="45" aria-label="送金に使う予算" data-i18n-label></label>
       <div class="routebtns">
-        <button type="button" id="routeEx" class="on" data-i18n>取引所から出金する</button>
-        <button type="button" id="routeSelf" data-i18n>自分で送金する</button>
+        <button type="button" id="routeEx" class="on" aria-pressed="true" data-i18n>取引所から出金する</button>
+        <button type="button" id="routeSelf" aria-pressed="false" data-i18n>自分で送金する</button>
       </div>
       <div id="selfOpts" hidden>
         <div class="routebtns">
-          <button type="button" id="spdWait" class="on" data-i18n>待てる（低めの手数料）</button>
-          <button type="button" id="spdFast" data-i18n>急ぐ（高めの手数料）</button>
+          <button type="button" id="spdWait" class="on" aria-pressed="true" data-i18n>待てる（低めの手数料）</button>
+          <button type="button" id="spdFast" aria-pressed="false" data-i18n>急ぐ（高めの手数料）</button>
         </div>
       </div>
       <div class="center" style="margin:6px 0"><button id="sendBtn" type="button" data-i18n>送ってみる</button></div>
-      <div class="sendresult" id="sendResult" hidden>
+      <div class="sendresult" id="sendResult" aria-live="polite" hidden>
         <div class="line"><span data-i18n>使う予算</span><b id="rAmt"></b></div>
         <div class="line"><span data-i18n>手数料</span><b id="rFee"></b></div>
         <div class="line hl"><span data-i18n>相手に届く額</span><b id="rGot"></b></div>

@@ -62,6 +62,12 @@
     if (anim) return;
     var target = Math.min(2140, 2012 + eraOf(+S.value) * 4);
     if (+S.value >= target) target = Math.min(2140, target + 4);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      S.value = target;
+      window.updateRangeFill?.(S);
+      upd(eraOf(target) >= 1 && (target - 2012) % 4 === 0);
+      return;
+    }
     anim = setInterval(function(){
       var y = +S.value + 1;
       S.value = y;
