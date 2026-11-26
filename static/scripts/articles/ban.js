@@ -43,7 +43,7 @@
     nodesG.appendChild(dot);
     var x1 = document.createElementNS(NS, 'path');
     x1.setAttribute('d', 'M' + (c.x - 5) + ' ' + (c.y - 5) + ' L' + (c.x + 5) + ' ' + (c.y + 5) + ' M' + (c.x + 5) + ' ' + (c.y - 5) + ' L' + (c.x - 5) + ' ' + (c.y + 5));
-    x1.setAttribute('stroke', '#d33'); x1.setAttribute('stroke-width', '2.5'); x1.setAttribute('stroke-linecap', 'round');
+    x1.setAttribute('stroke', 'var(--red)'); x1.setAttribute('stroke-width', '2.5'); x1.setAttribute('stroke-linecap', 'round');
     x1.id = 'bx' + i; x1.style.display = 'none';
     nodesG.appendChild(x1);
     var tx = document.createElementNS(NS, 'text');
@@ -79,7 +79,7 @@
       banned[i] = true;
       b.classList.add('banned');
       b.textContent = L(c.n + '（禁止中）', c.e + ' (banned)');
-      dot.setAttribute('fill', '#bbb');
+      dot.classList.add('banned');
       x.style.display = '';
       c.miners.forEach(function(miner){ miner.style.display = 'none'; });
       if (Object.keys(banned).length === COUNTRIES.length) {
@@ -91,7 +91,7 @@
       delete banned[i];
       b.classList.remove('banned');
       b.textContent = L(c.n + 'を禁止', 'Ban ' + c.e);
-      dot.setAttribute('fill', '#527c72');
+      dot.classList.remove('banned');
       x.style.display = 'none';
       c.miners.forEach(function(miner){ miner.style.display = ''; });
       setLog(c.n + 'の禁止を解除し、図の拠点を再開した。', 'The ban in ' + c.e + ' was lifted, and its sites in the diagram resumed.');

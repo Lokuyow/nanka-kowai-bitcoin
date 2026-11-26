@@ -1,11 +1,13 @@
 .globe-wrap{text-align:center}
 .banbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px}
 .banbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);padding:8px 14px;font-size:14px;min-height:44px}
-.banbtns button.banned{background:#eee;border-color:#bbb;color:#999;text-decoration:line-through}
+.banbtns button.banned{background:#eee;border-color:#bbb;color:var(--sub);text-decoration:line-through}
 .banstatus{font-size:14px;margin:12px 0 0}
 .banlog{font-size:14px;min-height:3.2em;margin:6px 0 0}
 #banMiners circle{transition:cx 1s ease,cy 1s ease,opacity .6s}
+#banNodes circle.banned{fill:#e5e5e2}
 #banNodes text{font-size:10px;fill:#666}
+:root[data-theme="dark"] #banNodes circle.banned{fill:#2f3138}
 :root[data-theme="dark"] #banNodes text{fill:#b3b5bd}
 :root[data-theme="dark"] #banMiners circle{fill:#e2dfd8}
 .ban-history{margin-inline:0}

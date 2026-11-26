@@ -1,8 +1,8 @@
 .nw{white-space:nowrap}
 .ic{display:inline-block;width:1.18em;height:1.18em;vertical-align:-.26em;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.profile td.v{color:#999;transition:all .4s ease;min-width:9em}
+.profile td.v{color:var(--sub);transition:all .4s ease;min-width:9em}
 .profile.found td.v{color:var(--red);font-weight:700}
-.profile.found td.v s{color:#bbb;font-weight:400}
+.profile.found td.v s{color:var(--sub);font-weight:400}
 .stamp-zone{position:relative;text-align:center;padding:20px 0 2px;min-height:84px;overflow:hidden}
 .vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 @media(max-width:520px){.vs{grid-template-columns:1fr}}
@@ -29,7 +29,8 @@
 .hlbtns button{background:#fff;color:var(--ink);border:2px solid var(--ink);min-height:48px;font-size:15px;border-radius:12px;padding:10px 14px;text-align:left}
 .hlbtns button.right{border-color:var(--green);background:#f2f9f2;color:var(--green)}
 .hlbtns button.wrong{border-color:var(--red);background:#fff6f6;color:var(--red)}
-.hlbtns button[disabled]{cursor:default;opacity:.85}
+.hlbtns button[disabled]{cursor:default}
+.hlbtns button[disabled]:not(.right):not(.wrong){opacity:.85}
 .hlfeed{font-size:14px;min-height:3.2em;margin:10px 0 0}
 .hlfeed .acc{background:var(--color-secondary-bg);border-radius:6px;padding:1px 6px;font-weight:700}
 .newsfig{margin:14px 0 0;background:var(--card);border:1px solid var(--line);
