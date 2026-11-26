@@ -12,7 +12,7 @@
     align-items:center;font-size:22px;font-weight:700;min-height:56px}
 .chip{white-space:nowrap;background:var(--color-secondary-bg);border:2px solid var(--color-primary);border-radius:10px;
     padding:4px 12px;transition:transform .5s ease,opacity .5s ease}
-.chip.ghost{border-color:#bbb;background:#f4f4f4;color:#999}
+.chip.ghost{border-color:#bbb;background:#f4f4f4;color:var(--sub)}
 .chip.insert{background:var(--color-primary);color:var(--color-on-primary);
     opacity:0;transform:scale(.6) translateY(8px)}
 .swapped .chip.insert{opacity:1;transform:scale(1) translateY(0)}
@@ -94,6 +94,7 @@
   :root[data-theme="dark"] .routebtns button:not(.on),
   :root[data-theme="dark"] .tlbtns button:not(.on){background:#2a2c31}
 :root[data-theme="dark"] .flow .coin.yen{background:#c9a227;color:#3d2d05}
+:root[data-theme="dark"] .qbtns button.correct::before{color:var(--btnfg)}
 /* 出典つきの説明は、クイズの指示文と同じ段落の流れに続けると続けて読めてしまうので、小さめの注記として区切る */
 .lede.source{font-size:13px;line-height:1.7;margin:14px 0 10px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
 @media(prefers-reduced-motion:reduce){.stamp,.chip{transition:none}}
