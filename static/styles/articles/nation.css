@@ -74,15 +74,16 @@
 .rule-card p,.law p{margin:0;font-size:14px}
 .law h3{margin:0 0 4px;font-size:16px}
 
-@media(max-width:400px){
-    .lanes{grid-template-columns:50px repeat(7,minmax(0,1fr));gap:4px 2px}
-    .lane-lbl{font-size:10px}
-    .era-btn{font-size:10.5px;letter-spacing:-.04em}
-  }
 /* 英語の行名（Private など）は日本語より長いので、行名の列を広げる */
 :root[data-lang="en"] .lanes{grid-template-columns:60px repeat(7,minmax(0,1fr))}
 :root[data-lang="en"] .lane-lbl{font-size:11px}
 :root[data-lang="en"] .era-btn{font-size:11px;white-space:normal;line-height:1.15}
+@media(max-width:400px){
+    .lanes{grid-template-columns:44px repeat(7,minmax(0,1fr));gap:4px 2px}
+    :root[data-lang="en"] .lanes{grid-template-columns:52px repeat(7,minmax(0,1fr))}
+    .lane-lbl,:root[data-lang="en"] .lane-lbl{font-size:10px}
+    .era-btn,:root[data-lang="en"] .era-btn{font-size:9.5px;white-space:normal;line-height:1.15;letter-spacing:-.04em}
+  }
 .cols.rules{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media(max-width:520px){.cols.rules{grid-template-columns:1fr}}
 .lawlbl{margin:0 0 8px;font-size:13.5px;color:var(--sub)}

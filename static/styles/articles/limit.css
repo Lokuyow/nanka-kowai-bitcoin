@@ -14,7 +14,11 @@
 .nodes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;max-width:360px;margin:8px auto 4px}
 .node{border:2px solid var(--line);border-radius:12px;padding:8px 2px;min-width:0;text-align:center;font-size:11px;color:var(--sub);transition:all .3s;background:#fff}
 .node .st{display:block;font-size:13px;font-weight:700;color:var(--ink)}
-@media(max-width:400px){.node{padding:8px 0}.node .st{font-size:11px;letter-spacing:-.02em}}
+@media(max-width:400px){
+    .node{padding:8px 0}.node .st{font-size:11px;letter-spacing:-.02em}
+    :root[data-lang="en"] .nodes{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+    :root[data-lang="en"] .node{flex:0 0 calc(33.333% - 4px);padding:8px 4px}
+  }
 .node.sent{border-color:var(--color-secondary)}
 .node.ng{border-color:var(--red);color:var(--red);background:#fff6f6}
 .node.ng .st{color:var(--red)}
