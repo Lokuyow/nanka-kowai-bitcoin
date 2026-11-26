@@ -41,7 +41,7 @@
     var years = TOTAL / eff / SEC_YEAR;
     yearsEl.innerHTML = L('約 ' + fmtSci(years) + ' 年', 'About ' + fmtSci(years) + ' years');
     if (attempts > 1e18) setMsg('100京回を超えた。でも全体は10の77乗通り。残り時間はほぼ減っていない。', 'Over 1 quintillion tries. But the total is 10^77 possibilities — the remaining time has barely shrunk.');
-    else if (attempts > 1e12) setMsg('1兆回を試した。それでも全体のほんの入口にも届いていない。', "A trillion tries — and you still haven't reached even the entrance of the whole space.");
+    else if (attempts > 1e12) setMsg('1兆回を試した。それでも全体のほんの一部にも届いていない。', "A trillion tries — and you still haven't reached even the entrance of the whole space.");
     else if (attempts > 1e9) setMsg('10億回。速さは上がっていくのに、ゴールは遠いまま。', 'A billion tries. The speed keeps climbing, but the goal stays just as far away.');
   }
   function tick(){

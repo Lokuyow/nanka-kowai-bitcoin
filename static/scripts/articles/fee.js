@@ -72,10 +72,10 @@
     if (!noteEl || !settled) return;
     if (liveReady()) {
       var srcs = liveData.rateSource === liveData.priceSource ? liveData.rateSource : liveData.rateSource + ' / ' + liveData.priceSource;
-      noteEl.textContent = L('「自分で送金する」の手数料はいまの実データ（' + srcs + '）から計算しています。取引所の出金手数料は一例として 0.0005 BTC を同じ価格で円に換算しています。',
+      noteEl.textContent = L('「自分で送金する」の手数料はいまの実データ（' + srcs + '）から計算している。取引所の出金手数料は一例として 0.0005 BTC を同じ価格で円に換算している。',
         'The "send it yourself" fee is calculated from live data (' + srcs + '). The exchange withdrawal fee is an example 0.0005 BTC, converted to dollars at the same price.');
     } else {
-      noteEl.textContent = L('実データを取得できなかったため、手数料は目安の数値で計算しています。取引所の出金手数料は一例として 0.0005 BTC（1 BTC=1,500万円なら7,500円）で計算しています。',
+      noteEl.textContent = L('実データを取得できなかったため、手数料は目安の数値で計算している。取引所の出金手数料は一例として 0.0005 BTC（1 BTC=1,500万円なら7,500円）で計算している。',
         'Live data could not be loaded, so the fees are calculated with illustrative values. The exchange withdrawal fee is an example 0.0005 BTC ($50 if 1 BTC = $100,000).');
     }
   }
@@ -183,7 +183,7 @@
       '約' + fmtBtc(sats) + ' BTC<span class="livefee-detail">（' + sats.toLocaleString('ja-JP') + ' sats・' + rateTxt + ' sat/vB）</span>',
       'about ' + fmtBtc(sats) + ' BTC<span class="livefee-detail">(' + sats.toLocaleString('en-US') + ' sats, ' + rateTxt + ' sat/vB)</span>');
     srcEl.textContent = L(
-      'いまの実データ（' + state.source + '）から計算。普通の送金1回を約140 vBとして計算しています',
+      'いまの実データ（' + state.source + '）をもとに、普通の送金1回を約140 vBとして計算している。',
       'Calculated from live data (' + state.source + '), for a typical transfer of about 140 vB');
     line.hidden = false;
     srcEl.hidden = false;

@@ -26,7 +26,7 @@
   var feedPair = ['', ''];
   function renderFeed(){
     var done = tried.actDouble && tried.actSteal && tried.actMint;
-    feed.innerHTML = L(feedPair[0], feedPair[1]) + (done ? '<br><b>' + L('計算力は、どの有効な取引が記録に残るかに影響する。取引を有効にするルールはノードが確かめる。', "Mining power can influence which valid transactions remain recorded. Nodes still check which transactions are valid.") + '</b>' : '');
+    feed.innerHTML = L(feedPair[0], feedPair[1]) + (done ? '<br><b>' + L('計算力はどの有効な取引が記録に残るかに影響する。取引を有効にするルールはノードが確かめる。', "Mining power can influence which valid transactions remain recorded. Nodes still check which transactions are valid.") + '</b>' : '');
   }
   function finish(id, b, ja, en, ok){
     tried[id] = true;
