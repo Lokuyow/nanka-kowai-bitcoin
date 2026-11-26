@@ -101,3 +101,6 @@
   .gold-demand-legend { grid-template-columns: 1fr; }
   .gold-price-flow { font-size: 12px; }
 }
+@media (prefers-reduced-motion: reduce) {
+  .meterfill { transition: none; }
+}
